@@ -22,6 +22,10 @@ Creating a Bot account is a pretty straightforward process.
 
 5. The `General Information` provide your bot's information.
 
+   ![mezon-bot-003](/images/mezon-bot-003.png)
+
+  - Use `Bot Id` as token to login when using **[Mezon SDK](mezon-sdk-docs.md)**
+
 ## Inviting Your Bot
 
 So you’ve made a Bot User but it’s not actually in any clan.
@@ -32,7 +36,7 @@ If you want to invite your bot you must create an invite URL for it.
 
 2. Navigate to the `Installation` in the [developer portal](https://mezon.ai/developers).
 
-    ![mezon-bot-003](/images/mezon-bot-003.png)
+    ![mezon-bot-004](/images/mezon-bot-004.png)
 
 Now the install link can be used to add your bot to a clan. Copy and paste the URL into your browser, choose a clan to invite the bot to, and click `Authorize`.
 
