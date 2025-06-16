@@ -52,10 +52,11 @@
     - [Initiating a Channel](#initiating-a-channel)
     - [Send a Message to a Channel](#send-a-message-to-a-channel)
   - [Working with Messages](#working-with-messages)
+    - [Initiating a Message](#initiating-a-message)
     - [Replying to a Message](#replying-to-a-message)
     - [Updating a Message](#updating-a-message)
-    - [Deleting a Message](#deleting-a-message)
     - [Reacting to a Message](#reacting-to-a-message)
+    - [Deleting a Message](#deleting-a-message)
   - [Handling Events](#handling-events)
     - [Listening to New Messages](#listening-to-new-messages)
     - [Listening to Channel Updates](#listening-to-channel-updates)
@@ -604,12 +605,63 @@ async function sendMessageWithAttachment(channel: TextChannel, content: string, 
 
 The `Message` class (`src/mezon-client/structures/Message.ts`) allows you to interact with existing messages.
 
+#### Initiating a Message
+
+The `fetch` method allows you to retrieve a reference to a message using its unique identifier and the channel it belongs to.
+
+```typescript
+const channel = await client.channels.fetch(channel_id);
+
+const message = await channel.messages.fetch(message_id);
+```
+
+**Parameters**
+
+- `message_id`: A string representing the unique identifier of the message you want to interact with.
+
+**Return Value**
+
+- `message`: An `Message` object representing the specified message. This object will likely have methods for performing actions within the message, such as reply, update, delete message, etc. The exact methods available on the message object will be detailed in further documentation.
+
 #### Replying to a Message
+
+Once you have a `TextChannel` object (either a DM channel or a clan channel), you can send messages.
+
+```typescript
+import { ChannelMessageContent } from 'mezon-sdk';
+
+const content: ChannelMessageContent = {};
+const replyResponse = await message.reply(content);
+```
+
+**Parameters**
+
+- `content`: The content of the message. This can be a simple string or a more complex object conforming to the `ChannelMessageContent` interface.
+
+- `mentions (optional)`: An array of `ApiMessageMention` objects, representing users mentioned in the reply.
+
+- `attachments (optional)`: An array of `ApiMessageAttachment` objects, representing any files attached to the reply.
+
+- `mention_everyone (optional)`: A boolean indicating whether the message should trigger a notification for everyone in the channel.
+
+- `anonymous_message (optional)`: A boolean value that indicates whether the reply should be sent anonymously.
+
+- `topic_id (optional)`: A string representing the unique identifier of the topic this reply belongs to. If not provided, it defaults to the topic of the original message.
+
+- `code (optional)`: A number that can be used for special purposes by the application.
+
+**Return Value**
+
+- `ChannelMessageAck`: An acknowledgement received in response to sending a message on a chat channel.
+
+The `generate_reply_message.ts` utility is likely used internally by this method.
+
+Sample code snippets for the `reply` function:
 
 ```typescript
 async function replyToMessage(originalMessage: Message, replyContent: string) {
   try {
-    const reply = await originalMessage.reply({ content: replyContent });
+    const reply = await originalMessage.reply({ t: replyContent });
     console.log(
       `Replied to message ${originalmessage.message_id}. New message ID: ${reply.id}`
     );
@@ -622,14 +674,14 @@ async function replyToMessage(originalMessage: Message, replyContent: string) {
 // await replyToMessage(receivedMessage, 'Thanks for your message!');
 ```
 
-The `generate_reply_message.ts` utility is likely used internally by this method.
-
 #### Updating a Message
+
+This function updates an existing message with new content.
 
 ```typescript
 async function updateMessage(message: Message, newContent: string) {
   try {
-    const updatedMessage = await message.update({ content: newContent });
+    const updatedMessage = await message.update({ t: newContent });
     console.log(
       `Message ${message.message_id} updated. New content: ${updatedMessage.content}`
     );
@@ -642,7 +694,62 @@ async function updateMessage(message: Message, newContent: string) {
 // await updateMessage(myMessage, 'This is the edited content.');
 ```
 
+**Parameters**
+
+- `content`: The content of the new message. This can be a simple string or a more complex object conforming to the `ChannelMessageContent` interface.
+
+- `topic_id (optional)`: A string representing the unique identifier of the topic this message is in. If not provided, it defaults to the topic of the original message.
+
+**Return Value**
+
+- `ChannelMessageAck`: An acknowledgement received in response to sending a message on a chat channel.
+
+#### Reacting to a Message
+
+This function adds or removes a reaction from the message.
+
+```typescript
+async function reactToMessage(message: Message, emoji: string) {
+  try {
+
+    const reactData: ReactMessagePayload = {
+      emoji_id: ':like:', // Replace with actual emoji ID or custom reaction
+      emoji: '👍', // Replace with actual emoji or custom reaction
+      count: 1,
+    };
+
+    const reactResponse = await message.react(reactData);
+    console.log(`Reacted to message ${message.message_id} with ${reactData.emoji}.`);
+  } catch (error) {
+    console.error(`Failed to react to message ${message.message_id}:`, error);
+  }
+}
+
+// Example:
+// await reactToMessage(receivedMessage, '👍');
+```
+
+**Parameters**
+
+- `dataReactMessage`: A `ReactMessagePayload` object containing the details of the reaction. This object includes:
+
+    - `id`: A string representing the unique identifier of the reaction.
+
+    - `emoji_id`: A string representing the unique identifier of the emoji.
+
+    - `emoji`: The emoji character or object itself.
+
+    - `count`: A number indicating the total count for this reaction.
+
+    - `action_delete` (optional): A boolean value that, if true, indicates the reaction should be removed. Defaults to false.
+
+**Return Value**
+
+- `ApiMessageMention`: .
+
 #### Deleting a Message
+
+This function deletes the message.
 
 ```typescript
 async function deleteMessage(message: Message) {
@@ -657,24 +764,13 @@ async function deleteMessage(message: Message) {
 // Example:
 // await deleteMessage(myMessage);
 ```
+**Parameters**
 
-#### Reacting to a Message
+- This function does not take any parameters.
 
-```typescript
-async function reactToMessage(message: Message, emoji: string) {
-  try {
-    // The exact method might be called addReaction, react, etc.
-    // Parameters might be emoji string or an object
-    await message.react(emoji); // Assuming `react` method and emoji string like '👍' or a custom emoji ID
-    console.log(`Reacted to message ${message.message_id} with ${emoji}.`);
-  } catch (error) {
-    console.error(`Failed to react to message ${message.message_id}:`, error);
-  }
-}
+**Return Value**
 
-// Example:
-// await reactToMessage(receivedMessage, '👍');
-```
+- `ChannelMessageAck`: An acknowledgement received in response to deleting a message on a chat channel.
 
 ### Handling Events
 
