@@ -745,7 +745,7 @@ async function reactToMessage(message: Message, emoji: string) {
 
 **Return Value**
 
-- `ApiMessageMention`: .
+- `ApiMessageReaction`: An object that specifies which messages are reacted to in the channel..
 
 #### Deleting a Message
 
