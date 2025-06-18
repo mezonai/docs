@@ -72,7 +72,6 @@
   - [User (`User.ts`)](#user-userts)
   - [Clan (`Clan.ts`)](#clan-clants)
 - [Testing](#testing)
-- [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
@@ -1081,16 +1080,6 @@ This command will execute all tests defined within the `src` directory (or as sp
 
 ---
 
-## Roadmap
-
-- [x] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
-
-_(Update this section with actual project goals and completed tasks.)_
-
----
-
 ## Contributing
 
 Contributions are welcome! Here's how you can help:
@@ -1129,8 +1118,8 @@ Contributions are welcome! Here's how you can help:
 <summary>Contributor Graph</summary>
 <br>
 <p align="left">
-   <a href="https://LOCAL{/packages/mezon-sdk/}graphs/contributors"> <!-- Replace LOCAL -->
-      <img src="https://contrib.rocks/image?repo=packages/mezon-sdk"> <!-- Update repo path if needed -->
+   <a href="https://github.com/mezonai/mezon-js/graphs/contributors">
+      <img src="https://github.com/huybuidoanquang/MEZON/blob/main/images/contributor-graph.png">
    </a>
 </p>
 </details>
@@ -1148,8 +1137,6 @@ Mezon-sdk is protected under the [LICENSE](https://choosealicense.com/licenses) 
 - Credit `contributors`, `inspiration`, `references`, etc.
 - Thanks to all developers who have contributed to the libraries and tools used in this project.
 - The Mezon community for their feedback and support.
-
-_(Update this section as appropriate.)_
 
 <div align="right">
 
