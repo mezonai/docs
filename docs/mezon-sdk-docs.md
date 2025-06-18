@@ -1084,9 +1084,9 @@ This command will execute all tests defined within the `src` directory (or as sp
 
 Contributions are welcome! Here's how you can help:
 
-- **💬 [Join the Discussions](<[https://LOCAL/packages/mezon-sdk/discussions](https://forum.mezon.ai/)>)**: Share your insights, provide feedback, or ask questions. (Replace LOCAL with your actual GitHub/GitLab instance URL if applicable, or remove if not a public repo).
-- **🐛 [Report Issues](https://LOCAL/packages/mezon-sdk/issues)**: Submit bugs found or log feature requests for the `mezon-sdk` project.
-- **💡 [Submit Pull Requests](https://LOCAL/packages/mezon-sdk/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+- **💬 [Join the Discussions](https://mezon.ai/)**: Share your insights, provide feedback, or ask questions. 
+- **🐛 [Report Issues](https://github.com/mezonai/mezon-js/issues)**: Submit bugs found or log feature requests for the `mezon-sdk` project.
+- **💡 [Submit Pull Requests](https://github.com/mezonai/mezon-js/pulls)**: Review open PRs, and submit your own PRs.
 
 <details closed>
 <summary>Contributing Guidelines</summary>
