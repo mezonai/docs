@@ -57,13 +57,14 @@
     - [Updating a Message](#updating-a-message)
     - [Reacting to a Message](#reacting-to-a-message)
     - [Deleting a Message](#deleting-a-message)
-  - [Handling Events](#handling-events)
-    - [Listening to New Messages](#listening-to-new-messages)
-    - [Listening to Channel Updates](#listening-to-channel-updates)
   - [Working with Users](#working-with-users)
+    - [Initiating a User](#initiating-a-user)
     - [Sending a Direct Message](#sending-a-direct-message)
   - [Working with Clans](#working-with-clans)
     - [Fetching Clan Data](#fetching-clan-data)
+  - [Handling Events](#handling-events)
+    - [Listening to New Messages](#listening-to-new-messages)
+    - [Listening to Channel Updates](#listening-to-channel-updates)
 - [API Reference (Key Components)](#api-reference-key-components)
   - [MezonClient (`MezonClient.ts`)](#mezonclient-mezonclientts)
   - [Session (`session.ts`, `session_manager.ts`)](#session-sessionts-session_managerts)
@@ -771,6 +772,108 @@ async function deleteMessage(message: Message) {
 
 - `ChannelMessageAck`: An acknowledgement received in response to deleting a message on a chat channel.
 
+### Working with Users
+
+The `User` object (`src/mezon-client/structures/User.ts`) provides methods for interacting with specific user on the Mezon platform.
+
+#### Initiating a User
+
+The `fetch` method allows you to retrieve a reference to a user using its unique identifier and the clan user belongs to.
+
+```typescript
+const clan = await client.clans.fetch(clan_id ?? '0');
+// '0' use for DM message
+
+const user = await clan.users.fetch(user_id);
+```
+
+**Parameters**
+
+- `user_id`: A string representing the unique identifier of user you want to interact with.
+
+**Return Value**
+
+- `user`: An object representing the specified user. This object will likely have methods for performing actions within the user, such as sendDM, sendToken, etc. The exact methods available on the user object will be detailed in further documentation.
+
+#### Sending a Direct Message
+
+This is usually done by first getting or creating a DM channel with the user, then sending a message to that channel (see "Create a Direct Message (DM) Channel" and "Send a Message to a Channel").
+
+```typescript
+async function sendDMToUser(
+  client: MezonClient,
+  recipientUserId: string,
+  messageContent: string
+) {
+  try {
+    const dmClan = await this.client.clans.fetch('0');
+    const user = await dmClan.users.fetch(recipientUserId);
+    const response = await user.sendDM({
+      t: messageContent
+    });
+
+    if (response) {
+      console.log(`DM sent to user ${recipientUserId}`);
+    }
+  } catch (error) {
+    console.error(`Failed to send DM to user ${recipientUserId}:`, error);
+  }
+}
+
+// Example:
+// await sendDMToUser(client, '<USER_ID>', 'Hello from the bot!');  // Replace with actual user ID
+```
+
+The `User.ts` summary mentions "manages user interactions, including direct messaging".
+
+### Working with Clans
+
+The `Clan` structure (`src/mezon-client/structures/Clan.ts`) allows interaction with clans.
+
+#### Fetching Clan Data
+
+Clans are likely cached on the client after connection, or can be fetched.
+
+```typescript
+async function getClanInfo(client: MezonClient, clanId: string) {
+  try {
+    let clan = client.clans.get(clanId);
+
+    if (!clan) {
+      // If not in cache, a fetch method might exist on the client or clan manager
+      // clan = await client.clans.fetch(clanId); // Hypothetical fetch method
+      // Or it's part of MezonAPI exposed through the client:
+      // const clanData = await client.api.getClan(clanId);
+      // clan = new Clan(client, clanData); // And then instantiated
+      console.log(
+        `Clan ${clanId} not found in cache, fetching might be needed or check clan ID.`
+      );
+      return;
+    }
+
+    console.log(`Clan Name: ${clan.name}`);
+    console.log(`Clan ID: ${clan.id}`);
+    console.log(`Member Count: ${clan.users.cache.size}`);
+    console.log(`Channels: ${clan.channels.cache.size}`);
+
+    // Listing text channels in a clan
+    clan.channels.cache.forEach((channel) => {
+      console.log(`  - Text Channel: ${channel.name} (ID: ${channel.id})`);
+    });
+  } catch (error) {
+    console.error(`Failed to get info for clan ${clanId}:`, error);
+  }
+}
+
+// Example:
+// if (client.ready) { // ensure client is ready
+//   const firstClan = client.clans.first();
+//   if (firstClan) {
+//     await getClanInfo(client, firstClan.id);
+//   }
+// }
+```
+
 ### Handling Events
 
 The `EventManager` and `SocketManager` allow you to listen to various real-time events. Event names are typically defined in `src/constants/enum.ts` (e.g., `MezonEventSocket`).
@@ -822,98 +925,6 @@ client.on(MezonEventSocket.USER_CHANNEL_ADDED, (eventData: any) => {
 // client.on('channelUpdate', (channel: TextChannel) => {
 //   console.log(`Channel updated: ${channel.name} (ID: ${channel.id})`);
 // });
-```
-
-### Working with Users
-
-The `User` structure (`src/mezon-client/structures/User.ts`) provides information about users.
-
-#### Sending a Direct Message
-
-This is usually done by first getting or creating a DM channel with the user, then sending a message to that channel (see "Create a Direct Message (DM) Channel" and "Send a Message to a Channel").
-
-```typescript
-async function sendDMToUser(
-  client: MezonClient,
-  recipientUserId: string,
-  messageContent: string
-) {
-  try {
-    // User objects might have a helper method or you use the channel manager
-    const user = await client.users.fetch(recipientUserId); // Assuming client.users cache/manager
-    if (!user) {
-      console.error(`User ${recipientUserId} not found.`);
-      return;
-    }
-
-    // The User object might have a method like:
-    // const dmChannel = await user.createDM();
-    // await dmChannel.send(messageContent);
-    // OR, use the channel manager as shown before:
-    const dmChannel = await client.channels.createDMChannel(recipientUserId);
-    if (dmChannel) {
-      await dmChannel.send({ content: messageContent });
-      console.log(`DM sent to user ${recipientUserId}`);
-    }
-  } catch (error) {
-    console.error(`Failed to send DM to user ${recipientUserId}:`, error);
-  }
-}
-
-// Example:
-// await sendDMToUser(client, '<TARGET_USER_ID>', 'Hello from the bot!');
-```
-
-The `User.ts` summary mentions "manages user interactions, including direct messaging".
-
-### Working with Clans
-
-The `Clan` structure (`src/mezon-client/structures/Clan.ts`) allows interaction with clans.
-
-#### Fetching Clan Data
-
-Clans are likely cached on the client after connection, or can be fetched.
-
-```typescript
-async function getClanInfo(client: MezonClient, clanId: string) {
-  try {
-    // Clans might be in a collection: client.clans
-    let clan = client.clans.get(clanId);
-
-    if (!clan) {
-      // If not in cache, a fetch method might exist on the client or clan manager
-      // clan = await client.clans.fetch(clanId); // Hypothetical fetch method
-      // Or it's part of MezonAPI exposed through the client:
-      // const clanData = await client.api.getClan(clanId);
-      // clan = new Clan(client, clanData); // And then instantiated
-      console.log(
-        `Clan ${clanId} not found in cache, fetching might be needed or check clan ID.`
-      );
-      return;
-    }
-
-    console.log(`Clan Name: ${clan.name}`);
-    console.log(`Clan ID: ${clan.id}`);
-    console.log(`Member Count: ${clan.memberCount}`); // Assuming such properties exist
-    console.log(`Channels: ${clan.channels.cache.size}`); // Assuming channels are a collection
-
-    // Listing text channels in a clan
-    clan.channels.getTextChannels().forEach((channel) => {
-      // Assuming method getTextChannels() exists
-      console.log(`  - Text Channel: ${channel.name} (ID: ${channel.id})`);
-    });
-  } catch (error) {
-    console.error(`Failed to get info for clan ${clanId}:`, error);
-  }
-}
-
-// Example:
-// if (client.ready) { // ensure client is ready
-//   const firstClan = client.clans.first(); // From Collection utility
-//   if (firstClan) {
-//     await getClanInfo(client, firstClan.id);
-//   }
-// }
 ```
 
 ---
