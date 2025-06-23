@@ -67,11 +67,63 @@
     - [Listening to Channel Updates](#listening-to-channel-updates)
 - [API Reference (Key Components)](#api-reference-key-components)
   - [MezonClient (`MezonClient.ts`)](#mezonclient-mezonclientts)
+    - [**Key Properties**](#key-properties)
+    - [**Key Methods**](#key-methods)
+      - [`constructor(token?, host?, port?, useSSL?, timeout?)`: Initializes a new `MezonClient` instance.](#constructortoken-host-port-usessl-timeout-initializes-a-new-mezonclient-instance)
+      - [`login(): Promise<string>`: Authenticates the client with the Mezon service, establishes a WebSocket connection, and initializes all necessary managers and caches. It emits the ready event upon successful connection.](#login-promisestring-authenticates-the-client-with-the-mezon-service-establishes-a-websocket-connection-and-initializes-all-necessary-managers-and-caches-it-emits-the-ready-event-upon-successful-connection)
+      - [`sendToken(sendTokenData: TokenSentEvent): Promise<any>`: Sends a specified amount of a token to another user.](#sendtokensendtokendata-tokensentevent-promiseany-sends-a-specified-amount-of-a-token-to-another-user)
+      - [`getListFriends(limit?: number, state?: string, cursor?: string): Promise<any>`: Retrieves a list of the client's friends.](#getlistfriendslimit-number-state-string-cursor-string-promiseany-retrieves-a-list-of-the-clients-friends)
+      - [`acceptFriend(userId: string, username: string): Promise<any>`: Sends a friend request to a user by their username.](#acceptfrienduserid-string-username-string-promiseany-sends-a-friend-request-to-a-user-by-their-username)
+      - [`addFriend(username: string): Promise<any>`: Accepts a friend request from a user.](#addfriendusername-string-promiseany-accepts-a-friend-request-from-a-user)
+      - [`closeSocket(): void`: Closes the WebSocket connection and resets the event manager.](#closesocket-void-closes-the-websocket-connection-and-resets-the-event-manager)
+    - [**Key Events Handling**](#key-events-handling)
+      - [**Message Events**](#message-events)
+      - [**Channel Events**](#channel-events)
+      - [**User \& Clan Events**](#user--clan-events)
+      - [**Role Events**](#role-events)
+      - [**Voice \& Streaming Events**](#voice--streaming-events)
+      - [**Other Events**](#other-events)
   - [Session (`session.ts`, `session_manager.ts`)](#session-sessionts-session_managerts)
+    - [**Key Properties**](#key-properties-1)
+    - [**Key Methods**](#key-methods-1)
+      - [`constructor`](#constructor)
+      - [`isexpired(currenttime: number): boolean`: Checks if the session token has expired relative to the provided time.](#isexpiredcurrenttime-number-boolean-checks-if-the-session-token-has-expired-relative-to-the-provided-time)
+      - [`isrefreshexpired(currenttime: number): boolean`: Checks if the refresh token has expired relative to the provided time.](#isrefreshexpiredcurrenttime-number-boolean-checks-if-the-refresh-token-has-expired-relative-to-the-provided-time)
+      - [`update(token: string, refreshToken: string): void`: Updates the session with a new `token` and `refreshToken`. This method decodes the tokens to update expiry times and other session variables.](#updatetoken-string-refreshtoken-string-void-updates-the-session-with-a-new-token-and-refreshtoken-this-method-decodes-the-tokens-to-update-expiry-times-and-other-session-variables)
+      - [`static restore(session: any): Session`: A static factory method that creates a new `Session` instance from a previously stored session object. This is useful for rehydrating a session from local storage.](#static-restoresession-any-session-a-static-factory-method-that-creates-a-new-session-instance-from-a-previously-stored-session-object-this-is-useful-for-rehydrating-a-session-from-local-storage)
+      - [`authenticate(apiKey: string): Promise<Session>`: Authenticates the user with the Mezon server using an API key. On success, it creates and stores a new `Session` object.](#authenticateapikey-string-promisesession-authenticates-the-user-with-the-mezon-server-using-an-api-key-on-success-it-creates-and-stores-a-new-session-object)
+      - [`logout(): Promise<boolean>`: Logs out the currently authenticated user by invalidating the session and refresh tokens on the server.](#logout-promiseboolean-logs-out-the-currently-authenticated-user-by-invalidating-the-session-and-refresh-tokens-on-the-server)
+      - [`getSession(): Session | undefined`: Retrieves the currently stored session object.](#getsession-session--undefined-retrieves-the-currently-stored-session-object)
   - [TextChannel (`TextChannel.ts`)](#textchannel-textchannelts)
+    - [**Key Properties**](#key-properties-2)
+    - [**Key Methods**](#key-methods-2)
+      - [`constructor(initChannelData, clan, socketManager, messageQueue, messageDB)`: Initializes a new `TextChannel` instance.](#constructorinitchanneldata-clan-socketmanager-messagequeue-messagedb-initializes-a-new-textchannel-instance)
+      - [`send(content, mentions?, attachments?, mention_everyone?, anonymous_message?, topic_id?, code?)`: Sends a standard message to the channel. The request is added to a queue to prevent rate-limiting issues.](#sendcontent-mentions-attachments-mention_everyone-anonymous_message-topic_id-code-sends-a-standard-message-to-the-channel-the-request-is-added-to-a-queue-to-prevent-rate-limiting-issues)
+      - [`sendEphemeral(receiver_id, content, reference_message_id?, mentions?, attachments?, mention_everyone?, anonymous_message?, topic_id?, code?)`: Sends an ephemeral message, which is visible only to a specific user (`receiver_id`) within the channel.](#sendephemeralreceiver_id-content-reference_message_id-mentions-attachments-mention_everyone-anonymous_message-topic_id-code-sends-an-ephemeral-message-which-is-visible-only-to-a-specific-user-receiver_id-within-the-channel)
   - [Message (`Message.ts`)](#message-messagets)
+    - [**Key Properties**](#key-properties-3)
+    - [**Key Methods**](#key-methods-3)
+      - [`constructor(initMessageData, channel, socketManager, messageQueue)`: Initializes a new `Message` instance.](#constructorinitmessagedata-channel-socketmanager-messagequeue-initializes-a-new-message-instance)
+      - [`reply(content, mentions?, attachments?, mention_everyone?, anonymous_message?, topic_id?, code?)`: Sends a new message in the same channel, specifically as a reply to this message instance.](#replycontent-mentions-attachments-mention_everyone-anonymous_message-topic_id-code-sends-a-new-message-in-the-same-channel-specifically-as-a-reply-to-this-message-instance)
+      - [`update(content: ChannelMessageContent, topic_id?: string)`: Updates the content of this message.](#updatecontent-channelmessagecontent-topic_id-string-updates-the-content-of-this-message)
+      - [`react(dataReactMessage: ReactMessagePayload)`: Adds or removes a reaction to/from this message.](#reactdatareactmessage-reactmessagepayload-adds-or-removes-a-reaction-tofrom-this-message)
+      - [`delete()`: Deletes this message from the channel.](#delete-deletes-this-message-from-the-channel)
   - [User (`User.ts`)](#user-userts)
+    - [**Key Properties**](#key-properties-4)
+    - [**Key Methods**](#key-methods-4)
+      - [`constructor(initUserData, clan, messageQueue, socketManager, channelManager?)`: Initializes a new `User` instance.](#constructorinituserdata-clan-messagequeue-socketmanager-channelmanager-initializes-a-new-user-instance)
+      - [`sendToken(sendTokenData: SendTokenData)`: Sends a specified amount of a token to this user.](#sendtokensendtokendata-sendtokendata-sends-a-specified-amount-of-a-token-to-this-user)
+      - [`sendDM(content: ChannelMessageContent, code?: number)`: Sends a direct message to this user. If a DM channel does not already exist, it will attempt to create one first.](#senddmcontent-channelmessagecontent-code-number-sends-a-direct-message-to-this-user-if-a-dm-channel-does-not-already-exist-it-will-attempt-to-create-one-first)
+      - [`createDmChannel()`: Explicitly creates a new direct message channel with this user.](#createdmchannel-explicitly-creates-a-new-direct-message-channel-with-this-user)
+      - [`listTransactionDetail(transactionId: string): Promise<any>`: Retrieves the details of a specific transaction involving the user.](#listtransactiondetailtransactionid-string-promiseany-retrieves-the-details-of-a-specific-transaction-involving-the-user)
   - [Clan (`Clan.ts`)](#clan-clants)
+    - [**Key Properties**](#key-properties-5)
+    - [**Key Methods**](#key-methods-5)
+      - [`constructor(initClanData, client, apiClient, socketManager, sessionToken, messageQueue, messageDB)`: Initializes a new `Clan` instance.](#constructorinitclandata-client-apiclient-socketmanager-sessiontoken-messagequeue-messagedb-initializes-a-new-clan-instance)
+      - [`loadChannels(): Promise<void>`: Fetches and caches all text channels associated with the clan from the server. This method ensures it only runs once to prevent redundant API calls.](#loadchannels-promisevoid-fetches-and-caches-all-text-channels-associated-with-the-clan-from-the-server-this-method-ensures-it-only-runs-once-to-prevent-redundant-api-calls)
+      - [`listChannelVoiceUsers(channel_id?, channel_type?, limit?, state?, cursor?)`: Retrieves a list of users currently present in a specific voice channel within the clan.](#listchannelvoiceuserschannel_id-channel_type-limit-state-cursor-retrieves-a-list-of-users-currently-present-in-a-specific-voice-channel-within-the-clan)
+      - [`updateRole(roleId: string, request: MezonUpdateRoleBody): Promise<boolean>`: Updates the properties of a specific role within the clan.](#updateroleroleid-string-request-mezonupdaterolebody-promiseboolean-updates-the-properties-of-a-specific-role-within-the-clan)
+      - [`listRoles(limit?: string, state?: string, cursor?: string): Promise<ApiRoleListEventResponse>`: Retrieves a list of all roles available in the clan.](#listroleslimit-string-state-string-cursor-string-promiseapirolelisteventresponse-retrieves-a-list-of-all-roles-available-in-the-clan)
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
@@ -935,141 +987,440 @@ This section provides a brief overview of the primary classes and structures in 
 
 ### MezonClient (`MezonClient.ts`)
 
-The main client class.
+The primary class for interacting with the Mezon API and real-time events. It manages the connection, data caching, and event handling.
 
-**Key Properties (inferred):**
+#### **Key Properties**
 
-- `user: User | null`: The currently logged-in user (bot).
-- `sessionManager: SessionManager`: Manages authentication and session data.
-- `socketManager: SocketManager`: Manages the WebSocket connection.
-- `channelManager: ChannelManager` (or `channels`): Manages channels, especially DMs.
-- `eventManager: EventManager` (or uses `EventEmitter` pattern via `on`, `emit`): Handles events.
-- `api: MezonAPI`: Instance for making direct API calls.
-- `clans: Collection<string, Clan>`: Cached clans the client is part of.
-- `users: CacheManager<User>` (or `Collection<string, User>`): Cached users.
-- `messageDb: MessageDatabase`: Interface to the local SQLite message store.
-- `options: MezonClientOptions`: The options the client was constructed with.
+| Property       | Type                              | Desciption                                                     |
+| :------------- | :-------------------------------- | :------------------------------------------------------------- |
+| token          | string                            | The authentication token for the client.                       |
+| clientId       | string                            | The ID of the logged-in client (bot/user).                     |
+| host           | string                            | The hostname of the Mezon server.                              |
+| useSSL         | boolean                           | Indicates if the connection is over SSL.                       |
+| port           | string                            | The port used for the connection.                              |
+| clans          | CacheManager<string, Clan>        | A cache manager for all clans the client has access to.        |
+| channels       | CacheManager<string, TextChannel> | A cache manager for all channels the client has access to.     |
+| apiClient      | MezonApi                          | An instance of the MezonApi for making direct API calls.       |
+| socketManager  | SocketManager                     | Manages the WebSocket connection and its lifecycle.            |
+| channelManager | ChannelManager                    | Manages channel-related operations, particularly DM channels.  |
+| sessionManager | SessionManager                    | Manages the client's session and authentication.               |
+| eventManager   | EventManager                      | Handles the subscription and emission of events.               |
+| messageDB      | MessageDatabase                   | An interface to the local SQLite database for message storage. |
 
-**Key Methods (inferred):**
+#### **Key Methods**
 
-- `constructor(options: MezonClientOptions)`: Initializes the client.
-- `login(apiKey: string): Promise<Session>`: Logs in the user/bot. (Often handled by constructor).
-- `logout(): Promise<void>`: Logs out the current session.
-- `connect(): Promise<void>`: Establishes the connection (if not automatic).
-- `disconnect(): Promise<void>`: Closes the connection.
-- `on(event: string | MezonEventSocket, listener: (...args: any[]) => void): this`: Listens for events.
-- `emit(event: string | MezonEventSocket, ...args: any[]): boolean`: Emits an event.
-- `destroy(): Promise<void>`: Cleans up the client instance.
+##### `constructor(token?, host?, port?, useSSL?, timeout?)`: Initializes a new `MezonClient` instance.
+
+| Parameter | Type    | Default       | Description                                       |
+| :-------- | :------ | :------------ | :------------------------------------------------ |
+| token     | string  | ""            | The API key for authentication.                   |
+| host      | string  | "gw.mezon.ai" | The host address of the Mezon gateway.            |
+| port      | string  | "443"         | The port number for the connection.               |
+| useSSL    | boolean | TRUE          | Specifies whether to use a secure SSL connection. |
+| timeout   | number  | 7000          | The timeout in milliseconds for API requests.     |
+
+##### `login(): Promise<string>`: Authenticates the client with the Mezon service, establishes a WebSocket connection, and initializes all necessary managers and caches. It emits the ready event upon successful connection.
+
+##### `sendToken(sendTokenData: TokenSentEvent): Promise<any>`: Sends a specified amount of a token to another user.
+
+| Parameter     | Type           | Default | Description                        |
+| :------------ | :------------- | :------ | :--------------------------------- |
+| sendTokenData | TokenSentEvent | ""      | The details of the token transfer. |
+
+##### `getListFriends(limit?: number, state?: string, cursor?: string): Promise<any>`: Retrieves a list of the client's friends.
+
+| Parameter | Type   | Default | Description                                                      |
+| :-------- | :----- | :------ | :--------------------------------------------------------------- |
+| limit     | number | ""      | (Optional) The maximum number of friends to retrieve.            |
+| state     | string | ""      | (Optional) The friendship state to filter by (e.g., "accepted"). |
+| cursor    | string | ""      | (Optional) The cursor for pagination.                            |
+
+##### `acceptFriend(userId: string, username: string): Promise<any>`: Sends a friend request to a user by their username.
+
+| Parameter | Type   | Default | Description                                  |
+| :-------- | :----- | :------ | :------------------------------------------- |
+| username  | string | ""      | The username of the user to add as a friend. |
+
+##### `addFriend(username: string): Promise<any>`: Accepts a friend request from a user.
+
+| Parameter | Type   | Default | Description                                        |
+| :-------- | :----- | :------ | :------------------------------------------------- |
+| userId    | string | ""      | The ID of the user whose friend request to accept. |
+| username  | string | ""      | The username of the user.                          |
+
+##### `closeSocket(): void`: Closes the WebSocket connection and resets the event manager.
+
+#### **Key Events Handling**
+
+##### **Message Events**
+
+- `onChannelMessage(listener: (e: ChannelMessage) => void): this`: Listens for new messages in any channel/thread the client is in.
+
+- `onMessageReaction(listener: (e: MessageReaction) => void): this`: Listens for reactions being added or removed from a message.
+
+- `onMessageButtonClicked(listener: (e: MessageButtonClicked) => void): this`: Listens for clicks on buttons within embed messages.
+
+- `onDropdownBoxSelected(listener: (e: DropdownBoxSelected) => void): this`: Listens for a user selecting an option from a dropdown menu in a message.
+
+##### **Channel Events**
+
+- `onChannelCreated(listener: (e: ChannelCreatedEvent) => void): this`: Listens for the creation of a new channel.
+
+- `onChannelUpdated(listener: (e: ChannelUpdatedEvent) => void): this`: Listens for updates to an existing channel's information.
+
+- `onChannelDeleted(listener: (e: ChannelDeletedEvent) => void): this`: Listens for the deletion of a channel.
+
+##### **User & Clan Events**
+
+- `onAddClanUser(listener: (e: AddClanUserEvent) => void): this`: Listens for a user being added to a clan.
+
+- `onUserClanRemoved(listener: (e: UserClanRemovedEvent) => void): this`: Listens for a user being removed or leaving a clan.
+
+- `onUserChannelAdded(listener: (e: UserChannelAddedEvent) => void): this`: Listens for a user being added to a channel.
+
+- `onUserChannelRemoved(listener: (e: UserChannelRemoved) => void): this`: Listens for a user being removed from a channel.
+
+##### **Role Events**
+
+- `onRoleEvent(listener: (e: RoleEvent) => void): this`: Listens for the creation or update of a role in a clan.
+
+- `onRoleAssign(listener: (e: RoleAssignedEvent) => void): this`: Listens for a role being assigned to a user.
+
+##### **Voice & Streaming Events**
+
+- `onVoiceStartedEvent(listener: (e: VoiceStartedEvent) => void): this`: Listens for the start of a voice chat.
+
+- `onVoiceEndedEvent(listener: (e: VoiceEndedEvent) => void): this`: Listens for the end of a voice chat.
+
+- `onVoiceJoinedEvent(listener: (e: VoiceJoinedEvent) => void): this`: Listens for a user joining a voice chat.
+
+- `onVoiceLeavedEvent(listener: (e: VoiceLeavedEvent) => void): this`: Listens for a user leaving a voice chat.
+
+- `onStreamingJoinedEvent(listener: (e: StreamingJoinedEvent) => void): this`: Listens for a user joining a stream.
+
+- `onStreamingLeavedEvent(listener: (e: StreamingLeavedEvent) => void): this`: Listens for a user leaving a stream.
+
+- `onWebrtcSignalingFwd(listener: (e: WebrtcSignalingFwd) => void): this`: Listens for WebRTC signaling events, typically for P2P calls.
+
+##### **Other Events**
+
+- `onTokenSend(listener: (e: TokenSentEvent) => void): this`: Listens for token transfer events between users.
+
+- `onGiveCoffee(listener: (e: GiveCoffeeEvent) => void): this`: Listens for "give coffee" events.
+
+- `onClanEventCreated(listener: (e: CreateEventRequest) => void): this`: Listens for the creation of a new clan event.
+
+- `onNotification(listener: (e: Notifications) => void): this`: Listens for incoming notifications for the client.
 
 ### Session (`session.ts`, `session_manager.ts`)
 
-Represents an authenticated session.
+This API reference outlines the key components for handling user sessions with the Mezon server.
 
-**Key Properties (inferred from `session.ts`):**
+**`ISession` Interface**: Defines the contract for a user session, containing tokens, expiry information, and user details.
 
-- `token: string`: The main authentication token (JWT).
-- `refreshToken: string | null`: Token for refreshing the session.
-- `userId: string`: ID of the authenticated user.
-- `username: string`: Username of the authenticated user.
-- `expiresAt: number`: Timestamp when the token expires.
-- `isExpired(): boolean`: Checks if the session token has expired.
+**`Session Class`**: A concrete implementation of the ISession interface. It provides methods to create, manage, and update a user session from JWT tokens.
 
-**SessionManager Methods (inferred from `session_manager.ts`):**
+#### **Key Properties**
 
-- `login(apiKey: string): Promise<Session>`: Authenticates and creates a session.
-- `logout(): Promise<void>`: Invalidates the current session.
-- `getSession(): Session | null`: Retrieves the current session.
+| Property             | Type     | Description                                                                     |
+| :------------------- | :------- | :------------------------------------------------------------------------------ |
+| `token`              | `string` | The JWT authorization token for the session.                                    |
+| `created_at`         | `number` | **Read-only.** The UNIX timestamp marking when the session was created.         |
+| `expires_at`         | `number` | (Optional) The UNIX timestamp when the `token` will expire.                     |
+| `refresh_expires_at` | `number` | (Optional) The UNIX timestamp when the `refresh_token` will expire.             |
+| `refresh_token`      | `string` | The token used to obtain a new session `token` when the current one expires.    |
+| `user_id`            | `string` | (Optional) The ID of the user associated with this session.                     |
+| `vars`               | `object` | (Optional) A key-value object of custom properties associated with the session. |
+| `api_url`            | `string` | (Optional) The base URL for API requests, provided during authentication.       |
+
+#### **Key Methods**
+
+##### `constructor`
+
+**`new Session(apiSession: any)`**: Initializes a new `Session` instance.
+
+| Parameter    | Type  | Description                                                                                                             |
+| :----------- | :---- | :---------------------------------------------------------------------------------------------------------------------- |
+| `apiSession` | `any` | An object containing session data, typically from an authentication response. Must include `token` and `refresh_token`. |
+
+**`new SessionManager(apiClient: MezonApi, session?: Session)`**: Initializes a new `SessionManager` instance.
+
+| Parameter   | Type       | Description                                                               |
+| :---------- | :--------- | :------------------------------------------------------------------------ |
+| `apiClient` | `MezonApi` | An instance of the `MezonApi` class used to make authentication requests. |
+| `session`   | `Session`  | (Optional) An existing `Session` object to restore.                       |
+
+**For `Session`**
+
+##### `isexpired(currenttime: number): boolean`: Checks if the session token has expired relative to the provided time.
+
+| Parameter     | Type     | Description                                                         |
+| :------------ | :------- | :------------------------------------------------------------------ |
+| `currenttime` | `number` | The current UNIX timestamp to compare against the session's expiry. |
+
+##### `isrefreshexpired(currenttime: number): boolean`: Checks if the refresh token has expired relative to the provided time.
+
+| Parameter     | Type     | Description                                                               |
+| :------------ | :------- | :------------------------------------------------------------------------ |
+| `currenttime` | `number` | The current UNIX timestamp to compare against the refresh token's expiry. |
+
+##### `update(token: string, refreshToken: string): void`: Updates the session with a new `token` and `refreshToken`. This method decodes the tokens to update expiry times and other session variables.
+
+| Parameter      | Type     | Description                |
+| :------------- | :------- | :------------------------- |
+| `token`        | `string` | The new JWT session token. |
+| `refreshToken` | `string` | The new JWT refresh token. |
+
+##### `static restore(session: any): Session`: A static factory method that creates a new `Session` instance from a previously stored session object. This is useful for rehydrating a session from local storage.
+
+| Parameter | Type  | Description                                   |
+| :-------- | :---- | :-------------------------------------------- |
+| `session` | `any` | A plain object representing a stored session. |
+
+**For `SessionManager`**
+
+##### `authenticate(apiKey: string): Promise<Session>`: Authenticates the user with the Mezon server using an API key. On success, it creates and stores a new `Session` object.
+
+| Parameter | Type     | Description                          |
+| :-------- | :------- | :----------------------------------- |
+| `apiKey`  | `string` | The API key used for authentication. |
+
+##### `logout(): Promise<boolean>`: Logs out the currently authenticated user by invalidating the session and refresh tokens on the server.
+
+##### `getSession(): Session | undefined`: Retrieves the currently stored session object.
 
 ### TextChannel (`TextChannel.ts`)
 
-Represents a text-based communication channel.
+This API reference outlines the key components of the `TextChannel` class, which represents a text-based communication channel within a clan.
 
-**Key Properties (inferred):**
+#### **Key Properties**
 
-- `id: string`: The unique ID of the channel.
-- `name: string`: The name of the channel.
-- `type: ChannelType`: The type of channel (e.g., text, voice, DM).
-- `clanId: string | null`: ID of the clan this channel belongs to (if not a DM).
-- `messages: CacheManager<Message>` (or `Collection<string, Message>`): Cached messages for this channel.
-- `lastMessageId: string | null`: The ID of the last message sent in this channel.
+| Property        | Type                            | Description                                            |
+| :-------------- | :------------------------------ | :----------------------------------------------------- |
+| `id`            | `string`                        | The unique identifier for the channel.                 |
+| `name`          | `string`                        | The display name of the channel.                       |
+| `is_private`    | `boolean`                       | `true` if the channel is private, otherwise `false`.   |
+| `channel_type`  | `number`                        | The type of the channel (e.g., standard text, thread). |
+| `category_id`   | `string`                        | The ID of the category this channel belongs to.        |
+| `category_name` | `string`                        | The name of the category this channel belongs to.      |
+| `parent_id`     | `string`                        | The ID of the parent channel, if this is a thread.     |
+| `clan`          | `Clan`                          | A reference to the parent `Clan` instance.             |
+| `messages`      | `CacheManager<string, Message>` | A cache manager for the messages within this channel.  |
 
-**Key Methods (inferred):**
+#### **Key Methods**
 
-- `send(messageData: IMessageInput): Promise<Message>`: Sends a message to the channel. (`IMessageInput` from `interfaces/client.ts` would define `content`, `attachments`, `mentions`, etc.)
-- `fetchMessages(options?: { limit?: number; before?: string; after?: string }): Promise<Collection<string, Message>>`: Fetches a list of messages.
-- `delete(): Promise<void>`: Deletes the channel (if permissions allow).
-- `update(data: Partial<ChannelData>): Promise<TextChannel>`: Updates channel properties.
+##### `constructor(initChannelData, clan, socketManager, messageQueue, messageDB)`: Initializes a new `TextChannel` instance.
+
+| Parameter         | Type                    | Description                                                 |
+| :---------------- | :---------------------- | :---------------------------------------------------------- |
+| `initChannelData` | `ApiChannelDescription` | An object containing the initial channel data from the API. |
+| `clan`            | `Clan`                  | The parent `Clan` object that this channel belongs to.      |
+| `socketManager`   | `SocketManager`         | The manager for handling WebSocket communications.          |
+| `messageQueue`    | `AsyncThrottleQueue`    | A queue to manage the rate of outgoing messages.            |
+| `messageDB`       | `MessageDatabase`       | The database interface for caching and retrieving messages. |
+
+##### `send(content, mentions?, attachments?, mention_everyone?, anonymous_message?, topic_id?, code?)`: Sends a standard message to the channel. The request is added to a queue to prevent rate-limiting issues.
+
+| Parameter           | Type                          | Description                                                          |
+| :------------------ | :---------------------------- | :------------------------------------------------------------------- |
+| `content`           | `ChannelMessageContent`       | The content of the message to be sent.                               |
+| `mentions`          | `Array<ApiMessageMention>`    | (Optional) An array of user mentions to include in the message.      |
+| `attachments`       | `Array<ApiMessageAttachment>` | (Optional) An array of attachments (e.g., images, files) to include. |
+| `mention_everyone`  | `boolean`                     | (Optional) Whether to notify everyone in the channel.                |
+| `anonymous_message` | `boolean`                     | (Optional) Whether to send the message anonymously.                  |
+| `topic_id`          | `string`                      | (Optional) The ID of the topic (thread) this message belongs to.     |
+| `code`              | `number`                      | (Optional) A special code associated with the message type.          |
+
+##### `sendEphemeral(receiver_id, content, reference_message_id?, mentions?, attachments?, mention_everyone?, anonymous_message?, topic_id?, code?)`: Sends an ephemeral message, which is visible only to a specific user (`receiver_id`) within the channel.
+
+| Parameter              | Type                          | Description                                                      |
+| :--------------------- | :---------------------------- | :--------------------------------------------------------------- |
+| `receiver_id`          | `string`                      | The ID of the user who will be able to see the message.          |
+| `content`              | `any`                         | The content of the ephemeral message.                            |
+| `reference_message_id` | `string`                      | (Optional) The ID of a message to reply to.                      |
+| `mentions`             | `Array<ApiMessageMention>`    | (Optional) An array of user mentions.                            |
+| `attachments`          | `Array<ApiMessageAttachment>` | (Optional) An array of attachments.                              |
+| `mention_everyone`     | `boolean`                     | (Optional) Whether to parse everyone mentions.                   |
+| `anonymous_message`    | `boolean`                     | (Optional) Whether to send the message anonymously.              |
+| `topic_id`             | `string`                      | (Optional) The ID of the topic (thread) this message belongs to. |
+| `code`                 | `number`                      | (Optional) A special code associated with the message type.      |
 
 ### Message (`Message.ts`)
 
-Represents a message in a channel.
+This API reference outlines the key components for representing and interacting with individual messages within a text channel.
 
-**Key Properties (inferred):**
+**`MessageInitData` Interface**: Defines the structure for the data object required to initialize a `Message` instance.
 
-- `id: string`: Unique ID of the message.
-- `channelId: string`: ID of the channel this message belongs to.
-- `author: User | null`: The user who sent the message.
-- `content: string`: The text content of the message.
-- `timestamp: number` (or `Date`): When the message was sent.
-- `editedTimestamp: number | null`: When the message was last edited.
-- `attachments: IAttachment[]`: Array of attachments.
-- `mentions: IUserMention[]`: Array of user mentions.
-- `reactions: IReaction[]`: Array of reactions on the message.
-- `replyToMessageId: string | null`: If this message is a reply, the ID of the original message.
+**`Message` Class**: Represents a single message in a channel, containing its content and metadata. It provides methods to perform actions on the message, such as replying, updating, reacting, and deleting.
 
-**Key Methods (inferred):**
+#### **Key Properties**
 
-- `reply(messageData: IMessageInput): Promise<Message>`: Sends a reply to this message.
-- `update(messageData: Partial<IMessageInput>): Promise<Message>`: Edits the message (if sender).
-- `delete(): Promise<void>`: Deletes the message (if sender or has permissions).
-- `react(emoji: string): Promise<void>`: Adds a reaction to the message.
-- `removeReaction(emoji: string): Promise<void>`: Removes a reaction.
-- `pin(): Promise<void>`: Pins the message.
-- `unpin(): Promise<void>`: Unpins the message.
+| Property              | Type                     | Description                                                      |
+| :-------------------- | :----------------------- | :--------------------------------------------------------------- |
+| `id`                  | `string`                 | The unique identifier of the message.                            |
+| `sender_id`           | `string`                 | The ID of the user who sent the message.                         |
+| `content`             | `ChannelMessageContent`  | The main content of the message.                                 |
+| `mentions`            | `ApiMessageMention[]`    | (Optional) An array of user mentions.                            |
+| `attachments`         | `ApiMessageAttachment[]` | (Optional) An array of attachments.                              |
+| `reactions`           | `ApiMessageReaction[]`   | (Optional) An array of reactions on the message.                 |
+| `references`          | `ApiMessageRef[]`        | (Optional) An array of messages this message is referencing.     |
+| `topic_id`            | `string`                 | (Optional) The ID of the topic (thread) this message is part of. |
+| `create_time_seconds` | `number`                 | (Optional) The UNIX timestamp of the message's creation.         |
+| `channel`             | `TextChannel`            | A reference to the parent `TextChannel` instance.                |
+
+#### **Key Methods**
+
+##### `constructor(initMessageData, channel, socketManager, messageQueue)`: Initializes a new `Message` instance.
+
+| Parameter         | Type                 | Description                                                    |
+| :---------------- | :------------------- | :------------------------------------------------------------- |
+| `initMessageData` | `MessageInitData`    | An object containing the initial message data.                 |
+| `channel`         | `TextChannel`        | The parent `TextChannel` object where this message exists.     |
+| `socketManager`   | `SocketManager`      | The manager for handling WebSocket communications.             |
+| `messageQueue`    | `AsyncThrottleQueue` | A queue to manage the rate of outgoing actions on the message. |
+
+##### `reply(content, mentions?, attachments?, mention_everyone?, anonymous_message?, topic_id?, code?)`: Sends a new message in the same channel, specifically as a reply to this message instance.
+
+| Parameter           | Type                          | Description                                                                             |
+| :------------------ | :---------------------------- | :-------------------------------------------------------------------------------------- |
+| `content`           | `ChannelMessageContent`       | The content of the reply message.                                                       |
+| `mentions`          | `Array<ApiMessageMention>`    | (Optional) An array of user mentions to include.                                        |
+| `attachments`       | `Array<ApiMessageAttachment>` | (Optional) An array of attachments to include.                                          |
+| `mention_everyone`  | `boolean`                     | (Optional) Whether to notify everyone in the channel.                                   |
+| `anonymous_message` | `boolean`                     | (Optional) Whether to send the reply anonymously.                                       |
+| `topic_id`          | `string`                      | (Optional) The ID of the topic for the reply. Defaults to the original message's topic. |
+| `code`              | `number`                      | (Optional) A special code for the message type.                                         |
+
+##### `update(content: ChannelMessageContent, topic_id?: string)`: Updates the content of this message.
+
+| Parameter  | Type                    | Description                                  |
+| :--------- | :---------------------- | :------------------------------------------- |
+| `content`  | `ChannelMessageContent` | The new content for the message.             |
+| `topic_id` | `string`                | (Optional) The new topic ID for the message. |
+
+##### `react(dataReactMessage: ReactMessagePayload)`: Adds or removes a reaction to/from this message.
+
+| Parameter          | Type                  | Description                                                                                          |
+| :----------------- | :-------------------- | :--------------------------------------------------------------------------------------------------- |
+| `dataReactMessage` | `ReactMessagePayload` | An object containing the details of the reaction, such as the emoji and whether to add or remove it. |
+
+##### `delete()`: Deletes this message from the channel.
 
 ### User (`User.ts`)
 
-Represents a user.
+This API reference outlines the key components for representing a user and interacting with them.
 
-**Key Properties (inferred):**
+**`UserInitData` Interface**: Defines the structure for the data object required to initialize a `User` instance.
 
-- `id: string`: Unique ID of the user.
-- `username: string`: User's display name.
-- `avatarUrl: string | null`: URL to the user's avatar.
-- `isBot: boolean`: Whether the user is a bot.
-- `status: string`: User's presence status (e.g., online, offline).
+**`User` Class**: Represents a user within the system, holding their profile information and providing methods for direct interaction, such as sending direct messages or tokens.
 
-**Key Methods (inferred):**
+#### **Key Properties**
 
-- `createDM(): Promise<TextChannel>`: Creates or fetches a DM channel with this user.
-- `send(messageData: IMessageInput): Promise<Message>`: Shortcut to create DM and send message.
-- `fetchProfile(): Promise<User>`: Fetches updated profile information.
-- _(Other user-specific actions like transfer tokens, as mentioned in summary)_
+| Property       | Type     | Description                                          |
+| :------------- | :------- | :--------------------------------------------------- |
+| `id`           | `string` | The unique identifier for the user.                  |
+| `username`     | `string` | The user's global username.                          |
+| `clan_nick`    | `string` | The user's nickname specific to the clan context.    |
+| `clan_avatar`  | `string` | The user's avatar URL specific to the clan context.  |
+| `display_name` | `string` | The user's public display name.                      |
+| `avartar`      | `string` | The user's global avatar URL.                        |
+| `dmChannelId`  | `string` | The ID of the direct message channel with this user. |
+
+---
+
+#### **Key Methods**
+
+##### `constructor(initUserData, clan, messageQueue, socketManager, channelManager?)`: Initializes a new `User` instance.
+
+| Parameter        | Type                 | Description                                                                        |
+| :--------------- | :------------------- | :--------------------------------------------------------------------------------- |
+| `initUserData`   | `UserInitData`       | An object containing the initial user data.                                        |
+| `clan`           | `Clan`               | The `Clan` object this user instance is associated with.                           |
+| `messageQueue`   | `AsyncThrottleQueue` | A queue to manage the rate of outgoing messages.                                   |
+| `socketManager`  | `SocketManager`      | The manager for handling WebSocket communications.                                 |
+| `channelManager` | `ChannelManager`     | (Optional) The manager for handling channel operations, required for creating DMs. |
+
+##### `sendToken(sendTokenData: SendTokenData)`: Sends a specified amount of a token to this user.
+
+| Parameter       | Type            | Description                                                                   |
+| :-------------- | :-------------- | :---------------------------------------------------------------------------- |
+| `sendTokenData` | `SendTokenData` | An object containing the `amount` and an optional `note` for the transaction. |
+
+##### `sendDM(content: ChannelMessageContent, code?: number)`: Sends a direct message to this user. If a DM channel does not already exist, it will attempt to create one first.
+
+| Parameter | Type                    | Description                                                 |
+| :-------- | :---------------------- | :---------------------------------------------------------- |
+| `content` | `ChannelMessageContent` | The content of the message to be sent.                      |
+| `code`    | `number`                | (Optional) A special code associated with the message type. |
+
+##### `createDmChannel()`: Explicitly creates a new direct message channel with this user.
+
+##### `listTransactionDetail(transactionId: string): Promise<any>`: Retrieves the details of a specific transaction involving the user.
+
+| Parameter       | Type     | Description                                           |
+| :-------------- | :------- | :---------------------------------------------------- |
+| `transactionId` | `string` | The unique identifier of the transaction to retrieve. |
 
 ### Clan (`Clan.ts`)
 
-Represents a clan or community.
+This API reference outlines the key components for representing a "Clan" (or server/guild) and managing its resources like channels, users, and roles.
 
-**Key Properties (inferred):**
+**`ClanInitData` Interface**: Defines the structure for the data object required to initialize a `Clan` instance.
 
-- `id: string`: Unique ID of the clan.
-- `name: string`: Name of the clan.
-- `iconUrl: string | null`: URL to the clan's icon.
-- `ownerId: string`: ID of the clan owner.
-- `memberCount: number`: Number of members in the clan.
-- `channels: CacheManager<TextChannel | VoiceChannel>` (or `ClanChannelManager`): Collection of channels within the clan.
-- `members: CacheManager<User>` (or `ClanMemberManager`): Collection of members in the clan.
-- `roles: Collection<string, Role>`: Roles within the clan.
+**`Clan` Class**: Represents a clan, which acts as a top-level container for a community's channels and users. It provides methods to fetch and manage these resources.
 
-**Key Methods (inferred):**
+#### **Key Properties**
 
-- `fetchChannels(): Promise<Collection<string, TextChannel | VoiceChannel>>`: Fetches/updates the clan's channel list.
-- `fetchMembers(): Promise<Collection<string, User>>`: Fetches/updates the clan's member list.
-- `fetchMember(userId: string): Promise<User | null>`: Fetches a specific member.
-- `leave(): Promise<void>`: Makes the client leave the clan.
-- _(Other clan management functions like update roles, list voice channel users etc. as per summary)_
+| Property             | Type                                | Description                                                          |
+| :------------------- | :---------------------------------- | :------------------------------------------------------------------- |
+| `id`                 | `string`                            | The unique identifier for the clan.                                  |
+| `name`               | `string`                            | The display name of the clan.                                        |
+| `welcome_channel_id` | `string`                            | The ID of the default welcome channel.                               |
+| `channels`           | `CacheManager<string, TextChannel>` | A cache manager for the channels belonging to this clan.             |
+| `users`              | `CacheManager<string, User>`        | A cache manager for the users who are members of this clan.          |
+| `sessionToken`       | `string`                            | The session token used for API requests in the context of this clan. |
+| `apiClient`          | `MezonApi`                          | The API client instance used for making requests.                    |
 
----
+#### **Key Methods**
+
+##### `constructor(initClanData, client, apiClient, socketManager, sessionToken, messageQueue, messageDB)`: Initializes a new `Clan` instance.
+
+| Parameter       | Type                 | Description                                                 |
+| :-------------- | :------------------- | :---------------------------------------------------------- |
+| `initClanData`  | `ClanInitData`       | An object containing the initial clan data.                 |
+| `client`        | `MezonClient`        | The main `MezonClient` instance.                            |
+| `apiClient`     | `MezonApi`           | An instance of the API client for making server requests.   |
+| `socketManager` | `SocketManager`      | The manager for handling WebSocket communications.          |
+| `sessionToken`  | `string`             | The session token used for authenticating API calls.        |
+| `messageQueue`  | `AsyncThrottleQueue` | A queue to manage the rate of outgoing messages.            |
+| `messageDB`     | `MessageDatabase`    | The database interface for caching and retrieving messages. |
+
+##### `loadChannels(): Promise<void>`: Fetches and caches all text channels associated with the clan from the server. This method ensures it only runs once to prevent redundant API calls.
+
+##### `listChannelVoiceUsers(channel_id?, channel_type?, limit?, state?, cursor?)`: Retrieves a list of users currently present in a specific voice channel within the clan.
+
+| Parameter      | Type     | Default                                | Description                                                        |
+| :------------- | :------- | :------------------------------------- | :----------------------------------------------------------------- |
+| `channel_id`   | `string` | `""`                                   | The ID of the voice channel.                                       |
+| `channel_type` | `number` | `ChannelType.CHANNEL_TYPE_GMEET_VOICE` | The type of voice channel.                                         |
+| `limit`        | `number` | `500`                                  | The maximum number of users to return (must be between 1 and 500). |
+| `state`        | `number` |                                        | (Optional) A state filter for the user list.                       |
+| `cursor`       | `string` |                                        | (Optional) The cursor for paginating through results.              |
+
+##### `updateRole(roleId: string, request: MezonUpdateRoleBody): Promise<boolean>`: Updates the properties of a specific role within the clan.
+
+| Parameter | Type                  | Description                                           |
+| :-------- | :-------------------- | :---------------------------------------------------- |
+| `roleId`  | `string`              | The unique identifier of the role to update.          |
+| `request` | `MezonUpdateRoleBody` | An object containing the new properties for the role. |
+
+##### `listRoles(limit?: string, state?: string, cursor?: string): Promise<ApiRoleListEventResponse>`: Retrieves a list of all roles available in the clan.
+
+| Parameter | Type     | Description                                           |
+| :-------- | :------- | :---------------------------------------------------- |
+| `limit`   | `string` | (Optional) The maximum number of roles to return.     |
+| `state`   | `string` | (Optional) A state filter for the role list.          |
+| `cursor`  | `string` | (Optional) The cursor for paginating through results. |
 
 ## Testing
 
@@ -1095,8 +1446,8 @@ This command will execute all tests defined within the `src` directory (or as sp
 
 Contributions are welcome! Here's how you can help:
 
-- **💬 [Join the Discussions](https://mezon.ai/)**: Share your insights, provide feedback, or ask questions. 
-- **🐛 [Report Issues](https://github.com/mezonai/mezon-js/issues)**: Submit bugs found or log feature requests for the `mezon-sdk` project.
+- **💬 [Join the Discussions](https://mezon.ai/invite/1840697268164890624)**: Share your insights, provide feedback, or ask questions. 
+- **🐛 [Report Issues](https://mezon.ai/invite/1840697268164890624)**: Submit bugs found or log feature requests for the `mezon-sdk` project.
 - **💡 [Submit Pull Requests](https://github.com/mezonai/mezon-js/pulls)**: Review open PRs, and submit your own PRs.
 
 <details closed>
