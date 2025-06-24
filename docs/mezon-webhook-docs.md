@@ -40,7 +40,7 @@ https://webhook.mezon.ai/webhooks/{channelId}/{token}
 
 | Parameter   | Type   | Description                                                                                                                                                                          |
 | :---------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `webhookId` | string | A unique identifier for the webhook configuration.                                                                                                                                   |
+| `channelId` | string | A unique identifier for the channel.                                                                                                                                   |
 | `token`     | string | A security token for authenticating the request. It appears to be a base64 encoded string or a JSON Web Token (JWT) containing information for verifying the request's authenticity. |
 
 ### **Request Headers**
