@@ -81,6 +81,7 @@ body {
   font-weight: 400;
   font-size: 16px;
   font-family: "gg sans", sans-serif;
+  margin: 0;
 }
 
 p {
@@ -3255,13 +3256,28 @@ pre code {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 98;
 }
-.modal-fade.active {
-  display: block;
+@media all and (max-width: 768px) {
+  .modal-fade.active {
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-fade:not(.active) {
+    display: none;
+  }
+}
+
+.copy__icon--button-inner {
+  display: flex;
   justify-content: center;
   align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
 }
-.modal-fade:not(.active) {
-  display: none;
+.copy__icon--button-inner:hover {
+  background: #c6c7c9;
 }
 
 @keyframes tocActivePulse {

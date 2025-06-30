@@ -370,16 +370,34 @@ pre {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 98;
 
-    &.active {
-        display: block;
+    @include media(medium) {
+        &.active {
+            display: block;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        &:not(.active) {
+            display: none;
+        }
+    }
+}
+
+.copy__icon--button {
+
+    &-inner {
+        display: flex;
         justify-content: center;
         align-items: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 4px;
+        cursor: pointer;
+        
+        &:hover {
+            background: #c6c7c9;
+        }
     }
-
-    &:not(.active) {
-        display: none;
-    }
-
 }
 
 // Animation
