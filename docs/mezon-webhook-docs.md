@@ -1,4 +1,5 @@
 ---
+layout: docLayout.html
 title: Mezon Webhooks Docs
 ---
 

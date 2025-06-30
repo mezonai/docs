@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="icon" href="/assets/images/favicon.ico">
+    <title>{{ title }}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/assets/plugins/meanMenu/meanmenu.min.css">
+    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/assets/plugins/Modernizr/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body>
+    <header id="header">
+        <div class="header-container">
+            <div class="header-content">
+                <div class="menu__nav">
+                    <a href="" class="header__logo">
+                        <img class="header__logo-img" src="/assets/images/Logo_mezon_light.png" alt="logo">
+                        <span class="header__logo-text">mezon</span>
+                    </a>
+                    <nav class="menu__nav-items">
+                        <a class="menu__nav-item" href="">Home</a>
+                        <a class="menu__nav-item" href="">Developers</a>
+                        <a class="menu__nav-item" href="">Bots/Apps</a>
+                        <a class="menu__nav-item" href="">Documents</a>
+                        <a class="menu__nav-item selected" href="">Discover</a>
+                    </nav>
+                </div>
+                <div class="menu__bar">
+                    <button class="menu__bar-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar__menu">
+            <div class="sidebar__menu-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" viewBox="0 0 24 24"
+                    class="menu-icon" data-v-f66f8d5c="">
+                    <path d="M17,11H3c-0.6,0-1-0.4-1-1s0.4-1,1-1h14c0.6,0,1,0.4,1,1S17.6,11,17,11z"></path>
+                    <path d="M21,7H3C2.4,7,2,6.6,2,6s0.4-1,1-1h18c0.6,0,1,0.4,1,1S21.6,7,21,7z"></path>
+                    <path d="M21,15H3c-0.6,0-1-0.4-1-1s0.4-1,1-1h18c0.6,0,1,0.4,1,1S21.6,15,21,15z"></path>
+                    <path d="M17,19H3c-0.6,0-1-0.4-1-1s0.4-1,1-1h14c0.6,0,1,0.4,1,1S17.6,19,17,19z"></path>
+                </svg>
+                <span>menu</span>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <div class="mobile-menu__content">
+                <nav class="mobile-menu__nav">
+                    <a class="mobile-menu__nav-item" href="">Home</a>
+                    <a class="mobile-menu__nav-item" href="">Developers</a>
+                    <a class="mobile-menu__nav-item" href="">Bots/Apps</a>
+                    <a class="mobile-menu__nav-item" href="">Documents</a>
+                    <a class="mobile-menu__nav-item selected" href="">Discover</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="main-container">
+        <div id="sidebar">
+            <div class="sidebar__content">
+                <div id="overview-toggle">
+                    <span class="overview-text">Overview</span>
+                    <span id="overview-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 20 20">
+                            <g fill="none" fill-rule="evenodd" transform="translate(-446 -398)">
+                                <path fill="currentColor" fill-rule="nonzero"
+                                    d="M95.8838835,240.366117 C95.3957281,239.877961 94.6042719,239.877961 94.1161165,240.366117 C93.6279612,240.854272 93.6279612,241.645728 94.1161165,242.133883 L98.6161165,246.633883 C99.1042719,247.122039 99.8957281,247.122039 100.383883,246.633883 L104.883883,242.133883 C105.372039,241.645728 105.372039,240.854272 104.883883,240.366117 C104.395728,239.877961 103.604272,239.877961 103.116117,240.366117 L99.5,243.982233 L95.8838835,240.366117 Z"
+                                    transform="translate(356.5 164.5)" />
+                                <polygon points="446 418 466 418 466 398 446 398" />
+                            </g>
+                        </svg></span>
+                </div>
+
+                <div id="overview-list">
+                    {% for doc in collections.docs %}
+                    <a href="{{ doc.url }}" class="doc-link">
+                        {{ doc.data.title or doc.fileSlug }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="sidebar__footer">
+                <div class="sidebar__footer-btn">
+                    <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                        viewBox="0 0 20 20" aria-labelledby="ChevronDoubleLeftIcon-:rbo:">
+                        <path fill="currentColor" fill-rule="evenodd"
+                            d="M9.749 5.244c.309.3.333.773.071 1.1l-.071.079L6.07 10l3.679 3.577c.309.3.333.774.071 1.1l-.071.079a.876.876 0 01-1.131.07l-.081-.07-4.286-4.167a.816.816 0 01-.071-1.1l.071-.078 4.286-4.167a.875.875 0 011.212 0zm6 0c.309.3.333.773.071 1.1l-.071.079L12.07 10l3.679 3.577c.309.3.333.774.071 1.1l-.071.079a.876.876 0 01-1.131.07l-.081-.07-4.286-4.167a.816.816 0 01-.071-1.1l.071-.078 4.286-4.167a.875.875 0 011.212 0z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="content-wrapper">
+            <div id="content">
+                {{ content | safe }}
+            </div>
+            <footer id="footer">
+                <div class="footer-container">
+                    <div class="footer-content">
+                        <div>
+                            <h3 class="content-item__title">Mezon</h3>
+                            <ul class="content-item__list">
+                                <li><a href="">Home</a></li>
+                                <li><a href="">Download</a></li>
+                                <li><a href="">Clans</a></li>
+                                <li><a href="">Safety</a></li>
+                                <li><a href="">Blog</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="content-item__title">Company</h3>
+                            <ul class="content-item__list">
+                                <li><a href="">About</a></li>
+                                <li><a href="">Jobs</a></li>
+                                <li><a href="">Branding</a></li>
+                                <li><a href="">Newsroom</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="content-item__title">Resources</h3>
+                            <ul class="content-item__list">
+                                <li><a href="">College</a></li>
+                                <li><a href="">Support</a></li>
+                                <li><a href="">Safety</a></li>
+                                <li><a href="">Blog</a></li>
+                                <li><a href="">Feedback</a></li>
+                                <li><a href="">Developers</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="content-item__title">Policies</h3>
+                            <ul class="content-item__list">
+                                <li><a href="">Terms</a></li>
+                                <li><a href="">Privacy</a></li>
+                                <li><a href="">Guidelines</a></li>
+                                <li><a href="">Acknowledgements</a></li>
+                                <li><a href="">License</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <div class="footer-bottom__logo">
+                            <a href="/">
+                                <img src="/assets/images/Logo_mezon_dark.png" alt="">
+                                <span>Mezon</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <div class="modal-fade"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const header = document.querySelector('#header');
+            const menuBar = document.querySelector('.menu__bar');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            if (header) {
+                window.addEventListener('scroll', function () {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+
+            if (menuBar && mobileMenu) {
+                menuBar.addEventListener('click', function () {
+                    if (window.innerWidth < 768) {
+                        mobileMenu.classList.contains('active')
+                            ? mobileMenu.classList.remove('active')
+                            : mobileMenu.classList.add('active');
+                    }
+                });
+            }
+
+            if (mobileMenu) {
+                window.addEventListener('resize', function () {
+                    if (window.innerWidth > 768) {
+                        mobileMenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // handle open and close sidebar with mobile case
+            const modalFade = document.querySelector('.modal-fade')
+            if (modalFade) {
+                modalFade.addEventListener('click', () => {
+                    modalFade.classList.remove('active');
+                    document.getElementById('sidebar').classList.remove('active');
+                })
+            }
+
+            const openMenuBtn = document.querySelector('.sidebar__menu-btn')
+            if (openMenuBtn) {
+                openMenuBtn.addEventListener('click', function () {
+                    modalFade.classList.toggle('active');
+                    document.getElementById('sidebar').classList.toggle('active');
+                })
+            }
+
+            const closeMenuBtn = document.querySelector('.sidebar__footer-btn')
+            if (closeMenuBtn) {
+                closeMenuBtn.addEventListener('click', () => {
+                    modalFade.classList.toggle('active');
+                    document.getElementById('sidebar').classList.toggle('active');
+                });
+            }
+
+        });
+    </script>
+    <script src="/assets/plugins/jquery/jquery-1.11.2.min.js"></script>
+    <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/plugins/meanMenu/jquery.meanmenu.min.js"></script>
+    <script src="/assets/main.js"></script>
+</body>
+
+</html>
