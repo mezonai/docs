@@ -1,17 +1,21 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+
 .main-container {
-    display: flex;
-    height: 100vh;
+    // display: flex;
+    // min-height: 100vh;
     overflow: hidden;
+    padding-top: $height-header;
 
     #sidebar {
-        width: 300px;
+        width: $width-sidebar;
         border-right: 1px solid #ddd;
         padding: 1rem;
         background: #fff;
         position: fixed;
-        top: 0;
+        //top: $height-header;
         left: 0;
-        height: 100vh;
+        height: calc(100vh - $height-header);
         overflow-y: auto;
         z-index: 1000;
 
@@ -58,8 +62,8 @@
     #content {
         padding: 1rem;
         flex: 1;
-        margin-left: 350px;
-        height: 100vh;
+        margin-left: $width-sidebar;
+        height: calc(100vh - $height-header);
         overflow-y: auto;
         scroll-behavior: smooth;
     }
