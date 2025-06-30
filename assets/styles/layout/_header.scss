@@ -11,26 +11,18 @@
     background-color: transparent;
     width: 100%;
     height: $height-header;
-    border-bottom: 1px solid #ddd;
-
-    @include media(medium) {
-        height: 72px;
-    }
+    border-bottom: 1px solid $color-border;
 
     .header-container {
         position: fixed;
         z-index: 100;
         width: 100%;
 
-        @include media(medium) {
-            border-bottom: 1px solid $gray-100;
-        }
-
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: $height-header;
 
             @include min-media(medium) {
                 padding: 0 4px;
@@ -38,7 +30,7 @@
 
             @include media(medium) {
                 padding: 14px 4px;
-                height: 72px;
+                height: $height-header;
             }
 
             .menu__nav {
@@ -52,6 +44,10 @@
                     gap: 4.92px;
                     text-decoration: none;
                     width: $width-sidebar;
+
+                    @include media(medium) {
+                        width: auto;
+                    }
 
                     &:hover {
                         text-decoration: none;
@@ -132,6 +128,46 @@
                         }
                     }
                 }
+            }
+        }
+    }
+
+    .sidebar__menu {
+        display: none;
+        position: fixed;
+        top: $height-header;
+        right: 0;
+        left: 0;
+        z-index: 100;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 10px;
+        height: $height-open-menu-responsive;
+        border-bottom: 1px solid $color-border;
+
+        @include media(medium) {
+            display: flex;
+        }
+
+        &-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(60, 60, 60, .7);
+            cursor: pointer;
+            transition: color fill 0.3s ease;
+
+            &:hover {
+                color: $gray-900;
+                svg {
+                    fill: $gray-900;
+                }
+            }
+
+            svg {
+                width: 20px;
+                height: 20px;
+                fill: rgba(60, 60, 60, .7);
             }
         }
     }
