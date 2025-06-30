@@ -58,11 +58,19 @@
   <div class="main-container">
     <div id="sidebar">
       <div>
-        <div id="overview-toggle" style="cursor: pointer; font-weight: bold; display: flex; align-items: center;">
-          <span id="overview-arrow">▼</span> <span style="margin-left: 6px;">Overview</span>
+        <div id="overview-toggle">
+          <span class="overview-text">Overview</span>
+          <span id="overview-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20">
+              <g fill="none" fill-rule="evenodd" transform="translate(-446 -398)">
+                <path fill="currentColor" fill-rule="nonzero"
+                  d="M95.8838835,240.366117 C95.3957281,239.877961 94.6042719,239.877961 94.1161165,240.366117 C93.6279612,240.854272 93.6279612,241.645728 94.1161165,242.133883 L98.6161165,246.633883 C99.1042719,247.122039 99.8957281,247.122039 100.383883,246.633883 L104.883883,242.133883 C105.372039,241.645728 105.372039,240.854272 104.883883,240.366117 C104.395728,239.877961 103.604272,239.877961 103.116117,240.366117 L99.5,243.982233 L95.8838835,240.366117 Z"
+                  transform="translate(356.5 164.5)" />
+                <polygon points="446 418 466 418 466 398 446 398" />
+              </g>
+            </svg></span>
         </div>
 
-        <div id="overview-list" style="margin-top: 8px; margin-left: 12px;">
+        <div id="overview-list">
           {% for doc in collections.docs %}
           <a href="" class="doc-link" data-url="{{ doc.url }}">
             {{ doc.data.title or doc.fileSlug }}
@@ -127,6 +135,14 @@
                 <img src="/assets/images/Logo_mezon_dark.png" alt="">
                 <span>Mezon</span>
               </a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <g fill="none" fill-rule="evenodd" transform="translate(-446 -398)">
+                  <path fill="currentColor" fill-rule="nonzero"
+                    d="M95.8838835,240.366117 C95.3957281,239.877961 94.6042719,239.877961 94.1161165,240.366117 C93.6279612,240.854272 93.6279612,241.645728 94.1161165,242.133883 L98.6161165,246.633883 C99.1042719,247.122039 99.8957281,247.122039 100.383883,246.633883 L104.883883,242.133883 C105.372039,241.645728 105.372039,240.854272 104.883883,240.366117 C104.395728,239.877961 103.604272,239.877961 103.116117,240.366117 L99.5,243.982233 L95.8838835,240.366117 Z"
+                    transform="translate(356.5 164.5)" />
+                  <polygon points="446 418 466 418 466 398 446 398" />
+                </g>
+              </svg>
             </div>
           </div>
         </div>

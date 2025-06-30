@@ -2912,6 +2912,7 @@ ul.linear-list li {
   left: 0;
   height: calc(100vh - 80px);
   overflow-y: auto;
+  overflow-x: hidden;
   z-index: 1000;
 }
 .main-container #sidebar .doc-link {
@@ -3076,40 +3077,20 @@ ul.linear-list li {
   font-weight: bold;
   display: flex;
   align-items: center;
-  padding: 8px 0;
-  color: #495057;
-  transition: color 0.2s ease;
+  justify-content: space-between;
 }
-#overview-toggle:hover {
-  color: #007bff;
+
+.overview-text {
+  margin-left: 6px;
 }
-#overview-toggle #overview-arrow {
-  transition: transform 0.2s ease;
-}
-#overview-toggle #overview-arrow.collapsed {
-  transform: rotate(-90deg);
+
+#overview-arrow {
+  margin-left: 6px;
 }
 
 #overview-list {
   margin-top: 8px;
   margin-left: 12px;
-  transition: all 0.3s ease;
-}
-#overview-list .doc-link {
-  display: block;
-  padding: 8px;
-  text-decoration: none;
-  color: black;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-#overview-list .doc-link:hover {
-  background-color: #e9ecef;
-  color: #495057;
-}
-#overview-list .doc-link.active {
-  background: #f0f0f0;
-  font-weight: bold;
 }
 
 table {
