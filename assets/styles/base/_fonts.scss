@@ -1,0 +1,59 @@
+// GG Sans Font Face Declarations
+@font-face {
+    font-family: 'gg sans';
+    src: url('/assets/fonts/ggsans-Medium.523e1206a60f2c67a464.woff2')
+        format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'gg sans';
+    src: url('/assets/fonts/ggsans-Semibold.739415029df017604b41.woff2')
+        format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'gg sans';
+    src: url('/assets/fonts/ggsans-Bold.7e70b94e6d7ca5e2b322.woff2')
+        format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+// Font mixins for GG Sans
+@mixin gg-sans-medium {
+    font-family: 'gg sans', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+@mixin gg-sans-semibold {
+    font-family: 'gg sans', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+@mixin gg-sans-bold {
+    font-family: 'gg sans', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+// Fallback mixins (keeping for backward compatibility)
+@mixin light-condensed-italic {
+    font-style: italic;
+    font-weight: 300;
+    font-family: 'gg sans', sans-serif;
+}
+
+@mixin light-condensed {
+    font-style: normal;
+    font-weight: 500;
+    font-family: 'gg sans', sans-serif;
+}

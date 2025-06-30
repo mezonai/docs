@@ -1,0 +1,28 @@
+{
+    "name": "docs",
+    "version": "1.0.0",
+    "description": "-   **image/** - Contains all images\r -   **plugins/** - All third-party libraries like wow.js , animate.css , bootstrap will be here. By default this framework included 4 libraries. They are -\r     -   [Twitter Bootstrap](https://github.com/twbs/bootstrap) - The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web.\r     -   [Font-Awesome](https://github.com/FortAwesome/Font-Awesome) - The iconic font and CSS toolkit\r     -   [jquery](https://github.com/jquery/jquery) - Javascript library for make javascript easy\r     -   [JQuery MeanMenu](https://github.com/meanthemes/meanMenu) - Jquery plugin for responsive mobile menu.\r -   **styles/**\r     -   **style.scss** - Contains all scss pertials\r     -   **abstracts/**\r         -   **\\_functions.scss** - This file contains all application-wide Sass functions.\r         -   **\\_mixins.scss** - This file contains all application-wide Sass mixins.\r         -   **\\_mixins.scss** - This file contains all application-wide Sass mixins.\r         -   **\\_variables.scss** - This file contains all application-wide Sass variables.\r     -   **base/**\r         -   **\\_base.scss** - This file contains very basic styles.\r         -   **\\_fonts.scss** - This file contains all @font-face declarations, if any.\r         -   **\\_helpers.scss** - This file contains CSS helper classes.\r         -   **\\_typography.scss** - Basic typography style for copy text\r     -   **components/** - This directory will holds your project's components partials scss files such as `_buttons.scss` , `_tab.scss` , `_accordion.scss` ...\r     -   **layout/** - This directory contains all styles of application layouts such as `_header.scss` , `_sidebar.scss` etc...\r     -   **pages/** - Page specific scss partials file will be here.\r     -   **themes/** - If your project has several theme , then these theme specified scss pertials will be here.",
+    "main": "index.js",
+    "directories": {
+        "doc": "docs"
+    },
+    "scripts": {
+        "build": "eleventy",
+        "start": "eleventy --serve",
+        "dev": "eleventy --serve --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mezonai/docs.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mezonai/docs/issues"
+    },
+    "homepage": "https://github.com/mezonai/docs#readme",
+    "devDependencies": {
+        "@11ty/eleventy": "^3.1.2"
+    }
+}

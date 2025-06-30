@@ -1,3 +1,7 @@
+---
+title: Mezon SDK Docs
+---
+
 <div id="top">
 
 <!-- HEADER STYLE: BANNER -->
@@ -1571,3 +1575,5 @@ Mezon-sdk is protected under the [LICENSE](https://choosealicense.com/licenses) 
 </div>
 
 [back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
+
+</div>

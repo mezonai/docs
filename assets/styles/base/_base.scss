@@ -1,0 +1,26 @@
+@use '../abstracts/variables' as *;
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+a {
+    color: $brand-color;
+    text-decoration: none;
+}
+
+img {
+    margin: 8px 0;
+    max-width: 100%;
+}
+
+.wrapper {
+    background-color: #f4f7f9;
+    min-height: 100vh;
+}

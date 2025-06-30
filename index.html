@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="icon" href="/assets/images/favicon.ico">
+  <title>{{ title }}</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/assets/plugins/meanMenu/meanmenu.min.css">
+  <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/assets/plugins/Modernizr/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body>
+  <div class="main-container">
+    <div id="sidebar">
+      <div>
+        <div id="overview-toggle" style="cursor: pointer; font-weight: bold; display: flex; align-items: center;">
+          <span id="overview-arrow">▼</span> <span style="margin-left: 6px;">Overview</span>
+        </div>
+
+        <div id="overview-list" style="margin-top: 8px; margin-left: 12px;">
+          {% for doc in collections.docs %}
+          <a href="" class="doc-link" data-url="{{ doc.url }}">
+            {{ doc.data.title or doc.fileSlug }}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+
+    <div id="content">
+      <p>Chọn một mục bên trái để xem nội dung...</p>
+    </div>
+  </div>
+
+  <script src="/assets/plugins/jquery/jquery-1.11.2.min.js"></script>
+  <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/plugins/meanMenu/jquery.meanmenu.min.js"></script>
+  <script src="/assets/main.js"></script>
+</body>
+
+</html>
