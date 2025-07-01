@@ -20,7 +20,22 @@ img {
     max-width: 100%;
 }
 
-.wrapper {
-    background-color: #f4f7f9;
-    min-height: 100vh;
+/* Custom scrollbar */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6366f1;
+    border-radius: 9999px;
+
+    &:hover {
+        background: #cbd5e1;
+    }
 }

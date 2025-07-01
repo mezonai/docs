@@ -142,9 +142,13 @@
         }
 
         #content {
-            padding: 1rem;
+            padding: 1rem 3rem;
             min-height: calc(100vh - 80px - 200px);
             padding-bottom: 2rem;
+
+            @include media(medium) {
+                padding: 1rem 1.5rem;
+            }
         }
     }
 }

@@ -47,9 +47,22 @@ img {
   max-width: 100%;
 }
 
-.wrapper {
-  background-color: #f4f7f9;
-  min-height: 100vh;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6366f1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
 }
 
 /* --------------------- 1.2 Fonts --------------------- */
@@ -3058,9 +3071,14 @@ ul.linear-list li {
   }
 }
 .main-container .content-wrapper #content {
-  padding: 1rem;
+  padding: 1rem 3rem;
   min-height: calc(100vh - 80px - 200px);
   padding-bottom: 2rem;
+}
+@media all and (max-width: 768px) {
+  .main-container .content-wrapper #content {
+    padding: 1rem 1.5rem;
+  }
 }
 
 .toc-link {
