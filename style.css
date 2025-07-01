@@ -47,7 +47,6 @@ img {
   max-width: 100%;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -3205,7 +3204,7 @@ ul.linear-list li {
 
 .overview-text {
   margin-left: 6px;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 #overview-arrow {
