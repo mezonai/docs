@@ -1,3 +1,8 @@
+---
+layout: docLayout.html
+title: Mezon Bot Docs
+---
+
 # Mezon Applications & Bot
 
 ## Creating a Mezon Bot Account
