@@ -3138,6 +3138,7 @@ ul.linear-list li {
   font-weight: bold;
   cursor: pointer;
   transition: color 0.2s ease;
+  flex: 1;
 }
 .file-container .file-header .file-title.active {
   color: #007bff;
