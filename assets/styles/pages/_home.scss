@@ -2,8 +2,6 @@
 @use '../abstracts/variables' as *;
 
 .main-container {
-    // display: flex;
-    // min-height: 100vh;
     overflow: hidden;
     padding-top: $height-header;
 
@@ -18,7 +16,6 @@
         border-right: 1px solid $color-border; 
         background: #fff; 
         position: fixed;
-        //top: $height-header;
         left: 0;
         height: calc(100vh - $height-header);
         overflow-y: auto;
@@ -59,7 +56,6 @@
         .sidebar__content{
             flex: 1;
             overflow-y: auto;
-            // overflow-x: hidden; 
             padding: 1rem;
 
             .doc-link {
@@ -153,7 +149,6 @@
     }
 }
 
-// TOC Link
 .toc-link {
     color: #6c757d;
     text-decoration: none;
@@ -201,7 +196,6 @@
     }
 }
 
-// TOC List
 .toc-list {
     transition: all 0.3s ease;
     list-style: none;
@@ -223,7 +217,6 @@
     margin-top: 4px;
 }
 
-// File Container
 .file-container {
     margin-bottom: 8px;
 
@@ -269,7 +262,6 @@
     }
 }
 
-// Arrow
 .toc-arrow {
     margin-right: 6px;
     font-size: 10px;
@@ -286,7 +278,6 @@
     }
 }
 
-// Overview
 #overview-toggle {
     cursor: pointer;
     font-weight: bold;
@@ -308,7 +299,6 @@
     margin-left: 12px;
 }
 
-// Tables
 table {
     margin: 20px 0;
     border-collapse: collapse;
@@ -351,7 +341,6 @@ table {
     }
 }
 
-// Code blocks
 pre {
     overflow-x: auto;
     white-space: pre;
@@ -404,7 +393,6 @@ pre {
     }
 }
 
-// Animation
 @keyframes tocActivePulse {
     0% {
         transform: scale(1);
@@ -420,7 +408,6 @@ pre {
     }
 }
 
-// Mobile
 @media (max-width: 768px) {
     table {
         font-size: 0.9em;
