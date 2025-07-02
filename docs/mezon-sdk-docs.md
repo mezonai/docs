@@ -135,7 +135,7 @@ This project simplifies Mezon applications and bots development by providing a c
 
 ### Prerequisites
 
-In order to work with the library and the Mezon API in general, you must first create a **[Mezon Bot](./mezon-bot-docs.md)** account.
+In order to work with the library and the Mezon API in general, you must first create a **[Mezon Bot](/docs/mezon-bot-docs)** account.
 
 To use the `mezon-sdk`, you'll need the following installed on your system:
 
