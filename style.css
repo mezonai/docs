@@ -3194,26 +3194,28 @@ ul.linear-list li {
   transform: rotate(90deg);
 }
 
-#overview-toggle {
-  cursor: pointer;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.overview-text {
-  margin-left: 6px;
-  font-size: 20px;
-}
-
-#overview-arrow {
-  margin-left: 6px;
-}
-
 #overview-list {
   margin-top: 8px;
-  margin-left: 12px;
+}
+
+#back-to-top {
+  position: fixed;
+  display: none;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  z-index: 100;
+}
+#back-to-top svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 table {

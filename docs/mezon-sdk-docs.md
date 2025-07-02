@@ -3,7 +3,7 @@ layout: docLayout.html
 title: Mezon SDK Docs
 ---
 
-<div id="top">
+<div>
 
 <!-- HEADER STYLE: BANNER -->
 <div align="center">
@@ -1459,13 +1459,5 @@ Mezon-sdk is protected under the [LICENSE](https://choosealicense.com/licenses) 
 - Credit `contributors`, `inspiration`, `references`, etc.
 - Thanks to all developers who have contributed to the libraries and tools used in this project.
 - The Mezon community for their feedback and support.
-
-<div align="right">
-
-[![][back-to-top]](#top)
-
-</div>
-
-[back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
 
 </div>
