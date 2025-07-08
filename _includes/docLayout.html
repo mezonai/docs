@@ -2,19 +2,19 @@
 <html class="no-js" lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="icon" href="/assets/images/favicon.ico">
-    <title>{{ title }}</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="icon" href="{{ '/assets/images/favicon.ico' | url }}">
+  <title>{{ title }}</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="/assets/plugins/meanMenu/meanmenu.min.css">
-    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ '/assets/plugins/meanMenu/meanmenu.min.css' | url }}">
+  <link rel="stylesheet" href="{{ '/assets/plugins/font-awesome/css/font-awesome.min.css' | url }}">
 
-    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/style.css">
-    <script src="/assets/plugins/Modernizr/modernizr-2.8.3.min.js"></script>
+  <link rel="stylesheet" href="{{ '/assets/plugins/bootstrap/css/bootstrap.min.css' | url }}">
+  <link rel="stylesheet" href="{{ '/style.css' | url }}">
+  <script src="{{ '/assets/plugins/Modernizr/modernizr-2.8.3.min.js' | url }}"></script>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
             <div class="header-content">
                 <div class="menu__nav">
                     <a href="" class="header__logo">
-                        <img class="header__logo-img" src="/assets/images/Logo_mezon_light.png" alt="logo">
+                        <img class="header__logo-img" src="{{ '/assets/images/Logo_mezon_light.png' | url }}" alt="logo">
                         <span class="header__logo-text">mezon</span>
                     </a>
                     <nav class="menu__nav-items">
@@ -32,6 +32,7 @@
                         <a class="menu__nav-item" href="https://top.mezon.ai">Bots/Apps</a>
                         <a class="menu__nav-item selected" href="https://mezon.ai/docs">Documents</a>
                         <a class="menu__nav-item" href="https://mezon.ai/clans">Discover</a>
+                        <a class="menu__nav-item" href="https://mezon.ai/blogs">Blogs</a>
                     </nav>
                 </div>
                 <div class="menu__bar">
@@ -64,6 +65,7 @@
                     <a class="mobile-menu__nav-item" href="https://top.mezon.ai">Bots/Apps</a>
                     <a class="mobile-menu__nav-item selected" href="https://mezon.ai/docs">Documents</a>
                     <a class="mobile-menu__nav-item" href="https://mezon.ai/clans">Discover</a>
+                    <a class="mobile-menu__nav-item" href="https://mezon.ai/blogs">Blogs</a>
                 </nav>
             </div>
         </div>
@@ -167,11 +169,11 @@
 
         });
     </script>
-    <script src="/assets/plugins/jquery/jquery-1.11.2.min.js"></script>
-    <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/assets/plugins/meanMenu/jquery.meanmenu.min.js"></script>
+    <script src="{{ '/assets/plugins/jquery/jquery-1.11.2.min.js' | url }}"></script>
+    <script src="{{ '/assets/plugins/bootstrap/js/bootstrap.min.js' | url }}"></script>
+    <script src="{{ '/assets/plugins/meanMenu/jquery.meanmenu.min.js' | url }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
-    <script src="/assets/main.js"></script>
+    <script src="{{ '/assets/main.js' | url }}"></script>
 </body>
 
 </html>
