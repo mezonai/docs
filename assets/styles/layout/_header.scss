@@ -6,7 +6,7 @@
     position: fixed;
     flex-direction: column;
     align-items: center;
-    z-index: 100;
+    z-index: 97;
     transition: all 0.3s ease;
     background-color: transparent;
     width: 100%;
@@ -16,7 +16,15 @@
     .header-container {
         position: fixed;
         z-index: 100;
-        width: 100%;
+        width: calc(100% * 10 / 12);
+
+        @include media(medium) {
+            border-bottom: 1px solid $gray-100;
+        }
+
+        @include media(large) {
+            width: 100%;
+        }
 
         .header-content {
             display: flex;
@@ -25,29 +33,24 @@
             height: $height-header;
 
             @include min-media(medium) {
-                padding: 0 4px;
+                padding: 0 32px;
             }
 
             @include media(medium) {
-                padding: 14px 4px;
+                padding: 14px 16px;
                 height: $height-header;
             }
 
             .menu__nav {
                 display: flex;
                 align-items: center;
-                // gap: 40px;
+                gap: 40px;
 
                 .header__logo {
                     display: flex;
                     align-items: center;
                     gap: 4.92px;
                     text-decoration: none;
-                    width: $width-sidebar;
-
-                    @include media(medium) {
-                        width: auto;
-                    }
 
                     &:hover {
                         text-decoration: none;

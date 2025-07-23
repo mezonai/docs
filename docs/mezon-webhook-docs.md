@@ -15,15 +15,15 @@ Creating a webhook is a pretty straightforward process.
 
 1. Go to the channel you want to create a webhook for, right-click to bring up a popup of actions that can be performed on that channel.
 
-    ![mezon-webhook-001](/images/mezon-webhook-001.png)
+    ![mezon-webhook-001](https://mezon.ai/docs/images/mezon-webhook-001.png)
 
 2. Click on the **`Edit Channel`** option and then go to the **`Integrations`** tab.
 
-    ![mezon-webhook-002](/images/mezon-webhook-002.png)
+    ![mezon-webhook-002](https://mezon.ai/docs/images/mezon-webhook-002.png)
 
 3. Click on **`New Webhook`** to proceed with creating a new webhook.
     
-    ![mezon-webhook-003](/images/mezon-webhook-003.png)
+    ![mezon-webhook-003](https://mezon.ai/docs/images/mezon-webhook-003.png)
 
   - You will have one user (here named Spidey bot) and can customize this bot's name and avatar.
 
@@ -150,4 +150,4 @@ This object encapsulates the content and metadata of the message.
 
 **Result**
 
-![mezon-webhook-004](/images/mezon-webhook-004.png)
+![mezon-webhook-004](https://mezon.ai/docs/images/mezon-webhook-004.png)

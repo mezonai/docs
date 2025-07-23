@@ -30,9 +30,9 @@ $gray-600: rgb(75, 85, 99) !default;
 $gray-700: rgb(55, 65, 81) !default;
 $gray-900: rgb(17, 24, 39) !default;
 
-$assets-dir: 'assets/' !default;
-$images-dir: 'assets/images/' !default;
-$plugins-dir: 'assets/images/' !default;
+$assets-dir: '/assets/' !default;
+$images-dir: '/docs/assets/images/' !default;
+$plugins-dir: '/docs/assets/images/' !default;
 
 $height-header: 80px;
 $height-open-menu-responsive: 45px;

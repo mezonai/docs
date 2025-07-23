@@ -1441,7 +1441,7 @@ Contributions are welcome! Here's how you can help:
 <br>
 <p align="left">
    <a href="https://github.com/mezonai/mezon-js/graphs/contributors">
-      <img src="https://github.com/huybuidoanquang/MEZON/blob/main/images/contributor-graph.png">
+      <img src="https://mezon.ai/docs/images/contributor-graph.png">
    </a>
 </p>
 </details>

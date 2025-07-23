@@ -1,7 +1,8 @@
+@use '../abstracts/variables' as *;
 
 @font-face {
     font-family: 'gg sans';
-    src: url('/assets/fonts/ggsans-Medium.523e1206a60f2c67a464.woff2')
+    src: url('#{$assets-dir}fonts/ggsans-Medium.523e1206a60f2c67a464.woff2')
         format('woff2');
     font-weight: 500;
     font-style: normal;
@@ -10,7 +11,7 @@
 
 @font-face {
     font-family: 'gg sans';
-    src: url('/assets/fonts/ggsans-Semibold.739415029df017604b41.woff2')
+    src: url('#{$assets-dir}fonts/ggsans-Semibold.739415029df017604b41.woff2')
         format('woff2');
     font-weight: 600;
     font-style: normal;
@@ -19,7 +20,7 @@
 
 @font-face {
     font-family: 'gg sans';
-    src: url('/assets/fonts/ggsans-Bold.7e70b94e6d7ca5e2b322.woff2')
+    src: url('#{$assets-dir}fonts/ggsans-Bold.7e70b94e6d7ca5e2b322.woff2')
         format('woff2');
     font-weight: 700;
     font-style: normal;

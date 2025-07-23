@@ -75,7 +75,7 @@
             <div class="sidebar__content">
                 <div id="overview-list">
                     {% for doc in collections.docs %}
-                    <a href="{{ doc.url }}" class="doc-link">
+                    <a href="{{ doc.url | url }}" class="doc-link">
                         {{ doc.data.title or doc.fileSlug }}
                     </a>
                     {% endfor %}
