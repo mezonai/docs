@@ -5,11 +5,11 @@ title: Mezon Webhooks Docs
 
 # Mezon Webhook
 
-Mezon provides a feature that allows users to send messages to channels through corresponding created webhooks.
+Mezon provides a feature that allows users to send messages to channels or DM through corresponding created webhooks.
 
-## Creating a Mezon Webhook
+## Creating a Channel Mezon Webhook
 
-First, to work with webhooks, you need to make sure you are a member of a clan and have access to a channel.
+First, to work with channel webhooks, you need to make sure you are a member of a clan and have access to a channel.
 
 Creating a webhook is a pretty straightforward process.
 
@@ -29,9 +29,41 @@ Creating a webhook is a pretty straightforward process.
 
   - Click on **`Copy Webhook URL`** to get the webhook's endpoint, use it with the **[`webhook payload`](#webhook-specification)** to send messages to the channel.
 
+
+## Creating a Clan Mezon Webhook
+
+Unlike channel webhook, clan webhook will send DM directly to each person's inbox, who receives the message depends on the username provided on the URL.
+
+Follow these steps to create a webhook for your clan.
+
+1. Go to the clan you want to create a webhook for, click on clan banner to bring up a popup of actions that can be performed on that clan.
+
+    ![mezon-webhook-005](/images/mezon-webhook-005.png)
+
+2. Click on the **`Clan Settings`** option and then go to the **`Integrations`** tab.
+
+  - As a clan manager you can also manage both channel webhooks and clan webhooks here.
+
+    ![mezon-webhook-006](/images/mezon-webhook-006.png)
+
+3. Click on **`Clan Webhooks`** and then **`New Clan Webhook`** to proceed with creating a new webhook.
+    
+    ![mezon-webhook-007](/images/mezon-webhook-007.png)
+
+  - You will have one user (here named Komu Knight) and can customize this bot's name and avatar.
+
+  - Click on **`Copy Webhook URL`** to get the webhook's endpoint, use it with the **[`webhook payload`](#webhook-specification)** to send messages to the user in your clan.
+
+  - You need to combine the URL you copied with a valid `Mezon Username` to get a complete Webhook URL. You can get it in account settings.
+
+    ![mezon-webhook-008](/images/mezon-webhook-008.png)
+
+  > [!NOTE]
+  > If you feel the token on your URL is compromised or outdated, reset it and copy the new URL and make sure the user has joined your clan.
+
 ## Webhook Specification
 
-### **Endpoint**
+### **Channel Endpoint**
 
 The webhook is delivered via an HTTP POST request to a unique URL generated for each webhook integration.
 
@@ -45,8 +77,25 @@ https://webhook.mezon.ai/webhooks/{channelId}/{token}
 
 | Parameter   | Type   | Description                                                                                                                                                                          |
 | :---------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `channelId` | string | A unique identifier for the channel.                                                                                                                                   |
+| `channelId` | string | A unique identifier for the channel.                                                                                                                                                 |
 | `token`     | string | A security token for authenticating the request. It appears to be a base64 encoded string or a JSON Web Token (JWT) containing information for verifying the request's authenticity. |
+
+### **Clan Endpoint**
+
+The webhook is delivered via an HTTP POST request to a unique URL generated for each webhook integration combined with a unique username.
+
+**URL Structure:**
+
+```
+https://webhook.mezon.ai/clanwebhooks/{token}/{username}
+```
+
+**URL Parameters:**
+
+| Parameter   | Type   | Description                                                                                                                                                                          |
+| :---------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `token`     | string | A security token for authenticating the request. It appears to be a base64 encoded string or a JSON Web Token (JWT) containing information for verifying the request's authenticity. |
+| `username` | string | A unique identifier for the Mezon user.                                                                                                                                                 |
 
 ### **Request Headers**
 
@@ -106,7 +155,7 @@ This object encapsulates the content and metadata of the message.
 | `w`   | integer | Yes      | The width of the image in pixels.                  |
 | `h`   | integer | Yes      | The height of the image in pixels.                 |
 
-### **Example Payload**
+### **Channel Webhook example**
 
 **Payload**
 
@@ -151,3 +200,9 @@ This object encapsulates the content and metadata of the message.
 **Result**
 
 ![mezon-webhook-004](/images/mezon-webhook-004.png)
+
+### **Clan Webhook example**
+
+You can see the messages sent from webhooks in your **`Inbox`**.
+
+![mezon-webhook-009](/images/mezon-webhook-009.png)
