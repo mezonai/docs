@@ -1,11 +1,11 @@
 ---
 layout: docLayout.html
-title: Mezon Embedded Docs
+title: Mezon Interactive Message
 ---
 
-# Embedded Messages and Interactive Components
+# Interactive Messages and Components
 
-Mezon provides an advanced feature for messages called Embedded Messages.
+Mezon provides an advanced feature for messages called Interactive Messages.
 
 You can send a simple text message, a message with one or more embeds, a message with interactive components, or a combination of all three.
 

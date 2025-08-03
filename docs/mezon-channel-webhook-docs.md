@@ -1,13 +1,13 @@
 ---
 layout: docLayout.html
-title: Mezon Webhooks Docs
+title: Mezon Channel Webhooks Docs
 ---
 
-# Mezon Webhook
+# Mezon Channel Webhook
 
 Mezon provides a feature that allows users to send messages to channels through corresponding created webhooks.
 
-## Creating a Mezon Webhook
+## Creating a Channel Mezon Webhook
 
 First, to work with webhooks, you need to make sure you are a member of a clan and have access to a channel.
 
@@ -31,7 +31,7 @@ Creating a webhook is a pretty straightforward process.
 
 ## Webhook Specification
 
-### **Endpoint**
+### **Channel Endpoint**
 
 The webhook is delivered via an HTTP POST request to a unique URL generated for each webhook integration.
 
@@ -45,7 +45,7 @@ https://webhook.mezon.ai/webhooks/{channelId}/{token}
 
 | Parameter   | Type   | Description                                                                                                                                                                          |
 | :---------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `webhookId` | string | A unique identifier for the webhook configuration.                                                                                                                                   |
+| `channelId` | string | A unique identifier for the webhook configuration.                                                                                                                                   |
 | `token`     | string | A security token for authenticating the request. It appears to be a base64 encoded string or a JSON Web Token (JWT) containing information for verifying the request's authenticity. |
 
 ### **Request Headers**
@@ -106,7 +106,7 @@ This object encapsulates the content and metadata of the message.
 | `w`   | integer | Yes      | The width of the image in pixels.                  |
 | `h`   | integer | Yes      | The height of the image in pixels.                 |
 
-### **Example Payload**
+### **Channel Webhook example**
 
 **Payload**
 
