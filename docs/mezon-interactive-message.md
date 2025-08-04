@@ -1,6 +1,7 @@
 ---
 layout: docLayout.html
 title: Mezon Interactive Message
+order: 3
 ---
 
 # Interactive Messages and Components

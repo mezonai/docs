@@ -1,6 +1,7 @@
 ---
 layout: docLayout.html
 title: Mezon Bot Docs
+order: 2
 ---
 
 # Mezon Applications & Bot

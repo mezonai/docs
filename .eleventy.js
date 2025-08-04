@@ -5,7 +5,9 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('images');
 
     eleventyConfig.addCollection('docs', function (collectionApi) {
-        return collectionApi.getFilteredByGlob('docs/*.md');
+        return collectionApi.getFilteredByGlob("docs/*.md").sort((a, b) => {
+            return (a.data.order || 0) - (b.data.order || 0);
+        });
     });
 
     return {
