@@ -17,7 +17,7 @@ module.exports = function (eleventyConfig) {
             data: '_data',
             output: '_site'
         },
-        pathPrefix: '/',
+        pathPrefix: '/docs/',
         templateFormats: ['md', 'njk', 'html'],
         markdownTemplateEngine: 'njk',
         htmlTemplateEngine: 'njk',
