@@ -1,0 +1,396 @@
+---
+sidebar_label: Streaming Channels
+sidebar_position: 3
+---
+
+# Streaming Channels
+
+Streaming channels in Mezon enable real-time video broadcasting and interactive streaming experiences within clans. This feature allows users to broadcast live video content to channel members, creating engaging multimedia experiences for communities.
+
+## Overview
+
+Streaming channels provide a platform for:
+- **Live video broadcasting** within clan channels
+- **Real-time viewer interaction** through chat and reactions
+- **WebRTC-based streaming** for high-quality, low-latency transmission
+- **Bot integration** for automated streaming management
+- **Cross-platform support** for web, desktop, and mobile clients
+
+## Channel Types
+
+### Streaming Channel Type
+```typescript
+ChannelType.CHANNEL_TYPE_STREAMING = 6
+```
+
+Streaming channels are a specific channel type designed for video broadcasting functionality.
+
+## Core Features
+
+### 1. Stream Registration
+
+Bots and applications can register streaming channels to obtain streaming URLs and keys:
+
+```typescript
+// Register a streaming channel for bot streaming
+const registerRequest: ApiRegisterStreamingChannelRequest = {
+  channel_id: "channel_123",
+  clan_id: "clan_456"
+};
+
+const response = await client.registerStreamingChannel(registerRequest);
+console.log("Streaming URL:", response.streaming_url);
+```
+
+#### API Interface
+```typescript
+interface ApiRegisterStreamingChannelRequest {
+  channel_id?: string;
+  clan_id?: string;
+}
+
+interface ApiRegisterStreamingChannelResponse {
+  channel_id?: string;
+  clan_id?: string;
+  streaming_url?: string; // The streaming endpoint URL
+}
+```
+
+### 2. Stream Participation
+
+Users can join and leave streaming channels with real-time event notifications:
+
+#### Joining a Stream
+```typescript
+// User joins streaming channel
+const joinStreamInfo = {
+  clanId: "clan_456",
+  clanName: "Gaming Clan",
+  streamId: "channel_123",
+  streamName: "Live Gaming Session",
+  parentId: "parent_channel"
+};
+
+dispatch(videoStreamActions.startStream(joinStreamInfo));
+dispatch(videoStreamActions.setIsJoin(true));
+```
+
+#### Stream Events
+```typescript
+// Listen to streaming events
+client.onStreamingJoinedEvent((event: StreamingJoinedEvent) => {
+  console.log(`User ${event.user_id} joined stream ${event.streaming_channel_id}`);
+});
+
+client.onStreamingLeavedEvent((event: StreamingLeavedEvent) => {
+  console.log(`User ${event.user_id} left stream ${event.streaming_channel_id}`);
+});
+```
+
+### 3. WebRTC Streaming
+
+Mezon uses WebRTC technology for peer-to-peer streaming connections:
+
+#### Stream Connection Setup
+```typescript
+const handleChannelClick = (
+  clanId: string, 
+  channelId: string, 
+  userId: string, 
+  streamId: string, 
+  username: string, 
+  accessToken: string
+) => {
+  const wsUrl = process.env.NX_CHAT_APP_STREAM_WS_URL;
+  const websocket = new WebSocket(`${wsUrl}/ws?username=${username}&token=${accessToken}`);
+  
+  const peerConnection = initPeerConnection();
+  
+  websocket.onopen = () => {
+    peerConnection?.createOffer({})
+      .then((offer) => {
+        peerConnection?.setLocalDescription(offer);
+        
+        // Send session subscriber message
+        websocket.send(JSON.stringify({
+          Key: 'session_subscriber',
+          ClanId: clanId,
+          ChannelId: channelId,
+          UserId: userId,
+          Value: offer
+        }));
+      });
+  };
+};
+```
+
+### 4. Stream Management
+
+#### Stream Status Tracking
+```typescript
+interface IUserStream {
+  user_id: string;
+  clan_id: string;
+  clan_name: string;
+  participant: string;
+  streaming_channel_id: string;
+  streaming_channel_label: string;
+}
+
+interface IChannelsStream {
+  channel_id: string;
+  clan_id: string;
+  is_streaming: boolean;
+  streaming_url: string;
+}
+```
+
+#### Stream Information
+```typescript
+interface IStreamInfo {
+  clanId: string;
+  clanName: string;
+  streamId: string;
+  streamName: string;
+  parentId: string;
+}
+```
+
+## Socket Events
+
+Streaming channels emit real-time events for participant management:
+
+### StreamingJoinedEvent
+Fired when a user joins a streaming channel:
+```typescript
+interface StreamingJoinedEvent {
+  clan_id: string;
+  clan_name: string;
+  user_id: string;
+  streaming_channel_id: string;
+  streaming_channel_label: string;
+  participant: string;
+}
+```
+
+### StreamingLeavedEvent
+Fired when a user leaves a streaming channel:
+```typescript
+interface StreamingLeavedEvent {
+  clan_id: string;
+  user_id: string;
+  streaming_channel_id: string;
+}
+```
+
+## Implementation Examples
+
+### 1. Basic Stream Viewer
+
+```typescript
+import { ChannelType } from 'mezon-js';
+
+const StreamViewer = ({ channel, currentStreamInfo }) => {
+  const dispatch = useAppDispatch();
+  const userProfile = useAuth();
+
+  const handleJoinStream = async () => {
+    if (channel?.type === ChannelType.CHANNEL_TYPE_STREAMING) {
+      // Start streaming session
+      dispatch(videoStreamActions.startStream({
+        clanId: channel.clan_id,
+        clanName: '',
+        streamId: channel.channel_id,
+        streamName: channel.channel_label,
+        parentId: channel.parent_id
+      }));
+      
+      // Connect to WebRTC stream
+      handleChannelClick(
+        channel.clan_id,
+        channel.channel_id,
+        userProfile.user.id,
+        channel.channel_id,
+        userProfile.user.username,
+        accessToken
+      );
+    }
+  };
+
+  const handleLeaveStream = () => {
+    dispatch(videoStreamActions.stopStream());
+    dispatch(videoStreamActions.setIsJoin(false));
+  };
+
+  return (
+    <div className="stream-viewer">
+      <video ref={streamVideoRef} autoPlay playsInline />
+      <div className="stream-controls">
+        <button onClick={handleJoinStream}>Join Stream</button>
+        <button onClick={handleLeaveStream}>Leave Stream</button>
+      </div>
+    </div>
+  );
+};
+```
+
+### 2. Bot Stream Registration
+
+```typescript
+import { MezonClient } from 'mezon-js';
+
+const StreamBot = async () => {
+  const client = new MezonClient();
+  await client.authenticateBot('BOT_TOKEN');
+
+  // Register streaming channel for bot
+  const streamResponse = await client.registerStreamingChannel({
+    channel_id: 'streaming_channel_id',
+    clan_id: 'clan_id'
+  });
+
+  console.log('Bot streaming URL:', streamResponse.streaming_url);
+  
+  // Listen for streaming events
+  client.onStreamingJoinedEvent((event) => {
+    console.log(`User ${event.user_id} joined stream in channel ${event.streaming_channel_id}`);
+    
+    // Send welcome message to stream
+    client.sendMessage({
+      channel_id: event.streaming_channel_id,
+      content: {
+        text: `Welcome ${event.user_id} to the stream! 🎬`
+      }
+    });
+  });
+
+  client.onStreamingLeavedEvent((event) => {
+    console.log(`User ${event.user_id} left the stream`);
+  });
+};
+```
+
+### 3. Stream Chat Integration
+
+```typescript
+const StreamChat = ({ currentChannel }) => {
+  const [messages, setMessages] = useState([]);
+  
+  useEffect(() => {
+    if (currentChannel?.type === ChannelType.CHANNEL_TYPE_STREAMING) {
+      // Enable stream chat
+      dispatch(appActions.setIsShowChatStream(true));
+    }
+  }, [currentChannel]);
+
+  return (
+    <div className="stream-chat">
+      <div className="chat-messages">
+        {messages.map(message => (
+          <div key={message.id} className="chat-message">
+            <strong>{message.username}:</strong> {message.content}
+          </div>
+        ))}
+      </div>
+      <ChatInput channelId={currentChannel.id} />
+    </div>
+  );
+};
+```
+
+## Mobile Support
+
+Streaming channels are fully supported on mobile platforms:
+
+```tsx
+// Mobile streaming room component
+const JoinStreamingRoomBS = ({ channel }) => {
+  const handleJoinStream = () => {
+    if (channel?.type === ChannelType.CHANNEL_TYPE_STREAMING) {
+      handleChannelClick(
+        channel.clan_id,
+        channel.channel_id,
+        userProfile.user.id,
+        channel.channel_id,
+        userProfile.user.username,
+        sessionToken
+      );
+      
+      dispatch(videoStreamActions.startStream({
+        clanId: channel.clan_id,
+        streamId: channel.channel_id,
+        streamName: channel.channel_label,
+        parentId: channel.parent_id
+      }));
+    }
+  };
+
+  return (
+    <TouchableOpacity onPress={handleJoinStream}>
+      <Text>Join Stream</Text>
+    </TouchableOpacity>
+  );
+};
+```
+
+## Configuration
+
+### Environment Variables
+```bash
+# WebRTC streaming WebSocket URL
+NX_CHAT_APP_STREAM_WS_URL=wss://stream.mezon.ai
+
+# Meeting WebSocket URL (for voice integration)
+NX_CHAT_APP_MEET_WS_URL=wss://meet.mezon.ai
+```
+
+### Stream Modes
+```typescript
+enum ChannelStreamMode {
+  STREAM_MODE_CHANNEL = 2,
+  STREAM_MODE_GROUP = 3,
+  STREAM_MODE_DM = 4,
+  STREAM_MODE_CLAN = 5,
+  STREAM_MODE_THREAD = 6,
+}
+```
+
+## Best Practices
+
+### 1. Connection Management
+- Always handle WebSocket connection states
+- Implement reconnection logic for dropped connections
+- Properly dispose of peer connections when leaving streams
+
+### 2. Performance Optimization
+- Use efficient video codecs (H.264, VP9)
+- Implement adaptive bitrate streaming
+- Optimize for different network conditions
+
+### 3. User Experience
+- Provide clear joining/leaving indicators
+- Show participant counts and stream status
+- Integrate chat for viewer interaction
+
+### 4. Error Handling
+- Handle streaming connection failures gracefully
+- Provide fallback options for unsupported devices
+- Display helpful error messages to users
+
+## Security Considerations
+
+- Streaming URLs are generated server-side with proper authentication
+- WebRTC connections use secure protocols (DTLS/SRTP)
+- Access control is enforced through clan permissions
+- Bot streaming requires proper token authentication
+
+## Limitations
+
+- Streaming requires WebRTC support in the client
+- Network conditions affect stream quality
+- Concurrent streaming limits may apply per clan
+- Mobile streaming may have battery/performance considerations
+
+---
+
+Streaming channels provide a powerful foundation for building engaging live video experiences within Mezon communities. Whether you're creating entertainment bots, educational content, or community events, the streaming infrastructure supports rich multimedia interactions.
