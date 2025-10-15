@@ -83,12 +83,6 @@ const config: Config = {
           label: 'Bots/Apps',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'documentSidebar',
-          position: 'left',
-          label: 'Documents',
-        },
-        {
           href: 'https://mezon.ai/clans',
           position: 'left',
           label: 'Discover',
@@ -98,12 +92,19 @@ const config: Config = {
           position: 'left',
           label: 'Blogs',
         },
-
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
+          to: '/docs/user/welcome',
+          label: 'User Docs',
           position: 'right',
+          sidebarId: 'userDocsSidebar',
         },
+        {
+          href: '/docs/developer/intro',
+          target: '_blank',
+          label: 'Developer Docs',
+          position: 'right',
+          sidebarId: 'developerDocsSidebar',
+        }
       ],
     },
     footer: {
