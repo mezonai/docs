@@ -2,6 +2,7 @@
   "label": "Quản lý Clan",
   "position": 3,
   "link": {
-    "type": "generated-index"
+    "type": "generated-index",
+    "description": "Phần này dành cho Quản trị viên và Người điều hành — những người chịu trách nhiệm điều hành, duy trì hoạt động và đảm bảo Clan luôn gọn gàng, thân thiện."
   }
 }
