@@ -12,13 +12,13 @@ The main singleton class that handles all communication between your channel app
 
 ### Properties
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `initParams` | `Record<string, string \| null>` | Object containing initialization parameters parsed from URL hash and stored in sessionStorage |
-| `isIframe` | `boolean` | Boolean indicating whether the app is running inside Mezon's iframe environment |
-| `eventHandlers` | `EventHandlers<unknown>` (private) | Internal map of registered event handlers for different event types |
-| `locationHash` | `string` (private) | Current location hash string from the URL |
-| `iFrameStyle` | `HTMLStyleElement` (private) | Style element for injecting CSS from Mezon application |
+| Property        | Type                               | Description                                                                                   |
+| --------------- | ---------------------------------- | --------------------------------------------------------------------------------------------- |
+| `initParams`    | `Record<string, string \| null>`   | Object containing initialization parameters parsed from URL hash and stored in sessionStorage |
+| `isIframe`      | `boolean`                          | Boolean indicating whether the app is running inside Mezon's iframe environment               |
+| `eventHandlers` | `EventHandlers<unknown>` (private) | Internal map of registered event handlers for different event types                           |
+| `locationHash`  | `string` (private)                 | Current location hash string from the URL                                                     |
+| `iFrameStyle`   | `HTMLStyleElement` (private)       | Style element for injecting CSS from Mezon application                                        |
 
 ### Constructor
 
@@ -163,23 +163,66 @@ const utils = window.Mezon.Utils;
 
 ### MezonAppEvent
 
-Events sent from the Mezon application to your channel app.
+Events sent from the Mezon application to your channel app. These events handle various operations including authentication, data retrieval, voice functionality, and real-time communication.
 
 ```typescript
 enum MezonAppEvent {
-    ThemeChanged = 'theme_changed',
-    ViewPortChanged = 'viewport_changed',
-    SetCustomStyle = 'set_custom_style',
-    ReloadIframe = 'reload_iframe'
+	PONG = 'PONG',
+	PING = 'PING',
+	SEND_TOKEN = 'SEND_TOKEN',
+	GET_CLAN_ROLES = 'GET_CLAN_ROLES',
+	SEND_BOT_ID = 'SEND_BOT_ID',
+	GET_CLAN_USERS = 'GET_CLAN_USERS',
+	JOIN_ROOM = 'JOIN_ROOM',
+	LEAVE_ROOM = 'LEAVE_ROOM',
+	CREATE_VOICE_ROOM = 'CREATE_VOICE_ROOM',
+	CURRENT_USER_INFO = 'CURRENT_USER_INFO',
+	CLAN_ROLES_RESPONSE = 'CLAN_ROLES_RESPONSE',
+	USER_HASH_INFO = 'USER_HASH_INFO',
+	CLAN_USERS_RESPONSE = 'CLAN_USERS_RESPONSE',
+	SEND_TOKEN_RESPONSE_SUCCESS = 'SEND_TOKEN_RESPONSE_SUCCESS',
+	SEND_TOKEN_RESPONSE_FAILED = 'SEND_TOKEN_RESPONSE_FAILED',
+	GET_CHANNELS = 'GET_CHANNELS',
+	CHANNELS_RESPONSE = 'CHANNELS_RESPONSE',
+	GET_CLAN = 'GET_CLAN',
+	CLAN_RESPONSE = 'CLAN_RESPONSE',
+	GET_CHANNEL = 'GET_CHANNEL',
+	CHANNEL_RESPONSE = 'CHANNEL_RESPONSE',
+	CHECK_MICROPHONE_STATUS = 'CHECK_MICROPHONE_STATUS',
+	MICROPHONE_STATUS = 'MICROPHONE_STATUS',
+	TOGGLE_MICROPHONE = 'TOGGLE_MICROPHONE'
 }
 ```
 
-| Event | Value | Description |
-|-------|-------|-------------|
-| `ThemeChanged` | `'theme_changed'` | Fired when Mezon's theme changes (light/dark mode) |
-| `ViewPortChanged` | `'viewport_changed'` | Fired when the iframe viewport size changes |
-| `SetCustomStyle` | `'set_custom_style'` | Fired to inject custom CSS into your app (handled automatically) |
-| `ReloadIframe` | `'reload_iframe'` | Instructs your app to reload (handled automatically) |
+
+#### Event Reference Table
+
+| Event                         | Value                           | Direction     | Description                                                                  |
+| ----------------------------- | ------------------------------- | ------------- | ---------------------------------------------------------------------------- |
+| `PING`                        | `'PING'`                        | Bidirectional | Heartbeat signal to maintain connection and check application responsiveness |
+| `PONG`                        | `'PONG'`                        | Response      | Acknowledgment response to PING events, confirms connection is active        |
+| `SEND_TOKEN`                  | `'SEND_TOKEN'`                  | Request       | Requests authentication token from the parent Mezon application              |
+| `SEND_BOT_ID`                 | `'SEND_BOT_ID'`                 | Request       | Requests bot identification data for authentication purposes                 |
+| `CURRENT_USER_INFO`           | `'CURRENT_USER_INFO'`           | Request       | Requests current authenticated user's profile information                    |
+| `USER_HASH_INFO`              | `'USER_HASH_INFO'`              | Request       | Requests user hash data for secure identification                            |
+| `GET_CLAN`                    | `'GET_CLAN'`                    | Request       | Requests information about the current clan/server                           |
+| `CLAN_RESPONSE`               | `'CLAN_RESPONSE'`               | Response      | Contains clan/server data including name, ID, and configuration              |
+| `GET_CLAN_ROLES`              | `'GET_CLAN_ROLES'`              | Request       | Requests list of available roles within the current clan                     |
+| `CLAN_ROLES_RESPONSE`         | `'CLAN_ROLES_RESPONSE'`         | Response      | Contains array of clan roles with permissions and metadata                   |
+| `GET_CLAN_USERS`              | `'GET_CLAN_USERS'`              | Request       | Requests list of members in the current clan                                 |
+| `CLAN_USERS_RESPONSE`         | `'CLAN_USERS_RESPONSE'`         | Response      | Contains array of clan members with their roles and status                   |
+| `GET_CHANNELS`                | `'GET_CHANNELS'`                | Request       | Requests list of available channels in the current clan                      |
+| `CHANNELS_RESPONSE`           | `'CHANNELS_RESPONSE'`           | Response      | Contains array of channels with their properties and permissions             |
+| `GET_CHANNEL`                 | `'GET_CHANNEL'`                 | Request       | Requests detailed information about a specific channel                       |
+| `CHANNEL_RESPONSE`            | `'CHANNEL_RESPONSE'`            | Response      | Contains specific channel data including settings and metadata               |
+| `JOIN_ROOM`                   | `'JOIN_ROOM'`                   | Request       | Requests to join a voice or chat room within a channel                       |
+| `LEAVE_ROOM`                  | `'LEAVE_ROOM'`                  | Request       | Requests to leave the currently joined room                                  |
+| `CREATE_VOICE_ROOM`           | `'CREATE_VOICE_ROOM'`           | Request       | Requests creation of a new voice room with specified parameters              |
+| `CHECK_MICROPHONE_STATUS`     | `'CHECK_MICROPHONE_STATUS'`     | Request       | Checks current microphone permission and availability status                 |
+| `MICROPHONE_STATUS`           | `'MICROPHONE_STATUS'`           | Response      | Contains microphone status including permissions and device availability     |
+| `TOGGLE_MICROPHONE`           | `'TOGGLE_MICROPHONE'`           | Request       | Requests to enable/disable microphone for voice communication                |
+| `SEND_TOKEN_RESPONSE_SUCCESS` | `'SEND_TOKEN_RESPONSE_SUCCESS'` | Response      | Confirms successful authentication token transmission                        |
+| `SEND_TOKEN_RESPONSE_FAILED`  | `'SEND_TOKEN_RESPONSE_FAILED'`  | Response      | Indicates authentication token transmission failure with error details       |
 
 ### MezonWebViewEvent
 
@@ -192,10 +235,10 @@ enum MezonWebViewEvent {
 }
 ```
 
-| Event | Value | Description |
-|-------|-------|-------------|
-| `IframeReady` | `'iframe_ready'` | Sent when your app is loaded and ready (sent automatically) |
-| `IframeWillReloaded` | `'iframe_will_reload'` | Sent before app reload (sent automatically) |
+| Event                | Value                  | Description                                                 |
+| -------------------- | ---------------------- | ----------------------------------------------------------- |
+| `IframeReady`        | `'iframe_ready'`       | Sent when your app is loaded and ready (sent automatically) |
+| `IframeWillReloaded` | `'iframe_will_reload'` | Sent before app reload (sent automatically)                 |
 
 ## Type Definitions
 

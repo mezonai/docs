@@ -1,0 +1,1555 @@
+---
+sidebar_position: 6
+sidebar_label: Channel App Auth Flow
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Channel App Auth Flow
+
+If your application requires authentication to access resources and you want to leverage the existing user ecosystem within Mezon communities, Channel App provides an advanced feature for developers to integrate authentication and authorization of channel users through Mezon's user system.
+
+Channel App offers a powerful authentication mechanism that allows seamless integration between your web application and Mezon's user base, eliminating the need for separate user management systems.
+
+## What is Hash-Based Authentication?
+
+Hash-based authentication is a secure method where:
+
+- User authentication data is embedded in a cryptographically signed hash string by the Mezon platform
+- The hash contains user information and is validated using HMAC-SHA256 signatures
+- Your web application validates the hash signature to authenticate users
+- No external OAuth2 redirects are required, making it perfect for WebView environments
+
+## Architecture Overview
+
+By following the [Getting Started Guide](./getting-started.md), you now have a channel app on the Mezon platform with your web application integrated. Let's explore the relationship between the different components in the authentication flow.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     Mezon Platform                             │
+│  ┌─────────────────┐    ┌──────────────────────────────────┐   │
+│  │   Mezon App     │    │        Hash Generator            │   │
+│  │   (WebView)     │◄──►│   (Signs user data with secret)  │   │
+│  └─────────────────┘    └──────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+           │
+           │ Send USER_HASH_INFO event with signed hash
+           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    Frontend Application                        │
+│  ┌─────────────────┐    ┌──────────────────────────────────┐   │
+│  │  Event Handlers │    │       Authentication Logic       │   │
+│  │  - Listen events │◄──►│   - Process hash data            │   │
+│  │  - Send API calls│    │   - Validate and authenticate    │   │
+│  └─────────────────┘    └──────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+           │
+           │ POST /api/auth/mezon-hash
+           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                   Backend Server                               │
+│  ┌─────────────────┐    ┌──────────────────────────────────┐   │
+│  │ Auth Controller │    │       Hash Validator             │   │
+│  │ - API endpoint  │◄──►│   - Verify signature             │   │
+│  │ - JWT generation│    │   - User authentication          │   │
+│  └─────────────────┘    └──────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## Hash Data Structure
+
+The hash data received from Mezon contains the following components:
+
+### Raw Hash Format
+
+```
+query_id=AAHdF6UqAAAAAB0XpSoKhRAd&user=%7B%22id%22%3A123456789%2C%22username%22%3A%22mezon_dev%22%2C%22mezon_id%22%3A%22mezon.dev%40ncc.asia%22%7D&auth_date=1640995200&signature=abc123def456&hash=7f3c4e8a9b2d1f6e5c8a7b4e9d2f8c1e6a9b3c7d
+```
+
+### Decoded Parameters
+
+- **`query_id`**: Unique query identifier from Mezon
+- **`user`**: URL-encoded JSON string containing user information
+- **`auth_date`**: Unix timestamp of when the authentication was created
+- **`signature`**: Additional signature data for verification
+- **`hash`**: HMAC-SHA256 signature of all the data (used for validation)
+
+### User Object Structure
+
+```json
+{
+  "id": 123456789,
+  "username": "mezon_dev",
+  "display_name": "Mezon Dev",
+  "avatar_url": "https://cdn.mezon.ai/avatar.jpg",
+  "mezon_id": "mezon.dev@ncc.asia"
+}
+```
+
+## How to Implement Hash Authentication Flow?
+
+### Step 1: Frontend Implementation
+
+First, verify your web application's integration with Mezon by sending a PING event and listening for PONG and CURRENT_USER_INFO events to receive information about the user opening your channel app.
+
+#### Initialize WebView Communication
+
+```javascript
+// Check if running in Mezon WebView environment
+if (window.Mezon && window.Mezon.WebView) {
+  // Send ping to establish connection
+  window.Mezon.WebView.postEvent("PING", { message: "PING" }, () => {
+    console.log("PING sent to Mezon");
+  });
+
+  // Listen for pong response
+  window.Mezon.WebView.onEvent("PONG", (event, eventData) => {
+    console.log("Connected to Mezon:", event);
+    console.log("PONG response:", eventData);
+  });
+
+  // Listen for current user info
+  window.Mezon.WebView.onEvent("CURRENT_USER_INFO", (event, eventData) => {
+    console.log("Current user info:", eventData);
+  });
+}
+```
+
+#### Request User Hash Information
+
+You need your **App ID** from the [Developer Portal](https://mezon.ai/developers/applications). Use `postEvent` to send the `SEND_BOT_ID` event with `SendBotIdEventData` and listen for the `USER_HASH_INFO` event to receive the user hash information.
+
+```typescript
+export interface SendBotIdEventData {
+  appId: string;
+}
+
+// Send your app ID to Mezon
+window.Mezon.WebView.postEvent(
+  "SEND_BOT_ID",
+  {
+    appId: "your-app-id-here",
+  },
+  (error) => {
+    if (error) {
+      console.error("Failed to send bot ID:", error);
+    } else {
+      console.log("Bot ID sent successfully");
+    }
+  }
+);
+
+// Listen for user hash information
+window.Mezon.WebView.onEvent("USER_HASH_INFO", (event, eventData) => {
+  console.log("Received hash info:", eventData);
+
+  // Extract the hash data
+  const hashData = eventData.message.web_app_data;
+
+  // Process the hash data for authentication
+  authenticateWithHash(hashData);
+});
+```
+
+#### Complete Frontend Implementation
+
+Here's a comprehensive HTML and JavaScript implementation for handling Mezon authentication:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mezon Channel App Auth</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: var(--mezon-bg-color, #f5f5f5);
+        color: var(--mezon-text-color, #333);
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .auth-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background: var(--mezon-card-bg, #ffffff);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .status {
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+      }
+
+      .status.loading {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+      .status.success {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      .status.error {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+      .status.info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .auth-details {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 15px 0;
+        font-family: monospace;
+        font-size: 12px;
+        white-space: pre-wrap;
+      }
+
+      button {
+        background: var(--mezon-button-bg, #007bff);
+        color: var(--mezon-button-text, white);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+      }
+
+      button:hover {
+        background: var(--mezon-button-hover, #0056b3);
+      }
+
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-container">
+      <h1>Mezon Channel App Authentication</h1>
+
+      <div id="connectionStatus" class="status info">Initializing...</div>
+
+      <div id="authSection">
+        <h3>Authentication Status</h3>
+        <div id="authStatus" class="status info">Ready to authenticate</div>
+
+        <button id="testAuthBtn" onclick="testAuthentication()">
+          Test Authentication Flow
+        </button>
+        <button id="debugBtn" onclick="showDebugInfo()">Show Debug Info</button>
+      </div>
+
+      <div id="debugInfo" class="auth-details hidden"></div>
+
+      <div id="userInfo" class="hidden">
+        <h3>Authenticated User</h3>
+        <div id="userDetails" class="auth-details"></div>
+      </div>
+    </div>
+
+    <script src="mezon-web-sdk.js"></script>
+    <script>
+      class MezonAuthApp {
+        constructor() {
+          this.mezonWebView = window.Mezon.WebView;
+          this.eventListenersRegistered = false;
+          this.isInMezon = false;
+          this.appId = "your-mezon-app-id"; // Replace with your actual app ID
+          this.authEndpoint = "/api/auth/mezon-hash"; // Your backend auth endpoint
+
+          this.init();
+        }
+
+        init() {
+          this.checkMezonEnvironment();
+          this.setupEventListeners();
+          this.updateConnectionStatus();
+
+          if (this.isInMezon) {
+            this.initMezonEventListeners();
+          }
+        }
+
+        checkMezonEnvironment() {
+          this.isInMezon = !!(
+            window.Mezon &&
+            window.Mezon.WebView &&
+            this.mezonWebView.isIframe
+          );
+        }
+
+        updateConnectionStatus() {
+          const statusEl = document.getElementById("connectionStatus");
+          if (this.isInMezon) {
+            statusEl.className = "status success";
+            statusEl.innerHTML = "✅ Connected to Mezon WebView";
+          } else {
+            statusEl.className = "status info";
+            statusEl.innerHTML = "ℹ️ Running in standalone mode (not in Mezon)";
+          }
+        }
+
+        setupEventListeners() {
+          // Setup any additional UI event listeners here
+          console.log("Setting up event listeners");
+        }
+
+        initMezonEventListeners() {
+          if (this.eventListenersRegistered) return;
+
+          this.eventListenersRegistered = true;
+          console.log("Initializing Mezon event listeners");
+
+          // Send initial ping
+          this.ping();
+
+          // Send bot ID to get user hash
+          this.sendBotId();
+
+          // Listen for responses
+          this.listenToPong();
+          this.listenToUserHashInfo();
+          this.listenToCurrentUserInfo();
+        }
+
+        ping() {
+          console.log("Sending PING to Mezon");
+          this.mezonWebView.postEvent("PING", { message: "PING" }, (error) => {
+            if (error) {
+              console.error("Failed to send PING:", error);
+            } else {
+              console.log("PING sent successfully");
+            }
+          });
+        }
+
+        listenToPong() {
+          this.mezonWebView.onEvent("PONG", (eventType, eventData) => {
+            console.log("Received PONG:", eventData);
+            this.updateAuthStatus("Connected to Mezon successfully", "success");
+          });
+        }
+
+        sendBotId() {
+          console.log("Sending Bot ID to Mezon");
+          this.mezonWebView.postEvent(
+            "SEND_BOT_ID",
+            { appId: this.appId },
+            (error) => {
+              if (error) {
+                console.error("Failed to send Bot ID:", error);
+                this.updateAuthStatus("Failed to send Bot ID", "error");
+              } else {
+                console.log("Bot ID sent successfully");
+                this.updateAuthStatus(
+                  "Bot ID sent, waiting for user hash...",
+                  "loading"
+                );
+              }
+            }
+          );
+        }
+
+        listenToUserHashInfo() {
+          this.mezonWebView.onEvent(
+            "USER_HASH_INFO",
+            (eventType, eventData) => {
+              console.log("Received USER_HASH_INFO:", eventData);
+
+              if (
+                eventData &&
+                eventData.message &&
+                eventData.message.web_app_data
+              ) {
+                const hashData = eventData.message.web_app_data;
+                this.authenticateWithHash(hashData);
+              } else {
+                console.error("Invalid hash data received");
+                this.updateAuthStatus("Invalid hash data received", "error");
+              }
+            }
+          );
+        }
+
+        listenToCurrentUserInfo() {
+          this.mezonWebView.onEvent(
+            "CURRENT_USER_INFO",
+            (eventType, eventData) => {
+              console.log("Received CURRENT_USER_INFO:", eventData);
+            }
+          );
+        }
+
+        authenticateWithHash(rawHashData) {
+          console.log("Processing hash data for authentication");
+          this.updateAuthStatus("Processing authentication...", "loading");
+
+          try {
+            // Process hash data
+            const authModel = this.processHashData(rawHashData);
+
+            // Send to backend for validation
+            this.sendAuthRequest(authModel);
+          } catch (error) {
+            console.error("Error processing hash data:", error);
+            this.updateAuthStatus(
+              "Error processing authentication data",
+              "error"
+            );
+          }
+        }
+
+        processHashData(rawHashData) {
+          // Base64 encode the hash data for secure transmission
+          const encodedHashData = btoa(rawHashData);
+
+          return {
+            hashData: encodedHashData,
+          };
+        }
+
+        async sendAuthRequest(authModel) {
+          try {
+            const response = await fetch(this.authEndpoint, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(authModel),
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+
+            if (result.success) {
+              this.handleAuthSuccess(result);
+            } else {
+              this.handleAuthError(result.error || "Authentication failed");
+            }
+          } catch (error) {
+            console.error("Authentication request failed:", error);
+            this.handleAuthError(error.message);
+          }
+        }
+
+        handleAuthSuccess(response) {
+          console.log("Authentication successful:", response);
+          this.updateAuthStatus("✅ Authentication successful!", "success");
+
+          // Store authentication token
+          if (response.accessToken) {
+            localStorage.setItem("access_token", response.accessToken);
+            console.log("Access token stored");
+          }
+
+          // Display user information
+          this.displayUserInfo(response.user);
+
+          // Redirect to main application after a delay
+          setTimeout(() => {
+            this.redirectToApp();
+          }, 2000);
+        }
+
+        handleAuthError(error) {
+          console.error("Authentication failed:", error);
+          this.updateAuthStatus(`❌ Authentication failed: ${error}`, "error");
+        }
+
+        displayUserInfo(user) {
+          if (user) {
+            const userInfoEl = document.getElementById("userInfo");
+            const userDetailsEl = document.getElementById("userDetails");
+
+            userDetailsEl.textContent = JSON.stringify(user, null, 2);
+            userInfoEl.classList.remove("hidden");
+          }
+        }
+
+        redirectToApp() {
+          // Redirect to your main application
+          const redirectUrl =
+            this.mezonWebView.initParams.redirect_url || "/dashboard";
+          console.log("Redirecting to:", redirectUrl);
+          window.location.href = redirectUrl;
+        }
+
+        updateAuthStatus(message, type = "info") {
+          const statusEl = document.getElementById("authStatus");
+          statusEl.className = `status ${type}`;
+          statusEl.textContent = message;
+        }
+
+        // Debug and testing methods
+        showDebugInfo() {
+          const debugEl = document.getElementById("debugInfo");
+          const debugData = {
+            isInMezon: this.isInMezon,
+            initParams: this.mezonWebView.initParams,
+            eventListenersRegistered: this.eventListenersRegistered,
+            appId: this.appId,
+            timestamp: new Date().toISOString(),
+          };
+
+          debugEl.textContent = JSON.stringify(debugData, null, 2);
+          debugEl.classList.toggle("hidden");
+        }
+
+        // Test authentication flow manually
+        testAuthenticationFlow() {
+          if (!this.isInMezon) {
+            // Mock hash data for testing in standalone mode
+            const mockHashData = this.generateMockHashData();
+            this.authenticateWithHash(mockHashData);
+          } else {
+            // Trigger the real flow
+            this.sendBotId();
+          }
+        }
+
+        generateMockHashData() {
+          // Generate mock hash data for testing
+          const mockData = {
+            query_id: "mock_query_id_123",
+            user: JSON.stringify({
+              id: 123456789,
+              username: "test_user",
+              display_name: "Test User",
+              avatar_url: "https://example.com/avatar.jpg",
+              mezon_id: "test@example.com",
+            }),
+            auth_date: Math.floor(Date.now() / 1000),
+            signature: "mock_signature",
+            hash: "mock_hash_for_testing",
+          };
+
+          // Convert to query string format
+          const queryString = Object.entries(mockData)
+            .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+            .join("&");
+
+          return (
+            queryString.replace("&hash=mock_hash_for_testing", "") +
+            "&hash=mock_hash_for_testing"
+          );
+        }
+
+        // Cleanup method
+        removeEventListeners() {
+          if (this.mezonWebView && this.eventListenersRegistered) {
+            this.mezonWebView.offEvent("PONG", () => {});
+            this.mezonWebView.offEvent("USER_HASH_INFO", () => {});
+            this.mezonWebView.offEvent("CURRENT_USER_INFO", () => {});
+            this.eventListenersRegistered = false;
+          }
+        }
+      }
+
+      // Global functions for button handlers
+      function testAuthentication() {
+        if (window.mezonAuth) {
+          window.mezonAuth.testAuthenticationFlow();
+        }
+      }
+
+      function showDebugInfo() {
+        if (window.mezonAuth) {
+          window.mezonAuth.showDebugInfo();
+        }
+      }
+
+      // Initialize the authentication app
+      window.addEventListener("DOMContentLoaded", () => {
+        window.mezonAuth = new MezonAuthApp();
+      });
+
+      // Cleanup on page unload
+      window.addEventListener("beforeunload", () => {
+        if (window.mezonAuth) {
+          window.mezonAuth.removeEventListeners();
+        }
+      });
+    </script>
+  </body>
+</html>
+```
+
+#### Simplified Authentication Handler
+
+For integration into existing applications, here's a simplified JavaScript class:
+
+```javascript
+class SimpleMezonAuth {
+  constructor(options = {}) {
+    this.mezonWebView = window.Mezon.WebView;
+    this.appId = options.appId || "your-app-id";
+    this.authEndpoint = options.authEndpoint || "/api/auth/mezon-hash";
+    this.onSuccess = options.onSuccess || this.defaultSuccessHandler;
+    this.onError = options.onError || this.defaultErrorHandler;
+
+    this.init();
+  }
+
+  init() {
+    if (this.mezonWebView && this.mezonWebView.isIframe) {
+      this.startAuthFlow();
+    }
+  }
+
+  startAuthFlow() {
+    // Send bot ID to trigger hash generation
+    this.mezonWebView.postEvent("SEND_BOT_ID", { appId: this.appId });
+
+    // Listen for hash response
+    this.mezonWebView.onEvent("USER_HASH_INFO", (_, eventData) => {
+      if (eventData?.message?.web_app_data) {
+        this.processAuthentication(eventData.message.web_app_data);
+      }
+    });
+  }
+
+  async processAuthentication(rawHashData) {
+    try {
+      const authData = {
+        hashData: btoa(rawHashData),
+      };
+
+      const response = await fetch(this.authEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(authData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        this.onSuccess(result);
+      } else {
+        this.onError(result.error);
+      }
+    } catch (error) {
+      this.onError(error.message);
+    }
+  }
+
+  defaultSuccessHandler(result) {
+    console.log("Authentication successful:", result);
+    if (result.accessToken) {
+      localStorage.setItem("access_token", result.accessToken);
+    }
+  }
+
+  defaultErrorHandler(error) {
+    console.error("Authentication failed:", error);
+  }
+}
+
+// Usage example:
+// const auth = new SimpleMezonAuth({
+//     appId: 'your-app-id',
+//     authEndpoint: '/api/auth/mezon-hash',
+//     onSuccess: (result) => {
+//         console.log('User authenticated:', result.user);
+//         window.location.href = '/dashboard';
+//     },
+//     onError: (error) => {
+//         alert('Authentication failed: ' + error);
+//     }
+// });
+```
+
+### Step 2: Backend Implementation
+
+On your server side, you need to define an endpoint that accepts the user hash information and validates it.
+
+#### Hash Validation Process
+
+The hash validation process involves understanding the mechanism and data that Mezon uses. The hash token creation process includes 3 steps:
+
+1. **MD5 Hash**: Your **App Secret** is hashed using MD5, the result is used as the key for step 2
+2. **HMAC-SHA256**: Use HMAC-SHA256 with the key from step 1 to hash the string "WebAppData", the result is used in step 3
+3. **Final Hash**: Use all data sent from the frontend (except the hash part) as input for step 3, combined with the result from step 2 as the key. Hash all data using HMAC-SHA256 to get the final hash string
+
+<Tabs>
+  <TabItem value="node" label="Node.js" default>
+    ```javascript
+    const crypto = require('crypto');
+
+    function validateMezonHash(appSecret, hashData) {
+      try {
+        // Parse hash data
+        const delimiter = '&hash=';
+        const index = hashData.indexOf(delimiter);
+        const queryData = hashData.substring(0, index);
+        const receivedHash = hashData.substring(index + delimiter.length);
+
+        // Step 1: MD5 hash of app secret
+        const hashedSecret = crypto.createHash('md5').update(appSecret).digest('hex');
+
+        // Step 2: HMAC-SHA256 of "WebAppData" with hashed secret
+        const secretKey = crypto.createHmac('sha256', hashedSecret).update('WebAppData').digest();
+
+        // Step 3: HMAC-SHA256 of query data with secret key
+        const computedHash = crypto.createHmac('sha256', secretKey).update(queryData).digest('hex');
+
+        // Compare hashes
+        return computedHash === receivedHash;
+      } catch (error) {
+        console.error('Hash validation error:', error);
+        return false;
+      }
+    }
+
+    // Usage example
+    app.post('/api/auth/mezon-hash', (req, res) => {
+      const { hashData } = req.body;
+      const rawHashData = Buffer.from(hashData, 'base64').toString('utf-8');
+
+      const isValid = validateMezonHash(process.env.MEZON_APP_SECRET, rawHashData);
+
+      if (isValid) {
+        // Extract user data and create session
+        const userData = parseUserData(rawHashData);
+        const token = generateJWTToken(userData);
+
+        res.json({
+          success: true,
+          accessToken: token,
+          user: userData
+        });
+      } else {
+        res.status(401).json({
+          success: false,
+          error: 'Invalid hash signature'
+        });
+      }
+    });
+    ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+    ```python
+    import hmac
+    import hashlib
+    import base64
+    import urllib.parse
+    import json
+
+    def validate_mezon_hash(app_secret, hash_data):
+        try:
+            # Parse hash data
+            delimiter = '&hash='
+            index = hash_data.find(delimiter)
+            query_data = hash_data[:index]
+            received_hash = hash_data[index + len(delimiter):]
+
+            # Step 1: MD5 hash of app secret
+            hashed_secret = hashlib.md5(app_secret.encode()).hexdigest()
+
+            # Step 2: HMAC-SHA256 of "WebAppData" with hashed secret
+            secret_key = hmac.new(
+                hashed_secret.encode(),
+                b'WebAppData',
+                hashlib.sha256
+            ).digest()
+
+            # Step 3: HMAC-SHA256 of query data with secret key
+            computed_hash = hmac.new(
+                secret_key,
+                query_data.encode(),
+                hashlib.sha256
+            ).hexdigest()
+
+            # Compare hashes
+            return computed_hash == received_hash
+        except Exception as e:
+            print(f"Hash validation error: {e}")
+            return False
+
+    def parse_user_data(hash_data):
+        # Extract query parameters
+        delimiter = '&hash='
+        query_data = hash_data[:hash_data.find(delimiter)]
+        params = urllib.parse.parse_qs(query_data)
+
+        # Parse user JSON
+        user_json = urllib.parse.unquote(params['user'][0])
+        user_data = json.loads(user_json)
+
+        return {
+            'query_id': params['query_id'][0],
+            'user': user_data,
+            'auth_date': int(params['auth_date'][0]),
+            'signature': params['signature'][0] if 'signature' in params else None
+        }
+
+    # Flask example
+    from flask import Flask, request, jsonify
+    import jwt
+    import os
+
+    app = Flask(__name__)
+
+    @app.route('/api/auth/mezon-hash', methods=['POST'])
+    def mezon_hash_auth():
+        data = request.get_json()
+        hash_data = data.get('hashData')
+
+        # Decode base64 hash data
+        raw_hash_data = base64.b64decode(hash_data).decode('utf-8')
+
+        # Validate hash
+        app_secret = os.getenv('MEZON_APP_SECRET')
+        is_valid = validate_mezon_hash(app_secret, raw_hash_data)
+
+        if is_valid:
+            # Parse user data
+            user_data = parse_user_data(raw_hash_data)
+
+            # Generate JWT token
+            token = jwt.encode({
+                'user_id': user_data['user']['id'],
+                'username': user_data['user']['username'],
+                'mezon_id': user_data['user']['mezon_id']
+            }, os.getenv('JWT_SECRET'), algorithm='HS256')
+
+            return jsonify({
+                'success': True,
+                'accessToken': token,
+                'user': user_data['user']
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': 'Invalid hash signature'
+            }), 401
+    ```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+    ```go
+    package main
+
+    import (
+        "crypto/hmac"
+        "crypto/md5"
+        "crypto/sha256"
+        "encoding/base64"
+        "encoding/hex"
+        "encoding/json"
+        "fmt"
+        "net/http"
+        "net/url"
+        "strconv"
+        "strings"
+    )
+
+    type MezonUser struct {
+        ID       int64  `json:"id"`
+        Username string `json:"username"`
+        MezonID  string `json:"mezon_id"`
+    }
+
+    type HashData struct {
+        QueryID   string    `json:"query_id"`
+        User      MezonUser `json:"user"`
+        AuthDate  int64     `json:"auth_date"`
+        Signature string    `json:"signature"`
+    }
+
+    func validateMezonHash(appSecret, hashData string) bool {
+        // Parse hash data
+        delimiter := "&hash="
+        index := strings.Index(hashData, delimiter)
+        if index == -1 {
+            return false
+        }
+
+        queryData := hashData[:index]
+        receivedHash := hashData[index+len(delimiter):]
+
+        // Step 1: MD5 hash of app secret
+        hasher := md5.New()
+        hasher.Write([]byte(appSecret))
+        hashedSecret := hex.EncodeToString(hasher.Sum(nil))
+
+        // Step 2: HMAC-SHA256 of "WebAppData" with hashed secret
+        mac := hmac.New(sha256.New, []byte(hashedSecret))
+        mac.Write([]byte("WebAppData"))
+        secretKey := mac.Sum(nil)
+
+        // Step 3: HMAC-SHA256 of query data with secret key
+        mac2 := hmac.New(sha256.New, secretKey)
+        mac2.Write([]byte(queryData))
+        computedHash := hex.EncodeToString(mac2.Sum(nil))
+
+        // Compare hashes
+        return computedHash == receivedHash
+    }
+
+    func parseUserData(hashData string) (*HashData, error) {
+        delimiter := "&hash="
+        index := strings.Index(hashData, delimiter)
+        queryData := hashData[:index]
+
+        // Parse query parameters
+        values, err := url.ParseQuery(queryData)
+        if err != nil {
+            return nil, err
+        }
+
+        // Parse user JSON
+        userJSON, err := url.QueryUnescape(values.Get("user"))
+        if err != nil {
+            return nil, err
+        }
+
+        var user MezonUser
+        if err := json.Unmarshal([]byte(userJSON), &user); err != nil {
+            return nil, err
+        }
+
+        authDate, err := strconv.ParseInt(values.Get("auth_date"), 10, 64)
+        if err != nil {
+            return nil, err
+        }
+
+        return &HashData{
+            QueryID:   values.Get("query_id"),
+            User:      user,
+            AuthDate:  authDate,
+            Signature: values.Get("signature"),
+        }, nil
+    }
+
+    func mezonHashAuthHandler(w http.ResponseWriter, r *http.Request) {
+        var reqData struct {
+            HashData string `json:"hashData"`
+        }
+
+        if err := json.NewDecoder(r.Body).Decode(&reqData); err != nil {
+            http.Error(w, "Invalid request", http.StatusBadRequest)
+            return
+        }
+
+        // Decode base64 hash data
+        rawHashData, err := base64.StdEncoding.DecodeString(reqData.HashData)
+        if err != nil {
+            http.Error(w, "Invalid hash data", http.StatusBadRequest)
+            return
+        }
+
+        // Validate hash
+        appSecret := os.Getenv("MEZON_APP_SECRET")
+        if !validateMezonHash(appSecret, string(rawHashData)) {
+            http.Error(w, "Invalid hash signature", http.StatusUnauthorized)
+            return
+        }
+
+        // Parse user data
+        userData, err := parseUserData(string(rawHashData))
+        if err != nil {
+            http.Error(w, "Failed to parse user data", http.StatusBadRequest)
+            return
+        }
+
+        // Generate JWT token (implement your JWT logic here)
+        token := generateJWTToken(userData.User)
+
+        response := map[string]interface{}{
+            "success":     true,
+            "accessToken": token,
+            "user":        userData.User,
+        }
+
+        w.Header().Set("Content-Type", "application/json")
+        json.NewEncoder(w).Encode(response)
+    }
+    ```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+    ```java
+    import javax.crypto.Mac;
+    import javax.crypto.spec.SecretKeySpec;
+    import java.security.MessageDigest;
+    import java.util.Base64;
+    import java.net.URLDecoder;
+    import java.util.HashMap;
+    import java.util.Map;
+    import com.fasterxml.jackson.databind.ObjectMapper;
+
+    public class MezonHashValidator {
+
+        public static boolean validateMezonHash(String appSecret, String hashData) {
+            try {
+                // Parse hash data
+                String delimiter = "&hash=";
+                int index = hashData.indexOf(delimiter);
+                if (index == -1) return false;
+
+                String queryData = hashData.substring(0, index);
+                String receivedHash = hashData.substring(index + delimiter.length());
+
+                // Step 1: MD5 hash of app secret
+                MessageDigest md5 = MessageDigest.getInstance("MD5");
+                byte[] hashedSecretBytes = md5.digest(appSecret.getBytes());
+                String hashedSecret = bytesToHex(hashedSecretBytes);
+
+                // Step 2: HMAC-SHA256 of "WebAppData" with hashed secret
+                Mac mac1 = Mac.getInstance("HmacSHA256");
+                SecretKeySpec secretKeySpec1 = new SecretKeySpec(hashedSecret.getBytes(), "HmacSHA256");
+                mac1.init(secretKeySpec1);
+                byte[] secretKey = mac1.doFinal("WebAppData".getBytes());
+
+                // Step 3: HMAC-SHA256 of query data with secret key
+                Mac mac2 = Mac.getInstance("HmacSHA256");
+                SecretKeySpec secretKeySpec2 = new SecretKeySpec(secretKey, "HmacSHA256");
+                mac2.init(secretKeySpec2);
+                byte[] computedHashBytes = mac2.doFinal(queryData.getBytes());
+                String computedHash = bytesToHex(computedHashBytes);
+
+                // Compare hashes
+                return computedHash.equals(receivedHash);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        private static String bytesToHex(byte[] bytes) {
+            StringBuilder result = new StringBuilder();
+            for (byte b : bytes) {
+                result.append(String.format("%02x", b));
+            }
+            return result.toString();
+        }
+
+        public static Map<String, Object> parseUserData(String hashData) throws Exception {
+            String delimiter = "&hash=";
+            int index = hashData.indexOf(delimiter);
+            String queryData = hashData.substring(0, index);
+
+            // Parse query parameters
+            Map<String, String> params = new HashMap<>();
+            String[] pairs = queryData.split("&");
+            for (String pair : pairs) {
+                String[] keyValue = pair.split("=", 2);
+                if (keyValue.length == 2) {
+                    params.put(keyValue[0], URLDecoder.decode(keyValue[1], "UTF-8"));
+                }
+            }
+
+            // Parse user JSON
+            ObjectMapper mapper = new ObjectMapper();
+            Map<String, Object> user = mapper.readValue(params.get("user"), Map.class);
+
+            Map<String, Object> result = new HashMap<>();
+            result.put("query_id", params.get("query_id"));
+            result.put("user", user);
+            result.put("auth_date", Long.parseLong(params.get("auth_date")));
+            result.put("signature", params.get("signature"));
+
+            return result;
+        }
+
+        // Spring Boot Controller example
+        @RestController
+        public class AuthController {
+
+            @Value("${mezon.app.secret}")
+            private String appSecret;
+
+            @PostMapping("/api/auth/mezon-hash")
+            public ResponseEntity<?> mezonHashAuth(@RequestBody Map<String, String> request) {
+                try {
+                    String hashData = request.get("hashData");
+
+                    // Decode base64 hash data
+                    byte[] decodedBytes = Base64.getDecoder().decode(hashData);
+                    String rawHashData = new String(decodedBytes);
+
+                    // Validate hash
+                    if (!validateMezonHash(appSecret, rawHashData)) {
+                        return ResponseEntity.status(401).body(
+                            Map.of("success", false, "error", "Invalid hash signature")
+                        );
+                    }
+
+                    // Parse user data
+                    Map<String, Object> userData = parseUserData(rawHashData);
+
+                    // Generate JWT token
+                    String token = generateJWTToken(userData);
+
+                    return ResponseEntity.ok(Map.of(
+                        "success", true,
+                        "accessToken", token,
+                        "user", userData.get("user")
+                    ));
+                } catch (Exception e) {
+                    return ResponseEntity.status(500).body(
+                        Map.of("success", false, "error", "Authentication failed")
+                    );
+                }
+            }
+        }
+    }
+    ```
+
+  </TabItem>
+  <TabItem value="csharp" label="C#">
+    ```csharp
+    using System;
+    using System.Security.Cryptography;
+    using System.Text;
+    using System.Web;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+
+    public class MezonHashValidator
+    {
+        public static bool ValidateMezonHash(string appSecret, string hashData)
+        {
+            try
+            {
+                // Parse hash data
+                string delimiter = "&hash=";
+                int index = hashData.IndexOf(delimiter);
+                if (index == -1) return false;
+
+                string queryData = hashData.Substring(0, index);
+                string receivedHash = hashData.Substring(index + delimiter.Length);
+
+                // Step 1: MD5 hash of app secret
+                using (var md5 = MD5.Create())
+                {
+                    byte[] hashedSecretBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(appSecret));
+                    string hashedSecret = BitConverter.ToString(hashedSecretBytes)
+                        .Replace("-", "").ToLowerInvariant();
+
+                    // Step 2: HMAC-SHA256 of "WebAppData" with hashed secret
+                    using (var hmac1 = new HMACSHA256(Encoding.UTF8.GetBytes(hashedSecret)))
+                    {
+                        byte[] secretKey = hmac1.ComputeHash(Encoding.UTF8.GetBytes("WebAppData"));
+
+                        // Step 3: HMAC-SHA256 of query data with secret key
+                        using (var hmac2 = new HMACSHA256(secretKey))
+                        {
+                            byte[] computedHashBytes = hmac2.ComputeHash(Encoding.UTF8.GetBytes(queryData));
+                            string computedHash = BitConverter.ToString(computedHashBytes)
+                                .Replace("-", "").ToLowerInvariant();
+
+                            // Compare hashes
+                            return computedHash.Equals(receivedHash, StringComparison.OrdinalIgnoreCase);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Hash validation error: {ex.Message}");
+                return false;
+            }
+        }
+
+        public static Dictionary<string, object> ParseUserData(string hashData)
+        {
+            string delimiter = "&hash=";
+            int index = hashData.IndexOf(delimiter);
+            string queryData = hashData.Substring(0, index);
+
+            // Parse query parameters
+            var queryParams = HttpUtility.ParseQueryString(queryData);
+
+            // Parse user JSON
+            string userJson = HttpUtility.UrlDecode(queryParams["user"]);
+            var user = JsonConvert.DeserializeObject<Dictionary<string, object>>(userJson);
+
+            return new Dictionary<string, object>
+            {
+                ["query_id"] = queryParams["query_id"],
+                ["user"] = user,
+                ["auth_date"] = long.Parse(queryParams["auth_date"]),
+                ["signature"] = queryParams["signature"]
+            };
+        }
+    }
+
+    // ASP.NET Core Controller example
+    [ApiController]
+    [Route("api/[controller]")]
+    public class AuthController : ControllerBase
+    {
+        private readonly IConfiguration _configuration;
+
+        public AuthController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+        [HttpPost("mezon-hash")]
+        public IActionResult MezonHashAuth([FromBody] MezonHashAuthRequest request)
+        {
+            try
+            {
+                // Decode base64 hash data
+                string rawHashData = Encoding.UTF8.GetString(Convert.FromBase64String(request.HashData));
+
+                // Validate hash
+                string appSecret = _configuration["Mezon:AppSecret"];
+                if (!MezonHashValidator.ValidateMezonHash(appSecret, rawHashData))
+                {
+                    return Unauthorized(new { success = false, error = "Invalid hash signature" });
+                }
+
+                // Parse user data
+                var userData = MezonHashValidator.ParseUserData(rawHashData);
+
+                // Generate JWT token
+                string token = GenerateJWTToken(userData);
+
+                return Ok(new
+                {
+                    success = true,
+                    accessToken = token,
+                    user = userData["user"]
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, error = "Authentication failed" });
+            }
+        }
+    }
+
+    public class MezonHashAuthRequest
+    {
+        public string HashData { get; set; }
+    }
+    ```
+
+  </TabItem>
+</Tabs>
+
+#### Complete Backend Implementation Example (Node.js/Express)
+
+```javascript
+const express = require("express");
+const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
+const app = express();
+
+app.use(express.json());
+
+// Utility functions
+function validateMezonHash(appSecret, hashData) {
+  try {
+    const delimiter = "&hash=";
+    const index = hashData.indexOf(delimiter);
+    const queryData = hashData.substring(0, index);
+    const receivedHash = hashData.substring(index + delimiter.length);
+
+    // Hash validation process
+    const hashedSecret = crypto
+      .createHash("md5")
+      .update(appSecret)
+      .digest("hex");
+    const secretKey = crypto
+      .createHmac("sha256", hashedSecret)
+      .update("WebAppData")
+      .digest();
+    const computedHash = crypto
+      .createHmac("sha256", secretKey)
+      .update(queryData)
+      .digest("hex");
+
+    return computedHash === receivedHash;
+  } catch (error) {
+    console.error("Hash validation error:", error);
+    return false;
+  }
+}
+
+function parseUserData(hashData) {
+  const delimiter = "&hash=";
+  const queryData = hashData.substring(0, hashData.indexOf(delimiter));
+
+  const params = new URLSearchParams(queryData);
+  const userJSON = decodeURIComponent(params.get("user"));
+  const user = JSON.parse(userJSON);
+
+  return {
+    query_id: params.get("query_id"),
+    user: user,
+    auth_date: parseInt(params.get("auth_date")),
+    signature: params.get("signature"),
+  };
+}
+
+function generateJWTToken(userData) {
+  const payload = {
+    user_id: userData.user.id,
+    username: userData.user.username,
+    mezon_id: userData.user.mezon_id,
+    exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24, // 24 hours
+  };
+
+  return jwt.sign(payload, process.env.JWT_SECRET);
+}
+
+// Authentication endpoint
+app.post("/api/auth/mezon-hash", async (req, res) => {
+  try {
+    const { hashData } = req.body;
+
+    if (!hashData) {
+      return res.status(400).json({
+        success: false,
+        error: "Hash data is required",
+      });
+    }
+
+    // Decode base64 hash data
+    const rawHashData = Buffer.from(hashData, "base64").toString("utf-8");
+    console.log("Received hash data:", rawHashData);
+
+    // Validate hash signature
+    const isValid = validateMezonHash(
+      process.env.MEZON_APP_SECRET,
+      rawHashData
+    );
+    if (!isValid) {
+      return res.status(401).json({
+        success: false,
+        error: "Invalid hash signature",
+      });
+    }
+
+    // Parse user data
+    const userData = parseUserData(rawHashData);
+    console.log("Parsed user data:", userData);
+
+    // Check if user exists in your database
+    const user = await findOrCreateUser(userData.user);
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        error: "User not found or cannot be created",
+      });
+    }
+
+    // Generate JWT token
+    const accessToken = generateJWTToken(userData);
+
+    // Return successful authentication
+    res.json({
+      success: true,
+      accessToken: accessToken,
+      expiresIn: 86400, // 24 hours in seconds
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        displayName: user.displayName,
+      },
+    });
+  } catch (error) {
+    console.error("Authentication error:", error);
+    res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
+  }
+});
+
+// Mock user database operations
+async function findOrCreateUser(mezonUser) {
+  // Implement your user lookup/creation logic here
+  // This could involve database queries to find existing users
+  // or create new users based on Mezon data
+
+  // Example implementation:
+  let user = await User.findOne({ email: mezonUser.mezon_id });
+
+  if (!user) {
+    // Create new user if doesn't exist
+    user = await User.create({
+      email: mezonUser.mezon_id,
+      username: mezonUser.username,
+      displayName: mezonUser.display_name || mezonUser.username,
+      avatarUrl: mezonUser.avatar_url,
+      mezonId: mezonUser.id,
+    });
+  }
+
+  return user;
+}
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+```
+
+## Complete Authentication Flow
+
+The complete flow works as follows:
+
+1. **User opens channel app** in Mezon
+2. **Mezon loads your web application** in WebView
+3. **Frontend detects Mezon environment** and initializes event listeners
+4. **WebView handshake**: Frontend sends PING, receives PONG
+5. **App ID exchange**: Frontend sends SEND_BOT_ID with your app ID
+6. **Hash generation**: Mezon generates signed hash with user data
+7. **Hash delivery**: Mezon sends USER_HASH_INFO event with hash data
+8. **Hash processing**: Frontend base64 encodes hash and sends to backend
+9. **Hash validation**: Backend validates signature using cryptographic verification
+10. **User authentication**: Backend finds/creates user and generates JWT token
+11. **Session establishment**: Frontend stores token and redirects to application
+
+## Error Handling and Troubleshooting
+
+### Common Error Scenarios
+
+#### Frontend Error Handling
+
+```typescript
+// Comprehensive error handling in your service
+public authenticateWithHash(authModel: MezonHashAuthModel): Observable<any> {
+  return this.http.post('/api/auth/mezon-hash', authModel).pipe(
+    map(response => ({ ...response, loading: false })),
+    catchError((error: HttpErrorResponse) => {
+      console.error('Authentication failed:', error);
+
+      let errorMessage = 'Authentication failed';
+      if (error.error?.error) {
+        errorMessage = error.error.error;
+      } else if (error.status === 401) {
+        errorMessage = 'Invalid authentication credentials';
+      } else if (error.status === 0) {
+        errorMessage = 'Network error - please check your connection';
+      }
+
+      return of({
+        loading: false,
+        success: false,
+        error: errorMessage
+      });
+    })
+  );
+}
+```
+
+#### Backend Error Handling
+
+```javascript
+app.post("/api/auth/mezon-hash", async (req, res) => {
+  try {
+    // ... authentication logic
+  } catch (error) {
+    console.error("Authentication error:", error);
+
+    // Return appropriate error responses
+    if (error.name === "ValidationError") {
+      return res.status(400).json({
+        success: false,
+        error: "Invalid request data",
+      });
+    } else if (error.name === "JsonWebTokenError") {
+      return res.status(500).json({
+        success: false,
+        error: "Token generation failed",
+      });
+    } else {
+      return res.status(500).json({
+        success: false,
+        error: "Internal server error",
+      });
+    }
+  }
+});
+```
+
+### Security Best Practices
+
+1. **Always validate hash signatures** before processing user data
+2. **Use environment variables** for sensitive configuration like app secrets
+3. **Implement proper error handling** without exposing internal details
+4. **Add rate limiting** to prevent abuse of authentication endpoints
+5. **Log authentication attempts** for security monitoring
+6. **Validate user data** before creating database records
+7. **Use HTTPS** for all communications in production
+
+### Testing Your Implementation
+
+#### Frontend Testing
+
+```typescript
+// Mock Mezon WebView for testing
+if (environment.production === false) {
+  (window as any).Mezon = {
+    WebView: {
+      postEvent: (eventType: string, data: any, callback: Function) => {
+        console.log("Mock postEvent:", eventType, data);
+        callback();
+      },
+      onEvent: (eventType: string, handler: Function) => {
+        console.log("Mock onEvent listener registered:", eventType);
+
+        // Simulate events for testing
+        if (eventType === "USER_HASH_INFO") {
+          setTimeout(() => {
+            handler(eventType, {
+              message: {
+                web_app_data: "mock-hash-data-for-testing",
+              },
+            });
+          }, 1000);
+        }
+      },
+      offEvent: (eventType: string, handler: Function) => {
+        console.log("Mock offEvent:", eventType);
+      },
+    },
+  };
+}
+```
+
+#### Backend Testing
+
+```javascript
+// Test hash validation
+const assert = require("assert");
+
+function testHashValidation() {
+  const appSecret = "test-secret";
+  const validHashData =
+    "query_id=test&user=%7B%22id%22%3A123%7D&auth_date=1640995200&hash=valid-hash";
+
+  // Test with valid hash
+  const isValid = validateMezonHash(appSecret, validHashData);
+  console.log("Hash validation test:", isValid ? "PASSED" : "FAILED");
+}
+
+testHashValidation();
+```
+
+This completes the comprehensive Channel App Authentication Flow documentation. The hash-based authentication provides a secure and seamless way to authenticate users from Mezon into your application without requiring separate login flows.
