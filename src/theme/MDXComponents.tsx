@@ -9,6 +9,7 @@ import Columns from '@site/src/components/Columns';
 import Column from '@site/src/components/Columns/Column';
 import Timeline from '@site/src/components/TimeLine';
 import TimelineItem from '@site/src/components/TimeLine/TimeLineItem';
+import { Steps, Step } from '@site/src/components/Steps';
 export default {
   ...MDXComponents,
   Card,
@@ -20,4 +21,6 @@ export default {
   Column,
   Timeline,
   TimelineItem,
+  Steps,
+  Step,
 };
