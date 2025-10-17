@@ -1,0 +1,38 @@
+{
+  "title": {
+    "message": "Mezon Developer Docs",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Mezon Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Home": {
+    "message": "Home",
+    "description": "Navbar item with label Home"
+  },
+  "item.label.Developers": {
+    "message": "Developers",
+    "description": "Navbar item with label Developers"
+  },
+  "item.label.Bots/Apps": {
+    "message": "Bots/Apps",
+    "description": "Navbar item with label Bots/Apps"
+  },
+  "item.label.Discover": {
+    "message": "Discover",
+    "description": "Navbar item with label Discover"
+  },
+  "item.label.Blogs": {
+    "message": "Blogs",
+    "description": "Navbar item with label Blogs"
+  },
+  "item.label.User Docs": {
+    "message": "User Docs",
+    "description": "Navbar item with label User Docs"
+  },
+  "item.label.Developer Docs": {
+    "message": "Developer Docs",
+    "description": "Navbar item with label Developer Docs"
+  }
+}

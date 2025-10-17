@@ -1,0 +1,114 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.userDocsSidebar.category.Tài khoản và cá nhân hóa": {
+    "message": "Account and Personalization",
+    "description": "The label for category Account and Personalization in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Bạn bè và Tin nhắn trực tiếp": {
+    "message": "Friends and Messaging",
+    "description": "The label for category Friends and Messaging in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Clan": {
+    "message": "Clan",
+    "description": "The label for category Clan in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Tạo Clan của riêng bạn": {
+    "message": "Tạo Clan của riêng bạn",
+    "description": "The label for category Tạo Clan của riêng bạn in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Tạo Clan của riêng bạn.link.generated-index.description": {
+    "message": "Clan là “ngôi nhà” chung của bạn và cộng đồng — nơi mọi người có thể trò chuyện, làm việc, học tập hoặc chia sẻ sở thích cùng nhau. Trên Mezon, việc tạo và quản lý một Clan cực kỳ đơn giản, linh hoạt.",
+    "description": "The generated-index page description for category Tạo Clan của riêng bạn in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Quản lý Clan": {
+    "message": "Quản lý Clan",
+    "description": "The label for category Quản lý Clan in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Quản lý Clan.link.generated-index.description": {
+    "message": "Phần này dành cho Quản trị viên và Người điều hành — những người chịu trách nhiệm điều hành, duy trì hoạt động và đảm bảo Clan luôn gọn gàng, thân thiện.",
+    "description": "The generated-index page description for category Quản lý Clan in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Cài đặt tổng quan": {
+    "message": "Cài đặt tổng quan",
+    "description": "The label for category Cài đặt tổng quan in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Cấu trúc Clan": {
+    "message": "Cấu trúc Clan",
+    "description": "The label for category Cấu trúc Clan in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Kênh trong Clan": {
+    "message": "Kênh trong Clan",
+    "description": "The label for category Kênh trong Clan in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Kênh văn bản": {
+    "message": "Kênh văn bản",
+    "description": "The label for category Kênh văn bản in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Clan trải nghiệm Mezon": {
+    "message": "Clan trải nghiệm Mezon",
+    "description": "The label for category Clan trải nghiệm Mezon in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Clan trải nghiệm Mezon.link.generated-index.description": {
+    "message": "Trải nghiệm trực tiếp tính năng của Mezon thông qua các Clan Mẫu mà Mezon đã xây dựng sẵn. Khi tham gia, bạn sẽ được trải nghiệm trực tiếp tính năng, khám phá cách cộng đồng được tổ chức và tìm cảm hứng để xây dựng Clan riêng.",
+    "description": "The generated-index page description for category Clan trải nghiệm Mezon in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Bots & Apps": {
+    "message": "Bots & Apps",
+    "description": "The label for category Bots & Apps in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Mezon Đồng": {
+    "message": "Mezon Dong",
+    "description": "The label for category Mezon Dong in sidebar userDocsSidebar"
+  },
+  "sidebar.userDocsSidebar.category.Tài nguyên": {
+    "message": "Resources",
+    "description": "The label for category Resources in sidebar userDocsSidebar"
+  },
+  "sidebar.developerDocsSidebar.category.Quick Start": {
+    "message": "Quick Start",
+    "description": "The label for category Quick Start in sidebar developerDocsSidebar"
+  },
+  "sidebar.developerDocsSidebar.category.Quick Start.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Docusaurus concepts.",
+    "description": "The generated-index page description for category Quick Start in sidebar developerDocsSidebar"
+  },
+  "sidebar.developerDocsSidebar.category.Mezon SDK": {
+    "message": "Mezon SDK",
+    "description": "The label for category Mezon SDK in sidebar developerDocsSidebar"
+  },
+  "sidebar.developerDocsSidebar.category.Mezon SDK.link.generated-index.description": {
+    "message": "Comprehensive guides and documentation to help you start working with Mezon SDK as quickly as possible.",
+    "description": "The generated-index page description for category Mezon SDK in sidebar developerDocsSidebar"
+  },
+  "sidebar.developerDocsSidebar.category.Mezon Bot SDK": {
+    "message": "Mezon Bot SDK",
+    "description": "The label for category Mezon Bot SDK in sidebar developerDocsSidebar"
+  },
+  "sidebar.developerDocsSidebar.category.Mezon Bot SDK.link.generated-index.description": {
+    "message": "Comprehensive guides and documentation to help you start working with Mezon Bot SDK as quickly as possible.",
+    "description": "The generated-index page description for category Mezon Bot SDK in sidebar developerDocsSidebar"
+  },
+  "sidebar.developerDocsSidebar.category.Channel App SDK": {
+    "message": "Channel App SDK",
+    "description": "The label for category Channel App SDK in sidebar developerDocsSidebar"
+  },
+  "sidebar.developerDocsSidebar.category.Channel App SDK.link.generated-index.description": {
+    "message": "Comprehensive guides and documentation to help you start working with Mezon Channel App SDK as quickly as possible.",
+    "description": "The generated-index page description for category Channel App SDK in sidebar developerDocsSidebar"
+  },
+  "sidebar.developerDocsSidebar.category.Webhooks": {
+    "message": "Webhooks",
+    "description": "The label for category Webhooks in sidebar developerDocsSidebar"
+  },
+  "sidebar.developerDocsSidebar.category.Topics": {
+    "message": "Topics",
+    "description": "The label for category Topics in sidebar developerDocsSidebar"
+  },
+  "sidebar.developerDocsSidebar.category.Topics.link.generated-index.description": {
+    "message": "Comprehensive guides and documentation to help you start working with Mezon SDK as quickly as possible.",
+    "description": "The generated-index page description for category Topics in sidebar developerDocsSidebar"
+  }
+}
