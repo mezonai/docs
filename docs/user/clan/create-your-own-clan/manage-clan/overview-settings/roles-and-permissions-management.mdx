@@ -3,6 +3,9 @@ sidebar_position: 2
 sidebar_label: Quản lý quyền hạn và vai trò
 description: "Tạo, sắp xếp và phân quyền cho từng vai trò trong Clan."
 ---
+import {Steps, Step} from '@site/src/components/Steps';
+import rolesAndPermissionsManagement010 from './images/roles-and-permissions-management-010.png';
+import rolesAndPermissionsManagement012 from './images/roles-and-permissions-management-012.png';
 
 # Quản lý quyền hạn và vai trò
 
@@ -14,13 +17,13 @@ Khi cộng đồng phát triển, số lượng thành viên tham gia và mức 
 
 #### Các quyền hiện có trong hệ thống
 
-![roles-and-permissions-management-001](./images/roles-and-permissions-management-001.png)
+<div align="center">![roles-and-permissions-management-001](./images/roles-and-permissions-management-001.png)</div>
 
 - **Administrator** – Toàn quyền quản lý clan và list channel (gần tương đương với chủ sở hữu).
 - **Manage Clan** – Quản lý cài đặt clan, vai trò, kênh và hoạt động thành viên.&#x20;
 
-:::info
-Tuy nhiên quyền **Manage Clan** <mark style={{backgroundColor: "$danger"}}>**không nhìn thấy và không quản lý được toàn bộ danh sách kênh**</mark>, điểm này khác biệt so với Administrator.
+:::note
+Tuy nhiên quyền **Manage Clan** <span style={{color: "var(--ifm-color-danger)"}}>**không nhìn thấy và không quản lý được toàn bộ danh sách kênh**</span>, điểm này khác biệt so với Administrator.
 :::
 
 - **Manage Channel** – Tạo, chỉnh sửa, xóa kênh.
@@ -29,7 +32,7 @@ Tuy nhiên quyền **Manage Clan** <mark style={{backgroundColor: "$danger"}}>**
 - **Delete Message** – Xóa tin nhắn trong kênh công khai (bao gồm Chủ đề/Thảo luận ngắn).
 - **View Channel** – Xem kênh công khai.
 
-:::info
+:::note
 
 ### Phân biệt các quyền trong Clan
 
@@ -63,7 +66,7 @@ Tuy nhiên quyền **Manage Clan** <mark style={{backgroundColor: "$danger"}}>**
 
 ![roles-and-permissions-management-004](./images/roles-and-permissions-management-004.png)
 
-:::info
+:::note
 Mặc định, mọi người khi tham gia clan sẽ thuộc role **@everyone**.\
 Với role này, nên chỉ bật các quyền tối thiểu như **Xem kênh** và **Gửi tin nhắn** để đảm bảo trật tự và an toàn cho cộng đồng.&#x20;
 :::
@@ -90,7 +93,7 @@ Không phải tất cả thành viên trong Clan đều cần quyền hạn gi�
 
 ![roles-and-permissions-management-007](./images/roles-and-permissions-management-007.png)
 
-:::info
+:::note
 Dung lượng tối đa cho Biểu tượng vai trò là 256KB
 :::
 
@@ -98,7 +101,7 @@ Dung lượng tối đa cho Biểu tượng vai trò là 256KB
 
 <Step title="Ở **Quản lý thành viên,** nhấn **Thêm thành viên** để thêm thành viên vào **Vai trò.**">
 
-:::success
+:::tip
 Bạn có thể thêm hoặc thu hồi quyền nâng cao bằng cách tạo **vai trò mới**, sau đó gán cho từng thành viên (thực hiện tại mục **Quản lý thành viên**).
 :::
 
@@ -116,7 +119,7 @@ Bạn có thể thêm hoặc thu hồi quyền nâng cao bằng cách tạo **va
 
 <Step title="Thay đổi thứ tự hiển thị của Vai trò.">
 
-![roles-and-permissions-management-010](./images/roles-and-permissions-management-010.png)
+<img style={{ width: '50%' }} src={rolesAndPermissionsManagement010} alt="roles-and-permissions-management-010" />
 
 Bạn chỉ cần kéo thả từng Vai trò để sắp xếp thứ tự các Vai trò. Nếu thành viên được gán nhiều hơn 1 Vai trò, thì sẽ hiển thị theo thứ tự này.
 
@@ -145,7 +148,7 @@ Ghi đè quyền hạn là cách thiết lập quyền đặc biệt cho **Kênh
 
 <Step title="Nhấn Quyền hạn trong menu bên trái">
 
-![roles-and-permissions-management-012](./images/roles-and-permissions-management-012.png)
+<img style={{ width: '20%' }} src={rolesAndPermissionsManagement012} alt="roles-and-permissions-management-012" />
 
 </Step>
 

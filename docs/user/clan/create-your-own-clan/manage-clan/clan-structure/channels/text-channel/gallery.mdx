@@ -2,6 +2,10 @@
 sidebar_position: 6
 sidebar_label: Thư viện ảnh
 ---
+import { Steps, Step } from '@site/src/components/Steps';
+import gallery005 from './images/gallery-005.png';
+import gallery007 from './images/gallery-007.png';
+import gallery008 from './images/gallery-008.png';
 
 # Thư viện ảnh
 
@@ -33,20 +37,20 @@ dàng lọc theo thời gian để tìm nội dung cần thiết.
 <Step title="Trong **Kênh văn bản** hoặc **Chủ đề**, nhấn vào **biểu tượng bức ảnh** ở đầu kênh. Nhấn vào bức ảnh mà bạn muốn xem.">
 ![gallery-004](./images/gallery-004.png)
 
-![gallery-005](./images/gallery-005.png)
+<img style={{ width: '50%' }} src={gallery005} alt="gallery-005" />
 </Step>
 
 <Step title="Bạn có thể tải ảnh, xoay trái/phải, và phóng to/thu nhỏ khi xem chi tiết 1 ảnh">
-![gallery-006](./images/gallery-006.png)
+<div align="center">![gallery-006](./images/gallery-006.png)</div>
 </Step>
 </Steps>
 
 <Steps>
 <Step title="Chọn **Ngày gửi** để lọc theo ngày gửi ảnh.">
-![gallery-007](./images/gallery-007.png)
+<img style={{ width: '40%' }} src={gallery007} alt="gallery-007" />
 </Step>
 
 <Step title="Nhấn Áp dụng, ảnh trong khoảng thời gian đã chọn sẽ hiển thị.">
-![gallery-008](./images/gallery-008.png)
+<img style={{ width: '40%' }} src={gallery008} alt="gallery-008" />
 </Step>
 </Steps>

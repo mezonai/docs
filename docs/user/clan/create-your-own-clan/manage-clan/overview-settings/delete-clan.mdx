@@ -5,12 +5,14 @@ description: "Xóa Clan khỏi hệ thống."
 ---
 
 import { Steps, Step } from '@site/src/components/Steps';
+import deleteClan001 from './images/delete-clan-001.png';
+import deleteClan002 from './images/delete-clan-002.png';
 
 # Xóa Clan
 Trong trường hợp Clan không còn được sử dụng hoặc bạn muốn dừng hoạt động cộng đồng, bạn có thể xóa vĩnh viễn Clan.
 
 :::danger   
-#### _<mark style={{ color: 'red' }}>**Lưu ý**</mark>**: hành động này không thể hoàn tác và toàn bộ dữ liệu, kênh và nội dung trong Clan sẽ bị xóa theo.**_
+#### _<span style={{ color: 'var(--ifm-color-danger)' }}>**Lưu ý**</span>**: hành động này không thể hoàn tác và toàn bộ dữ liệu, kênh và nội dung trong Clan sẽ bị xóa theo.**_
 :::
 
 ### **Cách xóa Clan**
@@ -18,12 +20,12 @@ Trong trường hợp Clan không còn được sử dụng hoặc bạn muốn 
 <Steps>
 <Step title="Ở menu bên trái, chọn **Xóa Clan**">
 
-![delete-clan-001](./images/delete-clan-001.png)
+<img style={{ width: '30%' }} src={deleteClan001} alt="delete-clan-001" />
 </Step>
 
 <Step title="Nhập lại tên Clan để xác nhận">
 
-![delete-clan-002](./images/delete-clan-002.png)
+<img style={{ width: '50%' }} src={deleteClan002} alt="delete-clan-002" />
 </Step>
 
 <Step title="Nhấn **Xóa Clan**">

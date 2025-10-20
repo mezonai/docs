@@ -2,6 +2,10 @@
 sidebar_position: 2
 sidebar_label: Danh mục trong Clan
 ---
+import { Steps, Step } from '@site/src/components/Steps';
+import clanCategory001 from './images/clan-category-001.png';
+import clanCategory002 from './images/clan-category-002.png';
+import clanCategory003 from './images/clan-category-003.png';
 
 # Danh mục trong Clan
 
@@ -11,18 +15,18 @@ Khi Clan phát triển, số lượng kênh tăng nhanh khiến việc theo dõi
 
 <Steps>
 <Step title="Nhấn vào tên Clan của bạn sau đó chọn **Tạo danh mục.** Đảm bảo rằng bạn đã bật **Hiển thị danh mục trống**">
-    ![clan-category-001](./images/clan-category-001.png)
+    <img style={{ width: '30%' }} src={clanCategory001} alt="clan-category-001" />
 </Step>
 
 <Step title="Nhập tên Danh mục bạn muốn phân loại và nhấn **Tạo danh mục**">
 
-![clan-category-002](./images/clan-category-002.png)
+<img style={{ width: '30%' }} src={clanCategory002} alt="clan-category-002" />
 
 </Step>
 
 <Step title="Danh mục mới sẽ xuất hiện ở bên trái thanh điều hướng">
 
-![clan-category-003](./images/clan-category-003.png)
+<img style={{ width: '30%' }} src={clanCategory003} alt="clan-category-003" />
 
 </Step>
 
@@ -39,7 +43,7 @@ Bạn có thể cài đặt tùy chỉnh thông báo của Danh mục như cách
 1. Mở **Cài đặt Clan**.
 2. Chọn **Thứ tự danh mục** trong menu bên trái.
 
-![clan-category-004](./images/clan-category-004.png)
+<div align="center">![clan-category-004](./images/clan-category-004.png)</div>
 
 3. Nhấn giữ và kéo thả các kênh theo thứ tự mong muốn.
 4. Nhấn **Save Changes** để hoàn tất thao tác.
