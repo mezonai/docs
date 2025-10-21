@@ -3,10 +3,20 @@ sidebar_position: 2
 sidebar_label: Roles & Permissions Management
 description: "Create, sort, and assign permissions to each role in your Clan."
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import rolesAndPermissionsManagementMobile001 from './images/roles-and-permissions-management-mobile-001.png';
+import rolesAndPermissionsManagementMobile002 from './images/roles-and-permissions-management-mobile-002.png';
+import rolesAndPermissionsManagementMobile003 from './images/roles-and-permissions-management-mobile-003.png';
+import rolesAndPermissionsManagementMobile004 from './images/roles-and-permissions-management-mobile-004.png';
+import rolesAndPermissionsManagementMobile005 from './images/roles-and-permissions-management-mobile-005.png';
+import rolesAndPermissionsManagementMobile006 from './images/roles-and-permissions-management-mobile-006.png';
 
 # Roles & Permissions Management
 Managing roles and permissions helps you control what each member can do within the Clan, ensuring the community remains safe and organized.
 
+<Tabs>
+<TabItem value="PC" label="PC">
 ### **1. Permissions Management**
 
 As your community grows, both the number of members and the level of interaction increase. Without proper control over permissions, issues such as message spam, deletion of important content, or unintended channel edits can occur. This not only disrupts order but also negatively affects the overall experience of the group.
@@ -126,3 +136,99 @@ Simply drag and drop roles to arrange their display order. If a member has multi
 :::tip
 This feature allows flexible management. For example, a regular member may only read content in a private channel, while a moderator can both read and send messages.
 :::
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+### 1. Permissions Management
+
+As the community grows, the number of members and interactions increases. Without proper control, issues such as spam, accidental deletion of important content, or unwanted channel edits may occur, affecting the overall experience.
+
+#### **1.1. Available Permissions**
+
+<figure><img src={rolesAndPermissionsManagementMobile001} alt="roles-and-permissions-management-mobile-001" /></figure>
+
+* **Administrator** – Full control over the Clan (just below the owner).
+* **Manage Clan** – Allows members to control clan settings, roles, and channels, monitor member activity, and ensure organized management.&#x20;
+
+:::danger
+However, **Manage Clan** permission <div style={{ color: 'red' }}>**cannot see/manage all channels like Administrator.**</div>
+:::
+
+* **Manage Channel** – Create, edit, or delete channels.
+* **Manage Thread** – Create, edit, or delete threads within channels, including private threads.
+* **Send Message** – Send messages in public channels (including threads and short discussions).
+* **Delete Message** – Delete messages in public channels (including threads and short discussions).
+* **View Channel** – View public channels.
+
+:::info
+&#x20;**Clan Hierarchy**
+
+* **Owner** – Highest authority; **can perform all actions**. Cannot be removed. Can transfer ownership to others. Has absolute control over members, roles, channels, and settings.
+* **Administrator** – Just below the owner, **almost full control of the Clan**. Can manage channels, roles, members, and most settings. Can remove other admins or regular members, but cannot remove the owner.
+:::
+
+#### **1.2. Setting Default Permissions**
+
+1. Go to **Clan Settings → Roles**.
+2. Select **@everyone** to set default permissions for all members.
+
+<div align="left"><img style={{ width: '30%' }} src={rolesAndPermissionsManagementMobile002} alt="roles-and-permissions-management-mobile-002" /></div>
+
+3. Enable or disable basic actions members are allowed to perform.\
+   <div align="left"><img style={{ width: '30%' }} src={rolesAndPermissionsManagementMobile003} alt="roles-and-permissions-management-mobile-003" /></div>
+
+:::warning
+_Recommended:_ Only enable **View Channel** and **Send Message** to maintain order and safety.
+:::
+
+4. Click **Save Changes** to apply permissions to all members.
+
+### 2. Roles Management
+
+Not all members need the same permissions. Roles let you create multiple groups with custom colors, icons, and detailed permissions. This helps the Clan operate professionally and scale as the community grows.
+
+#### **2.1. Creating a New Role**
+
+1. Go to **Clan Settings → Roles**.
+2. Click the **“+”** icon to create a new role.
+
+<div align="left"><img style={{ width: '30%' }} src={rolesAndPermissionsManagementMobile004} alt="roles-and-permissions-management-mobile-004" /></div>
+
+3. Set a name, permissions, and assign members.
+4. Click **Save** to finish.
+
+#### **2.2. Managing Existing Roles**
+
+*   Tap a role to:
+
+    * **Edit Display**: Change name, color, icon.
+    * **Edit Permissions**: Enable/disable actions like sending messages, deleting messages, managing channels.
+    * **Manage Members**: Add or remove members from the role.
+    * **Delete Role**: Remove roles that are no longer needed.
+
+    <div align="left"><img style={{ width: '30%' }} src={rolesAndPermissionsManagementMobile005} alt="roles-and-permissions-management-mobile-005" /></div>
+
+### 3. Permission Overrides
+
+Permission overrides allow you to set special permissions for **private channels or threads.** Only members with the assigned role or explicitly added users can see them.
+
+#### **Customizing Permissions in Private Channels/Threads**
+
+1. Press and hold the private channel/thread you want to edit.
+2. Select **Edit Channel**.
+3. Go to **Channel Permissions**.
+4. Two sections appear:
+   * **Basic:** Add roles or members to the private channel/thread.
+   *   **Advanced:** List all members in the channel/thread. Customize permissions for each member individually:
+
+       * Allow or block viewing the channel.
+       * Allow or block sending messages.
+       * Allow or block managing threads, deleting messages, etc.
+
+       <div align="left"><img style={{ width: '30%' }} src={rolesAndPermissionsManagementMobile006} alt="roles-and-permissions-management-mobile-006" /></div>
+5. Click **Save Changes** to apply.
+
+:::tip
+This feature allows flexible management—for example, a regular member can only read content in a private channel, while an assistant admin can read and send messages.
+:::
+</TabItem>
+</Tabs>

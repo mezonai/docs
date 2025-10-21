@@ -3,9 +3,14 @@ sidebar_position: 3
 sidebar_label: Members
 description: ""
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import membersMobile001 from './images/members-mobile-001.png';
+import membersMobile002 from './images/members-mobile-002.png';
 
 # Members
-
+<Tabs>
+<TabItem value="PC" label="PC">
 ![members-001](./images/members-001.png)
 
 :::tip
@@ -13,3 +18,14 @@ If you are the **room owner**, you can instantly assign a **Role** to a member w
 :::
 
 ![members-002](./images/members-002.png)
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+<div align="left"><img style={{ width: '30%' }} src={membersMobile001} alt="members-mobile-001" /></div>
+
+:::tip
+If you are the room owner, you can instantly assign a **Role** to any member with just one click.
+
+<div align="left"><img style={{ width: '30%' }} src={membersMobile002} alt="members-mobile-002" /></div>
+:::
+</TabItem>
+</Tabs>

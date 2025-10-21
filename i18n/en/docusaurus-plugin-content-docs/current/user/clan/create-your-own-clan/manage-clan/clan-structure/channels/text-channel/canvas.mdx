@@ -2,12 +2,16 @@
 sidebar_position: 1
 sidebar_label: Canvas
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import canvasMobile001 from './images/canvas-mobile-001.png';
 
 # Canvas
 Instead of mixing important documents within the chat, Mezon provides Canvas - a visual note and sharing board directly within the channel.
 
 ### **How to Use:**
-
+<Tabs>
+<TabItem value="PC" label="PC">
 1. Open Mezon and select the **Text Channel** or **Thread** where you want to collaborate.
 2. Click the **paper icon** ![canvas-001](./images/canvas-001.png) in the chat toolbar.
 3. Select **Create** to start a new note.
@@ -21,3 +25,19 @@ Maximum image file size in Canvas: 50 MB
 :::
 
 With **Canvas**, all members can update notes in **real-time**. All data is stored centrally, preventing it from being “lost” in the conversation. This helps the team save time searching and quickly access important information.
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+1. Open Mezon and select the Text Channel or Thread you want to work in.
+2. Tap **Canvas** in the menu.
+
+<div align="left"><img style={{ width: '30%' }} src={canvasMobile001} alt="canvas-mobile-001" /></div>
+
+3. Here, you can create a new Canvas and view the list of existing boards.
+
+:::warning
+Maximum image file size in a Canvas: 50 MB.
+:::
+
+With the Canvas, all members can update content in real time. Data is stored centrally, preventing it from getting “lost” in conversations, helping your team save time and quickly access important information.
+</TabItem>
+</Tabs>

@@ -2,10 +2,24 @@
   sidebar_position: 5
   sidebar_label: Shortcuts
 ---
+import { Steps, Step } from "@site/src/components/Steps";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import shortcutsMobile001 from './images/shortcuts-mobile-001.png';
+import shortcutsMobile002 from './images/shortcuts-mobile-002.png';
+import shortcutsMobile003 from './images/shortcuts-mobile-003.png';
+import shortcutsMobile004 from './images/shortcuts-mobile-004.png';
+import shortcutsMobile005 from './images/shortcuts-mobile-005.png';
+import shortcutsMobile006 from './images/shortcuts-mobile-006.png';
+import shortcutsMobile007 from './images/shortcuts-mobile-007.png';
+import shortcutsMobile008 from './images/shortcuts-mobile-008.png';
+import shortcutsMobile009 from './images/shortcuts-mobile-009.png';
 
 # Shortcuts
 Mezon is designed for fast and efficient interactions. Mastering keyboard shortcuts helps you save time, boost productivity, and navigate conversations smoothly.
 
+<Tabs>
+<TabItem value="PC" label="PC">
 ### **Navigation & Search Shortcuts:**
 
 * **Ctrl + K:** **Quick Switcher** - Instantly search and jump between channels, threads, or direct messages. This will likely become your most-used shortcut!
@@ -64,3 +78,75 @@ Use triple backticks (**\`\`\`**) to create multi-line code blocks for longer sn
 * **Ctrl + W:** **Hide/Close Window** – On Windows/Linux: closes the tab; on macOS: hides the app.
 * **Ctrl + R:** **Reload App** – Restart Mezon to fix minor issues or apply updates.
 * **Ctrl + Shift + I:** **Open Developer Tools (DevTools)** – For advanced users or anyone who wants to inspect technical elements of the app.
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+### Anonymous Mode
+
+Allows you to send messages without displaying your username, useful for sharing opinions or feedback objectively.
+
+#### **How to enable:**
+
+1. Open the channel or thread you want to message in.
+2. Tap the three-dot icon at the top-left corner.
+
+<img src={shortcutsMobile001} alt="shortcuts-mobile-001" />
+
+3. Select **Turn on Anonymous**.
+
+<img src={shortcutsMobile002} alt="shortcuts-mobile-002" />
+
+:::info
+A hat icon will appear in the message input box, indicating you are in anonymous mode.&#x20;
+
+<img src={shortcutsMobile003} alt="shortcuts-mobile-003" />
+:::
+
+### **How to disable:**
+
+Tap the three-dot icon again and select **Turn Off Anonymous** to return to normal mode.
+
+<img src={shortcutsMobile004} alt="shortcuts-mobile-004" />
+
+### Buzz Mode
+
+Buzz lets you send messages with sound effects to grab everyone’s attention in the channel.
+
+#### **How to send a Buzz:**
+
+1. Type your message in the channel or thread.
+2. Enable Buzz via the three-dot icon and send the message.
+
+<img src={shortcutsMobile001} alt="shortcuts-mobile-001" />
+
+<img src={shortcutsMobile005} alt="shortcuts-mobile-005" />
+
+3. All members in the channel will receive an audible Buzz notification.
+
+<img src={shortcutsMobile006} alt="shortcuts-mobile-006" />
+
+:::success
+Anonymous is great for sensitive discussions, while Buzz is perfect for highlighting important announcements or prompting quick responses.
+:::
+
+***
+
+### Message Formatting
+
+#### **Large Text**
+
+Highlight important messages — type `#` followed by a space to create large text in the chat.\
+Use **#** to **######** for heading levels 1 to 6.
+
+<img src={shortcutsMobile007} alt="shortcuts-mobile-007" />
+
+#### **Code Block**
+
+* Inline code: `` `your text` `` — highlights a short snippet in a line.
+
+<img src={shortcutsMobile008} alt="shortcuts-mobile-008" />
+
+* Multi-line code block: ` ``` ` — use triple backticks for longer code segments.
+
+<img src={shortcutsMobile009} alt="shortcuts-mobile-009" />
+</TabItem>
+</Tabs>

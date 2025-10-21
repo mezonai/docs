@@ -2,12 +2,21 @@
 sidebar_position: 7
 sidebar_label: Files
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import filesMobile001 from './images/files-mobile-001.png';
+import filesMobile002 from './images/files-mobile-002.png';
+import filesMobile003 from './images/files-mobile-003.png';
+import filesMobile004 from './images/files-mobile-004.png';
+import filesMobile005 from './images/files-mobile-005.png';
+import filesMobile006 from './images/files-mobile-006.png';
 
 # Files
 Sharing documents is just as important as sharing images. Files allow you to send and quickly access all documents shared in a Text Channel or Thread.
 
 ### **How to Send a File:**
-
+<Tabs>
+<TabItem value="PC" label="PC">
 1. Open the **Text Channel** or **Thread** where you want to share.
 2. Click the **plus (+) icon** to the left of the message input box.
 
@@ -20,9 +29,27 @@ Sharing documents is just as important as sharing images. Files allow you to sen
 4. Add a description if needed, or press **Enter** to send immediately.
 
 ![files-003](./images/files-003.png)
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+1. Open the Text Channel or Thread you want to share in.
+2. Tap the plus (+) icon on the left of the message input box.
+
+<div align="left"><img style={{ width: '30%' }} src={filesMobile001} alt="files-mobile-001" /></div>
+
+3. Select **File** ![files-mobile-002](./images/files-mobile-002.png) from the menu.
+
+<div align="left"><img style={{ width: '30%' }} src={filesMobile003} alt="files-mobile-003" /></div>
+
+4. Choose the file you want to send. Add a description if needed and tap **Send**.
+
+<div align="left"><img style={{ width: '30%' }} src={filesMobile004} alt="files-mobile-004" /></div>
+</TabItem>
+</Tabs>
+
 
 ### **How to View Sent Files:**
-
+<Tabs>
+<TabItem value="PC" label="PC">
 1. In the **Text Channel** or **Thread**, click the **paperclip icon** ![files-004](./images/files-004.png) at the top of the channel.
 2. The file list will display the **sender** and **time sent**.
 
@@ -31,3 +58,16 @@ Sharing documents is just as important as sharing images. Files allow you to sen
 3. Click **Download** to save the file to your computer.
 
 ![files-006](./images/files-006.png)
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+1. In the Text Channel or Thread, select **Media** from the menu.
+
+<div align="left"><img style={{ width: '30%' }} src={filesMobile005} alt="files-mobile-005" /></div>
+
+2. The file list will show the sender and the time sent.
+
+<div align="left"><img style={{ width: '30%' }} src={filesMobile006} alt="files-mobile-006" /></div>
+
+3. Tap a file to **Download** and view it on your device.
+</TabItem>
+</Tabs>
