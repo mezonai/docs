@@ -3,21 +3,34 @@ sidebar_position: 2
 sidebar_label: Quản lý quyền hạn và vai trò
 description: "Tạo, sắp xếp và phân quyền cho từng vai trò trong Clan."
 ---
-import {Steps, Step} from '@site/src/components/Steps';
-import rolesAndPermissionsManagement010 from './images/roles-and-permissions-management-010.png';
-import rolesAndPermissionsManagement012 from './images/roles-and-permissions-management-012.png';
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
+import rolesAndPermissionsManagement010 from "./images/roles-and-permissions-management-010.png";
+import rolesAndPermissionsManagement012 from "./images/roles-and-permissions-management-012.png";
+import rolesAndPermissionsManagementMobile001 from "./images/roles-and-permissions-management-mobile-001.png";
+import rolesAndPermissionsManagementMobile002 from "./images/roles-and-permissions-management-mobile-002.png";
+import rolesAndPermissionsManagementMobile003 from "./images/roles-and-permissions-management-mobile-003.png";
+import rolesAndPermissionsManagementMobile004 from "./images/roles-and-permissions-management-mobile-004.png";
+import rolesAndPermissionsManagementMobile005 from "./images/roles-and-permissions-management-mobile-005.png";
+import rolesAndPermissionsManagementMobile006 from "./images/roles-and-permissions-management-mobile-006.png";
 
 # Quản lý quyền hạn và vai trò
 
 Quản lý quyền hạn và vai trò giúp bạn kiểm soát những gì mỗi thành viên có thể làm trong Clan, đảm bảo cộng đồng hoạt động an toàn và trật tự
 
+<Tabs>
+<TabItem value="PC" label="PC">
 ### 1. Quản lý quyền hạn
 
 Khi cộng đồng phát triển, số lượng thành viên tham gia và mức độ tương tác ngày càng lớn. Nếu không kiểm soát được quyền hạn, rất dễ xảy ra tình trạng spam tin nhắn, xóa nội dung quan trọng hoặc chỉnh sửa kênh ngoài ý muốn. Điều này không chỉ gây mất trật tự mà còn ảnh hưởng đến trải nghiệm chung của cả nhóm.
 
 #### Các quyền hiện có trong hệ thống
 
-<div align="center">![roles-and-permissions-management-001](./images/roles-and-permissions-management-001.png)</div>
+<div align="center">
+  ![roles-and-permissions-management-001](./images/roles-and-permissions-management-001.png)
+</div>
 
 - **Administrator** – Toàn quyền quản lý clan và list channel (gần tương đương với chủ sở hữu).
 - **Manage Clan** – Quản lý cài đặt clan, vai trò, kênh và hoạt động thành viên.&#x20;
@@ -119,7 +132,11 @@ Bạn có thể thêm hoặc thu hồi quyền nâng cao bằng cách tạo **va
 
 <Step title="Thay đổi thứ tự hiển thị của Vai trò.">
 
-<img style={{ width: '50%' }} src={rolesAndPermissionsManagement010} alt="roles-and-permissions-management-010" />
+<img
+  style={{ width: "50%" }}
+  src={rolesAndPermissionsManagement010}
+  alt="roles-and-permissions-management-010"
+/>
 
 Bạn chỉ cần kéo thả từng Vai trò để sắp xếp thứ tự các Vai trò. Nếu thành viên được gán nhiều hơn 1 Vai trò, thì sẽ hiển thị theo thứ tự này.
 
@@ -148,7 +165,11 @@ Ghi đè quyền hạn là cách thiết lập quyền đặc biệt cho **Kênh
 
 <Step title="Nhấn Quyền hạn trong menu bên trái">
 
-<img style={{ width: '20%' }} src={rolesAndPermissionsManagement012} alt="roles-and-permissions-management-012" />
+<img
+  style={{ width: "20%" }}
+  src={rolesAndPermissionsManagement012}
+  alt="roles-and-permissions-management-012"
+/>
 
 </Step>
 
@@ -165,3 +186,152 @@ Ghi đè quyền hạn là cách thiết lập quyền đặc biệt cho **Kênh
 :::success
 Tính năng này giúp bạn quản lý linh hoạt: ví dụ một thành viên bình thường có thể chỉ đọc nội dung trong kênh riêng tư, còn quản trị viên phụ có thể vừa đọc vừa gửi tin nhắn.
 :::
+
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+### 1. Quản lý quyền hạn
+
+Khi cộng đồng phát triển, số lượng thành viên tham gia và mức độ tương tác ngày càng lớn. Nếu không kiểm soát được quyền hạn, rất dễ xảy ra tình trạng spam tin nhắn, xóa nội dung quan trọng hoặc chỉnh sửa kênh ngoài ý muốn. Điều này không chỉ gây mất trật tự mà còn ảnh hưởng đến trải nghiệm chung của cả nhóm.
+
+#### 1.1. Các quyền hiện có trong hệ thống
+
+<div align="center">
+  <img
+    style={{ width: "30%" }}
+    src={rolesAndPermissionsManagementMobile001}
+    alt="roles-and-permissions-management-mobile-001"
+  />
+</div>
+
+- **Administrator** – Toàn quyền quản lý clan (quyền chỉ thấp hơn chủ sở hữu).
+- **Manage Clan** – Cho phép thành viên kiểm soát cài đặt clan, quản lý vai trò và kênh, giám sát hoạt động của thành viên, đảm bảo quản lý hiệu quả và cộng đồng được tổ chức tốt
+
+:::danger
+Tuy nhiên quyền **Manage Clan** <span style={{color: "var(--ifm-color-danger)"}}>**không nhìn thấy và không quản lý được toàn bộ danh sách kênh**</span>, điểm này khác biệt so với Administrator.&#x20;
+:::
+
+- **Manage Channel** – Cho phép tạo, chỉnh sửa hoặc xóa kênh
+- **Manage Thread** – Cho phép tạo, chỉnh sửa, xóa các chủ đề trong kênh (bao gồm cả chủ đề riêng tư).
+- **Send Message** – Cho phép gửi tin nhắn trong các kênh công khai (bao gồm các chủ đề và thảo luận ngắn trong những kênh đó)
+- **Delete Message** – Cho phép xóa tin nhắn trong các kênh công khai (bao gồm các chủ đề và thảo luận ngắn trong những kênh đó)
+- **View Channel** – Cho phép xem các kênh công khai.
+
+:::info
+
+### Phân biệt các quyền trong Clan
+
+- **Chủ sở hữu**
+  - Quyền hạn cao nhất, làm được tất cả mọi hành động.
+  - Không ai có thể khai trừ chủ sở hữu. Chủ sở hữu chỉ có thể **chuyển quyền sở hữu** cho người khác.
+  - Có quyền quản trị tuyệt đối, bao gồm quản lý thành viên, vai trò, kênh, và toàn bộ thiết lập của clan.
+- **Quản trị viên**
+  - Quyền hạn chỉ dưới chủ sở hữu, gần như toàn quyền quản lý clan.
+  - Có thể quản lý danh sách kênh, vai trò, thành viên, và hầu hết các cài đặt.
+  - Có thể khai trừ quản trị viên khác hoặc thành viên thường, **nhưng không thể khai trừ Chủ sở hữu.**
+    :::
+
+#### 1.2. Cách thiết lập quyền mặc định
+
+<Steps>
+<Step title="Trong **Cài đặt Clan**, chọn mục **Vai trò**.">
+</Step>
+
+<Step title="Chọn **@everyone** để thiết lập **quyền mặc định** áp dụng cho tất cả thành viên trong clan.">
+
+> Khi một người mới tham gia clan, họ sẽ tự động được gán vai trò **@everyone**.
+
+<div align="left"><img src={rolesAndPermissionsManagementMobile002} alt="roles-and-permissions-management-mobile-002" /></div>
+</Step>
+
+<Step title="Tại đây, bạn có thể bật hoặc tắt các hành động cơ bản mà mọi thành viên được phép thực hiện.">
+<div align="left"><img style={{ width: "30%" }} src={rolesAndPermissionsManagementMobile003} alt="roles-and-permissions-management-mobile-003" /></div>
+
+:::warning
+Khuyến nghị chỉ bật các quyền tối thiểu như **Xem kênh** và **Gửi tin nhắn** để đảm bảo trật tự và an toàn cho cộng đồng.
+:::
+
+</Step>
+
+<Step title="Sau khi hoàn tất, nhấn **Lưu thay đổi** để áp dụng quyền cho toàn bộ thành viên.">
+</Step>
+</Steps>
+
+### 2. Quản lý vai trò&#x20;
+
+Không phải tất cả thành viên trong Clan đều cần quyền hạn giống nhau. Với **Vai trò**, bạn có thể tạo nhiều vai trò khác nhau, gán màu sắc, biểu tượng riêng và thiết lập quyền chi tiết cho từng nhóm. Điều này giúp Clan vận hành chuyên nghiệp hơn, dễ dàng quản lý khi cộng đồng của bạn lớn dần.
+
+#### **2.1. Cách tạo vai trò mới**
+
+<Steps>
+<Step title="Trong **Cài đặt Clan**, chọn mục **Vai trò**.">
+</Step>
+
+<Step title="Nhấn vào biểu tượng **“+”** để **tạo vai trò mới**.">
+
+<div align="left"><img src={rolesAndPermissionsManagementMobile004} alt="roles-and-permissions-management-mobile-004" /></div>
+</Step>
+
+<Step title="Đặt **tên**, thiết lập **quyền hạn** và thêm thành viên cho vai trò đó."></Step>
+
+<Step title="Nhấn **Lưu** để hoàn tất.">
+</Step>
+</Steps>
+
+#### 2.2. Quản lý vai trò đã tạo
+
+- Vai trò mới sẽ xuất hiện trong **danh sách vai trò**.
+- Chạm vào một vai trò để:
+  - **Chỉnh hiển thị:** đổi tên, màu, biểu tượng.
+  - **Chỉnh sửa quyền hạn:** bật/tắt các quyền như gửi tin nhắn, xóa tin, quản lý kênh...
+  - **Quản lý thành viên:** thêm hoặc xóa thành viên khỏi vai trò.
+  - **Xóa vai trò**: Khi vai trò không còn cần thiết, bạn có thể xóa vai trò để giữ danh sách gọn gàng.
+
+<div align="center">
+  <img
+    style={{ width: "30%" }}
+    src={rolesAndPermissionsManagementMobile005}
+    alt="roles-and-permissions-management-mobile-005"
+  />
+</div>
+
+### 3. Ghi đè quyền hạn
+
+Ghi đè quyền hạn là cách thiết lập quyền đặc biệt cho **kênh riêng tư hoặc chủ đề riêng tư**.
+
+- Khi một kênh/ chủ đề được tạo ở chế độ riêng tư, chỉ những người dùng có **vai trò** hoặc **người dùng** được thêm trực tiếp mới có thể thấy.
+- Trong từng kênh/ chủ đề riêng tư, bạn có thể **tùy chỉnh chi tiết quyền** cho từng vai trò hoặc người dùng:
+  - Cho phép hoặc chặn xem kênh.
+  - Cho phép hoặc chặn gửi tin nhắn.
+  - Cho phép hoặc chặn quản lý chủ đề, xóa tin nhắn…
+
+#### **Cách tùy chỉnh chi tiết quyền trong kênh/ chủ đề riêng tư**
+
+Để thiết lập quyền cho từng thành viên trong kênh hoặc chủ đề riêng tư, bạn có thể thực hiện như sau:
+
+<Steps>
+<Step title="**Nhấn và giữ** vào kênh hoặc chủ đề riêng tư mà bạn muốn chỉnh sửa.">
+</Step>
+
+<Step title="Chọn **Chỉnh sửa kênh**."></Step>
+
+<Step title="Vào mục **Quyền hạn kênh**."></Step>
+
+<Step title="Tại đây, bạn sẽ thấy hai phần:">
+
+- **Cơ bản:** Cho phép thêm thành viên hoặc vai trò vào kênh/ chủ đề riêng tư
+- **Nâng cao:** Hiển thị danh sách thành viên trong kênh hoặc chủ đề. Bạn có thể chọn từng người để tùy chỉnh quyền chi tiết cho họ.
+
+<div align="left"><img style={{ width: "30%" }} src={rolesAndPermissionsManagementMobile006} alt="roles-and-permissions-management-mobile-006" /></div>
+</Step>
+
+<Step title="Sau khi hoàn tất, **nhấn Lưu thay đổi** để áp dụng các thiết lập.">
+</Step>
+</Steps>
+
+:::success
+Tính năng này giúp bạn quản lý linh hoạt: ví dụ một thành viên bình thường có thể chỉ đọc nội dung trong kênh riêng tư, còn quản trị viên phụ có thể vừa đọc vừa gửi tin nhắn.\
+
+:::
+
+</TabItem>
+</Tabs>

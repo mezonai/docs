@@ -3,10 +3,18 @@ sidebar_position: 8
 sidebar_label: Hộp thư
 ---
 import { Steps, Step } from '@site/src/components/Steps';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import inbox002 from './images/inbox-002.png';
 import inbox003 from './images/inbox-003.png';
 import inbox004 from './images/inbox-004.png';
 import inbox005 from './images/inbox-005.png';
+import inboxMobile002 from './images/inbox-mobile-002.png';
+import inboxMobile003 from './images/inbox-mobile-003.png';
+import inboxMobile004 from './images/inbox-mobile-004.png';
+import inboxMobile005 from './images/inbox-mobile-005.png';
+import inboxMobile006 from './images/inbox-mobile-006.png';
+import inboxMobile007 from './images/inbox-mobile-007.png';
 
 # Hộp thư
 
@@ -15,6 +23,8 @@ quan trọng tại một nơi duy nhất.
 
 ### Cách xem Inbox
 
+<Tabs>
+<TabItem value="PC" label="PC">
 <Steps>
 <Step title="Trên thanh công cụ đầu kênh, chọn **biểu tượng hộp thư**.">
 ![inbox-001](./images/inbox-001.png)
@@ -54,3 +64,51 @@ quan trọng tại một nơi duy nhất.
 <Step title="Tin nhắn đó sẽ xuất hiện trong mục **Tin nhắn** của **Hộp thư**, giúp bạn dễ dàng xem lại.">
 </Step>
 </Steps>
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+<Steps>
+<Step title="Truy cập **thanh điều hướng dưới cùng**, chọn biểu tượng **🔔 Hộp thư**.">
+![inbox-mobile-001](./images/inbox-mobile-001.png)
+</Step>
+
+<Step title="Tại đây, bạn có thể xem toàn bộ hoạt động liên quan đến mình trong Clan.">
+
+*   **@ Nhắc đến:** Hiển thị các tin nhắn mà bạn được tag trực tiếp.&#x20;
+
+    <div align="left"><img style={{ width: '30%' }} src={inboxMobile002} alt="inbox-mobile-002" /></div>
+
+
+* Vào mục **Tin nhắn** để xem tin nhắn bạn đã thêm, hoặc các tin nhắn quan trọng từ Clan 
+
+<div align="left"><img style={{ width: '30%' }} src={inboxMobile003} alt="inbox-mobile-003" /></div>
+
+*   Vào mục **Chủ đề** để truy cập các **Thảo luận ngắn** trong từng Clan khác nhau
+
+    <div align="left"><img style={{ width: '30%' }} src={inboxMobile004} alt="inbox-mobile-004" /></div>
+
+
+*   **Dành cho bạn:** Bao gồm thông báo khi có **lời mời kết bạn** và **Mezon Đồng** được gửi đến&#x20;
+
+    <div align="left"><img style={{ width: '30%' }} src={inboxMobile005} alt="inbox-mobile-005" /></div>
+</Step>
+</Steps>
+
+### Cách thêm tin nhắn vào Hộp thư
+
+<Steps>
+<Step title="Nhấn và giữ vào **tin nhắn** mà bạn muốn lưu.">
+</Step>
+
+<Step title="Chọn **Đánh dấu tin nhắn**">
+
+<div align="left"><img style={{ width: '30%' }} src={inboxMobile006} alt="inbox-mobile-006" /></div>
+</Step>
+
+<Step title="Tin nhắn đó sẽ được thêm vào mục **Tin nhắn** trong **Hộp thư**, giúp bạn dễ dàng xem lại bất cứ lúc nào.">
+Tin nhắn đó sẽ được thêm vào mục **Tin nhắn** trong **Hộp thư**, giúp bạn dễ dàng xem lại bất cứ lúc nào.
+
+<div align="left"><img style={{ width: '30%' }} src={inboxMobile007} alt="inbox-mobile-007" /></div>
+</Step>
+</Steps>
+</TabItem>
+</Tabs>

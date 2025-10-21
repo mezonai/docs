@@ -3,9 +3,14 @@ sidebar_position: 1
 sidebar_label: Tổng quan
 description: "Đặt tên Clan, thay ảnh đại diện và banner hiển thị."
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import overviewMobile001 from "./images/overview-mobile-001.png";
 
 # Tổng quan
 
+<Tabs>
+<TabItem value="PC" label="PC">
 Trong phần này bạn có thể:
 
 * Đổi tên Clan: Tên Clan phải không được trùng với Clan khác đã tồn tại.
@@ -14,3 +19,17 @@ Trong phần này bạn có thể:
 * Chọn kênh mặc định để nhận tin nhắn hệ thống và tùy chỉnh tin nhắn tự động.&#x20;
 
 ![overview-001](./images/overview-001.png)
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+<div align="center"> <img style={{ width: '30%' }} src={overviewMobile001} alt="overview-mobile-001" /> </div>
+
+Trong phần này bạn có thể:&#x20;
+
+* **Đổi tên Clan**: Tên Clan phải không được trùng với Clan khác đã tồn tại.
+* **Đổi ảnh bìa**: Ảnh bìa sẽ được hiển thị ở ngay dưới tên Clan, có kích thước tối thiểu 960x540, và hiển thị đẹp nhất ở tỉ lệ 16:9. Giới hạn dung lượng tối đa là 10MB.
+* **Chọn kênh mặc định** để nhận tin nhắn hệ thống và tùy chỉnh tin nhắn tự động.&#x20;
+* **Cài đặt thông báo mặc định**
+* **Xóa Clan**
+
+</TabItem>
+</Tabs>

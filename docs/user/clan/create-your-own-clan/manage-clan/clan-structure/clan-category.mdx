@@ -3,14 +3,22 @@ sidebar_position: 2
 sidebar_label: Danh mục trong Clan
 ---
 import { Steps, Step } from '@site/src/components/Steps';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import clanCategory001 from './images/clan-category-001.png';
 import clanCategory002 from './images/clan-category-002.png';
 import clanCategory003 from './images/clan-category-003.png';
+import clanCategoryMobile001 from './images/clan-category-mobile-001.png';
+import clanCategoryMobile002 from './images/clan-category-mobile-002.png';
+import clanCategoryMobile003 from './images/clan-category-mobile-003.png';
+import clanCategoryMobile004 from './images/clan-category-mobile-004.png';
 
 # Danh mục trong Clan
 
 Khi Clan phát triển, số lượng kênh tăng nhanh khiến việc theo dõi trở nên rối rắm. Danh mục giúp bạn nhóm các kênh liên quan, giữ mọi thứ rõ ràng và dễ tìm hơn cho mọi thành viên.
 
+<Tabs>
+<TabItem value="PC" label="PC">
 ### 1. Cách tạo Danh mục:
 
 <Steps>
@@ -55,3 +63,48 @@ Cả **chủ Clan** và **thành viên** đều có thể thay đổi thứ tự
 :::
 
 Danh mục giúp giảm bớt sự rối loạn thông tin, tiết kiệm thời gian tìm kiếm, và đảm bảo mọi người đều dễ dàng theo dõi đúng nội dung mình quan tâm. Với Danh mục, không gian làm việc và cộng đồng trên Mezon luôn trực quan, ngăn nắp và dễ quản lý - dù tổ chức của bạn có hàng chục hay hàng trăm kênh.
+
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+### Cách tạo Danh mục
+
+<Steps>
+<Step title="Nhấn vào tên Clan của bạn sau đó chọn **Tạo danh mục.** Đảm bảo rằng bạn đã bật **Hiển thị danh mục trống**">
+
+<div align="left"><img style={{ width: '30%' }} src={clanCategoryMobile001} alt="clan-category-mobile-001" /></div>
+</Step>
+
+<Step title="Nhập **Tên danh mục** bạn muốn và nhấn Tạo">
+
+<div align="left"><img style={{ width: '30%' }} src={clanCategoryMobile002} alt="clan-category-mobile-002" /></div>
+</Step>
+
+<Step title="Danh mục mới sẽ xuất hiện ở trong phần **Điều hướng Clan**">
+
+<div align="left"><img style={{ width: '30%' }} src={clanCategoryMobile003} alt="clan-category-mobile-003" /></div>
+</Step>
+</Steps>
+
+> Danh mục giúp giảm bớt sự rối loạn thông tin, tiết kiệm thời gian tìm kiếm, và đảm bảo mọi người đều dễ dàng theo dõi đúng nội dung mình quan tâm. Với danh mục, không gian làm việc và cộng đồng trên Mezon luôn trực quan, ngăn nắp và dễ quản lý - dù tổ chức của bạn có hàng chục hay hàng trăm kênh.
+
+### Cách quản lý Danh mục
+
+Để quản lý một **Danh mục**, hãy **nhấn và giữ** vào danh mục bạn muốn thao tác.
+
+<div align="left"><img style={{ width: '30%' }} src={clanCategoryMobile004} alt="clan-category-mobile-004" /></div>
+
+Tại đây, bạn có thể dễ dàng thực hiện các hành động sau:
+
+* **Đánh dấu là đã đọc** – xóa thông báo chưa đọc của toàn bộ kênh trong danh mục.
+* **Tắt tiếng thông báo** – ngừng nhận thông báo từ các kênh thuộc danh mục này.
+* **Cài đặt thông báo** – tùy chỉnh cách nhận thông báo theo ý bạn.
+* **Chỉnh sửa danh mục** – thay đổi tên danh mục.
+* **Tạo kênh mới** – thêm kênh văn bản, thoại hoặc phát trực tiếp vào danh mục.
+* **Xóa danh mục** – loại bỏ danh mục cùng các kênh bên trong.
+* **Sao chép ID Clan** – sao chép mã định danh để sử dụng cho mục đích kỹ thuật hoặc quản trị.
+
+:::tip
+_Giúp bạn quản lý cấu trúc Clan một cách nhanh chóng và trực quan ngay trên giao diện di động._
+:::
+</TabItem>
+</Tabs>

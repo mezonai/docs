@@ -3,12 +3,18 @@ sidebar_position: 2
 sidebar_label: Chủ đề
 ---
 import { Steps, Step } from '@site/src/components/Steps';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import threads002 from './images/threads-002.png';
+import threadsMobile002 from './images/threads-mobile-002.png';
+import threadsMobile003 from './images/threads-mobile-003.png';
+import threadsMobile004 from './images/threads-mobile-004.png';
 
 # Chủ đề
 Mezon giúp bạn tránh “loạn” thông tin bằng hệ thống Chủ đề - tách cuộc trò chuyện theo chủ đề, và Tin nhắn trực tiếp - hỗ trợ nhắn tin riêng cho từng cá nhân.
 ### **Cách dùng Chuỗi thảo luận**
-
+<Tabs>
+<TabItem value="PC" label="PC">
 <Steps> 
 <Step title="Mở Mezon, chọn **Kênh văn bản** bạn cần trao đổi.">
 </Step>
@@ -27,3 +33,32 @@ Nếu muốn Chủ đề riêng tư chỉ có những người được mời v�
 <img style={{ width: '50%' }} src={threads002} alt="threads-002" />
 </Step>
 </Steps>
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+<Steps>
+<Step title="Mở Mezon, chọn **Kênh Văn bản** bạn cần trao đổi.">
+</Step>
+
+<Step title="Nhấp vào **biểu tượng cuộn chỉ** trong thanh menu, hoặc ngay trên thanh nhập tin nhắn">
+![threads-mobile-001](./images/threads-mobile-001.png)
+
+<div align="left"><img style={{ width: '30%' }} src={threadsMobile002} alt="threads-mobile-002" /></div>
+
+<div align="left"><img style={{ width: '30%' }} src={threadsMobile003} alt="threads-mobile-003" /></div>
+</Step>
+
+<Step title="Chọn **Tạo chủ đề** để bắt đầu một Chủ đề mới">
+</Step>
+
+<Step title="Nhập **tên chủ đề** và gửi **tin nhắn đầu tiên** để bắt đầu thảo luận với nhóm.">
+Nhập **tên chủ đề** và gửi **tin nhắn đầu tiên** để bắt đầu thảo luận với nhóm.
+
+<div align="left"><img style={{ width: '30%' }} src={threadsMobile004} alt="threads-mobile-004" /></div>
+</Step>
+</Steps>
+
+:::warning
+Khi chọn **Chủ đề riêng tư** chỉ có bạn và những người được mời mới có thể thấy
+:::
+</TabItem>
+</Tabs>

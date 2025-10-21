@@ -2,14 +2,25 @@
 sidebar_position: 5
 sidebar_label: Thông báo
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import notificationSettingsMobile001 from './images/notification-settings-mobile-001.png';
+import notificationSettingsMobile002 from './images/notification-settings-mobile-002.png';
 
 # Thông báo
 
 ## Quản lý thông báo của Kênh
-
-![notification-settings-001](./images/notification-settings-001.png)
-
 Bạn có thể nhanh chóng tùy chỉnh thông báo của Kênh, giúp bạn không bị làm phiền bởi những thông báo không quan trọng
+
+<Tabs>
+<TabItem value="PC" label="PC">
+![notification-settings-001](./images/notification-settings-001.png)
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+<img style={{ width: '30%' }} src={notificationSettingsMobile001} alt="notification-settings-mobile-001" />
+<img style={{ width: '30%' }} src={notificationSettingsMobile002} alt="notification-settings-mobile-002" />
+</TabItem>
+</Tabs>
 
 1. **Tắt thông báo kênh:** tắt hoàn toàn thông bào từ Kênh trong khoảng thời gian bạn muốn, như 15 phút, 1 tiếng,... hay cho đến khi bạn quyết định mở lại.
 2. **Sử dụng mặc định danh mục:** Sử dụng cùng cài đặt thông báo mà bạn đã chọn với Danh mục của Kênh đó.

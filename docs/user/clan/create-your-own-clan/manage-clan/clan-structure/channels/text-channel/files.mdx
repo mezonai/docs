@@ -2,6 +2,14 @@
 sidebar_position: 7
 sidebar_label: Tập tin
 ---
+import { Steps, Step } from '@site/src/components/Steps';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import filesMobile001 from './images/files-mobile-001.png';
+import filesMobile003 from './images/files-mobile-003.png';
+import filesMobile004 from './images/files-mobile-004.png';
+import filesMobile005 from './images/files-mobile-005.png';
+import filesMobile006 from './images/files-mobile-006.png';
 
 # Tệp tin
 
@@ -9,7 +17,8 @@ Không chỉ hình ảnh, việc chia sẻ tài liệu cũng quan trọng. Tệp
 gửi và xem lại toàn bộ tệp đã được chia sẻ trong kênh một cách nhanh chóng.
 
 ### Cách gửi Tệp
-
+<Tabs>
+<TabItem value="PC" label="PC">
 <Steps>
 <Step title="Mở **Kênh văn bản** hoặc **Chủ đề** bạn cần trao đổi">
 </Step>
@@ -42,3 +51,45 @@ gửi và xem lại toàn bộ tệp đã được chia sẻ trong kênh một c
 ![files-006](./images/files-006.png)
 </Step>
 </Steps>
+
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+<Steps>
+<Step title="Mở **Kênh Văn bản** hoặc **Chủ đề** bạn cần trao đổi.">
+</Step>
+
+<Step title="Nhấn vào **dấu cộng (+)** bên trái ô nhập tin nhắn.">
+
+<div align="left"><img style={{ width: '30%' }} src={filesMobile001} alt="files-mobile-001" /></div>
+</Step>
+
+<Step title="Chọn **Tệp** trong menu">
+![files-mobile-002](./images/files-mobile-002.png)
+
+<div align="left"><img style={{ width: '30%' }} src={filesMobile003} alt="files-mobile-003" /></div>
+</Step>
+
+<Step title="Chọn tệp tin mà bạn muốn gửi. Nhập mô tả (nếu cần) và ấn gửi ngay.">
+
+<div align="left"><img style={{ width: '30%' }} src={filesMobile004} alt="files-mobile-004" /></div>
+</Step>
+</Steps>
+
+### Cách xem tệp tin
+<Steps>
+<Step title="Trong **Kênh Văn bản** hoặc **Chủ đề**, nhấn vào chọn **Đa phương tiện** ở menu.">
+
+<div align="left"><img style={{ width: '30%' }} src={filesMobile005} alt="files-mobile-005" /></div>
+</Step>
+
+<Step title="**Danh sách tệp** sẽ hiển thị kèm theo tên người gửi và thời gian gửi.">
+
+<div align="left"><img style={{ width: '30%' }} src={filesMobile006} alt="files-mobile-006" /></div>
+</Step>
+
+<Step title="Nhấn vào tệp để **Tải xuống và xem** trên điện thoại.">
+</Step>
+</Steps>
+</TabItem>
+</Tabs>
+

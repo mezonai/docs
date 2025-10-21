@@ -2,8 +2,12 @@
 sidebar_position: 3
 sidebar_label: Thành viên
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import members001 from './images/members-001.png';
 import members002 from './images/members-002.png';
+import membersMobile001 from './images/members-mobile-001.png';
+import membersMobile002 from './images/members-mobile-002.png';
 
 # Thành viên
 
@@ -11,8 +15,22 @@ Với mục Thành viên, bạn có thể nhanh chóng xem danh sách thành vi�
 trạng thái hoạt động, cũng như xem thành viên có đang ở trong Kênh thoại nào
 không
 
+<Tabs>
+<TabItem value="PC" label="PC">
 <img style={{ width: '20%' }} src={members001} alt="members-001" />
 
 Nếu bạn là chủ phòng, bạn có thể ngay lập tức phân Vai trò cho thành viên đó chỉ với 1 nhấn.
 
 <img style={{ width: '30%' }} src={members002} alt="members-002" />
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+<div align="left"><img style={{ width: '30%' }} src={membersMobile001} alt="members-mobile-001" /></div>
+
+:::tip
+Nếu bạn là chủ phòng, bạn có thể ngay lập tức phân Vai trò (Role) cho thành viên đó chỉ với 1 click
+
+<img style={{ width: '30%' }} src={membersMobile002} alt="members-mobile-002" />
+:::
+</TabItem>
+</Tabs>
+

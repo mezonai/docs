@@ -2,10 +2,18 @@
 sidebar_position: 6
 sidebar_label: Thư viện ảnh
 ---
-import { Steps, Step } from '@site/src/components/Steps';
-import gallery005 from './images/gallery-005.png';
-import gallery007 from './images/gallery-007.png';
-import gallery008 from './images/gallery-008.png';
+
+import { Steps, Step } from "@site/src/components/Steps";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import gallery005 from "./images/gallery-005.png";
+import gallery007 from "./images/gallery-007.png";
+import gallery008 from "./images/gallery-008.png";
+import galleryMobile001 from "./images/gallery-mobile-001.png";
+import galleryMobile002 from "./images/gallery-mobile-002.png";
+import galleryMobile003 from "./images/gallery-mobile-003.png";
+import galleryMobile004 from "./images/gallery-mobile-004.png";
+import galleryMobile005 from "./images/gallery-mobile-005.png";
 
 # Thư viện ảnh
 
@@ -14,25 +22,52 @@ dàng lọc theo thời gian để tìm nội dung cần thiết.
 
 ### Cách gửi ảnh
 
+<Tabs>
+<TabItem value="PC" label="PC">
 <Steps>
 <Step title="Mở **Kênh văn bản** hoặc **Chủ đề** bạn cần trao đổi.">
 </Step>
 
 <Step title="Nhấn vào **dấu cộng (+)** bên trái ô nhập tin nhắn.">
-![gallery-001](./images/gallery-001.png)
+  ![gallery-001](./images/gallery-001.png)
 </Step>
 
 <Step title="Chọn file ảnh và nhấn **Open**.">
-![gallery-002](./images/gallery-002.png)
+  ![gallery-002](./images/gallery-002.png)
 </Step>
 
 <Step title="Thêm **mô tả** nếu cần, hoặc nhấn **Enter** để gửi ngay">
 ![gallery-003](./images/gallery-003.png)
 </Step>
 </Steps>
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+<Steps>
+<Step title="Mở **Kênh Văn bản** hoặc **Chủ đề** bạn cần trao đổi&#x20;">
+</Step>
+
+<Step title="Nhấn vào **dấu cộng (+)** bên trái ô nhập tin nhắn.">
+
+<div align="left"><img style={{ width: '30%' }} src={galleryMobile001} alt="gallery-mobile-001" /></div>
+</Step>
+
+<Step title="Chọn ảnh cần gửi">
+
+<div align="left"><img style={{ width: '30%' }} src={galleryMobile002} alt="gallery-mobile-002" /></div>
+</Step>
+
+<Step title="Thêm **mô tả** nếu cần, hoặc nhấn **mũi tên** để gửi ngay">
+
+<div align="left"><img style={{ width: '30%' }} src={galleryMobile003} alt="gallery-mobile-003" /></div>
+</Step>
+</Steps>
+</TabItem>
+</Tabs>
 
 ### Cách xem ảnh
 
+<Tabs>
+<TabItem value="PC" label="PC">
 <Steps>
 <Step title="Trong **Kênh văn bản** hoặc **Chủ đề**, nhấn vào **biểu tượng bức ảnh** ở đầu kênh. Nhấn vào bức ảnh mà bạn muốn xem.">
 ![gallery-004](./images/gallery-004.png)
@@ -54,3 +89,25 @@ dàng lọc theo thời gian để tìm nội dung cần thiết.
 <img style={{ width: '40%' }} src={gallery008} alt="gallery-008" />
 </Step>
 </Steps>
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+<Steps>
+<Step title="Trong **Kênh Văn bản** hoặc **Chủ đề**, nhấn vào chọn **Đa phương tiện** ở menu.">
+
+<div align="left"><img style={{ width: '30%' }} src={galleryMobile004} alt="gallery-mobile-004" /></div>
+</Step>
+
+<Step title="Trong phần **Đa phương tiện**, tất cả hình ảnh từ Kênh Văn bản hoặc Chủ đề được sắp xếp theo từng ngày, giúp bạn dễ dàng xem lại và tìm kiếm nội dung mong muốn.">
+
+<div align="left">
+  <img
+    style={{ width: "30%" }}
+    src={galleryMobile005}
+    alt="gallery-mobile-005"
+  />
+</div>
+
+</Step>
+</Steps>
+</TabItem>
+</Tabs>
