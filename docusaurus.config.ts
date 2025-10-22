@@ -18,7 +18,7 @@ const config: Config = {
   url: 'https://your-docusaurus-site.example.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/docs',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -47,6 +47,7 @@ const config: Config = {
       'classic',
       {
         docs: {
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -68,7 +69,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Mezon Developer Docs',
+      title: 'Mezon Docs',
       logo: {
         alt: 'Mezon Logo',
         src: 'images/logo-mezon-light.png',
@@ -104,18 +105,19 @@ const config: Config = {
           position: 'right',
         },
         {
-          to: '/docs/user/welcome',
-          label: 'User Docs',
-          position: 'right',
-          sidebarId: 'userDocsSidebar',
+          label: "Docs",
+          position: "right",
+          items: [
+            {
+              label: "User Docs",
+              to: "/user/welcome",
+            },
+            {
+              label: "Developer Docs",
+              to: "/developer/intro",
+            },
+          ],
         },
-        {
-          href: '/docs/developer/intro',
-          target: '_blank',
-          label: 'Developer Docs',
-          position: 'right',
-          sidebarId: 'developerDocsSidebar',
-        }
       ],
     },
     footer: {
@@ -126,15 +128,15 @@ const config: Config = {
           items: [
             {
               label: 'Intro',
-              to: '/docs/intro',
+              to: '/developer/intro',
             },
             {
               label: 'Quick Start',
-              to: 'docs/category/quick-start',
+              to: '/developer/quick-start',
             },
             {
               label: 'Mezon SDK',
-              to: 'docs/category/mezon-sdk',
+              to: '/developer/mezon-sdk',
             },
           ],
         },

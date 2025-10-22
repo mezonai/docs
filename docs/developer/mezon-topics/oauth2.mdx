@@ -52,7 +52,7 @@ All calls to the OAuth2 endpoints require either HTTP Basic authentication or `c
 https://oauth2.mezon.ai/oauth2/auth?client_id=1840672953654579200&redirect_uri=https%3A%2F%2Ftalent.nccsoft.vn%2Faccount%2Flogin%2Fcallback&response_type=code&scope=openid+offline&state=7d2bf60ffcb
 ```
 
-`client_id` is your application's `client_id`. `scope` is a list of [OAuth2 scopes](/docs/mezon-topics/oauth2#shared-resources-oauth2-scopes) separated by url encoded spaces (`%20`). `redirect_uri` is whatever URL you registered when creating your application, url-encoded. `state` is the unique string mentioned in [State and Security](/docs/mezon-topics/oauth2#state-and-security).
+`client_id` is your application's `client_id`. `scope` is a list of [OAuth2 scopes](#oauth2-scopes) separated by url encoded spaces (`%20`). `redirect_uri` is whatever URL you registered when creating your application, url-encoded. `state` is the unique string mentioned in [State and Security](#state-and-security).
 
 When someone navigates to this URL, it initiates the authorization process for your application for the requested scopes.
 
@@ -67,7 +67,7 @@ A challenge is issued (we call this `Log in to Mezon account`) which redirects y
 https://talent.nccsoft.vn/account/login/callback?code=ory_ac_lidWCbmSJsJGZvw34jbRPfNj0eXJBq-kyxlwwcidryY.zVdZx6bU5Q01vAN8orQeL3TY3UPexXGZ8bTLvilBRdY&scope=&state=7d2bf60ffcb
 ```
 
-`code` is now exchanged for the user's access token by making a `POST` request to the [token URL](/docs/mezon-topics/oauth2#shared-resources-oauth2-urls) with the following parameters:
+`code` is now exchanged for the user's access token by making a `POST` request to the [token URL](#oauth2-urls) with the following parameters:
 
 - `grant_type` - must be set to `authorization_code`
 - `code` - the code from the querystring

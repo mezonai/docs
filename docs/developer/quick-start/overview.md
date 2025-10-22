@@ -90,7 +90,7 @@ There are several APIs and SDKs you can choose from based on your app's function
 
 ### Mezon Bot SDK (Bot Applications)
 
-The **[Mezon Bot SDK](/docs/mezon-sdk/bot-app-sdk/overview)** is a comprehensive TypeScript library for building bot applications that interact with the Mezon platform through REST APIs and WebSocket connections.
+The **[Mezon Bot SDK](../mezon-sdk/integration-bot-sdk/overview)** is a comprehensive TypeScript library for building bot applications that interact with the Mezon platform through REST APIs and WebSocket connections.
 
 Use the Mezon SDK to:
 - **Authenticate bots** and manage sessions
@@ -102,7 +102,7 @@ Use the Mezon SDK to:
 
 ### Channel App SDK (Web Applications)
 
-The **[Channel App SDK](/docs/mezon-sdk/channel-app-sdk/overview)** is a lightweight JavaScript library for building web applications that run embedded within Mezon channels.
+The **[Channel App SDK](../mezon-sdk/channel-app-sdk/overview)** is a lightweight JavaScript library for building web applications that run embedded within Mezon channels.
 
 Use the Channel App SDK to:
 - **Communicate with the parent Mezon application** via secure postMessage APIs
@@ -151,18 +151,18 @@ Now that we've covered the basics, it's time to start building your Mezon app! Y
 ### Bot Applications
 Build powerful bot applications that automate, moderate, and enhance clan experiences:
 
-- **[Bot SDK Overview](/docs/mezon-sdk/bot-app-sdk/overview)** - Learn about the comprehensive Mezon SDK for bot development
-- **[Getting Started with Bots](/docs/mezon-sdk/bot-app-sdk/getting-started)** - Step-by-step guide to create your first Mezon bot
-- **[Core Concepts](/docs/mezon-sdk/bot-app-sdk/core-concepts)** - Understand the fundamental concepts of bot development
-- **[Bot Usage Examples](/docs/mezon-sdk/bot-app-sdk/usage-and-examples)** - Practical examples and implementation patterns
+- **[Bot SDK Overview](../mezon-sdk/integration-bot-sdk/overview)** - Learn about the comprehensive Mezon SDK for bot development
+- **[Getting Started with Bots](../mezon-sdk/integration-bot-sdk/getting-started)** - Step-by-step guide to create your first Mezon bot
+- **[Core Concepts](../mezon-sdk/integration-bot-sdk/core-concepts)** - Understand the fundamental concepts of bot development
+- **[Bot Usage Examples](../mezon-sdk/integration-bot-sdk/usage-and-examples)** - Practical examples and implementation patterns
 
 ### Channel Applications
 Build embedded web applications that run directly within Mezon channels:
 
-- **[Channel App SDK Overview](/docs/mezon-sdk/channel-app-sdk/overview)** - Learn about building embedded channel applications
-- **[Getting Started with Channel Apps](/docs/mezon-sdk/channel-app-sdk/getting-started)** - Quick start guide for channel app development
-- **[Channel App Core Concepts](/docs/mezon-sdk/channel-app-sdk/core-concepts)** - Understanding iframe communication and event handling
-- **[Channel App Examples](/docs/mezon-sdk/channel-app-sdk/usage-and-examples)** - Interactive examples including games and collaborative tools
+- **[Channel App SDK Overview](../mezon-sdk/channel-app-sdk/overview)** - Learn about building embedded channel applications
+- **[Getting Started with Channel Apps](../mezon-sdk/channel-app-sdk/getting-started)** - Quick start guide for channel app development
+- **[Channel App Core Concepts](../mezon-sdk/channel-app-sdk/core-concepts)** - Understanding iframe communication and event handling
+- **[Channel App Examples](../mezon-sdk/channel-app-sdk/usage-and-examples)** - Interactive examples including games and collaborative tools
 
 ### Getting Your First App Running
 
