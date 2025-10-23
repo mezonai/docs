@@ -1,4 +1,5 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 export function Steps({ children }) {
   // Tự động đánh số step
@@ -20,7 +21,9 @@ export function Step({ title, stepNumber, children }) {
         marginBottom: "1rem",
       }}
     >
-      <h3>
+      <div
+        style={{ display: "flex",  marginBottom: "1rem" }}
+      >
         <span
           style={{
             background: "var(--ifm-color-primary)",
@@ -31,13 +34,23 @@ export function Step({ title, stepNumber, children }) {
             height: "1.5rem",
             textAlign: "center",
             lineHeight: "1.5rem",
+            marginTop: "0.25rem",
             marginRight: "0.5rem",
+            flexShrink: 0,
           }}
         >
           {stepNumber}
         </span>
-        {title}
-      </h3>
+        <ReactMarkdown
+          components={{
+            p: ({ children }) => (
+              <p style={{ fontSize: "1.2rem", margin: 0 }}>{children}</p>
+            ),
+          }}
+        >
+          {title}
+        </ReactMarkdown>
+      </div>
       <div>{children}</div>
     </div>
   );

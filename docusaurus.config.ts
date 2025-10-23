@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Mezon Developer Docs',
-  tagline: 'Mezon Developer Docs',
+  title: 'Mezon Docs',
+  tagline: 'Mezon Docs',
   favicon: 'images/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -124,7 +124,40 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'User Docs',
+          items: [
+            {
+              label: 'Welcome',
+              to: '/user/welcome',
+            },
+            {
+              label: 'Account and Personalization',
+              to: '/user/account-and-personalization',
+            },
+            {
+              label: 'Friends and Messaging',
+              to: '/user/friends-and-messaging',
+            },
+            {
+              label: 'Clans',
+              to: '/user/clan',
+            },
+            {
+              label: 'Bots and Apps',
+              to: '/user/bots-and-apps',
+            },
+            {
+              label: 'Mezon Dong',
+              to: '/user/mezon-dong',
+            },
+            {
+              label: 'Resources',
+              to: '/user/resources',
+            },
+          ],
+        },
+        {
+          title: 'Developer Docs',
           items: [
             {
               label: 'Intro',
@@ -138,37 +171,58 @@ const config: Config = {
               label: 'Mezon SDK',
               to: '/developer/mezon-sdk',
             },
+            {
+              label: 'Webhooks',
+              to: '/developer/webhooks',
+            },
+            {
+              label: 'Topics',
+              to: '/developer/mezon-topics',
+            },
           ],
         },
         {
-          title: 'Community',
+          title: 'Company',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'About',
+              href: 'https://mezon.ai',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Contact',
+              href: 'https://mezon.ai',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'Privacy Policy',
+              href: 'https://mezon.ai',
+            },
+            {
+              label: 'Terms of Service',
+              href: 'https://mezon.ai',
             },
           ],
         },
         {
           title: 'More',
           items: [
-
+            {
+              label: 'Facebook',
+              href: 'https://www.facebook.com/mezonworld',
+            },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
+              href: 'https://github.com/mezonai',
+            },   
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      logo: {
+        alt: 'Mezon Logo',
+        width: 100,
+        height: 100,
+        src: 'images/logo-mezon-light.png',
+      },
+      copyright: `Copyright © ${new Date().getFullYear()} Mezon, Inc. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
