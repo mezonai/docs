@@ -13,15 +13,15 @@
   },
   "link.item.label.Intro": {
     "message": "Intro",
-    "description": "The label of footer link with label=Intro linking to /docs/intro"
+    "description": "The label of footer link with label=Intro linking to /developer/intro"
   },
   "link.item.label.Quick Start": {
     "message": "Quick Start",
-    "description": "The label of footer link with label=Quick Start linking to docs/category/quick-start"
+    "description": "The label of footer link with label=Quick Start linking to /developer/quick-start"
   },
   "link.item.label.Mezon SDK": {
     "message": "Mezon SDK",
-    "description": "The label of footer link with label=Mezon SDK linking to docs/category/mezon-sdk"
+    "description": "The label of footer link with label=Mezon SDK linking to /developer/mezon-sdk"
   },
   "link.item.label.Stack Overflow": {
     "message": "Stack Overflow",
@@ -37,10 +37,82 @@
   },
   "link.item.label.GitHub": {
     "message": "GitHub",
-    "description": "The label of footer link with label=GitHub linking to https://github.com/facebook/docusaurus"
+    "description": "The label of footer link with label=GitHub linking to https://github.com/mezonai"
   },
   "copyright": {
     "message": "Copyright © 2025 My Project, Inc. Built with Docusaurus.",
     "description": "The footer copyright"
+  },
+  "link.title.User Docs": {
+    "message": "User Docs",
+    "description": "The title of the footer links column with title=User Docs in the footer"
+  },
+  "link.title.Developer Docs": {
+    "message": "Developer Docs",
+    "description": "The title of the footer links column with title=Developer Docs in the footer"
+  },
+  "link.title.Company": {
+    "message": "Company",
+    "description": "The title of the footer links column with title=Company in the footer"
+  },
+  "link.item.label.Welcome": {
+    "message": "Welcome",
+    "description": "The label of footer link with label=Welcome linking to /user/welcome"
+  },
+  "link.item.label.Account and Personalization": {
+    "message": "Account and Personalization",
+    "description": "The label of footer link with label=Account and Personalization linking to /user/account-and-personalization"
+  },
+  "link.item.label.Friends and Messaging": {
+    "message": "Friends and Messaging",
+    "description": "The label of footer link with label=Friends and Messaging linking to /user/friends-and-messaging"
+  },
+  "link.item.label.Clans": {
+    "message": "Clans",
+    "description": "The label of footer link with label=Clans linking to /user/clan"
+  },
+  "link.item.label.Bots and Apps": {
+    "message": "Bots and Apps",
+    "description": "The label of footer link with label=Bots and Apps linking to /user/bots-and-apps"
+  },
+  "link.item.label.Mezon Dong": {
+    "message": "Mezon Dong",
+    "description": "The label of footer link with label=Mezon Dong linking to /user/mezon-dong"
+  },
+  "link.item.label.Resources": {
+    "message": "Resources",
+    "description": "The label of footer link with label=Resources linking to /user/resources"
+  },
+  "link.item.label.Webhooks": {
+    "message": "Webhooks",
+    "description": "The label of footer link with label=Webhooks linking to /developer/webhooks"
+  },
+  "link.item.label.Topics": {
+    "message": "Topics",
+    "description": "The label of footer link with label=Topics linking to /developer/mezon-topics"
+  },
+  "link.item.label.About": {
+    "message": "About",
+    "description": "The label of footer link with label=About linking to https://mezon.ai"
+  },
+  "link.item.label.Contact": {
+    "message": "Contact",
+    "description": "The label of footer link with label=Contact linking to https://mezon.ai"
+  },
+  "link.item.label.Privacy Policy": {
+    "message": "Privacy Policy",
+    "description": "The label of footer link with label=Privacy Policy linking to https://mezon.ai"
+  },
+  "link.item.label.Terms of Service": {
+    "message": "Terms of Service",
+    "description": "The label of footer link with label=Terms of Service linking to https://mezon.ai"
+  },
+  "link.item.label.Facebook": {
+    "message": "Facebook",
+    "description": "The label of footer link with label=Facebook linking to https://www.facebook.com/mezonworld"
+  },
+  "logo.alt": {
+    "message": "Mezon Logo",
+    "description": "The alt text of footer logo"
   }
 }

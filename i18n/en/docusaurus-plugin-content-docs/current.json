@@ -5,11 +5,11 @@
   },
   "sidebar.userDocsSidebar.category.Tài khoản và cá nhân hóa": {
     "message": "Account and Personalization",
-    "description": "The label for category Account and Personalization in sidebar userDocsSidebar"
+    "description": "The label for category Tài khoản và cá nhân hóa in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Bạn bè và Tin nhắn trực tiếp": {
     "message": "Friends and Messaging",
-    "description": "The label for category Friends and Messaging in sidebar userDocsSidebar"
+    "description": "The label for category Bạn bè và Tin nhắn trực tiếp in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Clan": {
     "message": "Clan",
@@ -17,43 +17,43 @@
   },
   "sidebar.userDocsSidebar.category.Tạo Clan của riêng bạn": {
     "message": "Create Your Own Clan",
-    "description": "The label for category Create Your Own Clan in sidebar userDocsSidebar"
+    "description": "The label for category Tạo Clan của riêng bạn in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Tạo Clan của riêng bạn.link.generated-index.description": {
     "message": "A Clan is your shared “home” with the community - a space where everyone can chat, work, study, or share common interests together. On Mezon, creating and managing a Clan is simple and flexible.",
-    "description": "The generated-index page description for category Create Your Own Clan in sidebar userDocsSidebar"
+    "description": "The generated-index page description for category Tạo Clan của riêng bạn in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Quản lý Clan": {
     "message": "Clan Manage",
-    "description": "The label for category Clan Manage in sidebar userDocsSidebar"
+    "description": "The label for category Quản lý Clan in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Quản lý Clan.link.generated-index.description": {
     "message": "This section is for admins and moderators — those responsible for keeping the Clan active, organized, and welcoming.",
-    "description": "The generated-index page description for category Clan Manage in sidebar userDocsSidebar"
+    "description": "The generated-index page description for category Quản lý Clan in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Cài đặt tổng quan": {
     "message": "Overview Settings",
-    "description": "The label for category Overview Settings in sidebar userDocsSidebar"
+    "description": "The label for category Cài đặt tổng quan in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Cấu trúc Clan": {
     "message": "Clan Structure",
-    "description": "The label for category Clan Structure in sidebar userDocsSidebar"
+    "description": "The label for category Cấu trúc Clan in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Kênh trong Clan": {
     "message": "Channels in Clan",
-    "description": "The label for category Channels in Clan in sidebar userDocsSidebar"
+    "description": "The label for category Kênh trong Clan in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Kênh văn bản": {
     "message": "Text Channel",
-    "description": "The label for category Text Channel in sidebar userDocsSidebar"
+    "description": "The label for category Kênh văn bản in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Clan trải nghiệm Mezon": {
     "message": "Mezon Experience Clans",
-    "description": "The label for category Mezon Experience Clans in sidebar userDocsSidebar"
+    "description": "The label for category Clan trải nghiệm Mezon in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Clan trải nghiệm Mezon.link.generated-index.description": {
     "message": "Directly explore Mezon’s features through Sample Clans created by Mezon. When you join, you can experience features firsthand, see how communities are organized, and get inspiration for building your own Clan.",
-    "description": "The generated-index page description for category Mezon Experience Clans in sidebar userDocsSidebar"
+    "description": "The generated-index page description for category Clan trải nghiệm Mezon in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Bots & Apps": {
     "message": "Bots & Apps",
@@ -61,11 +61,11 @@
   },
   "sidebar.userDocsSidebar.category.Mezon Đồng": {
     "message": "Mezon Dong",
-    "description": "The label for category Mezon Dong in sidebar userDocsSidebar"
+    "description": "The label for category Mezon Đồng in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Tài nguyên": {
     "message": "Resources",
-    "description": "The label for category Resources in sidebar userDocsSidebar"
+    "description": "The label for category Tài nguyên in sidebar userDocsSidebar"
   },
   "sidebar.developerDocsSidebar.category.Quick Start": {
     "message": "Quick Start",

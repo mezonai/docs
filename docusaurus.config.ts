@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Mezon Docs',
-  tagline: 'Mezon Docs',
+  title: 'Mezon Documentation',
+  tagline: 'Guides for using, integrating, and customizing the Mezon platform.',
   favicon: 'images/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -218,8 +218,8 @@ const config: Config = {
       ],
       logo: {
         alt: 'Mezon Logo',
-        width: 100,
-        height: 100,
+        width: 75,
+        height: 75,
         src: 'images/logo-mezon-light.png',
       },
       copyright: `Copyright © ${new Date().getFullYear()} Mezon, Inc. Built with Docusaurus.`,

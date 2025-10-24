@@ -69,3 +69,16 @@
 .navbar__link svg.iconExternalLink_nPIU {
   display: none !important;
 }
+
+.margin-bottom--sm {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  border-top: 1px solid rgb(55 65 81);
+  margin-bottom: 0.5rem;
+}
+
+.footer__title {
+  color: var(--ifm-color-primary);
+  font-size: 1.2rem;
+}

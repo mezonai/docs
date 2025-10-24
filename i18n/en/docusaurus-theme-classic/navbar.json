@@ -34,5 +34,9 @@
   "item.label.Developer Docs": {
     "message": "Developer Docs",
     "description": "Navbar item with label Developer Docs"
+  },
+  "item.label.Docs": {
+    "message": "Docs",
+    "description": "Navbar item with label Docs"
   }
 }
