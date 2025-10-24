@@ -1,12 +1,31 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import ConfigLocalized from './docusaurus.config.localized.json';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const defaultLocale = 'vi';
+
+function getLocalizedConfigValue(key: keyof typeof ConfigLocalized) {
+  const currentLocale = process.env.DOCUSAURUS_CURRENT_LOCALE ?? defaultLocale;
+  const values = ConfigLocalized[key];
+  if (!values) {
+    throw new Error(`Localized config key=${key} not found`);
+  }
+  const value = values[currentLocale] ?? values[defaultLocale];
+  if (!value) {
+    throw new Error(
+      `Localized value for config key=${key} not found for both currentLocale=${currentLocale} or defaultLocale=${defaultLocale}`,
+    );
+  }
+  return value;
+}
+
+
 const config: Config = {
-  title: 'Mezon Documentation',
-  tagline: 'Guides for using, integrating, and customizing the Mezon platform.',
+  title: getLocalizedConfigValue('title'),
+  tagline: getLocalizedConfigValue('tagline'),
   favicon: 'images/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -124,47 +143,47 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'User Docs',
+          title: 'Tài liệu người dùng',
           items: [
             {
-              label: 'Welcome',
+              label: 'Chào mừng',
               to: '/user/welcome',
             },
             {
-              label: 'Account and Personalization',
+              label: 'Tài khoản và cá nhân hóa',
               to: '/user/account-and-personalization',
             },
             {
-              label: 'Friends and Messaging',
+              label: 'Bạn bè và Tin nhắn trực tiếp',
               to: '/user/friends-and-messaging',
             },
             {
-              label: 'Clans',
+              label: 'Clan',
               to: '/user/clan',
             },
             {
-              label: 'Bots and Apps',
+              label: 'Bots và Apps',
               to: '/user/bots-and-apps',
             },
             {
-              label: 'Mezon Dong',
+              label: 'Mezon Đồng',
               to: '/user/mezon-dong',
             },
             {
-              label: 'Resources',
+              label: 'Tài nguyên',
               to: '/user/resources',
             },
           ],
         },
         {
-          title: 'Developer Docs',
+          title: 'Tài liệu lập trình viên',
           items: [
             {
-              label: 'Intro',
+              label: 'Giới thiệu',
               to: '/developer/intro',
             },
             {
-              label: 'Quick Start',
+              label: 'Bắt đầu nhanh',
               to: '/developer/quick-start',
             },
             {
@@ -176,34 +195,34 @@ const config: Config = {
               to: '/developer/webhooks',
             },
             {
-              label: 'Topics',
+              label: 'Chủ đề',
               to: '/developer/mezon-topics',
             },
           ],
         },
         {
-          title: 'Company',
+          title: 'Công ty',
           items: [
             {
-              label: 'About',
+              label: 'Giới thiệu',
               href: 'https://mezon.ai',
             },
             {
-              label: 'Contact',
+              label: 'Liên hệ',
               href: 'https://mezon.ai',
             },
             {
-              label: 'Privacy Policy',
+              label: 'Chính sách bảo mật',
               href: 'https://mezon.ai',
             },
             {
-              label: 'Terms of Service',
+              label: 'Điều khoản dịch vụ',
               href: 'https://mezon.ai',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'Mạng xã hội',
           items: [
             {
               label: 'Facebook',
@@ -221,8 +240,7 @@ const config: Config = {
         width: 75,
         height: 75,
         src: 'images/logo-mezon-light.png',
-      },
-      copyright: `Copyright © ${new Date().getFullYear()} Mezon, Inc. Built with Docusaurus.`,
+      }
     },
     prism: {
       theme: prismThemes.github,

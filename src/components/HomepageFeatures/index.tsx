@@ -3,9 +3,10 @@ import clsx from "clsx";
 import Heading from "@theme/Heading";
 import styles from "./styles.module.css";
 import Link from "@docusaurus/Link";
+import Translate from "@docusaurus/Translate";
 
 type FeatureItem = {
-  title: string;
+  title: ReactNode;
   Svg: React.ComponentType<React.ComponentProps<"svg">>;
   description: ReactNode;
   link: string;
@@ -13,23 +14,21 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "User Documentation",
+    title: <Translate id="homepage.userDocumentationTitle">Tài liệu người dùng</Translate>,
     Svg: require("@site/static/images/undraw_docusaurus_mountain.svg").default,
     description: (
       <>
-        Guides and tutorials to help you get started, manage your account, and
-        make the most of all features.
+        <Translate id="homepage.userDocumentation">Hướng dẫn từng bước giúp bạn khám phá tính năng, quản lý không gian làm việc và sử dụng Mezon hiệu quả nhất.</Translate>
       </>
     ),
     link: "/user/welcome",
   },
   {
-    title: "Developer Documentation",
+    title: <Translate id="homepage.developerDocumentationTitle">Tài liệu lập trình viên</Translate>,
     Svg: require("@site/static/images/undraw_docusaurus_react.svg").default,
     description: (
       <>
-        References and examples for SDKs, Webhooks, and integrations to build
-        and extend the platform.
+        <Translate id="homepage.developerDocumentation">Tài liệu và ví dụ cho SDKs, Webhooks, và tích hợp để xây dựng và mở rộng nền tảng.</Translate>
       </>
     ),
     link: "/developer/intro",
@@ -52,7 +51,7 @@ function Feature({ title, Svg, description, link }: FeatureItem) {
       </div>
       <div className="text--center">
         <Link className="button button--primary button--lg" to={link}>
-          Read More
+          <Translate id="homepage.readMore">Xem thêm</Translate>
         </Link>
       </div>
     </div>
