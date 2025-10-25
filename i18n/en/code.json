@@ -325,5 +325,23 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "homepage.getStarted": {
+    "message": "Get Started"
+  },
+  "homepage.userDocumentationTitle": {
+    "message": "User Documentation"
+  },
+  "homepage.userDocumentation": {
+    "message": "Step-by-step guides to help you explore features, manage workspaces, and use Mezon most effectively."
+  },
+  "homepage.developerDocumentationTitle": {
+    "message": "Developer Documentation"
+  },
+  "homepage.developerDocumentation": {
+    "message": "Documentation and examples for SDKs, Webhooks, and integrations to build and expand the platform."
+  },
+  "homepage.readMore": {
+    "message": "Read More"
   }
 }

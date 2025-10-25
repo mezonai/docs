@@ -1,115 +1,91 @@
 {
-  "link.title.Docs": {
-    "message": "Docs",
-    "description": "The title of the footer links column with title=Docs in the footer"
+  "link.title.Tài liệu người dùng": {
+    "message": "User Docs",
+    "description": "The title of the footer links column with title=Tài liệu người dùng in the footer"
   },
-  "link.title.Community": {
-    "message": "Community",
-    "description": "The title of the footer links column with title=Community in the footer"
+  "link.title.Tài liệu lập trình viên": {
+    "message": "Developer Docs",
+    "description": "The title of the footer links column with title=Tài liệu lập trình viên in the footer"
   },
-  "link.title.More": {
-    "message": "More",
-    "description": "The title of the footer links column with title=More in the footer"
+  "link.title.Công ty": {
+    "message": "Company",
+    "description": "The title of the footer links column with title=Công ty in the footer"
   },
-  "link.item.label.Intro": {
-    "message": "Intro",
-    "description": "The label of footer link with label=Intro linking to /developer/intro"
+  "link.title.Mạng xã hội": {
+    "message": "Social Media",
+    "description": "The title of the footer links column with title=Mạng xã hội in the footer"
   },
-  "link.item.label.Quick Start": {
+  "link.item.label.Chào mừng": {
+    "message": "Welcome",
+    "description": "The label of footer link with label=Chào mừng linking to /user/welcome"
+  },
+  "link.item.label.Tài khoản và cá nhân hóa": {
+    "message": "Account and Personalization",
+    "description": "The label of footer link with label=Tài khoản và cá nhân hóa linking to /user/account-and-personalization"
+  },
+  "link.item.label.Bạn bè và Tin nhắn trực tiếp": {
+    "message": "Friends and Messaging",
+    "description": "The label of footer link with label=Bạn bè và Tin nhắn trực tiếp linking to /user/friends-and-messaging"
+  },
+  "link.item.label.Clan": {
+    "message": "Clan",
+    "description": "The label of footer link with label=Clan linking to /user/clan"
+  },
+  "link.item.label.Bots và Apps": {
+    "message": "Bots and Apps",
+    "description": "The label of footer link with label=Bots và Apps linking to /user/bots-and-apps"
+  },
+  "link.item.label.Mezon Đồng": {
+    "message": "Mezon Dong",
+    "description": "The label of footer link with label=Mezon Đồng linking to /user/mezon-dong"
+  },
+  "link.item.label.Tài nguyên": {
+    "message": "Resources",
+    "description": "The label of footer link with label=Tài nguyên linking to /user/resources"
+  },
+  "link.item.label.Giới thiệu": {
+    "message": "About",
+    "description": "The label of footer link with label=Giới thiệu linking to https://mezon.ai"
+  },
+  "link.item.label.Bắt đầu nhanh": {
     "message": "Quick Start",
-    "description": "The label of footer link with label=Quick Start linking to /developer/quick-start"
+    "description": "The label of footer link with label=Bắt đầu nhanh linking to /developer/quick-start"
   },
   "link.item.label.Mezon SDK": {
     "message": "Mezon SDK",
     "description": "The label of footer link with label=Mezon SDK linking to /developer/mezon-sdk"
   },
-  "link.item.label.Stack Overflow": {
-    "message": "Stack Overflow",
-    "description": "The label of footer link with label=Stack Overflow linking to https://stackoverflow.com/questions/tagged/docusaurus"
+  "link.item.label.Webhooks": {
+    "message": "Webhooks",
+    "description": "The label of footer link with label=Webhooks linking to /developer/webhooks"
   },
-  "link.item.label.Discord": {
-    "message": "Discord",
-    "description": "The label of footer link with label=Discord linking to https://discordapp.com/invite/docusaurus"
+  "link.item.label.Chủ đề": {
+    "message": "Topics",
+    "description": "The label of footer link with label=Chủ đề linking to /developer/mezon-topics"
   },
-  "link.item.label.X": {
-    "message": "X",
-    "description": "The label of footer link with label=X linking to https://x.com/docusaurus"
+  "link.item.label.Liên hệ": {
+    "message": "Contact",
+    "description": "The label of footer link with label=Liên hệ linking to https://mezon.ai"
+  },
+  "link.item.label.Chính sách bảo mật": {
+    "message": "Privacy Policy",
+    "description": "The label of footer link with label=Chính sách bảo mật linking to https://mezon.ai"
+  },
+  "link.item.label.Điều khoản dịch vụ": {
+    "message": "Terms of Service",
+    "description": "The label of footer link with label=Điều khoản dịch vụ linking to https://mezon.ai"
+  },
+  "link.item.label.Facebook": {
+    "message": "Facebook",
+    "description": "The label of footer link with label=Facebook linking to https://www.facebook.com/mezonworld"
   },
   "link.item.label.GitHub": {
     "message": "GitHub",
     "description": "The label of footer link with label=GitHub linking to https://github.com/mezonai"
   },
   "copyright": {
-    "message": "Copyright © 2025 My Project, Inc. Built with Docusaurus.",
+    "message": "Copyright © 2025 Mezon, Inc. Built with Docusaurus.",
     "description": "The footer copyright"
-  },
-  "link.title.User Docs": {
-    "message": "User Docs",
-    "description": "The title of the footer links column with title=User Docs in the footer"
-  },
-  "link.title.Developer Docs": {
-    "message": "Developer Docs",
-    "description": "The title of the footer links column with title=Developer Docs in the footer"
-  },
-  "link.title.Company": {
-    "message": "Company",
-    "description": "The title of the footer links column with title=Company in the footer"
-  },
-  "link.item.label.Welcome": {
-    "message": "Welcome",
-    "description": "The label of footer link with label=Welcome linking to /user/welcome"
-  },
-  "link.item.label.Account and Personalization": {
-    "message": "Account and Personalization",
-    "description": "The label of footer link with label=Account and Personalization linking to /user/account-and-personalization"
-  },
-  "link.item.label.Friends and Messaging": {
-    "message": "Friends and Messaging",
-    "description": "The label of footer link with label=Friends and Messaging linking to /user/friends-and-messaging"
-  },
-  "link.item.label.Clans": {
-    "message": "Clans",
-    "description": "The label of footer link with label=Clans linking to /user/clan"
-  },
-  "link.item.label.Bots and Apps": {
-    "message": "Bots and Apps",
-    "description": "The label of footer link with label=Bots and Apps linking to /user/bots-and-apps"
-  },
-  "link.item.label.Mezon Dong": {
-    "message": "Mezon Dong",
-    "description": "The label of footer link with label=Mezon Dong linking to /user/mezon-dong"
-  },
-  "link.item.label.Resources": {
-    "message": "Resources",
-    "description": "The label of footer link with label=Resources linking to /user/resources"
-  },
-  "link.item.label.Webhooks": {
-    "message": "Webhooks",
-    "description": "The label of footer link with label=Webhooks linking to /developer/webhooks"
-  },
-  "link.item.label.Topics": {
-    "message": "Topics",
-    "description": "The label of footer link with label=Topics linking to /developer/mezon-topics"
-  },
-  "link.item.label.About": {
-    "message": "About",
-    "description": "The label of footer link with label=About linking to https://mezon.ai"
-  },
-  "link.item.label.Contact": {
-    "message": "Contact",
-    "description": "The label of footer link with label=Contact linking to https://mezon.ai"
-  },
-  "link.item.label.Privacy Policy": {
-    "message": "Privacy Policy",
-    "description": "The label of footer link with label=Privacy Policy linking to https://mezon.ai"
-  },
-  "link.item.label.Terms of Service": {
-    "message": "Terms of Service",
-    "description": "The label of footer link with label=Terms of Service linking to https://mezon.ai"
-  },
-  "link.item.label.Facebook": {
-    "message": "Facebook",
-    "description": "The label of footer link with label=Facebook linking to https://www.facebook.com/mezonworld"
   },
   "logo.alt": {
     "message": "Mezon Logo",
