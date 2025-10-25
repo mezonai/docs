@@ -5,6 +5,10 @@ sidebar_label: Channel App Auth Flow
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+
+import channelAppSdk001 from "./images/channel-app-sdk-001.png";
+
 
 # Channel App Auth Flow
 
@@ -25,37 +29,7 @@ Hash-based authentication is a secure method where:
 
 By following the [Getting Started Guide](./getting-started.md), you now have a channel app on the Mezon platform with your web application integrated. Let's explore the relationship between the different components in the authentication flow.
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     Mezon Platform                             │
-│  ┌─────────────────┐    ┌──────────────────────────────────┐   │
-│  │   Mezon App     │    │        Hash Generator            │   │
-│  │   (WebView)     │◄──►│   (Signs user data with secret)  │   │
-│  └─────────────────┘    └──────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
-           │
-           │ Send USER_HASH_INFO event with signed hash
-           ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Frontend Application                        │
-│  ┌─────────────────┐    ┌──────────────────────────────────┐   │
-│  │  Event Handlers │    │       Authentication Logic       │   │
-│  │  - Listen events │◄──►│   - Process hash data            │   │
-│  │  - Send API calls│    │   - Validate and authenticate    │   │
-│  └─────────────────┘    └──────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
-           │
-           │ POST /api/auth/mezon-hash
-           ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                   Backend Server                               │
-│  ┌─────────────────┐    ┌──────────────────────────────────┐   │
-│  │ Auth Controller │    │       Hash Validator             │   │
-│  │ - API endpoint  │◄──►│   - Verify signature             │   │
-│  │ - JWT generation│    │   - User authentication          │   │
-│  └─────────────────┘    └──────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Image style={{ margin: '1rem 2rem' }} src={channelAppSdk001}></Image>
 
 ## Hash Data Structure
 
