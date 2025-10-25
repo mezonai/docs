@@ -6,6 +6,9 @@ description: "Khởi tạo Clan mới chỉ với vài cú nhấp, đặt tên, 
 import { Steps, Step } from '@site/src/components/Steps';
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+
+import createAClan001 from "./images/create-a-clan-001.png";
 import createAClan002 from "./images/create-a-clan-002.png";
 import createAClanMobile001 from "./images/create-a-clan-mobile-001.png";
 import createAClanMobile002 from "./images/create-a-clan-mobile-002.png";
@@ -16,12 +19,13 @@ import createAClanMobile002 from "./images/create-a-clan-mobile-002.png";
 <TabItem value="PC" label="PC">
 1. Nhấn vào biểu tượng **+** trên thanh bên → chọn **Tạo Clan**.
 
-![create-a-clan-001](./images/create-a-clan-001.png)
+<Image style={{ margin: '1rem 2rem' }} src={createAClan001}></Image>
 
 2. **Đặt tên Clan** (tối đa 64 ký tự, chỉ dùng chữ cái, số, \_ hoặc -).
+
 3. **Tải lên ảnh đại diện** cho Clan.
 
-<img style={{ width: "50%" }} src={createAClan002} alt="create-a-clan-002" />
+<Image style={{ margin: '1rem 2rem' }} src={createAClan002}></Image>
 
 :::tip
 Đừng lo nếu tên chưa kêu, ảnh chưa đẹp, bạn có thể thay đổi ảnh đại diện sau.
