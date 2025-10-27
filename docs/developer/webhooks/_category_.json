@@ -3,6 +3,7 @@
   "position": 3,
   "link": {
     "type": "generated-index",
-    "slug": "developer/webhooks"
+    "slug": "developer/webhooks",
+    "description": "Comprehensive guides and documentation to help you start working with Webhooks as quickly as possible."
   }
 }

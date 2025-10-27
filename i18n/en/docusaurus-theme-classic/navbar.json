@@ -7,36 +7,36 @@
     "message": "Mezon Logo",
     "description": "The alt text of navbar logo"
   },
-  "item.label.Home": {
+  "item.label.Trang chủ": {
     "message": "Home",
-    "description": "Navbar item with label Home"
+    "description": "Navbar item with label Trang chủ"
   },
-  "item.label.Developers": {
+  "item.label.Nhà phát triển": {
     "message": "Developers",
-    "description": "Navbar item with label Developers"
+    "description": "Navbar item with label Nhà phát triển"
   },
   "item.label.Bots/Apps": {
     "message": "Bots/Apps",
     "description": "Navbar item with label Bots/Apps"
   },
-  "item.label.Discover": {
+  "item.label.Khám phá": {
     "message": "Discover",
-    "description": "Navbar item with label Discover"
+    "description": "Navbar item with label Khám phá"
   },
   "item.label.Blogs": {
     "message": "Blogs",
     "description": "Navbar item with label Blogs"
   },
-  "item.label.User Docs": {
-    "message": "User Docs",
-    "description": "Navbar item with label User Docs"
-  },
-  "item.label.Developer Docs": {
-    "message": "Developer Docs",
-    "description": "Navbar item with label Developer Docs"
-  },
-  "item.label.Docs": {
+  "item.label.Tài liệu": {
     "message": "Docs",
-    "description": "Navbar item with label Docs"
+    "description": "Navbar item with label Tài liệu"
+  },
+  "item.label.Tài liệu người dùng": {
+    "message": "User Docs",
+    "description": "Navbar item with label Tài liệu người dùng"
+  },
+  "item.label.Tài liệu lập trình viên": {
+    "message": "Developer Docs",
+    "description": "Navbar item with label Tài liệu lập trình viên"
   }
 }

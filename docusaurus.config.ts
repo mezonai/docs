@@ -97,12 +97,12 @@ const config: Config = {
         {
           href: 'https://mezon.ai',
           position: 'left',
-          label: 'Home',
+          label: 'Trang chủ',
         },
         {
           href: 'https://mezon.ai/developers',
           position: 'left',
-          label: 'Developers',
+          label: 'Nhà phát triển',
         },
         {
           href: 'https://top.mezon.ai',
@@ -112,7 +112,7 @@ const config: Config = {
         {
           href: 'https://mezon.ai/clans',
           position: 'left',
-          label: 'Discover',
+          label: 'Khám phá',
         },
         {
           href: 'https://mezon.ai/blogs',
@@ -124,15 +124,15 @@ const config: Config = {
           position: 'right',
         },
         {
-          label: "Docs",
+          label: "Tài liệu",
           position: "right",
           items: [
             {
-              label: "User Docs",
+              label: "Tài liệu người dùng",
               to: "/user/welcome",
             },
             {
-              label: "Developer Docs",
+              label: "Tài liệu lập trình viên",
               to: "/developer/intro",
             },
           ],
@@ -205,11 +205,11 @@ const config: Config = {
           items: [
             {
               label: 'Giới thiệu',
-              href: 'https://mezon.ai',
+              href: 'https://ncc.plus/#about',
             },
             {
               label: 'Liên hệ',
-              href: 'https://mezon.ai',
+              href: 'https://ncc.plus/#contact',
             },
             {
               label: 'Chính sách bảo mật',
@@ -234,13 +234,7 @@ const config: Config = {
             },   
           ],
         },
-      ],
-      logo: {
-        alt: 'Mezon Logo',
-        width: 75,
-        height: 75,
-        src: 'images/logo-mezon-light.png',
-      }
+      ]
     },
     prism: {
       theme: prismThemes.github,
@@ -248,6 +242,9 @@ const config: Config = {
       additionalLanguages: ['powershell', "csharp", "bash", "java", "javascript"],
     },
   } satisfies Preset.ThemeConfig,
+  plugins: [
+    require.resolve("./plugins/redirectDeveloperLocale.ts"),
+  ],
 };
 
 export default config;

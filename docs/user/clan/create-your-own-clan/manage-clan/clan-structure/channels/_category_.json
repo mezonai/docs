@@ -2,7 +2,7 @@
   "label": "Kênh trong Clan",
   "position": 1,
   "link": {
-    "type": "generated-index",
-    "slug": "user/clan/create-your-own-clan/manage-clan/clan-structure/channels"
+    "type": "doc",
+    "id": "user/clan/create-your-own-clan/manage-clan/clan-structure/channels/index"
   }
 }

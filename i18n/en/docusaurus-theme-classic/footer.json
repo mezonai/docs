@@ -45,7 +45,7 @@
   },
   "link.item.label.Giới thiệu": {
     "message": "About",
-    "description": "The label of footer link with label=Giới thiệu linking to https://mezon.ai"
+    "description": "The label of footer link with label=Giới thiệu linking to https://ncc.plus/#about"
   },
   "link.item.label.Bắt đầu nhanh": {
     "message": "Quick Start",
@@ -65,7 +65,7 @@
   },
   "link.item.label.Liên hệ": {
     "message": "Contact",
-    "description": "The label of footer link with label=Liên hệ linking to https://mezon.ai"
+    "description": "The label of footer link with label=Liên hệ linking to https://ncc.plus/#contact"
   },
   "link.item.label.Chính sách bảo mật": {
     "message": "Privacy Policy",
@@ -82,13 +82,5 @@
   "link.item.label.GitHub": {
     "message": "GitHub",
     "description": "The label of footer link with label=GitHub linking to https://github.com/mezonai"
-  },
-  "copyright": {
-    "message": "Copyright © 2025 Mezon, Inc. Built with Docusaurus.",
-    "description": "The footer copyright"
-  },
-  "logo.alt": {
-    "message": "Mezon Logo",
-    "description": "The alt text of footer logo"
   }
 }

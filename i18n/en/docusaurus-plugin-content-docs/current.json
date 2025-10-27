@@ -40,7 +40,7 @@
     "description": "The label for category Cấu trúc Clan in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Kênh trong Clan": {
-    "message": "Channels in Clan",
+    "message": "Channels",
     "description": "The label for category Kênh trong Clan in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Kênh văn bản": {
@@ -70,10 +70,6 @@
   "sidebar.developerDocsSidebar.category.Quick Start": {
     "message": "Quick Start",
     "description": "The label for category Quick Start in sidebar developerDocsSidebar"
-  },
-  "sidebar.developerDocsSidebar.category.Quick Start.link.generated-index.description": {
-    "message": "5 minutes to learn the most important Docusaurus concepts.",
-    "description": "The generated-index page description for category Quick Start in sidebar developerDocsSidebar"
   },
   "sidebar.developerDocsSidebar.category.Mezon SDK": {
     "message": "Mezon SDK",
