@@ -2,8 +2,7 @@
   "label": "Tạo Clan của riêng bạn",
   "position": 3,
   "link": {
-    "type": "generated-index",
-    "slug": "user/clan/create-your-own-clan",
-    "description": "Clan là “ngôi nhà” chung của bạn và cộng đồng — nơi mọi người có thể trò chuyện, làm việc, học tập hoặc chia sẻ sở thích cùng nhau. Trên Mezon, việc tạo và quản lý một Clan cực kỳ đơn giản, linh hoạt."
+    "type": "doc",
+    "id": "user/clan/create-your-own-clan/index"
   }
 }

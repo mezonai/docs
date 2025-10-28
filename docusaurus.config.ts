@@ -120,6 +120,10 @@ const config: Config = {
           label: 'Blogs',
         },
         {
+          type: 'search',
+          position: 'right',
+        },
+        {
           type: 'localeDropdown',
           position: 'right',
         },
@@ -128,11 +132,11 @@ const config: Config = {
           position: "right",
           items: [
             {
-              label: "Tài liệu người dùng",
+              label: "Dành cho người dùng",
               to: "/user/welcome",
             },
             {
-              label: "Tài liệu lập trình viên",
+              label: "Dành cho nhà phát triển",
               to: "/developer/intro",
             },
           ],
@@ -176,7 +180,7 @@ const config: Config = {
           ],
         },
         {
-          title: 'Tài liệu lập trình viên',
+          title: 'Tài liệu nhà phát triển',
           items: [
             {
               label: 'Giới thiệu',
@@ -243,7 +247,19 @@ const config: Config = {
     },
   } satisfies Preset.ThemeConfig,
   plugins: [
-    require.resolve("./plugins/redirectDeveloperLocale.ts"),
+    // require.resolve("./plugins/redirectDeveloperLocale.ts"),
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['vi', 'en'],
+        indexDocs: true,
+        indexPages: true,
+        docsRouteBasePath: ['docs'],
+        removeDefaultStopWordFilter: false,
+        removeDefaultStemmer: false,
+      },
+    ],
   ],
 };
 

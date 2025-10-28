@@ -11,6 +11,7 @@ import Timeline from "@site/src/components/TimeLine";
 import TimelineItem from "@site/src/components/TimeLine/TimeLineItem";
 import Image from "@site/src/components/Image";
 import { Steps, Step } from "@site/src/components/Steps";
+import { IndexCard, ListIndexCard } from "@site/src/components/IndexCard";
 export default {
   ...MDXComponents,
   Card,
@@ -25,4 +26,6 @@ export default {
   TimelineItem,
   Steps,
   Step,
+  IndexCard,
+  ListIndexCard,
 };

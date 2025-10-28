@@ -5,7 +5,7 @@ import { useLocation } from "@docusaurus/router";
 export default function LocaleDropdownNavbarItemWrapper(props) {
   const location = useLocation();
 
-  if (location.pathname.startsWith("/docs/en/developer")) {
+  if (location.pathname.startsWith("/docs/en/developer") || location.pathname.startsWith("/docs/developer")) {
     return null;
   }
 

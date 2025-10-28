@@ -31,12 +31,12 @@
     "message": "Docs",
     "description": "Navbar item with label Tài liệu"
   },
-  "item.label.Tài liệu người dùng": {
-    "message": "User Docs",
-    "description": "Navbar item with label Tài liệu người dùng"
+  "item.label.Dành cho người dùng": {
+    "message": "For User",
+    "description": "Navbar item with label Dành cho người dùng"
   },
-  "item.label.Tài liệu lập trình viên": {
-    "message": "Developer Docs",
-    "description": "Navbar item with label Tài liệu lập trình viên"
+  "item.label.Dành cho nhà phát triển": {
+    "message": "For Developer",
+    "description": "Navbar item with label Dành cho nhà phát triển"
   }
 }

@@ -2,8 +2,7 @@
   "label": "Clan trải nghiệm Mezon",
   "position": 5,
   "link": {
-    "type": "generated-index",
-    "slug": "user/clan/mezon-experience-clans",
-    "description": "Trải nghiệm trực tiếp tính năng của Mezon thông qua các Clan Mẫu mà Mezon đã xây dựng sẵn. Khi tham gia, bạn sẽ được trải nghiệm trực tiếp tính năng, khám phá cách cộng đồng được tổ chức và tìm cảm hứng để xây dựng Clan riêng."
+    "type": "doc",
+    "id": "user/clan/mezon-experience-clans/index"
   }
 }

@@ -24,7 +24,7 @@ const FeatureList: FeatureItem[] = [
     link: "/user/welcome",
   },
   {
-    title: <Translate id="homepage.developerDocumentationTitle">Tài liệu lập trình viên</Translate>,
+    title: <Translate id="homepage.developerDocumentationTitle">Tài liệu nhà phát triển</Translate>,
     Svg: require("@site/static/images/undraw_docusaurus_react.svg").default,
     description: (
       <>

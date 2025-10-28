@@ -2,7 +2,7 @@
   "label": "Tài khoản và cá nhân hóa",
   "position": 2,
   "link": {
-    "type": "generated-index",
-    "slug": "user/account-and-personalization"
+    "type": "doc",
+    "id": "user/account-and-personalization/index"
   }
 }

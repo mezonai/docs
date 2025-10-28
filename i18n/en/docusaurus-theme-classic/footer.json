@@ -3,9 +3,9 @@
     "message": "User Docs",
     "description": "The title of the footer links column with title=Tài liệu người dùng in the footer"
   },
-  "link.title.Tài liệu lập trình viên": {
+  "link.title.Tài liệu nhà phát triển": {
     "message": "Developer Docs",
-    "description": "The title of the footer links column with title=Tài liệu lập trình viên in the footer"
+    "description": "The title of the footer links column with title=Tài liệu nhà phát triển in the footer"
   },
   "link.title.Công ty": {
     "message": "Company",
