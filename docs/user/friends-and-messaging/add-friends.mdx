@@ -4,6 +4,13 @@ sidebar_label: Kết bạn
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+
+
+import addFriends001 from "./images/add-friends-001.png";
+import addFriends002 from "./images/add-friends-002.png";
+import addFriends003 from "./images/add-friends-003.png";
+import addFriends004 from "./images/add-friends-004.png";
 import addFriendsMobile001 from "./images/add-friends-mobile-001.png";
 
 # Kết bạn
@@ -21,41 +28,44 @@ Bạn có thể:
 ***
 <Tabs>
 <TabItem value="PC" label="PC">
-![add-friends-001](./images/add-friends-001.png)
+
+  1. **Kết bạn mới**
+
+  * Nhập Tên đăng nhập hoặc Tên hiển thị người dùng Mezon để thêm bạn
+
+  <Image style={{ margin: '1rem 2rem' }} src={addFriends002}></Image>
+
+  * Đây cũng là nơi bạn có thể lọc danh sách và quản lý bạn bè.
+    * Tất cả: Hiển thị tất cả bạn bè.
+    * Trực tuyền: Chỉ hiển thị những người bạn đang trực tuyến.
+    * Đang chờ xử lý: Danh sách những lời mời kết bạn.
+    * Chặn: Danh sách những người bạn chặn.
+
+
+  2. **Lịch sử tin nhắn**
+
+  * Hiển thị tất cả các cuộc trò chuyện trước đó, bao gồm cả với bot.
+  * Bạn chỉ cần nhấn vào là có thể tiếp tục trò chuyện ngay.
+
+  <Image style={{ margin: '1rem 2rem' }} src={addFriends003}></Image>
+
+  3. **Danh sách bạn bè**
+
+  * Danh sách bạn bè được lọc theo trạng thái.
+  * Thấy ai đang trực tuyến để nhắn tin nhanh hơn.
+
+  <Image style={{ margin: '1rem 2rem' }} src={addFriends004}></Image>
+
+  4. **Trạng thái hoạt động**
+
+  * Hiển thị hoạt động mà những người bạn của bạn đang làm ngay bây giờ
+  * Có 3 loại trạng thái mà Mezon tự động cập nhật:
+    * Lập trình: Người dùng hiện đang sử dụng phần mềm Code Editor.
+    * Âm nhạc: Người dùng hiện đang sử dụng phần mềm phát nhạc như Spotify, Apple Music.
+    * Chơi game: Người dùng hiện đang chơi game.
+
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 <img style={{ width: '40%' }} src={addFriendsMobile001} alt="add-friends-mobile-001" />
 </TabItem>
 </Tabs>
-
-
-1. **Kết bạn mới**
-
-* Nhập Tên đăng nhập hoặc Tên hiển thị người dùng Mezon để thêm bạn
-* Đây cũng là nơi bạn có thể lọc danh sách và quản lý bạn bè.
-  * Tất cả: Hiển thị tất cả bạn bè.
-  * Trực tuyền: Chỉ hiển thị những người bạn đang trực tuyến.
-  * Đang chờ xử lý: Danh sách những lời mời kết bạn.
-  * Chặn: Danh sách những người bạn chặn.
-
-
-2. **Lịch sử tin nhắn**
-
-* Hiển thị tất cả các cuộc trò chuyện trước đó, bao gồm cả với bot.
-* Bạn chỉ cần nhấn vào là có thể tiếp tục trò chuyện ngay.
-
-
-3. **Danh sách bạn bè**
-
-* Danh sách bạn bè được lọc theo trạng thái.
-* Thấy ai đang trực tuyến để nhắn tin nhanh hơn.
-
-
-
-4. **Trạng thái hoạt động**
-
-* Hiển thị hoạt động mà những người bạn của bạn đang làm ngay bây giờ
-* Có 3 loại trạng thái mà Mezon tự động cập nhật:
-  * Lập trình: Người dùng hiện đang sử dụng phần mềm Code Editor.
-  * Âm nhạc: Người dùng hiện đang sử dụng phần mềm phát nhạc như Spotify, Apple Music.
-  * Chơi game: Người dùng hiện đang chơi game.

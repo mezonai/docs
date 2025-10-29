@@ -6,8 +6,20 @@ description: "Tạo, sắp xếp và phân quyền cho từng vai trò trong Cla
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
 import { Steps, Step } from "@site/src/components/Steps";
+
+import rolesAndPermissionsManagement001 from "./images/roles-and-permissions-management-001.png";
+import rolesAndPermissionsManagement002 from "./images/roles-and-permissions-management-002.png";
+import rolesAndPermissionsManagement003 from "./images/roles-and-permissions-management-003.png";
+import rolesAndPermissionsManagement004 from "./images/roles-and-permissions-management-004.png";
+import rolesAndPermissionsManagement005 from "./images/roles-and-permissions-management-005.png";
+import rolesAndPermissionsManagement006 from "./images/roles-and-permissions-management-006.png";
+import rolesAndPermissionsManagement007 from "./images/roles-and-permissions-management-007.png";
+import rolesAndPermissionsManagement008 from "./images/roles-and-permissions-management-008.png";
+import rolesAndPermissionsManagement009 from "./images/roles-and-permissions-management-009.png";
 import rolesAndPermissionsManagement010 from "./images/roles-and-permissions-management-010.png";
+import rolesAndPermissionsManagement011 from "./images/roles-and-permissions-management-011.png";
 import rolesAndPermissionsManagement012 from "./images/roles-and-permissions-management-012.png";
 import rolesAndPermissionsManagementMobile001 from "./images/roles-and-permissions-management-mobile-001.png";
 import rolesAndPermissionsManagementMobile002 from "./images/roles-and-permissions-management-mobile-002.png";
@@ -28,9 +40,7 @@ Khi cộng đồng phát triển, số lượng thành viên tham gia và mức 
 
 #### Các quyền hiện có trong hệ thống
 
-<div align="center">
-  ![roles-and-permissions-management-001](./images/roles-and-permissions-management-001.png)
-</div>
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement001}></Image>
 
 - **Administrator** – Toàn quyền quản lý clan và list channel (gần tương đương với chủ sở hữu).
 - **Manage Clan** – Quản lý cài đặt clan, vai trò, kênh và hoạt động thành viên.&#x20;
@@ -65,19 +75,19 @@ Tuy nhiên quyền **Manage Clan** <span style={{color: "var(--ifm-color-danger)
 <Steps>
 <Step title="Trong menu bên trái, chọn **Vai trò**">
 
-![roles-and-permissions-management-002](./images/roles-and-permissions-management-002.png)
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement002}></Image>
 
 </Step>
 
 <Step title="Trong **Quyền mặc định**, bạn thiết lập những hành động cơ bản mà tất cả thành viên trong clan đều có thể thực hiện.">
 
-![roles-and-permissions-management-003](./images/roles-and-permissions-management-003.png)
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement003}></Image>
 
 </Step>
 
 <Step title="Chọn quyền bạn muốn áp dụng với tất cả mọi người và nhấn **Lưu thay đổi**">
 
-![roles-and-permissions-management-004](./images/roles-and-permissions-management-004.png)
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement004}></Image>
 
 :::note
 Mặc định, mọi người khi tham gia clan sẽ thuộc role **@everyone**.\
@@ -96,15 +106,15 @@ Không phải tất cả thành viên trong Clan đều cần quyền hạn gi�
 <Steps>
 <Step title="Ở menu bên trái, chọn **Vai trò**">
 
-![roles-and-permissions-management-005](./images/roles-and-permissions-management-005.png)
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement002}></Image>
 
 </Step>
 
 <Step title="Nhấn **Tạo Vai trò,** sau đó chỉnh sửa tên, màu và icon trong mục **Hiển thị**">
 
-![roles-and-permissions-management-006](./images/roles-and-permissions-management-006.png)
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement005}></Image>
 
-![roles-and-permissions-management-007](./images/roles-and-permissions-management-007.png)
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement006}></Image>
 
 :::note
 Dung lượng tối đa cho Biểu tượng vai trò là 256KB
@@ -118,13 +128,13 @@ Dung lượng tối đa cho Biểu tượng vai trò là 256KB
 Bạn có thể thêm hoặc thu hồi quyền nâng cao bằng cách tạo **vai trò mới**, sau đó gán cho từng thành viên (thực hiện tại mục **Quản lý thành viên**).
 :::
 
-![roles-and-permissions-management-008](./images/roles-and-permissions-management-008.png)
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement007}></Image>
 
 </Step>
 
 <Step title="Trong **Quyền,** tùy chỉnh các quyền mà **Vai trò** đó có thể thực hiện (ví dụ: Quản trị, gửi tin nhắn, xóa tin nhắn...).">
 
-![roles-and-permissions-management-009](./images/roles-and-permissions-management-009.png)
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement008}></Image>
 
 </Step>
 
@@ -132,11 +142,7 @@ Bạn có thể thêm hoặc thu hồi quyền nâng cao bằng cách tạo **va
 
 <Step title="Thay đổi thứ tự hiển thị của Vai trò.">
 
-<img
-  style={{ width: "50%" }}
-  src={rolesAndPermissionsManagement010}
-  alt="roles-and-permissions-management-010"
-/>
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement009}></Image>
 
 Bạn chỉ cần kéo thả từng Vai trò để sắp xếp thứ tự các Vai trò. Nếu thành viên được gán nhiều hơn 1 Vai trò, thì sẽ hiển thị theo thứ tự này.
 
@@ -159,23 +165,19 @@ Ghi đè quyền hạn là cách thiết lập quyền đặc biệt cho **Kênh
 <Steps>
 <Step title="Nhấp vào bánh răng ở kênh/chuỗi thảo luận riêng tư của bạn">
 
-![roles-and-permissions-management-011](./images/roles-and-permissions-management-011.png)
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement010}></Image>
 
 </Step>
 
 <Step title="Nhấn Quyền hạn trong menu bên trái">
 
-<img
-  style={{ width: "20%" }}
-  src={rolesAndPermissionsManagement012}
-  alt="roles-and-permissions-management-012"
-/>
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement011}></Image>
 
 </Step>
 
 <Step title="Tùy chỉnh quyền cho thành viên trong kênh của bạn">
 
-![roles-and-permissions-management-013](./images/roles-and-permissions-management-013.png)
+<Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement012}></Image>
 
 </Step>
 
@@ -183,7 +185,7 @@ Ghi đè quyền hạn là cách thiết lập quyền đặc biệt cho **Kênh
 </Step>
 </Steps>
 
-:::success
+:::tip
 Tính năng này giúp bạn quản lý linh hoạt: ví dụ một thành viên bình thường có thể chỉ đọc nội dung trong kênh riêng tư, còn quản trị viên phụ có thể vừa đọc vừa gửi tin nhắn.
 :::
 

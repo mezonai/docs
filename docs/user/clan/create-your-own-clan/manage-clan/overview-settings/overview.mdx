@@ -5,6 +5,9 @@ description: "Đặt tên Clan, thay ảnh đại diện và banner hiển thị
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+
+import overview001 from "./images/overview-001.png";
 import overviewMobile001 from "./images/overview-mobile-001.png";
 
 # Tổng quan
@@ -18,7 +21,8 @@ Trong phần này bạn có thể:
 * Đổi ảnh bìa: Ảnh bìa sẽ được hiển thị ở ngay dưới tên Clan, có kích thước tối thiểu 960x540, và hiển thị đẹp nhất ở tỉ lệ 16:9. Giới hạn dung lượng tối đa là 10MB.
 * Chọn kênh mặc định để nhận tin nhắn hệ thống và tùy chỉnh tin nhắn tự động.&#x20;
 
-![overview-001](./images/overview-001.png)
+<Image style={{ margin: '1rem 2rem' }} src={overview001}></Image>
+
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 <div align="center"> <img style={{ width: '30%' }} src={overviewMobile001} alt="overview-mobile-001" /> </div>
