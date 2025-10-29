@@ -25,14 +25,25 @@
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
   --ifm-background-color: #1a1a1a;
-  --ifm-color-primary: #5865f2;
-  --ifm-color-primary-dark: #404de8;
-  --ifm-color-primary-darker: #2f3cd8;
-  --ifm-color-primary-darkest: #212ccc;
-  --ifm-color-primary-light: #5a64ff;
-  --ifm-color-primary-lighter: #737cff;
-  --ifm-color-primary-lightest: #8e96ff;
+  --ifm-color-primary: #5aa7ff;
+  --ifm-color-primary-dark: #3895ff;
+  --ifm-color-primary-darker: #268bff;
+  --ifm-color-primary-darkest: #0071f2;
+  --ifm-color-primary-light: #7db9ff;
+  --ifm-color-primary-lighter: #8ec3ff;
+  --ifm-color-primary-lightest: #c2deff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  .button--primary {
+    --ifm-button-background-color: #1b3047;
+    --ifm-button-border-color: #1b3047;
+    --ifm-button-color: #75B6FF;
+  
+    &:hover {
+      filter: brightness(1.3);
+      transition: filter 0.3s ease;
+    }
+  }
 }
 
 ::-webkit-scrollbar {
@@ -83,29 +94,6 @@
 .footer__title {
   color: var(--ifm-color-primary);
   font-size: 1.2rem;
-}
-
-.card__container {
-  --ifm-link-color: var(--ifm-color-emphasis-800);
-  --ifm-link-hover-color: var(--ifm-color-emphasis-700);
-  --ifm-link-hover-decoration: none;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  transition: all var(--ifm-transition-fast) ease;
-  transition-property: border, box-shadow;
-  box-shadow: 0 1.5px 3px #00000026;
-  height: 100%;
-  &:hover {
-    border: 1px solid var(--ifm-color-primary);
-    box-shadow: 0 1.5px 3px #00000026;
-  }
-}
-
-.card__title {
-  font-size: 1.2rem;
-}
-
-.card__description {
-  font-size: 0.8rem;
 }
 
 .footer {
