@@ -91,7 +91,8 @@ const config: Config = {
       title: 'Mezon Docs',
       logo: {
         alt: 'Mezon Logo',
-        src: 'images/logo-mezon-light.png',
+        src: 'images/mezon-logo-light.svg',
+        srcDark: 'images/mezon-logo-dark.svg',
       },
       items: [
         {
