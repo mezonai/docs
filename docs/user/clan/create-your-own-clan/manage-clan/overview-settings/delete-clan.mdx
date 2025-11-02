@@ -3,8 +3,9 @@ sidebar_position: 9
 sidebar_label: Xóa Clan
 description: "Xóa Clan khỏi hệ thống."
 ---
-
+import Image from "@site/src/components/Image";
 import { Steps, Step } from '@site/src/components/Steps';
+
 import deleteClan001 from './images/delete-clan-001.png';
 import deleteClan002 from './images/delete-clan-002.png';
 
@@ -20,12 +21,12 @@ Trong trường hợp Clan không còn được sử dụng hoặc bạn muốn 
 <Steps>
 <Step title="Ở menu bên trái, chọn **Xóa Clan**">
 
-<img style={{ width: '30%' }} src={deleteClan001} alt="delete-clan-001" />
+<Image style={{ margin: '1rem 2rem' }} src={deleteClan001}></Image>
 </Step>
 
 <Step title="Nhập lại tên Clan để xác nhận">
 
-<img style={{ width: '50%' }} src={deleteClan002} alt="delete-clan-002" />
+<Image style={{ margin: '1rem 2rem' }} src={deleteClan002}></Image>
 </Step>
 
 <Step title="Nhấn **Xóa Clan**">

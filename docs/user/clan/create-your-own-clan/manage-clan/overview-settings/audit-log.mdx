@@ -5,6 +5,9 @@ description: "Xem lịch sử các thao tác quản trị trong Clan."
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+
+import auditLog001 from "./images/audit-log-001.png";
 import auditLogMobile001 from "./images/audit-log-mobile-001.png";
 
 # Nhật ký kiểm tra
@@ -13,7 +16,9 @@ Là nơi lưu trữ những hoạt động quan trọng của Quản trị viên
 
 <Tabs>
 <TabItem value="PC" label="PC">
-![audit-log-001](./images/audit-log-001.png)
+
+<Image style={{ margin: '1rem 2rem' }} src={auditLog001}></Image>
+
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 <div align="center"><img style={{ width: "30%" }} src={auditLogMobile001} alt="audit-log-mobile-001" /></div>
