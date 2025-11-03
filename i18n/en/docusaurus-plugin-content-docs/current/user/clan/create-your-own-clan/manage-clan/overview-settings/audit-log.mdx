@@ -5,6 +5,9 @@ description: "View the history of administrative actions in a Clan."
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import auditLog001 from './images/audit-log-001.png';
+import auditLog002 from './images/audit-log-002.png';
 import auditLogMobile001 from './images/audit-log-mobile-001.png';
 
 # Audit log
@@ -13,7 +16,9 @@ This is where important administrative activities of the Clan are recorded. As t
 
 <Tabs>
 <TabItem value="PC" label="PC">
-![audit-log-001](./images/audit-log-001.png)
+<Image style={{ margin: '1rem 2rem' }}  src={auditLog001} alt="Audit Log 001" />
+
+<Image style={{ margin: '1rem 2rem' }}  src={auditLog002} alt="Audit Log 002" />
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 <img style={{ width: '30%' }} src={auditLogMobile001} alt="audit-log-mobile-001" />

@@ -5,19 +5,24 @@ description: ""
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import members001 from './images/members-001.png';
+import members002 from './images/members-002.png';
+import members003 from './images/members-003.png';
 import membersMobile001 from './images/members-mobile-001.png';
 import membersMobile002 from './images/members-mobile-002.png';
 
 # Members
 <Tabs>
 <TabItem value="PC" label="PC">
-![members-001](./images/members-001.png)
+1. Open Mezon and select the **member icon** ![members-001](./images/members-001.png) at the top of the channel to view the members.
 
+2. Here, you can view the list of members in the channel.
+ <Image style={{ margin: '1rem 2rem' }}  src={members002} alt="Members 002" />
 :::tip
 If you are the **room owner**, you can instantly assign a **Role** to a member with just one click.
+<Image style={{ margin: '1rem 2rem' }}  src={members003} alt="Members 003" />
 :::
-
-![members-002](./images/members-002.png)
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 <div align="left"><img style={{ width: '30%' }} src={membersMobile001} alt="members-mobile-001" /></div>
