@@ -4,6 +4,7 @@ sidebar_label: Transferring Clan Ownership
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
 import transferringClanOwnership001 from './images/transferring-clan-ownership-001.png';
 import transferringClanOwnership002 from './images/transferring-clan-ownership-002.png';
@@ -18,18 +19,20 @@ When you need to change the administrator or hand over the community, you can tr
 <Tabs>
 <TabItem value="PC" label="PC">
 ### **Steps to Transfer Ownership:**
-
-1. In the left menu, select **Members**.
+<Steps>
+<Step title="In the left menu, select **Members**.">
 
 <Image style={{ margin: '1rem 2rem' }}  src={transferringClanOwnership001} alt="Transferring Clan Ownership 001" />
-
-2. Right-click on the member you want to transfer ownership to, then select **Transfer Ownership**.
+</Step>
+<Step title="Right-click on the member you want to transfer ownership to, then select **Transfer Ownership**.">
 
 <Image style={{ margin: '1rem 2rem' }}  src={transferringClanOwnership002} alt="Transferring Clan Ownership 002" />
-
-3. Check the confirmation box, then click **Transfer Ownership** to complete the process.
+</Step>
+<Step title="Check the confirmation box, then click **Transfer Ownership** to complete the process.">
 
 <Image style={{ margin: '1rem 2rem' }}  src={transferringClanOwnership003} alt="Transferring Clan Ownership 003" />
+</Step>
+</Steps>
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 ### How to Transfer Clan Ownership

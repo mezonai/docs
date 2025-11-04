@@ -3,11 +3,14 @@ sidebar_position: 9
 sidebar_label: Delete Clan
 description: "Delete Clan from the system."
 ---
+
 import Image from "@site/src/components/Image";
-import deleteClan001 from './images/delete-clan-001.png';
-import deleteClan002 from './images/delete-clan-002.png';
+import { Steps, Step } from "@site/src/components/Steps";
+import deleteClan001 from "./images/delete-clan-001.png";
+import deleteClan002 from "./images/delete-clan-002.png";
 
 # Delete Clan
+
 If your Clan is no longer in use or you want to discontinue its community, you can permanently delete the Clan.
 
 :::danger Note
@@ -16,16 +19,22 @@ This action **cannot be undone**. All data, channels, and content within the Cla
 
 ### **How to Delete a Clan:**
 
-1. In the left menu, select **Delete Clan**.
-
-<Image style={{ margin: '1rem 2rem' }}  src={deleteClan001} alt="Delete Clan 001" />
-
-2. Re-enter the Clan name to confirm.
-
-<Image style={{ margin: '1rem 2rem' }}  src={deleteClan002} alt="Delete Clan 002" />
-
-3. Click **Delete Clan**.
-
-:::danger Note
-Once deleted, the Clan and all associated data will be permanently lost and **cannot be recovered**.
-:::
+<Steps>
+  <Step title="In the left menu, select **Delete Clan**.">
+    <Image
+      style={{ margin: "1rem 2rem" }}
+      src={deleteClan001}
+      alt="Delete Clan 001"
+    />
+  </Step>
+  <Step title="Re-enter the Clan name to confirm.">
+    <Image
+      style={{ margin: "1rem 2rem" }}
+      src={deleteClan002}
+      alt="Delete Clan 002"
+    />
+  </Step>
+  <Step title="Click **Delete Clan**."></Step>
+</Steps>
+:::danger Note Once deleted, the Clan and all associated data will be permanently
+lost and **cannot be recovered**. :::

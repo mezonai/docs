@@ -4,6 +4,7 @@ sidebar_label: Canvas
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
 import canvas001 from './images/canvas-001.png';
 import canvas002 from './images/canvas-002.png';
@@ -15,14 +16,16 @@ Instead of mixing important documents within the chat, Mezon provides Canvas - a
 ### **How to Use:**
 <Tabs>
 <TabItem value="PC" label="PC">
-1. Open Mezon and select the **Text Channel** or **Thread** where you want to collaborate.
-2. Click the **paper icon** ![canvas-001](./images/canvas-001.png) in the chat toolbar.
-3. Select **Create** to start a new note.
-
+<Steps>
+<Step title="Open Mezon and select the **Text Channel** or **Thread** where you want to collaborate."></Step>
+<Step title="Click the **paper icon** in the chat toolbar.">
+<Image style={{ margin: '1rem 2rem' }}  src={canvas001} alt="Canvas 001" />
+</Step>
+<Step title="Select **Create** to start a new note.">
 <Image style={{ margin: '1rem 2rem' }}  src={canvas002} alt="Canvas 002" />
-
-4. Enter the **title** and **content** you want to share with the group.
-
+</Step>
+<Step title="Enter the **title** and **content** you want to share with the group."></Step>
+</Steps>
 :::warning Note
 Maximum image file size in Canvas: 50 MB
 :::

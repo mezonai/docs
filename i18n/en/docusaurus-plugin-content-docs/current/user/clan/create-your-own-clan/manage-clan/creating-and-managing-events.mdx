@@ -4,11 +4,13 @@ sidebar_label: Creating & Managing Events
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
 import creatingAndManagingEvents001 from './images/creating-and-managing-events-001.png';
 import creatingAndManagingEvents002 from './images/creating-and-managing-events-002.png';
 import creatingAndManagingEvents003 from './images/creating-and-managing-events-003.png';
 import creatingAndManagingEvents004 from './images/creating-and-managing-events-004.png';
+import creatingAndManagingEvents005 from './images/creating-and-managing-events-005.png';
 import creatingAndManagingEventsMobile001 from './images/creating-and-managing-events-mobile-001.png';
 import creatingAndManagingEventsMobile002 from './images/creating-and-managing-events-mobile-002.png';
 import creatingAndManagingEventsMobile003 from './images/creating-and-managing-events-mobile-003.png';
@@ -42,32 +44,31 @@ When creating an Event, you can choose the format that fits your needs:
 <Tabs>
 <TabItem value="PC" label="PC">
 ### **How to Create an Event:**
-
-1. In the left navigation panel, select **Events**.
+<Steps>
+<Step title="In the left navigation panel, select **Events**.">
 
 <Image style={{ margin: '1rem 2rem' }}  src={creatingAndManagingEvents001} alt="Creating and Managing Events 001" />
-
-2. **Choose the Event Location:**
+</Step>
+<Step title="**Choose the Event Location:**">
+<Image style={{ margin: '1rem 2rem' }}  src={creatingAndManagingEvents002} alt="Creating and Managing Events 002" />
 
 * **Voice Channel** – Host the event in an existing Clan voice channel, using Mezon’s voice, video, and screen sharing features.
 * **Somewhere Else** – If the event is offline or on another platform, you can add a link or address for easy access.
 * **Private Event** – Create a separate online room with a fixed link, ideal for inviting people outside Mezon.
-
-3. Enter the **Event details** and click **Next**.
-
-  <Image style={{ margin: '1rem 2rem' }}  src={creatingAndManagingEvents002} alt="Creating and Managing Events 002" />
-
+</Step>
+<Step title="Enter the **Event details** and click **Next**.">
+<Image style={{ margin: '1rem 2rem' }}  src={creatingAndManagingEvents003} alt="Creating and Managing Events 003" />
 :::warning
 Maximum **Event Cover Image** size: 1 MB.
 :::
-
-4. Review the Event content and click **Create**.
-
-<Image style={{ margin: '1rem 2rem' }}  src={creatingAndManagingEvents003} alt="Creating and Managing Events 003" />
-
-5. Your Event will appear under **Events** in the left navigation panel.
-
+</Step>
+<Step title="Review the Event content and click **Create**.">
 <Image style={{ margin: '1rem 2rem' }}  src={creatingAndManagingEvents004} alt="Creating and Managing Events 004" />
+</Step>
+<Step title="Your Event will appear under **Events** in the left navigation panel.">
+<Image style={{ margin: '1rem 2rem' }}  src={creatingAndManagingEvents005} alt="Creating and Managing Events 005" />
+</Step>
+</Steps>
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 ### How to Create an Event

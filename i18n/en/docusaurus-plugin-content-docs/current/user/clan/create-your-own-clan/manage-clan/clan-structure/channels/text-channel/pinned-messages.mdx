@@ -4,6 +4,7 @@ sidebar_label: Pinned Messages
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
 import pinnedMessages001 from './images/pinned-messages-001.png';
 import pinnedMessages002 from './images/pinned-messages-002.png';
@@ -20,21 +21,22 @@ In busy chat channels, Pinned Messages help keep important content easily access
 ### **How to Pin a Message:**
 <Tabs>
 <TabItem value="PC" label="PC">
-1. In a **Text Channel**, right-click the message you want to pin.
-
+<Steps>
+<Step title="In a **Text Channel**, right-click the message you want to pin.">
 <Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages001} alt="Pinned Messages 001" />
-
-2. Select **Pin Message**, confirm, and click **Pin**.
+</Step>
+<Step title="Select **Pin Message**, confirm, and click **Pin**.">
 
 <Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages002} alt="Pinned Messages 002" />
-
-3. A notification about the pinned message will appear in the chat. You can click **All Messages** or the **pin icon** ![pinned-messages-003](./images/pinned-messages-003.png) at the top of the channel to review pinned messages.
-
+</Step>
+<Step title="A notification about the pinned message will appear in the chat. You can click **All Messages** or the **pin icon** at the top of the channel to review pinned messages.">
+<Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages003} alt="Pinned Messages 003" />
 <Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages004} alt="Pinned Messages 004" />
-
-4. If there are multiple pinned messages, select **Jump** in the pinned list to quickly navigate to the original message.
-
+</Step>
+<Step title="If there are multiple pinned messages, select **Jump** in the pinned list to quickly navigate to the original message.">
 <Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages005} alt="Pinned Messages 005" />
+</Step>
+</Steps>
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 1. In a Text Channel or Thread, press and hold the message you want to pin.

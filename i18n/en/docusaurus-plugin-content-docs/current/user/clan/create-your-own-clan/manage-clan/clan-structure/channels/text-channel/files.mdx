@@ -4,6 +4,7 @@ sidebar_label: Files
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";   
 import Image from "@site/src/components/Image";
 import files001 from './images/files-001.png';
 import files002 from './images/files-002.png';
@@ -24,18 +25,20 @@ Sharing documents is just as important as sharing images. Files allow you to sen
 ### **How to Send a File:**
 <Tabs>
 <TabItem value="PC" label="PC">
-1. Open the **Text Channel** or **Thread** where you want to share.
-2. Click the **plus (+) icon** to the left of the message input box.
+<Steps>
+<Step title="Open the **Text Channel** or **Thread** where you want to share."></Step>
+<Step title="Click the **plus (+) icon** to the left of the message input box.">
 
 <Image style={{ margin: '1rem 2rem' }}  src={files001} alt="Files 001" />
-
-3. Select the file and click **Open**.
+</Step>
+<Step title="Select the file and click **Open**.">
 
 <Image style={{ margin: '1rem 2rem' }}  src={files002} alt="Files 002" />
-
-4. Add a description if needed, or press **Enter** to send immediately.
-
+</Step>
+<Step title="Add a description if needed, or press **Enter** to send immediately.">
 <Image style={{ margin: '1rem 2rem' }}  src={files003} alt="Files 003" />
+</Step>
+</Steps>
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 1. Open the Text Channel or Thread you want to share in.
@@ -57,14 +60,17 @@ Sharing documents is just as important as sharing images. Files allow you to sen
 ### **How to View Sent Files:**
 <Tabs>
 <TabItem value="PC" label="PC">
-1. In the **Text Channel** or **Thread**, click the **paperclip icon** ![files-004](./images/files-004.png) at the top of the channel.
-2. The file list will display the **sender** and **time sent**.
-
+<Steps>
+<Step title="In the **Text Channel** or **Thread**, click the **paperclip icon** at the top of the channel.">
+<Image style={{ margin: '1rem 2rem' }}  src={files004} alt="Files 004" />
+</Step>
+<Step title="The file list will display the **sender** and **time sent**.">
 <Image style={{ margin: '1rem 2rem' }}  src={files005} alt="Files 005" />
-
-3. Click **Download** to save the file to your computer.
-
+</Step>
+<Step title="Click **Download** to save the file to your computer.">
 <Image style={{ margin: '1rem 2rem' }}  src={files006} alt="Files 006" />
+</Step>
+</Steps>
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 1. In the Text Channel or Thread, select **Media** from the menu.

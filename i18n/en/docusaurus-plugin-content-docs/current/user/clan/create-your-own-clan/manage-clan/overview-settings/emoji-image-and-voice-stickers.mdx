@@ -5,6 +5,7 @@ description: "Upload and manage custom emoji, image stickers, and voice stickers
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
 import emojiImageAndVoiceStickers001 from './images/emoji-image-and-voice-stickers-001.png';
 import emojiImageAndVoiceStickers002 from './images/emoji-image-and-voice-stickers-002.png';
@@ -25,12 +26,11 @@ In online communication, they help create a fun, close, and community-specific s
 ### How to Add Emojis, Image Stickers & Voice Stickers
 <Tabs>
 <TabItem value="PC" label="PC">
-1. In the left menu, select **Emojis**, **Image Stickers**, or **Voice Stickers** depending on your needs.
-
+<Steps>
+<Step title="In the left menu, select **Emojis**, **Image Stickers**, or **Voice Stickers** depending on your needs.">
 <Image style={{ margin: '1rem 2rem' }}  src={emojiImageAndVoiceStickers001} alt="Emoji, Image & Voice Stickers 001" />
-
-2. Click **Upload Emoji/Image/Voice Sticker**.
-
+</Step>
+<Step title="Click **Upload Emoji/Image/Voice Sticker**.">
 <Image style={{ margin: '1rem 2rem' }}  src={emojiImageAndVoiceStickers002} alt="Emoji, Image & Voice Stickers 002" />
 
 * Maximum: 250 emojis per Clan
@@ -54,12 +54,14 @@ In online communication, they help create a fun, close, and community-specific s
 * Maximum file size: 1 MB
 * Naming: Minimum 2 characters; letters, numbers, and underscores only
 
-3.  Click **Browse** to select the emoji/sticker you want to add, then click **Upload** to complete.
+</Step>
+<Step title="Click **Browse** to select the emoji/sticker you want to add, then click **Upload** to complete.">
 
     <Image style={{ margin: '1rem 2rem' }}  src={emojiImageAndVoiceStickers005} alt="Emoji, Image & Voice Stickers 005" />
 
 You can also check **“This is a paid item”** when uploading an emoji or image sticker to require users to purchase it using Mezon Coins. Currently, the default price is **500 Mezon Coins per emoji/sticker**.
-
+</Step>
+</Steps>
 > Each emoji or sticker is a piece of internal culture, helping your community bond and be easily recognized. Members are free to propose and design emojis, making conversations more lively. They also allow for quick, concise, and humorous expression -perfectly aligning with Mezon’s spirit of **“Play together, work together.”**
 
 </TabItem>

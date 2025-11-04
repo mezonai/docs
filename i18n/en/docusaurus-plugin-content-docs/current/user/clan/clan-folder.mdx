@@ -4,6 +4,7 @@ sidebar_label: Clan Folder
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
 import clanFolder001 from './images/clan-folder-001.png';
 import clanFolder002 from './images/clan-folder-002.png';
@@ -23,31 +24,33 @@ When you join multiple Clans, the left-hand list can become long and hard to man
 <TabItem value="PC" label="PC">
 ### **Creating a Folder:**
 
-1. On the main Mezon interface, select the Clan you want to put into a folder.
+<Steps>
+<Step title="On the main Mezon interface, select the Clan you want to put into a folder.">
 
 <Image style={{ margin: '1rem 2rem' }}  src={clanFolder001} alt="Clan Folder 001" />
-
-2. Drag that Clan onto another Clan. When you see a green dashed rectangle, release the mouse.
-
+</Step>
+<Step title="Drag that Clan onto another Clan. When you see a green dashed rectangle, release the mouse.">
 <Image style={{ margin: '1rem 2rem' }}  src={clanFolder002} alt="Clan Folder 002" />
-
-3. The folder containing your Clans will appear.
-
+</Step>
+<Step title="The folder containing your Clans will appear.">
 <Image style={{ margin: '1rem 2rem' }}  src={clanFolder003} alt="Clan Folder 003" />
-
+</Step>
+</Steps>
 ### **Removing a Clan from a Folder:**
 
-1. Open the folder containing your Clans.
+<Steps>
+<Step title="Open the folder containing your Clans.">
 
 <Image style={{ margin: '1rem 2rem' }}  src={clanFolder004} alt="Clan Folder 004" />
-
-2. Hover over the Clan you want to remove and click the **X** icon.
-
+</Step>
+<Step title="Hover over the Clan you want to remove and click the **X** icon.">
 <Image style={{ margin: '1rem 2rem' }}  src={clanFolder005} alt="Clan Folder 005" />
-
-3. After removal, the Clan will appear outside the folder.
+</Step>
+<Step title="After removal, the Clan will appear outside the folder.">
 
 <Image style={{ margin: '1rem 2rem' }}  src={clanFolder006} alt="Clan Folder 006" />
+</Step>
+</Steps>
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 ### How to Create a Clan Folder

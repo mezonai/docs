@@ -4,6 +4,7 @@ sidebar_label: Threads
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
 import threads001 from './images/threads-001.png';
 import threads002 from './images/threads-002.png';
@@ -18,17 +19,21 @@ Mezon helps you avoid “information chaos” with Threads - separate conversati
 ### **How to Use Threads:**
 <Tabs>
 <TabItem value="PC" label="PC">
-1. Open Mezon and select the **Text Channel** where you want to communicate.
-2. Click the **thread icon** ![threads-001](./images/threads-001.png) in the chat toolbar.
-3. Select **Create** to start a new thread.
-
+<Steps>
+<Step title="Open Mezon and select the **Text Channel** where you want to communicate."></Step>
+<Step title="Click the **thread icon** in the chat toolbar.">
+<Image style={{ margin: '1rem 2rem' }}  src={threads001} alt="Threads 001" />
+</Step>
+<Step title="Select **Create** to start a new thread.">
 <Image style={{ margin: '1rem 2rem' }}  src={threads002} alt="Threads 002" />
-
-4. Enter the **thread name** and send the first message to begin the discussion with the group.
+</Step>
+<Step title="Enter the **thread name** and send the first message to begin the discussion with the group.">
 
 * To make a thread **private** (visible only to invited members and managers), select **Private Thread** at the bottom.
 
 <Image style={{ margin: '1rem 2rem' }}  src={threads003} alt="Threads 003" />
+</Step>
+</Steps>
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 1. Open Mezon and select the Text Channel where you want to communicate.

@@ -5,6 +5,7 @@ description: "Create, sort, and assign permissions to each role in your Clan."
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
 
 import rolesAndPermissionsManagement001 from './images/roles-and-permissions-management-001.png';
@@ -41,10 +42,10 @@ As your community grows, both the number of members and the level of interaction
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement001}></Image>
 
 * **Administrator** – Full control over the Clan and channel list (almost equivalent to the owner).
-* **Manage Clan** – Manage Clan settings, roles, channels, and member activities.&#x20;
+* **Manage Clan** – Manage Clan settings, roles, channels, and member activities.
 
 :::info
-However, the **Manage Clan** permission **cannot view or manage the full channel list**, which distinguishes it from **Administrator**.
+However, the **Manage Clan** permission <span style={{color: "var(--ifm-color-danger)"}}>**cannot view or manage the full channel list**</span>, which distinguishes it from **Administrator**.
 :::
 
 * **Manage Channel** – Create, edit, and delete channels.
@@ -71,35 +72,35 @@ However, the **Manage Clan** permission **cannot view or manage the full channel
 :::
 
 #### **How to set Permissions**
-
-1. In the left menu, select **Roles**.
-
+<Steps>
+<Step title="In the left menu, select **Roles**.">
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement002}></Image>
+</Step>
 
-2. Under **Default Permissions**, set the basic actions that all members in the Clan can perform.
-
+<Step title="Under **Default Permissions**, set the basic actions that all members in the Clan can perform.">
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement003}></Image>
+</Step>
 
-3. Choose the permissions you want to apply to everyone and click **Save Changes**.
-
+<Step title="Choose the permissions you want to apply to everyone and click **Save Changes**.">
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement004}></Image>
-
+</Step>
+</Steps>
 :::info
-By default, all new members joining the Clan are assigned the **@everyone** role.\
+By default, all new members joining the Clan are assigned the **@everyone** role.
 For this role, it is recommended to enable only the minimum permissions, such as **View Channel** and **Send Message**, to ensure order and safety within the community.
 :::
-
 ### **2. Roles Management**
 
 Not all members in a Clan need the same permissions. With **Roles**, you can create multiple roles with different permissions. You can also assign colors and icons to each group. This helps the Clan operate more professionally and makes management easier as your community grows.
 
 #### **How to Create and Assign Roles**
 
-1. In the left menu, select **Roles**.
-
+<Steps>
+<Step title="In the left menu, select **Roles**.">
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement002}></Image>
+</Step>
 
-2. Click **Create Role**, then edit the **name, color, and icon** under **Displays**.
+<Step title="Click **Create Role**, then edit the **name, color, and icon** under **Displays**.">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement005}></Image>
 
@@ -109,24 +110,29 @@ Not all members in a Clan need the same permissions. With **Roles**, you can cre
 **Maximum Role Icon Size**: 256 KB
 :::
 
-3. Under **Manage Members**, click **Add Members** to assign members to the **Role**.
+</Step>
+
+<Step title="Under **Manage Members**, click **Add Members** to assign members to the **Role**.">
 
 :::tip
 You can grant or revoke advanced permissions by creating a new role and assigning it to specific members (done in **Manage Members**).
 :::
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement007}></Image>
-
-4. In **Permissions**, customize what actions the role can perform (e.g., Admin, Send Message, Delete Message, etc.).
+</Step>
+<Step title="In **Permissions**, customize what actions the role can perform (e.g., Admin, Send Message, Delete Message, etc.).">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement008}></Image>
+</Step>
+<Step title="Click **Save Changes** to apply the role settings.">
+</Step>
 
-5. Click **Save Changes** to apply the role settings.
-6. **Changing Role Display Order**
+<Step title="Changing Role Display Order.">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement009}></Image>
 Simply drag and drop roles to arrange their display order. If a member has multiple roles, the display will follow this order.
-
+</Step>
+</Steps>
 ### **3. Override Permissions**
 
 **Override Permissions** allow you to set special permissions for **private channels** or **private threads**.
@@ -138,21 +144,22 @@ Simply drag and drop roles to arrange their display order. If a member has multi
   * Allow or deny managing threads, deleting messages, etc.
 
 **How to Customize Permissions in a Private Channel/Thread:**
-
-1. Click the **gear icon** on your private channel/thread.
+<Steps>
+<Step title="Click the **gear icon** on your private channel/thread.">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement010}></Image>
-
-2. Select **Permissions** from the left menu.
+</Step>
+<Step title="Select **Permissions** from the left menu.">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement011}></Image>
-
-3. Customize the permissions for members in your channel.
+</Step>
+<Step title="Customize the permissions for members in your channel.">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement012}></Image>
-
-4. Click **Save Changes** to apply.
-
+</Step>
+<Step title="Click **Save Changes** to apply.">
+</Step>
+</Steps>
 :::tip
 This feature allows flexible management. For example, a regular member may only read content in a private channel, while a moderator can both read and send messages.
 :::
@@ -167,7 +174,7 @@ As the community grows, the number of members and interactions increases. Withou
 <figure><img src={rolesAndPermissionsManagementMobile001} alt="roles-and-permissions-management-mobile-001" /></figure>
 
 * **Administrator** – Full control over the Clan (just below the owner).
-* **Manage Clan** – Allows members to control clan settings, roles, and channels, monitor member activity, and ensure organized management.&#x20;
+* **Manage Clan** – Allows members to control clan settings, roles, and channels, monitor member activity, and ensure organized management.
 
 :::danger
 However, **Manage Clan** permission <div style={{ color: 'red' }}>**cannot see/manage all channels like Administrator.**</div>
@@ -180,7 +187,7 @@ However, **Manage Clan** permission <div style={{ color: 'red' }}>**cannot see/m
 * **View Channel** – View public channels.
 
 :::info
-&#x20;**Clan Hierarchy**
+**Clan Hierarchy**
 
 * **Owner** – Highest authority; **can perform all actions**. Cannot be removed. Can transfer ownership to others. Has absolute control over members, roles, channels, and settings.
 * **Administrator** – Just below the owner, **almost full control of the Clan**. Can manage channels, roles, members, and most settings. Can remove other admins or regular members, but cannot remove the owner.

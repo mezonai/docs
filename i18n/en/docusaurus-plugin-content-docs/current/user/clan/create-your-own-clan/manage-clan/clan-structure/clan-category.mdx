@@ -5,6 +5,7 @@ sidebar_label: Clan Category
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
 import clanCategory001 from './images/clan-category-001.png';
 import clanCategory002 from './images/clan-category-002.png';
@@ -21,20 +22,18 @@ As your Clan grows, the number of channels can increase quickly, making it diffi
 ### **How to Create a Category:**
 <Tabs>
 <TabItem value="PC" label="PC">
-1. Click your **Clan name**, then select **Create Category**. Make sure **Show Empty Category** is enabled.
-
+<Steps>
+<Step title="Click your **Clan name**, then select **Create Category**. Make sure **Show Empty Category** is enabled.">
 <Image style={{ margin: '1rem 2rem' }}  src={clanCategory001} alt="Clan Category 001" />
-
-2. Enter the **Category name** you want and click **Create Category**.
-
+</Step>
+<Step title="Enter the **Category name** you want and click **Create Category**.">
 <Image style={{ margin: '1rem 2rem' }}  src={clanCategory002} alt="Clan Category 002" />
-
-3. The new Category will appear on the left-hand navigation panel.
-
+</Step>
+<Step title="The new Category will appear on the left-hand navigation panel.">
 <Image style={{ margin: '1rem 2rem' }}  src={clanCategory003} alt="Clan Category 003" />
-
-4. You can move channels between Categories by **dragging and dropping** them into the desired position.
-
+</Step>
+<Step title="You can move channels between Categories by **dragging and dropping** them into the desired position."></Step>
+</Steps>
 :::tip
 You can also **customize notifications** for a Category, similar to customizing notifications for the Clan or individual channels.
 :::
@@ -59,7 +58,7 @@ Categories reduce information clutter, save time searching for content, and ensu
 
 ### How to Manage a Category
 
-Press and hold the category you want to manage.&#x20;
+Press and hold the category you want to manage.
 
 <div align="left"><img style={{ width: '30%' }} src={clanCategoryMobile004} alt="clan-category-mobile-004" /></div>
 

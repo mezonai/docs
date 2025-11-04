@@ -4,6 +4,7 @@ sidebar_label: Topic
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
 import topic001 from './images/topic-001.png';
 import topic002 from './images/topic-002.png';
@@ -18,15 +19,15 @@ Topic in chat allow you to create a separate discussion directly from a message,
 ### **How to Add a Topic in Chat:**
 <Tabs>
 <TabItem value="PC" label="PC">
-1. In a **Text Channel** or **Thread**, right-click the message you want to discuss.
-2. Select **Topic Discussion**
-
+<Steps>
+<Step title="In a **Text Channel** or **Thread**, right-click the message you want to discuss."></Step>
+<Step title="Select **Topic Discussion**">
 <Image style={{ margin: '1rem 2rem' }}  src={topic001} alt="Topic 001" />
-
-3. Enter your message in the **Topic window** on the right to start the discussion.
-
+</Step>
+<Step title="Enter your message in the **Topic window** on the right to start the discussion.">
 <Image style={{ margin: '1rem 2rem' }}  src={topic002} alt="Topic 002" />
-
+</Step>
+</Steps>
 With **Topic**, you can maintain a focused main conversation while allowing detailed discussions without confusion.
 </TabItem>
 <TabItem value="mobile" label="Mobile">
@@ -35,7 +36,7 @@ With **Topic**, you can maintain a focused main conversation while allowing deta
 
 <div align="left"><img style={{ width: '30%' }} src={topicMobile001} alt="topic-mobile-001" /></div>
 
-3. Enter your message in the Topic window to start the exchange.&#x20;
+3. Enter your message in the Topic window to start the exchange.
 
 <div align="left"><img style={{ width: '30%' }} src={topicMobile002} alt="topic-mobile-002" /></div>
 

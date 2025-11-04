@@ -43,9 +43,9 @@ Khi cộng đồng phát triển, số lượng thành viên tham gia và mức 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement001}></Image>
 
 - **Administrator** – Toàn quyền quản lý clan và list channel (gần tương đương với chủ sở hữu).
-- **Manage Clan** – Quản lý cài đặt clan, vai trò, kênh và hoạt động thành viên.&#x20;
+- **Manage Clan** – Quản lý cài đặt clan, vai trò, kênh và hoạt động thành viên.
 
-:::note
+:::info
 Tuy nhiên quyền **Manage Clan** <span style={{color: "var(--ifm-color-danger)"}}>**không nhìn thấy và không quản lý được toàn bộ danh sách kênh**</span>, điểm này khác biệt so với Administrator.
 :::
 
@@ -55,12 +55,12 @@ Tuy nhiên quyền **Manage Clan** <span style={{color: "var(--ifm-color-danger)
 - **Delete Message** – Xóa tin nhắn trong kênh công khai (bao gồm Chủ đề/Thảo luận ngắn).
 - **View Channel** – Xem kênh công khai.
 
-:::note
+:::info
 
 ### Phân biệt các quyền trong Clan
 
 - **Owner (Chủ sở hữu)**
-  - Khi khởi tạo Clan, người tạo Clan sẽ mặc định là **Chủ sở hữu**.&#x20;
+  - Khi khởi tạo Clan, người tạo Clan sẽ mặc định là **Chủ sở hữu**.
   - Không ai có thể kick Owner. Owner chỉ có thể **chuyển quyền sở hữu** cho người khác.
   - Quyền hạn cao nhất, làm được tất cả mọi hành động.
   - Có quyền quản trị tuyệt đối, bao gồm quản lý thành viên, vai trò, kênh, và toàn bộ thiết lập của clan.
@@ -91,13 +91,13 @@ Tuy nhiên quyền **Manage Clan** <span style={{color: "var(--ifm-color-danger)
 
 :::note
 Mặc định, mọi người khi tham gia clan sẽ thuộc role **@everyone**.\
-Với role này, nên chỉ bật các quyền tối thiểu như **Xem kênh** và **Gửi tin nhắn** để đảm bảo trật tự và an toàn cho cộng đồng.&#x20;
+Với role này, nên chỉ bật các quyền tối thiểu như **Xem kênh** và **Gửi tin nhắn** để đảm bảo trật tự và an toàn cho cộng đồng.
 :::
 
 </Step>
 </Steps>
 
-### 2. Quản lý vai trò&#x20;
+### 2. Quản lý vai trò
 
 Không phải tất cả thành viên trong Clan đều cần quyền hạn giống nhau. Với Vai trò, bạn có thể tạo nhiều vai trò khác nhau có quyền hạn khác nhau. Ngoài ra, bạn có thể gán màu sắc, biểu tượng riêng cho từng nhóm. Điều này giúp Clan vận hành chuyên nghiệp hơn, dễ dàng quản lý khi cộng đồng của bạn lớn dần.
 
@@ -116,7 +116,7 @@ Không phải tất cả thành viên trong Clan đều cần quyền hạn gi�
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement006}></Image>
 
-:::note
+:::warning Chú ý
 Dung lượng tối đa cho Biểu tượng vai trò là 256KB
 :::
 
@@ -151,7 +151,7 @@ Bạn chỉ cần kéo thả từng Vai trò để sắp xếp thứ tự các V
 
 ### 3. Ghi đè quyền hạn
 
-Ghi đè quyền hạn là cách thiết lập quyền đặc biệt cho **Kênh riêng tư hoặc Chủ đề riêng tư**.
+**Ghi đè quyền hạn** là cách thiết lập quyền đặc biệt cho **Kênh riêng tư hoặc Chủ đề riêng tư**.
 
 - Khi một Kênh/Chủ đề được tạo ở chế độ riêng tư, chỉ những **vai trò** hoặc **người dùng** được thêm trực tiếp mới có thể thấy.
 - Trong từng Kênh/Chủ đề riêng tư, bạn có thể **tùy chỉnh chi tiết quyền** cho từng vai trò hoặc người dùng:
@@ -163,13 +163,13 @@ Ghi đè quyền hạn là cách thiết lập quyền đặc biệt cho **Kênh
   **Cách tùy chỉnh chi tiết quyền trong Kênh/Chủ đề riêng tư:**
 
 <Steps>
-<Step title="Nhấp vào bánh răng ở kênh/chuỗi thảo luận riêng tư của bạn">
+<Step title="Nhấp vào **bánh răng** ở kênh/chuỗi thảo luận riêng tư của bạn">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement010}></Image>
 
 </Step>
 
-<Step title="Nhấn Quyền hạn trong menu bên trái">
+<Step title="Nhấn **Quyền hạn** trong menu bên trái">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement011}></Image>
 
@@ -209,7 +209,7 @@ Khi cộng đồng phát triển, số lượng thành viên tham gia và mức 
 - **Manage Clan** – Cho phép thành viên kiểm soát cài đặt clan, quản lý vai trò và kênh, giám sát hoạt động của thành viên, đảm bảo quản lý hiệu quả và cộng đồng được tổ chức tốt
 
 :::danger
-Tuy nhiên quyền **Manage Clan** <span style={{color: "var(--ifm-color-danger)"}}>**không nhìn thấy và không quản lý được toàn bộ danh sách kênh**</span>, điểm này khác biệt so với Administrator.&#x20;
+Tuy nhiên quyền **Manage Clan** <span style={{color: "var(--ifm-color-danger)"}}>**không nhìn thấy và không quản lý được toàn bộ danh sách kênh**</span>, điểm này khác biệt so với Administrator.
 :::
 
 - **Manage Channel** – Cho phép tạo, chỉnh sửa hoặc xóa kênh
@@ -258,7 +258,7 @@ Khuyến nghị chỉ bật các quyền tối thiểu như **Xem kênh** và **
 </Step>
 </Steps>
 
-### 2. Quản lý vai trò&#x20;
+### 2. Quản lý vai trò
 
 Không phải tất cả thành viên trong Clan đều cần quyền hạn giống nhau. Với **Vai trò**, bạn có thể tạo nhiều vai trò khác nhau, gán màu sắc, biểu tượng riêng và thiết lập quyền chi tiết cho từng nhóm. Điều này giúp Clan vận hành chuyên nghiệp hơn, dễ dàng quản lý khi cộng đồng của bạn lớn dần.
 
