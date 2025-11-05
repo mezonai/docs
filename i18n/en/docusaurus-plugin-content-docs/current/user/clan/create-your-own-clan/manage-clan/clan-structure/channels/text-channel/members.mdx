@@ -5,6 +5,7 @@ description: ""
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
 import members001 from './images/members-001.png';
 import members002 from './images/members-002.png';
@@ -15,10 +16,15 @@ import membersMobile002 from './images/members-mobile-002.png';
 # Members
 <Tabs>
 <TabItem value="PC" label="PC">
-1. Open Mezon and select the **member icon** ![members-001](./images/members-001.png) at the top of the channel to view the members.
+<Steps>
+<Step title="Open Mezon and select the **member icon** at the top of the channel to view the members.">
+<Image style={{ margin: '1rem 2rem' }}  src={members001} alt="Members 001" />
+</Step>
 
-2. Here, you can view the list of members in the channel.
+<Step title="Here, you can view the list of members in the channel.">
  <Image style={{ margin: '1rem 2rem' }}  src={members002} alt="Members 002" />
+</Step>
+</Steps>
 :::tip
 If you are the **room owner**, you can instantly assign a **Role** to a member with just one click.
 <Image style={{ margin: '1rem 2rem' }}  src={members003} alt="Members 003" />
