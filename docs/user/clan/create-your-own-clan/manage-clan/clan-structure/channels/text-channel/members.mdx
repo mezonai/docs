@@ -4,8 +4,10 @@ sidebar_label: Thành viên
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from '@site/src/components/Image';
 import members001 from './images/members-001.png';
 import members002 from './images/members-002.png';
+import members003 from './images/members-003.png';
 import membersMobile001 from './images/members-mobile-001.png';
 import membersMobile002 from './images/members-mobile-002.png';
 
@@ -17,11 +19,19 @@ không
 
 <Tabs>
 <TabItem value="PC" label="PC">
-<img style={{ width: '20%' }} src={members001} alt="members-001" />
+<Steps>
+<Step title="Mở Mezon, chọn **biểu tượng thành viên** ở đầu kênh để xem danh sách thành viên.">
+<Image style={{ margin: '1rem 2rem' }}  src={members001} alt="Members 001" />
+</Step>
 
-Nếu bạn là chủ phòng, bạn có thể ngay lập tức phân Vai trò cho thành viên đó chỉ với 1 nhấn.
-
-<img style={{ width: '30%' }} src={members002} alt="members-002" />
+<Step title="Ở đây, bạn có thể xem danh sách thành viên trong kênh.">
+ <Image style={{ margin: '1rem 2rem' }}  src={members002} alt="Members 002" />
+</Step>
+</Steps>
+:::tip
+Nếu bạn là chủ phòng, bạn có thể ngay lập tức phân Vai trò (Role) cho thành viên đó chỉ với 1 nhấn.
+<Image style={{ margin: '1rem 2rem' }}  src={members003} alt="Members 003" />
+:::
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 <div align="left"><img style={{ width: '30%' }} src={membersMobile001} alt="members-mobile-001" /></div>

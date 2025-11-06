@@ -4,6 +4,9 @@ sidebar_label: Thông báo
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from '@site/src/components/Image';
+import notificationSettings001 from './images/notification-settings-001.png';
+import notificationSettings002 from './images/notification-settings-002.png';
 import notificationSettingsMobile001 from './images/notification-settings-mobile-001.png';
 import notificationSettingsMobile002 from './images/notification-settings-mobile-002.png';
 
@@ -14,7 +17,7 @@ Bạn có thể nhanh chóng tùy chỉnh thông báo của Kênh, giúp bạn k
 
 <Tabs>
 <TabItem value="PC" label="PC">
-![notification-settings-001](./images/notification-settings-001.png)
+- Mở Mezon và chọn **biểu tượng thông báo** ![notification-settings-001](./images/notification-settings-001.png) ở đầu kênh để tùy chỉnh thông báo.
 </TabItem>
 <TabItem value="mobile" label="Mobile">
 <img style={{ width: '30%' }} src={notificationSettingsMobile001} alt="notification-settings-mobile-001" />
@@ -22,6 +25,7 @@ Bạn có thể nhanh chóng tùy chỉnh thông báo của Kênh, giúp bạn k
 </TabItem>
 </Tabs>
 
+<Image style={{ margin: '1rem 2rem' }} src={notificationSettings002} alt="Notification Settings 002" />
 1. **Tắt thông báo kênh:** tắt hoàn toàn thông bào từ Kênh trong khoảng thời gian bạn muốn, như 15 phút, 1 tiếng,... hay cho đến khi bạn quyết định mở lại.
 2. **Sử dụng mặc định danh mục:** Sử dụng cùng cài đặt thông báo mà bạn đã chọn với Danh mục của Kênh đó.
 3. **Tất cả:** Nhận tất cả thông báo.

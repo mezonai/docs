@@ -6,9 +6,15 @@ sidebar_label: Thư viện ảnh
 import { Steps, Step } from "@site/src/components/Steps";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import gallery005 from "./images/gallery-005.png";
-import gallery007 from "./images/gallery-007.png";
-import gallery008 from "./images/gallery-008.png";
+import Image from '@site/src/components/Image';
+import gallery001 from './images/gallery-001.png';
+import gallery002 from './images/gallery-002.png';
+import gallery003 from './images/gallery-003.png';
+import gallery004 from './images/gallery-004.png';
+import gallery005 from './images/gallery-005.png';
+import gallery006 from './images/gallery-006.png';
+import gallery007 from './images/gallery-007.png';
+import gallery008 from './images/gallery-008.png';
 import galleryMobile001 from "./images/gallery-mobile-001.png";
 import galleryMobile002 from "./images/gallery-mobile-002.png";
 import galleryMobile003 from "./images/gallery-mobile-003.png";
@@ -29,15 +35,15 @@ dàng lọc theo thời gian để tìm nội dung cần thiết.
 </Step>
 
 <Step title="Nhấn vào **dấu cộng (+)** bên trái ô nhập tin nhắn.">
-  ![gallery-001](./images/gallery-001.png)
+  <Image style={{ margin: '1rem 2rem' }} src={gallery001} alt="Gallery 001" />
 </Step>
 
 <Step title="Chọn file ảnh và nhấn **Open**.">
-  ![gallery-002](./images/gallery-002.png)
+  <Image style={{ margin: '1rem 2rem' }} src={gallery002} alt="Gallery 002" />
 </Step>
 
 <Step title="Thêm **mô tả** nếu cần, hoặc nhấn **Enter** để gửi ngay">
-![gallery-003](./images/gallery-003.png)
+  <Image style={{ margin: '1rem 2rem' }} src={gallery003} alt="Gallery 003" />
 </Step>
 </Steps>
 </TabItem>
@@ -70,21 +76,21 @@ dàng lọc theo thời gian để tìm nội dung cần thiết.
 <TabItem value="PC" label="PC">
 <Steps>
 <Step title="Trong **Kênh văn bản** hoặc **Chủ đề**, nhấn vào **biểu tượng bức ảnh** ở đầu kênh. Nhấn vào bức ảnh mà bạn muốn xem.">
-![gallery-004](./images/gallery-004.png)
+  <Image style={{ margin: '1rem 2rem' }} src={gallery004} alt="Gallery 004" />
 
-<img style={{ width: '50%' }} src={gallery005} alt="gallery-005" />
+<Image style={{ margin: '1rem 2rem' }} src={gallery005} alt="Gallery 005" />
 </Step>
 
 <Step title="Bạn có thể tải ảnh, xoay trái/phải, và phóng to/thu nhỏ khi xem chi tiết 1 ảnh">
-<div align="center">![gallery-006](./images/gallery-006.png)</div>
+<div align="center"><Image style={{ margin: '1rem 2rem' }} src={gallery006} alt="Gallery 006" /></div>
 </Step>
 
 <Step title="Chọn **Ngày gửi** để lọc theo ngày gửi ảnh.">
-<img style={{ width: '40%' }} src={gallery007} alt="gallery-007" />
+<Image style={{ margin: '1rem 2rem' }} src={gallery007} alt="Gallery 007" />
 </Step>
 
 <Step title="Nhấn Áp dụng, ảnh trong khoảng thời gian đã chọn sẽ hiển thị.">
-<img style={{ width: '40%' }} src={gallery008} alt="gallery-008" />
+<Image style={{ margin: '1rem 2rem' }} src={gallery008} alt="Gallery 008" />
 </Step>
 </Steps>
 </TabItem>

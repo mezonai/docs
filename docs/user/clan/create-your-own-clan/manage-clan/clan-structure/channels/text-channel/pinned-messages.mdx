@@ -5,6 +5,12 @@ sidebar_label: Ghim tin nhắn
 import { Steps, Step } from "@site/src/components/Steps";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from '@site/src/components/Image';
+import pinnedMessages001 from './images/pinned-messages-001.png';
+import pinnedMessages002 from './images/pinned-messages-002.png';
+import pinnedMessages003 from './images/pinned-messages-003.png';
+import pinnedMessages004 from './images/pinned-messages-004.png';
+import pinnedMessages005 from './images/pinned-messages-005.png';
 import pinnedMessagesMobile001 from './images/pinned-messages-mobile-001.png';
 import pinnedMessagesMobile002 from './images/pinned-messages-mobile-002.png';
 import pinnedMessagesMobile003 from './images/pinned-messages-mobile-003.png';
@@ -20,20 +26,20 @@ Trong các kênh chat sôi động, Ghim tin nhắn giúp ghim lại nội dung 
 <TabItem value="PC" label="PC">
 <Steps>
 <Step title="Trong **Kênh văn bản**, nhấp chuột phải vào tin nhắn bạn muốn ghim.">
-![pinned-messages-001](./images/pinned-messages-001.png)
+<Image style={{ margin: '1rem 2rem' }} src={pinnedMessages001} alt="Pinned Messages 001" />
 </Step>
 
 <Step title="Chọn Ghim tin nhắn, xác nhận lại và nhấn **“Ghim luôn”.**">
-  ![pinned-messages-002](./images/pinned-messages-002.png)
+  <Image style={{ margin: '1rem 2rem' }} src={pinnedMessages002} alt="Pinned Messages 002" />
 </Step>
 
 <Step title="Thông báo về tin nhắn ghim sẽ xuất hiện trong đoạn chat. Bạn có thể nhấn “**tất cả tin nhắn**” hoặc biểu tượng cái ghim ở đầu kênh để xem lại.">
-  ![pinned-messages-003](./images/pinned-messages-003.png)
-  ![pinned-messages-004](./images/pinned-messages-004.png)
+  <Image style={{ margin: '1rem 2rem' }} src={pinnedMessages003} alt="Pinned Messages 003" />
+  <Image style={{ margin: '1rem 2rem' }} src={pinnedMessages004} alt="Pinned Messages 004" />
 </Step>
 
-<Step title="Nếu có nhiều tin nhắn ghim, chọn **Jump** trong danh sách pinned để di chuyển nhanh đến tin nhắn gốc đó.">
-![pinned-messages-005](./images/pinned-messages-005.png)
+<Step title="Nếu có nhiều tin nhắn ghim, chọn **Nhảy đến** trong danh sách pinned để di chuyển nhanh đến tin nhắn gốc đó.">
+<Image style={{ margin: '1rem 2rem' }} src={pinnedMessages005} alt="Pinned Messages 005" />
 </Step>
 </Steps>
 </TabItem>
