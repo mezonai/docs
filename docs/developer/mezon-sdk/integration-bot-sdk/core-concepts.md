@@ -45,14 +45,22 @@ The **`MezonClient` [[src](https://github.com/mezonai/mezon-js/blob/master/packa
 ### Authentication Flow
 
 The `MezonClient.login()` process involves:
-1. **Initial authentication** with temporary API client using login credentials
+1. **Initial authentication** with temporary API client using bot ID and token
 2. **Dynamic endpoint resolution** parsing `api_url` from session response for optimal routing
-3. **Manager initialization** setting up all SDK components with authenticated session
-4. **WebSocket connection** establishing real-time communication channel
-5. **DM channel initialization** loading existing direct message channels
-6. **Ready state emission** signaling successful authentication and setup completion
+3. **Manager initialization** setting up all SDK components (API client, session, socket, channel, event managers)
+4. **MMN/ZK initialization** setting up zero-knowledge proof system for secure token transfers:
+   - Generates ephemeral key pair for transaction signing
+   - Retrieves wallet address for the bot
+   - Obtains zero-knowledge proofs for privacy-preserving transactions
+5. **WebSocket connection** establishing real-time communication channel
+6. **DM channel initialization** loading existing direct message channels
+7. **Ready state emission** signaling successful authentication and setup completion
 
-The SDK automatically handles server-side routing and load balancing through dynamic endpoint resolution, ensuring optimal connection paths.
+The SDK automatically handles:
+- Server-side routing and load balancing through dynamic endpoint resolution
+- Secure token transfer infrastructure with zero-knowledge proofs
+- Automatic nonce management for transactions
+- Optimal connection paths for real-time communication
 
 ## Real-time Communication (Sockets)
 
@@ -176,11 +184,33 @@ The Mezon SDK provides comprehensive social interaction capabilities:
 - **Automatic friend request handling**: The client automatically processes friend requests through notification events
 
 ### Token Transfer System
-- **`sendToken(sendTokenData)`**: Send virtual currency/tokens between users
+
+The Mezon SDK provides comprehensive support for secure token transfers using the **Mezon Money Network (MMN)** with zero-knowledge proofs for enhanced privacy:
+
+- **`sendToken(tokenEvent)`**: Send virtual currency/tokens between users with automatic ZK proof handling
+- **`getEphemeralKeyPair()`**: Generate temporary key pairs for secure transaction signing
+- **`getAddress(userId)`**: Retrieve wallet addresses for users
+- **`getZkProofs(data)`**: Obtain zero-knowledge proofs for privacy-preserving transactions
+- **`getCurrentNonce(userId)`**: Fetch current transaction nonce for proper sequencing
 - **`onTokenSend()`**: Listen for token transfer events with automatic DM notifications
-- **Transaction notifications**: Automatic direct message generation for successful transfers
-- **Formatted transfer messages**: Includes amount formatting and transaction notes
-- **Coffee system**: Social interaction feature via `onGiveCoffee()` events
+
+**Key Features:**
+- **Privacy-preserving**: Uses zero-knowledge proofs to protect transaction details
+- **Automatic initialization**: ZK infrastructure is set up during login process
+- **Nonce management**: SDK automatically handles transaction sequencing
+- **Decimal scaling**: Amounts are automatically scaled to the correct precision
+- **Error handling**: Comprehensive error messages for failed transactions
+- **Transaction receipts**: Returns transaction hash and status for verification
+
+**Transaction Flow:**
+1. SDK maintains ephemeral key pair, wallet address, and ZK proofs after login
+2. When sending tokens, SDK fetches current nonce automatically
+3. Transaction is signed with ephemeral private key
+4. ZK proof is attached to protect sender/receiver privacy
+5. Transaction is submitted to MMN and returns tx_hash if successful
+6. Recipient automatically receives DM notification with transaction details
+
+- **Coffee system**: Social interaction feature via `onGiveCoffee()` events for casual gifting
 
 ### Interactive Elements
 - **Message buttons**: Support for interactive buttons in messages via `onMessageButtonClicked()`

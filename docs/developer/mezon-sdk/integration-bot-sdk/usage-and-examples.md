@@ -13,19 +13,23 @@ import { MezonClient } from "mezon-sdk";
 
 ## Initializing the Client
 
-The `MezonClient` is the main entry point. You need to provide a token and optionally configure connection details.
+The `MezonClient` is the main entry point. You initialize it with a configuration object containing your bot credentials.
 
 ```typescript
 import { MezonClient } from "mezon-sdk";
 
-// Initialize with token and optional connection parameters
-const client = new MezonClient(
-  "<YOUR_BOT_TOKEN>", // Your bot or application token
-  "gw.mezon.ai", // Default host - usually you don't need to change this
-  "443", // Default port
-  true, // Use SSL (true for HTTPS/WSS)
-  7000 // Timeout in milliseconds
-);
+// Initialize with bot credentials (required)
+const client = new MezonClient({
+  botId: 'YOUR_BOT_ID',
+  token: 'YOUR_BOT_TOKEN',
+  // Optional configuration with defaults
+  host: 'gw.mezon.ai', // Gateway host
+  port: '443', // Connection port
+  useSSL: true, // Use secure connection (HTTPS/WSS)
+  timeout: 7000, // Request timeout in milliseconds
+  mmnApiUrl: 'https://dong.mezon.ai/mmn-api/', // MMN API for token transfers
+  zkApiUrl: 'https://dong.mezon.ai/zk-api/' // ZK API for zero-knowledge proofs
+});
 
 // Listen for ready event after successful login
 client.on("ready", async () => {
@@ -1103,15 +1107,23 @@ async function sendTokensToUser(
   note: string = ""
 ) {
   try {
-    const tokenData: TokenSentEvent = {
+    const tokenData: APISentTokenRequest = {
       receiver_id: recipientUserId,
       amount: amount,
       note: note,
-      extra_attribute: "" // Optional additional data
+      sender_name: "Bot Name", // Optional sender display name
+      extra_attribute: "" // Optional additional metadata
     };
 
     const response = await client.sendToken(tokenData);
-    console.log(`Sent ${amount} tokens to ${recipientUserId}`);
+    
+    if (response.ok) {
+      console.log(`✅ Sent ${amount} tokens to ${recipientUserId}`);
+      console.log(`Transaction hash: ${response.tx_hash}`);
+    } else {
+      console.error(`❌ Token transfer failed: ${response.error}`);
+    }
+    
     return response;
   } catch (error) {
     console.error("Failed to send tokens:", error);

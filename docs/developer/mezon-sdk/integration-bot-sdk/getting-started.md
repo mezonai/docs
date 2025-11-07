@@ -16,48 +16,72 @@ To use the `mezon-sdk`, you'll need the following installed on your system:
 
 ## Installation
 
-1.  **Clone the repository (if you need to build from source):**
-    If you are contributing or need the latest unreleased changes:
+Install the SDK via npm:
 
-    ```sh
-    git clone <your-fork-url-or-original-repo-url>/mezon-js.git
-    cd mezon-js/packages/mezon-sdk
-    ```
+```sh
+npm install mezon-sdk
+```
 
-    For using as a package, you would typically install it via npm after it's published:
+Or using Yarn:
 
-    ```sh
-    npm install mezon-sdk
-    # or
-    yarn add mezon-sdk
-    ```
-
-2.  **Install dependencies (if building from source):**
-    Navigate to the `mezon-sdk` directory:
-
-    ```sh
-    cd path/to/mezon-sdk
-    ```
-
-    Install the dependencies:
-
-    ```sh
-    npm install
-    # or
-    yarn install
-    ```
-
-3.  **Build the SDK (if building from source):**
-    The `package.json` specifies build scripts. Typically:
-    ```sh
-    npm run build
-    # or
-    yarn build
-    ```
-    This will compile the TypeScript code into JavaScript, usually in a `dist` directory, as configured in `tsconfig.json` and `tsconfig.esm.json`.
+```sh
+yarn add mezon-sdk
+```
 
 :::note
 
-Installation instructions will depend on the target environment (e.g., npm for Node.js, CDN for browser). Please refer to the specific installation guide for your platform.
+The SDK is available on NPM as `mezon-sdk`. For browser and React Native projects, the same package can be used with appropriate bundlers.
 
 :::
+
+## Quick Start
+
+Here's a simple example to get you started with the Mezon SDK:
+
+```javascript
+const { MezonClient } = require('mezon-sdk');
+
+// Initialize the client with bot credentials
+const client = new MezonClient({
+  botId: 'YOUR_BOT_ID',
+  token: 'YOUR_BOT_TOKEN'
+});
+
+// Listen for ready event
+client.on('ready', () => {
+  console.log(`Bot ${client.clientId} is ready!`);
+});
+
+// Login to establish connection
+client.login()
+  .then(() => console.log('Login successful!'))
+  .catch(error => console.error('Login failed:', error));
+```
+
+## Building from Source
+
+If you need to build from source or contribute to the SDK:
+
+1.  **Clone the repository:**
+    ```sh
+    git clone https://github.com/mezonai/mezon-js.git
+    cd mezon-js
+    ```
+
+2.  **Install dependencies:**
+    ```sh
+    npm install --workspace=mezon-sdk
+    ```
+
+3.  **Build the SDK:**
+    ```sh
+    npm run build --workspace=mezon-sdk
+    ```
+
+    This will compile the TypeScript code into JavaScript in the `dist` directory as configured in `tsconfig.json` and `tsconfig.esm.json`.
+
+## Next Steps
+
+- [Core Concepts](./core-concepts.md) - Learn about the fundamental concepts of the SDK
+- [Usage and Examples](./usage-and-examples.md) - Explore practical examples
+- [API References](./api-references.md) - Detailed API documentation

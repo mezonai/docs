@@ -38,29 +38,108 @@ The primary class for interacting with the Mezon API and real-time events. It ma
 
 ### **Key Methods**
 
-#### `constructor(token?, host?, port?, useSSL?, timeout?)`
+#### `constructor(config: ClientConfigDto)`
 
 Initializes a new `MezonClient` instance.
 
-| Parameter | Type    | Default       | Description                                       |
-| :-------- | :------ | :------------ | :------------------------------------------------ |
-| token     | string  | ""            | The API key for authentication.                   |
-| host      | string  | "gw.mezon.ai" | The host address of the Mezon gateway.            |
-| port      | string  | "443"         | The port number for the connection.               |
-| useSSL    | boolean | TRUE          | Specifies whether to use a secure SSL connection. |
-| timeout   | number  | 7000          | The timeout in milliseconds for API requests.     |
+| Parameter | Type              | Description                                       |
+| :-------- | :---------------- | :------------------------------------------------ |
+| config    | ClientConfigDto   | Configuration object for the client               |
+
+**ClientConfigDto Properties:**
+
+| Property   | Type    | Required | Default                            | Description                                       |
+| :--------- | :------ | :------- | :--------------------------------- | :------------------------------------------------ |
+| botId      | string  | Yes      | -                                  | The bot ID from the Mezon Developer Portal        |
+| token      | string  | Yes      | -                                  | The bot token/API key for authentication          |
+| host       | string  | No       | "gw.mezon.ai"                      | The host address of the Mezon gateway             |
+| port       | string  | No       | "443"                              | The port number for the connection                |
+| useSSL     | boolean | No       | true                               | Specifies whether to use a secure SSL connection  |
+| timeout    | number  | No       | 7000                               | The timeout in milliseconds for API requests      |
+| mmnApiUrl  | string  | No       | "https://dong.mezon.ai/mmn-api/"   | MMN API endpoint for token transfer operations    |
+| zkApiUrl   | string  | No       | "https://dong.mezon.ai/zk-api/"    | ZK API endpoint for zero-knowledge proof operations |
 
 #### `login(): Promise<string>`
 
 Authenticates the client with the Mezon service, establishes a WebSocket connection, and initializes all necessary managers and caches. It emits the ready event upon successful connection.
 
-#### `sendToken(sendTokenData: TokenSentEvent): Promise<any>`
+#### `sendToken(tokenEvent: APISentTokenRequest): Promise<any>`
 
-Sends a specified amount of a token to another user.
+Sends a specified amount of tokens to another user using the Mezon Money Network (MMN) with zero-knowledge proofs for privacy.
 
-| Parameter     | Type           | Default | Description                        |
-| :------------ | :------------- | :------ | :--------------------------------- |
-| sendTokenData | TokenSentEvent | ""      | The details of the token transfer. |
+| Parameter    | Type                  | Description                                   |
+| :----------- | :-------------------- | :-------------------------------------------- |
+| tokenEvent   | APISentTokenRequest   | The details of the token transfer             |
+
+**APISentTokenRequest Properties:**
+
+| Property          | Type      | Required | Description                                        |
+| :---------------- | :-------- | :------- | :------------------------------------------------- |
+| sender_id         | string    | No       | Sender ID (defaults to client ID if not provided)  |
+| receiver_id       | string    | Yes      | Recipient user ID                                  |
+| amount            | number    | Yes      | Amount of tokens to send                           |
+| note              | string    | No       | Optional note/message for the transfer             |
+| sender_name       | string    | No       | Sender's display name                              |
+| extra_attribute   | string    | No       | Additional metadata for the transaction            |
+| mmn_extra_info    | object    | No       | Extra MMN-specific information                     |
+
+**Return Value:**
+- Returns an object with `ok: boolean`, `tx_hash: string`, and `error: string` properties
+
+**Notes:**
+- The SDK automatically handles ephemeral key pair generation, nonce management, and zero-knowledge proof creation
+- These are initialized during the `login()` process and stored for subsequent token transfers
+- Amounts are automatically scaled to the correct decimal places
+
+#### `getEphemeralKeyPair(): Promise<IEphemeralKeyPair>`
+
+Generates an ephemeral key pair for secure token transactions.
+
+**Return Value:**
+- Returns `{ publicKey: string, privateKey: string }`
+
+#### `getAddress(userId: string): Promise<string>`
+
+Retrieves the wallet address for a given user ID.
+
+| Parameter | Type   | Description                   |
+| :-------- | :----- | :---------------------------- |
+| userId    | string | The user ID to get address for |
+
+**Return Value:**
+- Returns the user's wallet address as a string
+
+#### `getZkProofs(data: ApiGetZkProofRequest): Promise<IZkProof>`
+
+Generates zero-knowledge proofs for privacy-preserving token transactions.
+
+| Parameter | Type                  | Description                        |
+| :-------- | :-------------------- | :--------------------------------- |
+| data      | ApiGetZkProofRequest  | The request data for ZK proof      |
+
+**ApiGetZkProofRequest Properties:**
+
+| Property               | Type   | Description                    |
+| :--------------------- | :----- | :----------------------------- |
+| user_id                | string | The user ID                    |
+| jwt                    | string | The session JWT token          |
+| address                | string | The wallet address             |
+| ephemeral_public_key   | string | The ephemeral public key       |
+
+**Return Value:**
+- Returns `{ proof: string, public_input: string }`
+
+#### `getCurrentNonce(userId: string, tag?: 'latest' | 'pending'): Promise<{ nonce: number }>`
+
+Fetches the current transaction nonce for a user.
+
+| Parameter | Type                      | Default    | Description                        |
+| :-------- | :------------------------ | :--------- | :--------------------------------- |
+| userId    | string                    | -          | The user ID                        |
+| tag       | 'latest' \| 'pending'     | 'pending'  | Which nonce to retrieve            |
+
+**Return Value:**
+- Returns an object containing the nonce number
 
 #### `getListFriends(limit?: number, state?: string, cursor?: string): Promise<any>`
 
