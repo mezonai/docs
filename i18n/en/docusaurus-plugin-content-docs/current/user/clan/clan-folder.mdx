@@ -6,6 +6,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
+import Heading from '@theme/Heading';
 import clanFolder001 from './images/clan-folder-001.png';
 import clanFolder002 from './images/clan-folder-002.png';
 import clanFolder003 from './images/clan-folder-003.png';
@@ -22,7 +23,7 @@ When you join multiple Clans, the left-hand list can become long and hard to man
 
 <Tabs>
 <TabItem value="PC" label="PC">
-### **Creating a Folder:**
+### Creating a Folder
 
 <Steps>
 <Step title="On the main Mezon interface, select the Clan you want to put into a folder.">
@@ -36,7 +37,7 @@ When you join multiple Clans, the left-hand list can become long and hard to man
 <Image style={{ margin: '1rem 2rem' }}  src={clanFolder003} alt="Clan Folder 003" />
 </Step>
 </Steps>
-### **Removing a Clan from a Folder:**
+### Removing a Clan from a Folder
 
 <Steps>
 <Step title="Open the folder containing your Clans.">
@@ -53,7 +54,7 @@ When you join multiple Clans, the left-hand list can become long and hard to man
 </Steps>
 </TabItem>
 <TabItem value="mobile" label="Mobile">
-### How to Create a Clan Folder
+<Heading as="h3">How to Create a Clan Folder</Heading>
 
 1. On the main Mezon interface, **click and hold** the Clan you want to add to a folder.
 2. **Drag the Clan onto another Clan**. When you see a square frame showing the two Clans selected, release to group them.
@@ -64,7 +65,7 @@ When you join multiple Clans, the left-hand list can become long and hard to man
 
 <div align="left"><img style={{ width: '10%' }} src={clanFolderMobile002} alt="clan-folder-mobile-002" /></div>
 
-### How to Remove a Clan from a Folder
+<Heading as="h3">How to Remove a Clan from a Folder</Heading>
 
 1. Open the folder containing your Clans.
 2. Click the **X icon** on the Clan you want to remove.

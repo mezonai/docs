@@ -6,6 +6,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
+import Heading from '@theme/Heading';
 import transferringClanOwnership001 from './images/transferring-clan-ownership-001.png';
 import transferringClanOwnership002 from './images/transferring-clan-ownership-002.png';
 import transferringClanOwnership003 from './images/transferring-clan-ownership-003.png';
@@ -18,7 +19,8 @@ When you need to change the administrator or hand over the community, you can tr
 
 <Tabs>
 <TabItem value="PC" label="PC">
-### **Steps to Transfer Ownership:**
+### Steps to Transfer Ownership
+
 <Steps>
 <Step title="In the left menu, select **Members**.">
 
@@ -35,7 +37,7 @@ When you need to change the administrator or hand over the community, you can tr
 </Steps>
 </TabItem>
 <TabItem value="mobile" label="Mobile">
-### How to Transfer Clan Ownership
+<Heading as="h3">How to Transfer Clan Ownership</Heading>
 
 You can assign full Clan management to another member.
 
@@ -55,7 +57,7 @@ You can assign full Clan management to another member.
 
 <div align="left"><img style={{ width: '30%' }} src={transferringClanOwnershipMobile004} alt="transferring-clan-ownership-mobile-004" /></div>
 
-### **Method 2: Quick Transfer in Chat**
+<Heading as="h3">Method 2: Quick Transfer in Chat</Heading>
 
 1. Click on the member’s name directly in a chat channel.
 2. Select **Transfer Ownership** and confirm.

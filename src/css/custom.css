@@ -63,10 +63,6 @@
     background: #cbd5e1;
   }
 }
-.theme-doc-toc-desktop,
-.theme-doc-toc-mobile {
-  display: none;
-}
 
 .navbar {
   height: 80px;
@@ -74,7 +70,7 @@
 }
 
 .navbar__inner {
-  @media (min-width: 997px) {
+  @media (min-width: 997px) { 
     margin: 0 10%;
   }
 }

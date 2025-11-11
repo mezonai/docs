@@ -8,7 +8,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
 import { Steps, Step } from "@site/src/components/Steps";
-
+import Heading from '@theme/Heading';
 import rolesAndPermissionsManagement001 from "./images/roles-and-permissions-management-001.png";
 import rolesAndPermissionsManagement002 from "./images/roles-and-permissions-management-002.png";
 import rolesAndPermissionsManagement003 from "./images/roles-and-permissions-management-003.png";
@@ -191,11 +191,11 @@ Tính năng này giúp bạn quản lý linh hoạt: ví dụ một thành viên
 
 </TabItem>
 <TabItem value="mobile" label="Mobile">
-### 1. Quản lý quyền hạn
+<Heading as="h3">1. Quản lý quyền hạn</Heading>
 
 Khi cộng đồng phát triển, số lượng thành viên tham gia và mức độ tương tác ngày càng lớn. Nếu không kiểm soát được quyền hạn, rất dễ xảy ra tình trạng spam tin nhắn, xóa nội dung quan trọng hoặc chỉnh sửa kênh ngoài ý muốn. Điều này không chỉ gây mất trật tự mà còn ảnh hưởng đến trải nghiệm chung của cả nhóm.
 
-#### 1.1. Các quyền hiện có trong hệ thống
+<Heading as="h4">1.1. Các quyền hiện có trong hệ thống</Heading>
 
 <div align="center">
   <img
@@ -220,7 +220,7 @@ Tuy nhiên quyền **Manage Clan** <span style={{color: "var(--ifm-color-danger)
 
 :::info
 
-### Phân biệt các quyền trong Clan
+<Heading as="h4">Phân biệt các quyền trong Clan</Heading>
 
 - **Chủ sở hữu**
   - Quyền hạn cao nhất, làm được tất cả mọi hành động.
@@ -232,7 +232,7 @@ Tuy nhiên quyền **Manage Clan** <span style={{color: "var(--ifm-color-danger)
   - Có thể khai trừ quản trị viên khác hoặc thành viên thường, **nhưng không thể khai trừ Chủ sở hữu.**
     :::
 
-#### 1.2. Cách thiết lập quyền mặc định
+<Heading as="h4">1.2. Cách thiết lập quyền mặc định</Heading>
 
 <Steps>
 <Step title="Trong **Cài đặt Clan**, chọn mục **Vai trò**.">
@@ -258,11 +258,11 @@ Khuyến nghị chỉ bật các quyền tối thiểu như **Xem kênh** và **
 </Step>
 </Steps>
 
-### 2. Quản lý vai trò
+<Heading as="h3">2. Quản lý vai trò</Heading>
 
 Không phải tất cả thành viên trong Clan đều cần quyền hạn giống nhau. Với **Vai trò**, bạn có thể tạo nhiều vai trò khác nhau, gán màu sắc, biểu tượng riêng và thiết lập quyền chi tiết cho từng nhóm. Điều này giúp Clan vận hành chuyên nghiệp hơn, dễ dàng quản lý khi cộng đồng của bạn lớn dần.
 
-#### **2.1. Cách tạo vai trò mới**
+<Heading as="h4">**2.1. Cách tạo vai trò mới**</Heading>
 
 <Steps>
 <Step title="Trong **Cài đặt Clan**, chọn mục **Vai trò**.">
@@ -279,7 +279,7 @@ Không phải tất cả thành viên trong Clan đều cần quyền hạn gi�
 </Step>
 </Steps>
 
-#### 2.2. Quản lý vai trò đã tạo
+<Heading as="h4">2.2. Quản lý vai trò đã tạo</Heading>
 
 - Vai trò mới sẽ xuất hiện trong **danh sách vai trò**.
 - Chạm vào một vai trò để:
@@ -296,7 +296,7 @@ Không phải tất cả thành viên trong Clan đều cần quyền hạn gi�
   />
 </div>
 
-### 3. Ghi đè quyền hạn
+<Heading as="h3">3. Ghi đè quyền hạn</Heading>
 
 Ghi đè quyền hạn là cách thiết lập quyền đặc biệt cho **kênh riêng tư hoặc chủ đề riêng tư**.
 
@@ -306,7 +306,7 @@ Ghi đè quyền hạn là cách thiết lập quyền đặc biệt cho **kênh
   - Cho phép hoặc chặn gửi tin nhắn.
   - Cho phép hoặc chặn quản lý chủ đề, xóa tin nhắn…
 
-#### **Cách tùy chỉnh chi tiết quyền trong kênh/ chủ đề riêng tư**
+<Heading as="h4">**Cách tùy chỉnh chi tiết quyền trong kênh/ chủ đề riêng tư**</Heading>
 
 Để thiết lập quyền cho từng thành viên trong kênh hoặc chủ đề riêng tư, bạn có thể thực hiện như sau:
 

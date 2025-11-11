@@ -7,7 +7,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
-
+import Heading from '@theme/Heading';
 import rolesAndPermissionsManagement001 from './images/roles-and-permissions-management-001.png';
 import rolesAndPermissionsManagement002 from './images/roles-and-permissions-management-002.png';
 import rolesAndPermissionsManagement003 from './images/roles-and-permissions-management-003.png';
@@ -33,7 +33,7 @@ Managing roles and permissions helps you control what each member can do within 
 
 <Tabs>
 <TabItem value="PC" label="PC">
-### **1. Permissions Management**
+### 1. Permissions Management
 
 As your community grows, both the number of members and the level of interaction increase. Without proper control over permissions, issues such as message spam, deletion of important content, or unintended channel edits can occur. This not only disrupts order but also negatively affects the overall experience of the group.
 
@@ -89,7 +89,7 @@ However, the **Manage Clan** permission <span style={{color: "var(--ifm-color-da
 By default, all new members joining the Clan are assigned the **@everyone** role.
 For this role, it is recommended to enable only the minimum permissions, such as **View Channel** and **Send Message**, to ensure order and safety within the community.
 :::
-### **2. Roles Management**
+### 2. Roles Management
 
 Not all members in a Clan need the same permissions. With **Roles**, you can create multiple roles with different permissions. You can also assign colors and icons to each group. This helps the Clan operate more professionally and makes management easier as your community grows.
 
@@ -133,7 +133,7 @@ You can grant or revoke advanced permissions by creating a new role and assignin
 Simply drag and drop roles to arrange their display order. If a member has multiple roles, the display will follow this order.
 </Step>
 </Steps>
-### **3. Override Permissions**
+### 3. Override Permissions
 
 **Override Permissions** allow you to set special permissions for **private channels** or **private threads**.
 
@@ -165,11 +165,11 @@ This feature allows flexible management. For example, a regular member may only 
 :::
 </TabItem>
 <TabItem value="mobile" label="Mobile">
-### 1. Permissions Management
+<Heading as="h3">1. Permissions Management</Heading>
 
 As the community grows, the number of members and interactions increases. Without proper control, issues such as spam, accidental deletion of important content, or unwanted channel edits may occur, affecting the overall experience.
 
-#### **1.1. Available Permissions**
+<Heading as="h4">1.1. Available Permissions</Heading>
 
 <figure><img src={rolesAndPermissionsManagementMobile001} alt="roles-and-permissions-management-mobile-001" /></figure>
 
@@ -193,7 +193,7 @@ However, **Manage Clan** permission <div style={{ color: 'red' }}>**cannot see/m
 * **Administrator** – Just below the owner, **almost full control of the Clan**. Can manage channels, roles, members, and most settings. Can remove other admins or regular members, but cannot remove the owner.
 :::
 
-#### **1.2. Setting Default Permissions**
+<Heading as="h4">1.2. Setting Default Permissions</Heading>
 
 1. Go to **Clan Settings → Roles**.
 2. Select **@everyone** to set default permissions for all members.
@@ -209,11 +209,11 @@ _Recommended:_ Only enable **View Channel** and **Send Message** to maintain ord
 
 4. Click **Save Changes** to apply permissions to all members.
 
-### 2. Roles Management
+<Heading as="h3">2. Roles Management</Heading>
 
 Not all members need the same permissions. Roles let you create multiple groups with custom colors, icons, and detailed permissions. This helps the Clan operate professionally and scale as the community grows.
 
-#### **2.1. Creating a New Role**
+<Heading as="h4">2.1. Creating a New Role</Heading>
 
 1. Go to **Clan Settings → Roles**.
 2. Click the **“+”** icon to create a new role.
@@ -223,7 +223,7 @@ Not all members need the same permissions. Roles let you create multiple groups 
 3. Set a name, permissions, and assign members.
 4. Click **Save** to finish.
 
-#### **2.2. Managing Existing Roles**
+<Heading as="h4">2.2. Managing Existing Roles</Heading>
 
 *   Tap a role to:
 
@@ -234,11 +234,11 @@ Not all members need the same permissions. Roles let you create multiple groups 
 
     <div align="left"><img style={{ width: '30%' }} src={rolesAndPermissionsManagementMobile005} alt="roles-and-permissions-management-mobile-005" /></div>
 
-### 3. Permission Overrides
+<Heading as="h3">3. Permission Overrides</Heading>
 
 Permission overrides allow you to set special permissions for **private channels or threads.** Only members with the assigned role or explicitly added users can see them.
 
-#### **Customizing Permissions in Private Channels/Threads**
+<Heading as="h4">Customizing Permissions in Private Channels/Threads</Heading>
 
 1. Press and hold the private channel/thread you want to edit.
 2. Select **Edit Channel**.

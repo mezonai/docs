@@ -6,6 +6,7 @@ import { Steps, Step } from "@site/src/components/Steps";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import Heading from '@theme/Heading';
 import shortcuts001 from './images/shortcuts-001.png';
 import shortcuts002 from './images/shortcuts-002.png';
 import shortcuts0021 from './images/shortcuts-002-1.png';
@@ -34,7 +35,7 @@ Mezon is designed for fast and efficient interactions. Mastering keyboard shortc
 
 <Tabs>
 <TabItem value="PC" label="PC">
-### **Navigation & Search Shortcuts:**
+### Navigation & Search Shortcuts:
 
 * **Ctrl + K:** **Quick Switcher** - Instantly search and jump between channels, threads, or direct messages. This will likely become your most-used shortcut!
 
@@ -45,7 +46,7 @@ Mezon is designed for fast and efficient interactions. Mastering keyboard shortc
 * Start your search with # to find Channels or Threads.
 :::
 
-### **Communication & Formatting Shortcuts:**
+### Communication & Formatting Shortcuts:
 
 * **Ctrl + G:** **Send Buzz Message** – Sends a Buzz sound to all users in the channel or direct chat, even those with notifications muted, instantly capturing their attention.
 
@@ -91,7 +92,7 @@ Use triple backticks (**\`\`\`**) to create multi-line code blocks for longer sn
 <Image style={{ margin: '1rem 2rem' }} src={shortcuts010}></Image>
 :::
 
-### **Interface Management Shortcuts:**
+### Interface Management Shortcuts:
 
 * **Ctrl + Shift + +:** **Zoom In** – Enlarge the app interface for better visibility.
 * **Ctrl + -:** **Zoom Out** – Reduce the interface size.
@@ -101,11 +102,11 @@ Use triple backticks (**\`\`\`**) to create multi-line code blocks for longer sn
 * **Ctrl + Shift + I:** **Open Developer Tools (DevTools)** – For advanced users or anyone who wants to inspect technical elements of the app.
 </TabItem>
 <TabItem value="mobile" label="Mobile">
-### Anonymous Mode
+<Heading as="h3">Anonymous Mode</Heading>
 
 Allows you to send messages without displaying your username, useful for sharing opinions or feedback objectively.
 
-#### **How to enable:**
+<Heading as="h4">How to enable:</Heading>
 
 1. Open the channel or thread you want to message in.
 2. Tap the three-dot icon at the top-left corner.
@@ -122,17 +123,17 @@ A hat icon will appear in the message input box, indicating you are in anonymous
 <img src={shortcutsMobile003} alt="shortcuts-mobile-003" />
 :::
 
-### **How to disable:**
+<Heading as="h4">How to disable:</Heading>
 
 Tap the three-dot icon again and select **Turn Off Anonymous** to return to normal mode.
 
 <img src={shortcutsMobile004} alt="shortcuts-mobile-004" />
 
-### Buzz Mode
+<Heading as="h3">Buzz Mode</Heading>
 
 Buzz lets you send messages with sound effects to grab everyone’s attention in the channel.
 
-#### **How to send a Buzz:**
+<Heading as="h4">How to send a Buzz:</Heading>
 
 1. Type your message in the channel or thread.
 2. Enable Buzz via the three-dot icon and send the message.
@@ -151,16 +152,16 @@ Anonymous is great for sensitive discussions, while Buzz is perfect for highligh
 
 ***
 
-### Message Formatting
+<Heading as="h3">Message Formatting</Heading>
 
-#### **Large Text**
+<Heading as="h4">Large Text</Heading>
 
 Highlight important messages — type `#` followed by a space to create large text in the chat.\
 Use **#** to **######** for heading levels 1 to 6.
 
 <img src={shortcutsMobile007} alt="shortcuts-mobile-007" />
 
-#### **Code Block**
+<Heading as="h4">Code Block</Heading>
 
 * Inline code: `` `your text` `` — highlights a short snippet in a line.
 

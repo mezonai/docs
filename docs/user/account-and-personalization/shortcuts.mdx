@@ -6,7 +6,7 @@ import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-
+import Heading from '@theme/Heading';
 import shortcuts001 from './images/shortcuts-001.png';
 import shortcuts002 from './images/shortcuts-002.png';
 import shortcuts0021 from './images/shortcuts-002-1.png';
@@ -86,7 +86,7 @@ Dùng **ba dấu trích dẫn ngược - backquote (\`\`\`)** để tạo **kh�
 <Image style={{ margin: '1rem 1rem' }} width={'80%'} src={shortcuts010}></Image>
 :::
 
-## Phím tắt Quản lý giao diện:
+## Phím tắt Quản lý giao diện
 
 * **Ctrl** + **Shift** + **+**: Zoom In – Phóng to giao diện ứng dụng để dễ nhìn hơn.
 * **Ctrl** + **-**: Zoom Out – Thu nhỏ giao diện ứng dụng.
@@ -96,11 +96,11 @@ Dùng **ba dấu trích dẫn ngược - backquote (\`\`\`)** để tạo **kh�
 * **Ctrl** + **Shift** + **I**: Mở Công Cụ Phát Triển (DevTools) – Dành cho người dùng nâng cao hoặc những ai muốn kiểm tra các yếu tố kỹ thuật của ứng dụng.
 </TabItem>
 <TabItem value="mobile" label="Mobile">
-### **Chế độ Ẩn danh**
+<Heading as="h3">Chế độ Ẩn danh</Heading>
 
 Tính năng **Ẩn danh** cho phép bạn gửi tin nhắn mà không hiển thị tên người dùng, giúp chia sẻ ý kiến hoặc góp ý một cách khách quan.
 
-#### **Cách bật ẩn danh**
+<Heading as="h4">Cách bật ẩn danh</Heading>
 
 <Steps>
 <Step title="Nhấn vào **kênh** hoặc **chủ đề** bạn muốn nhắn tin.">
@@ -121,17 +121,17 @@ Khi bật, trong khung nhập tin nhắn sẽ xuất hiện **biểu tượng ch
 <div align="left"><img style={{ width: '30%' }} src={shortcutsMobile003} alt="shortcuts-mobile-003" /></div>
 :::
 
-#### **Cách tắt ẩn danh**
+<Heading as="h4">Cách tắt ẩn danh</Heading>
 
 Nhấn lại vào biểu tượng **ba chấm**, chọn **Tắt ẩn danh** để trở về chế độ bình thường.
 
 <div align="left"><img style={{ width: '30%' }} src={shortcutsMobile004} alt="shortcuts-mobile-004" /></div>
 
-### **Chế độ Buzz**
+<Heading as="h3">Chế độ Buzz</Heading>
 
 Tính năng **Buzz** giúp bạn gửi tin nhắn kèm hiệu ứng âm thanh để **thu hút sự chú ý** của tất cả mọi người trong kênh.
 
-#### **Cách gửi Buzz**
+<Heading as="h4">Cách gửi Buzz</Heading>
 
 <Steps>
 <Step title="Trong **kênh** hoặc **chủ đề**, nhập nội dung tin nhắn bạn muốn gửi.">
@@ -156,9 +156,9 @@ Chế độ ẩn danh hữu ích trong các chủ đề thảo luận nhạy c�
 
 ***
 
-### Định dạng tin nhắn
+<Heading as="h3">Định dạng tin nhắn</Heading>
 
-#### **Chữ lớn**
+<Heading as="h4">Chữ lớn</Heading>
 
 Làm nổi bật các tin nhắn quan trọng – Gõ **#** rồi thêm một khoảng trắng để tạo chữ lớn trong khung chat.
 
@@ -168,7 +168,7 @@ Dùng **#** đến **#####** để tạo các cấp độ tiêu đề từ 1 đ�
 
 <div align="left"><img style={{ width: '30%' }} src={shortcutsMobile007} alt="shortcuts-mobile-007" /></div>
 
-#### **Khối mã**
+<Heading as="h4">Khối mã</Heading>
 
 Ví dụ: **\`văn bản của bạn\`** – Dùng **một dấu huyền ngược** (\`) để làm nổi bật đoạn văn bản ngắn trong dòng.
 
