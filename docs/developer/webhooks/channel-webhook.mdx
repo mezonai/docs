@@ -90,10 +90,42 @@ This object encapsulates the content and metadata of the message.
 
 | Field      | Type    | Required | Description                                                    |
 | ---------- | ------- | -------- | -------------------------------------------------------------- |
-| `username` | string  | Yes      | The username of the mentioned user.                            |
-| `user_id`  | string  | Yes      | The unique identifier of the mentioned user.                   |
+| `username` | string  | No       | The username of the mentioned user.                            |
+| `user_id`  | string  | No       | The unique identifier of the mentioned user.                   |
 | `s`        | integer | Yes      | The starting character index of the mention in the `t` string. |
 | `e`        | integer | Yes      | The ending character index of the mention in the `t` string.   |
+
+:::tip TIPS
+You can mention everyone in the channel in two ways:
+- **By user_id**: Use the unique identifier **`1775731111020111321`** to mention to everyone in the channel
+- **By username**: Use **`here`** as the username to mention everyone in the channel (@here)
+
+Either `username` or `user_id` must be provided, but not both.
+:::
+
+**Example 1: Mention @here by user_id**
+
+```json
+"mentions": [
+  {
+    "user_id": "1775731111020111321",
+    "s": 65,
+    "e": 88
+  }
+]
+```
+
+**Example 2: Mention @here by username**
+
+```json
+"mentions": [
+  {
+    "username": "here",
+    "s": 65,
+    "e": 88
+  }
+]
+```
 
 #### `images` Object
 
