@@ -23,11 +23,11 @@ Hash-based authentication is a secure method where:
 - User authentication data is embedded in a cryptographically signed hash string by the Mezon platform
 - The hash contains user information and is validated using HMAC-SHA256 signatures
 - Your web application validates the hash signature to authenticate users
-- No external OAuth2 redirects are required, making it perfect for WebView environments
+- No external OAuth2 redirects are required
 
 ## Architecture Overview
 
-By following the [Getting Started Guide](./getting-started.md), you now have a channel app on the Mezon platform with your web application integrated. Let's explore the relationship between the different components in the authentication flow.
+By following the [Getting Started Guide](../quick-start/creating-mezon-app), you now have a channel app on the Mezon platform with your web application integrated. Let's explore the relationship between the different components in the authentication flow.
 
 <Image style={{ margin: '1rem 2rem' }} src={channelAppSdk001}></Image>
 
@@ -65,70 +65,41 @@ query_id=AAHdF6UqAAAAAB0XpSoKhRAd&user=%7B%22id%22%3A123456789%2C%22username%22%
 
 ### Step 1: Frontend Implementation
 
-First, verify your web application's integration with Mezon by sending a PING event and listening for PONG and CURRENT_USER_INFO events to receive information about the user opening your channel app.
+When Mezon opens your channel app, it passes user authentication data via the URL query parameter. Extract this data and send it to your backend for validation.
 
-#### Initialize WebView Communication
+#### Extract Authentication Data from URL
 
 ```javascript
-// Check if running in Mezon WebView environment
-if (window.Mezon && window.Mezon.WebView) {
-  // Send ping to establish connection
-  window.Mezon.WebView.postEvent("PING", { message: "PING" }, () => {
-    console.log("PING sent to Mezon");
-  });
-
-  // Listen for pong response
-  window.Mezon.WebView.onEvent("PONG", (event, eventData) => {
-    console.log("Connected to Mezon:", event);
-    console.log("PONG response:", eventData);
-  });
-
-  // Listen for current user info
-  window.Mezon.WebView.onEvent("CURRENT_USER_INFO", (event, eventData) => {
-    console.log("Current user info:", eventData);
-  });
-}
-```
-
-#### Request User Hash Information
-
-You need your **App ID** from the [Developer Portal](https://mezon.ai/developers/applications). Use `postEvent` to send the `SEND_BOT_ID` event with `SendBotIdEventData` and listen for the `USER_HASH_INFO` event to receive the user hash information.
-
-```typescript
-export interface SendBotIdEventData {
-  appId: string;
-}
-
-// Send your app ID to Mezon
-window.Mezon.WebView.postEvent(
-  "SEND_BOT_ID",
-  {
-    appId: "your-app-id-here",
-  },
-  (error) => {
-    if (error) {
-      console.error("Failed to send bot ID:", error);
-    } else {
-      console.log("Bot ID sent successfully");
-    }
+// Extract authentication data from URL query parameters
+function getAuthDataFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const authData = urlParams.get('data');
+  
+  if (!authData) {
+    console.warn('No authentication data found in URL');
+    return null;
   }
-);
+  
+  // Decode the URL-encoded data
+  return decodeURIComponent(authData);
+}
 
-// Listen for user hash information
-window.Mezon.WebView.onEvent("USER_HASH_INFO", (event, eventData) => {
-  console.log("Received hash info:", eventData);
+// Get the authentication data
+const rawHashData = getAuthDataFromURL();
 
-  // Extract the hash data
-  const hashData = eventData.message.web_app_data;
-
+if (rawHashData) {
+  console.log('Authentication data received:', rawHashData);
   // Process the hash data for authentication
-  authenticateWithHash(hashData);
-});
+  authenticateWithHash(rawHashData);
+} else {
+  console.error('No authentication data available');
+  // Handle the case where no auth data is present
+}
 ```
 
 #### Complete Frontend Implementation
 
-Here's a comprehensive HTML and JavaScript implementation for handling Mezon authentication:
+Here's a comprehensive HTML and JavaScript implementation for handling Mezon authentication via URL parameters:
 
 ```html
 <!DOCTYPE html>
@@ -136,14 +107,14 @@ Here's a comprehensive HTML and JavaScript implementation for handling Mezon aut
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mezon Channel App Auth</title>
+    <title>Mezon Channel App Authentication</title>
     <style>
       body {
         font-family: Arial, sans-serif;
+        margin: 0;
         padding: 20px;
         background: var(--mezon-bg-color, #f5f5f5);
         color: var(--mezon-text-color, #333);
-        transition: background-color 0.3s, color 0.3s;
       }
 
       .auth-container {
@@ -178,10 +149,6 @@ Here's a comprehensive HTML and JavaScript implementation for handling Mezon aut
         color: #0c5460;
       }
 
-      .hidden {
-        display: none;
-      }
-
       .auth-details {
         background: #f8f9fa;
         padding: 15px;
@@ -205,11 +172,6 @@ Here's a comprehensive HTML and JavaScript implementation for handling Mezon aut
       button:hover {
         background: var(--mezon-button-hover, #0056b3);
       }
-
-      button:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-      }
     </style>
   </head>
   <body>
@@ -221,152 +183,62 @@ Here's a comprehensive HTML and JavaScript implementation for handling Mezon aut
       <div id="authSection">
         <h3>Authentication Status</h3>
         <div id="authStatus" class="status info">Ready to authenticate</div>
-
-        <button id="testAuthBtn" onclick="testAuthentication()">
-          Test Authentication Flow
-        </button>
-        <button id="debugBtn" onclick="showDebugInfo()">Show Debug Info</button>
       </div>
 
-      <div id="debugInfo" class="auth-details hidden"></div>
-
-      <div id="userInfo" class="hidden">
+      <div id="userInfo" style="display: none;">
         <h3>Authenticated User</h3>
         <div id="userDetails" class="auth-details"></div>
       </div>
     </div>
 
-    <script src="mezon-web-sdk.js"></script>
     <script>
       class MezonAuthApp {
         constructor() {
-          this.mezonWebView = window.Mezon.WebView;
-          this.eventListenersRegistered = false;
-          this.isInMezon = false;
-          this.appId = "your-mezon-app-id"; // Replace with your actual app ID
           this.authEndpoint = "/api/auth/mezon-hash"; // Your backend auth endpoint
-
           this.init();
         }
 
         init() {
-          this.checkMezonEnvironment();
-          this.setupEventListeners();
           this.updateConnectionStatus();
-
-          if (this.isInMezon) {
-            this.initMezonEventListeners();
-          }
-        }
-
-        checkMezonEnvironment() {
-          this.isInMezon = !!(
-            window.Mezon &&
-            window.Mezon.WebView &&
-            this.mezonWebView.isIframe
-          );
+          this.checkForAuthData();
         }
 
         updateConnectionStatus() {
           const statusEl = document.getElementById("connectionStatus");
-          if (this.isInMezon) {
-            statusEl.className = "status success";
-            statusEl.innerHTML = "✅ Connected to Mezon WebView";
+          statusEl.className = "status success";
+          statusEl.innerHTML = "✅ Channel App Loaded";
+        }
+
+        checkForAuthData() {
+          // Extract authentication data from URL
+          const authData = this.getAuthDataFromURL();
+          
+          if (authData) {
+            this.updateAuthStatus("Authentication data found", "info");
+            this.authenticateWithHash(authData);
           } else {
-            statusEl.className = "status info";
-            statusEl.innerHTML = "ℹ️ Running in standalone mode (not in Mezon)";
+            this.updateAuthStatus("No authentication data found in URL", "info");
           }
         }
 
-        setupEventListeners() {
-          // Setup any additional UI event listeners here
-          console.log("Setting up event listeners");
-        }
-
-        initMezonEventListeners() {
-          if (this.eventListenersRegistered) return;
-
-          this.eventListenersRegistered = true;
-          console.log("Initializing Mezon event listeners");
-
-          // Send initial ping
-          this.ping();
-
-          // Send bot ID to get user hash
-          this.sendBotId();
-
-          // Listen for responses
-          this.listenToPong();
-          this.listenToUserHashInfo();
-          this.listenToCurrentUserInfo();
-        }
-
-        ping() {
-          console.log("Sending PING to Mezon");
-          this.mezonWebView.postEvent("PING", { message: "PING" }, (error) => {
-            if (error) {
-              console.error("Failed to send PING:", error);
-            } else {
-              console.log("PING sent successfully");
-            }
-          });
-        }
-
-        listenToPong() {
-          this.mezonWebView.onEvent("PONG", (eventType, eventData) => {
-            console.log("Received PONG:", eventData);
-            this.updateAuthStatus("Connected to Mezon successfully", "success");
-          });
-        }
-
-        sendBotId() {
-          console.log("Sending Bot ID to Mezon");
-          this.mezonWebView.postEvent(
-            "SEND_BOT_ID",
-            { appId: this.appId },
-            (error) => {
-              if (error) {
-                console.error("Failed to send Bot ID:", error);
-                this.updateAuthStatus("Failed to send Bot ID", "error");
-              } else {
-                console.log("Bot ID sent successfully");
-                this.updateAuthStatus(
-                  "Bot ID sent, waiting for user hash...",
-                  "loading"
-                );
-              }
-            }
-          );
-        }
-
-        listenToUserHashInfo() {
-          this.mezonWebView.onEvent(
-            "USER_HASH_INFO",
-            (eventType, eventData) => {
-              console.log("Received USER_HASH_INFO:", eventData);
-
-              if (
-                eventData &&
-                eventData.message &&
-                eventData.message.web_app_data
-              ) {
-                const hashData = eventData.message.web_app_data;
-                this.authenticateWithHash(hashData);
-              } else {
-                console.error("Invalid hash data received");
-                this.updateAuthStatus("Invalid hash data received", "error");
-              }
-            }
-          );
-        }
-
-        listenToCurrentUserInfo() {
-          this.mezonWebView.onEvent(
-            "CURRENT_USER_INFO",
-            (eventType, eventData) => {
-              console.log("Received CURRENT_USER_INFO:", eventData);
-            }
-          );
+        getAuthDataFromURL() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const authData = urlParams.get('data');
+          
+          if (!authData) {
+            console.warn('No authentication data found in URL');
+            return null;
+          }
+          
+          try {
+            // Decode the URL-encoded data
+            const decodedData = decodeURIComponent(authData);
+            console.log('Authentication data received');
+            return decodedData;
+          } catch (error) {
+            console.error('Error decoding authentication data:', error);
+            return null;
+          }
         }
 
         authenticateWithHash(rawHashData) {
@@ -408,159 +280,55 @@ Here's a comprehensive HTML and JavaScript implementation for handling Mezon aut
             });
 
             if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
+              throw new Error(`Authentication failed: ${response.statusText}`);
             }
 
             const result = await response.json();
-
-            if (result.success) {
-              this.handleAuthSuccess(result);
-            } else {
-              this.handleAuthError(result.error || "Authentication failed");
-            }
+            this.handleAuthSuccess(result);
           } catch (error) {
             console.error("Authentication request failed:", error);
-            this.handleAuthError(error.message);
+            this.updateAuthStatus(
+              `Authentication failed: ${error.message}`,
+              "error"
+            );
           }
         }
 
-        handleAuthSuccess(response) {
-          console.log("Authentication successful:", response);
-          this.updateAuthStatus("✅ Authentication successful!", "success");
+        handleAuthSuccess(result) {
+          console.log("Authentication successful:", result);
+          this.updateAuthStatus("Authentication successful!", "success");
 
-          // Store authentication token
-          if (response.accessToken) {
-            localStorage.setItem("access_token", response.accessToken);
-            console.log("Access token stored");
+          // Store the authentication token
+          if (result.token) {
+            localStorage.setItem("auth_token", result.token);
           }
 
           // Display user information
-          this.displayUserInfo(response.user);
+          if (result.user) {
+            this.displayUserInfo(result.user);
+          }
 
-          // Redirect to main application after a delay
-          setTimeout(() => {
-            this.redirectToApp();
-          }, 2000);
-        }
-
-        handleAuthError(error) {
-          console.error("Authentication failed:", error);
-          this.updateAuthStatus(`❌ Authentication failed: ${error}`, "error");
+          // Redirect or continue with app initialization
+          // window.location.href = '/dashboard';
         }
 
         displayUserInfo(user) {
-          if (user) {
-            const userInfoEl = document.getElementById("userInfo");
-            const userDetailsEl = document.getElementById("userDetails");
+          const userInfoDiv = document.getElementById("userInfo");
+          const userDetailsDiv = document.getElementById("userDetails");
 
-            userDetailsEl.textContent = JSON.stringify(user, null, 2);
-            userInfoEl.classList.remove("hidden");
-          }
+          userDetailsDiv.textContent = JSON.stringify(user, null, 2);
+          userInfoDiv.style.display = "block";
         }
 
-        redirectToApp() {
-          // Redirect to your main application
-          const redirectUrl =
-            this.mezonWebView.initParams.redirect_url || "/dashboard";
-          console.log("Redirecting to:", redirectUrl);
-          window.location.href = redirectUrl;
-        }
-
-        updateAuthStatus(message, type = "info") {
-          const statusEl = document.getElementById("authStatus");
-          statusEl.className = `status ${type}`;
-          statusEl.textContent = message;
-        }
-
-        // Debug and testing methods
-        showDebugInfo() {
-          const debugEl = document.getElementById("debugInfo");
-          const debugData = {
-            isInMezon: this.isInMezon,
-            initParams: this.mezonWebView.initParams,
-            eventListenersRegistered: this.eventListenersRegistered,
-            appId: this.appId,
-            timestamp: new Date().toISOString(),
-          };
-
-          debugEl.textContent = JSON.stringify(debugData, null, 2);
-          debugEl.classList.toggle("hidden");
-        }
-
-        // Test authentication flow manually
-        testAuthenticationFlow() {
-          if (!this.isInMezon) {
-            // Mock hash data for testing in standalone mode
-            const mockHashData = this.generateMockHashData();
-            this.authenticateWithHash(mockHashData);
-          } else {
-            // Trigger the real flow
-            this.sendBotId();
-          }
-        }
-
-        generateMockHashData() {
-          // Generate mock hash data for testing
-          const mockData = {
-            query_id: "mock_query_id_123",
-            user: JSON.stringify({
-              id: 123456789,
-              username: "test_user",
-              display_name: "Test User",
-              avatar_url: "https://example.com/avatar.jpg",
-              mezon_id: "test@example.com",
-            }),
-            auth_date: Math.floor(Date.now() / 1000),
-            signature: "mock_signature",
-            hash: "mock_hash_for_testing",
-          };
-
-          // Convert to query string format
-          const queryString = Object.entries(mockData)
-            .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-            .join("&");
-
-          return (
-            queryString.replace("&hash=mock_hash_for_testing", "") +
-            "&hash=mock_hash_for_testing"
-          );
-        }
-
-        // Cleanup method
-        removeEventListeners() {
-          if (this.mezonWebView && this.eventListenersRegistered) {
-            this.mezonWebView.offEvent("PONG", () => {});
-            this.mezonWebView.offEvent("USER_HASH_INFO", () => {});
-            this.mezonWebView.offEvent("CURRENT_USER_INFO", () => {});
-            this.eventListenersRegistered = false;
-          }
+        updateAuthStatus(message, type) {
+          const authStatusEl = document.getElementById("authStatus");
+          authStatusEl.className = `status ${type}`;
+          authStatusEl.textContent = message;
         }
       }
 
-      // Global functions for button handlers
-      function testAuthentication() {
-        if (window.mezonAuth) {
-          window.mezonAuth.testAuthenticationFlow();
-        }
-      }
-
-      function showDebugInfo() {
-        if (window.mezonAuth) {
-          window.mezonAuth.showDebugInfo();
-        }
-      }
-
-      // Initialize the authentication app
-      window.addEventListener("DOMContentLoaded", () => {
-        window.mezonAuth = new MezonAuthApp();
-      });
-
-      // Cleanup on page unload
-      window.addEventListener("beforeunload", () => {
-        if (window.mezonAuth) {
-          window.mezonAuth.removeEventListeners();
-        }
-      });
+      // Initialize the app when DOM is ready
+      const mezonAuthApp = new MezonAuthApp();
     </script>
   </body>
 </html>
@@ -573,8 +341,6 @@ For integration into existing applications, here's a simplified JavaScript class
 ```javascript
 class SimpleMezonAuth {
   constructor(options = {}) {
-    this.mezonWebView = window.Mezon.WebView;
-    this.appId = options.appId || "your-app-id";
     this.authEndpoint = options.authEndpoint || "/api/auth/mezon-hash";
     this.onSuccess = options.onSuccess || this.defaultSuccessHandler;
     this.onError = options.onError || this.defaultErrorHandler;
@@ -583,21 +349,34 @@ class SimpleMezonAuth {
   }
 
   init() {
-    if (this.mezonWebView && this.mezonWebView.isIframe) {
-      this.startAuthFlow();
-    }
+    this.startAuthFlow();
   }
 
   startAuthFlow() {
-    // Send bot ID to trigger hash generation
-    this.mezonWebView.postEvent("SEND_BOT_ID", { appId: this.appId });
+    // Extract auth data from URL
+    const authData = this.getAuthDataFromURL();
+    
+    if (authData) {
+      this.processAuthentication(authData);
+    } else {
+      this.onError('No authentication data found in URL');
+    }
+  }
 
-    // Listen for hash response
-    this.mezonWebView.onEvent("USER_HASH_INFO", (_, eventData) => {
-      if (eventData?.message?.web_app_data) {
-        this.processAuthentication(eventData.message.web_app_data);
-      }
-    });
+  getAuthDataFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const authData = urlParams.get('data');
+    
+    if (!authData) {
+      return null;
+    }
+    
+    try {
+      return decodeURIComponent(authData);
+    } catch (error) {
+      console.error('Error decoding auth data:', error);
+      return null;
+    }
   }
 
   async processAuthentication(rawHashData) {
@@ -626,8 +405,8 @@ class SimpleMezonAuth {
 
   defaultSuccessHandler(result) {
     console.log("Authentication successful:", result);
-    if (result.accessToken) {
-      localStorage.setItem("access_token", result.accessToken);
+    if (result.token) {
+      localStorage.setItem("auth_token", result.token);
     }
   }
 
@@ -638,7 +417,6 @@ class SimpleMezonAuth {
 
 // Usage example:
 // const auth = new SimpleMezonAuth({
-//     appId: 'your-app-id',
 //     authEndpoint: '/api/auth/mezon-hash',
 //     onSuccess: (result) => {
 //         console.log('User authenticated:', result.user);
@@ -1388,16 +1166,14 @@ app.listen(3000, () => {
 The complete flow works as follows:
 
 1. **User opens channel app** in Mezon
-2. **Mezon loads your web application** in WebView
-3. **Frontend detects Mezon environment** and initializes event listeners
-4. **WebView handshake**: Frontend sends PING, receives PONG
-5. **App ID exchange**: Frontend sends SEND_BOT_ID with your app ID
-6. **Hash generation**: Mezon generates signed hash with user data
-7. **Hash delivery**: Mezon sends USER_HASH_INFO event with hash data
-8. **Hash processing**: Frontend base64 encodes hash and sends to backend
-9. **Hash validation**: Backend validates signature using cryptographic verification
-10. **User authentication**: Backend finds/creates user and generates JWT token
-11. **Session establishment**: Frontend stores token and redirects to application
+2. **Mezon generates hash** with user data and cryptographic signature
+3. **Mezon loads your web application** with authentication data in URL query parameter (`?data=...`)
+4. **Frontend extracts auth data**: JavaScript reads the `data` parameter from URL
+5. **Data decoding**: Frontend URL-decodes the authentication string
+6. **Hash processing**: Frontend base64 encodes hash and sends to backend
+7. **Hash validation**: Backend validates signature using cryptographic verification
+8. **User authentication**: Backend finds/creates user and generates JWT token
+9. **Session establishment**: Frontend stores token and redirects to application
 
 ## Error Handling and Troubleshooting
 
@@ -1473,39 +1249,6 @@ app.post("/api/auth/mezon-hash", async (req, res) => {
 7. **Use HTTPS** for all communications in production
 
 ### Testing Your Implementation
-
-#### Frontend Testing
-
-```typescript
-// Mock Mezon WebView for testing
-if (environment.production === false) {
-  (window as any).Mezon = {
-    WebView: {
-      postEvent: (eventType: string, data: any, callback: Function) => {
-        console.log("Mock postEvent:", eventType, data);
-        callback();
-      },
-      onEvent: (eventType: string, handler: Function) => {
-        console.log("Mock onEvent listener registered:", eventType);
-
-        // Simulate events for testing
-        if (eventType === "USER_HASH_INFO") {
-          setTimeout(() => {
-            handler(eventType, {
-              message: {
-                web_app_data: "mock-hash-data-for-testing",
-              },
-            });
-          }, 1000);
-        }
-      },
-      offEvent: (eventType: string, handler: Function) => {
-        console.log("Mock offEvent:", eventType);
-      },
-    },
-  };
-}
-```
 
 #### Backend Testing
 

@@ -544,7 +544,7 @@ async function toggleReaction(message: Message, emoji: string, emojiId: string =
   try {
     // Check if user already reacted with this emoji
     const existingReaction = message.reactions?.find(r => 
-      r.emoji === emoji && r.sender_id === message.channel.clan.getClientId()
+      r.emoji === emoji && r.sender_id === this.client.clientId
     );
 
     if (existingReaction) {
@@ -617,7 +617,7 @@ async function deleteMessageWithConfirmation(message: Message, confirmationText?
 // Example usage in a command handler
 async function handleDeleteCommand(message: Message) {
   // Only delete if the message was sent by the bot
-  if (message.sender_id === message.channel.clan.getClientId()) {
+  if (message.sender_id === this.client.clientId) {
     await deleteMessage(message);
   } else {
     console.log("Cannot delete messages from other users");
@@ -635,6 +635,57 @@ async function handleDeleteCommand(message: Message) {
 - Only messages sent by your bot can typically be deleted
 - Deleted messages are removed from the channel and local cache
 - The deletion is permanent and cannot be undone
+
+### Interactive Messages
+
+The Mezon SDK provides powerful tools for creating interactive messages with buttons, forms, and rich components. For detailed documentation on building interactive messages, see the [Interactive Messages Guide](../../mezon-topics/interactive-message.mdx).
+
+**Quick Example:**
+
+```typescript
+import { InteractiveBuilder, ButtonBuilder, EButtonMessageStyle } from "mezon-sdk";
+
+async function sendInteractiveForm(channel: TextChannel) {
+  // Create an interactive form
+  const form = new InteractiveBuilder("Registration Form")
+    .setDescription("Please fill out the form below")
+    .addInputField("username", "Username", "Enter your username")
+    .addInputField("email", "Email", "your@email.com", { type: "email" })
+    .addSelectField("country", "Country", [
+      { label: "United States", value: "us" },
+      { label: "United Kingdom", value: "uk" },
+      { label: "Canada", value: "ca" }
+    ])
+    .build();
+
+  // Create action buttons
+  const buttons = new ButtonBuilder()
+    .addButton("submit", "Submit", EButtonMessageStyle.PRIMARY)
+    .addButton("cancel", "Cancel", EButtonMessageStyle.SECONDARY)
+    .build();
+
+  // Send the interactive message
+  await channel.send({
+    embed: [form],
+    components: buttons
+  });
+}
+
+// Handle button clicks
+client.onMessageButtonClicked((event) => {
+  console.log("Button clicked:", event.id);
+  // Handle the action
+});
+```
+
+For more examples and comprehensive documentation on:
+- Building forms with input fields
+- Creating dropdown selects and radio buttons
+- Adding date pickers and animations
+- Handling user interactions
+- Best practices for interactive messages
+
+See the complete [Interactive Messages Guide](../../mezon-topics/interactive-message.mdx).
 
 ## Working with Users
 

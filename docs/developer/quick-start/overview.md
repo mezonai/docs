@@ -160,8 +160,6 @@ Build powerful bot applications that automate, moderate, and enhance clan experi
 Build embedded web applications that run directly within Mezon channels:
 
 - **[Channel App SDK Overview](../mezon-sdk/channel-app-sdk/overview)** - Learn about building embedded channel applications
-- **[Getting Started with Channel Apps](../mezon-sdk/channel-app-sdk/getting-started)** - Quick start guide for channel app development
-- **[Channel App Core Concepts](../mezon-sdk/channel-app-sdk/core-concepts)** - Understanding iframe communication and event handling
 - **[Channel App Examples](../mezon-sdk/channel-app-sdk/usage-and-examples)** - Interactive examples including games and collaborative tools
 
 ### Getting Your First App Running

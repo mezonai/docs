@@ -1,0 +1,902 @@
+---
+sidebar_position: 5
+---
+
+# Interactive Messages
+
+Interactive messages allow your bot to create rich, engaging message experiences with various components like buttons, input fields, dropdowns, and more. The Mezon SDK provides two main builders for creating interactive messages: `InteractiveBuilder` for rich embed-like messages and `ButtonBuilder` for simple button groups.
+
+## Overview
+
+Interactive messages support multiple component types:
+- **Buttons** - Clickable buttons with different styles
+- **Input Fields** - Text inputs and textareas
+- **Select Dropdowns** - Dropdown menus with options
+- **Radio Buttons** - Single or multiple choice selections
+- **Date Pickers** - Date selection components
+- **Animations** - Animated visual elements
+
+## ButtonBuilder
+
+The `ButtonBuilder` class provides a simple way to create button components for messages.
+
+### Import
+
+```typescript
+import { ButtonBuilder, EButtonMessageStyle } from "mezon-sdk";
+```
+
+### Button Styles
+
+```typescript
+enum EButtonMessageStyle {
+  PRIMARY = 1,    // Blue primary button
+  SECONDARY = 2,  // Gray secondary button
+  SUCCESS = 3,    // Green success button
+  DANGER = 4,     // Red danger button
+  LINK = 5,       // Link-styled button
+}
+```
+
+### Basic Usage
+
+```typescript
+const buttonBuilder = new ButtonBuilder();
+
+// Add buttons with different styles
+buttonBuilder
+  .addButton("btn-primary", "Click Me", EButtonMessageStyle.PRIMARY)
+  .addButton("btn-danger", "Delete", EButtonMessageStyle.DANGER)
+  .addButton("btn-link", "Learn More", EButtonMessageStyle.LINK);
+
+// Build the button components
+const buttons = buttonBuilder.build();
+
+// Send message with buttons
+await channel.send({
+  t: "Choose an action:",
+  components: buttons
+});
+```
+
+### Example: Action Buttons
+
+```typescript
+async function sendActionButtons(channel: TextChannel) {
+  const buttons = new ButtonBuilder()
+    .addButton("confirm", "Confirm", EButtonMessageStyle.SUCCESS)
+    .addButton("cancel", "Cancel", EButtonMessageStyle.SECONDARY)
+    .addButton("delete", "Delete", EButtonMessageStyle.DANGER)
+    .build();
+
+  await channel.send({
+    t: "Please confirm your action:",
+    components: buttons
+  });
+}
+```
+
+### Handling Button Clicks
+
+Listen for button click events using the `onMessageButtonClicked` event:
+
+```typescript
+client.onMessageButtonClicked((event) => {
+  console.log("Button clicked:", event.id);
+  console.log("Channel:", event.channel_id);
+  console.log("User:", event.user_id);
+  
+  // Handle specific button actions
+  switch (event.id) {
+    case "confirm":
+      // Handle confirm action
+      break;
+    case "cancel":
+      // Handle cancel action
+      break;
+    case "delete":
+      // Handle delete action
+      break;
+  }
+});
+```
+
+## InteractiveBuilder
+
+The `InteractiveBuilder` class allows you to create rich, embed-style messages with various interactive components.
+
+### Import
+
+```typescript
+import { InteractiveBuilder, EMessageComponentType } from "mezon-sdk";
+```
+
+### Constructor
+
+```typescript
+const interactive = new InteractiveBuilder(title?: string);
+```
+
+Creates a new interactive message builder with an optional title. Each interactive message automatically includes:
+- Random color for visual distinction
+- Current timestamp
+- Default footer with Mezon branding
+
+### Setting Message Metadata
+
+#### Set Author
+
+```typescript
+setAuthor(name: string, icon_url?: string, url?: string): InteractiveBuilder
+```
+
+Sets the author information displayed at the top of the message.
+
+```typescript
+interactive.setAuthor(
+  "Bot Name",
+  "https://example.com/bot-icon.png",
+  "https://example.com/bot-profile"
+);
+```
+
+#### Set Description
+
+```typescript
+setDescription(description: string): InteractiveBuilder
+```
+
+Sets the main description text for the interactive message.
+
+```typescript
+interactive.setDescription("This is a detailed description of the form or information being presented.");
+```
+
+#### Set Thumbnail
+
+```typescript
+setThumbnail(url: string): InteractiveBuilder
+```
+
+Adds a small thumbnail image to the message.
+
+```typescript
+interactive.setThumbnail("https://example.com/thumbnail.png");
+```
+
+#### Set Image
+
+```typescript
+setImage(url: string, width?: string, height?: string): InteractiveBuilder
+```
+
+Adds a larger image to the message with optional dimensions.
+
+```typescript
+interactive.setImage(
+  "https://example.com/banner.png",
+  "800px",
+  "400px"
+);
+```
+
+### Adding Fields
+
+#### Add Simple Field
+
+```typescript
+addField(name: string, value: string, inline: boolean = false): InteractiveBuilder
+```
+
+Adds a simple text field to the message.
+
+```typescript
+interactive
+  .addField("Status", "Active", true)
+  .addField("Category", "General", true)
+  .addField("Description", "Full width field description", false);
+```
+
+### Interactive Components
+
+#### Add Input Field
+
+```typescript
+addInputField(
+  id: string,
+  name: string,
+  placeholder?: string,
+  options?: InputFieldOption,
+  description?: string
+): InteractiveBuilder
+```
+
+Adds a text input or textarea field.
+
+**InputFieldOption Interface:**
+```typescript
+interface InputFieldOption {
+  defaultValue?: string | number;
+  type?: string;           // HTML input type: "text", "email", "password", etc.
+  textarea?: boolean;      // Use textarea instead of input
+  disabled?: boolean;
+}
+```
+
+**Example:**
+
+```typescript
+// Simple text input
+interactive.addInputField(
+  "username",
+  "Username",
+  "Enter your username",
+  { type: "text" },
+  "Your preferred username"
+);
+
+// Email input
+interactive.addInputField(
+  "email",
+  "Email Address",
+  "user@example.com",
+  { type: "email" }
+);
+
+// Textarea
+interactive.addInputField(
+  "bio",
+  "Biography",
+  "Tell us about yourself",
+  { 
+    textarea: true,
+    defaultValue: "I am a developer..." 
+  },
+  "Share your background and interests"
+);
+
+// Password input
+interactive.addInputField(
+  "password",
+  "Password",
+  "Enter password",
+  { 
+    type: "password",
+    disabled: false 
+  }
+);
+```
+
+#### Add Select Field
+
+```typescript
+addSelectField(
+  id: string,
+  name: string,
+  options: SelectFieldOption[],
+  valueSelected?: SelectFieldOption,
+  description?: string
+): InteractiveBuilder
+```
+
+Adds a dropdown select menu.
+
+**SelectFieldOption Interface:**
+```typescript
+interface SelectFieldOption {
+  label: string;  // Display text
+  value: string;  // Internal value
+}
+```
+
+**Example:**
+
+```typescript
+const countryOptions: SelectFieldOption[] = [
+  { label: "United States", value: "us" },
+  { label: "United Kingdom", value: "uk" },
+  { label: "Canada", value: "ca" },
+  { label: "Australia", value: "au" },
+];
+
+interactive.addSelectField(
+  "country",
+  "Country",
+  countryOptions,
+  { label: "United States", value: "us" }, // Pre-selected
+  "Select your country"
+);
+```
+
+#### Add Radio Field
+
+```typescript
+addRadioField(
+  id: string,
+  name: string,
+  options: RadioFieldOption[],
+  description?: string,
+  max_options?: number
+): InteractiveBuilder
+```
+
+Adds radio buttons for single or multiple choice selection.
+
+**RadioFieldOption Interface:**
+```typescript
+interface RadioFieldOption {
+  label: string;
+  value: string;
+  name?: string;              // Used for multiple choice grouping
+  description?: string;
+  style?: EButtonMessageStyle;
+  disabled?: boolean;
+}
+```
+
+**Example:**
+
+```typescript
+// Single choice
+const singleChoiceOptions: RadioFieldOption[] = [
+  { label: "Option A", value: "a", description: "First option" },
+  { label: "Option B", value: "b", description: "Second option" },
+  { label: "Option C", value: "c", description: "Third option" },
+];
+
+interactive.addRadioField(
+  "choice",
+  "Choose One",
+  singleChoiceOptions,
+  "Select your preferred option"
+);
+
+// Multiple choice (with max_options)
+const multiChoiceOptions: RadioFieldOption[] = [
+  { label: "Feature A", value: "feature_a", name: "features" },
+  { label: "Feature B", value: "feature_b", name: "features" },
+  { label: "Feature C", value: "feature_c", name: "features" },
+  { label: "Feature D", value: "feature_d", name: "features" },
+];
+
+interactive.addRadioField(
+  "features",
+  "Select Features",
+  multiChoiceOptions,
+  "Choose up to 2 features",
+  2 // Maximum 2 selections
+);
+```
+
+#### Add Date Picker Field
+
+```typescript
+addDatePickerField(id: string, name: string, description?: string): InteractiveBuilder
+```
+
+Adds a date picker component.
+
+**Example:**
+
+```typescript
+interactive.addDatePickerField(
+  "appointment-date",
+  "Appointment Date",
+  "Select your preferred appointment date"
+);
+```
+
+#### Add Animation
+
+```typescript
+addAnimation(
+  id: string,
+  config: AnimationConfig,
+  name?: string,
+  description?: string
+): InteractiveBuilder
+```
+
+Adds an animated visual element to the message.
+
+**AnimationConfig Interface:**
+```typescript
+interface AnimationConfig {
+  url_image: string;      // Base image URL
+  url_position: string;   // Position data URL
+  pool: string[];         // Array of animation frame URLs
+  repeat?: number;        // Number of times to repeat (default: infinite)
+  duration?: number;      // Duration in milliseconds
+}
+```
+
+**Example:**
+
+```typescript
+const animConfig: AnimationConfig = {
+  url_image: "https://example.com/base-image.png",
+  url_position: "https://example.com/positions.json",
+  pool: [
+    "https://example.com/frame1.png",
+    "https://example.com/frame2.png",
+    "https://example.com/frame3.png",
+  ],
+  repeat: 3,
+  duration: 2000,
+};
+
+interactive.addAnimation(
+  "welcome-anim",
+  animConfig,
+  "Welcome Animation",
+  "Animated welcome banner"
+);
+```
+
+### Building and Sending
+
+#### Build the Interactive Message
+
+```typescript
+build(): IInteractiveMessageProps
+```
+
+Builds and returns the complete interactive message object.
+
+```typescript
+const interactiveMessage = interactive.build();
+```
+
+#### Send as Message Content
+
+```typescript
+// Send interactive message through a channel
+await channel.send({ 
+  embed: [interactiveMessage]
+});
+
+// Send with text and interactive message
+await channel.send({
+  t: "Please fill out this form:",
+  embed: [interactiveMessage]
+});
+
+// Send with buttons
+await channel.send({
+  t: "Choose an option:",
+  components: buttonComponents
+});
+
+// Send with both interactive message and buttons
+await channel.send({
+  embed: [interactiveMessage],
+  components: buttonComponents
+});
+
+// Send with additional options (mentions, attachments, etc.)
+await channel.send(
+  {
+    t: "Form submission required",
+    embed: [interactiveMessage],
+    components: buttonComponents
+  },
+  mentions,          // Array<ApiMessageMention> - optional
+  attachments,       // Array<ApiMessageAttachment> - optional
+  false,             // mention_everyone - optional
+  false,             // anonymous_message - optional
+  topic_id,          // string - optional (for threads)
+  0                  // code - optional (message type code)
+);
+```
+
+**channel.send() Parameters:**
+
+```typescript
+async send(
+  content: ChannelMessageContent,
+  mentions?: Array<ApiMessageMention>,
+  attachments?: Array<ApiMessageAttachment>,
+  mention_everyone?: boolean,
+  anonymous_message?: boolean,
+  topic_id?: string,
+  code?: number
+)
+```
+
+- `content`: **ChannelMessageContent** (required) - The message content object containing:
+  - `t?`: Text content
+  - `embed?`: Array of interactive messages (`IInteractiveMessageProps[]`)
+  - `components?`: Button components or action rows
+- `mentions?`: Array of user mentions
+- `attachments?`: Array of file attachments
+- `mention_everyone?`: Whether to mention everyone
+- `anonymous_message?`: Whether to send anonymously
+- `topic_id?`: Topic/thread identifier
+- `code?`: Message type code
+```
+
+## Complete Examples
+
+### Example 1: User Registration Form
+
+```typescript
+import { InteractiveBuilder, TextChannel } from "mezon-sdk";
+
+async function sendRegistrationForm(channel: TextChannel) {
+  const form = new InteractiveBuilder("User Registration")
+    .setDescription("Please fill out the registration form below")
+    .setThumbnail("https://example.com/logo.png")
+    
+    // Username field
+    .addInputField(
+      "username",
+      "Username",
+      "Enter username",
+      { type: "text" },
+      "Choose a unique username"
+    )
+    
+    // Email field
+    .addInputField(
+      "email",
+      "Email Address",
+      "user@example.com",
+      { type: "email" }
+    )
+    
+    // Password field
+    .addInputField(
+      "password",
+      "Password",
+      "Enter password",
+      { type: "password" },
+      "Must be at least 8 characters"
+    )
+    
+    // Country selection
+    .addSelectField(
+      "country",
+      "Country",
+      [
+        { label: "United States", value: "us" },
+        { label: "United Kingdom", value: "uk" },
+        { label: "Canada", value: "ca" },
+      ]
+    )
+    
+    // Terms acceptance
+    .addRadioField(
+      "terms",
+      "Terms & Conditions",
+      [
+        { label: "I accept the terms and conditions", value: "accept" }
+      ]
+    )
+    
+    .build();
+
+  await channel.send({ embed: [form] });
+}
+```
+
+### Example 2: Survey with Multiple Components
+
+```typescript
+async function sendSurvey(channel: TextChannel) {
+  const survey = new InteractiveBuilder("Customer Satisfaction Survey")
+    .setAuthor("Survey Bot", "https://example.com/bot-icon.png")
+    .setDescription("Help us improve our service by completing this short survey")
+    .setImage("https://example.com/survey-banner.png")
+    
+    // Name input
+    .addInputField(
+      "name",
+      "Your Name",
+      "Enter your name",
+      { type: "text" }
+    )
+    
+    // Satisfaction rating
+    .addRadioField(
+      "satisfaction",
+      "How satisfied are you with our service?",
+      [
+        { label: "Very Satisfied", value: "5" },
+        { label: "Satisfied", value: "4" },
+        { label: "Neutral", value: "3" },
+        { label: "Dissatisfied", value: "2" },
+        { label: "Very Dissatisfied", value: "1" },
+      ]
+    )
+    
+    // Product categories
+    .addSelectField(
+      "category",
+      "Which product did you use?",
+      [
+        { label: "Product A", value: "product-a" },
+        { label: "Product B", value: "product-b" },
+        { label: "Product C", value: "product-c" },
+      ]
+    )
+    
+    // Features used (multiple choice)
+    .addRadioField(
+      "features",
+      "Which features did you use?",
+      [
+        { label: "Feature X", value: "feature-x", name: "features" },
+        { label: "Feature Y", value: "feature-y", name: "features" },
+        { label: "Feature Z", value: "feature-z", name: "features" },
+      ],
+      "Select all that apply",
+      3
+    )
+    
+    // Feedback textarea
+    .addInputField(
+      "feedback",
+      "Additional Feedback",
+      "Share your thoughts...",
+      { textarea: true },
+      "Optional: Tell us more about your experience"
+    )
+    
+    .build();
+
+  await channel.send({ embed: [survey] });
+}
+```
+
+### Example 3: Combining Interactive Message with Buttons
+
+```typescript
+import { InteractiveBuilder, ButtonBuilder, EButtonMessageStyle } from "mezon-sdk";
+
+async function sendFormWithButtons(channel: TextChannel) {
+  // Create the interactive form
+  const form = new InteractiveBuilder("Event Registration")
+    .setDescription("Register for our upcoming event")
+    
+    .addInputField("name", "Full Name", "Enter your name")
+    .addInputField("email", "Email", "your@email.com", { type: "email" })
+    .addDatePickerField("date", "Preferred Date", "Select event date")
+    
+    .build();
+
+  // Create action buttons
+  const buttons = new ButtonBuilder()
+    .addButton("submit", "Submit Registration", EButtonMessageStyle.PRIMARY)
+    .addButton("cancel", "Cancel", EButtonMessageStyle.SECONDARY)
+    .build();
+
+  // Send combined message
+  await channel.send({
+    embed: [form],
+    components: buttons
+  });
+}
+```
+
+### Example 4: Dynamic Form with Conditional Fields
+
+```typescript
+async function sendDynamicForm(channel: TextChannel, userType: string) {
+  const form = new InteractiveBuilder("Profile Setup");
+  
+  // Common fields for all users
+  form
+    .addInputField("username", "Username", "Enter username")
+    .addInputField("email", "Email", "your@email.com", { type: "email" });
+  
+  // Conditional fields based on user type
+  if (userType === "developer") {
+    form
+      .addSelectField(
+        "experience",
+        "Experience Level",
+        [
+          { label: "Junior (0-2 years)", value: "junior" },
+          { label: "Mid-level (2-5 years)", value: "mid" },
+          { label: "Senior (5+ years)", value: "senior" },
+        ]
+      )
+      .addRadioField(
+        "languages",
+        "Programming Languages",
+        [
+          { label: "JavaScript/TypeScript", value: "js", name: "langs" },
+          { label: "Python", value: "python", name: "langs" },
+          { label: "Java", value: "java", name: "langs" },
+          { label: "Go", value: "go", name: "langs" },
+        ],
+        "Select your primary languages",
+        3
+      );
+  } else if (userType === "designer") {
+    form
+      .addSelectField(
+        "specialty",
+        "Design Specialty",
+        [
+          { label: "UI/UX Design", value: "uiux" },
+          { label: "Graphic Design", value: "graphic" },
+          { label: "Motion Graphics", value: "motion" },
+        ]
+      )
+      .addInputField(
+        "portfolio",
+        "Portfolio URL",
+        "https://",
+        { type: "url" }
+      );
+  }
+  
+  // Bio field for all
+  form.addInputField(
+    "bio",
+    "Bio",
+    "Tell us about yourself",
+    { textarea: true }
+  );
+  
+  await channel.send({ embed: [form.build()] });
+}
+```
+
+## Event Handling
+
+### Handling User Input
+
+When users interact with your interactive messages, you'll receive events that you can handle:
+
+```typescript
+// Button clicks
+client.onMessageButtonClicked((event) => {
+  console.log("Button clicked:", event.id);
+  // Handle button action
+});
+
+// Dropdown selections
+client.onDropdownBoxSelected((event) => {
+  console.log("Dropdown selected:", event.id, event.value);
+  // Handle selection
+});
+
+// Handle other interactive events as needed
+```
+
+### Processing Form Submissions
+
+```typescript
+client.onMessageButtonClicked(async (event) => {
+  if (event.id === "submit-form") {
+    // Collect form data from the message
+    // Process the submission
+    const channel = await client.channels.fetch(event.channel_id);
+    
+    await channel.send({
+      t: `Thank you for submitting the form! ✅`
+    });
+  }
+});
+```
+
+## Best Practices
+
+### 1. Use Appropriate Component Types
+
+- **Input fields**: For free-form text entry
+- **Select dropdowns**: For 4-10 predefined options
+- **Radio buttons**: For 2-5 mutually exclusive choices
+- **Date pickers**: For date/time selection
+
+### 2. Provide Clear Labels and Descriptions
+
+```typescript
+// Good
+interactive.addInputField(
+  "email",
+  "Email Address",
+  "user@example.com",
+  { type: "email" },
+  "We'll never share your email with anyone"
+);
+
+// Less clear
+interactive.addInputField("email", "Email", "...");
+```
+
+### 3. Set Sensible Defaults
+
+```typescript
+interactive.addSelectField(
+  "country",
+  "Country",
+  countryOptions,
+  { label: "United States", value: "us" }, // Default selection
+  "Select your country"
+);
+```
+
+### 4. Validate User Input
+
+Always validate and sanitize user input on the server side when processing form submissions.
+
+### 5. Provide Feedback
+
+After form submission, provide clear feedback to users:
+
+```typescript
+client.onMessageButtonClicked(async (event) => {
+  if (event.id === "submit") {
+    try {
+      // Process form...
+      await channel.send({ t: "✅ Form submitted successfully!" });
+    } catch (error) {
+      await channel.send({ t: "❌ Error submitting form. Please try again." });
+    }
+  }
+});
+```
+
+### 6. Limit Form Complexity
+
+Keep forms focused and not too long. Break complex forms into multiple steps if needed.
+
+### 7. Use Consistent Styling
+
+Use button styles consistently throughout your bot:
+- **PRIMARY**: Main actions (Submit, Save, Confirm)
+- **SUCCESS**: Positive actions (Approve, Accept)
+- **DANGER**: Destructive actions (Delete, Remove)
+- **SECONDARY**: Alternative actions (Cancel, Skip)
+- **LINK**: Navigation or less prominent actions
+
+## Component Type Reference
+
+```typescript
+enum EMessageComponentType {
+  BUTTON = 1,      // Clickable buttons
+  SELECT = 2,      // Dropdown select menus
+  INPUT = 3,       // Text inputs and textareas
+  DATEPICKER = 4,  // Date selection components
+  RADIO = 5,       // Radio buttons (single/multiple choice)
+  ANIMATION = 6,   // Animated elements
+  GRID = 7,        // Grid layouts
+}
+```
+
+## Troubleshooting
+
+### Interactive Message Not Displaying
+
+Ensure you're building and sending the message correctly:
+
+```typescript
+const interactive = new InteractiveBuilder("Title")
+  .addField("Name", "Value")
+  .build(); // Don't forget to call build()!
+
+await channel.send({ embed: [interactive] });
+```
+
+### Buttons Not Responding
+
+Make sure you've registered the button click event handler:
+
+```typescript
+client.onMessageButtonClicked((event) => {
+  // Handle button clicks
+});
+```
+
+### Form Data Not Captured
+
+Interactive message data is sent through specific events. Make sure you're listening to the appropriate events based on the component types used.
+
+## Additional Resources
+
+- [Usage Examples](../mezon-sdk/integration-bot-sdk/usage-and-examples.md#interactive-messages)
+- [Message API Reference](../mezon-sdk/integration-bot-sdk/api-references.md)
+- [Event Handling Guide](../mezon-sdk/integration-bot-sdk/usage-and-examples#handling-events)
