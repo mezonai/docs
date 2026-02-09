@@ -77,6 +77,7 @@ This object encapsulates the content and metadata of the message.
 | `mk`       | array of objects | No       | An array of objects describing markdown or special formatting applied to the message text. It's noteworthy that multiple `mk` arrays can be present. The possible values for `type` within this object could include `lk` (link) and `pre` (pre-formatted text). |
 | `mentions` | array of objects | No       | An array of objects, each representing a user mentioned in the message.                                                                                                                                                                                          |
 | `images`   | array of objects | No       | An array of objects, each representing an image attached to the message.                                                                                                                                                                                         |
+| `hg`       | array of objects | No       | An array of objects, each representing a channel hashtag mentioned in the message.                                                                                                                                                                               |
 
 #### `mk` Object (markdown)
 
@@ -138,6 +139,14 @@ Either `username` or `user_id` must be provided, but not both.
 | `w`   | integer | Yes      | The width of the image in pixels.                  |
 | `h`   | integer | Yes      | The height of the image in pixels.                 |
 
+#### `hg` Object (hashtag)
+
+| Field       | Type    | Required | Description                                                           |
+| ----------- | ------- | -------- | --------------------------------------------------------------------- |
+| `channelId` | string  | Yes      | The unique identifier of the channel being referenced.                |
+| `s`         | integer | Yes      | The starting character index of the hashtag in the `t` string.        |
+| `e`         | integer | Yes      | The ending character index of the hashtag in the `t` string.          |
+
 ### Channel Webhook example
 
 import Tabs from "@theme/Tabs";
@@ -151,7 +160,7 @@ import TabItem from "@theme/TabItem";
     --data-raw '{
         "type": "hook",
         "message": {
-          "t": "[pre] Webhook message example: [lk] https://mezon.ai \n [mention] mezon.webhook@ncc.asia",
+          "t": "[pre] Webhook message example: [lk] https://mezon.ai \n [mention] @aliceinmezon #general",
           "mk": [
             {
               "type": "pre",
@@ -168,7 +177,7 @@ import TabItem from "@theme/TabItem";
             {
               "user_id": "1783755414765047808",
               "s": 65,
-              "e": 88
+              "e": 77
             }
           ],
           "images": [
@@ -179,6 +188,13 @@ import TabItem from "@theme/TabItem";
               "ft": "image/jpeg",
               "w": 275,
               "h": 183
+            }
+          ],
+          "hg": [
+            {
+              "channelId": "1973524969530855424",
+              "s": 79,
+              "e": 86
             }
           ]
         }
@@ -194,7 +210,7 @@ import TabItem from "@theme/TabItem";
     payload = json.dumps({
       "type": "hook",
       "message": {
-        "t": "[pre] Webhook message example: [lk] https://mezon.ai \n [mention] mezon.webhook@ncc.asia",
+        "t": "[pre] Webhook message example: [lk] https://mezon.ai \n [mention] @aliceinmezon #general",
         "mk": [
           {
             "type": "pre",
@@ -211,7 +227,7 @@ import TabItem from "@theme/TabItem";
           {
             "user_id": "1783755414765047808",
             "s": 65,
-            "e": 88
+            "e": 77
           }
         ],
         "images": [
@@ -222,6 +238,13 @@ import TabItem from "@theme/TabItem";
             "ft": "image/jpeg",
             "w": 275,
             "h": 183
+          }
+        ],
+        "hg": [
+          {
+            "channelId": "1973524969530855424",
+            "s": 79,
+            "e": 86
           }
         ]
       }
@@ -257,7 +280,7 @@ import TabItem from "@theme/TabItem";
     "+`
       "message": {`+"
     "+`
-        "t": "[pre] Webhook message example: [lk] https://mezon.ai \n [mention] mezon.webhook@ncc.asia",`+"
+        "t": "[pre] Webhook message example: [lk] https://mezon.ai \n [mention] @aliceinmezon #general",`+"
     "+`
         "mk": [`+"
     "+`
@@ -291,7 +314,7 @@ import TabItem from "@theme/TabItem";
     "+`
             "s": 65,`+"
     "+`
-            "e": 88`+"
+            "e": 77`+"
     "+`
           }`+"
     "+`
@@ -312,6 +335,20 @@ import TabItem from "@theme/TabItem";
             "w": 275,`+"
     "+`
             "h": 183`+"
+    "+`
+          }`+"
+    "+`
+        ],`+"
+    "+`
+        "hg": [`+"
+    "+`
+          {`+"
+    "+`
+            "channelId": "1973524969530855424",`+"
+    "+`
+            "s": 79,`+"
+    "+`
+            "e": 86`+"
     "+`
           }`+"
     "+`
@@ -352,7 +389,7 @@ import TabItem from "@theme/TabItem";
     OkHttpClient client = new OkHttpClient().newBuilder()
       .build();
     MediaType mediaType = MediaType.parse("application/json");
-    RequestBody body = RequestBody.create(mediaType, "{\r\n  \"type\": \"hook\",\r\n  \"message\": {\r\n    \"t\": \"[pre] Webhook message example: [lk] https://mezon.ai \\n [mention] mezon.webhook@ncc.asia\",\r\n    \"mk\": [\r\n      {\r\n        \"type\": \"pre\",\r\n        \"s\": 0,\r\n        \"e\": 30\r\n      },\r\n      {\r\n        \"type\": \"lk\",\r\n        \"s\": 36,\r\n        \"e\": 54\r\n      }\r\n    ],\r\n    \"mentions\": [\r\n      {\r\n        \"user_id\": \"1783755414765047808\",\r\n        \"s\": 65,\r\n        \"e\": 88\r\n      }\r\n    ],\r\n    \"images\": [\r\n      {\r\n        \"fn\": \"thumbnail_dog1.jpg\",\r\n        \"sz\": 5620,\r\n        \"url\": \"https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg\",\r\n        \"ft\": \"image/jpeg\",\r\n        \"w\": 275,\r\n        \"h\": 183\r\n      }\r\n    ]\r\n  }\r\n}");
+    RequestBody body = RequestBody.create(mediaType, "{\r\n  \"type\": \"hook\",\r\n  \"message\": {\r\n    \"t\": \"[pre] Webhook message example: [lk] https://mezon.ai \\n [mention] @aliceinmezon #general\",\r\n    \"mk\": [\r\n      {\r\n        \"type\": \"pre\",\r\n        \"s\": 0,\r\n        \"e\": 30\r\n      },\r\n      {\r\n        \"type\": \"lk\",\r\n        \"s\": 36,\r\n        \"e\": 54\r\n      }\r\n    ],\r\n    \"mentions\": [\r\n      {\r\n        \"user_id\": \"1783755414765047808\",\r\n        \"s\": 65,\r\n        \"e\": 77\r\n      }\r\n    ],\r\n    \"images\": [\r\n      {\r\n        \"fn\": \"thumbnail_dog1.jpg\",\r\n        \"sz\": 5620,\r\n        \"url\": \"https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg\",\r\n        \"ft\": \"image/jpeg\",\r\n        \"w\": 275,\r\n        \"h\": 183\r\n      }\r\n    ],\r\n    \"hg\": [\r\n      {\r\n        \"channelId\": \"1973524969530855424\",\r\n        \"s\": 79,\r\n        \"e\": 86\r\n      }\r\n    ]\r\n  }\r\n}");
     Request request = new Request.Builder()
       .url("https://webhook.mezon.ai/webhooks/1840666462029615104/MTc2MDAzODcxNTU5NDU0OTgzNzoxODQwNjY2NDYyMDEyODM3ODg4OjE4NDA2NjY0NjIwMjk2MTUxMDQ6MTk3NjM3MTczNTI3MTgzNzY5Ng.zLl5tsGaFYnC3sPXgOhVlZoBNrVeoC8hD6oKv0hxavs")
       .method("POST", body)
@@ -365,7 +402,7 @@ import TabItem from "@theme/TabItem";
     ```CSharp
     var client = new HttpClient();
     var request = new HttpRequestMessage(HttpMethod.Post, "https://webhook.mezon.ai/webhooks/1840666462029615104/MTc2MDAzODcxNTU5NDU0OTgzNzoxODQwNjY2NDYyMDEyODM3ODg4OjE4NDA2NjY0NjIwMjk2MTUxMDQ6MTk3NjM3MTczNTI3MTgzNzY5Ng.zLl5tsGaFYnC3sPXgOhVlZoBNrVeoC8hD6oKv0hxavs");
-    var content = new StringContent("{\r\n  \"type\": \"hook\",\r\n  \"message\": {\r\n    \"t\": \"[pre] Webhook message example: [lk] https://mezon.ai \\n [mention] mezon.webhook@ncc.asia\",\r\n    \"mk\": [\r\n      {\r\n        \"type\": \"pre\",\r\n        \"s\": 0,\r\n        \"e\": 30\r\n      },\r\n      {\r\n        \"type\": \"lk\",\r\n        \"s\": 36,\r\n        \"e\": 54\r\n      }\r\n    ],\r\n    \"mentions\": [\r\n      {\r\n        \"user_id\": \"1783755414765047808\",\r\n        \"s\": 65,\r\n        \"e\": 88\r\n      }\r\n    ],\r\n    \"images\": [\r\n      {\r\n        \"fn\": \"thumbnail_dog1.jpg\",\r\n        \"sz\": 5620,\r\n        \"url\": \"https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg\",\r\n        \"ft\": \"image/jpeg\",\r\n        \"w\": 275,\r\n        \"h\": 183\r\n      }\r\n    ]\r\n  }\r\n}", null, "application/json");
+    var content = new StringContent("{\r\n  \"type\": \"hook\",\r\n  \"message\": {\r\n    \"t\": \"[pre] Webhook message example: [lk] https://mezon.ai \\n [mention] @aliceinmezon #general\",\r\n    \"mk\": [\r\n      {\r\n        \"type\": \"pre\",\r\n        \"s\": 0,\r\n        \"e\": 30\r\n      },\r\n      {\r\n        \"type\": \"lk\",\r\n        \"s\": 36,\r\n        \"e\": 54\r\n      }\r\n    ],\r\n    \"mentions\": [\r\n      {\r\n        \"user_id\": \"1783755414765047808\",\r\n        \"s\": 65,\r\n        \"e\": 77\r\n      }\r\n    ],\r\n    \"images\": [\r\n      {\r\n        \"fn\": \"thumbnail_dog1.jpg\",\r\n        \"sz\": 5620,\r\n        \"url\": \"https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg\",\r\n        \"ft\": \"image/jpeg\",\r\n        \"w\": 275,\r\n        \"h\": 183\r\n      }\r\n    ],\r\n    \"hg\": [\r\n      {\r\n        \"channelId\": \"1973524969530855424\",\r\n        \"s\": 79,\r\n        \"e\": 86\r\n      }\r\n    ]\r\n  }\r\n}", null, "application/json");
     request.Content = content;
     var response = await client.SendAsync(request);
     response.EnsureSuccessStatusCode();
@@ -380,7 +417,7 @@ import TabItem from "@theme/TabItem";
     const raw = JSON.stringify({
       "type": "hook",
       "message": {
-        "t": "[pre] Webhook message example: [lk] https://mezon.ai \n [mention] mezon.webhook@ncc.asia",
+        "t": "[pre] Webhook message example: [lk] https://mezon.ai \n [mention] @aliceinmezon #general",
         "mk": [
           {
             "type": "pre",
@@ -397,7 +434,7 @@ import TabItem from "@theme/TabItem";
           {
             "user_id": "1783755414765047808",
             "s": 65,
-            "e": 88
+            "e": 77
           }
         ],
         "images": [
@@ -408,6 +445,13 @@ import TabItem from "@theme/TabItem";
             "ft": "image/jpeg",
             "w": 275,
             "h": 183
+          }
+        ],
+        "hg": [
+          {
+            "channelId": "1973524969530855424",
+            "s": 79,
+            "e": 86
           }
         ]
       }
