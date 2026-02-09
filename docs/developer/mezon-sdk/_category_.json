@@ -1,0 +1,9 @@
+{
+  "label": "Mezon SDK",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "slug": "developer/mezon-sdk",
+    "description": "Comprehensive guides and documentation to help you start working with Mezon SDK as quickly as possible."
+  }
+}

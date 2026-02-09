@@ -1,28 +1,51 @@
 {
-    "name": "docs",
-    "version": "1.0.0",
-    "description": "-   **image/** - Contains all images\r -   **plugins/** - All third-party libraries like wow.js , animate.css , bootstrap will be here. By default this framework included 4 libraries. They are -\r     -   [Twitter Bootstrap](https://github.com/twbs/bootstrap) - The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web.\r     -   [Font-Awesome](https://github.com/FortAwesome/Font-Awesome) - The iconic font and CSS toolkit\r     -   [jquery](https://github.com/jquery/jquery) - Javascript library for make javascript easy\r     -   [JQuery MeanMenu](https://github.com/meanthemes/meanMenu) - Jquery plugin for responsive mobile menu.\r -   **styles/**\r     -   **style.scss** - Contains all scss pertials\r     -   **abstracts/**\r         -   **\\_functions.scss** - This file contains all application-wide Sass functions.\r         -   **\\_mixins.scss** - This file contains all application-wide Sass mixins.\r         -   **\\_mixins.scss** - This file contains all application-wide Sass mixins.\r         -   **\\_variables.scss** - This file contains all application-wide Sass variables.\r     -   **base/**\r         -   **\\_base.scss** - This file contains very basic styles.\r         -   **\\_fonts.scss** - This file contains all @font-face declarations, if any.\r         -   **\\_helpers.scss** - This file contains CSS helper classes.\r         -   **\\_typography.scss** - Basic typography style for copy text\r     -   **components/** - This directory will holds your project's components partials scss files such as `_buttons.scss` , `_tab.scss` , `_accordion.scss` ...\r     -   **layout/** - This directory contains all styles of application layouts such as `_header.scss` , `_sidebar.scss` etc...\r     -   **pages/** - Page specific scss partials file will be here.\r     -   **themes/** - If your project has several theme , then these theme specified scss pertials will be here.",
-    "main": "index.js",
-    "directories": {
-        "doc": "docs"
-    },
-    "scripts": {
-        "build": "eleventy",
-        "start": "eleventy --serve",
-        "dev": "eleventy --serve --watch"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/mezonai/docs.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/mezonai/docs/issues"
-    },
-    "homepage": "https://github.com/mezonai/docs#readme",
-    "devDependencies": {
-        "@11ty/eleventy": "^3.1.2"
-    }
+  "name": "mezon-developer-docs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "start:en": "docusaurus start --locale en",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.9.1",
+    "@docusaurus/preset-classic": "3.9.1",
+    "@easyops-cn/docusaurus-search-local": "^0.52.1",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "^2.3.0",
+    "raw-loader": "^4.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.9.1",
+    "@docusaurus/tsconfig": "3.9.1",
+    "@docusaurus/types": "3.9.1",
+    "typescript": "~5.6.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=20.0"
+  }
 }

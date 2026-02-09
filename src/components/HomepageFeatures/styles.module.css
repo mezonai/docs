@@ -1,0 +1,23 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 5rem 0;
+  width: 100%;
+}
+
+.featureSvg {
+  height: 200px;
+  width: 200px;
+}
+
+.featuresList {
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.featureItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

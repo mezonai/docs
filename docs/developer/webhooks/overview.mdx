@@ -1,0 +1,49 @@
+---
+sidebar_position: 1
+sidebar_label: Overview
+---
+
+# Overview
+
+Mezon Webhooks is a powerful feature that allows you to automatically send messages to channels and users through HTTP POST requests. With webhooks, you can integrate external systems and automate notification workflows in Mezon.
+
+## Types of Webhooks
+
+Mezon provides two main types of webhooks:
+
+### Channel Webhook
+Channel Webhook allows you to send messages directly to a specific channel in a clan. Messages are sent from a customizable bot user with a name and avatar, making it easy to identify the source of notifications.
+
+**When to use:**
+- System notifications for the entire clan or team
+- CI/CD pipeline integrations
+- Logging and monitoring alerts
+- Automation workflows
+
+### Clan Webhook
+Clan Webhook allows you to send Direct Messages (DM) directly to individual users in your clan. Messages are sent based on the username or user ID specified in the URL.
+
+**When to use:**
+- Personal notifications for individual users
+- Private alerts and notifications
+- Personal updates and reminders
+- One-to-one communication from external systems
+
+## How It Works
+
+1. **Create Webhook**: Set up a webhook integration in channel or clan settings
+2. **Get URL**: Copy the webhook URL with its security token
+3. **Send Request**: Make an HTTP POST request with JSON payload to the webhook URL
+4. **Receive Message**: Message appears in the channel or user's inbox
+
+## Get Started
+
+To start using webhooks:
+
+1. View detailed guides for [Channel Webhook](./channel-webhook) or [Clan Webhook](./clan-webhook)
+2. Create a webhook in the Mezon application
+3. Use the provided code examples to send messages from your system
+
+:::tip Security Note
+Always keep your webhook token secure and reset it if you suspect it has been compromised or exposed.
+:::

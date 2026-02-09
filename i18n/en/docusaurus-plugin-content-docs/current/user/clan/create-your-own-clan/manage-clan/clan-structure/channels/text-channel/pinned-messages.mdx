@@ -1,0 +1,60 @@
+---
+sidebar_position: 4
+sidebar_label: Pinned Messages
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
+import Image from "@site/src/components/Image";
+import Heading from '@theme/Heading';
+import pinnedMessages001 from './images/pinned-messages-001.png';
+import pinnedMessages002 from './images/pinned-messages-002.png';
+import pinnedMessages003 from './images/pinned-messages-003.png';
+import pinnedMessages004 from './images/pinned-messages-004.png';
+import pinnedMessages005 from './images/pinned-messages-005.png';
+import pinnedMessagesMobile001 from './images/pinned-messages-mobile-001.png';
+import pinnedMessagesMobile002 from './images/pinned-messages-mobile-002.png';
+import pinnedMessagesMobile003 from './images/pinned-messages-mobile-003.png';
+
+# Pinned Messages
+In busy chat channels, Pinned Messages help keep important content easily accessible so everyone can find and review it anytime.
+
+### How to Pin a Message
+<Tabs>
+<TabItem value="PC" label="PC">
+<Steps>
+<Step title="In a **Text Channel**, right-click the message you want to pin.">
+<Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages001} alt="Pinned Messages 001" />
+</Step>
+<Step title="Select **Pin Message**, confirm, and click **Pin**.">
+
+<Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages002} alt="Pinned Messages 002" />
+</Step>
+<Step title="A notification about the pinned message will appear in the chat. You can click **All Messages** or the **pin icon** at the top of the channel to review pinned messages.">
+<Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages003} alt="Pinned Messages 003" />
+<Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages004} alt="Pinned Messages 004" />
+</Step>
+<Step title="If there are multiple pinned messages, select **Jump** in the pinned list to quickly navigate to the original message.">
+<Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages005} alt="Pinned Messages 005" />
+</Step>
+</Steps>
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+1. In a Text Channel or Thread, press and hold the message you want to pin.
+
+<div align="left"><img style={{ width: '30%' }} src={pinnedMessagesMobile001} alt="pinned-messages-mobile-001" /></div>
+
+2. Select **Pin Message**, confirm, and tap **Yes**.
+
+<div align="left"><img style={{ width: '30%' }} src={pinnedMessagesMobile002} alt="pinned-messages-mobile-002" /></div>
+
+<Heading as="h3">How to view pinned messages</Heading>
+
+1. In the Text Channel or Thread, select **Pinned** from the menu.
+
+<div align="left"><img style={{ width: '30%' }} src={pinnedMessagesMobile003} alt="pinned-messages-mobile-003" /></div>
+
+2. Tap a pinned message to jump to its original location.
+3. Tap the **X** if you want to unpin or remove the message from the pinned list.
+</TabItem>
+</Tabs>

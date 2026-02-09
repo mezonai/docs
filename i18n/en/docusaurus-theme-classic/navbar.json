@@ -1,0 +1,42 @@
+{
+  "title": {
+    "message": "Mezon Docs",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Mezon Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Trang chủ": {
+    "message": "Home",
+    "description": "Navbar item with label Trang chủ"
+  },
+  "item.label.Nhà phát triển": {
+    "message": "Developers",
+    "description": "Navbar item with label Nhà phát triển"
+  },
+  "item.label.Bots/Apps": {
+    "message": "Bots/Apps",
+    "description": "Navbar item with label Bots/Apps"
+  },
+  "item.label.Khám phá": {
+    "message": "Discover",
+    "description": "Navbar item with label Khám phá"
+  },
+  "item.label.Blogs": {
+    "message": "Blogs",
+    "description": "Navbar item with label Blogs"
+  },
+  "item.label.Tài liệu": {
+    "message": "Docs",
+    "description": "Navbar item with label Tài liệu"
+  },
+  "item.label.Dành cho người dùng": {
+    "message": "For User",
+    "description": "Navbar item with label Dành cho người dùng"
+  },
+  "item.label.Dành cho nhà phát triển": {
+    "message": "For Developer",
+    "description": "Navbar item with label Dành cho nhà phát triển"
+  }
+}

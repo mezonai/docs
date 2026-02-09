@@ -1,0 +1,119 @@
+---
+sidebar_position: 1
+sidebar_label: OAuth2
+---
+
+# OAuth2
+
+OAuth2 allows application developers to build applications using authentication and data from the Mezon API. Mezon only supports the authorization code grant and some special Mezon-specific flows for Bots and Webhooks.
+
+## Shared Resources
+
+The first step in implementing OAuth2 is [registering a developer application](https://mezon.ai/developers/applications) and retrieving your client ID and client secret. Most people who will be implementing OAuth2 will want to find and utilize a library in the language of their choice. For those implementing OAuth2 from scratch, please see [RFC 6749](https://tools.ietf.org/html/rfc6749) for details. After you create your application with Mezon, make sure that you have your `client_id` and `client_secret` handy.
+
+###### OAuth2 URLs
+
+| URL                                  | Description            |
+| ------------------------------------ | ---------------------- |
+| https://oauth2.mezon.ai/oauth2/auth  | Base authorization URL |
+| https://oauth2.mezon.ai/oauth2/token | Token URL              |
+| https://oauth2.mezon.ai/userinfo     | User information URL   |
+
+> [!WARNING]
+> In accordance with the relevant RFCs, the token and token revocation URLs will **only** accept a content type of `application/x-www-form-urlencoded`. JSON content is not permitted and will return an error.
+
+###### OAuth2 Scopes
+
+These are a list of all the OAuth2 scopes that Mezon supports. Some scopes require approval from Mezon to use. Requesting them from a user without approval from Mezon may cause errors or undocumented behavior in the OAuth2 flow.
+
+| Name           | Description |
+| -------------- | ----------- |
+| openid         |             |
+| offline        |             |
+| offline_access |             |
+
+## State and Security
+
+Before we dive into the semantics of the different OAuth2 grants, we should stop and discuss security, specifically the use of the `state` parameter. [Cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery), or CSRF, and [Clickjacking](https://en.wikipedia.org/wiki/Clickjacking) are security vulnerabilities that must be addressed by individuals implementing OAuth. This is typically accomplished using the `state` parameter. `state` is sent in the authorization request and returned back in the response and should be a value that binds the user's request to their authenticated state. For example, `state` could be a hash of the user's session cookie, or some other nonce that can be linked to the user's session.
+
+When a user begins an authorization flow on the client, a `state` is generated that is unique to that user's request. This value is stored somewhere only accessible to the client and the user, i.e. protected by the [same-origin policy](https://en.wikipedia.org/wiki/Same-origin_policy). When the user is redirected, the `state` parameter is returned. The client validates the request by checking that the `state` returned matches the stored value. If they match, it is a valid authorization request. If they do not match, it's possible that someone intercepted the request or otherwise falsely authorized themselves to another user's resources, and the request should be denied.
+
+For Mezon, we require an 11-character alphanumeric `state` parameter. This parameter, which consists of letters and numbers, is sent in the URL and will be detailed in the next section.
+
+## Authorization Code Flow
+
+The authorization code grant is what most developers will recognize as "standard OAuth2" and involves obtaining an authorization code and exchanging it for a user's access token. It allows the authorization server to act as an intermediary between the client and the resource owner, so the resource owner's credentials are never shared directly with the client
+
+All calls to the OAuth2 endpoints require either HTTP Basic authentication or `client_id` and `client_secret` supplied in the form data body.
+
+###### Authorization URL Example
+
+```
+https://oauth2.mezon.ai/oauth2/auth?client_id=1840672953654579200&redirect_uri=https%3A%2F%2Ftalent.nccsoft.vn%2Faccount%2Flogin%2Fcallback&response_type=code&scope=openid+offline&state=7d2bf60ffcb
+```
+
+`client_id` is your application's `client_id`. `scope` is a list of [OAuth2 scopes](#oauth2-scopes) separated by url encoded spaces (`%20`). `redirect_uri` is whatever URL you registered when creating your application, url-encoded. `state` is the unique string mentioned in [State and Security](#state-and-security).
+
+When someone navigates to this URL, it initiates the authorization process for your application for the requested scopes.
+
+A challenge is issued (we call this `Log in to Mezon account`) which redirects you to the Mezon login page. If authentication is successful, Mezon will redirect you to your `redirect_uri`, which will contain an additional query string parameter, `code`. The `state` will also be returned if it was previously sent and should be validated at this point.
+
+> [!IMPORTANT]
+> Note, always verify `state` to avoid security risks.
+
+###### Redirect URL Example
+
+```
+https://talent.nccsoft.vn/account/login/callback?code=ory_ac_lidWCbmSJsJGZvw34jbRPfNj0eXJBq-kyxlwwcidryY.zVdZx6bU5Q01vAN8orQeL3TY3UPexXGZ8bTLvilBRdY&scope=&state=7d2bf60ffcb
+```
+
+`code` is now exchanged for the user's access token by making a `POST` request to the [token URL](#oauth2-urls) with the following parameters:
+
+- `grant_type` - must be set to `authorization_code`
+- `code` - the code from the querystring
+- `state` - the state from the querystring
+- `client_id` - the `client_id` from the developer application
+- `client_secret` - the `client_secret` from the developer application
+- `redirect_uri` - the `redirect_uri` associated with this authorization, usually from your authorization URL
+
+###### Access Token Exchange Example
+
+```python
+import requests
+
+API_ENDPOINT = 'https://oauth2.mezon.ai/'
+CLIENT_ID = '1840672953654579200'
+CLIENT_SECRET = '9dZkohGU!OU*.EZt|LWUbb5>z4*u|L2a'
+REDIRECT_URI = 'https://talent.nccsoft.vn/account/login/callback'
+
+def exchange_code(code, state):
+  data = {
+    'grant_type': 'authorization_code',
+    'code': code,
+    'state': state,
+    'client_id': CLIENT_ID,
+    'client_secret': CLIENT_SECRET,
+    'redirect_uri': REDIRECT_URI
+  }
+  headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+  r = requests.post('%s/oauth2/token' % API_ENDPOINT, data=data, headers=headers)
+  r.raise_for_status()
+  return r.json()
+```
+
+In response, you will receive:
+
+###### Access Token Response
+
+```json
+{
+  "access_token": "ory_at_SHhqhMVwdB-Wsf3JVcM4K0zBkosl76ZqSAbWWVHiiCY.WJGnPNlsNrTsvWzNJZgX2r2YjOwKba3LevbS9SZco8A",
+  "expires_in": 3600,
+  "scope": "",
+  "token_type": "bearer"
+}
+```
+
+Having the user's access token allows your application to make certain requests to the API on their behalf, restricted to whatever scopes were requested. `expires_in` is how long, in seconds, until the returned access token expires, allowing you to anticipate the expiration.
