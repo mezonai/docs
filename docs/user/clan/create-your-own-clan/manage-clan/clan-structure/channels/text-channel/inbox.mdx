@@ -1,12 +1,11 @@
 ---
 sidebar_position: 8
-sidebar_label: Hộp thư
+sidebar_label: Inbox
 ---
-import { Steps, Step } from '@site/src/components/Steps';
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image';
-import Heading from '@theme/Heading';
+import { Steps, Step } from "@site/src/components/Steps";
+import Image from "@site/src/components/Image";
 import inbox001 from './images/inbox-001.png';
 import inbox002 from './images/inbox-002.png';
 import inbox003 from './images/inbox-003.png';
@@ -14,6 +13,7 @@ import inbox004 from './images/inbox-004.png';
 import inbox005 from './images/inbox-005.png';
 import inbox006 from './images/inbox-006.png';
 import inbox007 from './images/inbox-007.png';
+import inboxMobile001 from './images/inbox-mobile-001.png';
 import inboxMobile002 from './images/inbox-mobile-002.png';
 import inboxMobile003 from './images/inbox-mobile-003.png';
 import inboxMobile004 from './images/inbox-mobile-004.png';
@@ -21,102 +21,77 @@ import inboxMobile005 from './images/inbox-mobile-005.png';
 import inboxMobile006 from './images/inbox-mobile-006.png';
 import inboxMobile007 from './images/inbox-mobile-007.png';
 
-# Hộp thư
+# Inbox
+Inbox helps you keep track of important messages and consolidates all key notifications in one place.
 
-Hộp thư giúp bạn không bỏ lỡ tin nhắn cần theo dõi và tập hợp mọi thông báo
-quan trọng tại một nơi duy nhất.
-
+### How to View Inbox
 <Tabs>
 <TabItem value="PC" label="PC">
-### Cách xem Inbox
-
 <Steps>
-<Step title="Trên thanh công cụ đầu kênh, chọn **biểu tượng hộp thư**.">
-<Image style={{ margin: '1rem 2rem' }} src={inbox001} alt="Inbox 001" />
+<Step title="On the channel toolbar, click the **Inbox icon** at the top of the channel.">
+<Image style={{ margin: '1rem 2rem' }}  src={inbox001} alt="Inbox 001" />
 </Step>
-
-<Step title="Vào mục **Dành cho bạn** để xem thông báo khi có người kết bạn hoặc gửi Mezon Đồng cho bạn.">
-<Image style={{ margin: '1rem 2rem' }} src={inbox002} alt="Inbox 002" />
+<Step title="Go to **For You** to view notifications such as friend requests or Mezon Coins sent to you.">
+<Image style={{ margin: '1rem 2rem' }}  src={inbox002} alt="Inbox 002" />
 </Step>
-
-<Step title="Vào mục **Tin nhắn** để xem tin nhắn bạn đã thêm, hoặc các tin nhắn quan trọng từ Clan">
-
-<Image style={{ margin: '1rem 2rem' }} src={inbox003} alt="Inbox 003" />
+<Step title="Go to **Messages** to see messages you’ve added or important messages from the Clan.">
+<Image style={{ margin: '1rem 2rem' }}  src={inbox003} alt="Inbox 003" />
 </Step>
-
-<Step title="Vào mục **Nhắc đến** để xem nhanh những tin nhắn bạn được tag.">
-
-<Image style={{ margin: '1rem 2rem' }} src={inbox004} alt="Inbox 004" />
+<Step title="Go to **Mentions** to quickly see messages where you were tagged">
+<Image style={{ margin: '1rem 2rem' }}  src={inbox004} alt="Inbox 004" />
 </Step>
-
-<Step title="Vào mục **Chủ để truy cập các **Thảo luận ngắn** trong Clan">
-
-<Image style={{ margin: '1rem 2rem' }} src={inbox005} alt="Inbox 005" />
-</Step>
-</Steps>
-
-### Cách thêm tin nhắn vào Hộp thư
-
-<Steps>
-<Step title="Nhấn chuột phải vào tin nhắn ở bất kì đâu">
-</Step>
-
-<Step title="Chọn **Thêm vào hộp thư**">
-
-<Image style={{ margin: '1rem 2rem' }} src={inbox006} alt="Inbox 006" />
-</Step>
-
-<Step title="Tin nhắn đó sẽ xuất hiện trong mục **Tin nhắn** của **Hộp thư**, giúp bạn dễ dàng xem lại.">
-<Image style={{ margin: '1rem 2rem' }} src={inbox007} alt="Inbox 007" />
+<Step title="Go to **Topic** to access all **Topics** (short discussions) in the Clan.">
+<Image style={{ margin: '1rem 2rem' }}  src={inbox005} alt="Inbox 005" />
 </Step>
 </Steps>
 </TabItem>
 <TabItem value="mobile" label="Mobile">
-<Heading as="h3">Cách xem Inbox</Heading>
+1. Go to the bottom navigation bar and tap the 🔔 **Inbox** icon.
 
-<Steps>
-<Step title="Truy cập **thanh điều hướng dưới cùng**, chọn biểu tượng **🔔 Hộp thư**.">
-![inbox-mobile-001](./images/inbox-mobile-001.png)
-</Step>
+<div align="left"><img style={{ width: '30%' }} src={inboxMobile001} alt="inbox-mobile-001" /></div>
 
-<Step title="Tại đây, bạn có thể xem toàn bộ hoạt động liên quan đến mình trong Clan.">
+2. Here, you can view all activities related to you in the Clan:
 
-*   **@ Nhắc đến:** Hiển thị các tin nhắn mà bạn được tag trực tiếp.
+* **@ Mentions:** Shows messages where you were directly tagged.
 
-    <div align="left"><img style={{ width: '30%' }} src={inboxMobile002} alt="inbox-mobile-002" /></div>
+<div align="left"><img style={{ width: '30%' }} src={inboxMobile002} alt="inbox-mobile-002" /></div>
 
-
-* Vào mục **Tin nhắn** để xem tin nhắn bạn đã thêm, hoặc các tin nhắn quan trọng từ Clan 
+* **Messages:** View messages you’ve marked or important messages from the Clan.
 
 <div align="left"><img style={{ width: '30%' }} src={inboxMobile003} alt="inbox-mobile-003" /></div>
 
-*   Vào mục **Chủ đề** để truy cập các **Thảo luận ngắn** trong từng Clan khác nhau
+* **Topics:** Access all Topics (short discussions) across different Clans.
 
-    <div align="left"><img style={{ width: '30%' }} src={inboxMobile004} alt="inbox-mobile-004" /></div>
+<div align="left"><img style={{ width: '30%' }} src={inboxMobile004} alt="inbox-mobile-004" /></div>
+
+* **For You:** Includes notifications like friend requests and received Mezon Dong.
+
+<div align="left"><img style={{ width: '30%' }} src={inboxMobile005} alt="inbox-mobile-005" /></div>
+</TabItem>
+</Tabs>
 
 
-*   **Dành cho bạn:** Bao gồm thông báo khi có **lời mời kết bạn** và **Mezon Đồng** được gửi đến
-
-    <div align="left"><img style={{ width: '30%' }} src={inboxMobile005} alt="inbox-mobile-005" /></div>
+### How to Add a Message to Inbox
+<Tabs>
+<TabItem value="PC" label="PC">
+<Steps>
+<Step title="Right-click any message."></Step>
+<Step title="Select **Add to Inbox**.">
+<Image style={{ margin: '1rem 2rem' }}  src={inbox006} alt="Inbox 006" />
+</Step>
+<Step title="The message will appear under **Inbox → Messages**, making it easy to review later.">
+<Image style={{ margin: '1rem 2rem' }}  src={inbox007} alt="Inbox 007" />
 </Step>
 </Steps>
-
-<Heading as="h3">Cách thêm tin nhắn vào Hộp thư</Heading>
-
-<Steps>
-<Step title="Nhấn và giữ vào **tin nhắn** mà bạn muốn lưu.">
-</Step>
-
-<Step title="Chọn **Đánh dấu tin nhắn**">
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+1. Press and hold the message you want to save.
+2. Select **Mark Message**.
 
 <div align="left"><img style={{ width: '30%' }} src={inboxMobile006} alt="inbox-mobile-006" /></div>
-</Step>
 
-<Step title="Tin nhắn đó sẽ được thêm vào mục **Tin nhắn** trong **Hộp thư**, giúp bạn dễ dàng xem lại bất cứ lúc nào.">
-Tin nhắn đó sẽ được thêm vào mục **Tin nhắn** trong **Hộp thư**, giúp bạn dễ dàng xem lại bất cứ lúc nào.
+3. The message will be added to **Messages** in Inbox, making it easy to revisit anytime.
 
 <div align="left"><img style={{ width: '30%' }} src={inboxMobile007} alt="inbox-mobile-007" /></div>
-</Step>
-</Steps>
 </TabItem>
 </Tabs>

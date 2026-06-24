@@ -15,6 +15,7 @@
   --ifm-color-primary-lightest: #a5acf8;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --mezon-code-block-max-height: 66.67vh;
   --ifm-color-danger: #ff0000;
   --ifm-color-warning: #ffa500;
   --ifm-color-success: #00ff00;
@@ -94,4 +95,33 @@
 
 .footer {
   --ifm-footer-background-color: #252728;
+}
+
+/* Long code blocks: cap height at ~2/3 viewport and scroll inside */
+.theme-doc-markdown .theme-code-block,
+.tabs .theme-code-block,
+.theme-code-block {
+  max-height: var(--mezon-code-block-max-height);
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.theme-doc-markdown .theme-code-block [class*='codeBlockContent'],
+.tabs .theme-code-block [class*='codeBlockContent'],
+.theme-code-block [class*='codeBlockContent'] {
+  max-height: inherit;
+}
+
+.theme-doc-markdown .theme-code-block pre,
+.tabs .theme-code-block pre,
+.theme-code-block pre {
+  margin-bottom: 0;
+  overflow: visible;
+}
+
+.theme-doc-markdown .theme-code-block pre.thin-scrollbar,
+.tabs .theme-code-block pre.thin-scrollbar,
+.theme-code-block pre.thin-scrollbar {
+  scrollbar-width: thin;
 }

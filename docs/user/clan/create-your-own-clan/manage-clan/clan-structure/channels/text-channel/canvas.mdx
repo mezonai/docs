@@ -1,63 +1,49 @@
 ---
 sidebar_position: 1
-sidebar_label: Bảng ghi chú
+sidebar_label: Canvas
 ---
-import { Steps, Step } from '@site/src/components/Steps';
-import Image from '@site/src/components/Image';
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { Steps, Step } from "@site/src/components/Steps";
+import Image from "@site/src/components/Image";
 import canvas001 from './images/canvas-001.png';
 import canvas002 from './images/canvas-002.png';
 import canvasMobile001 from './images/canvas-mobile-001.png';
 
-# Bảng ghi chú
-Thay vì để tài liệu quan trọng lẫn trong dòng chat, Mezon mang đến Bảng ghi chú – bảng ghi chú và chia sẻ trực quan ngay trong kênh.
+# Canvas
+Instead of mixing important documents within the chat, Mezon provides Canvas - a visual note and sharing board directly within the channel.
 
-### Cách dùng
-
+### How to Use
 <Tabs>
 <TabItem value="PC" label="PC">
 <Steps>
-<Step title="Mở Mezon, chọn **Kênh văn bản** hoặc **Chuỗi thảo luận** bạn cần trao đổi.">
+<Step title="Open Mezon and select the **Text Channel** or **Thread** where you want to collaborate."></Step>
+<Step title="Click the **paper icon** in the chat toolbar.">
+<Image style={{ margin: '1rem 2rem' }}  src={canvas001} alt="Canvas 001" />
 </Step>
-
-<Step title="Nhấp vào **biểu tượng trang giấy** trong thanh công cụ của đoạn chat.">
-<Image style={{ margin: '1rem 2rem' }} src={canvas001} alt="Canvas 001" />
+<Step title="Select **Create** to start a new note.">
+<Image style={{ margin: '1rem 2rem' }}  src={canvas002} alt="Canvas 002" />
 </Step>
-
-<Step title="Chọn **Tạo** để bắt đầu một ghi chú mới">
-<Image style={{ margin: '1rem 2rem' }} src={canvas002} alt="Canvas 002" />
-</Step>
-
-<Step title="Nhập **tiêu đề và nội dung** mà bạn muốn chia sẻ với nhóm.">
-</Step>
+<Step title="Enter the **title** and **content** you want to share with the group."></Step>
 </Steps>
-
-:::warning Chú ý
-Giới hạn dung lượng file ảnh trong Bảng ghi chú là 50Mb
+:::warning Note
+Maximum image file size in Canvas: 50 MB
 :::
 
-Với Bảng ghi chú, tất cả thành viên có thể cập nhật theo thời gian thực. Mọi dữ liệu được lưu giữ tập trung, không bị “chìm” trong cuộc trò chuyện, giúp nhóm tiết kiệm thời gian tìm kiếm và nhanh chóng truy xuất được thông tin quan trọng
+With **Canvas**, all members can update notes in **real-time**. All data is stored centrally, preventing it from being “lost” in the conversation. This helps the team save time searching and quickly access important information.
 </TabItem>
 <TabItem value="mobile" label="Mobile">
-<Steps>
-<Step title="Mở Mezon, chọn **Kênh Văn bản** hoặc **Chủ đề** bạn cần trao đổi.">
-</Step>
-
-<Step title="Nhấn vào chọn **Bảng ghi chú** ở menu.">
+1. Open Mezon and select the Text Channel or Thread you want to work in.
+2. Tap **Canvas** in the menu.
 
 <div align="left"><img style={{ width: '30%' }} src={canvasMobile001} alt="canvas-mobile-001" /></div>
-</Step>
 
-<Step title="Tại đây bạn có thể tạo Bảng ghi chú mới và xem lại danh sách các Bảng ghi chú đã tạo.">
-</Step>
-</Steps>
+3. Here, you can create a new Canvas and view the list of existing boards.
 
-:::warning Chú ý
-Giới hạn dung lượng tệp ảnh trong Bảng ghi chú là 50Mb
+:::warning
+Maximum image file size in a Canvas: 50 MB.
 :::
 
-Với Bảng ghi chú, tất cả thành viên có thể cập nhật theo thời gian thực. Mọi dữ liệu được lưu giữ tập trung, không bị “chìm” trong cuộc trò chuyện, giúp nhóm tiết kiệm thời gian tìm kiếm và nhanh chóng truy xuất được thông tin quan trọng
+With the Canvas, all members can update content in real time. Data is stored centrally, preventing it from getting “lost” in conversations, helping your team save time and quickly access important information.
 </TabItem>
 </Tabs>
-

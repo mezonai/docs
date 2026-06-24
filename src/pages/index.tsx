@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { useEffect } from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -9,8 +8,6 @@ import Heading from "@theme/Heading";
 
 import styles from "./index.module.css";
 import Translate from "@docusaurus/Translate";
-import { useHistory, useLocation } from "@docusaurus/router";
-import { normalizePath } from "../utils/utils";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -26,7 +23,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/user/welcome"
           >
-            <Translate id="homepage.getStarted">Bắt đầu</Translate>
+            <Translate id="homepage.getStarted">Get Started</Translate>
           </Link>
         </div>
       </div>
@@ -36,33 +33,12 @@ function HomepageHeader() {
 
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
-  const history = useHistory();
-  const location = useLocation();
-
-  useEffect(() => {
-    const browserLang = navigator.language?.split("-")[0];
-    const normalizedPath = normalizePath(location.pathname);
-    if (
-      (normalizedPath === "/docs/en" && browserLang === "en") ||
-      (normalizedPath === "/docs" && browserLang === "vi")
-    )
-      return;
-
-    const supported = ["vi", "en"];
-    const defaultLocale = "vi";
-
-    const target =
-      supported.includes(browserLang) && browserLang !== defaultLocale
-        ? `/${browserLang}`
-        : "/";
-
-    if (target !== normalizedPath) {
-      window.location.replace(`/docs${target}`);
-    }
-  }, [history, location]);
+  const metaDescription =
+    (siteConfig.customFields as {metaDescription?: string})?.metaDescription ??
+    siteConfig.tagline;
 
   return (
-    <Layout title={`${siteConfig.title}`} description={`${siteConfig.tagline}`}>
+    <Layout title={siteConfig.title} description={metaDescription}>
       <HomepageHeader />
       <main>
         <HomepageFeatures />

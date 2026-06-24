@@ -1,8 +1,21 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
+
+// Lightweight inline renderer for step titles. Supports the only Markdown used
+// in titles across the docs: **bold** and backslash escapes (e.g. \_). This
+// avoids pulling in the heavy react-markdown dependency just for titles.
+function renderInline(text: string): React.ReactNode {
+  const unescape = (s: string) => s.replace(/\\([\\_*`~])/g, "$1");
+  const segments = text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
+  return segments.map((segment, index) => {
+    const bold = /^\*\*([^*]+)\*\*$/.exec(segment);
+    if (bold) {
+      return <strong key={index}>{unescape(bold[1])}</strong>;
+    }
+    return <React.Fragment key={index}>{unescape(segment)}</React.Fragment>;
+  });
+}
 
 export function Steps({ children }) {
-  // Tự động đánh số step
   return (
     <div className="space-y-8">
       {React.Children.map(children, (child, index) =>
@@ -21,9 +34,7 @@ export function Step({ title, stepNumber, children }) {
         marginBottom: "1rem",
       }}
     >
-      <div
-        style={{ display: "flex",  marginBottom: "1rem" }}
-      >
+      <div style={{ display: "flex", marginBottom: "1rem" }}>
         <span
           style={{
             background: "var(--ifm-color-primary)",
@@ -41,15 +52,7 @@ export function Step({ title, stepNumber, children }) {
         >
           {stepNumber}
         </span>
-        <ReactMarkdown
-          components={{
-            p: ({ children }) => (
-              <p style={{ fontSize: "1.2rem", margin: 0 }}>{children}</p>
-            ),
-          }}
-        >
-          {title}
-        </ReactMarkdown>
+        <p style={{ fontSize: "1.2rem", margin: 0 }}>{renderInline(title)}</p>
       </div>
       <div>{children}</div>
     </div>

@@ -1,95 +1,89 @@
 ---
 sidebar_position: 9
-sidebar_label: Tìm kiếm
+sidebar_label: Search
 ---
-import Image from '@site/src/components/Image';
+import Image from "@site/src/components/Image";
 import search001 from './images/search-001.png';
 
-# Tìm kiếm
+# Search
+Search allows you to quickly find messages, files, or any information within Mezon.
 
-Tìm kiếm giúp bạn nhanh chóng tìm lại tin nhắn, tệp hoặc bất kỳ thông tin nào
-trong Mezon.
+### 1. Basic Search
 
-### 1. Tìm Kiếm Cơ Bản
+**How to Use:** Enter a keyword or phrase into the search box at the top of the Mezon app or website.
 
-**Cách thực hiện:** Nhập từ khóa hoặc cụm từ vào ô tìm kiếm ở phía trên cùng của ứng dụng hoặc trang web Mezon.
+<Image style={{ margin: '1rem 2rem' }}  src={search001} alt="Search 001" />
 
-<Image style={{ margin: '1rem 2rem' }} src={search001} alt="Search 001" />
+**Example:** Enter `"financial report"` to find all related content.
 
-**Ví dụ:** Nhập "báo cáo tài chính" để tìm tất cả các nội dung liên quan.
+**Result:** Mezon will display messages, attachments, or other content containing your keyword.
 
-**Kết quả:** Mezon sẽ hiển thị các tin nhắn, tệp đính kèm hoặc nội dung khác chứa từ khóa của bạn.
+### 2. Advanced Search with Filters
 
-### 2. Tìm Kiếm Nâng Cao Với Các Bộ Lọc Đặc Biệt
+To narrow results and search more precisely, use the following filters:
 
-Để thu hẹp kết quả và tìm kiếm chính xác hơn, hãy sử dụng các bộ lọc sau:
+#### **2.1. Search by Sender**
 
-#### 2.1. Tìm Theo Người Gửi
+**Purpose:** Filter messages sent by a specific user.
 
-**Mục đích**: Lọc các tin nhắn được gửi bởi một người dùng cụ thể.
+**Syntax:** Type `>` (greater than symbol) immediately before the sender’s name.
 
-**Cú pháp:** Gõ > (dấu lớn hơn) ngay trước tên người gửi.
+**Examples:**
 
-**Ví dụ**:
+* `>an.nguyenthanh` → Find all messages from "an.nguyenthanh"
+* `>phong.ketoan` → Filter messages from "phong.ketoan"
 
-\>an.nguyenthanh: Tìm tất cả tin nhắn từ "an.nguyenthanh".
+#### **2.2. Search by Mention**
 
-\>phong.ketoan: Lọc tin nhắn từ người dùng "phong.ketoan".
+**Purpose:** Filter messages that mention a specific user, role, or channel.
 
-#### 2.2. Tìm Theo Người Được Nhắc Đến (Mention)
+**Syntax:** Type `~` (tilde) immediately before the mentioned user or role.
 
-**Mục đích:** Lọc các tin nhắn có nhắc đến (tag/mention) một người dùng hoặc vai trò/kênh cụ thể.
+**Examples:**
 
-**Cú pháp:** Gõ \~ (dấu ngã) ngay trước tên người được nhắc đến.
+* `~anh.nguyentram` → Find messages mentioning "anh.nguyentram"
+* `~team.dev` → Find messages mentioning "team.dev"
 
-**Ví dụ:**
+#### **2.3. Filter by Attachments**
 
-\~anh.nguyentram: Lọc các tin nhắn có nhắc đến "anh.nguyentram".
+**Purpose:** Find messages containing specific types of attachments.
 
-\~team.dev: Tìm tin nhắn có nhắc đến "team.dev".
+**Syntax:** Type `&` (ampersand) to show filter options.
 
-#### 2.3. Lọc Nội Dung Đính Kèm
+**Common Filters:**
 
-**Mục đích:** Tìm kiếm các tin nhắn có chứa các loại tệp đính kèm cụ thể.
-
-**Cú pháp:** Gõ & (dấu và) để hiển thị các lựa chọn lọc.
-
-**Các lựa chọn phổ biến:**
-
-- & has:video: Tìm tin nhắn có video.
-- & has:link: Tìm tin nhắn có liên kết.
-- & has:image: Tìm tin nhắn có ảnh.
-- & has:file: Tìm tin nhắn có bất kỳ loại tệp đính kèm nào.
+* `& has:video` → Messages with videos
+* `& has:link` → Messages with links
+* `& has:image` → Messages with images
+* `& has:file` → Messages with any type of attachment
 
 :::tip
-Kết hợp với từ khóa: Bạn có thể kết hợp & với từ khóa.
+**Combine with Keywords:** You can combine `&` with a keyword for more precise results.
 :::
 
-#### 2.4. Tìm kiếm cụm từ chính xác hoặc tương tự
+#### **2.4. Search for an exact or match phrase**
 
-**Mục đích:**
+**Purpose:**
 
-- Dùng **dấu ngoặc đơn `' '`** để tìm **cụm từ chính xác**, khớp hoàn toàn theo thứ tự các từ.
-- Dùng **dấu ngoặc kép `" "`** để tìm **cụm từ tương tự**, bao gồm các biến thể hoặc cụm từ có nghĩa gần giống.
+* Use **single quotes `' '`** to find messages containing the **exact phrase**, matching the words in the exact order.
+* Use **double quotes `" "`** to find messages that **match the phrase loosely**, such as variations or partial matches.
 
-**Cú pháp:**
+**Syntax:**
 
-- Cụm từ chính xác: `'cụm từ tìm kiếm'`
-- Cụm từ tương tự: `"cụm từ tìm kiếm"`
+* Exact phrase: `'search phrase'`
+* Match phrase: `"search phrase"`
 
-**Ví dụ:**
+**Example:**
 
-- `'Chiều thứ 3'` — chỉ hiển thị các tin nhắn có chính xác cụm từ _“Chiều thứ 3”_.
-- `"Chiều thứ 3"` — hiển thị cả những tin nhắn có cụm từ tương tự như _“Chiều ngày thứ 3”_ hoặc _“Buổi chiều thứ 3 đó”_.
+* `'Tuesday afternoon'` — shows only messages with the exact phrase _“Tuesday afternoon”_.
+* `"Tuesday afternoon"` — shows messages that include related variations, such as _“Afternoon on Tuesday”_ or _“Tuesday’s afternoon meeting”_.
 
-### 3. Mẹo Nhanh Để Tìm Kiếm Hiệu Quả
+### 3. Quick Tips for Effective Search
 
-**Kết hợp bộ lọc**: Sử dụng nhiều bộ lọc cùng lúc để có kết quả chính xác nhất.
-
-**Ví dụ:** >an.nguyenthanh & has:image (tìm ảnh từ An.nguyenthanh).
-
-**Hoặc**: báo cáo & has:file: Tìm các tệp đính kèm có chứa từ "báo cáo".
+* **Combine Filters:** Use multiple filters at once for the most accurate results.
+  * **Example**: `>an.nguyenthanh & has:image` → Find images from "an.nguyenthanh"
+  * **Example**: `report & has:file` → Find files containing the word "report"
 
 :::tip
-Sử dụng từ khóa cụ thể: Càng cụ thể, kết quả càng chính xác.
+**Use Specific Keywords:** The more specific the keyword, the more accurate the results.
 :::

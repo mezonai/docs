@@ -33,7 +33,7 @@ The **[Channel App SDK](../mezon-sdk/channel-app-sdk/overview.md)** enables apps
 
 ### Customize clans and channels
 
-With appropriate API endpoints and proper [permissions](../mezon-sdk/bot-app-sdk/core-concepts#authentication-sessions), apps can customize clan and moderation experiences by accessing and managing core Mezon resources—including [users](../mezon-sdk/bot-app-sdk/api-references#user-class), [channels](../mezon-sdk/bot-app-sdk/api-references#textchannel-class), [clans](../mezon-sdk/bot-app-sdk/api-references#clan-class), roles, and moderation tools. Apps can create channels, manage member permissions, implement automated moderation, and organize clan structures.
+With appropriate API endpoints and proper [permissions](../mezon-sdk/integration-bot-sdk/core-concepts#authentication-sessions), apps can customize clan and moderation experiences by accessing and managing core Mezon resources—including [users](../mezon-sdk/integration-bot-sdk/api-references#user-class), [channels](../mezon-sdk/integration-bot-sdk/api-references), [clans](../mezon-sdk/integration-bot-sdk/api-references#clan-class), roles, and moderation tools. Apps can create channels, manage member permissions, implement automated moderation, and organize clan structures.
 
 ### Real-time communication and events
 
@@ -174,7 +174,7 @@ Ready to build your first Mezon application? Here's how to get started:
 
 ### Development Resources
 
-- **[API Reference](/docs/mezon-sdk/bot-app-sdk/api-references)** - Complete documentation of all available APIs and methods
+- **[API Reference](../mezon-sdk/integration-bot-sdk/api-references)** - Complete documentation of all available APIs and methods
 - **[Developer Portal](https://mezon.ai/developers)** - Manage your applications and access developer tools
 - **[Community Support](https://mezon.ai/)** - Connect with other developers and get help
 

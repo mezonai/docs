@@ -1,11 +1,12 @@
 ---
 sidebar_position: 10
-sidebar_label: Thảo luận ngắn
+sidebar_label: Topic
 ---
-import { Steps, Step } from '@site/src/components/Steps';
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image';
+import { Steps, Step } from "@site/src/components/Steps";
+import Image from "@site/src/components/Image";
+import Heading from '@theme/Heading';
 import topic001 from './images/topic-001.png';
 import topic002 from './images/topic-002.png';
 import topicMobile001 from './images/topic-mobile-001.png';
@@ -13,60 +14,45 @@ import topicMobile002 from './images/topic-mobile-002.png';
 import topicMobile003 from './images/topic-mobile-003.png';
 import topicMobile004 from './images/topic-mobile-004.png';
 
-# Thảo luận ngắn
+# Topic
+Topic in chat allow you to create a separate discussion directly from a message, keeping the main conversation thread clear and organized.
 
-Thảo luận ngắn in Chat cho phép tách cuộc thảo luận riêng ngay từ tin nhắn,
-giúp giữ mạch trò chuyện chính liền mạch và rõ ràng hơn.
-
-### Cách thêm Thảo luận ngắn trong đoạn chat
+### How to Add a Topic in Chat
 <Tabs>
 <TabItem value="PC" label="PC">
 <Steps>
-<Step title="Trong **Kênh văn bản** hoặc **Chủ đề**, nhấn chuột phải vào tin nhắn.">
+<Step title="In a **Text Channel** or **Thread**, right-click the message you want to discuss."></Step>
+<Step title="Select **Topic Discussion**">
+<Image style={{ margin: '1rem 2rem' }}  src={topic001} alt="Topic 001" />
 </Step>
-
-<Step title="Chọn **Thảo luận chủ đề**">
-<Image style={{ margin: '1rem 2rem' }} src={topic001} alt="Topic 001" />
-</Step>
-
-<Step title="Nhập tin nhắn trong cửa sổ **Thảo luận ngắn** để bắt đầu trao đổi">
-<Image style={{ margin: '1rem 2rem' }} src={topic002} alt="Topic 002" />
+<Step title="Enter your message in the **Topic window** on the right to start the discussion.">
+<Image style={{ margin: '1rem 2rem' }}  src={topic002} alt="Topic 002" />
 </Step>
 </Steps>
-
-Với **Thảo luận ngắn**, bạn vừa giữ được cuộc trò chuyện chính tập trung, vừa mở rộng thảo luận chi tiết mà không sợ bị lẫn lộn.
+With **Topic**, you can maintain a focused main conversation while allowing detailed discussions without confusion.
 </TabItem>
 <TabItem value="mobile" label="Mobile">
-<Steps>
-<Step title="Trong **Kênh Văn bản** hoặc **Chủ đề**, nhấn giữ vào tin nhắn mà bạn muốn thảo luận thêm.">
-</Step>
-
-<Step title="Chọn **Thảo luận chủ đề**">
+1. In a Text Channel or Thread, press and hold the message you want to discuss further.
+2. Select **Topic Discussion**.
 
 <div align="left"><img style={{ width: '30%' }} src={topicMobile001} alt="topic-mobile-001" /></div>
-</Step>
 
-<Step title="Nhập tin nhắn trong **cửa sổ Thảo luận ngắn** để bắt đầu trao đổi">
+3. Enter your message in the Topic window to start the exchange.
 
 <div align="left"><img style={{ width: '30%' }} src={topicMobile002} alt="topic-mobile-002" /></div>
-</Step>
 
-<Step title="Cách xem lại **Thảo luận ngắn** đã thảo luận">
+<Heading as="h3">How to review Topics you've participated in</Heading>
 
-Bạn có thể dễ dàng xem lại các chủ đề đã tham gia trong Clan:
-
-* Ngay trong khung trò chuyện, **nhấn “Xem Topic”** để mở lại nội dung và toàn bộ cuộc thảo luận liên quan.
+* In the chat window, click **View Topic** to open the content and see the entire related discussion.
 
 <div align="left"><img style={{ width: '30%' }} src={topicMobile003} alt="topic-mobile-003" /></div>
 
-* Hoặc truy cập **phần Thông báo → Chủ đề**, nơi hiển thị **toàn bộ các topic** mà bạn đã tham gia hoặc theo dõi trong Clan.
+* Or go to **Notifications → Topics**, where all the Topics you’ve joined or followed in the Clan are displayed.
 
 <div align="left"><img style={{ width: '30%' }} src={topicMobile004} alt="topic-mobile-004" /></div>
-</Step>
-</Steps>
 
-:::success
-Với **Thảo luận ngắn**, bạn vừa giữ được cuộc trò chuyện chính tập trung, vừa mở rộng thảo luận chi tiết mà không sợ bị lẫn lộn.
+:::tip
+With **Topic**, you can keep the main conversation focused while branching out detailed discussions without confusion.
 :::
 </TabItem>
 </Tabs>

@@ -5,7 +5,64 @@ import ConfigLocalized from './docusaurus.config.localized.json';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
-const defaultLocale = 'vi';
+const defaultLocale = 'en';
+
+// Single source of truth for supported languages. Add a new entry here (and its
+// translations under i18n/<code>/) to support another language end-to-end.
+const locales = ['en', 'vi'];
+const localeLabels: Record<string, string> = {
+  en: 'English',
+  vi: 'Tiếng Việt',
+};
+
+const baseUrl = '/docs';
+const localeStorageKey = 'mezon_docs_lan';
+const siteUrl = 'https://mezon.ai';
+const ogImage = 'https://mezon.ai/assets/images/preview.png';
+
+function getCurrentLocale() {
+  return process.env.DOCUSAURUS_CURRENT_LOCALE ?? defaultLocale;
+}
+
+function getDocsCanonicalUrl() {
+  const locale = getCurrentLocale();
+  return locale === defaultLocale
+    ? `${siteUrl}${baseUrl}/`
+    : `${siteUrl}${baseUrl}/${locale}/`;
+}
+
+function getOgLocale(locale: string) {
+  return locale === 'vi' ? 'vi_VN' : 'en_US';
+}
+
+function buildSiteMetadata(): Preset.ThemeConfig['metadata'] {
+  const locale = getCurrentLocale();
+  const title = getLocalizedConfigValue('title');
+  const description = getLocalizedConfigValue('description');
+  const keywords = getLocalizedConfigValue('keywords');
+  const alternateLocale = locale === defaultLocale ? 'vi_VN' : 'en_US';
+
+  return [
+    {name: 'description', content: description},
+    {name: 'keywords', content: keywords},
+    {property: 'og:type', content: 'website'},
+    {property: 'og:site_name', content: 'Mezon'},
+    {property: 'og:title', content: title},
+    {property: 'og:description', content: description},
+    {property: 'og:url', content: getDocsCanonicalUrl()},
+    {property: 'og:image', content: ogImage},
+    {property: 'og:image:alt', content: 'Mezon'},
+    {property: 'og:image:width', content: '1200'},
+    {property: 'og:image:height', content: '675'},
+    {property: 'og:locale', content: getOgLocale(locale)},
+    {property: 'og:locale:alternate', content: alternateLocale},
+    {name: 'twitter:card', content: 'summary_large_image'},
+    {name: 'twitter:title', content: title},
+    {name: 'twitter:description', content: description},
+    {name: 'twitter:image', content: ogImage},
+    {name: 'twitter:image:alt', content: 'Mezon'},
+  ];
+}
 
 function getLocalizedConfigValue(key: keyof typeof ConfigLocalized) {
   const currentLocale = process.env.DOCUSAURUS_CURRENT_LOCALE ?? defaultLocale;
@@ -34,31 +91,29 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://mezon.ai',
   // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/docs',
+  baseUrl,
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'mezonai',
+  projectName: 'docs',
+
+  customFields: {
+    metaDescription: getLocalizedConfigValue('description'),
+    keywords: getLocalizedConfigValue('keywords'),
+  },
 
   onBrokenLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  // The default locale (English) is served at the root (/docs/...); every other
+  // language is served under /docs/<code>/... The synchronous head script in the
+  // mezon-locale-storage plugin picks the right one without a visible flash.
   i18n: {
-    defaultLocale: 'vi',
-    locales: ['vi','en'],
+    defaultLocale,
+    locales,
     localeConfigs: {
-      vi: {
-        label: 'Tiếng Việt',
-      },
-      en: {
-        label: 'English',
-      },
+      en: { label: localeLabels.en },
+      vi: { label: localeLabels.vi },
     },
   },
   presets: [
@@ -82,8 +137,8 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'images/docusaurus-social-card.jpg',
+    image: ogImage,
+    metadata: buildSiteMetadata(),
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -98,12 +153,12 @@ const config: Config = {
         {
           href: 'https://mezon.ai',
           position: 'left',
-          label: 'Trang chủ',
+          label: 'Home',
         },
         {
           href: 'https://mezon.ai/developers',
           position: 'left',
-          label: 'Nhà phát triển',
+          label: 'Developers',
         },
         {
           href: 'https://top.mezon.ai',
@@ -113,7 +168,7 @@ const config: Config = {
         {
           href: 'https://mezon.ai/clans',
           position: 'left',
-          label: 'Khám phá',
+          label: 'Discover',
         },
         {
           href: 'https://mezon.ai/blogs',
@@ -129,16 +184,16 @@ const config: Config = {
           position: 'right',
         },
         {
-          label: "Tài liệu",
-          position: "right",
+          label: 'Docs',
+          position: 'right',
           items: [
             {
-              label: "Dành cho người dùng",
-              to: "/user/welcome",
+              label: 'User Guide',
+              to: '/user/welcome',
             },
             {
-              label: "Dành cho nhà phát triển",
-              to: "/developer/intro",
+              label: 'Developer Docs',
+              to: '/developer/intro',
             },
           ],
         },
@@ -148,18 +203,18 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Tài liệu người dùng',
+          title: 'User Docs',
           items: [
             {
-              label: 'Chào mừng',
+              label: 'Welcome',
               to: '/user/welcome',
             },
             {
-              label: 'Tài khoản và cá nhân hóa',
+              label: 'Account and Personalization',
               to: '/user/account-and-personalization',
             },
             {
-              label: 'Bạn bè và Tin nhắn trực tiếp',
+              label: 'Friends and Messaging',
               to: '/user/friends-and-messaging',
             },
             {
@@ -167,28 +222,28 @@ const config: Config = {
               to: '/user/clan',
             },
             {
-              label: 'Bots và Apps',
+              label: 'Bots and Apps',
               to: '/user/bots-and-apps',
             },
             {
-              label: 'Mezon Đồng',
+              label: 'Mezon Dong',
               to: '/user/mezon-dong',
             },
             {
-              label: 'Tài nguyên',
+              label: 'Resources',
               to: '/user/resources',
             },
           ],
         },
         {
-          title: 'Tài liệu nhà phát triển',
+          title: 'Developer Docs',
           items: [
             {
-              label: 'Giới thiệu',
+              label: 'Introduction',
               to: '/developer/intro',
             },
             {
-              label: 'Bắt đầu nhanh',
+              label: 'Quick Start',
               to: '/developer/quick-start',
             },
             {
@@ -200,34 +255,34 @@ const config: Config = {
               to: '/developer/webhooks',
             },
             {
-              label: 'Chủ đề',
+              label: 'Topics',
               to: '/developer/mezon-topics',
             },
           ],
         },
         {
-          title: 'Công ty',
+          title: 'Company',
           items: [
             {
-              label: 'Giới thiệu',
+              label: 'About Us',
               href: 'https://ncc.plus/#about',
             },
             {
-              label: 'Liên hệ',
+              label: 'Contact',
               href: 'https://ncc.plus/#contact',
             },
             {
-              label: 'Chính sách bảo mật',
-              href: 'https://mezon.ai',
+              label: 'Privacy Policy',
+              href: 'https://mezon.ai/privacy',
             },
             {
-              label: 'Điều khoản dịch vụ',
-              href: 'https://mezon.ai',
+              label: 'Terms of Service',
+              href: 'https://mezon.ai/terms',
             },
           ],
         },
         {
-          title: 'Mạng xã hội',
+          title: 'Social Media',
           items: [
             {
               label: 'Facebook',
@@ -236,7 +291,7 @@ const config: Config = {
             {
               label: 'GitHub',
               href: 'https://github.com/mezonai',
-            },   
+            },
           ],
         },
       ]
@@ -248,15 +303,24 @@ const config: Config = {
     },
   } satisfies Preset.ThemeConfig,
   plugins: [
-    // require.resolve("./plugins/redirectDeveloperLocale.ts"),
+    [
+      require.resolve('./plugins/localeStorage.ts'),
+      {
+        locales,
+        defaultLocale,
+        baseUrl,
+        storageKey: localeStorageKey,
+      },
+    ],
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
         hashed: true,
-        language: ['vi', 'en'],
+        language: locales,
         indexDocs: true,
-        indexPages: true,
-        docsRouteBasePath: ['docs'],
+        indexBlog: false,
+        indexPages: false,
+        docsRouteBasePath: '/',
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
       },

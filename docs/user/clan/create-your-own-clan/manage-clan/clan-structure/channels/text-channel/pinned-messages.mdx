@@ -1,11 +1,11 @@
 ---
 sidebar_position: 4
-sidebar_label: Ghim tin nhắn
+sidebar_label: Pinned Messages
 ---
-import { Steps, Step } from "@site/src/components/Steps";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image';
+import { Steps, Step } from "@site/src/components/Steps";
+import Image from "@site/src/components/Image";
 import Heading from '@theme/Heading';
 import pinnedMessages001 from './images/pinned-messages-001.png';
 import pinnedMessages002 from './images/pinned-messages-002.png';
@@ -16,59 +16,45 @@ import pinnedMessagesMobile001 from './images/pinned-messages-mobile-001.png';
 import pinnedMessagesMobile002 from './images/pinned-messages-mobile-002.png';
 import pinnedMessagesMobile003 from './images/pinned-messages-mobile-003.png';
 
-# Ghim tin nhắn
+# Pinned Messages
+In busy chat channels, Pinned Messages help keep important content easily accessible so everyone can find and review it anytime.
 
-Trong các kênh chat sôi động, Ghim tin nhắn giúp ghim lại nội dung quan trọng
-để mọi người dễ dàng tìm và xem lại bất cứ lúc nào.
-
-### Cách ghim tin nhắn
-
+### How to Pin a Message
 <Tabs>
 <TabItem value="PC" label="PC">
 <Steps>
-<Step title="Trong **Kênh văn bản**, nhấp chuột phải vào tin nhắn bạn muốn ghim.">
-<Image style={{ margin: '1rem 2rem' }} src={pinnedMessages001} alt="Pinned Messages 001" />
+<Step title="In a **Text Channel**, right-click the message you want to pin.">
+<Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages001} alt="Pinned Messages 001" />
 </Step>
+<Step title="Select **Pin Message**, confirm, and click **Pin**.">
 
-<Step title="Chọn Ghim tin nhắn, xác nhận lại và nhấn **“Ghim luôn”.**">
-  <Image style={{ margin: '1rem 2rem' }} src={pinnedMessages002} alt="Pinned Messages 002" />
+<Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages002} alt="Pinned Messages 002" />
 </Step>
-
-<Step title="Thông báo về tin nhắn ghim sẽ xuất hiện trong đoạn chat. Bạn có thể nhấn “**tất cả tin nhắn**” hoặc biểu tượng cái ghim ở đầu kênh để xem lại.">
-  <Image style={{ margin: '1rem 2rem' }} src={pinnedMessages003} alt="Pinned Messages 003" />
-  <Image style={{ margin: '1rem 2rem' }} src={pinnedMessages004} alt="Pinned Messages 004" />
+<Step title="A notification about the pinned message will appear in the chat. You can click **All Messages** or the **pin icon** at the top of the channel to review pinned messages.">
+<Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages003} alt="Pinned Messages 003" />
+<Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages004} alt="Pinned Messages 004" />
 </Step>
-
-<Step title="Nếu có nhiều tin nhắn ghim, chọn **Nhảy đến** trong danh sách pinned để di chuyển nhanh đến tin nhắn gốc đó.">
-<Image style={{ margin: '1rem 2rem' }} src={pinnedMessages005} alt="Pinned Messages 005" />
+<Step title="If there are multiple pinned messages, select **Jump** in the pinned list to quickly navigate to the original message.">
+<Image style={{ margin: '1rem 2rem' }}  src={pinnedMessages005} alt="Pinned Messages 005" />
 </Step>
 </Steps>
 </TabItem>
 <TabItem value="mobile" label="Mobile">
-<Steps>
-<Step title="Trong **Kênh Văn bản/ Chủ đề**, nhấn và giữ vào tin nhắn bạn muốn ghim.">
+1. In a Text Channel or Thread, press and hold the message you want to pin.
 
 <div align="left"><img style={{ width: '30%' }} src={pinnedMessagesMobile001} alt="pinned-messages-mobile-001" /></div>
-</Step>
 
-<Step title="Chọn Ghim tin nhắn, xác nhận lại và nhấn **“Có”.**">
+2. Select **Pin Message**, confirm, and tap **Yes**.
 
 <div align="left"><img style={{ width: '30%' }} src={pinnedMessagesMobile002} alt="pinned-messages-mobile-002" /></div>
-</Step>
-</Steps>
 
-<Heading as="h3">Cách xem tin nhắn đã ghim</Heading>
+<Heading as="h3">How to view pinned messages</Heading>
 
-<Steps>
-<Step title="Trong **Kênh Văn bản** hoặc **Chủ đề**, nhấn vào chọn **Ghim** ở menu.">
+1. In the Text Channel or Thread, select **Pinned** from the menu.
 
 <div align="left"><img style={{ width: '30%' }} src={pinnedMessagesMobile003} alt="pinned-messages-mobile-003" /></div>
-</Step>
 
-<Step title="Nhấn vào **tin nhắn đã ghim** để chuyển đến vị trí gốc của nó."></Step>
-
-<Step title="Chọn **dấu X** nếu bạn muốn **bỏ ghim hoặc xóa tin nhắn khỏi danh sách ghim**.">
-</Step>
-</Steps>
+2. Tap a pinned message to jump to its original location.
+3. Tap the **X** if you want to unpin or remove the message from the pinned list.
 </TabItem>
 </Tabs>

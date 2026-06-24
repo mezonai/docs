@@ -1,6 +1,7 @@
 {
-  "label": "Cài đặt tổng quan",
+  "label": "Overview Settings",
   "position": 1,
+  "collapsed": true,
   "link": {
     "type": "doc",
     "id": "user/clan/create-your-own-clan/manage-clan/overview-settings/index"

@@ -1,339 +1,261 @@
 ---
 sidebar_position: 2
-sidebar_label: Quản lý quyền hạn và vai trò
-description: "Tạo, sắp xếp và phân quyền cho từng vai trò trong Clan."
+sidebar_label: Roles & Permissions Management
+description: "Create, sort, and assign permissions to each role in your Clan."
 ---
-
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from "@site/src/components/Image";
 import { Steps, Step } from "@site/src/components/Steps";
+import Image from "@site/src/components/Image";
 import Heading from '@theme/Heading';
-import rolesAndPermissionsManagement001 from "./images/roles-and-permissions-management-001.png";
-import rolesAndPermissionsManagement002 from "./images/roles-and-permissions-management-002.png";
-import rolesAndPermissionsManagement003 from "./images/roles-and-permissions-management-003.png";
-import rolesAndPermissionsManagement004 from "./images/roles-and-permissions-management-004.png";
-import rolesAndPermissionsManagement005 from "./images/roles-and-permissions-management-005.png";
-import rolesAndPermissionsManagement006 from "./images/roles-and-permissions-management-006.png";
-import rolesAndPermissionsManagement007 from "./images/roles-and-permissions-management-007.png";
-import rolesAndPermissionsManagement008 from "./images/roles-and-permissions-management-008.png";
-import rolesAndPermissionsManagement009 from "./images/roles-and-permissions-management-009.png";
-import rolesAndPermissionsManagement010 from "./images/roles-and-permissions-management-010.png";
-import rolesAndPermissionsManagement011 from "./images/roles-and-permissions-management-011.png";
-import rolesAndPermissionsManagement012 from "./images/roles-and-permissions-management-012.png";
-import rolesAndPermissionsManagementMobile001 from "./images/roles-and-permissions-management-mobile-001.png";
-import rolesAndPermissionsManagementMobile002 from "./images/roles-and-permissions-management-mobile-002.png";
-import rolesAndPermissionsManagementMobile003 from "./images/roles-and-permissions-management-mobile-003.png";
-import rolesAndPermissionsManagementMobile004 from "./images/roles-and-permissions-management-mobile-004.png";
-import rolesAndPermissionsManagementMobile005 from "./images/roles-and-permissions-management-mobile-005.png";
-import rolesAndPermissionsManagementMobile006 from "./images/roles-and-permissions-management-mobile-006.png";
+import rolesAndPermissionsManagement001 from './images/roles-and-permissions-management-001.png';
+import rolesAndPermissionsManagement002 from './images/roles-and-permissions-management-002.png';
+import rolesAndPermissionsManagement003 from './images/roles-and-permissions-management-003.png';
+import rolesAndPermissionsManagement004 from './images/roles-and-permissions-management-004.png';
+import rolesAndPermissionsManagement005 from './images/roles-and-permissions-management-005.png';
+import rolesAndPermissionsManagement006 from './images/roles-and-permissions-management-006.png';
+import rolesAndPermissionsManagement007 from './images/roles-and-permissions-management-007.png';
+import rolesAndPermissionsManagement008 from './images/roles-and-permissions-management-008.png';
+import rolesAndPermissionsManagement009 from './images/roles-and-permissions-management-009.png';
+import rolesAndPermissionsManagement010 from './images/roles-and-permissions-management-010.png';
+import rolesAndPermissionsManagement011 from './images/roles-and-permissions-management-011.png';
+import rolesAndPermissionsManagement012 from './images/roles-and-permissions-management-012.png';
 
-# Quản lý quyền hạn và vai trò
+import rolesAndPermissionsManagementMobile001 from './images/roles-and-permissions-management-mobile-001.png';
+import rolesAndPermissionsManagementMobile002 from './images/roles-and-permissions-management-mobile-002.png';
+import rolesAndPermissionsManagementMobile003 from './images/roles-and-permissions-management-mobile-003.png';
+import rolesAndPermissionsManagementMobile004 from './images/roles-and-permissions-management-mobile-004.png';
+import rolesAndPermissionsManagementMobile005 from './images/roles-and-permissions-management-mobile-005.png';
+import rolesAndPermissionsManagementMobile006 from './images/roles-and-permissions-management-mobile-006.png';
 
-Quản lý quyền hạn và vai trò giúp bạn kiểm soát những gì mỗi thành viên có thể làm trong Clan, đảm bảo cộng đồng hoạt động an toàn và trật tự
+# Roles & Permissions Management
+Managing roles and permissions helps you control what each member can do within the Clan, ensuring the community remains safe and organized.
 
 <Tabs>
 <TabItem value="PC" label="PC">
-### 1. Quản lý quyền hạn
+### 1. Permissions Management
 
-Khi cộng đồng phát triển, số lượng thành viên tham gia và mức độ tương tác ngày càng lớn. Nếu không kiểm soát được quyền hạn, rất dễ xảy ra tình trạng spam tin nhắn, xóa nội dung quan trọng hoặc chỉnh sửa kênh ngoài ý muốn. Điều này không chỉ gây mất trật tự mà còn ảnh hưởng đến trải nghiệm chung của cả nhóm.
+As your community grows, both the number of members and the level of interaction increase. Without proper control over permissions, issues such as message spam, deletion of important content, or unintended channel edits can occur. This not only disrupts order but also negatively affects the overall experience of the group.
 
-#### Các quyền hiện có trong hệ thống
+#### **Available Permissions in the System**
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement001}></Image>
 
-- **Administrator** – Toàn quyền quản lý clan và list channel (gần tương đương với chủ sở hữu).
-- **Manage Clan** – Quản lý cài đặt clan, vai trò, kênh và hoạt động thành viên.
+* **Administrator** – Full control over the Clan and channel list (almost equivalent to the owner).
+* **Manage Clan** – Manage Clan settings, roles, channels, and member activities.
 
 :::info
-Tuy nhiên quyền **Manage Clan** <span style={{color: "var(--ifm-color-danger)"}}>**không nhìn thấy và không quản lý được toàn bộ danh sách kênh**</span>, điểm này khác biệt so với Administrator.
+However, the **Manage Clan** permission <span style={{color: "var(--ifm-color-danger)"}}>**cannot view or manage the full channel list**</span>, which distinguishes it from **Administrator**.
 :::
 
-- **Manage Channel** – Tạo, chỉnh sửa, xóa kênh.
-- **Manage Thread** – Tạo, chỉnh sửa, xóa Chủ đề (bao gồm Chủ đề riêng tư).
-- **Send Message** – Gửi tin nhắn trong kênh công khai (bao gồm Chủ đề/Thảo luận ngắn).
-- **Delete Message** – Xóa tin nhắn trong kênh công khai (bao gồm Chủ đề/Thảo luận ngắn).
-- **View Channel** – Xem kênh công khai.
+* **Manage Channel** – Create, edit, and delete channels.
+* **Manage Thread** – Create, edit, and delete threads (including private threads).
+* **Send Message** – Send messages in public channels (including threads/topics).
+* **Delete Message** – Delete messages in public channels (including threads/topics).
+* **View Channel** – View public channels.
 
 :::info
+**Distinguishing Clan Permissions**
 
-### Phân biệt các quyền trong Clan
+1. **Owner**
 
-- **Owner (Chủ sở hữu)**
-  - Khi khởi tạo Clan, người tạo Clan sẽ mặc định là **Chủ sở hữu**.
-  - Không ai có thể kick Owner. Owner chỉ có thể **chuyển quyền sở hữu** cho người khác.
-  - Quyền hạn cao nhất, làm được tất cả mọi hành động.
-  - Có quyền quản trị tuyệt đối, bao gồm quản lý thành viên, vai trò, kênh, và toàn bộ thiết lập của clan.
-- **Administrator (Quản trị viên)**
-  - Quyền hạn chỉ dưới Owner, gần như toàn quyền quản lý clan.
-  - Có thể quản lý danh sách kênh (list channel), vai trò, thành viên, và hầu hết các cài đặt.
-  - Có thể kick Admin khác hoặc thành viên thường, **nhưng không thể kick Owner (Chủ sở hữu)**
-    :::
+* When a Clan is created, the creator is automatically the Owner.
+* No one can kick the Owner; the Owner can only transfer ownership to another member.
+* Holds the highest authority and can perform all actions.
+* Has absolute administrative control, including managing members, roles, channels, and all Clan settings.
 
-#### Cách thiết lập quyền
+2. **Administrator**
 
+* Authority is just below the Owner, with almost full control over the Clan.
+* Can manage the channel list, roles, members, and most settings.
+* Can kick other Administrators or regular members, but **cannot kick the Owner**.
+:::
+
+#### **How to set Permissions**
 <Steps>
-<Step title="Trong menu bên trái, chọn **Vai trò**">
-
+<Step title="In the left menu, select **Roles**.">
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement002}></Image>
-
 </Step>
 
-<Step title="Trong **Quyền mặc định**, bạn thiết lập những hành động cơ bản mà tất cả thành viên trong clan đều có thể thực hiện.">
-
+<Step title="Under **Default Permissions**, set the basic actions that all members in the Clan can perform.">
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement003}></Image>
-
 </Step>
 
-<Step title="Chọn quyền bạn muốn áp dụng với tất cả mọi người và nhấn **Lưu thay đổi**">
-
+<Step title="Choose the permissions you want to apply to everyone and click **Save Changes**.">
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement004}></Image>
-
-:::note
-Mặc định, mọi người khi tham gia clan sẽ thuộc role **@everyone**.\
-Với role này, nên chỉ bật các quyền tối thiểu như **Xem kênh** và **Gửi tin nhắn** để đảm bảo trật tự và an toàn cho cộng đồng.
-:::
-
 </Step>
 </Steps>
+:::info
+By default, all new members joining the Clan are assigned the **@everyone** role.
+For this role, it is recommended to enable only the minimum permissions, such as **View Channel** and **Send Message**, to ensure order and safety within the community.
+:::
+### 2. Roles Management
 
-### 2. Quản lý vai trò
+Not all members in a Clan need the same permissions. With **Roles**, you can create multiple roles with different permissions. You can also assign colors and icons to each group. This helps the Clan operate more professionally and makes management easier as your community grows.
 
-Không phải tất cả thành viên trong Clan đều cần quyền hạn giống nhau. Với Vai trò, bạn có thể tạo nhiều vai trò khác nhau có quyền hạn khác nhau. Ngoài ra, bạn có thể gán màu sắc, biểu tượng riêng cho từng nhóm. Điều này giúp Clan vận hành chuyên nghiệp hơn, dễ dàng quản lý khi cộng đồng của bạn lớn dần.
-
-#### **Cách tạo và phân quyền**
+#### **How to Create and Assign Roles**
 
 <Steps>
-<Step title="Ở menu bên trái, chọn **Vai trò**">
-
+<Step title="In the left menu, select **Roles**.">
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement002}></Image>
-
 </Step>
 
-<Step title="Nhấn **Tạo Vai trò,** sau đó chỉnh sửa tên, màu và icon trong mục **Hiển thị**">
+<Step title="Click **Create Role**, then edit the **name, color, and icon** under **Displays**.">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement005}></Image>
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement006}></Image>
 
-:::warning Chú ý
-Dung lượng tối đa cho Biểu tượng vai trò là 256KB
+:::warning Note
+**Maximum Role Icon Size**: 256 KB
 :::
 
 </Step>
 
-<Step title="Ở **Quản lý thành viên,** nhấn **Thêm thành viên** để thêm thành viên vào **Vai trò.**">
+<Step title="Under **Manage Members**, click **Add Members** to assign members to the **Role**.">
 
 :::tip
-Bạn có thể thêm hoặc thu hồi quyền nâng cao bằng cách tạo **vai trò mới**, sau đó gán cho từng thành viên (thực hiện tại mục **Quản lý thành viên**).
+You can grant or revoke advanced permissions by creating a new role and assigning it to specific members (done in **Manage Members**).
 :::
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement007}></Image>
-
 </Step>
-
-<Step title="Trong **Quyền,** tùy chỉnh các quyền mà **Vai trò** đó có thể thực hiện (ví dụ: Quản trị, gửi tin nhắn, xóa tin nhắn...).">
+<Step title="In **Permissions**, customize what actions the role can perform (e.g., Admin, Send Message, Delete Message, etc.).">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement008}></Image>
-
+</Step>
+<Step title="Click **Save Changes** to apply the role settings.">
 </Step>
 
-<Step title="Nhấn **Lưu thay đổi** để lưu lại phân quyền."></Step>
-
-<Step title="Thay đổi thứ tự hiển thị của Vai trò.">
+<Step title="Changing Role Display Order.">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement009}></Image>
-
-Bạn chỉ cần kéo thả từng Vai trò để sắp xếp thứ tự các Vai trò. Nếu thành viên được gán nhiều hơn 1 Vai trò, thì sẽ hiển thị theo thứ tự này.
-
+Simply drag and drop roles to arrange their display order. If a member has multiple roles, the display will follow this order.
 </Step>
 </Steps>
+### 3. Override Permissions
 
-### 3. Ghi đè quyền hạn
+**Override Permissions** allow you to set special permissions for **private channels** or **private threads**.
 
-**Ghi đè quyền hạn** là cách thiết lập quyền đặc biệt cho **Kênh riêng tư hoặc Chủ đề riêng tư**.
+* When a channel/thread is created as private, only the **roles or users** who are directly added can see it.
+* Within each private channel/thread, you can **customize detailed permissions** for each role or user:
+  * Allow or deny viewing the channel.
+  * Allow or deny sending messages.
+  * Allow or deny managing threads, deleting messages, etc.
 
-- Khi một Kênh/Chủ đề được tạo ở chế độ riêng tư, chỉ những **vai trò** hoặc **người dùng** được thêm trực tiếp mới có thể thấy.
-- Trong từng Kênh/Chủ đề riêng tư, bạn có thể **tùy chỉnh chi tiết quyền** cho từng vai trò hoặc người dùng:
-
-  - Cho phép hoặc chặn xem Kênh.
-  - Cho phép hoặc chặn gửi tin nhắn.
-  - Cho phép hoặc chặn quản lý Chủ đề, xóa tin nhắn…
-
-  **Cách tùy chỉnh chi tiết quyền trong Kênh/Chủ đề riêng tư:**
-
+**How to Customize Permissions in a Private Channel/Thread:**
 <Steps>
-<Step title="Nhấp vào **bánh răng** ở kênh/chuỗi thảo luận riêng tư của bạn">
+<Step title="Click the **gear icon** on your private channel/thread.">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement010}></Image>
-
 </Step>
-
-<Step title="Nhấn **Quyền hạn** trong menu bên trái">
+<Step title="Select **Permissions** from the left menu.">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement011}></Image>
-
 </Step>
-
-<Step title="Tùy chỉnh quyền cho thành viên trong kênh của bạn">
+<Step title="Customize the permissions for members in your channel.">
 
 <Image style={{ margin: '1rem 2rem' }} src={rolesAndPermissionsManagement012}></Image>
-
 </Step>
-
-<Step title="Nhấn lưu thay đổi để hoàn thành thao tác">
+<Step title="Click **Save Changes** to apply.">
 </Step>
 </Steps>
-
 :::tip
-Tính năng này giúp bạn quản lý linh hoạt: ví dụ một thành viên bình thường có thể chỉ đọc nội dung trong kênh riêng tư, còn quản trị viên phụ có thể vừa đọc vừa gửi tin nhắn.
+This feature allows flexible management. For example, a regular member may only read content in a private channel, while a moderator can both read and send messages.
 :::
-
 </TabItem>
 <TabItem value="mobile" label="Mobile">
-<Heading as="h3">1. Quản lý quyền hạn</Heading>
+<Heading as="h3">1. Permissions Management</Heading>
 
-Khi cộng đồng phát triển, số lượng thành viên tham gia và mức độ tương tác ngày càng lớn. Nếu không kiểm soát được quyền hạn, rất dễ xảy ra tình trạng spam tin nhắn, xóa nội dung quan trọng hoặc chỉnh sửa kênh ngoài ý muốn. Điều này không chỉ gây mất trật tự mà còn ảnh hưởng đến trải nghiệm chung của cả nhóm.
+As the community grows, the number of members and interactions increases. Without proper control, issues such as spam, accidental deletion of important content, or unwanted channel edits may occur, affecting the overall experience.
 
-<Heading as="h4">1.1. Các quyền hiện có trong hệ thống</Heading>
+<Heading as="h4">1.1. Available Permissions</Heading>
 
-<div align="center">
-  <img
-    style={{ width: "30%" }}
-    src={rolesAndPermissionsManagementMobile001}
-    alt="roles-and-permissions-management-mobile-001"
-  />
-</div>
+<figure><img src={rolesAndPermissionsManagementMobile001} alt="roles-and-permissions-management-mobile-001" /></figure>
 
-- **Administrator** – Toàn quyền quản lý clan (quyền chỉ thấp hơn chủ sở hữu).
-- **Manage Clan** – Cho phép thành viên kiểm soát cài đặt clan, quản lý vai trò và kênh, giám sát hoạt động của thành viên, đảm bảo quản lý hiệu quả và cộng đồng được tổ chức tốt
+* **Administrator** – Full control over the Clan (just below the owner).
+* **Manage Clan** – Allows members to control clan settings, roles, and channels, monitor member activity, and ensure organized management.
 
 :::danger
-Tuy nhiên quyền **Manage Clan** <span style={{color: "var(--ifm-color-danger)"}}>**không nhìn thấy và không quản lý được toàn bộ danh sách kênh**</span>, điểm này khác biệt so với Administrator.
+However, **Manage Clan** permission <div style={{ color: 'red' }}>**cannot see/manage all channels like Administrator.**</div>
 :::
 
-- **Manage Channel** – Cho phép tạo, chỉnh sửa hoặc xóa kênh
-- **Manage Thread** – Cho phép tạo, chỉnh sửa, xóa các chủ đề trong kênh (bao gồm cả chủ đề riêng tư).
-- **Send Message** – Cho phép gửi tin nhắn trong các kênh công khai (bao gồm các chủ đề và thảo luận ngắn trong những kênh đó)
-- **Delete Message** – Cho phép xóa tin nhắn trong các kênh công khai (bao gồm các chủ đề và thảo luận ngắn trong những kênh đó)
-- **View Channel** – Cho phép xem các kênh công khai.
+* **Manage Channel** – Create, edit, or delete channels.
+* **Manage Thread** – Create, edit, or delete threads within channels, including private threads.
+* **Send Message** – Send messages in public channels (including threads and short discussions).
+* **Delete Message** – Delete messages in public channels (including threads and short discussions).
+* **View Channel** – View public channels.
 
 :::info
+**Clan Hierarchy**
 
-<Heading as="h4">Phân biệt các quyền trong Clan</Heading>
-
-- **Chủ sở hữu**
-  - Quyền hạn cao nhất, làm được tất cả mọi hành động.
-  - Không ai có thể khai trừ chủ sở hữu. Chủ sở hữu chỉ có thể **chuyển quyền sở hữu** cho người khác.
-  - Có quyền quản trị tuyệt đối, bao gồm quản lý thành viên, vai trò, kênh, và toàn bộ thiết lập của clan.
-- **Quản trị viên**
-  - Quyền hạn chỉ dưới chủ sở hữu, gần như toàn quyền quản lý clan.
-  - Có thể quản lý danh sách kênh, vai trò, thành viên, và hầu hết các cài đặt.
-  - Có thể khai trừ quản trị viên khác hoặc thành viên thường, **nhưng không thể khai trừ Chủ sở hữu.**
-    :::
-
-<Heading as="h4">1.2. Cách thiết lập quyền mặc định</Heading>
-
-<Steps>
-<Step title="Trong **Cài đặt Clan**, chọn mục **Vai trò**.">
-</Step>
-
-<Step title="Chọn **@everyone** để thiết lập **quyền mặc định** áp dụng cho tất cả thành viên trong clan.">
-
-> Khi một người mới tham gia clan, họ sẽ tự động được gán vai trò **@everyone**.
-
-<div align="left"><img src={rolesAndPermissionsManagementMobile002} alt="roles-and-permissions-management-mobile-002" /></div>
-</Step>
-
-<Step title="Tại đây, bạn có thể bật hoặc tắt các hành động cơ bản mà mọi thành viên được phép thực hiện.">
-<div align="left"><img style={{ width: "30%" }} src={rolesAndPermissionsManagementMobile003} alt="roles-and-permissions-management-mobile-003" /></div>
-
-:::warning Chú ý
-Khuyến nghị chỉ bật các quyền tối thiểu như **Xem kênh** và **Gửi tin nhắn** để đảm bảo trật tự và an toàn cho cộng đồng.
+* **Owner** – Highest authority; **can perform all actions**. Cannot be removed. Can transfer ownership to others. Has absolute control over members, roles, channels, and settings.
+* **Administrator** – Just below the owner, **almost full control of the Clan**. Can manage channels, roles, members, and most settings. Can remove other admins or regular members, but cannot remove the owner.
 :::
 
-</Step>
+<Heading as="h4">1.2. Setting Default Permissions</Heading>
 
-<Step title="Sau khi hoàn tất, nhấn **Lưu thay đổi** để áp dụng quyền cho toàn bộ thành viên.">
-</Step>
-</Steps>
+1. Go to **Clan Settings → Roles**.
+2. Select **@everyone** to set default permissions for all members.
 
-<Heading as="h3">2. Quản lý vai trò</Heading>
+<div align="left"><img style={{ width: '30%' }} src={rolesAndPermissionsManagementMobile002} alt="roles-and-permissions-management-mobile-002" /></div>
 
-Không phải tất cả thành viên trong Clan đều cần quyền hạn giống nhau. Với **Vai trò**, bạn có thể tạo nhiều vai trò khác nhau, gán màu sắc, biểu tượng riêng và thiết lập quyền chi tiết cho từng nhóm. Điều này giúp Clan vận hành chuyên nghiệp hơn, dễ dàng quản lý khi cộng đồng của bạn lớn dần.
+3. Enable or disable basic actions members are allowed to perform.\
+   <div align="left"><img style={{ width: '30%' }} src={rolesAndPermissionsManagementMobile003} alt="roles-and-permissions-management-mobile-003" /></div>
 
-<Heading as="h4">**2.1. Cách tạo vai trò mới**</Heading>
-
-<Steps>
-<Step title="Trong **Cài đặt Clan**, chọn mục **Vai trò**.">
-</Step>
-
-<Step title="Nhấn vào biểu tượng **“+”** để **tạo vai trò mới**.">
-
-<div align="left"><img src={rolesAndPermissionsManagementMobile004} alt="roles-and-permissions-management-mobile-004" /></div>
-</Step>
-
-<Step title="Đặt **tên**, thiết lập **quyền hạn** và thêm thành viên cho vai trò đó."></Step>
-
-<Step title="Nhấn **Lưu** để hoàn tất.">
-</Step>
-</Steps>
-
-<Heading as="h4">2.2. Quản lý vai trò đã tạo</Heading>
-
-- Vai trò mới sẽ xuất hiện trong **danh sách vai trò**.
-- Chạm vào một vai trò để:
-  - **Chỉnh hiển thị:** đổi tên, màu, biểu tượng.
-  - **Chỉnh sửa quyền hạn:** bật/tắt các quyền như gửi tin nhắn, xóa tin, quản lý kênh...
-  - **Quản lý thành viên:** thêm hoặc xóa thành viên khỏi vai trò.
-  - **Xóa vai trò**: Khi vai trò không còn cần thiết, bạn có thể xóa vai trò để giữ danh sách gọn gàng.
-
-<div align="center">
-  <img
-    style={{ width: "30%" }}
-    src={rolesAndPermissionsManagementMobile005}
-    alt="roles-and-permissions-management-mobile-005"
-  />
-</div>
-
-<Heading as="h3">3. Ghi đè quyền hạn</Heading>
-
-Ghi đè quyền hạn là cách thiết lập quyền đặc biệt cho **kênh riêng tư hoặc chủ đề riêng tư**.
-
-- Khi một kênh/ chủ đề được tạo ở chế độ riêng tư, chỉ những người dùng có **vai trò** hoặc **người dùng** được thêm trực tiếp mới có thể thấy.
-- Trong từng kênh/ chủ đề riêng tư, bạn có thể **tùy chỉnh chi tiết quyền** cho từng vai trò hoặc người dùng:
-  - Cho phép hoặc chặn xem kênh.
-  - Cho phép hoặc chặn gửi tin nhắn.
-  - Cho phép hoặc chặn quản lý chủ đề, xóa tin nhắn…
-
-<Heading as="h4">**Cách tùy chỉnh chi tiết quyền trong kênh/ chủ đề riêng tư**</Heading>
-
-Để thiết lập quyền cho từng thành viên trong kênh hoặc chủ đề riêng tư, bạn có thể thực hiện như sau:
-
-<Steps>
-<Step title="**Nhấn và giữ** vào kênh hoặc chủ đề riêng tư mà bạn muốn chỉnh sửa.">
-</Step>
-
-<Step title="Chọn **Chỉnh sửa kênh**."></Step>
-
-<Step title="Vào mục **Quyền hạn kênh**."></Step>
-
-<Step title="Tại đây, bạn sẽ thấy hai phần:">
-
-- **Cơ bản:** Cho phép thêm thành viên hoặc vai trò vào kênh/ chủ đề riêng tư
-- **Nâng cao:** Hiển thị danh sách thành viên trong kênh hoặc chủ đề. Bạn có thể chọn từng người để tùy chỉnh quyền chi tiết cho họ.
-
-<div align="left"><img style={{ width: "30%" }} src={rolesAndPermissionsManagementMobile006} alt="roles-and-permissions-management-mobile-006" /></div>
-</Step>
-
-<Step title="Sau khi hoàn tất, **nhấn Lưu thay đổi** để áp dụng các thiết lập.">
-</Step>
-</Steps>
-
-:::success
-Tính năng này giúp bạn quản lý linh hoạt: ví dụ một thành viên bình thường có thể chỉ đọc nội dung trong kênh riêng tư, còn quản trị viên phụ có thể vừa đọc vừa gửi tin nhắn.\
-
+:::warning
+_Recommended:_ Only enable **View Channel** and **Send Message** to maintain order and safety.
 :::
 
+4. Click **Save Changes** to apply permissions to all members.
+
+<Heading as="h3">2. Roles Management</Heading>
+
+Not all members need the same permissions. Roles let you create multiple groups with custom colors, icons, and detailed permissions. This helps the Clan operate professionally and scale as the community grows.
+
+<Heading as="h4">2.1. Creating a New Role</Heading>
+
+1. Go to **Clan Settings → Roles**.
+2. Click the **“+”** icon to create a new role.
+
+<div align="left"><img style={{ width: '30%' }} src={rolesAndPermissionsManagementMobile004} alt="roles-and-permissions-management-mobile-004" /></div>
+
+3. Set a name, permissions, and assign members.
+4. Click **Save** to finish.
+
+<Heading as="h4">2.2. Managing Existing Roles</Heading>
+
+*   Tap a role to:
+
+    * **Edit Display**: Change name, color, icon.
+    * **Edit Permissions**: Enable/disable actions like sending messages, deleting messages, managing channels.
+    * **Manage Members**: Add or remove members from the role.
+    * **Delete Role**: Remove roles that are no longer needed.
+
+    <div align="left"><img style={{ width: '30%' }} src={rolesAndPermissionsManagementMobile005} alt="roles-and-permissions-management-mobile-005" /></div>
+
+<Heading as="h3">3. Permission Overrides</Heading>
+
+Permission overrides allow you to set special permissions for **private channels or threads.** Only members with the assigned role or explicitly added users can see them.
+
+<Heading as="h4">Customizing Permissions in Private Channels/Threads</Heading>
+
+1. Press and hold the private channel/thread you want to edit.
+2. Select **Edit Channel**.
+3. Go to **Channel Permissions**.
+4. Two sections appear:
+   * **Basic:** Add roles or members to the private channel/thread.
+   *   **Advanced:** List all members in the channel/thread. Customize permissions for each member individually:
+
+       * Allow or block viewing the channel.
+       * Allow or block sending messages.
+       * Allow or block managing threads, deleting messages, etc.
+
+       <div align="left"><img style={{ width: '30%' }} src={rolesAndPermissionsManagementMobile006} alt="roles-and-permissions-management-mobile-006" /></div>
+5. Click **Save Changes** to apply.
+
+:::tip
+This feature allows flexible management—for example, a regular member can only read content in a private channel, while an assistant admin can read and send messages.
+:::
 </TabItem>
 </Tabs>

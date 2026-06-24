@@ -1,0 +1,64 @@
+---
+sidebar_position: 1
+sidebar_label: Tạo Clan
+description: "Khởi tạo Clan mới chỉ với vài cú nhấp, đặt tên, biểu tượng và tùy chỉnh thiết lập cơ bản."
+---
+import { Steps, Step } from '@site/src/components/Steps';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import Heading from '@theme/Heading';
+import createAClan001 from "./images/create-a-clan-001.png";
+import createAClan002 from "./images/create-a-clan-002.png";
+import createAClanMobile001 from "./images/create-a-clan-mobile-001.png";
+import createAClanMobile002 from "./images/create-a-clan-mobile-002.png";
+
+# Tạo Clan
+
+<Tabs>
+<TabItem value="PC" label="PC">
+### Các bước tạo Clan
+
+1. Nhấn vào biểu tượng **+** trên thanh bên → chọn **Tạo Clan**.
+
+<Image style={{ margin: '1rem 2rem' }} src={createAClan001}></Image>
+
+2. **Đặt tên Clan** (tối đa 64 ký tự, chỉ dùng chữ cái, số, \_ hoặc -).
+
+3. **Tải lên ảnh đại diện** cho Clan.
+
+<Image style={{ margin: '1rem 2rem' }} src={createAClan002}></Image>
+
+:::tip
+Đừng lo nếu tên chưa kêu, ảnh chưa đẹp, bạn có thể thay đổi ảnh đại diện sau.
+:::
+
+4. Nhấn vào "**Tạo**" để tạo Clan.
+</TabItem>
+<TabItem value="mobile" label="Mobile">
+
+<Heading as="h3">Các bước tạo Clan</Heading>
+
+<Steps>
+<Step title="Nhấn vào biểu tượng **+** trên thanh dọc bên trái màn hình.">
+    <img style={{ width: '10%' }} src={createAClanMobile001} alt="create-a-clan-mobile-001" />
+</Step>
+
+<Step title="**Đặt tên Clan** (tối đa 64 ký tự, chỉ dùng chữ cái, số, \_ hoặc -)">
+
+<div align="left"><img style={{ width: '10%' }} src={createAClanMobile002} alt="create-a-clan-mobile-002" /></div>
+</Step>
+
+<Step title="**Tải lên ảnh đại diện** cho Clan.">
+
+:::tip
+Đừng lo nếu tên chưa kêu, ảnh chưa đẹp, bạn có thể thay đổi ảnh đại diện sau.
+:::
+
+</Step>
+<Step title="Nhấn vào '**Tạo Clan**'' để tạo Clan.">
+</Step>
+
+</Steps>
+</TabItem>
+</Tabs>

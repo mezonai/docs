@@ -1,0 +1,20 @@
+{
+  "homepage.getStarted": {
+    "message": "Bắt đầu"
+  },
+  "homepage.userDocumentationTitle": {
+    "message": "Hướng dẫn sử dụng"
+  },
+  "homepage.userDocumentation": {
+    "message": "Hướng dẫn từng bước giúp bạn khám phá tính năng, quản lý không gian làm việc và sử dụng Mezon hiệu quả nhất."
+  },
+  "homepage.developerDocumentationTitle": {
+    "message": "Tài liệu nhà phát triển"
+  },
+  "homepage.developerDocumentation": {
+    "message": "Tài liệu và ví dụ cho SDK, Webhook và các tích hợp để xây dựng và mở rộng nền tảng."
+  },
+  "homepage.readMore": {
+    "message": "Xem thêm"
+  }
+}

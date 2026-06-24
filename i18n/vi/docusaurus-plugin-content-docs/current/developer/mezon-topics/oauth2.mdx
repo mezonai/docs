@@ -1,0 +1,119 @@
+---
+sidebar_position: 1
+sidebar_label: OAuth2
+---
+
+# OAuth2
+
+OAuth2 cho phép nhà phát triển ứng dụng xây dựng ứng dụng bằng xác thực và dữ liệu từ Mezon API. Mezon chỉ hỗ trợ authorization code grant và một số luồng đặc thù của Mezon dành cho Bot và Webhook.
+
+## Tài nguyên dùng chung
+
+Bước đầu tiên khi triển khai OAuth2 là [đăng ký ứng dụng nhà phát triển](https://mezon.ai/developers/applications) và lấy `client_id` cùng `client_secret`. Hầu hết người triển khai OAuth2 sẽ muốn tìm và dùng thư viện phù hợp với ngôn ngữ lập trình của họ. Với những ai tự triển khai OAuth2 từ đầu, hãy xem [RFC 6749](https://tools.ietf.org/html/rfc6749) để biết chi tiết. Sau khi tạo ứng dụng trên Mezon, hãy chuẩn bị sẵn `client_id` và `client_secret`.
+
+###### URL OAuth2 {#oauth2-urls}
+
+| URL                                  | Mô tả                        |
+| ------------------------------------ | ---------------------------- |
+| https://oauth2.mezon.ai/oauth2/auth  | URL ủy quyền cơ sở           |
+| https://oauth2.mezon.ai/oauth2/token | URL token                    |
+| https://oauth2.mezon.ai/userinfo     | URL thông tin người dùng     |
+
+> [!WARNING]
+> Theo các RFC liên quan, URL token và thu hồi token **chỉ** chấp nhận content type `application/x-www-form-urlencoded`. Nội dung JSON không được phép và sẽ trả về lỗi.
+
+###### Phạm vi OAuth2 (Scopes) {#oauth2-scopes}
+
+Đây là danh sách tất cả phạm vi OAuth2 mà Mezon hỗ trợ. Một số scope yêu cầu Mezon phê duyệt trước khi sử dụng. Yêu cầu chúng từ người dùng mà không có phê duyệt của Mezon có thể gây lỗi hoặc hành vi không được ghi nhận trong luồng OAuth2.
+
+| Tên            | Mô tả |
+| -------------- | ----- |
+| openid         |       |
+| offline        |       |
+| offline_access |       |
+
+## State và bảo mật {#state-and-security}
+
+Trước khi đi sâu vào ngữ nghĩa của các grant OAuth2 khác nhau, chúng ta cần dừng lại để thảo luận về bảo mật, đặc biệt là việc dùng tham số `state`. [Cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery) (CSRF) và [Clickjacking](https://en.wikipedia.org/wiki/Clickjacking) là các lỗ hổng bảo mật mà người triển khai OAuth phải xử lý. Điều này thường được thực hiện bằng tham số `state`. `state` được gửi trong yêu cầu ủy quyền và trả về trong phản hồi; giá trị này nên gắn yêu cầu của người dùng với trạng thái xác thực của họ. Ví dụ, `state` có thể là hash của cookie phiên người dùng, hoặc một nonce khác có thể liên kết với phiên của người dùng.
+
+Khi người dùng bắt đầu luồng ủy quyền trên client, một `state` duy nhất cho yêu cầu đó được tạo ra. Giá trị này được lưu ở nơi chỉ client và người dùng truy cập được, tức được bảo vệ bởi [same-origin policy](https://en.wikipedia.org/wiki/Same-origin_policy). Khi người dùng được chuyển hướng, tham số `state` được trả về. Client xác thực yêu cầu bằng cách kiểm tra `state` trả về có khớp với giá trị đã lưu hay không. Nếu khớp, đó là yêu cầu ủy quyền hợp lệ. Nếu không khớp, có thể ai đó đã chặn yêu cầu hoặc tự ủy quyền trái phép vào tài nguyên của người dùng khác, và yêu cầu nên bị từ chối.
+
+Với Mezon, chúng tôi yêu cầu tham số `state` gồm 11 ký tự chữ và số. Tham số này được gửi trong URL và sẽ được mô tả chi tiết ở phần tiếp theo.
+
+## Luồng Authorization Code
+
+Authorization code grant là dạng OAuth2 mà hầu hết nhà phát triển nhận ra là "OAuth2 chuẩn", gồm lấy mã ủy quyền và đổi lấy access token của người dùng. Nó cho phép máy chủ ủy quyền đóng vai trò trung gian giữa client và resource owner, nên thông tin đăng nhập của resource owner không bao giờ được chia sẻ trực tiếp với client.
+
+Mọi lời gọi tới endpoint OAuth2 yêu cầu HTTP Basic authentication hoặc `client_id` và `client_secret` cung cấp trong body form data.
+
+###### Ví dụ URL ủy quyền
+
+```
+https://oauth2.mezon.ai/oauth2/auth?client_id=1840672953654579200&redirect_uri=https%3A%2F%2Ftalent.nccsoft.vn%2Faccount%2Flogin%2Fcallback&response_type=code&scope=openid+offline&state=7d2bf60ffcb
+```
+
+`client_id` là `client_id` của ứng dụng. `scope` là danh sách [phạm vi OAuth2](#oauth2-scopes) phân tách bằng khoảng trắng đã mã hóa URL (`%20`). `redirect_uri` là URL bạn đã đăng ký khi tạo ứng dụng, đã mã hóa URL. `state` là chuỗi duy nhất đã đề cập ở [State và bảo mật](#state-and-security).
+
+Khi ai đó truy cập URL này, quá trình ủy quyền cho ứng dụng của bạn với các scope được yêu cầu sẽ bắt đầu.
+
+Một thử thách được phát hành (chúng tôi gọi là `Đăng nhập tài khoản Mezon`) chuyển bạn tới trang đăng nhập Mezon. Nếu xác thực thành công, Mezon sẽ chuyển hướng bạn tới `redirect_uri`, kèm tham số query string bổ sung là `code`. `state` cũng được trả về nếu đã gửi trước đó và nên được xác thực tại thời điểm này.
+
+> [!IMPORTANT]
+> Lưu ý: luôn xác minh `state` để tránh rủi ro bảo mật.
+
+###### Ví dụ URL chuyển hướng
+
+```
+https://talent.nccsoft.vn/account/login/callback?code=ory_ac_lidWCbmSJsJGZvw34jbRPfNj0eXJBq-kyxlwwcidryY.zVdZx6bU5Q01vAN8orQeL3TY3UPexXGZ8bTLvilBRdY&scope=&state=7d2bf60ffcb
+```
+
+`code` giờ được đổi lấy access token của người dùng bằng cách gửi yêu cầu `POST` tới [URL token](#oauth2-urls) với các tham số sau:
+
+- `grant_type` — phải là `authorization_code`
+- `code` — mã từ querystring
+- `state` — state từ querystring
+- `client_id` — `client_id` từ ứng dụng nhà phát triển
+- `client_secret` — `client_secret` từ ứng dụng nhà phát triển
+- `redirect_uri` — `redirect_uri` gắn với lần ủy quyền này, thường từ URL ủy quyền của bạn
+
+###### Ví dụ đổi Access Token
+
+```python
+import requests
+
+API_ENDPOINT = 'https://oauth2.mezon.ai/'
+CLIENT_ID = '1840672953654579200'
+CLIENT_SECRET = '9dZkohGU!OU*.EZt|LWUbb5>z4*u|L2a'
+REDIRECT_URI = 'https://talent.nccsoft.vn/account/login/callback'
+
+def exchange_code(code, state):
+  data = {
+    'grant_type': 'authorization_code',
+    'code': code,
+    'state': state,
+    'client_id': CLIENT_ID,
+    'client_secret': CLIENT_SECRET,
+    'redirect_uri': REDIRECT_URI
+  }
+  headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+  r = requests.post('%s/oauth2/token' % API_ENDPOINT, data=data, headers=headers)
+  r.raise_for_status()
+  return r.json()
+```
+
+Phản hồi bạn nhận được:
+
+###### Phản hồi Access Token
+
+```json
+{
+  "access_token": "ory_at_SHhqhMVwdB-Wsf3JVcM4K0zBkosl76ZqSAbWWVHiiCY.WJGnPNlsNrTsvWzNJZgX2r2YjOwKba3LevbS9SZco8A",
+  "expires_in": 3600,
+  "scope": "",
+  "token_type": "bearer"
+}
+```
+
+Có access token của người dùng cho phép ứng dụng của bạn thực hiện một số yêu cầu tới API thay mặt họ, giới hạn trong các scope đã yêu cầu. `expires_in` là thời gian (giây) cho đến khi access token hết hạn, giúp bạn dự đoán thời điểm hết hạn.

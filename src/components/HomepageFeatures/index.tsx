@@ -14,21 +14,21 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: <Translate id="homepage.userDocumentationTitle">Tài liệu người dùng</Translate>,
+    title: <Translate id="homepage.userDocumentationTitle">User Guide</Translate>,
     Svg: require("@site/static/images/undraw_docusaurus_mountain.svg").default,
     description: (
       <>
-        <Translate id="homepage.userDocumentation">Hướng dẫn từng bước giúp bạn khám phá tính năng, quản lý không gian làm việc và sử dụng Mezon hiệu quả nhất.</Translate>
+        <Translate id="homepage.userDocumentation">Step-by-step guides to help you explore features, manage workspaces, and use Mezon most effectively.</Translate>
       </>
     ),
     link: "/user/welcome",
   },
   {
-    title: <Translate id="homepage.developerDocumentationTitle">Tài liệu nhà phát triển</Translate>,
+    title: <Translate id="homepage.developerDocumentationTitle">Developer Documentation</Translate>,
     Svg: require("@site/static/images/undraw_docusaurus_react.svg").default,
     description: (
       <>
-        <Translate id="homepage.developerDocumentation">Tài liệu và ví dụ cho SDKs, Webhooks, và tích hợp để xây dựng và mở rộng nền tảng.</Translate>
+        <Translate id="homepage.developerDocumentation">Documentation and examples for SDKs, Webhooks, and integrations to build and expand the platform.</Translate>
       </>
     ),
     link: "/developer/intro",
@@ -51,7 +51,7 @@ function Feature({ title, Svg, description, link }: FeatureItem) {
       </div>
       <div className="text--center">
         <Link className="button button--primary button--lg" to={link}>
-          <Translate id="homepage.readMore">Xem thêm</Translate>
+          <Translate id="homepage.readMore">Read More</Translate>
         </Link>
       </div>
     </div>

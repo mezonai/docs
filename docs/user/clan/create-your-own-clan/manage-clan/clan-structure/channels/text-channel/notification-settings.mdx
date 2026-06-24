@@ -1,37 +1,35 @@
 ---
 sidebar_position: 5
-sidebar_label: Thông báo
+sidebar_label: Notification Settings
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image';
+import Image from "@site/src/components/Image";
 import notificationSettings001 from './images/notification-settings-001.png';
 import notificationSettings002 from './images/notification-settings-002.png';
 import notificationSettingsMobile001 from './images/notification-settings-mobile-001.png';
-import notificationSettingsMobile002 from './images/notification-settings-mobile-002.png';
 
-# Thông báo
+# Notification Settings
+Manage channel notifications to stay informed without being disturbed by irrelevant alerts.
 
-## Quản lý thông báo của Kênh
-Bạn có thể nhanh chóng tùy chỉnh thông báo của Kênh, giúp bạn không bị làm phiền bởi những thông báo không quan trọng
-
+### How to Customize Notifications
 <Tabs>
 <TabItem value="PC" label="PC">
-- Mở Mezon và chọn **biểu tượng thông báo** ![notification-settings-001](./images/notification-settings-001.png) ở đầu kênh để tùy chỉnh thông báo.
+- Open Mezon and select the **notification icon** ![notification-settings-001](./images/notification-settings-001.png) at the top of the channel to customize the notifications.
+<Image style={{ margin: '1rem 2rem' }}  src={notificationSettings002} alt="Notification Settings 002" />
 </TabItem>
 <TabItem value="mobile" label="Mobile">
-<img style={{ width: '30%' }} src={notificationSettingsMobile001} alt="notification-settings-mobile-001" />
-<img style={{ width: '30%' }} src={notificationSettingsMobile002} alt="notification-settings-mobile-002" />
+<div align="left"><img style={{ width: '30%' }} src={notificationSettingsMobile001} alt="notification-settings-mobile-001" /></div>
 </TabItem>
 </Tabs>
 
-<Image style={{ margin: '1rem 2rem' }} src={notificationSettings002} alt="Notification Settings 002" />
-1. **Tắt thông báo kênh:** tắt hoàn toàn thông bào từ Kênh trong khoảng thời gian bạn muốn, như 15 phút, 1 tiếng,... hay cho đến khi bạn quyết định mở lại.
-2. **Sử dụng mặc định danh mục:** Sử dụng cùng cài đặt thông báo mà bạn đã chọn với Danh mục của Kênh đó.
-3. **Tất cả:** Nhận tất cả thông báo.
-4. **Chỉ @mention**: Chỉ khi ai đó nhắc đến bạn.
-5. **Không có gì:** Tắt thông báo hoàn toàn.
+
+* **Mute Channel** – Completely mute notifications from the channel for a chosen period (e.g., 15 minutes, 1 hour) or until you decide to unmute.
+* **Use Category Default** – Apply the same notification settings as the channel’s category.
+* **All** – Receive notifications for all messages.
+* **Only** **@mention** – Receive notifications only when someone mentions you.
+* **Nothing** – Turn off notifications completely.
 
 :::tip
-Nếu tham gia nhiều Kênh, hãy để hầu hết ở chế độ Chỉ @mention, như vậy bạn vừa không bỏ lỡ điều quan trọng, vừa không bị “ting ting” suốt ngày.
+**Tip:** If you are in multiple channels, keep most of them on **Only @mention**. This way, you won’t miss important messages while avoiding constant notification sounds.
 :::

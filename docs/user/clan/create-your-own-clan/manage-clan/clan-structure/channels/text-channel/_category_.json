@@ -1,6 +1,7 @@
 {
-  "label": "Kênh văn bản",
+  "label": "Text Channel",
   "position": 1,
+  "collapsed": true,
   "link": {
     "type": "doc",
     "id": "user/clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/index"

@@ -1,38 +1,40 @@
 ---
 sidebar_position: 9
-sidebar_label: Xóa Clan
-description: "Xóa Clan khỏi hệ thống."
+sidebar_label: Delete Clan
+description: "Delete Clan from the system."
 ---
+
 import Image from "@site/src/components/Image";
-import { Steps, Step } from '@site/src/components/Steps';
+import { Steps, Step } from "@site/src/components/Steps";
+import deleteClan001 from "./images/delete-clan-001.png";
+import deleteClan002 from "./images/delete-clan-002.png";
 
-import deleteClan001 from './images/delete-clan-001.png';
-import deleteClan002 from './images/delete-clan-002.png';
+# Delete Clan
 
-# Xóa Clan
-Trong trường hợp Clan không còn được sử dụng hoặc bạn muốn dừng hoạt động cộng đồng, bạn có thể xóa vĩnh viễn Clan.
+If your Clan is no longer in use or you want to discontinue its community, you can permanently delete the Clan.
 
-:::danger   
-#### _<span style={{ color: 'var(--ifm-color-danger)' }}>**Lưu ý**</span>**: hành động này không thể hoàn tác và toàn bộ dữ liệu, kênh và nội dung trong Clan sẽ bị xóa theo.**_
+:::danger Note
+This action **cannot be undone**. All data, channels, and content within the Clan will be permanently removed.
 :::
 
-### **Cách xóa Clan**
+### How to Delete a Clan
 
 <Steps>
-<Step title="Ở menu bên trái, chọn **Xóa Clan**">
-
-<Image style={{ margin: '1rem 2rem' }} src={deleteClan001}></Image>
-</Step>
-
-<Step title="Nhập lại tên Clan để xác nhận">
-
-<Image style={{ margin: '1rem 2rem' }} src={deleteClan002}></Image>
-</Step>
-
-<Step title="Nhấn **Xóa Clan**">
-</Step>
+  <Step title="In the left menu, select **Delete Clan**.">
+    <Image
+      style={{ margin: "1rem 2rem" }}
+      src={deleteClan001}
+      alt="Delete Clan 001"
+    />
+  </Step>
+  <Step title="Re-enter the Clan name to confirm.">
+    <Image
+      style={{ margin: "1rem 2rem" }}
+      src={deleteClan002}
+      alt="Delete Clan 002"
+    />
+  </Step>
+  <Step title="Click **Delete Clan**."></Step>
 </Steps>
-
-:::danger
-Sau khi xóa, Clan và toàn bộ dữ liệu sẽ bị mất vĩnh viễn, bạn không thể khôi phục.
-:::
+:::danger Note Once deleted, the Clan and all associated data will be permanently
+lost and **cannot be recovered**. :::

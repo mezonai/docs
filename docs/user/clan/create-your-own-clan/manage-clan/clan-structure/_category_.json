@@ -1,6 +1,7 @@
 {
-  "label": "Cấu trúc Clan",
+  "label": "Clan Structure",
   "position": 2,
+  "collapsed": true,
   "link": {
     "type": "doc",
     "id": "user/clan/create-your-own-clan/manage-clan/clan-structure/index"
