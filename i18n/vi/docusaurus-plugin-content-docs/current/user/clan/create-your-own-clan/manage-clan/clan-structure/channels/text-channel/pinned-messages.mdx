@@ -1,74 +1,67 @@
 ---
 sidebar_position: 4
-sidebar_label: Ghim tin nhắn
+sidebar_label: Tin nhắn đã ghim
+description: Ghim tin nhắn quan trọng trong kênh văn bản để mọi người dễ tìm, và bỏ ghim khi không cần nữa.
 ---
-import { Steps, Step } from "@site/src/components/Steps";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image';
-import Heading from '@theme/Heading';
-import pinnedMessages001 from './images/pinned-messages-001.png';
-import pinnedMessages002 from './images/pinned-messages-002.png';
-import pinnedMessages003 from './images/pinned-messages-003.png';
-import pinnedMessages004 from './images/pinned-messages-004.png';
-import pinnedMessages005 from './images/pinned-messages-005.png';
-import pinnedMessagesMobile001 from './images/pinned-messages-mobile-001.png';
-import pinnedMessagesMobile002 from './images/pinned-messages-mobile-002.png';
-import pinnedMessagesMobile003 from './images/pinned-messages-mobile-003.png';
+import Image from "@site/src/components/Image";
+import pinnedComputer01 from "./images/pinned-messages-computer-01.png";
+import pinnedComputer02 from "./images/pinned-messages-computer-02.png";
 
-# Ghim tin nhắn
+# Tin nhắn đã ghim
 
-Trong các kênh chat sôi động, Ghim tin nhắn giúp ghim lại nội dung quan trọng
-để mọi người dễ dàng tìm và xem lại bất cứ lúc nào.
+Ghim một tin nhắn để mọi người dễ tìm lại, ví dụ nội quy, lịch làm việc hay một địa chỉ. Mọi người trong kênh đều xem được các tin nhắn đã ghim.
 
-### Cách ghim tin nhắn
+## Ghim tin nhắn
 
-<Tabs>
-<TabItem value="PC" label="PC">
-<Steps>
-<Step title="Trong **Kênh văn bản**, nhấp chuột phải vào tin nhắn bạn muốn ghim.">
-<Image style={{ margin: '1rem 2rem' }} src={pinnedMessages001} alt="Pinned Messages 001" />
-</Step>
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-<Step title="Chọn Ghim tin nhắn, xác nhận lại và nhấn **“Ghim luôn”.**">
-  <Image style={{ margin: '1rem 2rem' }} src={pinnedMessages002} alt="Pinned Messages 002" />
-</Step>
+1. Nhấn giữ tin nhắn.
+2. Nhấn **Ghim tin nhắn**.
+3. Nhấn **Có** (iPhone: **Đồng ý**) để xác nhận.
 
-<Step title="Thông báo về tin nhắn ghim sẽ xuất hiện trong đoạn chat. Bạn có thể nhấn “**tất cả tin nhắn**” hoặc biểu tượng cái ghim ở đầu kênh để xem lại.">
-  <Image style={{ margin: '1rem 2rem' }} src={pinnedMessages003} alt="Pinned Messages 003" />
-  <Image style={{ margin: '1rem 2rem' }} src={pinnedMessages004} alt="Pinned Messages 004" />
-</Step>
-
-<Step title="Nếu có nhiều tin nhắn ghim, chọn **Nhảy đến** trong danh sách pinned để di chuyển nhanh đến tin nhắn gốc đó.">
-<Image style={{ margin: '1rem 2rem' }} src={pinnedMessages005} alt="Pinned Messages 005" />
-</Step>
-</Steps>
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<Steps>
-<Step title="Trong **Kênh Văn bản/ Chủ đề**, nhấn và giữ vào tin nhắn bạn muốn ghim.">
+<TabItem value="computer" label="Máy tính">
 
-<div align="left"><img style={{ width: '30%' }} src={pinnedMessagesMobile001} alt="pinned-messages-mobile-001" /></div>
-</Step>
+1. Nhấn chuột phải vào tin nhắn.
+2. Nhấn **Ghim tin nhắn**.
+3. Nhấn **Ghim luôn** để xác nhận.
 
-<Step title="Chọn Ghim tin nhắn, xác nhận lại và nhấn **“Có”.**">
+<Image src={pinnedComputer01} alt="Hộp thoại Ghim đi. Ghim luôn cho chắc. với nút Ghim luôn" />
 
-<div align="left"><img style={{ width: '30%' }} src={pinnedMessagesMobile002} alt="pinned-messages-mobile-002" /></div>
-</Step>
-</Steps>
-
-<Heading as="h3">Cách xem tin nhắn đã ghim</Heading>
-
-<Steps>
-<Step title="Trong **Kênh Văn bản** hoặc **Chủ đề**, nhấn vào chọn **Ghim** ở menu.">
-
-<div align="left"><img style={{ width: '30%' }} src={pinnedMessagesMobile003} alt="pinned-messages-mobile-003" /></div>
-</Step>
-
-<Step title="Nhấn vào **tin nhắn đã ghim** để chuyển đến vị trí gốc của nó."></Step>
-
-<Step title="Chọn **dấu X** nếu bạn muốn **bỏ ghim hoặc xóa tin nhắn khỏi danh sách ghim**.">
-</Step>
-</Steps>
 </TabItem>
 </Tabs>
+
+Trong khung chat hiện một dòng: "… đã ghim một tin nhắn vào kênh này. Xem tất cả tin nhắn đã ghim." Trên máy tính, tin ghim mới nhất cũng hiện ở thanh ghim dưới tên kênh.
+
+Bạn không ghim được tin nhắn bên trong một thảo luận ngắn.
+
+## Xem và bỏ ghim
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Nhấn vào tên kênh ở phía trên.
+2. Mở thẻ **Ghim** (Android: **Pins**).
+3. Nhấn vào một tin nhắn đã ghim để đi tới tin nhắn đó trong khung chat.
+4. Muốn bỏ ghim, nhấn dấu **X** bên cạnh tin nhắn.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Nhấn nút **Tin nhắn đã ghim** ở góc trên bên phải của kênh.
+
+<Image src={pinnedComputer02} alt="Danh sách Tin nhắn đã ghim với một tin nhắn, và dòng thông báo ghim trong khung chat" />
+
+2. Nhấn **Nhảy đến** trên một tin nhắn để đi tới tin nhắn đó trong khung chat.
+3. Muốn bỏ ghim, nhấn dấu gạch chéo bên cạnh tin nhắn, rồi nhấn **Bỏ ghim**.
+
+</TabItem>
+</Tabs>
+
+## Liên quan
+
+- [Kênh văn bản](./index.mdx)
+- [Hộp thư](./inbox.mdx)

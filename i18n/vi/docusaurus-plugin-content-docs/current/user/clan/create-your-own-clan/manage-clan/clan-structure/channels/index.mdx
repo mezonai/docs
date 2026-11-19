@@ -1,92 +1,121 @@
 ---
 slug: /user/clan/create-your-own-clan/manage-clan/clan-structure/channels
-description: Kênh là nơi diễn ra mọi hoạt động giao tiếp trong Clan — từ nhắn tin, gọi thoại đến chia sẻ nội dung.
+title: Kênh
+description: Tạo kênh văn bản, kênh thoại, kênh phát trực tiếp trong clan và đổi cài đặt của kênh.
 ---
-import Image from '@site/src/components/Image';
-import channelsImage001 from './images/channels-001.png';
-import channelsImage002 from './images/channels-002.png';
-import channelsImage003 from './images/channels-003.png';
-import channelsImage004 from './images/channels-004.png';
-import channelsImage005 from './images/channels-005.png';
-import channelsImage006 from './images/channels-006.png';
-import channelsImage007 from './images/channels-007.png';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import channelsPhone01 from "./images/channels-phone-01.png";
+import channelsPhone02 from "./images/channels-phone-02.png";
+import channelsComputer01 from "./images/channels-computer-01.png";
+import channelsComputer02 from "./images/channels-computer-02.png";
+import channelsComputer03 from "./images/channels-computer-03.png";
+import channelsComputer04 from "./images/channels-computer-04.png";
 
-# Kênh trong Clan
+# Kênh
 
-### Cách tạo Kênh
+Kênh là nơi các thành viên trong clan nhắn tin, nói chuyện và xem cùng nhau. Có ba loại kênh:
 
-* Nhấn vào dấu **“+”** trong **Danh mục** nơi bạn muốn tạo Kênh.
-* Có **3 loại Kênh**, mỗi loại phục vụ một mục đích riêng:
+- [Kênh văn bản](./text-channel/index.mdx): nhắn tin, gửi ảnh, tệp, tạo chủ đề và thảo luận ngắn.
+- [Kênh thoại](./voice-channel.mdx): nói chuyện, bật camera, chia sẻ màn hình.
+- [Kênh phát trực tiếp](./stream-channel.mdx): một người phát trực tiếp, những người khác xem.
 
-<Image style={{ margin: '1rem 2rem' }} src={channelsImage001} alt="Channels 001" />
+## Tạo kênh
 
-1. [**Kênh văn bản**](./channels/text-channel): Là nơi giao tiếp chính của Clan. Bạn có thể gửi tin nhắn văn bản, hình ảnh, video, cùng những tính năng lưu trữ thông tin quan trọng khác.
-2. [**Kênh thoại**](./channels/voice-channel): nơi trò chuyện bằng giọng nói, chia sẻ màn hình hoặc gọi video. Tất cả đều miễn phí, không giới hạn thời gian và độ phân giải!
-3. [**Kênh phát trực tiếp**](./channels/stream-channel): nơi chủ Clan tổ chức buổi phát sóng, talkshow hay podcast định kỳ.
+Chủ sở hữu clan và các vai trò có quyền **Quản trị viên**, **Quản lý Clan** hoặc **Quản lý kênh** được tạo kênh.
 
-> Khi tạo Kênh, bạn có thể bật chế độ **Riêng tư** để chỉ những thành viên được chọn mới nhìn thấy.
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-:::warning Chú ý
-Mỗi Clan có thể chứa tối đa 500 Kênh trong cùng 1 thời điểm.
+1. Mở clan của bạn.
+2. Nhấn giữ tên một danh mục, ví dụ **PUBLIC CHANNELS**.
+3. Nhấn **Tạo kênh**.
+
+<Image src={channelsPhone01} alt="Menu của danh mục, mục Tạo kênh ở dưới cùng" width={270} />
+
+4. Nhập tên kênh.
+5. Chọn loại kênh: **Văn bản**, **Thoại** hoặc **Phát trực tiếp**.
+6. Muốn kênh văn bản hoặc kênh thoại là riêng tư, hãy bật **Kênh riêng** (iPhone: **Kênh riêng tư**).
+7. Nhấn **Tạo**.
+
+<Image src={channelsPhone02} alt="Màn hình tạo kênh, loại Thoại đang được chọn" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Mở clan của bạn.
+2. Đưa chuột vào tên một danh mục rồi nhấn dấu **+** bên cạnh.
+
+<Image src={channelsComputer01} alt="Nút dấu cộng cạnh tên danh mục" />
+
+3. Chọn loại kênh: **Văn bản**, **Thoại** hoặc **Phát trực tiếp**.
+4. Nhập tên kênh.
+5. Muốn kênh văn bản hoặc kênh thoại là riêng tư, hãy bật **Kênh riêng tư**.
+6. Nhấn **Tạo kênh**.
+
+<Image src={channelsComputer02} alt="Hộp thoại tạo kênh, loại Văn bản được chọn và đã nhập tên kênh" />
+
+Bạn cũng có thể nhấn chuột phải vào một kênh trong danh mục và chọn **Tạo kênh văn bản** (trên kênh thoại là **Tạo kênh thoại**).
+
+</TabItem>
+</Tabs>
+
+Kênh mới hiện trong danh mục.
+
+Quy tắc về kênh:
+
+- Tên kênh dài tối đa 64 ký tự, gồm chữ, số, dấu cách, `_` hoặc `-`. Tên không được bắt đầu bằng dấu cách, `_` hoặc `-`.
+- Hai kênh trong cùng một danh mục không được trùng tên.
+- Kênh phát trực tiếp không thể là riêng tư. Mọi thành viên trong clan đều thấy kênh này.
+- Một clan có tối đa 1000 kênh, tính cả các chủ đề.
+
+## Đổi cài đặt của kênh
+
+Chủ sở hữu clan và các vai trò có quyền **Quản lý kênh** có thể đổi cài đặt của kênh.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Nhấn giữ tên kênh.
+2. Nhấn **Chỉnh sửa kênh**.
+3. Đổi tên kênh hoặc **Chủ đề kênh**, hoặc nhấn **Đổi danh mục** (iPhone: **Thay đổi danh mục**) để chuyển kênh.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Nhấn chuột phải vào tên kênh.
+2. Nhấn **Chỉnh sửa kênh**.
+
+<Image src={channelsComputer03} alt="Menu của kênh, mục Chỉnh sửa kênh" />
+
+3. Chọn một thẻ ở bên trái và thay đổi.
+
+<Image src={channelsComputer04} alt="Thẻ Tổng quan trong cài đặt kênh với Tên kênh, Chủ đề kênh, Kênh hạn chế độ tuổi và Ẩn sau thời gian không hoạt động" />
+
+</TabItem>
+</Tabs>
+
+Trên máy tính, phần cài đặt có các thẻ sau. Một số thẻ chỉ hiện với một số loại kênh.
+
+| Thẻ | Bạn có thể đổi |
+|---|---|
+| **Tổng quan** | **Tên kênh**. **Chủ đề kênh**: cho mọi người biết kênh dùng để làm gì (tối đa 512 ký tự trên máy tính). **Kênh hạn chế độ tuổi** (kênh văn bản): thành viên phải xác nhận tuổi trước khi xem tin nhắn. **Ẩn sau thời gian không hoạt động**: chủ đề không có tin nhắn mới trong khoảng thời gian này sẽ không hiện trong danh sách kênh nữa. |
+| **Danh mục** | Danh mục chứa kênh. |
+| **Quyền hạn** | Kênh văn bản và kênh thoại. Đặt kênh là riêng tư, chọn thành viên và vai trò nào được xem kênh và được làm gì. Xem [Vai trò và quyền hạn](../../overview-settings/roles-and-permissions-management.mdx). |
+| **Tích hợp** | Kênh văn bản. Tạo webhook để tự động đăng tin nhắn vào kênh. Xem [Webhook kênh](../../../../../../developer/webhooks/channel-webhook.mdx). |
+| **Hành động nhanh** | Kênh văn bản. **Tin nhắn nhanh**: lưu một đoạn chữ, sau đó gửi bằng cách gõ `/` kèm tên của nó. **Menu nhanh**: lệnh để gọi bot. |
+| **Phát trực tiếp** | Kênh phát trực tiếp. **Ảnh bìa Stream**: ảnh mọi người thấy khi không có ai phát (JPG, PNG, GIF hoặc WEBP, tối đa 10 MB). |
+| **Xóa kênh** | Xóa kênh. Kênh chào mừng của clan không xóa được. |
+
+:::danger
+Xóa kênh thì không khôi phục được.
 :::
 
-### Cài đặt Kênh
+## Liên quan
 
-Bạn có thể cài đặt kênh bằng cách nhấn vào biểu tượng bánh răng canh tên Kênh
-
-<Image style={{ margin: '1rem 2rem' }} src={channelsImage002} alt="Channels 002" />
-
-#### Tổng quan
-
-<Image style={{ margin: '1rem 2rem' }} src={channelsImage003} alt="Channels 003" />
-
-* **Tên kênh**: Thay đổi tên của kênh đó.
-* **Mô tả của kênh**: mô tả cách thành viên nên sử dụng kênh này (Tối đa 1024 kí tự).
-* **Kênh hạn chế độ tuổi**: Bật/tắt tính năng cảnh báo giới nội dung nhạy cảm (NSFW). Các kênh bật chế độ hạn chế độ tuổi được miễn trừ bộ lọc nội dung rõ ràng.
-* **Ẩn sau thời gian không hoạt động**: Các kênh sẽ tự động được ẩn trên vùng điều hướng Clan trong khoảng thời gian được cài đặt.
-
-#### Danh mục
-
-<Image style={{ margin: '1rem 2rem' }} src={channelsImage004} alt="Channels 004" />
-
-* Là nơi để bạn thay đổi danh mục mà Kênh đó thuộc về. Bạn cũng có thể sử dụng cách kéo thả tên Kênh ở vùng điều hướng Clan để thay đổi danh mục cho Kênh.
-
-#### Quyền hạn
-
-<Image style={{ margin: '1rem 2rem' }} src={channelsImage005} alt="Channels 005" />
-
-* Là nơi để thay đổi quyền hạn những ai được xem kênh.
-* Mặc định, quyền hạn Kênh sẽ được đồng bộ với quyền hạn của Danh mục mà kênh đó thuộc về.
-* Bật Kênh riêng tư để có thể tùy chỉnh về quyền hạn với chính xác Kênh đó.
-
-:::warning Chú ý
-Phần quyền hạn chỉ có ở Kênh văn bản và Kênh thoại. Kênh phát trực tiếp luôn ở chế độ công khai cho tất cả các thành viên của Clan được tham gia.
-:::
-
-#### Tích hợp
-
-<Image style={{ margin: '1rem 2rem' }} src={channelsImage006} alt="Channels 006" />
-
-* Tạo và cài đặt Webhook riêng cho Kênh
-* Tham khảo [**Dành cho lập trình viên**](/developer/mezon-sdk) để biết thêm về Mezon Webhook & SDK
-
-#### Menu nhanh
-
-<Image style={{ margin: '1rem 2rem' }} src={channelsImage007} alt="Channels 007" />
-
-* **Thêm tin nhắn nhanh**: để có thể lắp lại những câu nói thường dùng mà không phải gõ lại toàn bộ\
-  Ví dụ: Thay vì mỗi ngày phải nhắn "các bác cho em hỏi đề toán ngày hôm qua cô giáo với ạ", sau khi thêm tin nhắn nhanh, chỉ cần gõ "/hỏi đề" là được.
-* **Thêm menu nhanh**: Tạo những câu lệnh để tương tác với Bot một cách nhanh chóng. Sau khi tạo Menu nhanh, nhấn chuột phải vào tin nhắn để có thể chọn và yêu cầu Bot thực hiện hành động tương ứng. Xem cách cài đặt Bot tại: [**Dành cho lập trình viên**](https://mezon.ai/docs/mezon-sdk-docs/).
-
-:::warning Chú ý
-Phần cài đặt Menu nhanh chỉ có ở **Kênh văn bản**.
-:::
-
-#### Xóa kênh
-
-Trong trường hợp Kênh không còn được sử dụng hoặc bạn muốn dừng hoạt động Kênh, bạn có thể xóa vĩnh viễn Kênh.
-
-:::danger Chú ý
-#### _<span style={{ color: 'red' }}>**Lưu ý**</span>**: hành động này không thể hoàn tác và toàn bộ dữ liệu và nội dung trong Kênh sẽ bị xóa theo.**_
-:::
-
+- [Cấu trúc clan](../index.mdx)
+- [Danh mục](../clan-category.mdx)
+- [Kênh văn bản](./text-channel/index.mdx)
+- [Kênh thoại](./voice-channel.mdx)
+- [Kênh phát trực tiếp](./stream-channel.mdx)

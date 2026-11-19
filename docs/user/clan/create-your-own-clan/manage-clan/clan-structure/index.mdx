@@ -1,18 +1,42 @@
 ---
 slug: /user/clan/create-your-own-clan/manage-clan/clan-structure
-title: Clan Structure
+title: Clan structure
+description: How a clan is organized into categories and channels, what each channel type is for, and who can create them.
 ---
+import Image from "@site/src/components/Image";
+import clanStructureComputer01 from "./images/clan-structure-computer-01.png";
 
-Each Clan on Mezon is organized by Categories and Channels, helping divide content and conversations scientifically and easily for everyone.
+A clan is organized into **categories**, and each category holds **channels**. A new clan has a category called **PUBLIC CHANNELS** with a text channel called **general**. A clan started from a template also gets the template's categories and channels.
+
+<Image src={clanStructureComputer01} alt="The channel list of a clan: the PUBLIC CHANNELS category with text, voice and stream channels, two of them private with a lock on the icon" />
+
+## Channel types
+
+| Type | Icon in the channel list | Use it for |
+|---|---|---|
+| **Text** | # | Messages, pictures, files, threads and topics |
+| **Voice** | Speaker | Talking, video and screen sharing |
+| **Stream** | Broadcast waves | Watching one person's live video |
+
+A private text channel shows a # with a small lock. A private voice channel shows a speaker with a small lock. Only the clan owner, administrators and the members and roles added to it can see a private channel. Stream channels are always open to every member of the clan.
+
+## Who can create categories and channels
+
+- **Categories:** the clan owner and roles with the **Administrator** or **Manage Clan** permission.
+- **Channels:** the clan owner and roles with the **Administrator**, **Manage Clan** or **Manage Channels** permission. Other members do not see the create button.
+
+A clan can have up to 1000 channels. Threads count toward this limit.
+
 <ListIndexCard>
   <IndexCard
     href="./clan-structure/channels"
     title="Channels"
+    description="Create channels, change their settings, and use text, voice and stream channels."
     isFolder={true}
   />
   <IndexCard
     href="./clan-structure/clan-category"
-    title="Clan Category"
-    description="As your Clan grows, the number of channels can increase quickly, making it difficult to keep track. Categories help group related channels, keeping everything organized and easier to navigate for all"
+    title="Categories"
+    description="Group channels into categories, and manage a category."
   />
 </ListIndexCard>

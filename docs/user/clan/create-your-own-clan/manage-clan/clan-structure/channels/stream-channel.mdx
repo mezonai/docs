@@ -1,25 +1,66 @@
 ---
 sidebar_position: 3
-sidebar_label: Stream Channel
+sidebar_label: Stream channel
+description: Watch a live stream in a stream channel on a phone or a computer, and learn who can create stream channels.
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import streamComputer01 from "./images/stream-channel-computer-01.png";
+import streamComputer02 from "./images/stream-channel-computer-02.png";
 
-# Stream Channel
+# Stream channel
 
-**Streaming Channels in Mezon** allow you to broadcast video and host live sessions within your Clan.\
-This feature helps Clan leaders easily stream live video to members in their channels, creating more immersive multimedia experiences and strengthening community connections like never before.
+In a stream channel, one person is live and the other members of the clan watch. A stream channel has a broadcast icon (a dot with waves) in the channel list. Stream channels are always public: every member of the clan can open them and watch.
 
-***
+## Watch a stream
 
-### Overview
+You can watch on an Android phone, an iPhone, the desktop app and the web app.
 
-Live Streaming Channels provide the ideal platform for:
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
 
-* **Broadcasting live** video directly within Clan channels.
-* **WebRTC-based streaming** for high quality and low latency.
-* **Integrated automation bots** to help manage and support live sessions effortlessly.
-* **Cross-platform compatibility** for seamless use on web, desktop, and mobile devices.
+1. Tap the stream channel.
+2. When someone is live, you see their name and how many people are watching. Tap **Join Stream**.
+3. The video starts. Tap the video to show or hide the controls.
+4. Use the buttons at the bottom to change the sound output or the quality, or to open the chat.
+5. Tap the full-screen button to watch on the whole screen.
+6. To stop watching, tap the red button.
 
-### Learn More
+</TabItem>
+<TabItem value="computer" label="Computer">
 
-Are you a developer looking to create or integrate live streaming features for your Clan?\
-Explore the detailed guide on building, managing, and scaling Streaming Channels in the **Mezon Developer Docs**: [**Developer - Streaming Channel**](/developer/mezon-topics/streaming-channel)
+1. Click the stream channel.
+2. When someone is live, you see their name. Click **Join stream**.
+
+<Image src={streamComputer01} alt="A stream channel with Mai is live and the Join stream button" />
+
+3. The video starts. Point at the video to show the controls.
+4. Use the controls to change the volume or the **Quality**, or to watch in full screen.
+5. To stop watching, click the red button in the middle.
+
+<Image src={streamComputer02} alt="A live stream playing, with the volume, quality and full-screen controls and the viewers below" />
+
+To chat while you watch, click **Show Chat** at the top right.
+
+</TabItem>
+</Tabs>
+
+When no one is live, the channel shows **No one is currently in stream** and you cannot join yet.
+
+The quality can be **Auto**, **High**, **Medium** or **Low**. **Auto** changes the quality to match your connection. Choose **Low** if the video stops often.
+
+The number next to the eye icon is how many people are watching. The pictures under the video show who they are.
+
+## Who can create a stream channel
+
+The clan owner and roles with the **Administrator**, **Manage Clan** or **Manage Channels** permission can create one. They create it like any other channel and choose the type **Stream**. See [Create a channel](./index.mdx#create-a-channel).
+
+Only one person can be live in a stream channel at a time.
+
+On a computer, people who can manage the channel can set a **Stream Thumbnail** in the channel settings, on the **Streaming** tab. Members see this picture while no one is live.
+
+## Related
+
+- [Channels](./index.mdx)
+- [Voice channel](./voice-channel.mdx)

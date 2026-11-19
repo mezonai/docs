@@ -1,55 +1,73 @@
 ---
 sidebar_position: 2
 sidebar_label: Threads
+description: Create a thread, a small named channel inside a text channel, and find the threads of a channel.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
-import threads001 from './images/threads-001.png';
-import threads002 from './images/threads-002.png';
-import threads003 from './images/threads-003.png';
-import threadsMobile002 from './images/threads-mobile-002.png';
-import threadsMobile003 from './images/threads-mobile-003.png';
-import threadsMobile004 from './images/threads-mobile-004.png';
+import threadsComputer01 from "./images/threads-computer-01.png";
+import threadsComputer02 from "./images/threads-computer-02.png";
 
 # Threads
-Mezon helps you avoid “information chaos” with Threads - separate conversations by topic and Direct Messages, which allow private messaging with individual members.
 
-### How to Use Threads
-<Tabs>
-<TabItem value="PC" label="PC">
-<Steps>
-<Step title="Open Mezon and select the **Text Channel** where you want to communicate."></Step>
-<Step title="Click the **thread icon** in the chat toolbar.">
-<Image style={{ margin: '1rem 2rem' }}  src={threads001} alt="Threads 001" />
-</Step>
-<Step title="Select **Create** to start a new thread.">
-<Image style={{ margin: '1rem 2rem' }}  src={threads002} alt="Threads 002" />
-</Step>
-<Step title="Enter the **thread name** and send the first message to begin the discussion with the group.">
+A thread is a small channel inside a text channel, with its own name. Use a thread for a subject that needs a longer discussion, so the main channel stays easy to follow. A thread shows under its channel in the channel list.
 
-* To make a thread **private** (visible only to invited members and managers), select **Private Thread** at the bottom.
+## Thread or topic?
 
-<Image style={{ margin: '1rem 2rem' }}  src={threads003} alt="Threads 003" />
-</Step>
-</Steps>
+| | Thread | Topic |
+|---|---|---|
+| Starts from | The **Threads** panel, or a message | One message |
+| Has a name | Yes | No |
+| Can be private | Yes | No |
+| Shows in the channel list | Yes | No. You open it from the message, or from the Inbox. |
+| Who can start one | People with the **Manage Threads** permission | Anyone who can send messages in the channel |
+
+See [Topic](./topic.mdx) for short discussions about one message.
+
+## Create a thread
+
+You need the **Manage Threads** permission. The clan owner always has it. Without it, you do not see **Create** or **Create Thread**.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Press and hold the message you want to discuss.
+2. Tap **Create Thread**.
+3. Type the thread name.
+4. To make it private, turn on **Private Thread**.
+5. Type the first message and send it.
+
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-1. Open Mezon and select the Text Channel where you want to communicate.
-2. Click the **thread icon** ![threads-001](./images/threads-001.png) in the menu bar or directly above the message input field.
+<TabItem value="computer" label="Computer">
 
-<div align="left"><img style={{ width: '30%' }} src={threadsMobile002} alt="threads-mobile-002" /></div>
+1. Click the **Threads** button at the top right of the channel.
+2. Click **Create**.
 
-<div align="left"><img style={{ width: '30%' }} src={threadsMobile003} alt="threads-mobile-003" /></div>
+<Image src={threadsComputer01} alt="The Threads panel with the Create button" />
 
-3. Select **Create Thread** to start a new Thread.
-4. Enter the thread name and send the first message to begin the discussion with the group.
+3. Type a name in **Thread Name**.
 
-<div align="left"><img style={{ width: '30%' }} src={threadsMobile004} alt="threads-mobile-004" /></div>
+<Image src={threadsComputer02} alt="The New Thread panel with Thread Name, Private Thread and the message box" />
 
-:::warning
-When you select a **private thread**, only you and invited members can see it.
-:::
+4. To make it private, tick **Private Thread**. Only the people you invite and moderators can see it.
+5. Type the first message and press **Enter**.
+
+You can also right-click a message and click **Create Thread**.
+
 </TabItem>
 </Tabs>
+
+The thread appears under the channel in the channel list. A thread name must be longer than 3 characters. To invite people, mention them with **@** in the thread.
+
+## Find threads
+
+- **Computer:** click the **Threads** button. The list shows active threads, threads you joined and archived threads.
+- **Phone:** tap the channel name at the top, then tap **Threads**.
+
+Threads with no new messages for a while stop showing in the channel list. The channel's **Hide After Inactivity** setting decides when. You can still find them in the threads list.
+
+## Related
+
+- [Topic](./topic.mdx)
+- [Channels](../index.mdx)

@@ -1,27 +1,66 @@
 ---
 sidebar_position: 3
 sidebar_label: Kênh phát trực tiếp
+description: Xem phát trực tiếp trong kênh phát trực tiếp trên điện thoại hoặc máy tính, và biết ai được tạo loại kênh này.
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import streamComputer01 from "./images/stream-channel-computer-01.png";
+import streamComputer02 from "./images/stream-channel-computer-02.png";
 
 # Kênh phát trực tiếp
 
-**Kênh phát trực tiếp** trong Mezon cho phép bạn phát sóng video và tạo ra các buổi phát trực tiếp trong Clan.\
-Tính năng này giúp chủ Clan dễ dàng **phát video trực tiếp tới các thành viên trong kênh**, tạo nên những trải nghiệm đa phương tiện sống động và gắn kết cộng đồng hơn bao giờ hết.
+Trong kênh phát trực tiếp, một người phát video trực tiếp và các thành viên khác trong clan xem. Kênh phát trực tiếp có biểu tượng sóng phát (một chấm với các vòng sóng) trong danh sách kênh. Kênh này luôn công khai: mọi thành viên trong clan đều mở được và xem được.
 
-***
+## Xem phát trực tiếp
 
-### Tổng quan
+Bạn xem được trên điện thoại Android, iPhone, ứng dụng máy tính và bản web.
 
-**Kênh phát trực tiếp** mang đến nền tảng lý tưởng cho:
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-* **Phát sóng video trực tiếp** ngay trong các kênh thuộc Clan.
-* **Truyền phát dựa trên WebRTC**, đảm bảo chất lượng cao và độ trễ thấp.
-* **Tích hợp Bot tự động**, giúp quản lý và hỗ trợ buổi phát dễ dàng hơn.
-* **Hỗ trợ đa nền tảng**, sử dụng liền mạch trên web, ứng dụng desktop và thiết bị di động.
+1. Nhấn vào kênh phát trực tiếp.
+2. Khi có người đang phát, bạn thấy tên người đó và số người đang xem. Nhấn **Join Stream** (Tham gia phát trực tiếp; nút này hiện bằng tiếng Anh).
+3. Video bắt đầu chạy. Nhấn vào video để hiện hoặc ẩn các nút.
+4. Dùng các nút ở dưới cùng để đổi nơi phát âm thanh hoặc chất lượng video, hoặc để mở phần trò chuyện.
+5. Nhấn nút toàn màn hình để xem trên cả màn hình.
+6. Để thôi xem, nhấn nút màu đỏ.
 
-***
+</TabItem>
+<TabItem value="computer" label="Máy tính">
 
-### Tìm hiểu thêm
+1. Nhấn vào kênh phát trực tiếp.
+2. Khi có người đang phát, bạn thấy tên người đó. Nhấn **Tham gia phát trực tiếp**.
 
-Bạn là **nhà phát triển** và muốn tạo hoặc tích hợp **tính năng phát trực tiếp** cho Clan của mình?\
-Khám phá hướng dẫn chi tiết về cách xây dựng, quản lý và mở rộng tính năng **Kênh phát trực tiếp** trong **Mezon Developer Docs** tại: [**Developer - Streaming Channel**](/developer/mezon-topics/streaming-channel)
+<Image src={streamComputer01} alt="Kênh phát trực tiếp với dòng Mai đang phát trực tiếp và nút Tham gia phát trực tiếp" />
+
+3. Video bắt đầu chạy. Đưa chuột vào video để hiện các nút.
+4. Dùng các nút để chỉnh âm lượng, đổi **Chất lượng** hoặc xem toàn màn hình.
+5. Để thôi xem, nhấn nút màu đỏ ở giữa.
+
+<Image src={streamComputer02} alt="Video phát trực tiếp đang chạy, có nút âm lượng, chất lượng, toàn màn hình và người xem ở phía dưới" />
+
+Muốn trò chuyện trong lúc xem, nhấn **Hiển thị cuộc trò chuyện** ở góc trên bên phải.
+
+</TabItem>
+</Tabs>
+
+Khi không có ai phát, kênh hiện dòng **Hiện không có ai trong phát trực tiếp** và bạn chưa vào xem được.
+
+Chất lượng có các mức **Tự động**, **Cao**, **Vừa** và **Thấp**. Mức **Tự động** thay đổi theo kết nối mạng của bạn. Hãy chọn **Thấp** nếu video hay bị dừng. Trên điện thoại Android, các mức này hiện bằng tiếng Anh: **Auto**, **High**, **Medium**, **Low**.
+
+Con số cạnh biểu tượng con mắt là số người đang xem. Ảnh đại diện dưới video cho biết đó là ai.
+
+## Ai được tạo kênh phát trực tiếp
+
+Chủ sở hữu clan và các vai trò có quyền **Quản trị viên**, **Quản lý Clan** hoặc **Quản lý kênh** được tạo kênh này. Cách tạo giống như mọi kênh khác, chỉ cần chọn loại **Phát trực tiếp**. Xem [Tạo kênh](./index.mdx#tạo-kênh).
+
+Mỗi lúc chỉ có một người được phát trong một kênh phát trực tiếp.
+
+Trên máy tính, người có quyền **Quản lý kênh** có thể đặt **Ảnh bìa Stream** trong cài đặt kênh, ở thẻ **Phát trực tiếp**. Mọi người thấy ảnh này khi không có ai phát.
+
+## Liên quan
+
+- [Kênh](./index.mdx)
+- [Kênh thoại](./voice-channel.mdx)

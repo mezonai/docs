@@ -1,46 +1,40 @@
 ---
 sidebar_position: 3
 sidebar_label: Thành viên
+description: Xem ai ở trong kênh văn bản, ai đang trực tuyến, và mở hồ sơ của một thành viên.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image';
-import members001 from './images/members-001.png';
-import members002 from './images/members-002.png';
-import members003 from './images/members-003.png';
-import membersMobile001 from './images/members-mobile-001.png';
-import membersMobile002 from './images/members-mobile-002.png';
+import Image from "@site/src/components/Image";
+import membersComputer01 from "./images/members-computer-01.png";
 
 # Thành viên
 
-Với mục Thành viên, bạn có thể nhanh chóng xem danh sách thành viên của Clan,
-trạng thái hoạt động, cũng như xem thành viên có đang ở trong Kênh thoại nào
-không
+Danh sách thành viên hiện những người xem được kênh, chia thành nhóm trực tuyến và ngoại tuyến.
 
-<Tabs>
-<TabItem value="PC" label="PC">
-<Steps>
-<Step title="Mở Mezon, chọn **biểu tượng thành viên** ở đầu kênh để xem danh sách thành viên.">
-<Image style={{ margin: '1rem 2rem' }}  src={members001} alt="Members 001" />
-</Step>
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-<Step title="Ở đây, bạn có thể xem danh sách thành viên trong kênh.">
- <Image style={{ margin: '1rem 2rem' }}  src={members002} alt="Members 002" />
-</Step>
-</Steps>
-:::tip
-Nếu bạn là chủ phòng, bạn có thể ngay lập tức phân Vai trò (Role) cho thành viên đó chỉ với 1 nhấn.
-<Image style={{ margin: '1rem 2rem' }}  src={members003} alt="Members 003" />
-:::
+1. Nhấn vào tên kênh ở phía trên.
+2. Mở thẻ **Thành viên** (Android: **Members**).
+3. Nhấn vào một tên để mở hồ sơ của người đó.
+
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<div align="left"><img style={{ width: '30%' }} src={membersMobile001} alt="members-mobile-001" /></div>
+<TabItem value="computer" label="Máy tính">
 
-:::tip
-Nếu bạn là chủ phòng, bạn có thể ngay lập tức phân Vai trò (Role) cho thành viên đó chỉ với 1 click
+1. Nhấn nút **Thành viên** ở góc trên bên phải của kênh.
 
-<img style={{ width: '30%' }} src={membersMobile002} alt="members-mobile-002" />
-:::
+<Image src={membersComputer01} alt="Kênh văn bản với danh sách thành viên mở ở bên phải, Mai và Nam đang trực tuyến, hai thành viên ngoại tuyến" />
+
+2. Nhấn vào một tên để mở hồ sơ của người đó. Từ đây bạn có thể nhắn tin cho họ.
+3. Nhấn **Thành viên** lần nữa để ẩn danh sách.
+
 </TabItem>
 </Tabs>
 
+Trên máy tính, người có quyền **Quản lý Clan** còn có thể gán vai trò cho một thành viên ngay trong hồ sơ của thành viên đó. Họ chỉ gán được các vai trò thấp hơn vai trò của mình, trừ khi họ là chủ sở hữu clan.
+
+## Liên quan
+
+- [Quản lý quyền hạn và vai trò](../../../overview-settings/roles-and-permissions-management.mdx)
+- [Quản lý thành viên](../../../member-management.mdx)

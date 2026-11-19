@@ -1,107 +1,70 @@
 ---
 sidebar_position: 7
-sidebar_label: Tập tin
+sidebar_label: Tệp
+description: Gửi tệp trong kênh văn bản và tìm lại các tệp đã gửi.
 ---
-import { Steps, Step } from '@site/src/components/Steps';
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image'; 
-import Heading from '@theme/Heading';
-import files001 from './images/files-001.png';
-import files002 from './images/files-002.png';
-import files003 from './images/files-003.png';
-import files004 from './images/files-004.png';
-import files005 from './images/files-005.png';
-import files006 from './images/files-006.png';
-import filesMobile001 from './images/files-mobile-001.png';
-import filesMobile003 from './images/files-mobile-003.png';
-import filesMobile004 from './images/files-mobile-004.png';
-import filesMobile005 from './images/files-mobile-005.png';
-import filesMobile006 from './images/files-mobile-006.png';
+import Image from "@site/src/components/Image";
+import filesComputer01 from "./images/files-computer-01.png";
 
-# Tệp tin
+# Tệp
 
-Không chỉ hình ảnh, việc chia sẻ tài liệu cũng quan trọng. Tệp tin giúp bạn
-gửi và xem lại toàn bộ tệp đã được chia sẻ trong kênh một cách nhanh chóng.
+Bạn có thể gửi tài liệu và các loại tệp khác trong kênh văn bản, trong chủ đề hoặc trong tin nhắn trực tiếp, rồi tìm lại chúng sau.
 
+## Gửi tệp
 
-<Tabs>
-<TabItem value="PC" label="PC">
-### Cách gửi Tệp
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-<Steps>
-<Step title="Mở **Kênh văn bản** hoặc **Chủ đề** bạn cần trao đổi">
-</Step>
-
-<Step title="Nhấn vào **dấu cộng (+)** bên trái ô nhập tin nhắn.">
-<Image style={{ margin: '1rem 2rem' }} src={files001} alt="Files 001" />
-</Step>
-
-<Step title="Chọn tệp và nhấn **Open**.">
-<Image style={{ margin: '1rem 2rem' }} src={files002} alt="Files 002" />
-</Step>
-
-<Step title="Thêm mô tả nếu cần, hoặc nhấn **Enter** để gửi ngay.">
-<Image style={{ margin: '1rem 2rem' }} src={files003} alt="Files 003" />
-</Step>
-</Steps>
-
-### Cách xem Tệp đã gửi
-
-<Steps>
-<Step title="Trong **Kênh văn bản** hoặc **Chủ đề**, nhấn vào **biểu tượng ghim băng** ở đầu kênh.">
-<Image style={{ margin: '1rem 2rem' }} src={files004} alt="Files 004" />
-</Step>
-
-<Step title="**Danh sách tệp** sẽ hiển thị kèm theo tên người gửi và thời gian gửi.">
-<Image style={{ margin: '1rem 2rem' }} src={files005} alt="Files 005" />
-</Step>
-
-<Step title="Nhấn **Tải xuống** để lưu file vào thư mục trên máy tính.">
-<Image style={{ margin: '1rem 2rem' }} src={files006} alt="Files 006" />
-</Step>
-</Steps>
+1. Mở kênh hoặc chủ đề.
+2. Nhấn **+** ở bên trái ô nhập tin nhắn.
+3. Nhấn **Tải tệp lên** và chọn tệp.
+4. Nhấn nút gửi.
 
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<Heading as="h3">Cách gửi Tệp</Heading>
+<TabItem value="computer" label="Máy tính">
 
-<Steps>
-<Step title="Mở **Kênh Văn bản** hoặc **Chủ đề** bạn cần trao đổi.">
-</Step>
+1. Mở kênh hoặc chủ đề.
+2. Nhấn **+** ở bên trái ô nhập tin nhắn.
+3. Nhấn **Tải tệp lên**.
 
-<Step title="Nhấn vào **dấu cộng (+)** bên trái ô nhập tin nhắn.">
+<Image src={filesComputer01} alt="Menu dấu cộng cạnh ô nhập tin nhắn, có mục Tải tệp lên" />
 
-<div align="left"><img style={{ width: '30%' }} src={filesMobile001} alt="files-mobile-001" /></div>
-</Step>
+4. Chọn tệp rồi nhấn **Mở** (**Open**).
+5. Thêm lời nhắn nếu muốn, rồi nhấn **Enter**.
 
-<Step title="Chọn **Tệp** trong menu">
-![files-mobile-002](./images/files-mobile-002.png)
+Bạn cũng có thể kéo tệp thả vào khung chat, hoặc dán tệp vào ô nhập tin nhắn.
 
-<div align="left"><img style={{ width: '30%' }} src={filesMobile003} alt="files-mobile-003" /></div>
-</Step>
-
-<Step title="Chọn tệp tin mà bạn muốn gửi. Nhập mô tả (nếu cần) và ấn gửi ngay.">
-
-<div align="left"><img style={{ width: '30%' }} src={filesMobile004} alt="files-mobile-004" /></div>
-</Step>
-</Steps>
-
-<Heading as="h3">Cách xem tệp tin đã gửi</Heading>
-<Steps>
-<Step title="Trong **Kênh Văn bản** hoặc **Chủ đề**, nhấn vào chọn **Đa phương tiện** ở menu.">
-
-<div align="left"><img style={{ width: '30%' }} src={filesMobile005} alt="files-mobile-005" /></div>
-</Step>
-
-<Step title="**Danh sách tệp** sẽ hiển thị kèm theo tên người gửi và thời gian gửi.">
-
-<div align="left"><img style={{ width: '30%' }} src={filesMobile006} alt="files-mobile-006" /></div>
-</Step>
-
-<Step title="Nhấn vào tệp để **Tải xuống và xem** trên điện thoại.">
-</Step>
-</Steps>
 </TabItem>
 </Tabs>
 
+:::note
+Trên máy tính, mỗi tin nhắn có tối đa 50 tệp. Mỗi ảnh tối đa 50 MB, mỗi tệp khác tối đa 1024 MB.
+:::
+
+## Tìm tệp đã gửi
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Nhấn vào tên kênh ở phía trên.
+2. Mở thẻ **Tệp** (Android: **Files**). Tài liệu và tệp âm thanh được liệt kê riêng.
+3. Nhấn vào một tệp để mở.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Nhấn nút **Tệp** ở góc trên bên phải của kênh.
+2. Gõ một phần tên tệp vào ô **Tìm kiếm tên tệp** để lọc danh sách. Mỗi tệp có ghi ai đã chia sẻ và khi nào.
+3. Nhấn **Tải xuống** để lưu tệp về máy tính.
+
+</TabItem>
+</Tabs>
+
+Ảnh và video nằm trong [Thư viện](./gallery.mdx).
+
+## Liên quan
+
+- [Thư viện](./gallery.mdx)
+- [Tìm kiếm](./search.mdx)

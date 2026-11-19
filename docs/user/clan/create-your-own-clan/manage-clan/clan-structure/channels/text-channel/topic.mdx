@@ -1,58 +1,55 @@
 ---
 sidebar_position: 10
 sidebar_label: Topic
+description: Start a topic, a short discussion about one message, and find the topics you take part in.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
-import Heading from '@theme/Heading';
-import topic001 from './images/topic-001.png';
-import topic002 from './images/topic-002.png';
-import topicMobile001 from './images/topic-mobile-001.png';
-import topicMobile002 from './images/topic-mobile-002.png';
-import topicMobile003 from './images/topic-mobile-003.png';
-import topicMobile004 from './images/topic-mobile-004.png';
+import topicComputer01 from "./images/topic-computer-01.png";
+import topicComputer02 from "./images/topic-computer-02.png";
 
 # Topic
-Topic in chat allow you to create a separate discussion directly from a message, keeping the main conversation thread clear and organized.
 
-### How to Add a Topic in Chat
-<Tabs>
-<TabItem value="PC" label="PC">
-<Steps>
-<Step title="In a **Text Channel** or **Thread**, right-click the message you want to discuss."></Step>
-<Step title="Select **Topic Discussion**">
-<Image style={{ margin: '1rem 2rem' }}  src={topic001} alt="Topic 001" />
-</Step>
-<Step title="Enter your message in the **Topic window** on the right to start the discussion.">
-<Image style={{ margin: '1rem 2rem' }}  src={topic002} alt="Topic 002" />
-</Step>
-</Steps>
-With **Topic**, you can maintain a focused main conversation while allowing detailed discussions without confusion.
+A topic is a short discussion about one message. The replies stay in the topic, so the channel stays easy to follow. A topic has no name and cannot be private. For a longer discussion with its own name, use a [thread](./threads.mdx).
+
+Anyone who can send messages in a text channel or a thread can start a topic. Topics are not available in direct messages, group chats, voice or stream channels, or inside another topic.
+
+## Start a topic
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Press and hold the message.
+2. Tap **Topic Discussion**.
+3. Type your reply and send it.
+
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-1. In a Text Channel or Thread, press and hold the message you want to discuss further.
-2. Select **Topic Discussion**.
+<TabItem value="computer" label="Computer">
 
-<div align="left"><img style={{ width: '30%' }} src={topicMobile001} alt="topic-mobile-001" /></div>
+1. Right-click the message.
+2. Click **Topic Discussion**.
 
-3. Enter your message in the Topic window to start the exchange.
+<Image src={topicComputer01} alt="The message menu with Topic Discussion" />
 
-<div align="left"><img style={{ width: '30%' }} src={topicMobile002} alt="topic-mobile-002" /></div>
+3. The topic opens on the right. Type your reply and press **Enter**.
 
-<Heading as="h3">How to review Topics you've participated in</Heading>
+<Image src={topicComputer02} alt="A topic open on the right, with the first message and one reply" />
 
-* In the chat window, click **View Topic** to open the content and see the entire related discussion.
-
-<div align="left"><img style={{ width: '30%' }} src={topicMobile003} alt="topic-mobile-003" /></div>
-
-* Or go to **Notifications → Topics**, where all the Topics you’ve joined or followed in the Clan are displayed.
-
-<div align="left"><img style={{ width: '30%' }} src={topicMobile004} alt="topic-mobile-004" /></div>
-
-:::tip
-With **Topic**, you can keep the main conversation focused while branching out detailed discussions without confusion.
-:::
 </TabItem>
 </Tabs>
+
+Under the message, a button now shows how many replies the topic has.
+
+## Open a topic
+
+- **In the chat:** click the replies button under the message. On a phone, tap **View topic** (iPhone: **View Topic**).
+- **In the Inbox:** open the **Topics** tab. On a phone, it is in the **Notifications** tab at the bottom of the app.
+- **In the pin bar:** on a computer, the newest topic shows under the channel name.
+
+On a computer, a mark shows when a topic has replies you have not read.
+
+## Related
+
+- [Threads](./threads.mdx)
+- [Inbox](./inbox.mdx)

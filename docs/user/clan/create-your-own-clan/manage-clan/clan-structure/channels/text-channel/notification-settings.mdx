@@ -1,35 +1,58 @@
 ---
 sidebar_position: 5
-sidebar_label: Notification Settings
+sidebar_label: Notification settings
+description: Choose which messages in a channel notify you, or mute the channel for a while.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import notificationSettings001 from './images/notification-settings-001.png';
-import notificationSettings002 from './images/notification-settings-002.png';
-import notificationSettingsMobile001 from './images/notification-settings-mobile-001.png';
+import notificationSettingsComputer01 from "./images/notification-settings-computer-01.png";
 
-# Notification Settings
-Manage channel notifications to stay informed without being disturbed by irrelevant alerts.
+# Notification settings
 
-### How to Customize Notifications
-<Tabs>
-<TabItem value="PC" label="PC">
-- Open Mezon and select the **notification icon** ![notification-settings-001](./images/notification-settings-001.png) at the top of the channel to customize the notifications.
-<Image style={{ margin: '1rem 2rem' }}  src={notificationSettings002} alt="Notification Settings 002" />
+Each channel can notify you about every message, only about messages that mention you, or not at all. These settings change only your own notifications.
+
+## Choose the notifications of a channel
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Press and hold the channel name in the channel list.
+2. Tap **Notification Settings**.
+3. Choose **Use default settings**, **All messages**, **Only @mention** or **Nothing**.
+
+To silence the channel for a while, press and hold the channel name, tap **Mute Channel** and choose how long.
+
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<div align="left"><img style={{ width: '30%' }} src={notificationSettingsMobile001} alt="notification-settings-mobile-001" /></div>
+<TabItem value="computer" label="Computer">
+
+1. Open the channel.
+2. Click the bell (**Notification Settings**) at the top right.
+
+<Image src={notificationSettingsComputer01} alt="The notification menu of a channel with Mute Channel, Use Category Default, All, Only @mention and Nothing" />
+
+3. Choose an option.
+
+You can also right-click the channel name and use **Mute Channel** or **Notification Settings**.
+
 </TabItem>
 </Tabs>
 
+What the options mean:
 
-* **Mute Channel** – Completely mute notifications from the channel for a chosen period (e.g., 15 minutes, 1 hour) or until you decide to unmute.
-* **Use Category Default** – Apply the same notification settings as the channel’s category.
-* **All** – Receive notifications for all messages.
-* **Only** **@mention** – Receive notifications only when someone mentions you.
-* **Nothing** – Turn off notifications completely.
+| Option | You get notified about |
+|---|---|
+| **Use Category Default** (phone: **Use default settings**) | What the channel's category, or the clan, is set to. |
+| **All** (phone: **All messages**) | Every new message. |
+| **Only @mention** | Messages that mention you. |
+| **Nothing** | No messages. |
+| **Mute Channel** | Nothing, for 15 minutes, 1 hour, 3 hours, 8 hours, 24 hours, or until you turn it back on. |
 
 :::tip
-**Tip:** If you are in multiple channels, keep most of them on **Only @mention**. This way, you won’t miss important messages while avoiding constant notification sounds.
+In busy channels, choose **Only @mention**. You still see messages meant for you, without a sound for every message.
 :::
+
+## Related
+
+- [Notifications in a clan](../../../managing-notifications-in-a-clan.mdx)
+- [Inbox](./inbox.mdx)

@@ -1,96 +1,105 @@
 ---
 sidebar_position: 2
-sidebar_label: Danh mục trong Clan
+sidebar_label: Danh mục
+description: Gom các kênh vào danh mục; đánh dấu đã đọc, tắt thông báo, đổi tên hoặc xóa danh mục.
 ---
-import { Steps, Step } from '@site/src/components/Steps';
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image';
-import Heading from '@theme/Heading';
-import clanCategory001 from './images/clan-category-001.png';
-import clanCategory002 from './images/clan-category-002.png';
-import clanCategory003 from './images/clan-category-003.png';
-import clanCategoryMobile001 from './images/clan-category-mobile-001.png';
-import clanCategoryMobile002 from './images/clan-category-mobile-002.png';
-import clanCategoryMobile003 from './images/clan-category-mobile-003.png';
-import clanCategoryMobile004 from './images/clan-category-mobile-004.png';
+import Image from "@site/src/components/Image";
+import clanCategoryComputer01 from "./images/clan-category-computer-01.png";
+import clanCategoryComputer02 from "./images/clan-category-computer-02.png";
 
-# Danh mục trong Clan
+# Danh mục
 
-Khi Clan phát triển, số lượng kênh tăng nhanh khiến việc theo dõi trở nên rối rắm. Danh mục giúp bạn nhóm các kênh liên quan, giữ mọi thứ rõ ràng và dễ tìm hơn cho mọi thành viên.
+Danh mục gom các kênh liên quan lại với nhau trong danh sách kênh. Chủ sở hữu clan và các vai trò có quyền **Quản trị viên** hoặc **Quản lý Clan** được tạo, đổi tên và xóa danh mục.
 
-<Tabs>
-<TabItem value="PC" label="PC">
-### Cách tạo Danh mục:
+## Tạo danh mục
 
-<Steps>
-<Step title="Nhấn vào tên Clan của bạn sau đó chọn **Tạo danh mục.** Đảm bảo rằng bạn đã bật **Hiển thị danh mục trống**">
-    <Image style={{ margin: '1rem 2rem' }} src={clanCategory001} alt="clan-category-001" />
-</Step>
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-<Step title="Nhập tên Danh mục bạn muốn phân loại và nhấn **Tạo danh mục**">
-
-<Image style={{ margin: '1rem 2rem' }} src={clanCategory002} alt="clan-category-002" />
-
-</Step>
-
-<Step title="Danh mục mới sẽ xuất hiện ở bên trái thanh điều hướng">
-
-<Image style={{ margin: '1rem 2rem' }} src={clanCategory003} alt="clan-category-003" />
-
-</Step>
-
-<Step title="Bạn có thể di chuyển các Kênh giữa các Danh mục bằng cách kéo thả các Kênh vào vị trí phù hợp.">
-</Step>
-</Steps>
-
-:::success
-Bạn có thể cài đặt tùy chỉnh thông báo của Danh mục như cách tùy chỉnh thông báo của Clan và Kênh.
-:::
-
-Danh mục giúp giảm bớt sự rối loạn thông tin, tiết kiệm thời gian tìm kiếm, và đảm bảo mọi người đều dễ dàng theo dõi đúng nội dung mình quan tâm. Với Danh mục, không gian làm việc và cộng đồng trên Mezon luôn trực quan, ngăn nắp và dễ quản lý - dù tổ chức của bạn có hàng chục hay hàng trăm kênh.
+1. Mở clan của bạn.
+2. Nhấn vào tên clan ở đầu danh sách kênh.
+3. Nhấn **Tạo danh mục**.
+4. Nhập tên danh mục.
+5. Nhấn **Tạo**.
 
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<Heading as="h3">Cách tạo Danh mục</Heading>
+<TabItem value="computer" label="Máy tính">
 
-<Steps>
-<Step title="Nhấn vào tên Clan của bạn sau đó chọn **Tạo danh mục.** Đảm bảo rằng bạn đã bật **Hiển thị danh mục trống**">
+1. Mở clan của bạn.
+2. Nhấn vào tên clan ở đầu danh sách kênh.
+3. Nhấn **Tạo danh mục**.
 
-<div align="left"><img style={{ width: '30%' }} src={clanCategoryMobile001} alt="clan-category-mobile-001" /></div>
-</Step>
+<Image src={clanCategoryComputer01} alt="Menu của clan, mục Tạo danh mục ở trên cùng" />
 
-<Step title="Nhập **Tên danh mục** bạn muốn và nhấn Tạo">
+4. Nhập tên danh mục.
+5. Nhấn **Tạo danh mục**.
 
-<div align="left"><img style={{ width: '30%' }} src={clanCategoryMobile002} alt="clan-category-mobile-002" /></div>
-</Step>
+<Image src={clanCategoryComputer02} alt="Hộp thoại Tạo danh mục đã nhập tên" />
 
-<Step title="Danh mục mới sẽ xuất hiện ở trong phần **Điều hướng Clan**">
-
-<div align="left"><img style={{ width: '30%' }} src={clanCategoryMobile003} alt="clan-category-mobile-003" /></div>
-</Step>
-</Steps>
-
-> Danh mục giúp giảm bớt sự rối loạn thông tin, tiết kiệm thời gian tìm kiếm, và đảm bảo mọi người đều dễ dàng theo dõi đúng nội dung mình quan tâm. Với danh mục, không gian làm việc và cộng đồng trên Mezon luôn trực quan, ngăn nắp và dễ quản lý - dù tổ chức của bạn có hàng chục hay hàng trăm kênh.
-
-<Heading as="h3">Cách quản lý Danh mục</Heading>
-
-Để quản lý một **Danh mục**, hãy **nhấn và giữ** vào danh mục bạn muốn thao tác.
-
-<div align="left"><img style={{ width: '30%' }} src={clanCategoryMobile004} alt="clan-category-mobile-004" /></div>
-
-Tại đây, bạn có thể dễ dàng thực hiện các hành động sau:
-
-* **Đánh dấu là đã đọc** – xóa thông báo chưa đọc của toàn bộ kênh trong danh mục.
-* **Tắt tiếng thông báo** – ngừng nhận thông báo từ các kênh thuộc danh mục này.
-* **Cài đặt thông báo** – tùy chỉnh cách nhận thông báo theo ý bạn.
-* **Chỉnh sửa danh mục** – thay đổi tên danh mục.
-* **Tạo kênh mới** – thêm kênh văn bản, thoại hoặc phát trực tiếp vào danh mục.
-* **Xóa danh mục** – loại bỏ danh mục cùng các kênh bên trong.
-* **Sao chép ID Clan** – sao chép mã định danh để sử dụng cho mục đích kỹ thuật hoặc quản trị.
-
-:::tip
-_Giúp bạn quản lý cấu trúc Clan một cách nhanh chóng và trực quan ngay trên giao diện di động._
-:::
 </TabItem>
 </Tabs>
+
+Danh mục mới hiện trong danh sách kênh. Tên danh mục dài tối đa 64 ký tự, gồm chữ, số, dấu cách, `_` hoặc `-`. Tên không được bắt đầu bằng dấu cách, `_` hoặc `-`. Hai danh mục trong cùng một clan không được trùng tên.
+
+:::note
+Danh mục chưa có kênh nào sẽ bị ẩn, trừ khi bạn bật **Hiển Thị Danh Mục Trống** trong menu của clan.
+:::
+
+## Quản lý danh mục
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+Nhấn giữ tên danh mục. Bạn có thể:
+
+- **Đánh dấu là đã đọc**: xóa dấu chưa đọc của mọi kênh trong danh mục.
+- **Tạo kênh**: thêm kênh vào danh mục (chỉ khi bạn có quyền quản lý kênh).
+
+**iPhone:** chỉ có **Tạo kênh**.
+
+Muốn đổi tên hoặc xóa danh mục, hãy dùng máy tính.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+Nhấn chuột phải vào tên danh mục. Bạn có thể:
+
+- **Đánh dấu đã đọc**: xóa dấu chưa đọc của mọi kênh trong danh mục.
+- **Thu gọn danh mục** hoặc **Thu gọn tất cả danh mục**: ẩn tên các kênh cho gọn.
+- **Tắt thông báo danh mục** và **Cài đặt thông báo**: chọn tin nhắn nào trong danh mục sẽ báo cho bạn.
+- **Chỉnh sửa danh mục**: đổi tên danh mục.
+- **Xóa danh mục**: chỉ hiện khi danh mục không còn kênh nào. Hãy chuyển hoặc xóa các kênh trước.
+
+</TabItem>
+</Tabs>
+
+## Chuyển kênh sang danh mục khác
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Nhấn giữ tên kênh.
+2. Nhấn **Chỉnh sửa kênh**.
+3. Nhấn **Đổi danh mục** (iPhone: **Thay đổi danh mục**) rồi chọn danh mục mới.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Nhấn chuột phải vào tên kênh.
+2. Nhấn **Chỉnh sửa kênh**.
+3. Mở thẻ **Danh mục** và chọn danh mục mới.
+
+</TabItem>
+</Tabs>
+
+:::tip
+Trên máy tính, bạn còn đổi được thứ tự các danh mục: **Cài Đặt Clan** → **Thứ tự danh mục**.
+:::
+
+## Liên quan
+
+- [Cấu trúc clan](./index.mdx)
+- [Kênh](./channels/index.mdx)
+- [Thứ tự danh mục](../overview-settings/category-order.mdx)

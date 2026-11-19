@@ -1,89 +1,59 @@
 ---
 sidebar_position: 9
 sidebar_label: Search
+description: Find messages in a channel by words, by sender, by mention or by attachment type.
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import search001 from './images/search-001.png';
+import searchComputer01 from "./images/search-computer-01.png";
 
 # Search
-Search allows you to quickly find messages, files, or any information within Mezon.
 
-### 1. Basic Search
+Search finds messages in the channel you have open, including its threads that you are in. In a direct message, it searches that conversation.
 
-**How to Use:** Enter a keyword or phrase into the search box at the top of the Mezon app or website.
+## Search for messages
 
-<Image style={{ margin: '1rem 2rem' }}  src={search001} alt="Search 001" />
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
 
-**Example:** Enter `"financial report"` to find all related content.
+1. Open the channel and tap the channel name at the top.
+2. Tap **Search**.
+3. Type the words you are looking for.
+4. Tap a result to go to the message.
 
-**Result:** Mezon will display messages, attachments, or other content containing your keyword.
+</TabItem>
+<TabItem value="computer" label="Computer">
 
-### 2. Advanced Search with Filters
+1. Click the **Search** box at the top right of the channel. In the desktop app you can also press **Ctrl+F** (**Cmd+F** on a Mac).
 
-To narrow results and search more precisely, use the following filters:
+<Image src={searchComputer01} alt="The search box with the search options: sender, mentioned user and attachments" />
 
-#### **2.1. Search by Sender**
+2. Type the words you are looking for and press **Enter**.
+3. Click **Jump** on a result to go to the message.
 
-**Purpose:** Filter messages sent by a specific user.
+</TabItem>
+</Tabs>
 
-**Syntax:** Type `>` (greater than symbol) immediately before the sender’s name.
+## Use filters
 
-**Examples:**
+On a computer, type one of these signs in the search box. A list appears so you can pick a person or a type.
 
-* `>an.nguyenthanh` → Find all messages from "an.nguyenthanh"
-* `>phong.ketoan` → Filter messages from "phong.ketoan"
+| Type | Filter | Finds |
+|---|---|---|
+| `>` | `from:` | Messages sent by one person. Example: `>Nam`. |
+| `~` | `mentions:` | Messages that mention one person. Example: `~Mai`. |
+| `&` | `has:` | Messages with an **image**, a **video** or a **link**. |
 
-#### **2.2. Search by Mention**
+You can use several filters and words together. Example: type `>` and pick Nam, then type `&` and pick **image**. The box shows `from:Nam has:image` and finds the pictures that Nam sent.
 
-**Purpose:** Filter messages that mention a specific user, role, or channel.
+On a phone, the filter button offers `from:` and `mentions:`.
 
-**Syntax:** Type `~` (tilde) immediately before the mentioned user or role.
+## Search for an exact phrase
 
-**Examples:**
+Put the words in quotes, for example `"Friday meeting"` or `'Friday meeting'`. Mezon then finds only messages with these words next to each other, in this order. Single and double quotes work the same way.
 
-* `~anh.nguyentram` → Find messages mentioning "anh.nguyentram"
-* `~team.dev` → Find messages mentioning "team.dev"
+## Related
 
-#### **2.3. Filter by Attachments**
-
-**Purpose:** Find messages containing specific types of attachments.
-
-**Syntax:** Type `&` (ampersand) to show filter options.
-
-**Common Filters:**
-
-* `& has:video` → Messages with videos
-* `& has:link` → Messages with links
-* `& has:image` → Messages with images
-* `& has:file` → Messages with any type of attachment
-
-:::tip
-**Combine with Keywords:** You can combine `&` with a keyword for more precise results.
-:::
-
-#### **2.4. Search for an exact or match phrase**
-
-**Purpose:**
-
-* Use **single quotes `' '`** to find messages containing the **exact phrase**, matching the words in the exact order.
-* Use **double quotes `" "`** to find messages that **match the phrase loosely**, such as variations or partial matches.
-
-**Syntax:**
-
-* Exact phrase: `'search phrase'`
-* Match phrase: `"search phrase"`
-
-**Example:**
-
-* `'Tuesday afternoon'` — shows only messages with the exact phrase _“Tuesday afternoon”_.
-* `"Tuesday afternoon"` — shows messages that include related variations, such as _“Afternoon on Tuesday”_ or _“Tuesday’s afternoon meeting”_.
-
-### 3. Quick Tips for Effective Search
-
-* **Combine Filters:** Use multiple filters at once for the most accurate results.
-  * **Example**: `>an.nguyenthanh & has:image` → Find images from "an.nguyenthanh"
-  * **Example**: `report & has:file` → Find files containing the word "report"
-
-:::tip
-**Use Specific Keywords:** The more specific the keyword, the more accurate the results.
-:::
+- [Text channel](./index.mdx)
+- [Files](./files.mdx)

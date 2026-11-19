@@ -1,72 +1,55 @@
 ---
 sidebar_position: 10
 sidebar_label: Thảo luận ngắn
+description: Bắt đầu một thảo luận ngắn về một tin nhắn, và tìm lại các thảo luận ngắn bạn tham gia.
 ---
-import { Steps, Step } from '@site/src/components/Steps';
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image';
-import topic001 from './images/topic-001.png';
-import topic002 from './images/topic-002.png';
-import topicMobile001 from './images/topic-mobile-001.png';
-import topicMobile002 from './images/topic-mobile-002.png';
-import topicMobile003 from './images/topic-mobile-003.png';
-import topicMobile004 from './images/topic-mobile-004.png';
+import Image from "@site/src/components/Image";
+import topicComputer01 from "./images/topic-computer-01.png";
+import topicComputer02 from "./images/topic-computer-02.png";
 
 # Thảo luận ngắn
 
-Thảo luận ngắn in Chat cho phép tách cuộc thảo luận riêng ngay từ tin nhắn,
-giúp giữ mạch trò chuyện chính liền mạch và rõ ràng hơn.
+Thảo luận ngắn là một cuộc trao đổi nhanh về một tin nhắn. Các trả lời nằm gọn trong thảo luận ngắn, nên kênh vẫn dễ theo dõi. Thảo luận ngắn không có tên và không thể đặt riêng tư. Nếu cần bàn lâu, với một cái tên riêng, hãy dùng [chủ đề](./threads.mdx).
 
-### Cách thêm Thảo luận ngắn trong đoạn chat
-<Tabs>
-<TabItem value="PC" label="PC">
-<Steps>
-<Step title="Trong **Kênh văn bản** hoặc **Chủ đề**, nhấn chuột phải vào tin nhắn.">
-</Step>
+Bất kỳ ai được gửi tin nhắn trong kênh văn bản hoặc trong chủ đề đều bắt đầu được thảo luận ngắn. Bạn không dùng được thảo luận ngắn trong tin nhắn trực tiếp, nhóm chat, kênh thoại, kênh phát trực tiếp, hoặc bên trong một thảo luận ngắn khác.
 
-<Step title="Chọn **Thảo luận chủ đề**">
-<Image style={{ margin: '1rem 2rem' }} src={topic001} alt="Topic 001" />
-</Step>
+## Bắt đầu thảo luận ngắn
 
-<Step title="Nhập tin nhắn trong cửa sổ **Thảo luận ngắn** để bắt đầu trao đổi">
-<Image style={{ margin: '1rem 2rem' }} src={topic002} alt="Topic 002" />
-</Step>
-</Steps>
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-Với **Thảo luận ngắn**, bạn vừa giữ được cuộc trò chuyện chính tập trung, vừa mở rộng thảo luận chi tiết mà không sợ bị lẫn lộn.
+1. Nhấn giữ tin nhắn.
+2. Nhấn **Thảo luận ngắn** (iPhone: **Thảo luận chủ đề**).
+3. Nhập câu trả lời và gửi.
+
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<Steps>
-<Step title="Trong **Kênh Văn bản** hoặc **Chủ đề**, nhấn giữ vào tin nhắn mà bạn muốn thảo luận thêm.">
-</Step>
+<TabItem value="computer" label="Máy tính">
 
-<Step title="Chọn **Thảo luận chủ đề**">
+1. Nhấn chuột phải vào tin nhắn.
+2. Nhấn **Thảo luận chủ đề**.
 
-<div align="left"><img style={{ width: '30%' }} src={topicMobile001} alt="topic-mobile-001" /></div>
-</Step>
+<Image src={topicComputer01} alt="Menu của tin nhắn với mục Thảo luận chủ đề" />
 
-<Step title="Nhập tin nhắn trong **cửa sổ Thảo luận ngắn** để bắt đầu trao đổi">
+3. Thảo luận ngắn mở ra ở bên phải. Nhập câu trả lời và nhấn **Enter**. Trên máy tính, khung này có tiêu đề **Chủ đề**.
 
-<div align="left"><img style={{ width: '30%' }} src={topicMobile002} alt="topic-mobile-002" /></div>
-</Step>
+<Image src={topicComputer02} alt="Thảo luận ngắn mở ở bên phải, có tin nhắn gốc và một câu trả lời" />
 
-<Step title="Cách xem lại **Thảo luận ngắn** đã thảo luận">
-
-Bạn có thể dễ dàng xem lại các chủ đề đã tham gia trong Clan:
-
-* Ngay trong khung trò chuyện, **nhấn “Xem Topic”** để mở lại nội dung và toàn bộ cuộc thảo luận liên quan.
-
-<div align="left"><img style={{ width: '30%' }} src={topicMobile003} alt="topic-mobile-003" /></div>
-
-* Hoặc truy cập **phần Thông báo → Chủ đề**, nơi hiển thị **toàn bộ các topic** mà bạn đã tham gia hoặc theo dõi trong Clan.
-
-<div align="left"><img style={{ width: '30%' }} src={topicMobile004} alt="topic-mobile-004" /></div>
-</Step>
-</Steps>
-
-:::success
-Với **Thảo luận ngắn**, bạn vừa giữ được cuộc trò chuyện chính tập trung, vừa mở rộng thảo luận chi tiết mà không sợ bị lẫn lộn.
-:::
 </TabItem>
 </Tabs>
+
+Dưới tin nhắn gốc sẽ có một nút cho biết thảo luận ngắn có bao nhiêu câu trả lời.
+
+## Mở lại thảo luận ngắn
+
+- **Trong khung chat:** nhấn nút số câu trả lời dưới tin nhắn. Trên điện thoại, nhấn **Xem thảo luận ngắn** (iPhone: **View Topic**, hiện bằng tiếng Anh).
+- **Trong Hộp thư:** mở thẻ **Thảo luận ngắn**. Trên điện thoại, thẻ này nằm trong mục **Thông báo** ở dưới cùng của ứng dụng.
+- **Trên thanh ghim:** trên máy tính, thảo luận ngắn mới nhất hiện ngay dưới tên kênh.
+
+Trên máy tính, có dấu hiệu báo khi một thảo luận ngắn có câu trả lời bạn chưa đọc.
+
+## Liên quan
+
+- [Chủ đề](./threads.mdx)
+- [Hộp thư](./inbox.mdx)

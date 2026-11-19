@@ -1,37 +1,58 @@
 ---
 sidebar_position: 5
-sidebar_label: Thông báo
+sidebar_label: Cài đặt thông báo
+description: Chọn những tin nhắn nào trong kênh sẽ báo cho bạn, hoặc tắt thông báo kênh trong một khoảng thời gian.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image';
-import notificationSettings001 from './images/notification-settings-001.png';
-import notificationSettings002 from './images/notification-settings-002.png';
-import notificationSettingsMobile001 from './images/notification-settings-mobile-001.png';
-import notificationSettingsMobile002 from './images/notification-settings-mobile-002.png';
+import Image from "@site/src/components/Image";
+import notificationSettingsComputer01 from "./images/notification-settings-computer-01.png";
 
-# Thông báo
+# Cài đặt thông báo
 
-## Quản lý thông báo của Kênh
-Bạn có thể nhanh chóng tùy chỉnh thông báo của Kênh, giúp bạn không bị làm phiền bởi những thông báo không quan trọng
+Mỗi kênh có thể báo cho bạn mọi tin nhắn, chỉ những tin nhắn nhắc đến bạn, hoặc không báo gì. Các cài đặt này chỉ thay đổi thông báo của riêng bạn.
 
-<Tabs>
-<TabItem value="PC" label="PC">
-- Mở Mezon và chọn **biểu tượng thông báo** ![notification-settings-001](./images/notification-settings-001.png) ở đầu kênh để tùy chỉnh thông báo.
+## Chọn thông báo cho một kênh
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Nhấn giữ tên kênh trong danh sách kênh.
+2. Nhấn **Cài đặt thông báo**.
+3. Chọn **Dùng cài đặt mặc định** (iPhone: **Sử dụng cài đặt mặc định**), **Tất cả**, **Chỉ @mention** hoặc **Không có gì**.
+
+Muốn tạm tắt thông báo của kênh, nhấn giữ tên kênh, nhấn **Tắt thông báo kênh** rồi chọn thời gian.
+
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<img style={{ width: '30%' }} src={notificationSettingsMobile001} alt="notification-settings-mobile-001" />
-<img style={{ width: '30%' }} src={notificationSettingsMobile002} alt="notification-settings-mobile-002" />
+<TabItem value="computer" label="Máy tính">
+
+1. Mở kênh.
+2. Nhấn hình cái chuông (**Cài đặt thông báo**) ở góc trên bên phải.
+
+<Image src={notificationSettingsComputer01} alt="Menu thông báo của kênh với Tắt thông báo kênh, Sử dụng mặc định danh mục, Tất cả, Chỉ @mention và Không có gì" />
+
+3. Chọn một mục.
+
+Bạn cũng có thể nhấn chuột phải vào tên kênh và dùng **Tắt thông báo kênh** hoặc **Cài đặt thông báo**.
+
 </TabItem>
 </Tabs>
 
-<Image style={{ margin: '1rem 2rem' }} src={notificationSettings002} alt="Notification Settings 002" />
-1. **Tắt thông báo kênh:** tắt hoàn toàn thông bào từ Kênh trong khoảng thời gian bạn muốn, như 15 phút, 1 tiếng,... hay cho đến khi bạn quyết định mở lại.
-2. **Sử dụng mặc định danh mục:** Sử dụng cùng cài đặt thông báo mà bạn đã chọn với Danh mục của Kênh đó.
-3. **Tất cả:** Nhận tất cả thông báo.
-4. **Chỉ @mention**: Chỉ khi ai đó nhắc đến bạn.
-5. **Không có gì:** Tắt thông báo hoàn toàn.
+Ý nghĩa của các mục:
+
+| Mục | Bạn được báo về |
+|---|---|
+| **Sử dụng mặc định danh mục** (Android: **Dùng cài đặt mặc định**; iPhone: **Sử dụng cài đặt mặc định**) | Theo cài đặt của danh mục chứa kênh, hoặc của clan. |
+| **Tất cả** | Mọi tin nhắn mới. |
+| **Chỉ @mention** | Tin nhắn nhắc đến bạn. |
+| **Không có gì** | Không tin nhắn nào. |
+| **Tắt thông báo kênh** | Không gì cả, trong 15 phút, 1 giờ, 3 giờ, 8 giờ, 24 giờ, hoặc cho đến khi bạn bật lại. |
 
 :::tip
-Nếu tham gia nhiều Kênh, hãy để hầu hết ở chế độ Chỉ @mention, như vậy bạn vừa không bỏ lỡ điều quan trọng, vừa không bị “ting ting” suốt ngày.
+Ở các kênh đông người, hãy chọn **Chỉ @mention**. Bạn vẫn thấy tin nhắn dành cho mình mà không bị chuông reo với mọi tin nhắn.
 :::
+
+## Liên quan
+
+- [Quản lý thông báo trong clan](../../../managing-notifications-in-a-clan.mdx)
+- [Hộp thư](./inbox.mdx)
