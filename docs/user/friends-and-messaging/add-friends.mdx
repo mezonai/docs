@@ -1,93 +1,127 @@
 ---
 sidebar_position: 1
 sidebar_label: Add friends
+description: Send a friend request, accept or refuse requests, and remove or block people.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import Heading from '@theme/Heading';
-import addFriends001 from './images/add-friends-001.png';
-import addFriends002 from './images/add-friends-002.png';
-import addFriends003 from './images/add-friends-003.png';
-import addFriendsMobile001 from './images/add-friends-mobile-001.png';
+import addFriendsComputer01 from "./images/add-friends-computer-01.png";
+import addFriendsComputer02 from "./images/add-friends-computer-02.png";
+import addFriendsComputer03 from "./images/add-friends-computer-03.png";
 
 # Add friends
-Friends page is where you manage all your personal connections on Mezon.
 
-The **Friends** page is where you manage all your personal connections on Mezon.\
-Here, you can **search for people, add new friends, organize your friend list**, or **see who’s online** to start a chat instantly.
+Friends are people you know on Mezon. You can message and call a friend at any time, and add friends to group chats. A friend request must be accepted before you become friends.
 
-Mezon is designed to bring you a **natural and seamless communication experience** — whether in private conversations or within your communities.
+## Send a friend request
 
-You can:
+You need the person's Mezon username. On a phone you can also use their phone number. A display name does not work.
 
-* **Add friends** using their Mezon username or display name.
-* **Send messages**, make **voice or video calls**, or **share your screen** — all without leaving the app.
-* **See your friends’ online status** in real time.
-* **Block or remove connections** to keep your contact list clean and organized.
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
 
-<Tabs>
-<TabItem value="PC" label="PC">
+1. Open the **Messages** tab at the bottom of the screen.
+2. Tap **Add Friend** at the top.
+3. Tap **Add by username or phone number**.
+4. Type the username or the phone number.
+5. Tap **Send Friend Request**.
 
-### 1. Add Friend – Connect with New People
-
-* Enter a **Mezon Username** to add a new friend.
-
-<Image style={{ margin: '1rem 2rem' }} src={addFriends001}></Image>
-
-* This section also lets you filter and manage your friend list:
-  * **All:** Show all friends.
-  * **Online:** Show only friends who are currently online.
-  * **Pending:** View your friend requests.
-  * **Block:** See the list of users you’ve blocked.
-
-### 2. Message History
-
-* Displays all your previous conversations, including chats with bots.
-* Simply click on any conversation to continue chatting instantly.
-
-<Image style={{ margin: '1rem 2rem' }} src={addFriends002}></Image>
-
-### 3. Friends List
-
-* Your friends are displayed based on their current status.
-* See who’s online and send messages faster.
-
-<Image style={{ margin: '1rem 2rem' }} src={addFriends003}></Image>
-
-### 4. Activity
-
-* Shows what your friends are currently doing on Mezon.
-* There are three types of activities automatically updated by Mezon:
-  * **Coding:** The user is using a code editor.
-  * **Music:** The user is listening to music apps like Spotify or Apple Music.
-  * **Gaming:** The user is playing a game.
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<div align="center"><img style={{ width: '40%' }} src={addFriendsMobile001} alt="add-friends-mobile-001" /></div>
+<TabItem value="computer" label="Computer">
 
-<Heading as="h3">1. Add New Friends</Heading>
+1. Click the Mezon logo at the top left, then click **Friends**.
+2. Click **Add Friend** at the top.
 
-* Enter a **Mezon username** to send a friend request.
-* You can also **filter and manage your friend list** here.
+<Image src={addFriendsComputer01} alt="The Friends page with the Add Friend button marked" />
 
-<Heading as="h3">2. Activity Status</Heading>
+3. Type the person's username.
+4. Click **Send Friend Request**.
 
-* See what your friends are doing in real time.
-* There are **three types of status**:
-  * **Coding:** The user is using a code editor.
-  * **Music:** The user is listening to a music app such as Spotify or Apple Music.
-  * **Gaming:** The user is currently playing a game.
+<Image src={addFriendsComputer02} alt="The Add Friend form with the username field and the Send Friend Request button marked" />
 
-<Heading as="h3">3. Message History</Heading>
-
-* Displays all previous conversations — including chats with bots.
-* Simply tap on any conversation to **continue chatting instantly**.
-
-<Heading as="h3">4. Friends List</Heading>
-
-* View all connected friends on Mezon.
-* Easily see **who’s active** to send a quick message anytime.
 </TabItem>
 </Tabs>
 
+The person gets your request. You become friends when they accept it.
+
+:::tip
+On a computer, your own username is shown under **USERNAME** when you click the gear icon at the bottom left, then **Account**. On a phone, the add-friend screen shows it in the line "By the way, your username is ...".
+:::
+
+## Accept or refuse a request
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the **Messages** tab and tap **Add Friend**.
+2. Find the request under **Incoming friend request** (Android) or on the **Received** tab (iPhone).
+3. Tap the check mark to accept, or the cross to refuse.
+
+You can also open **Profile** → the gear icon (**Settings**) → **Friend Requests**. The **Received** tab lists requests to you. The **Sent** tab lists requests you sent.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. On the **Friends** page, click **Pending**. A red number shows how many requests are waiting.
+2. Click the check mark (**Accept**) or the cross (**Reject**).
+
+<Image src={addFriendsComputer03} alt="The Pending tab with the accept and reject buttons marked" />
+
+</TabItem>
+</Tabs>
+
+## See your friends
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+Open **Profile** at the bottom, then tap **Your Friends**. Each friend has a message button and a call button.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+The **Friends** page has these tabs:
+
+- **All**: every friend.
+- **Online**: friends who are online now.
+- **Pending**: friend requests you received or sent. Click ✕ next to a request you sent to cancel it.
+- **Block**: people you blocked.
+
+Next to each friend there is a message button and a ⋮ menu with **Start Video Call**, **Start Voice Call**, **Remove Friend** and **Block**.
+
+The right side of the page shows friend activity under **Activity - Work**, **Activity - Live** and **Activity - Play**. Friends appear there when they share their activity from the Mezon desktop app with the **Show My Activity** setting (gear icon → **Activity**).
+
+</TabItem>
+</Tabs>
+
+## Remove a friend or block someone {#remove-a-friend-or-block-someone}
+
+You can block anyone, even a person who is not your friend. A blocked person cannot start a new conversation with you.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the **Messages** tab.
+2. Press and hold the conversation with the person.
+3. Tap **Remove Friend** or **Block User**.
+
+To see or unblock the people you blocked, open **Profile** → the gear icon (**Settings**) → **Account** → **Blocked Users**.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. On the **Friends** page, click ⋮ next to the friend.
+2. Click **Remove Friend** or **Block**.
+
+To block someone who is not your friend, right-click the conversation with them under **DIRECT MESSAGES** and click **Block**.
+
+To unblock someone, open the **Block** tab on the **Friends** page.
+
+</TabItem>
+</Tabs>
+
+## Related
+
+- [Direct messages](./direct-messages.mdx)
+- [Calls](./calls.mdx)
