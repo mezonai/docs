@@ -155,7 +155,7 @@ import TabItem from "@theme/TabItem";
 <Tabs>
   <TabItem value="Bash" label="Bash" default>
     ```bash
-    curl --location 'https://webhook.mezon.ai/webhooks/1840666462029615104/MTc2MDAzODcxNTU5NDU0OTgzNzoxODQwNjY2NDYyMDEyODM3ODg4OjE4NDA2NjY0NjIwMjk2MTUxMDQ6MTk3NjM3MTczNTI3MTgzNzY5Ng.zLl5tsGaFYnC3sPXgOhVlZoBNrVeoC8hD6oKv0hxavs' \
+    curl --location 'https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN' \
     --header 'Content-Type: application/json' \
     --data-raw '{
         "type": "hook",
@@ -252,7 +252,7 @@ import TabItem from "@theme/TabItem";
     headers = {
       'Content-Type': 'application/json'
     }
-    conn.request("POST", "/webhooks/1840666462029615104/MTc2MDAzODcxNTU5NDU0OTgzNzoxODQwNjY2NDYyMDEyODM3ODg4OjE4NDA2NjY0NjIwMjk2MTUxMDQ6MTk3NjM3MTczNTI3MTgzNzY5Ng.zLl5tsGaFYnC3sPXgOhVlZoBNrVeoC8hD6oKv0hxavs", payload, headers)
+    conn.request("POST", "/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN", payload, headers)
     res = conn.getresponse()
     data = res.read()
     print(data.decode("utf-8"))
@@ -271,7 +271,7 @@ import TabItem from "@theme/TabItem";
 
     func main() {
 
-      url := "https://webhook.mezon.ai/webhooks/1840666462029615104/MTc2MDAzODcxNTU5NDU0OTgzNzoxODQwNjY2NDYyMDEyODM3ODg4OjE4NDA2NjY0NjIwMjk2MTUxMDQ6MTk3NjM3MTczNTI3MTgzNzY5Ng.zLl5tsGaFYnC3sPXgOhVlZoBNrVeoC8hD6oKv0hxavs"
+      url := "https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN"
       method := "POST"
 
       payload := strings.NewReader(`{`+"
@@ -391,7 +391,7 @@ import TabItem from "@theme/TabItem";
     MediaType mediaType = MediaType.parse("application/json");
     RequestBody body = RequestBody.create(mediaType, "{\r\n  \"type\": \"hook\",\r\n  \"message\": {\r\n    \"t\": \"[pre] Webhook message example: [lk] https://mezon.ai \\n [mention] @aliceinmezon #general\",\r\n    \"mk\": [\r\n      {\r\n        \"type\": \"pre\",\r\n        \"s\": 0,\r\n        \"e\": 30\r\n      },\r\n      {\r\n        \"type\": \"lk\",\r\n        \"s\": 36,\r\n        \"e\": 54\r\n      }\r\n    ],\r\n    \"mentions\": [\r\n      {\r\n        \"user_id\": \"1783755414765047808\",\r\n        \"s\": 65,\r\n        \"e\": 77\r\n      }\r\n    ],\r\n    \"images\": [\r\n      {\r\n        \"fn\": \"thumbnail_dog1.jpg\",\r\n        \"sz\": 5620,\r\n        \"url\": \"https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg\",\r\n        \"ft\": \"image/jpeg\",\r\n        \"w\": 275,\r\n        \"h\": 183\r\n      }\r\n    ],\r\n    \"hg\": [\r\n      {\r\n        \"channelId\": \"1973524969530855424\",\r\n        \"s\": 79,\r\n        \"e\": 86\r\n      }\r\n    ]\r\n  }\r\n}");
     Request request = new Request.Builder()
-      .url("https://webhook.mezon.ai/webhooks/1840666462029615104/MTc2MDAzODcxNTU5NDU0OTgzNzoxODQwNjY2NDYyMDEyODM3ODg4OjE4NDA2NjY0NjIwMjk2MTUxMDQ6MTk3NjM3MTczNTI3MTgzNzY5Ng.zLl5tsGaFYnC3sPXgOhVlZoBNrVeoC8hD6oKv0hxavs")
+      .url("https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN")
       .method("POST", body)
       .addHeader("Content-Type", "application/json")
       .build();
@@ -401,7 +401,7 @@ import TabItem from "@theme/TabItem";
   <TabItem value="CSharp" label="C#">
     ```CSharp
     var client = new HttpClient();
-    var request = new HttpRequestMessage(HttpMethod.Post, "https://webhook.mezon.ai/webhooks/1840666462029615104/MTc2MDAzODcxNTU5NDU0OTgzNzoxODQwNjY2NDYyMDEyODM3ODg4OjE4NDA2NjY0NjIwMjk2MTUxMDQ6MTk3NjM3MTczNTI3MTgzNzY5Ng.zLl5tsGaFYnC3sPXgOhVlZoBNrVeoC8hD6oKv0hxavs");
+    var request = new HttpRequestMessage(HttpMethod.Post, "https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN");
     var content = new StringContent("{\r\n  \"type\": \"hook\",\r\n  \"message\": {\r\n    \"t\": \"[pre] Webhook message example: [lk] https://mezon.ai \\n [mention] @aliceinmezon #general\",\r\n    \"mk\": [\r\n      {\r\n        \"type\": \"pre\",\r\n        \"s\": 0,\r\n        \"e\": 30\r\n      },\r\n      {\r\n        \"type\": \"lk\",\r\n        \"s\": 36,\r\n        \"e\": 54\r\n      }\r\n    ],\r\n    \"mentions\": [\r\n      {\r\n        \"user_id\": \"1783755414765047808\",\r\n        \"s\": 65,\r\n        \"e\": 77\r\n      }\r\n    ],\r\n    \"images\": [\r\n      {\r\n        \"fn\": \"thumbnail_dog1.jpg\",\r\n        \"sz\": 5620,\r\n        \"url\": \"https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg\",\r\n        \"ft\": \"image/jpeg\",\r\n        \"w\": 275,\r\n        \"h\": 183\r\n      }\r\n    ],\r\n    \"hg\": [\r\n      {\r\n        \"channelId\": \"1973524969530855424\",\r\n        \"s\": 79,\r\n        \"e\": 86\r\n      }\r\n    ]\r\n  }\r\n}", null, "application/json");
     request.Content = content;
     var response = await client.SendAsync(request);
@@ -464,7 +464,7 @@ import TabItem from "@theme/TabItem";
       redirect: "follow"
     };
 
-    fetch("https://webhook.mezon.ai/webhooks/1840666462029615104/MTc2MDAzODcxNTU5NDU0OTgzNzoxODQwNjY2NDYyMDEyODM3ODg4OjE4NDA2NjY0NjIwMjk2MTUxMDQ6MTk3NjM3MTczNTI3MTgzNzY5Ng.zLl5tsGaFYnC3sPXgOhVlZoBNrVeoC8hD6oKv0hxavs", requestOptions)
+    fetch("https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN", requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
