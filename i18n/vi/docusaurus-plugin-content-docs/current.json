@@ -15,17 +15,17 @@
     "message": "Clan",
     "description": "The label for category Clan in sidebar userDocsSidebar"
   },
-  "sidebar.userDocsSidebar.category.Create Your Own Clan": {
-    "message": "Tạo Clan của riêng bạn",
-    "description": "The label for category Create Your Own Clan in sidebar userDocsSidebar"
+  "sidebar.userDocsSidebar.category.Create your own clan": {
+    "message": "Tạo clan của riêng bạn",
+    "description": "The label for category Create your own clan in sidebar userDocsSidebar"
   },
-  "sidebar.userDocsSidebar.category.Manage Clan": {
-    "message": "Quản lý Clan",
-    "description": "The label for category Manage Clan in sidebar userDocsSidebar"
+  "sidebar.userDocsSidebar.category.Manage a clan": {
+    "message": "Quản lý clan",
+    "description": "The label for category Manage a clan in sidebar userDocsSidebar"
   },
-  "sidebar.userDocsSidebar.category.Overview Settings": {
-    "message": "Cài đặt tổng quan",
-    "description": "The label for category Overview Settings in sidebar userDocsSidebar"
+  "sidebar.userDocsSidebar.category.Clan settings": {
+    "message": "Cài đặt clan",
+    "description": "The label for category Clan settings in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Clan Structure": {
     "message": "Cấu trúc Clan",
@@ -39,9 +39,9 @@
     "message": "Kênh văn bản",
     "description": "The label for category Text Channel in sidebar userDocsSidebar"
   },
-  "sidebar.userDocsSidebar.category.Mezon Experience Clans": {
-    "message": "Clan trải nghiệm Mezon",
-    "description": "The label for category Mezon Experience Clans in sidebar userDocsSidebar"
+  "sidebar.userDocsSidebar.category.Sample clans": {
+    "message": "Clan mẫu",
+    "description": "The label for category Sample clans in sidebar userDocsSidebar"
   },
   "sidebar.userDocsSidebar.category.Bots & Apps": {
     "message": "Bot và ứng dụng",

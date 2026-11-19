@@ -1,30 +1,33 @@
 ---
 sidebar_position: 6
 sidebar_label: Audit log
-description: "View the history of administrative actions in a Clan."
+description: See who changed what in your clan, such as roles, channels and events.
 ---
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import auditLog001 from './images/audit-log-001.png';
-import auditLogMobile001 from './images/audit-log-mobile-001.png';
+import computerAuditLog from "./images/audit-log-computer-01.png";
 
 # Audit log
 
-This is where important administrative activities of the Clan are recorded. As the Clan grows and there is more than one Admin, the **Audit Log** allows you to track and review the history of Clan activities in case of incidents or when information needs to be verified.
+The audit log lists the changes made in your clan: who did what, and when. For example, it shows when someone creates a channel, creates an event or changes a role.
 
-<Tabs>
-<TabItem value="PC" label="PC">
-<Image style={{ margin: '1rem 2rem' }}  src={auditLog001} alt="Audit Log 001" />
-</TabItem>
-<TabItem value="mobile" label="Mobile">
-<img style={{ width: '30%' }} src={auditLogMobile001} alt="audit-log-mobile-001" />
-</TabItem>
-</Tabs>
+The clan owner and members with the **Manage Clan** permission can see it.
 
+## Open the audit log
 
-The Audit Log offers multiple filters to help you quickly find the information you need:
+- **Computer:** open **Clan Settings** and click **Audit Log**, under **MODERATION**.
+- **Phone:** open the clan, tap the clan name, tap **Settings**, then tap **Audit Log**.
 
-* **By Time** – Filter entries based on a specific date or time range.
-* **By User** – Track actions performed by a particular member.
-* **By Action** – Search by specific types of activities, such as message edits, deletions, or role changes.
+<Image src={computerAuditLog} alt="The Audit Log with filters by user, by action and by date, and a list of changes" />
+
+Each line shows the member, the action, the item that changed and the time. The newest changes are at the top.
+
+## Filter the list on a computer
+
+- **Filter by User**: show the actions of one member.
+- **Filter by Action**: show one kind of action, for example creating a role.
+- The date box: show the actions of one day.
+
+## Related
+
+- [Manage members](../member-management.mdx)
+- [Roles and permissions](./roles-and-permissions-management.mdx)

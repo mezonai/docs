@@ -1,27 +1,43 @@
 ---
 sidebar_position: 5
 sidebar_label: Tích hợp
-description: "Kết nối với bot hoặc ứng dụng ngoài để mở rộng tính năng và cá nhân hóa cho Clan."
+description: Xem các webhook của clan, giúp ứng dụng và trang web khác đăng tin nhắn vào Mezon.
 ---
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-
-import integrations001 from "./images/integrations-001.png";
-import integrationsMobile001 from "./images/integrations-mobile-001.png";
+import computerIntegrations from "./images/integrations-computer-01.png";
 
 # Tích hợp
 
-<Tabs>
-<TabItem value="PC" label="PC">
+**Tích hợp** liệt kê các webhook của clan. Webhook là một địa chỉ web mà ứng dụng hoặc trang web khác gọi tới để đăng tin nhắn vào Mezon, ví dụ một hệ thống build hoặc một biểu mẫu.
 
-<Image style={{ margin: '1rem 2rem' }} src={integrations001}></Image>
+Chủ sở hữu clan và thành viên có quyền **Quản lý Clan** hoặc **Quản lý kênh** thấy được mục **Tích hợp**.
 
-</TabItem>
-<TabItem value="mobile" label="Mobile">
-<div align="center"><img style={{ width: "50%" }} src={integrationsMobile001} alt="integrations-mobile-001" /></div>
-</TabItem>
-</Tabs>
+## Hai loại webhook
 
+- **Webhook** đăng tin nhắn vào một kênh của clan.
+- **Webhook Clan** gửi tin nhắn đến một thành viên của clan.
 
-Mezon cung cấp công cụ mạnh mẽ để tương tác với Clan của bạn thông qua Webhook. Hãy học cách cài đặt và sử dụng webhook tại [**Webhook Docs**](/developer/webhooks)
+## Tạo webhook trên máy tính
+
+1. Mở **Cài Đặt Clan** và nhấn **Tích hợp**.
+2. Nhấn **Tạo Webhook** hoặc **Tạo Webhook Clan**. Nếu đã có webhook, nhấn **Xem Webhook** hoặc **Xem Webhook Clan**, rồi nhấn **Webhook Mới** hoặc **Webhook Clan Mới**.
+
+<Image src={computerIntegrations} alt="Trang Tích hợp với Webhook và Webhook Clan cùng các nút Tạo" />
+
+3. Mở webhook vừa tạo. Đổi tên (tối đa 64 ký tự), ảnh, và với webhook kênh thì đổi cả **KÊNH**.
+4. Nếu có thay đổi, nhấn **Lưu Thay Đổi** ở thanh dưới cùng.
+5. Nhấn **Sao chép URL webhook**, rồi dán URL vào ứng dụng kia.
+
+:::warning
+Ai có URL webhook cũng đăng được tin nhắn vào clan của bạn. Hãy giữ bí mật. Nếu URL bị lộ, nhấn **Đặt lại token** và dùng URL mới.
+:::
+
+Muốn gỡ một webhook, mở webhook đó và nhấn **Xóa Webhook**.
+
+**Điện thoại:** mục **Tích hợp** cũng có trong **Cài đặt**.
+
+## Liên quan
+
+- [Webhook cho nhà phát triển](../../../../../developer/webhooks/overview.mdx)
+- [Bot và ứng dụng](../../../../bots-and-apps/index.mdx)
+- [Cài đặt clan](./index.mdx)

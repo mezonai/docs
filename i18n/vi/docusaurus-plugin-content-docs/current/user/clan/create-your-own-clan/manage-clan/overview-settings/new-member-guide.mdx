@@ -1,143 +1,71 @@
 ---
 sidebar_position: 7
-sidebar_label: Hướng dẫn thành viên mới
-description: "Thiết lập hướng dẫn và vai trò mặc định cho thành viên mới tham gia vào Clan."
+sidebar_label: Hướng dẫn
+description: Chào đón thành viên mới bằng Hướng dẫn Clan, các nhiệm vụ đầu tiên và câu hỏi để biết họ quan tâm điều gì.
 ---
 import Image from "@site/src/components/Image";
-import { Steps, Step } from '@site/src/components/Steps';
+import computerStart from "./images/new-member-guide-computer-01.png";
+import computerSettings from "./images/new-member-guide-computer-02.png";
+import computerQuestions from "./images/new-member-guide-computer-03.png";
+import computerGuide from "./images/new-member-guide-computer-04.png";
 
-import newMemberGuide001 from './images/new-member-guide-001.png';
-import newMemberGuide002 from './images/new-member-guide-002.png';
-import newMemberGuide003 from './images/new-member-guide-003.png';
-import newMemberGuide004 from './images/new-member-guide-004.png';
-import newMemberGuide005 from './images/new-member-guide-005.png';
-import newMemberGuide006 from './images/new-member-guide-006.png';
-import newMemberGuide007 from './images/new-member-guide-007.png';
-import newMemberGuide008 from './images/new-member-guide-008.png';
-import newMemberGuide009 from './images/new-member-guide-009.png';
-import newMemberGuide010 from './images/new-member-guide-010.png';
-import newMemberGuide011 from './images/new-member-guide-011.png';
-import newMemberGuide012 from './images/new-member-guide-012.png';
+# Hướng dẫn
 
-# Hướng dẫn thành viên mới
-Thiết lập trải nghiệm chào đón thành viên mới.
+Tính năng **Hướng dẫn** giúp thành viên mới làm quen với clan của bạn. Tính năng có hai phần:
 
-## 1. Kích Hoạt Hướng Dẫn
+- **Câu hỏi**: các câu hỏi kèm danh sách câu trả lời, để biết thành viên mới quan tâm điều gì.
+- **Hướng dẫn Clan**: lời chào mừng, 3 đến 5 nhiệm vụ đầu tiên và các trang tài nguyên.
 
-<Steps>
-<Step title="Trong danh sách các tùy chọn, chọn **Hướng Dẫn**">
-</Step>
+Chủ sở hữu clan và thành viên có quyền **Quản lý Clan** thiết lập được phần này. Bạn thiết lập trên máy tính: ứng dụng điện thoại không có các cài đặt này.
 
-<Step title="Tại đây, bạn sẽ thấy một màn hình giới thiệu về Onboarding. Nhấp vào nút **Bật hướng dẫn** để kích hoạt tính năng này.">
+## Bật hướng dẫn
 
-<Image style={{ margin: '1rem 2rem' }} src={newMemberGuide001}></Image>
+1. Mở **Cài Đặt Clan** và nhấn **Hướng dẫn**. Mục này hiện **OFF** khi đang tắt.
+2. Nhấn **Bật Hướng dẫn**.
 
-</Step>
+<Image src={computerStart} alt="Trang Hướng dẫn với nút Bật Hướng dẫn" />
 
-<Step title="Sau khi kích hoạt, **một cửa sổ Cài đặt hướng dẫn** sẽ xuất hiện">
-_Bạn có thể bắt đầu thiết lập chi tiết._
-</Step>
-</Steps>
+3. Cửa sổ **Cài đặt hướng dẫn** mở ra. Thiết lập ít nhất một phần: nhấn **Thiết lập** cạnh **Câu hỏi**, hoặc **Sửa** cạnh **Hướng dẫn Clan**.
+4. Nhấn **Xem trước** để xem thành viên mới sẽ thấy gì.
+5. Nhấn **Xác nhận**.
 
-## 2. Cấu Hình Cài Đặt Hướng Dẫn
+<Image src={computerSettings} alt="Cửa sổ Cài đặt hướng dẫn với Câu hỏi, Hướng dẫn Clan, Xem trước, Hủy và Xác nhận" />
 
-Sau khi kích hoạt, bạn sẽ có hai phần chính để cấu hình trải nghiệm Hướng dẫn người mới: **Câu hỏi và Hướng dẫn Clan.**
+Nếu chưa thiết lập phần nào, Mezon báo **Cần ít nhất một mục để bật hướng dẫn**.
 
-Trong cửa sổ Cài đặt hướng dẫn, bạn sẽ thấy thông báo "**Hướng dẫn người mới đã bật**".
+## Thêm câu hỏi
 
-<Image style={{ margin: '1rem 2rem' }} src={newMemberGuide002}></Image>
+1. Trong **Cài đặt hướng dẫn**, nhấn **Thiết lập** cạnh **Câu hỏi**.
+2. Trong phần **Câu hỏi Trước khi Tham gia**, nhấn **Thêm câu hỏi**.
+3. Nhập câu hỏi.
+4. Nhấn **Thêm câu trả lời**. Nhập tiêu đề, và mô tả nếu muốn.
+5. Nhấn **Lưu**.
 
-### 2.1. Thiết Lập Câu hỏi
+<Image src={computerQuestions} alt="Trang Câu hỏi với Câu hỏi Trước khi Tham gia và nút Thêm câu hỏi" />
 
-Phần này cho phép bạn tạo các câu hỏi để thành viên mới trả lời.
+Mỗi câu hỏi có tối đa 50 câu trả lời.
 
-Cách làm: Nhấp vào nút "**Thiết lập**" bên cạnh mục Câu hỏi.
+## Thiết lập Hướng dẫn Clan
 
-<Image style={{ margin: '1rem 2rem' }} src={newMemberGuide003}></Image>
+1. Trong **Cài đặt hướng dẫn**, nhấn **Sửa** cạnh **Hướng dẫn Clan**.
+2. Ở phần **Chào mừng**, viết điều đặc biệt về clan của bạn.
+3. Ở phần **Việc cần làm của Thành viên Mới**, nhấn **Thêm nhiệm vụ**. Nhập việc thành viên cần làm, chọn kênh, và chọn khi nào nhiệm vụ hoàn thành: khi thành viên gửi tin nhắn ở đó, khi họ vào kênh, hoặc khi họ đọc nhiệm vụ.
+4. Thêm 3 đến 5 nhiệm vụ theo cách này.
+5. Ở phần **Trang Tài nguyên**, nhấn **Thêm tài nguyên** để hiện một kênh chỉ đọc dưới dạng trang, ví dụ nội quy của clan.
 
-Tại đây bạn có thể đặt ra các câu hỏi và các câu trả lời (nếu có) để định hướng thành viên mới, giúp họ chọn lựa kênh phù hợp với sở thích hoặc vai trò của mình.
-
-<Image style={{ margin: '1rem 2rem' }} src={newMemberGuide004}></Image>
-
-Nhấn vào "Thêm câu hỏi" để bắt đầu thiết lập từng câu hỏi cho người mới vào kênh. Những câu hỏi này có thể được xem như một hướng dẫn tương tác, giúp thành viên mới làm quen với cách hoạt động của Clan. Chính vì vậy, không có câu trả lời đúng hay sai, mà chỉ có những thông tin hữu ích.
-
-<Image style={{ margin: '1rem 2rem' }} src={newMemberGuide005}></Image>
-
-### 2.2. Thiết Lập Hướng Dẫn Clan
-
-Đây là nơi bạn xây dựng một hướng dẫn chào mừng hoàn chỉnh cho thành viên mới, bao gồm tin nhắn chào mừng, biểu ngữ, các nhiệm vụ cần làm và tài nguyên hữu ích.
-
-Cách làm: Nhấp vào nút "**Sửa**" bên cạnh mục Hướng dẫn Clan.
-
-<Image style={{ margin: '1rem 2rem' }} src={newMemberGuide006}></Image>
-
-#### New Member To Do's
-
-Đây là danh sách 3-5 nhiệm vụ bạn muốn thành viên mới thực hiện để khuyến khích họ tương tác và tham gia vào các kênh.
+<Image src={computerGuide} alt="Trình chỉnh sửa Hướng dẫn Clan với Chào mừng, Việc cần làm của Thành viên Mới và Thêm nhiệm vụ" />
 
 :::tip
-Lưu ý: Tránh các nhiệm vụ quá chung chung như "chat với cộng đồng".
+Mỗi nhiệm vụ nên cụ thể. "Trò chuyện với cộng đồng" quá chung chung. "Giới thiệu bản thân" trong kênh **#general** cho mọi người biết rõ cần làm gì. Nhiệm vụ cần ít nhất 7 ký tự, và kênh của nhiệm vụ phải là kênh công khai.
 :::
 
-**Bước 1: Thêm nhiệm vụ**
+## Thành viên sẽ thấy gì
 
-Nhấp vào "**Add a task**"
+Khi hướng dẫn đã bật, thành viên thấy mục **Hướng dẫn** ở đầu danh sách kênh. Mục này hiện lời chào mừng, các câu hỏi, các nhiệm vụ và tài nguyên. Thành viên hoàn thành một nhiệm vụ bằng cách làm việc đó.
 
-<Image style={{ margin: '1rem 2rem' }} src={newMemberGuide007}></Image>
+Muốn tắt hướng dẫn, mở **Cài Đặt Clan** → **Hướng dẫn** và nhấn **Tắt hướng dẫn**.
 
-**Bước 2: Thiết lập nhiệm vụ**
+## Liên quan
 
-<Image style={{ margin: '1rem 2rem' }} src={newMemberGuide008}></Image>
-
-Thành viên mới nên làm gì?: Nhập mô tả nhiệm vụ (ví dụ: "Giới thiệu bản thân trong kênh #chao-hoi").
-
-Họ nên làm điều đó ở đâu?: Chọn kênh mà thành viên cần thực hiện nhiệm vụ này (chỉ các kênh công khai).
-
-Nhiệm vụ này hoàn thành khi: Chọn điều kiện để nhiệm vụ được đánh dấu hoàn thành, chọn 1 trong 3 lựa chọn: Thành viên gửi tin nhắn trong kênh, Thành viên truy cập kênh, hoặc Đọc nhiệm vụ này).
-
-Nhấp "**Lưu"** để lưu nhiệm vụ.
-
-#### **Resource Pages**
-
-Resource Pages cho phép bạn biến các kênh chỉ đọc thành các trang tài nguyên chuyên nghiệp trong Hướng dẫn Clan, giúp thành viên mới dễ dàng tiếp cận thông tin quan trọng.
-
-**Cách Tạo và Chỉnh Sửa Resource Page**
-
-**Bước 1: Tạo Resource Page**
-
-Trong phần Hướng dẫn Clan, kéo xuống mục Resource Pages.
-
-Nhấp vào "**Add a resource**".
-
-Chọn một kênh chỉ đọc hiện có bạn muốn biến thành trang tài nguyên và nhấp **Create**.
-
-<Image style={{ margin: '1rem 2rem' }} src={newMemberGuide009}></Image>
-
-**Bước 2: Chỉnh Sửa Thông Tin Resource Page**
-
-Sau khi thêm, nhấp vào tài nguyên để mở cửa sổ "**Edit Resources**".
-
-* Đặt tên hiển thị cho trang (ví dụ: "Quy Tắc Clan").
-* Give this resource a description: Đây chính là nơi bạn ghi nội dung của trang này. Hãy ghi chi tiết điều bạn muốn truyền tải tới thành viên mới.
-* Rules Image: Tải lên hình ảnh minh họa bằng cách nhấp "**Duyệt**".
-* Nhấp "**Lưu**" để lưu thay đổi.
-
-<Image style={{ margin: '1rem 2rem' }} src={newMemberGuide010}></Image>
-
-Sau khi hoành thành các bước, phần Hướng dẫn thành viên mới sẽ được hiển thị ở trang "Hướng dẫn" ngay dưới tên của Clan:
-
-<Image style={{ margin: '1rem 2rem' }} src={newMemberGuide011}></Image>
-
-:::warning Chú ý
-Giới hạn dung lượng tối đa của Resource Page Rules Image là 10Mb
-:::
-
-## 3. Vô Hiệu Hóa Onboarding
-
-Nếu bạn không muốn sử dụng tính năng Onboarding nữa, bạn có thể dễ dàng vô hiệu hóa nó:
-
-Bước 1: Truy cập lại vào **Cài đặt Clan > Hướng dẫn**.
-
-Bước 2: Nhấp vào nút "**Tắt hướng dẫn**" màu đỏ ở góc trên bên phải màn hình.
-
-<Image style={{ margin: '1rem 2rem' }} src={newMemberGuide012}></Image>
+- [Cài đặt clan](./index.mdx)
+- [Vai trò và quyền](./roles-and-permissions-management.mdx)

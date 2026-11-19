@@ -1,69 +1,55 @@
 ---
 sidebar_position: 4
-sidebar_label: Transferring Clan Ownership
+sidebar_label: Transfer clan ownership
+description: Make another member the owner of your clan.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
-import Heading from '@theme/Heading';
-import transferringClanOwnership001 from './images/transferring-clan-ownership-001.png';
-import transferringClanOwnership002 from './images/transferring-clan-ownership-002.png';
-import transferringClanOwnership003 from './images/transferring-clan-ownership-003.png';
-import transferringClanOwnershipMobile002 from './images/transferring-clan-ownership-mobile-002.png';
-import transferringClanOwnershipMobile003 from './images/transferring-clan-ownership-mobile-003.png';
-import transferringClanOwnershipMobile004 from './images/transferring-clan-ownership-mobile-004.png';
+import computerMenu from "./images/transferring-clan-ownership-computer-01.png";
+import computerDialog from "./images/transferring-clan-ownership-computer-02.png";
 
-# Transferring Clan Ownership
-When you need to change the administrator or hand over the community, you can transfer Clan ownership to ensure continuous management and smooth operation.
+# Transfer clan ownership
 
-<Tabs>
-<TabItem value="PC" label="PC">
-### Steps to Transfer Ownership
+The clan owner can make another member the owner, for example when the person who runs the clan changes. Only the current owner can do this.
 
-<Steps>
-<Step title="In the left menu, select **Members**.">
+## Transfer the ownership
 
-<Image style={{ margin: '1rem 2rem' }}  src={transferringClanOwnership001} alt="Transferring Clan Ownership 001" />
-</Step>
-<Step title="Right-click on the member you want to transfer ownership to, then select **Transfer Ownership**.">
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
 
-<Image style={{ margin: '1rem 2rem' }}  src={transferringClanOwnership002} alt="Transferring Clan Ownership 002" />
-</Step>
-<Step title="Check the confirmation box, then click **Transfer Ownership** to complete the process.">
+1. Open the clan and tap the clan name at the top.
+2. Tap **Settings**.
+3. Under **User Management**, tap **Members**.
+4. Tap the member who will be the new owner. The **Edit Member** screen opens.
+5. Under **Actions**, tap **Transfer Ownership**.
+6. Tick the box that says you understand.
+7. Tap **Transfer**.
 
-<Image style={{ margin: '1rem 2rem' }}  src={transferringClanOwnership003} alt="Transferring Clan Ownership 003" />
-</Step>
-</Steps>
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<Heading as="h3">How to Transfer Clan Ownership</Heading>
+<TabItem value="computer" label="Computer">
 
-You can assign full Clan management to another member.
+1. Open the clan and click **Members** at the top of the channel list.
+2. Right-click the member who will be the new owner.
+3. Click **Transfer Ownership**.
 
-**Method 1: Through Clan Settings**
+<Image src={computerMenu} alt="The Members page with the menu of a member and Transfer Ownership" />
 
-1. Click your **Clan name**, then select the **Settings icon**![transferring-clan-ownership-mobile-001](./images/transferring-clan-ownership-mobile-001.png).
-2. Go to **Members**.
+4. Tick the box **I acknowledge that by transferring ownership of this clan to ..., it officially belongs to them.**
+5. Click **Transfer Ownership**.
 
-<div align="left"><img style={{ width: '30%' }} src={transferringClanOwnershipMobile002} alt="transferring-clan-ownership-mobile-002" /></div>
+<Image src={computerDialog} alt="The Transfer Clan Ownership dialog with the box ticked and the Transfer Ownership button" />
 
-3. Find and click on the member you want to transfer ownership to.
-4. Select **Transfer Ownership**.
-
-<div align="left"><img style={{ width: '30%' }} src={transferringClanOwnershipMobile003} alt="transferring-clan-ownership-mobile-003" /></div>
-
-5. Check the confirmation box and click **Transfer** to complete.
-
-<div align="left"><img style={{ width: '30%' }} src={transferringClanOwnershipMobile004} alt="transferring-clan-ownership-mobile-004" /></div>
-
-<Heading as="h3">Method 2: Quick Transfer in Chat</Heading>
-
-1. Click on the member’s name directly in a chat channel.
-2. Select **Transfer Ownership** and confirm.
-
-:::danger
-Once ownership is transferred, it cannot be undone. Only the current Clan owner can transfer ownership to another member.
-:::
 </TabItem>
 </Tabs>
+
+The other member becomes the clan owner at once.
+
+:::warning
+You lose the owner rights right away. You cannot take them back yourself: only the new owner can transfer the clan back to you.
+:::
+
+## Related
+
+- [Member management](./manage-clan/member-management.mdx)
+- [Leave a clan](../join-and-explore-clans.mdx)

@@ -1,36 +1,110 @@
 ---
 sidebar_position: 2
-sidebar_label: Join & Explore Clans
+sidebar_label: Join and explore clans
+description: Join a clan with an invite link, find public clans on Discover, and leave a clan.
 ---
-
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import joinAndExploreClans002 from './images/join-and-explore-clans-002.png';
+import computerJoin from "./images/join-and-explore-clans-computer-01.png";
+import computerLeave from "./images/join-and-explore-clans-computer-02.png";
 
-# Join & Explore Clans
-Learn how to find, join, or leave an existing Clan.
+# Join and explore clans
 
-### How to Join a Clan
+You join a clan with an invite link from someone in the clan, or from Discover, the list of public clans. You can leave a clan at any time.
 
-You can discover new Clans in two ways:
-
-1. Through the **Discover** button ![join-and-explore-clans-001](./images/join-and-explore-clans-001.png) within the app or directly via the [**Clans Website**](https://mezon.ai/clans/), where you can explore the most active communities on Mezon.
-2. Via an **invite link** shared by friends, teammates, or admins.
-
-Simply click **“Join”** to officially become part of that community.
-
-Check out some of Mezon’s featured Clans:
-
-* [**Student Clan**](https://mezon.ai/invite/1971118566472159232) – A community for learners.
-* [**Gamer Clan**](https://mezon.ai/invite/1971122683512885248) – Where gaming enthusiasts connect and share.
-* [**Business Clan**](https://mezon.ai/invite/1971125963139846144) – A space for teams and organizations.
-
-:::warning Note
-Each user can join up to **50 Clans** at a time.
+:::note
+You can be in up to 50 clans. To join another one, leave a clan first.
 :::
 
-### Leave a Clan
+## Join with an invite link
 
-<Image style={{ margin: '1rem 2rem' }} src={joinAndExploreClans002}></Image>
+An invite link looks like `https://mezon.ai/invite/...`.
 
-* If you no longer wish to participate, you can select **Leave Clan** from the Clan’s settings.
-* Once you leave, **all message history and access** to that Clan’s channels **will be removed** from your account.
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the invite link, for example in an SMS, an email or a chat.
+2. Mezon opens and shows the clan name and the number of members. Tap **Join**.
+
+If you are not logged in, log in first. Mezon then shows the invite again. To say no, tap **No, thanks**.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Open the invite link in your web browser.
+2. If the page asks **Open this link in the Mezon desktop app?**, click **Open app** only if you installed the desktop app. Otherwise, close the question.
+3. Click **Accept Invite**.
+
+<Image src={computerJoin} alt="The invite page with the clan name, the member count and the Accept Invite button" />
+
+In a Mezon chat, an invite link shows a card with the clan name and **Join**. In a web browser, click **Join** to join at once.
+
+**Desktop app:** **Join** opens a window. Click **Accept Invite**.
+
+</TabItem>
+</Tabs>
+
+The clan appears in your clan list and opens.
+
+If Mezon says **The invitation is not valid or has expired**, ask the person who invited you for a new link.
+
+## Find public clans on Discover
+
+Discover lists the clans whose owners made them public (see [Enable Community](./create-your-own-clan/manage-clan/overview-settings/enable-community.mdx)).
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. In the clan list on the left, tap the **Discover** icon below your clans.
+2. Search, or choose a topic.
+3. Open a clan and tap **Join Clan**.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. In the clan bar on the far left, click **Discover** (the compass icon). The Mezon clans page opens in your web browser.
+2. Search, or choose a topic such as **Education**.
+3. Open a clan and click **Join Clan**.
+
+</TabItem>
+</Tabs>
+
+To try Mezon in a ready-made clan, see [Sample clans by Mezon](./mezon-experience-clans/index.mdx).
+
+## Leave a clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the clan.
+2. Tap the clan name at the top.
+3. Tap **Leave Clan**.
+4. Confirm.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Open the clan.
+2. Click the clan name at the top of the channel list.
+3. Click **Leave Clan**.
+4. Click **Leave Clan** to confirm.
+
+<Image src={computerLeave} alt="The clan menu with Leave Clan at the bottom" />
+
+You can also right-click the clan icon in the clan bar and choose **Leave Clan**.
+
+</TabItem>
+</Tabs>
+
+:::warning
+After you leave, you need a new invite to join the clan again, unless the clan is listed on Discover.
+:::
+
+The clan owner does not see **Leave Clan**. To leave your own clan, first [transfer the ownership](./create-your-own-clan/transferring-clan-ownership.mdx) to another member.
+
+## Related
+
+- [What is a clan?](./what-is-clan.mdx)
+- [Create a clan](./create-your-own-clan/create-a-clan.mdx)
+- [Invite people to your clan](./create-your-own-clan/invite-friends-to-your-clan.mdx)

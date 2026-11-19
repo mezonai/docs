@@ -1,38 +1,46 @@
 ---
 sidebar_position: 9
-sidebar_label: Xóa Clan
-description: "Xóa Clan khỏi hệ thống."
+sidebar_label: Xóa clan
+description: Xóa vĩnh viễn một clan. Chỉ chủ sở hữu clan làm được việc này.
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import { Steps, Step } from '@site/src/components/Steps';
+import computerDelete from "./images/delete-clan-computer-01.png";
 
-import deleteClan001 from './images/delete-clan-001.png';
-import deleteClan002 from './images/delete-clan-002.png';
+# Xóa clan
 
-# Xóa Clan
-Trong trường hợp Clan không còn được sử dụng hoặc bạn muốn dừng hoạt động cộng đồng, bạn có thể xóa vĩnh viễn Clan.
+Chỉ chủ sở hữu clan mới xóa được clan. Xóa clan sẽ xóa clan cho mọi thành viên, cùng với các kênh và tin nhắn.
 
-:::danger   
-#### _<span style={{ color: 'var(--ifm-color-danger)' }}>**Lưu ý**</span>**: hành động này không thể hoàn tác và toàn bộ dữ liệu, kênh và nội dung trong Clan sẽ bị xóa theo.**_
-:::
+Nếu bạn chỉ muốn thôi quản lý clan, hãy [chuyển quyền sở hữu](../../transferring-clan-ownership.mdx) cho một thành viên khác.
 
-### **Cách xóa Clan**
+## Xóa clan
 
-<Steps>
-<Step title="Ở menu bên trái, chọn **Xóa Clan**">
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-<Image style={{ margin: '1rem 2rem' }} src={deleteClan001}></Image>
-</Step>
+1. Mở clan và nhấn vào tên clan ở trên cùng.
+2. Nhấn **Xóa clan** (iPhone: **Xóa Clan**). Mục này cũng có trong **Cài đặt** → **Tổng quan**.
+3. Xác nhận.
 
-<Step title="Nhập lại tên Clan để xác nhận">
+</TabItem>
+<TabItem value="computer" label="Máy tính">
 
-<Image style={{ margin: '1rem 2rem' }} src={deleteClan002}></Image>
-</Step>
+1. Mở **Cài Đặt Clan**.
+2. Nhấn **Xóa clan** ở cuối danh sách.
+3. Nhập tên clan vào ô **Nhập tên clan**.
+4. Nhấn **Xóa clan**.
 
-<Step title="Nhấn **Xóa Clan**">
-</Step>
-</Steps>
+<Image src={computerDelete} alt="Cửa sổ xóa clan với tên clan đã nhập và nút Xóa clan" />
+
+</TabItem>
+</Tabs>
 
 :::danger
-Sau khi xóa, Clan và toàn bộ dữ liệu sẽ bị mất vĩnh viễn, bạn không thể khôi phục.
+Clan đã xóa không khôi phục được. Kênh, tin nhắn và cài đặt của clan mất hết với mọi người.
 :::
+
+## Liên quan
+
+- [Chuyển quyền sở hữu clan](../../transferring-clan-ownership.mdx)
+- [Cài đặt clan](./index.mdx)

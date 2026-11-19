@@ -1,45 +1,68 @@
 ---
 sidebar_position: 1
 sidebar_label: Overview
-description: "Set the Clan name, change the avatar and banner display."
+description: Change the clan name, picture and banner, choose where system messages go, and turn off anonymous mode.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import overview001 from './images/overview-001.png';
-import overviewMobile001 from './images/overview-mobile-001.png';
+import computerOverview from "./images/overview-computer-01.png";
 
 # Overview
-<Tabs>
-<TabItem value="PC" label="PC">
-<Image style={{ margin: '1rem 2rem' }} src={overview001}></Image>
 
-In this section, you can:
+**Overview** holds the clan name, the clan picture and banner, and the system message settings. The clan owner and members with the **Administrator** permission can change them.
 
-* **Change Clan Name**: The Clan name must be unique and not duplicate any existing Clan.
-* **Change Avatar**: The avatar should be 512x512 pixels, with a minimum size of 128x128 pixels.
-* **Change Banner (Background)**: The banner is displayed directly below the Clan name. Minimum size is 960x540 pixels, with optimal display at a 16:9 ratio.
-* **Select Default Channel**: Choose a default channel to receive system messages and customize automatic messages.
+## Change the name, picture or banner
 
-:::warning Note
-* **Maximum Clan Avatar Size**: 1 MB
-* **Maximum Clan Banner (Background) Size**: 10 MB
-:::
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the clan, tap the clan name, then tap **Settings**.
+2. Tap **Overview**.
+3. Change the **Clan name**, tap the clan picture to change it, or tap the banner to change it.
+4. Save your changes.
+
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<div align="left"><img style={{ width: '30%' }} src={overviewMobile001} alt="overview-mobile-001" /></div>
+<TabItem value="computer" label="Computer">
 
-In this section, you can manage the basic information and key settings of your Clan:
+1. Open **Clan Settings**. **Overview** opens first.
+2. Change what you need:
+   - Click **Upload Image** to change the clan picture.
+   - Type a new name under **CLAN NAME**.
+   - Under **CLAN BANNER BACKGROUND**, click **Upload Background**. The banner shows at the top of your channel list.
+3. A bar appears at the bottom. Click **Save Changes**, or **Reset** to undo.
 
-* **Change Clan Name:** The name must be unique and cannot duplicate an existing Clan.
-* **Change Cover Image:** The cover appears right below the Clan name.
+<Image src={computerOverview} alt="The Overview page with the clan picture, the clan name, the banner and the system messages channel" />
 
-:::warning
-Minimum size **960×540 px**, best displayed at **16:9 ratio**, maximum file size **10MB**.
-:::
-
-* **Set Default Channel:** Choose a channel to receive system messages or configure automated messages.
-* **Notification Settings:** Customize default notification preferences for your Clan members.
-* **Delete Clan:** Permanently remove your Clan from the system when no longer needed.
 </TabItem>
 </Tabs>
+
+### Picture and banner sizes
+
+| Image | Recommended size | Largest file |
+|---|---|---|
+| Clan picture | at least 512 x 512 pixels (smallest 128 x 128) | 1 MB |
+| Banner | at least 960 x 540 pixels, shape 16:9 | 10 MB |
+
+The name follows the same rules as when you [create a clan](../../create-a-clan.mdx).
+
+## Choose where system messages go
+
+Mezon posts system messages in one channel, for example when someone joins. Under **SYSTEM MESSAGES CHANNEL** (on phones, the system messages section), choose the channel. Then turn each message on or off:
+
+- **Send a random welcome message when someone joins this clan.**
+- **Send helpful tips for clan setup.**
+- **Send a log when an action is applied to the clan**
+
+## Turn off anonymous mode
+
+Members can sometimes post without showing their name. To stop this in your clan, turn on **Prevent Anonymous** (phones: **Anonymous mode**). Its description says **Prevent users from using anonymous mode**.
+
+## Phone only
+
+- **Default notifications**: the level for members who never chose one. See [Notifications in a clan](../managing-notifications-in-a-clan.mdx).
+- **Delete clan** (owner only). See [Delete a clan](./delete-clan.mdx).
+
+## Related
+
+- [Clan settings](./index.mdx)

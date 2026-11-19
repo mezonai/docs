@@ -1,110 +1,137 @@
 ---
 sidebar_position: 3
-sidebar_label: Creating & Managing Events
+sidebar_label: Create and manage events
+description: Create a clan event in a voice channel, at another place, or as an external meeting, and edit, cancel or share it.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
-import Heading from '@theme/Heading';
-import creatingAndManagingEvents001 from './images/creating-and-managing-events-001.png';
-import creatingAndManagingEvents002 from './images/creating-and-managing-events-002.png';
-import creatingAndManagingEvents003 from './images/creating-and-managing-events-003.png';
-import creatingAndManagingEvents004 from './images/creating-and-managing-events-004.png';
-import creatingAndManagingEvents005 from './images/creating-and-managing-events-005.png';
-import creatingAndManagingEventsMobile001 from './images/creating-and-managing-events-mobile-001.png';
-import creatingAndManagingEventsMobile002 from './images/creating-and-managing-events-mobile-002.png';
-import creatingAndManagingEventsMobile003 from './images/creating-and-managing-events-mobile-003.png';
-import creatingAndManagingEventsMobile004 from './images/creating-and-managing-events-mobile-004.png';
-import creatingAndManagingEventsMobile005 from './images/creating-and-managing-events-mobile-005.png';
-import creatingAndManagingEventsMobile006 from './images/creating-and-managing-events-mobile-006.png';
+import computerList from "./images/creating-and-managing-events-computer-01.png";
+import computerWhere from "./images/creating-and-managing-events-computer-02.png";
+import computerInfo from "./images/creating-and-managing-events-computer-03.png";
+import computerReview from "./images/creating-and-managing-events-computer-04.png";
+import computerMenu from "./images/creating-and-managing-events-computer-05.png";
 
-# Creating & Managing Events
-Events are the heartbeat of a community — from team meetings and workshops to social gatherings. On Mezon, you can easily create and manage all these activities in just a few steps.
+# Create and manage events
 
-### Types of Events
+An event tells the clan what will happen and when, for example a weekly meeting. Every member of a clan can create an event.
 
-When creating an Event, you can choose the format that fits your needs:
+## Where an event takes place
 
-1. **Clan Event – Community-wide Event**
-   * For large-scale activities open to the entire Clan.
-   * Hosted directly in a **Voice Channel**, utilizing all voice, video, screen share, and chat features.
-2. **Channel Event – Event within a Channel**
-   * Ideal for small groups or specialized topics.
-   * Each channel can host its own event, keeping discussions or group activities organized without cluttering the general space.
-3. **Private Event – Private, Barrier-free Meeting**
-   * Create an online meeting room accessible to anyone — even users without a Mezon account.
-   * No login required; participants join directly via the link.
-   * Completely free, with no time limits.
-   * Full features: voice, video, chat, screen sharing.
+When you create an event, you choose one of three places:
 
-:::tip
-**Private Events** can replace Google Meet, Zoom, or Teams in many situations — faster and more flexible.
-:::
+- **Voice Channel**: a voice channel of the clan.
+- **Somewhere Else** (phones: **Somewhere else**): a text channel, a link or a real address.
+- **Create External Event**: a separate online meeting room. People can join it with the link, without logging in to Mezon.
 
-<Tabs>
-<TabItem value="PC" label="PC">
-### How to Create an Event
-<Steps>
-<Step title="In the left navigation panel, select **Events**.">
+You can also choose who the event is for:
 
-<Image style={{ margin: '1rem 2rem' }}  src={creatingAndManagingEvents001} alt="Creating and Managing Events 001" />
-</Step>
-<Step title="**Choose the Event Location:**">
-<Image style={{ margin: '1rem 2rem' }}  src={creatingAndManagingEvents002} alt="Creating and Managing Events 002" />
+- With no channel chosen, it is a **Clan Event**, open to everyone in the clan.
+- If you choose a channel under **Who are audiences?**, it is a **Channel Event** for the members of that channel. On phones this field is called **Announcement channel (optional)**.
+- An external event shows the label **External Event**.
 
-* **Voice Channel** – Host the event in an existing Clan voice channel, using Mezon’s voice, video, and screen sharing features.
-* **Somewhere Else** – If the event is offline or on another platform, you can add a link or address for easy access.
-* **Private Event** – Create a separate online room with a fixed link, ideal for inviting people outside Mezon.
-</Step>
-<Step title="Enter the **Event details** and click **Next**.">
-<Image style={{ margin: '1rem 2rem' }}  src={creatingAndManagingEvents003} alt="Creating and Managing Events 003" />
-:::warning
-Maximum **Event Cover Image** size: 1 MB.
-:::
-</Step>
-<Step title="Review the Event content and click **Create**.">
-<Image style={{ margin: '1rem 2rem' }}  src={creatingAndManagingEvents004} alt="Creating and Managing Events 004" />
-</Step>
-<Step title="Your Event will appear under **Events** in the left navigation panel.">
-<Image style={{ margin: '1rem 2rem' }}  src={creatingAndManagingEvents005} alt="Creating and Managing Events 005" />
-</Step>
-</Steps>
+## Create an event
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the clan and tap the clan name at the top.
+2. Tap **Create Event**.
+3. Choose **Voice Channel**, **Somewhere else** or **Create External Event**. Pick the voice channel, or type the address. Tap **Next**.
+4. Type the **Event name**. Choose the **Date**, **Start time** and **End time**. To repeat the event, choose **Repeat**. Tap **Next**.
+5. Check the preview and tap **Create Event**.
+
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<Heading as="h3">How to Create an Event</Heading>
+<TabItem value="computer" label="Computer">
 
-1. Click your Clan name, then select **Create Event**.
+1. Open the clan and click **Events** at the top of the channel list.
+2. Click **Create Event**.
 
-<div align="left"><img style={{ width: '30%' }} src={creatingAndManagingEventsMobile001} alt="creating-and-managing-events-mobile-001" /></div>
+<Image src={computerList} alt="The Events window with the Create Event button" />
 
-2. **Choose the Event Location**
+3. Under **Where is your event?**, choose **Voice Channel**, **Somewhere Else** or **Create External Event**. Pick the voice channel, or type the location. To limit the event to one channel, pick it under **Who are audiences?**. Click **Next**.
 
-<div align="left"><img style={{ width: '30%' }} src={creatingAndManagingEventsMobile002} alt="creating-and-managing-events-mobile-002" /></div>
+<Image src={computerWhere} alt="Step 1 of the event: Voice Channel chosen with the Meeting Room channel, and the Next button" />
 
-* **Voice Channel:** Host the event directly in an existing Clan voice channel, leveraging Mezon’s voice, video, and screen sharing features.
-* **Audience Settings:**
-  * **No channel selected:** The event becomes a **Clan Event**, visible and open to all Clan members.
-  * **Channel selected:** The event becomes a **Channel Event**, only visible to members of the chosen channel.
-* **Other Locations:** For real-life events or on other platforms, you can add a link or address so participants can easily follow and join.
-* **Private Event:** Create an online meeting room that anyone can join — even users without a Mezon account. No login required, just click the link to join. Fully free, no time limits, with full features: voice, video, chat, and screen sharing.
+4. Type the **EVENT TOPIC**. Choose the **START DATE**, **START TIME** and **END TIME**. To repeat the event, choose an option in **EVENT FREQUENCY**. You can add a **DESCRIPTION** and a **COVER IMAGE**. Click **Next**.
 
-3. Enter event details and click **Next**.
+<Image src={computerInfo} alt="Step 2 of the event: topic, date, start and end time, frequency, description and cover image" />
 
-<div align="left"><img style={{ width: '30%' }} src={creatingAndManagingEventsMobile003} alt="creating-and-managing-events-mobile-003" /></div>
+5. Check the preview and click **Create Event**.
 
-:::warning
-Maximum event cover image size: 1 MB
-:::
+<Image src={computerReview} alt="Step 3 of the event: the preview of the event and the Create Event button" />
 
-4. Review the event details and click **Create Event**.
-
-<div align="left"><img style={{ width: '30%' }} src={creatingAndManagingEventsMobile004} alt="creating-and-managing-events-mobile-004" /></div>
-
-5. Your event will appear under the **Events 📅** section in the Clan main menu.
-
-<div align="left"><img style={{ width: '30%' }} src={creatingAndManagingEventsMobile005} alt="creating-and-managing-events-mobile-005" /></div>
-
-<div align="left"><img style={{ width: '30%' }} src={creatingAndManagingEventsMobile006} alt="creating-and-managing-events-mobile-006" /></div>
 </TabItem>
 </Tabs>
+
+The event appears in the list of events. On a computer, the number of upcoming events shows next to **Events**.
+
+### Rules for the event details
+
+- The start time must be in the future, and the end time after the start time.
+- The topic cannot contain these characters: `<` `>` `,` `/` `"` `\` `'` and the backtick.
+- A repeating event can be weekly, every other week, monthly, yearly, or every weekday (Monday to Friday).
+- The location can have up to 100 characters.
+- The cover image can be up to 1 MB.
+- On a computer, the description can have up to 255 characters.
+
+## See the events of a clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+- **Android:** open the clan and tap **Events** in the channel list.
+- **iPhone:** open the clan and tap the event icon at the top of the channel list, next to the search box.
+
+Tap an event to see its details and who is interested.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+Click **Events** at the top of the channel list. Each event shows its date and time, its topic, where it takes place and how many people are interested.
+
+- Click **Interested** to show that you plan to join. Click **Uninterested** to undo it.
+- Click **Share** to send the event to your friends.
+
+</TabItem>
+</Tabs>
+
+An event starts by itself at its start time.
+
+:::tip
+To remind people, copy the event link and post it in a channel.
+:::
+
+## Edit, cancel or copy the link of an event
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the list of events.
+2. Open the menu of the event.
+3. Choose an action:
+   - **Android:** **Edit Event**, **Cancel Event**, **Copy Event Link** or **Copy Content**.
+   - **iPhone:** **Edit Event**, **Delete Event**, **Copy Event Link** or **Copy Content**.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Click **Events** at the top of the channel list.
+2. On the event, click the three dots (**...**).
+3. Choose **Edit Event**, **Cancel Event** or **Copy Event Link**.
+
+<Image src={computerMenu} alt="The menu of an event with Edit Event, Cancel Event and Copy Event Link" />
+
+</TabItem>
+</Tabs>
+
+**Copy Event Link** is there for everyone. On a computer, **Edit Event** and **Cancel Event** appear only for the person who created the event, the clan owner, and members with the **Administrator** or **Manage Clan** permission.
+
+:::danger
+A cancelled event cannot be restored. Create it again if you need it.
+:::
+
+## Related
+
+- [Voice channels](./clan-structure/channels/voice-channel.mdx)
+- [Roles and permissions](./overview-settings/roles-and-permissions-management.mdx)

@@ -1,134 +1,137 @@
 ---
 sidebar_position: 3
-sidebar_label: Tạo & Quản lý Sự kiện
-description: "Lên lịch và tổ chức các buổi họp, workshop hay hoạt động cộng đồng ngay trong Clan."
+sidebar_label: Tạo và quản lý sự kiện
+description: Tạo sự kiện của clan trong kênh thoại, ở nơi khác hoặc dưới dạng cuộc họp bên ngoài, rồi chỉnh sửa, hủy hoặc chia sẻ sự kiện.
 ---
-
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image';
-import Heading from '@theme/Heading';
-import creatingAndManagingEvents001 from "./images/creating-and-managing-events-001.png";
-import creatingAndManagingEvents002 from "./images/creating-and-managing-events-002.png";
-import creatingAndManagingEvents003 from "./images/creating-and-managing-events-003.png";
-import creatingAndManagingEvents004 from "./images/creating-and-managing-events-004.png";
-import creatingAndManagingEvents005 from "./images/creating-and-managing-events-005.png";
-import creatingAndManagingEvents006 from "./images/creating-and-managing-events-006.png";
-import creatingAndManagingEventsMobile001 from "./images/creating-and-managing-events-mobile-001.png";
-import creatingAndManagingEventsMobile002 from "./images/creating-and-managing-events-mobile-002.png";
-import creatingAndManagingEventsMobile003 from "./images/creating-and-managing-events-mobile-003.png";
-import creatingAndManagingEventsMobile004 from "./images/creating-and-managing-events-mobile-004.png";
-import creatingAndManagingEventsMobile005 from "./images/creating-and-managing-events-mobile-005.png";
-import creatingAndManagingEventsMobile006 from "./images/creating-and-managing-events-mobile-006.png";
+import Image from "@site/src/components/Image";
+import computerList from "./images/creating-and-managing-events-computer-01.png";
+import computerWhere from "./images/creating-and-managing-events-computer-02.png";
+import computerInfo from "./images/creating-and-managing-events-computer-03.png";
+import computerReview from "./images/creating-and-managing-events-computer-04.png";
+import computerMenu from "./images/creating-and-managing-events-computer-05.png";
 
-# Tạo & Quản lý Sự kiện
+# Tạo và quản lý sự kiện
 
-Sự kiện là nhịp kết nối của cộng đồng – từ họp nhóm, workshop đến các buổi giao lưu nội bộ. Trên Mezon, bạn có thể tạo và quản lý mọi hoạt động này dễ dàng chỉ với vài bước.
+Sự kiện cho cả clan biết việc gì sẽ diễn ra và khi nào, ví dụ một buổi họp hằng tuần. Mọi thành viên trong clan đều tạo được sự kiện.
 
-<Tabs>
-<TabItem value="PC" label="PC">
-### Cách tạo Sự kiện
+## Sự kiện diễn ra ở đâu
 
-<Steps>
-<Step title="Ở thanh điều hướng bên trái, chọn **Sự kiện**.">
-<Image style={{ margin: '1rem 2rem' }} src={creatingAndManagingEvents001} alt="creating-and-managing-events-001" />
-</Step>
+Khi tạo sự kiện, bạn chọn một trong ba nơi:
 
-<Step title="Chọn **địa điểm** tổ chức sự kiện">
-<Image style={{ margin: '1rem 2rem' }} src={creatingAndManagingEvents002} alt="creating-and-managing-events-002" />
+- **Kênh thoại**: một kênh thoại của clan.
+- **Nơi khác** (điện thoại: **Địa điểm khác**): một kênh văn bản, một liên kết hoặc một địa chỉ thật.
+- **Tạo sự kiện bên ngoài**: một phòng họp trực tuyến riêng. Mọi người vào được bằng liên kết mà không cần đăng nhập Mezon.
 
-Khi tạo sự kiện trên Mezon, bạn có thể lựa chọn địa điểm phù hợp:
+Bạn cũng có thể chọn sự kiện dành cho ai:
 
-- **Kênh thoại** – Tổ chức sự kiện ngay trong kênh voice có sẵn của Clan, tận dụng tính năng voice, video và screen share của Mezon.
-  - Trong mục **Khán giả là ai**, nếu **KHÔNG** chọn bất kì kênh nào, sự kiện sẽ trở thành **Sự kiện Clan**, giúp tất cả thành viên trong Clan đều có thể thấy được và tham gia.
-  - Trong mục **Khán giả là ai**, nếu chọn một kênh, sự kiện sẽ trở thành **Sự kiện Kênh**, sẽ chỉ thành viên của kênh được chọn mới có thể thấy và tham gia.
-- **Nơi khác** – Nếu sự kiện diễn ra ngoài đời thực hoặc ở nền tảng khác, bạn có thể thêm link hoặc địa chỉ để mọi người dễ dàng theo dõi và tham gia.
-- **Tạo sự kiện riêng tư** – Tạo phòng họp trực tuyến, có thể chia sẻ cho bất kỳ ai — kể cả người không dùng Mezon.
-  - Không cần đăng nhập, chỉ cần click link là tham gia ngay.
-  - Hoàn toàn miễn phí, không giới hạn thời lượng.
-  - Đầy đủ tính năng: voice, video, chat, chia sẻ màn hình.
-</Step>
+- Nếu không chọn kênh, đó là **Sự kiện Clan**, mở cho mọi người trong clan.
+- Nếu chọn một kênh ở mục **Khán giả là ai?**, đó là **Sự kiện Kênh** dành cho thành viên của kênh đó. Trên điện thoại, mục này tên là **Kênh thông báo (tùy chọn)** (iPhone: **Kênh thông báo (không bắt buộc)**).
+- Sự kiện bên ngoài có nhãn **Sự kiện bên ngoài**.
 
-<Step title="Nhập các thông tin về sự kiện và chọn **Tiếp theo**">
-<Image style={{ margin: '1rem 2rem' }} src={creatingAndManagingEvents003} alt="creating-and-managing-events-003" />
+## Tạo sự kiện
 
-:::warning Chú ý
-Giới hạn dung lượng tối đa của Ảnh bìa sự kiện là 1Mb
-:::
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-</Step>
+1. Mở clan và nhấn vào tên clan ở trên cùng.
+2. Nhấn **Tạo sự kiện**.
+3. Chọn **Kênh thoại**, **Địa điểm khác** hoặc **Tạo sự kiện bên ngoài**. Chọn kênh thoại, hoặc nhập địa chỉ. Nhấn **Tiếp** (iPhone: **Tiếp theo**).
+4. Nhập **Tên sự kiện**. Chọn **Ngày**, **Giờ bắt đầu** và **Giờ kết thúc**. Muốn sự kiện lặp lại, chọn ở mục **Lặp lại**. Nhấn **Tiếp** (iPhone: **Tiếp theo**).
+5. Xem lại bản xem trước và nhấn **Tạo sự kiện**.
 
-<Step title="Kiểm tra lại nội dung của Sự kiện và nhấn **Tạo**">
-  <Image style={{ margin: '1rem 2rem' }} src={creatingAndManagingEvents004} alt="creating-and-managing-events-004" />
-</Step>
-
-<Step title="Sự kiện của bạn sẽ hiển thị trong mục Sự kiện ở thanh điều hướng bên trái.">
-  <Image style={{ margin: '1rem 2rem' }} src={creatingAndManagingEvents005} alt="creating-and-managing-events-005" />
-</Step>
-
-<Step title="Bạn có thể bắt đầu sự kiện ngay lập tức, chỉnh sửa, hủy, hoặc sao chép liên kết sự kiện tại menu mở rộng '...'">
-
-<Image style={{ margin: '1rem 2rem' }} src={creatingAndManagingEvents006} alt="creating-and-managing-events-006" />
-</Step>
-</Steps>
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<Heading as="h3">Cách tạo Sự kiện</Heading>
+<TabItem value="computer" label="Máy tính">
 
-<Steps>
-<Step title="Nhấn vào tên Clan của bạn sau đó chọn **Tạo sự kiện.**">
+1. Mở clan và nhấn **Sự kiện** ở đầu danh sách kênh.
+2. Nhấn **Tạo sự kiện**.
 
-<div align="left"><img style={{ width: '30%' }} src={creatingAndManagingEventsMobile001} alt="creating-and-managing-events-mobile-001" /></div>
-</Step>
+<Image src={computerList} alt="Cửa sổ Sự kiện với nút Tạo sự kiện" />
 
-<Step title="Chọn **địa điểm** tổ chức sự kiện">
+3. Ở mục **Sự kiện của bạn ở đâu?**, chọn **Kênh thoại**, **Nơi khác** hoặc **Tạo sự kiện bên ngoài**. Chọn kênh thoại, hoặc nhập địa điểm. Muốn giới hạn sự kiện cho một kênh, chọn kênh đó ở mục **Khán giả là ai?**. Nhấn **Tiếp theo**.
 
-<div align="left">
-  <img
-    style={{ width: "30%" }}
-    src={creatingAndManagingEventsMobile002}
-    alt="creating-and-managing-events-mobile-002"
-  />
-</div>
+<Image src={computerWhere} alt="Bước 1 của sự kiện: đã chọn Kênh thoại với kênh Meeting Room, và nút Tiếp theo" />
 
-Khi tạo sự kiện trên Mezon, bạn có thể lựa chọn địa điểm phù hợp:
+4. Nhập **CHỦ ĐỀ SỰ KIỆN**. Chọn **NGÀY BẮT ĐẦU**, **GIỜ BẮT ĐẦU** và **GIỜ KẾT THÚC**. Muốn sự kiện lặp lại, chọn ở mục **TẦN SUẤT SỰ KIỆN**. Bạn có thể thêm **MÔ TẢ** và **ẢNH BÌA**. Nhấn **Tiếp theo**.
 
-- **Kênh thoại** – Tổ chức sự kiện ngay trong kênh voice có sẵn của Clan, tận dụng tính năng voice, video và screen share của Mezon.
-  - Trong mục **Khán giả là ai**, nếu **KHÔNG** chọn bất kì kênh nào, sự kiện sẽ trở thành **Sự kiện Clan**, giúp tất cả thành viên trong Clan đều có thể thấy được và tham gia.
-  - Trong mục **Khán giả là ai**, nếu chọn một kênh, sự kiện sẽ trở thành **Sự kiện Kênh**, sẽ chỉ thành viên của kênh được chọn mới có thể thấy và tham gia.
-- **Nơi khác** – Nếu sự kiện diễn ra ngoài đời thực hoặc ở nền tảng khác, bạn có thể thêm link hoặc địa chỉ để mọi người dễ dàng theo dõi và tham gia.
-- **Tạo sự kiện riêng tư** – Tạo phòng họp trực tuyến, có thể chia sẻ cho bất kỳ ai — kể cả người không dùng Mezon.
-  - Không cần đăng nhập, chỉ cần click link là tham gia ngay.
-  - Hoàn toàn miễn phí, không giới hạn thời lượng.
-  - Đầy đủ tính năng: voice, video, chat, chia sẻ màn hình.
-</Step>
+<Image src={computerInfo} alt="Bước 2 của sự kiện: chủ đề, ngày, giờ bắt đầu và kết thúc, tần suất, mô tả và ảnh bìa" />
 
-<Step title="Nhập các thông tin về sự kiện và chọn **Tiếp theo**">
+5. Xem lại bản xem trước và nhấn **Tạo sự kiện**.
 
-<div align="left">
-  <img
-    style={{ width: "30%" }}
-    src={creatingAndManagingEventsMobile003}
-    alt="creating-and-managing-events-mobile-003"
-  />
-</div>
+<Image src={computerReview} alt="Bước 3 của sự kiện: bản xem trước và nút Tạo sự kiện" />
 
-:::warning Chú ý
-Giới hạn dung lượng tối đa của Ảnh bìa Sự kiện là 1Mb
-:::
-
-</Step>
-
-<Step title="Kiểm tra lại nội dung của Sự kiện và nhấn **Tạo sự kiện**">
-
-<div align="left"><img style={{ width: '30%' }} src={creatingAndManagingEventsMobile004} alt="creating-and-managing-events-mobile-004" /></div>
-</Step>
-
-<Step title="Sự kiện bạn tạo sẽ xuất hiện trong mục **Sự kiện** 📅 trên menu chính của Clan.">
-
-<div align="left"><img style={{ width: '30%' }} src={creatingAndManagingEventsMobile005} alt="creating-and-managing-events-mobile-005" /></div>
-<div align="left"><img style={{ width: '30%' }} src={creatingAndManagingEventsMobile006} alt="creating-and-managing-events-mobile-006" /></div>
-</Step>
-</Steps>
 </TabItem>
 </Tabs>
+
+Sự kiện xuất hiện trong danh sách sự kiện. Trên máy tính, số sự kiện sắp diễn ra hiện cạnh mục **Sự kiện**.
+
+### Quy tắc cho thông tin sự kiện
+
+- Giờ bắt đầu phải ở tương lai, và giờ kết thúc phải sau giờ bắt đầu.
+- Chủ đề không được chứa các ký tự: `<` `>` `,` `/` `"` `\` `'` và dấu backtick.
+- Sự kiện lặp lại có thể lặp hằng tuần, hai tuần một lần, hằng tháng, hằng năm, hoặc mọi ngày trong tuần (thứ Hai đến thứ Sáu).
+- Địa điểm dài tối đa 100 ký tự.
+- Ảnh bìa tối đa 1 MB.
+- Trên máy tính, mô tả dài tối đa 255 ký tự.
+
+## Xem các sự kiện của clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+- **Android:** mở clan và nhấn **Sự kiện** trong danh sách kênh.
+- **iPhone:** mở clan và nhấn biểu tượng sự kiện ở đầu danh sách kênh, cạnh ô tìm kiếm.
+
+Nhấn vào một sự kiện để xem chi tiết và những ai quan tâm.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+Nhấn **Sự kiện** ở đầu danh sách kênh. Mỗi sự kiện hiện ngày giờ, chủ đề, nơi diễn ra và số người quan tâm.
+
+- Nhấn **Quan tâm** để cho biết bạn định tham gia. Nhấn **Không quan tâm** để bỏ.
+- Nhấn **Chia sẻ** để gửi sự kiện cho bạn bè.
+
+</TabItem>
+</Tabs>
+
+Sự kiện tự bắt đầu khi đến giờ bắt đầu.
+
+:::tip
+Để nhắc mọi người, hãy sao chép liên kết sự kiện và đăng vào một kênh.
+:::
+
+## Chỉnh sửa, hủy hoặc sao chép liên kết sự kiện
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Mở danh sách sự kiện.
+2. Mở menu của sự kiện.
+3. Chọn một thao tác:
+   - **Android:** **Chỉnh sửa sự kiện**, **Hủy sự kiện**, **Sao chép liên kết sự kiện** hoặc **Sao chép nội dung**.
+   - **iPhone:** **Chỉnh sửa sự kiện**, **Xóa sự kiện**, **Sao chép liên kết sự kiện** hoặc **Sao chép nội dung**.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Nhấn **Sự kiện** ở đầu danh sách kênh.
+2. Trên sự kiện, nhấn dấu ba chấm (**...**).
+3. Chọn **Chỉnh sửa sự kiện**, **Hủy sự kiện** hoặc **Sao chép liên kết sự kiện**.
+
+<Image src={computerMenu} alt="Menu của một sự kiện với Chỉnh sửa sự kiện, Hủy sự kiện và Sao chép liên kết sự kiện" />
+
+</TabItem>
+</Tabs>
+
+Ai cũng thấy **Sao chép liên kết sự kiện**. Trên máy tính, **Chỉnh sửa sự kiện** và **Hủy sự kiện** chỉ hiện với người tạo sự kiện, chủ sở hữu clan, và thành viên có quyền **Quản trị viên** hoặc **Quản lý Clan**.
+
+:::danger
+Sự kiện đã hủy không khôi phục được. Hãy tạo lại nếu bạn cần.
+:::
+
+## Liên quan
+
+- [Kênh thoại](./clan-structure/channels/voice-channel.mdx)
+- [Vai trò và quyền](./overview-settings/roles-and-permissions-management.mdx)

@@ -1,106 +1,47 @@
 ---
 sidebar_position: 4
-sidebar_label: Thư mục Clan
+sidebar_label: Thư mục clan
+description: Gom các clan vào một thư mục cho thanh clan gọn hơn (khi dùng Mezon trên trình duyệt web).
 ---
+import Image from "@site/src/components/Image";
+import folderClosed from "./images/clan-folder-computer-01.png";
+import folderOpen from "./images/clan-folder-computer-02.png";
 
-import { Steps, Step } from "@site/src/components/Steps";
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image';
-import Heading from '@theme/Heading';
-import clanFolder001 from "./images/clan-folder-001.png";
-import clanFolder002 from "./images/clan-folder-002.png";
-import clanFolder003 from "./images/clan-folder-003.png";
-import clanFolder004 from "./images/clan-folder-004.png";
-import clanFolder005 from "./images/clan-folder-005.png";
-import clanFolder006 from "./images/clan-folder-006.png";
-import clanFolderMobile001 from "./images/clan-folder-mobile-001.png";
-import clanFolderMobile002 from "./images/clan-folder-mobile-002.png";
-import clanFolderMobile003 from "./images/clan-folder-mobile-003.png";
-import clanFolderMobile004 from "./images/clan-folder-mobile-004.png";
+# Thư mục clan
 
-# Thư mục Clan
+Thư mục clan gom nhiều clan vào một biểu tượng trên thanh clan. Thanh clan nhờ vậy gọn hơn khi bạn ở trong nhiều clan.
 
-Khi tham gia nhiều Clan, danh sách bên trái có thể trở nên dài và khó quản lý. Thư mục Clan giúp bạn nhóm các Clan liên quan lại với nhau, giữ cho giao diện gọn gàng và dễ tìm hơn.
+:::note
+Thư mục clan chỉ có khi bạn dùng Mezon trên trình duyệt web. Ứng dụng điện thoại và ứng dụng máy tính không có tính năng này. Trong ứng dụng máy tính, bạn có thể kéo một clan lên hoặc xuống để đổi thứ tự các clan.
+:::
 
-<Tabs>
-<TabItem value="PC" label="PC">
-### Tạo Thư mục
+## Tạo thư mục
 
-<Steps>
-<Step title="Ở giao diện chính của Mezon, chọn Clan bạn muốn đưa vào Thư mục.">
+1. Ở thanh clan ngoài cùng bên trái, nhấn giữ chuột vào biểu tượng một clan.
+2. Kéo nó thả lên biểu tượng một clan khác.
+3. Thả nút chuột.
 
-<Image style={{ margin: '1rem 2rem' }} src={clanFolder001} alt="clan-folder-001" />
+Hai clan giờ dùng chung một biểu tượng thư mục.
 
-</Step>
+<Image src={folderClosed} alt="Thanh clan có một thư mục hiện biểu tượng của hai clan" />
 
-<Step title="Kéo Clan đó vào một Clan khác. Khi thấy ô chữ nhật nét đứt màu xanh lá, thả chuột.">
+## Mở hoặc đóng thư mục
 
-<Image style={{ margin: '1rem 2rem' }} src={clanFolder002} alt="clan-folder-002" />
+- Nhấn vào thư mục để mở. Các clan trong thư mục hiện ra bên dưới một biểu tượng thư mục.
+- Nhấn biểu tượng thư mục ở trên cùng để đóng.
 
-</Step>
+## Đưa một clan ra khỏi thư mục
 
-<Step title="Thả chuột và thư mục các Clan của bạn sẽ xuất hiện">
+1. Mở thư mục.
+2. Trỏ chuột vào clan muốn đưa ra.
+3. Nhấn dấu **X** trên biểu tượng của clan đó.
 
-<Image style={{ margin: '1rem 2rem' }} src={clanFolder003} alt="clan-folder-003" />
+<Image src={folderOpen} alt="Một thư mục đang mở; dấu X trên biểu tượng clan dùng để đưa clan ra khỏi thư mục" />
 
-</Step>
-</Steps>
+Clan trở lại thanh clan, nằm ngoài thư mục.
 
-### Xóa Clan khỏi Thư mục
+Thư mục được lưu trong trình duyệt web bạn đang dùng. Ở trình duyệt khác hoặc máy tính khác, các clan của bạn không được gom nhóm.
 
-<Steps>
-<Step title="Chọn vào Thư mục chứa các Clan của bạn">
+## Liên quan
 
-<Image style={{ margin: '1rem 2rem' }} src={clanFolder004} alt="clan-folder-004" />
-
-</Step>
-
-<Step title="Di chuyển chuột đến Clan bạn muốn xóa khỏi Thư mục và ấn dấu X">
-
-<Image style={{ margin: '1rem 2rem' }} src={clanFolder005} alt="clan-folder-005" />
-
-</Step>
-
-<Step title="Sau khi xóa, Clan sẽ hiển thị bên ngoài Thư mục">
-
-<Image style={{ margin: '1rem 2rem' }} src={clanFolder006} alt="clan-folder-006" />
-
-</Step>
-</Steps>
-
-</TabItem>
-<TabItem value="mobile" label="Mobile">
-<Heading as="h3">Cách tạo thư mục Clan</Heading>
-
-<Steps>
-<Step title="Ở giao diện chính của Mezon, nhấn và giữ Clan bạn muốn đưa vào thư mục.">
-</Step>
-
-<Step title="Kéo Clan đó vào một Clan khác. Khi thấy khung vuông hiển thị hai Clan được chọn, thả tay để nhóm chúng lại.">
-<div align="left"><img style={{ width: '10%' }} src={clanFolderMobile001} alt="clan-folder-mobile-001" /></div>
-</Step>
-
-<Step title="Thư mục Clan mới sẽ xuất hiện trong thanh menu bên trái, cùng với các Clan khác.">
-<div align="left"><img style={{ width: '10%' }} src={clanFolderMobile002} alt="clan-folder-mobile-002" /></div>
-</Step>
-</Steps>
-
-<Heading as="h3">Cách xóa Clan khỏi Thư mục</Heading>
-
-<Steps>
-<Step title="Mở Thư mục chứa các Clan của bạn.">
-</Step>
-
-<Step title="Nhấn vào biểu tượng X trên Clan bạn muốn xóa khỏi thư mục.">
-
-<div align="left"><img style={{ width: '10%' }} src={clanFolderMobile003} alt="clan-folder-mobile-003" /></div>
-</Step>
-
-<Step title="Sau khi xóa, Clan sẽ hiển thị trở lại bên ngoài thư mục trong danh sách Clan của bạn.">
-
-<div align="left"><img style={{ width: '10%' }} src={clanFolderMobile004} alt="clan-folder-mobile-004" /></div>
-</Step>
-</Steps>
-</TabItem>
-</Tabs>
+- [Tham gia và khám phá clan](./join-and-explore-clans.mdx)

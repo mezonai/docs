@@ -1,79 +1,47 @@
 ---
 sidebar_position: 4
-sidebar_label: Clan Folder
+sidebar_label: Clan folders
+description: Group clans in a folder to keep the clan bar short (Mezon in a web browser).
 ---
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
-import Heading from '@theme/Heading';
-import clanFolder001 from './images/clan-folder-001.png';
-import clanFolder002 from './images/clan-folder-002.png';
-import clanFolder003 from './images/clan-folder-003.png';
-import clanFolder004 from './images/clan-folder-004.png';
-import clanFolder005 from './images/clan-folder-005.png';
-import clanFolder006 from './images/clan-folder-006.png';
-import clanFolderMobile001 from './images/clan-folder-mobile-001.png';
-import clanFolderMobile002 from './images/clan-folder-mobile-002.png';
-import clanFolderMobile003 from './images/clan-folder-mobile-003.png';
-import clanFolderMobile004 from './images/clan-folder-mobile-004.png';
+import folderClosed from "./images/clan-folder-computer-01.png";
+import folderOpen from "./images/clan-folder-computer-02.png";
 
-# Clan Folder
-When you join multiple Clans, the left-hand list can become long and hard to manage. Clan Folder helps you group related Clans together, keeping your interface tidy and easy to navigate.
+# Clan folders
 
-<Tabs>
-<TabItem value="PC" label="PC">
-### Creating a Folder
+A clan folder groups several clans under one icon in the clan bar. It keeps the clan bar short when you are in many clans.
 
-<Steps>
-<Step title="On the main Mezon interface, select the Clan you want to put into a folder.">
+:::note
+Clan folders are available only when you use Mezon in a web browser. The phone apps and the desktop app do not have them. In the desktop app you can drag a clan up or down to change the order of your clans.
+:::
 
-<Image style={{ margin: '1rem 2rem' }}  src={clanFolder001} alt="Clan Folder 001" />
-</Step>
-<Step title="Drag that Clan onto another Clan. When you see a green dashed rectangle, release the mouse.">
-<Image style={{ margin: '1rem 2rem' }}  src={clanFolder002} alt="Clan Folder 002" />
-</Step>
-<Step title="The folder containing your Clans will appear.">
-<Image style={{ margin: '1rem 2rem' }}  src={clanFolder003} alt="Clan Folder 003" />
-</Step>
-</Steps>
-### Removing a Clan from a Folder
+## Create a folder
 
-<Steps>
-<Step title="Open the folder containing your Clans.">
+1. In the clan bar on the far left, press and hold a clan icon.
+2. Drag it onto another clan icon.
+3. Release the mouse button.
 
-<Image style={{ margin: '1rem 2rem' }}  src={clanFolder004} alt="Clan Folder 004" />
-</Step>
-<Step title="Hover over the Clan you want to remove and click the **X** icon.">
-<Image style={{ margin: '1rem 2rem' }}  src={clanFolder005} alt="Clan Folder 005" />
-</Step>
-<Step title="After removal, the Clan will appear outside the folder.">
+The two clans now share one folder icon.
 
-<Image style={{ margin: '1rem 2rem' }}  src={clanFolder006} alt="Clan Folder 006" />
-</Step>
-</Steps>
-</TabItem>
-<TabItem value="mobile" label="Mobile">
-<Heading as="h3">How to Create a Clan Folder</Heading>
+<Image src={folderClosed} alt="The clan bar with a folder that shows the icons of two clans" />
 
-1. On the main Mezon interface, **click and hold** the Clan you want to add to a folder.
-2. **Drag the Clan onto another Clan**. When you see a square frame showing the two Clans selected, release to group them.
+## Open or close a folder
 
-<div align="left"><img style={{ width: '10%' }} src={clanFolderMobile001} alt="clan-folder-mobile-001" /></div>
+- Click the folder to open it. The clans in it appear below a folder icon.
+- Click the folder icon at the top to close it.
 
-4. A **new Clan folder** will appear in the left-hand menu along with your other Clans.
+## Remove a clan from a folder
 
-<div align="left"><img style={{ width: '10%' }} src={clanFolderMobile002} alt="clan-folder-mobile-002" /></div>
+1. Open the folder.
+2. Point at the clan you want to take out.
+3. Click the **X** on its icon.
 
-<Heading as="h3">How to Remove a Clan from a Folder</Heading>
+<Image src={folderOpen} alt="An open folder; the X on a clan icon removes the clan from the folder" />
 
-1. Open the folder containing your Clans.
-2. Click the **X icon** on the Clan you want to remove.
+The clan moves back to the clan bar, outside the folder.
 
-<div align="left"><img style={{ width: '10%' }} src={clanFolderMobile003} alt="clan-folder-mobile-003" /></div>
+Folders are saved in the web browser you use. In another browser, or on another computer, your clans are not grouped.
 
-3. After removal, the Clan will appear again outside the folder in your Clan list.
+## Related
 
-<div align="left"><img style={{ width: '10%' }} src={clanFolderMobile004} alt="clan-folder-mobile-004" /></div>
-</TabItem>
-</Tabs>
+- [Join and explore clans](./join-and-explore-clans.mdx)

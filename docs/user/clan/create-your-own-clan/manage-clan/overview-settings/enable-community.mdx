@@ -1,56 +1,70 @@
 ---
 sidebar_position: 8
-sidebar_label: Enable Community
-description: "Enable community features, allowing your Clan to have a fixed link and open to anyone to freely join."
+sidebar_label: Enable community
+description: Make your clan a public community that people can find and join on Discover, with its own web address.
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import { Steps, Step } from "@site/src/components/Steps";
-import enableCommunity001 from './images/enable-community-001.png';
-import enableCommunity002 from './images/enable-community-002.png';
+import computerStart from "./images/enable-community-computer-01.png";
+import computerForm from "./images/enable-community-computer-02.png";
+import computerFormEnd from "./images/enable-community-computer-03.png";
 
-# Enable Community
+# Enable community
 
-Activate and grow your Clan into a public community.
+Community makes your clan public. People can find it on [Discover](../../../join-and-explore-clans.mdx) and join it, and it gets its own web address.
 
-When you enable **Community Mode**, your Clan is no longer just a private group—it becomes a more accessible and open community.
+The clan owner and members with the **Administrator** permission can turn Community on.
 
-- Your Clan will have a **custom fixed link** (e.g., mezon.ai/clan/clan-name), easy to remember and share.
-- Your Clan will be visible on the [**Discover**](https://mezon.ai/clans/) page, where Mezon users can search, view information, and join.
-- You’ll gain **community management tools** to attract new members, organize events, and develop your Clan into a professional open space.
+## Turn on Community
 
-If you want your Clan to become a “branded” community, widely recognized and able to attract new members easily, enable **Community Mode** today.
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
 
-### How to Enable and Set Up a Mezon Community
+1. Open the clan, tap the clan name, then tap **Settings**.
+2. Tap **Enable Community**.
+3. Tap **Enable Community** again to start.
+4. Add a banner, a description, the text about your community and a vanity URL. On an iPhone, also choose the hashtags.
+5. Tap **Enable & Save**.
 
-<Steps>
-<Step title="Enable Community">
+</TabItem>
+<TabItem value="computer" label="Computer">
 
-- In the left menu, find and select **Enable Community**.
+1. Open **Clan Settings** and click **Enable Community** (desktop app: **Clan Community**).
+2. Click **Enable Community**.
 
-<Image style={{ margin: '1rem 2rem' }}  src={enableCommunity001} alt="Enable Community 001" />
+<Image src={computerStart} alt="The Enable Community page with the Enable Community button" />
 
-- Read the introduction, then click **Enable Community** at the bottom of the screen to confirm.
-</Step>
-<Step title="Customize Community Information">
+3. Fill in every field. All of them are required:
+   - **Community Banner**: click **Upload Banner** and choose an image of up to 10 MB.
+   - **Community Description**: a short text of up to 300 characters.
+   - **About Community**: a longer text of up to 3,000 characters.
+   - **Community Hashtags**: pick 1 to 6 topics. **Community** is already picked.
+   - **Vanity URL**: the end of your community's web address, up to 32 characters. Use lowercase letters, numbers and hyphens.
 
-Once activated, you’ll be taken to the configuration page:
+<Image src={computerForm} alt="The top of the Enable Community form: banner, description and About Community" />
 
-- **Community Banner**: Click **Upload Banner** to upload an image representing your community.
-- **Community Description**: Enter a brief description (up to 300 characters) introducing your community.
-- **About the Community (Detailed Introduction)**: Write a short paragraph (up to 100 characters) highlighting your Clan, its values, and what makes it special.
-- **Custom URL**: Enter a custom name (lowercase letters, numbers, hyphens) to create a memorable URL for your community.
+4. Click **Enable & Save**.
 
-Example: Enter **my-awesome-community** to have:
-    [mezon.ai/clans/clan/my-awesome-community](http://mezon.ai/clans/clan/my-awesome-community).
+<Image src={computerFormEnd} alt="The end of the form: hashtags, the vanity URL and the Enable & Save button" />
 
-<Image style={{ margin: '1rem 2rem' }}  src={enableCommunity002} alt="Enable Community 002" />
+</TabItem>
+</Tabs>
 
-:::warning Note
-Maximum file size for **Community Banner**: 10 MB
-:::
-</Step>
-<Step title="Activate & Save">
-- After filling in all the information, click **Enable & Save** at the bottom of the page.
-</Step>
-</Steps>
-Your Clan is now in **Community Mode**! Everyone on the internet can freely join your Clan.
+Your clan is now a community. In **Clan Settings**, the item **Enable Community** becomes **Community Overview**.
+
+The address of your community page is `mezon.ai/clans/clan/` followed by your vanity URL. For example, the vanity URL `green-garden` gives `mezon.ai/clans/clan/green-garden`.
+
+The hashtags to choose from are **Gaming**, **Technology**, **Education**, **Entertainment**, **Music**, **Art**, **Crypto**, **Anime & Manga**, **Sports** and **Community**.
+
+## Change the community details or turn Community off
+
+1. Open **Clan Settings** and click **Community Overview**.
+2. Change the details and click **Save Changes**.
+
+To make the clan private again, click **Disable Community**. In a web browser, it takes effect at once, without asking you to confirm. The clan is then no longer listed on Discover.
+
+## Related
+
+- [Join and explore clans](../../../join-and-explore-clans.mdx)
+- [Clan settings](./index.mdx)

@@ -1,40 +1,46 @@
 ---
 sidebar_position: 9
-sidebar_label: Delete Clan
-description: "Delete Clan from the system."
+sidebar_label: Delete a clan
+description: Delete a clan for good. Only the clan owner can do this.
 ---
-
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import { Steps, Step } from "@site/src/components/Steps";
-import deleteClan001 from "./images/delete-clan-001.png";
-import deleteClan002 from "./images/delete-clan-002.png";
+import computerDelete from "./images/delete-clan-computer-01.png";
 
-# Delete Clan
+# Delete a clan
 
-If your Clan is no longer in use or you want to discontinue its community, you can permanently delete the Clan.
+Only the clan owner can delete a clan. Deleting removes the clan for all its members, with its channels and messages.
 
-:::danger Note
-This action **cannot be undone**. All data, channels, and content within the Clan will be permanently removed.
+If you only want to stop running the clan, [transfer the ownership](../../transferring-clan-ownership.mdx) to another member instead.
+
+## Delete the clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the clan and tap the clan name at the top.
+2. Tap **Delete Clan**. You also find it in **Settings** → **Overview**.
+3. Confirm.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Open **Clan Settings**.
+2. Click **Delete Clan** at the bottom of the list.
+3. Type the clan name in **Enter clan name**.
+4. Click **Delete Clan**.
+
+<Image src={computerDelete} alt="The Delete clan window with the clan name typed and the Delete Clan button" />
+
+</TabItem>
+</Tabs>
+
+:::danger
+A deleted clan cannot be restored. Its channels, messages and settings are gone for everyone.
 :::
 
-### How to Delete a Clan
+## Related
 
-<Steps>
-  <Step title="In the left menu, select **Delete Clan**.">
-    <Image
-      style={{ margin: "1rem 2rem" }}
-      src={deleteClan001}
-      alt="Delete Clan 001"
-    />
-  </Step>
-  <Step title="Re-enter the Clan name to confirm.">
-    <Image
-      style={{ margin: "1rem 2rem" }}
-      src={deleteClan002}
-      alt="Delete Clan 002"
-    />
-  </Step>
-  <Step title="Click **Delete Clan**."></Step>
-</Steps>
-:::danger Note Once deleted, the Clan and all associated data will be permanently
-lost and **cannot be recovered**. :::
+- [Transfer clan ownership](../../transferring-clan-ownership.mdx)
+- [Clan settings](./index.mdx)

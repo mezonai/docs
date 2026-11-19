@@ -1,27 +1,78 @@
 ---
 slug: /user/clan/create-your-own-clan/manage-clan/overview-settings
-description: Bao gồm toàn bộ các thiết lập cơ bản và nâng cao giúp bạn quản lý Clan hiệu quả hơn.
+title: Cài đặt clan
+description: Mở Cài đặt Clan, tìm từng tùy chọn của clan và xem ai dùng được tùy chọn đó.
 ---
-import Image from '@site/src/components/Image';
-import overviewSettingsImage001 from './images/overview-settings-001.png';
-import overviewSettingsImage002 from './images/overview-settings-002.png';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import computerMenu from "./images/overview-settings-computer-01.png";
+import computerSidebar from "./images/overview-settings-computer-02.png";
 
-# Cài đặt tổng quan
+# Cài đặt clan
 
-<Image style={{ margin: '1rem 2rem' }}  src={overviewSettingsImage001} alt="Overview Settings 001" />
+**Cài Đặt Clan** chứa các tùy chọn của clan: tên và ảnh, vai trò, biểu cảm và nhiều mục khác. Các mục bạn thấy tùy vào vai trò của bạn.
 
-Hãy mở **Cài đặt Clan**, tại đây bạn sẽ thấy các mục sau:
+## Mở Cài đặt Clan
 
-* [**Tổng quan**](./overview-settings/overview)**:** Đặt tên Clan, thay ảnh đại diện và banner hiển thị.
-* [**Quản lý quyền hạn và vai trò**](./overview-settings/roles-and-permissions-management)**:** Tạo, sắp xếp và phân quyền cho từng vai trò trong Clan.
-* [**Biểu tượng, Nhãn dán hình ảnh/âm thanh**](./overview-settings/emoji-image-and-voice-stickers)**:** Tải lên và quản lý bộ emoji, image stickers và voice stickers tùy chỉnh của Clan.
-* [**Thứ tự Danh mục**](./overview-settings/category-order)**:** Sắp xếp thứ tự hiển thị của các danh mục và kênh của Clan.
-* [**Tích hợp**](./overview-settings/integrations)**:** Kết nối với bot hoặc ứng dụng ngoài để mở rộng tính năng và cá nhân hóa cho Clan.
-* [**Nhật ký kiểm tra**](./overview-settings/audit-log)**:** Xem lịch sử các thao tác quản trị trong Clan
-* [**Hướng dẫn thành viên mới**](./overview-settings/new-member-guide)**:** Thiết lập hướng dẫn và vai trò mặc định cho thành viên mới tham gia vào Clan.
-* [**Kích hoạt cộng đồng**](./overview-settings/enable-community)**:** Bật các tính năng cộng đồng, cho phép Clan của bạn có link có định và mở cửa cho mọi người tự do tham gia.
-* [**Xóa Clan**](./overview-settings/delete-clan)**:** Xóa Clan khỏi hệ thống.
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-<Image style={{ margin: '1rem 2rem' }} src={overviewSettingsImage002} alt="Overview Settings 002" />
+1. Mở clan và nhấn vào tên clan ở trên cùng.
+2. Nhấn **Cài đặt**.
 
-Chúc bạn xây dựng cộng đồng mạnh mẽ và chuyên nghiệp hơn cùng Mezon!
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Mở clan và nhấn vào tên clan ở đầu danh sách kênh.
+2. Nhấn **Cài Đặt Clan**.
+
+<Image src={computerMenu} alt="Menu clan có mục Cài Đặt Clan" />
+
+Để đóng cài đặt, nhấn **ESC** ở góc trên bên phải, hoặc nhấn phím Esc.
+
+</TabItem>
+</Tabs>
+
+## Cài đặt Clan trên máy tính có gì
+
+<Image src={computerSidebar} alt="Danh sách các mục trong Cài đặt Clan, từ Tổng quan đến Xóa clan" width={210} />
+
+| Mục | Dùng để | Ai thấy |
+|---|---|---|
+| [**Tổng quan**](./overview.mdx) | Tên, ảnh, banner, tin nhắn hệ thống, chế độ ẩn danh | chủ sở hữu clan, **Quản trị viên** |
+| [**Vai trò**](./roles-and-permissions-management.mdx) | Vai trò và quyền | chủ sở hữu clan, **Quản lý Clan** |
+| [**Thứ tự danh mục**](./category-order.mdx) | Thứ tự danh mục của riêng bạn | mọi thành viên |
+| **Kênh đã lưu trữ** | Khôi phục kênh đã lưu trữ (xem bên dưới) | chủ sở hữu clan, **Quản trị viên**, **Quản lý Clan** |
+| [**Biểu cảm**, **Nhãn dán hình ảnh**, **Hiệu ứng âm thanh**](./emoji-image-and-voice-stickers.mdx) | Biểu cảm, nhãn dán và âm thanh riêng của clan | mọi thành viên |
+| [**Tích hợp**](./integrations.mdx) | Webhook | chủ sở hữu clan, **Quản lý Clan** hoặc **Quản lý kênh** |
+| [**Nhật ký kiểm tra**](./audit-log.mdx) | Lịch sử các thao tác quản trị | chủ sở hữu clan, **Quản lý Clan** |
+| [**Hướng dẫn**](./new-member-guide.mdx) | Hướng dẫn và câu hỏi cho thành viên mới | chủ sở hữu clan, **Quản lý Clan** |
+| [**Kích hoạt cộng đồng**](./enable-community.mdx) (sau đó là **Tổng quan cộng đồng**) | Đưa clan lên Khám phá | chủ sở hữu clan, **Quản trị viên** |
+| [**Xóa clan**](./delete-clan.mdx) | Xóa clan | chỉ chủ sở hữu clan |
+
+**Ứng dụng máy tính:** mục cộng đồng tên là **Cộng đồng Clan**, và nhật ký kiểm tra tên là **Nhật ký hoạt động**.
+
+## Cài đặt Clan trên điện thoại có gì
+
+Ứng dụng điện thoại có ít mục hơn:
+
+- Trong **Cài đặt**: **Tổng quan**, **Nhật ký chỉnh sửa** (iPhone: **Nhật ký hoạt động**), **Tích hợp**, **Biểu cảm**, **Nhãn dán**, **Hiệu ứng âm thanh** và **Kích hoạt cộng đồng** (iPhone: **Bật cộng đồng**).
+- Trong **Quản lý người dùng**: **Thành viên**, **Vai trò** và **Lời mời**.
+
+**Thứ tự danh mục**, **Kênh đã lưu trữ** và **Hướng dẫn** chỉ có trên máy tính. Để xóa clan trên điện thoại, xem [Xóa clan](./delete-clan.mdx).
+
+## Khôi phục kênh đã lưu trữ
+
+Kênh đã lưu trữ bị ẩn khỏi danh sách kênh của mọi thành viên. Tin nhắn trong kênh vẫn được giữ. Bạn khôi phục kênh trên máy tính:
+
+1. Mở **Cài Đặt Clan**.
+2. Nhấn **Kênh đã lưu trữ**.
+3. Nhấn **Khôi phục** cạnh kênh đó.
+
+Kênh hiện lại trong danh sách kênh.
+
+## Liên quan
+
+- [Quản lý thành viên](../member-management.mdx)
+- [Cấu trúc clan: danh mục và kênh](../clan-structure/index.mdx)

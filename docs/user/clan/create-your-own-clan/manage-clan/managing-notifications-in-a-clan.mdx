@@ -1,83 +1,115 @@
 ---
 sidebar_position: 4
-sidebar_label: Managing Notifications in a Clan
+sidebar_label: Notifications in a clan
+description: Choose which messages notify you in a whole clan, in a category or in one channel, and mute a channel for a while.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import Heading from '@theme/Heading';
-import managingNotificationsInAClan001 from './images/managing-notifications-in-a-clan-001.png';
-import managingNotificationsInAClan002 from './images/managing-notifications-in-a-clan-002.png';
-import managingNotificationsInAClan003 from './images/managing-notifications-in-a-clan-003.png';
-import managingNotificationsInAClan004 from './images/managing-notifications-in-a-clan-004.png';
-import managingNotificationsInAClan005 from './images/managing-notifications-in-a-clan-005.png';
-import managingNotificationsInAClan006 from './images/managing-notifications-in-a-clan-006.png';
-import managingNotificationsInAClanMobile001 from './images/managing-notifications-in-a-clan-mobile-001.png';
-import managingNotificationsInAClanMobile002 from './images/managing-notifications-in-a-clan-mobile-002.png';
+import computerClanMenu from "./images/managing-notifications-in-a-clan-computer-01.png";
+import computerDialog from "./images/managing-notifications-in-a-clan-computer-02.png";
+import computerMute from "./images/managing-notifications-in-a-clan-computer-03.png";
 
-# Managing Notifications in a Clan
-When you first join, the flood of notifications can feel overwhelming. Don’t worry — you can easily adjust them to suit your needs.
+# Notifications in a clan
 
-<Tabs>
-<TabItem value="PC" label="PC">
-### How to Manage Clan Notifications
+You choose how much each clan notifies you. You can set one level for the whole clan, and a different level for a category or a channel. These settings are yours only. They do not change anything for other members.
 
-1. Right-click on the **Clan icon**.
-2. Select **Notification Settings**.
-3. Choose your preferred option:
-   * **All** → Receive all messages.
-   * **Only @mention** → Only receive notifications when someone mentions you.
-   * **Nothing** → Turn off notifications completely.
-   * **Use category default** → Follow the default notification settings of the channel group.
-4. Alternatively, use **Mute Channel** to temporarily pause notifications for **15 minutes, 1 hour, 3 hours, 8 hours, 24 hours**, or until you turn them back on.
+## Notification levels
 
-:::warning Note
-If you’re in multiple Clans, set most to **Only @mention**. This way, you won’t miss important updates, yet avoid constant “ding” notifications all day.
-:::
+| Level | You get a notification for |
+|---|---|
+| **All** (phones: **All messages**) | every new message |
+| **Only @mention** | messages that mention you |
+| **Nothing** | no messages |
 
-<Image style={{ margin: '1rem 2rem' }}  src={managingNotificationsInAClan001} alt="Managing Notifications in a Clan 001" />
-
-Additionally, you can manage detailed notification settings for each Channel within a Clan by clicking the Clan name and selecting **Notification Settings**.
-
-<Image style={{ margin: '1rem 2rem' }}  src={managingNotificationsInAClan002} alt="Managing Notifications in a Clan 002" />
-
-<Image style={{ margin: '1rem 2rem' }}  src={managingNotificationsInAClan003} alt="Managing Notifications in a Clan 003" />
+A channel can also use **Use Category Default** (phones: **Use default settings**). It then follows the level set above it.
 
 :::tip
-**Notification Badge:** On the Taskbar, you can quickly check notification status through the Mezon icon:
-
-* ![managing-notifications-in-a-clan-004](./images/managing-notifications-in-a-clan-004.png)**Only Mezon Logo:** No new notifications.
-* ![managing-notifications-in-a-clan-005](./images/managing-notifications-in-a-clan-005.png)**Red Dot next to the Mezon Logo:** You have new notifications.
-* ![managing-notifications-in-a-clan-006](./images/managing-notifications-in-a-clan-006.png)**Number next to the Mezon Logo:** Someone mentioned you — the number indicates how many mentions you’ve received.
+If you are in many clans, set most of them to **Only @mention**. You still see messages meant for you.
 :::
+
+## Set the level for a whole clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the clan and tap the clan name at the top.
+2. Tap **Notifications**.
+3. Choose **All messages**, **Only @mention** or **Nothing**.
+
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<Heading as="h3">How to Manage Clan Notifications</Heading>
+<TabItem value="computer" label="Computer">
 
-1. Click your **Clan name**.
-2. Select the **notification bell icon** ![managing-notifications-in-a-clan-mobile-001](./images/managing-notifications-in-a-clan-mobile-001.png).
-3. Choose your preferred setting:
+1. In the clan bar on the far left, right-click the clan icon.
+2. Point at **Notification Settings**.
+3. Choose **All**, **Only @mention** or **Nothing**.
 
-* **All Messages:** Receive notifications for every message in the Clan.
-* **Only @mentions:** Receive notifications only when you are mentioned.
-* **Nothing:** Turn off all message notifications.
+<Image src={computerClanMenu} alt="The clan icon menu with Notification Settings and the levels All, Only @mention and Nothing" />
 
-<Heading as="h3">Mute Options</Heading>
+You can also click the clan name at the top of the channel list and choose **Notification Settings**. The window has the same three levels under **CLAN NOTIFICATION SETTINGS**.
 
-* **@everyone and @here:** Mute notifications when the entire Clan is pinged.
-* **@mention for all roles:** Mute notifications when your role is mentioned.
-* **Highlights:** Stop receiving updates about friends’ activities in the Clan.
-* **New Events:** Turn off notifications when a new event is created.
-* **Mobile Push Notifications:** Stop showing Clan notifications on your device.
-
-<Heading as="h3">Override Notifications</Heading>
-
-* **Add all channels to a category:** Quickly group channels to apply the same notification settings.
-
-<div align="left"><img style={{ width: '30%' }} src={managingNotificationsInAClanMobile002} alt="managing-notifications-in-a-clan-mobile-002" /></div>
-
-:::tip
-If you’re in multiple Clans, set most notifications to **Only @mention**. This way, you won’t miss important messages but won’t be constantly disturbed by alerts.
-:::
 </TabItem>
 </Tabs>
+
+## Set a different level for a channel or a category
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Press and hold the channel.
+2. Tap **Notification Settings**.
+3. Choose **Use default settings**, **All messages**, **Only @mention** or **Nothing**.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Right-click the channel or the category name.
+2. Point at **Notification Settings**.
+3. Choose a level. For a channel, **Use Category Default** follows the level of its category.
+
+To see all your exceptions in one place, click the clan name, then **Notification Settings**. Under **NOTIFICATION OVERRIDES**, pick a channel or a category and set its level, or mute it.
+
+<Image src={computerDialog} alt="The Notification Setting window with the clan level and the Notification Overrides list" />
+
+</TabItem>
+</Tabs>
+
+## Mute a channel for a while
+
+Muting stops the notifications of a channel for a time you choose.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Press and hold the channel.
+2. Tap **Mute Channel**.
+3. Choose how long: from 15 minutes to 24 hours, or until you turn it back on.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Right-click the channel.
+2. Point at **Mute Channel**.
+3. Choose **For 15 Minutes**, **For 1 Hour**, **For 3 Hours**, **For 8 Hours**, **For 24 Hours** or **Until I turn it back on**.
+
+<Image src={computerMute} alt="The channel menu with Mute Channel and the list of durations" />
+
+To mute a whole category, right-click the category name and choose **Mute Category**.
+
+</TabItem>
+</Tabs>
+
+To turn the notifications on again, open the same menu and choose **Unmute Channel**.
+
+## Default level for new members
+
+On the phone apps, the clan owner and members with the **Administrator** permission can choose the level for members who never chose one. Open the clan, tap the clan name, tap **Settings**, then **Overview**, and choose a level under **Default notifications** (iPhone: **Default Notification Settings**). For a large clan, **Only @mention** is a good choice.
+
+## Desktop app: the number on the app icon
+
+In the desktop app, the number on the Mezon icon in the taskbar or the Dock counts your mentions in clans, your unread direct messages in conversations you did not mute, and your new friend requests.
+
+## Related
+
+- [Notification settings of a channel](./clan-structure/channels/text-channel/notification-settings.mdx)
+- [Clan settings](./overview-settings/index.mdx)

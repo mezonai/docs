@@ -1,59 +1,117 @@
 ---
 sidebar_position: 3
 sidebar_label: Quản lý thành viên
-description: ""
+description: Xem ai đang ở trong clan, gán vai trò, xóa thành viên, và tạm cấm một thành viên trong một kênh.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Image from '@site/src/components/Image';
-import memberManagement001 from "./images/member-management-001.png";
-import memberManagement002 from "./images/member-management-002.png";
-import memberManagement003 from "./images/member-management-003.png";
-import memberManagement004 from "./images/member-management-004.png";
-import memberManagementMobile001 from "./images/member-management-mobile-001.png";
+import Image from "@site/src/components/Image";
+import computerMembers from "./images/member-management-computer-01.png";
+import computerMenu from "./images/member-management-computer-02.png";
 
 # Quản lý thành viên
 
-<Tabs>
-<TabItem value="PC" label="PC">
-### Cách quản lý thành viên
+Xem ai đang ở trong clan, gán vai trò cho họ, và xóa những thành viên không nên ở đó. Các thao tác bạn thấy tùy vào vai trò của bạn.
 
-1. Ở thành điều hướng bên trái, chọn Thành viên.
+## Xem danh sách thành viên
 
-<Image style={{ margin: '1rem 2rem' }} src={memberManagement001} alt="member-management-001" />
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-2.  Tại đây, bạn có thể xem toàn bộ danh sách thành viên của Clan.
+1. Mở clan và nhấn vào tên clan ở trên cùng.
+2. Nhấn **Cài đặt**.
+3. Trong phần **Quản lý người dùng**, nhấn **Thành viên**.
 
-    Sử dụng thanh **tìm kiếm** để nhanh chóng tìm một người cụ thể.
+Nhập tên vào ô tìm kiếm để tìm một người.
 
-<Image style={{ margin: '1rem 2rem' }} src={memberManagement002} alt="member-management-002" />
-
-3. Khi nhấn chuột phải vào tên thành viên, bạn có thể:
-
-* Xem hồ sơ của thành viên.
-* Gửi tin nhắn cá nhân cho thành viên.
-* Chuyển quyền sở hữu Clan.
-* Khai trừ thành viên ra khỏi Clan khi cần thiết.
-
-<Image style={{ margin: '1rem 2rem' }} src={memberManagement003} alt="member-management-003" />
-
-4. Bạn có thể phân quyền nhanh cho từng thành viên khi nhấn vào dấu "+" ở cột **Vai trò**:
-
-<Image style={{ margin: '1rem 2rem' }} src={memberManagement004} alt="member-management-004" />
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-Trong **Cài đặt Clan** bạn có thể truy cập **Quản lý thành viên**.
+<TabItem value="computer" label="Máy tính">
 
-<div align="center"><img src={memberManagementMobile001} alt="member-management-mobile-001" width="188" /></div>
+1. Mở clan.
+2. Nhấn **Thành viên** ở đầu danh sách kênh.
 
-Tại đây, bạn có thể xem toàn bộ danh sách thành viên của Clan.
+Bảng hiện tên của từng thành viên, ngày họ vào clan (**THÀNH VIÊN TỪ**), ngày họ tham gia Mezon (**THAM GIA MEZON**) và **VAI TRÒ** của họ. Để tìm một người, nhập vào ô **Tìm kiếm**.
 
-Sử dụng thanh **tìm kiếm** để nhanh chóng tìm một người cụ thể.
+<Image src={computerMembers} alt="Trang Thành viên với danh sách thành viên và vai trò của họ" />
 
-Khi nhấn vào tên thành viên, bạn có thể:
-
-* Chỉnh sửa vai trò của họ
-* Chuyển quyền sở hữu Clan
-* Khai trừ thành viên ra khỏi Clan khi cần thiết
 </TabItem>
 </Tabs>
+
+## Gán vai trò cho thành viên
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Trong **Thành viên**, nhấn vào thành viên. Màn hình **Chỉnh sửa thành viên** mở ra.
+2. Nhấn **Chỉnh sửa vai trò**.
+3. Chọn các vai trò rồi lưu.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Trên trang **Thành viên**, tìm thành viên đó.
+2. Ở cột **VAI TRÒ**, nhấn **+**.
+3. Chọn một vai trò.
+
+Danh sách chỉ hiện các vai trò thấp hơn vai trò cao nhất của bạn.
+
+</TabItem>
+</Tabs>
+
+Bạn cũng có thể thêm nhiều thành viên vào một vai trò cùng lúc. Xem [Vai trò và quyền](./overview-settings/roles-and-permissions-management.mdx).
+
+## Xóa thành viên khỏi clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Trong **Thành viên**, nhấn vào thành viên.
+2. Trong phần **Hành động**, nhấn **Đuổi** (iPhone: **Khai trừ**).
+3. Bạn có thể nhập lý do vào ô **Lý do đuổi** (iPhone: **Lý do khai trừ**).
+4. Xác nhận.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Trên trang **Thành viên**, nhấn chuột phải vào thành viên.
+2. Nhấn **Xóa thành viên**.
+3. Xác nhận.
+
+<Image src={computerMenu} alt="Menu của một thành viên trên trang Thành viên với mục Xóa thành viên" />
+
+Trong một kênh, bạn cũng có thể nhấn chuột phải vào tên một thành viên và chọn **Đuổi**.
+
+</TabItem>
+</Tabs>
+
+Thành viên rời clan ngay lập tức. Họ chỉ vào lại được khi có lời mời mới.
+
+## Tạm cấm một thành viên trong một kênh
+
+Lệnh cấm ngăn một thành viên trò chuyện trong một kênh trong khoảng thời gian bạn chọn. Bạn cấm thành viên trên máy tính:
+
+1. Mở kênh.
+2. Nhấn chuột phải vào tên thành viên, trong danh sách thành viên hoặc trên một tin nhắn của họ.
+3. Trỏ chuột vào **Chặn** (nghĩa là cấm thành viên trong kênh này).
+4. Chọn thời gian: **15 phút**, **1 giờ**, **3 giờ**, **8 giờ**, **24 giờ** hoặc **Cho đến khi tôi bật lại**.
+
+Để bỏ cấm trên máy tính, nhấn chuột phải vào thành viên đó lần nữa và chọn **Bỏ chặn**. **Android:** mở cài đặt kênh, chọn **Danh sách cấm**, rồi nhấn **Bỏ cấm**.
+
+## Ai làm được gì
+
+| Thao tác | Ai |
+|---|---|
+| Xem danh sách thành viên | mọi thành viên |
+| Gán vai trò trên trang **Thành viên** | chủ sở hữu clan, và vai trò có quyền **Quản lý Clan**; chỉ các vai trò thấp hơn vai trò của bạn |
+| **Xóa thành viên** trên trang **Thành viên** | chủ sở hữu clan, và vai trò có quyền **Quản lý Clan** |
+| **Đuổi** (trên điện thoại, và menu thành viên trong kênh) | chủ sở hữu clan, và vai trò có quyền **Quản trị viên** |
+| **Chặn** và **Bỏ chặn** trong kênh | vai trò có quyền **Quản trị viên** |
+| **Chuyển quyền sở hữu** | chỉ chủ sở hữu clan, xem [Chuyển quyền sở hữu clan](../transferring-clan-ownership.mdx) |
+
+Không ai xóa được chủ sở hữu clan.
+
+## Liên quan
+
+- [Vai trò và quyền](./overview-settings/roles-and-permissions-management.mdx)
+- [Nhật ký kiểm tra](./overview-settings/audit-log.mdx)
+- [Mời người khác vào clan](../invite-friends-to-your-clan.mdx)

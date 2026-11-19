@@ -1,68 +1,78 @@
 ---
 sidebar_position: 2
-sidebar_label: Mời bạn bè vào Clan
-description: "Mời người khác tham gia qua link hoặc trực tiếp từ danh sách bạn bè."
+sidebar_label: Mời người khác vào clan
+description: Chia sẻ liên kết mời hoặc mã QR, hoặc mời bạn bè trên Mezon vào clan.
 ---
-
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import { Steps, Step } from "@site/src/components/Steps";
 import Image from "@site/src/components/Image";
-import Heading from '@theme/Heading';
-import InviteFriendsToYourClan001 from "./images/invite-friends-to-your-clan-001.png";
-import InviteFriendsToYourClan002 from "./images/invite-friends-to-your-clan-002.png";
+import computerMenu from "./images/invite-friends-to-your-clan-computer-01.png";
+import computerDialog from "./images/invite-friends-to-your-clan-computer-02.png";
+import computerQr from "./images/invite-friends-to-your-clan-computer-03.png";
 
-import InviteFriendsToYourClanMobile001 from "./images/invite-friends-to-your-clan-mobile-001.png";
-import InviteFriendsToYourClanMobile002 from "./images/invite-friends-to-your-clan-mobile-002.png";
+# Mời người khác vào clan
 
-# Mời bạn bè vào Clan
+Mọi thành viên trong clan đều mời được người khác. Bạn gửi liên kết mời hoặc mã QR, hoặc mời thẳng bạn bè trên Mezon.
 
-Một Clan chỉ thật sự “sống” khi có bạn bè và đồng đội cùng tham gia. Hãy mời bạn bè vào để bắt đầu những cuộc trò chuyện vui vẻ, chia sẻ hay hợp tác cùng nhau.
+## Mời người khác
 
-<Tabs>
-<TabItem value="PC" label="PC">
-### Các bước mời bạn bè vào Clan
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-1. Nhấn vào **tên Clan** của bạn.
-2. Chọn **Mời người tham gia** trong menu.
-
-<Image style={{ margin: '1rem 2rem' }} src={InviteFriendsToYourClan001}></Image>
-
-3. Có 2 cách để mời bạn bè:
-- **Mời trực tiếp**: chọn tên bạn bè trong danh sách và nhấn Invite.
-- **Gửi link lời mời Clan**: gửi link mời đến bạn bè qua tin nhắn, email hoặc bất kỳ nền tảng nào khác.
-
-<Image style={{ margin: '1rem 2rem' }} src={InviteFriendsToYourClan002}></Image>
-
-:::tip
-Bạn có thể copy link mời kèm QR code, rất tiện nếu muốn chia sẻ cho nhiều người cùng tham gia nhanh chóng.
-:::
+1. Mở clan và nhấn vào tên clan ở trên cùng.
+2. Nhấn **Lời mời** (iPhone: **Mời**).
+3. Chọn một cách:
+   - **Sao chép link**, rồi dán liên kết vào tin nhắn.
+   - **Chia sẻ lời mời**, để gửi liên kết qua một ứng dụng khác trên điện thoại.
+   - **Mã QR**, để hiện mã cho người khác quét bằng điện thoại. Nhấn biểu tượng tải về để lưu mã thành ảnh, hoặc biểu tượng chia sẻ để gửi mã qua ứng dụng khác.
+   - **Mời** cạnh tên một người bạn, để gửi liên kết cho người đó ngay trong Mezon. Nút đổi thành **Đã mời**.
 
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<Heading as="h3">Các bước mời bạn bè vào Clan</Heading>
+<TabItem value="computer" label="Máy tính">
 
-<Steps>
-<Step title="Nhấn vào tên Clan mà bạn muốn mời">
-</Step>
+1. Mở clan và nhấn vào tên clan ở đầu danh sách kênh.
+2. Nhấn **Mời Người Tham Gia**.
 
-<Step title="Chọn **Lời mời**">
-  <div align="left">
-    <img
-      style={{ width: "30%" }}
-      src={InviteFriendsToYourClanMobile001}
-      alt="invite-friends-to-your-clan-mobile-001"
-    />
-  </div>
-</Step>
+<Image src={computerMenu} alt="Menu clan có mục Mời Người Tham Gia" />
 
-<Step title="Có **3 cách** để mời bạn bè">
-<div align="left"><img style={{ width: '30%' }} src={InviteFriendsToYourClanMobile002} alt="invite-friends-to-your-clan-mobile-002" /></div>
+3. Chọn một cách:
+   - Nhấn **Sao chép** để sao chép liên kết mời, rồi dán vào tin nhắn.
+   - Nhấn **Mời** cạnh tên một người bạn. Mezon gửi liên kết cho người đó qua tin nhắn trực tiếp, và nút đổi thành **Đã gửi** (ứng dụng máy tính: **Đã mời**).
+   - Nhấn **SAO CHÉP QR** để mở mã QR của liên kết.
 
-- **Mời trực tiếp**: chọn tên bạn bè trong danh sách và nhấn Invite.
-- **Sao chép liên kết mờ**i: gửi liên kết mời đến bạn bè qua tin nhắn, email hoặc bất kỳ nền tảng nào khác.
-- **Chia sẻ mã QR**: gửi hình ảnh QR liên kết mời của clan
-</Step>
-</Steps>
+<Image src={computerDialog} alt="Hộp thoại mời bạn bè: danh sách bạn bè với nút Mời, và liên kết mời với nút Sao chép" />
+
+Để tìm nhanh một người bạn, nhập tên vào ô **Tìm kiếm bạn bè**.
+
 </TabItem>
 </Tabs>
+
+## Dùng mã QR trên máy tính
+
+Thẻ QR hiện tên clan, số thành viên và mã QR. Bên dưới mã có:
+
+- **Chép ảnh**: sao chép ảnh mã QR để dán vào cuộc trò chuyện hoặc tài liệu.
+- **Tải về**: lưu ảnh mã QR vào máy, ví dụ để in.
+- **Chép link**: sao chép liên kết mời.
+
+<Image src={computerQr} alt="Thẻ QR của lời mời vào clan với các nút Chép ảnh, Tải về và Chép link" width={400} />
+
+Biểu tượng bút chì ở góc trên bên phải đổi ảnh ở giữa mã: ảnh từ máy của bạn, ảnh đại diện của bạn, hoặc logo Mezon.
+
+**Ứng dụng máy tính:** cửa sổ QR chỉ có **Sao chép QR** và **Hủy**.
+
+## Người được mời sẽ thấy gì
+
+- Trên điện thoại: tên clan và số thành viên, với nút **Tham gia** và **Để sau** (một số bản Android: **Không cảm ơn**).
+- Trên máy tính: các thông tin đó cùng nút **Chấp nhận lời mời**.
+
+Người chưa có tài khoản Mezon cần đăng nhập trước. Lần đăng nhập đầu tiên sẽ tạo tài khoản. Xem [Tham gia và khám phá clan](../join-and-explore-clans.mdx).
+
+:::warning
+Ai có liên kết cũng vào được clan của bạn. Chỉ chia sẻ cho người bạn muốn mời. Nếu một liên kết không dùng được nữa, hãy mở lại **Lời mời** để lấy liên kết dùng được.
+:::
+
+## Liên quan
+
+- [Tham gia và khám phá clan](../join-and-explore-clans.mdx)
+- [Quản lý thành viên](./manage-clan/member-management.mdx)
