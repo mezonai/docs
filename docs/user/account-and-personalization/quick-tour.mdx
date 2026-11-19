@@ -1,125 +1,87 @@
 ---
 sidebar_position: 3
 sidebar_label: Quick tour
+description: The main parts of the Mezon screen on a phone and on a computer.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Heading from '@theme/Heading';
-import quickTourMobile001 from './images/quick-tour-mobile-001.png';
+import Image from "@site/src/components/Image";
+import phoneHome from "./images/quick-tour-phone-01.png";
+import computerHome from "./images/quick-tour-computer-01.png";
 
-# Quick tour
-Let's take a tour for your best experience on Mezon!
+# Quick tour of the screen
 
-<Tabs>
-<TabItem value="PC" label="PC">
-![quick-tour-001](./images/quick-tour-001.png)
+This page shows the main parts of the Mezon screen, so you know where to find things.
 
-The **Mezon** interface is designed to be intuitive, allowing you to navigate effortlessly from the very first use. Below are the seven main areas you’ll interact with most often:
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
 
-### 1. Mezon Logo
+<Image src={phoneHome} alt="The Clans tab on Android: the clan list on the left, the channel list of the open clan, and the tabs at the bottom" width={270} />
 
-* This is where all your personal messages and friend lists are gathered.
-* Simply click the logo to view all your private conversations or start a new chat instantly.
+## Tabs at the bottom
 
-:::tip
-You can also customize the Mezon logo with any image you like in the [**Personalization Settings**](personalization-settings).
-:::
+| Tab | What you find there |
+|---|---|
+| **Clans** | Your clans and their channels. |
+| **Messages** | Your direct messages and group chats. |
+| **Notifications** | Your notifications, for example when someone mentions you. |
+| **Profile** | Your name and status, your Mezon Dong wallet, **Edit Profile**, and the gear icon for [settings](./personalization-settings.mdx). |
 
-### 2. Clan List
+## Clans tab
 
-* Displays all the Clans you’ve joined.
-* Each icon represents a Clan - click to quickly switch between your communities.
-* Learn more at [**What is Clan?**](../clan/what-is-clan)
+- **Left column:** your clans. Tap a clan to open it. Below your clans are **Discover** (the compass, to find public clans) and **+** (to [create a clan](../clan/create-your-own-clan/create-a-clan.mdx)).
+- **Top of the clan:** the clan name and the number of members. Tap the name to open the clan menu, for example to invite people.
+- **Under the clan name:** **Search**, a QR button to scan a QR code, and a calendar button for the clan's [events](../clan/create-your-own-clan/manage-clan/creating-and-managing-events.mdx).
+- **Channel list:** channels grouped in categories. A **#** is a text channel for messages. A speaker icon is a voice channel for talking.
 
-### 3. Discover
-
-* Explore new communities that match your interests.
-* Find vibrant Clans by topics such as learning, work, gaming, or entertainment.
-* You can search for Clans at: [**https://mezon.ai/clans/**](https://mezon.ai/clans/)
-
-### 4. Create a New Clan
-
-* Want a private space for your friends or community? Click the **“+”** button.
-* Here, you can create a Clan, name it, and invite others to join.
-* Learn more about how to create and manage a Clan at [**Create Your Own Clan**](../clan/create-your-own-clan).
-
-### 5. Clan & Channel Details
-
-* When you select a Clan, this section displays all available channels:
-  * [**Text Channel**](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel)**:** Chat via messages
-  * [**Voice Channel**](../clan/create-your-own-clan/manage-clan/clan-structure/channels/voice-channel)**:** Talk, video chat, and share your screen
-  * [**Stream Channel**](../clan/create-your-own-clan/manage-clan/clan-structure/channels/stream-channel)**:** Watch live streams hosted by the Clan admin
-* This is where you navigate between channels within a Clan.
-
-### 6. Chat Box / Main Screen
-
-* In a **Text Channel:** this area shows your message thread with friends or Clan members.
-* In a **Voice/Stream Channel:** it displays participants and lets you turn your mic, camera, or screen sharing on or off.
-
-### 7. Profile & Personal Settings
-
-* Located in the bottom corner, this is where you manage your personal information - avatar, display name, bio, Mezon balance, transaction history, and custom status.
-* You can also access [**Settings** ](personalization-settings)to adjust language, notifications, security, and more.
-
-:::warning Note
-If you’re **new to Mezon**, take a moment to **click through each icon**. You’ll quickly find the layout intuitive and easy to remember.
-:::
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<div align="center"><img style={{ width: '40%' }} src={quickTourMobile001} alt="quick-tour-mobile-001" /></div>
+<TabItem value="computer" label="Computer">
 
-<Heading as="h3">1. Mezon Logo</Heading>
+<Image src={computerHome} alt="The web app with a clan open: the clan list on the far left, the channel list, the chat in the middle and the message box at the bottom" />
 
-* This is where all your personal messages and friend lists are gathered.
-* Simply tap the logo to view all your private conversations and easily start a new message.
+## Left column: your clans
+
+- **Mezon logo** (top): your direct messages and your friends.
+- **Clan icons:** click one to open that clan.
+- **Discover** (compass): find public clans on the Mezon website.
+- **+** (**Create Clan**): [create a clan](../clan/create-your-own-clan/create-a-clan.mdx).
+
+The desktop app also has back and forward arrows at the top.
+
+## Channel list
+
+- **Clan name** (top): click it to open the clan menu, for example **Invite People** or **Clan Settings**.
+- **Events**, **Members** and **Channels** of the clan.
+- **Categories** with their channels. A **#** is a text channel. A speaker icon is a voice channel.
+
+When you click the Mezon logo, this column shows **Friends** and your **DIRECT MESSAGES** instead.
+
+## Chat in the middle
+
+- **Top bar:** the channel name and buttons for threads, pinned messages, members, notifications and **Search**.
+- **Messages** of the channel.
+- **Message box** at the bottom: type your message and press Enter.
+
+In a voice channel, the middle shows the people in the call and the buttons for the microphone, the camera and screen sharing.
+
+## Your name, bottom left
+
+- Click your name to see your Mezon Dong balance, **Transfer Funds**, **Transaction History**, **Set Custom Status** and your status.
+- Click the gear icon to open [settings](./personalization-settings.mdx).
 
 :::tip
-You can even **customize the Mezon logo** with your own image in _Personalization Settings_.
+Press Ctrl+K (⌘K on a Mac) to jump to any clan, channel or person. See [keyboard shortcuts](./shortcuts.mdx).
 :::
 
-<Heading as="h3">2. Clan List</Heading>
+## Guided tour in the desktop app
 
-* The vertical bar on the left displays all the Clans you’ve joined.
-* Each icon represents a Clan — just tap to quickly switch between different communities.
+The desktop app has a short guided tour. It can start by itself the first time you open the app. To open it again, open the settings and click **Guided tour**. Pick a part, for example **Getting started** or **Voice and calls**. Each part takes about a minute.
 
-Learn more about Clans in [_What is a Clan_](../clan/what-is-clan)**?**
-
-<Heading as="h3">3. Clan Home</Heading>
-
-When you select a Clan, you’ll see its cover image, name, member count, and a short description of the community.\
-Here, you can:
-
-* View Clan information
-* Search for channels, topics, or members
-* Scan QR codes to trade tokens or join another Clan
-* View the Clan’s event calendar
-
-<Heading as="h3">4. Clan Navigation</Heading>
-
-* When you open a Clan, this section displays all active Categories, Channels, and Topics inside it.
-* There are 3 types of channels:
-  * [**Text Channel**](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel)
-  * [**Voice Channel**](../clan/create-your-own-clan/manage-clan/clan-structure/channels/voice-channel)
-  * [**Stream Channel**](../clan/create-your-own-clan/manage-clan/clan-structure/channels/stream-channel)
-* This is where you navigate between different channels within a Clan.
-
-<Heading as="h3">5. Create a New Clan</Heading>
-
-* If you want to start your own group, tap the **“+”** button at the bottom of the Clan list.
-* You can name your Clan, create private channels, add friends, and start building your own community.
-
-<Heading as="h3">6. Bottom Navigation Bar</Heading>
-
-This is where you quickly move between the main sections:
-
-* **Clans:** List of all your communities
-* **Messages:** 1-on-1 or small group chats
-* **Inbox:** Latest updates and notifications
-* **Profile:** Manage personal information and settings
-
-:::warning
-Try swiping or tapping through each section — within minutes, you’ll see how **intuitive and easy-to-use Mezon’s layout** is, even on mobile.
-:::
 </TabItem>
 </Tabs>
 
+## Related
+
+- [Profile and settings](./personalization-settings.mdx)
+- [What is a clan](../clan/what-is-clan.mdx)
+- [Quick start](../quick-start.mdx)

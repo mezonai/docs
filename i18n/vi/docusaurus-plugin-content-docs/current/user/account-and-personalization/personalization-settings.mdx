@@ -1,172 +1,179 @@
 ---
-  sidebar_position: 4
-  sidebar_label: Tùy chỉnh cá nhân hóa
+sidebar_position: 4
+sidebar_label: Hồ sơ và cài đặt
+description: Mở cài đặt, sửa hồ sơ, đổi giao diện, ngôn ngữ, cài đặt trò chuyện, thiết bị và giọng nói.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import Heading from '@theme/Heading';
-import personalizationSettingsMobile001 from './images/personalization-settings-mobile-001.png';
-import personalizationSettingsMobile002 from './images/personalization-settings-mobile-002.png';
+import phoneProfile from "./images/personalization-settings-phone-01.png";
+import phoneSettings from "./images/personalization-settings-phone-02.png";
+import computerGear from "./images/personalization-settings-computer-01.png";
+import computerChat from "./images/personalization-settings-computer-02.png";
+import computerDevices from "./images/personalization-settings-computer-03.png";
+import computerTheme from "./images/personalization-settings-computer-04.png";
+import computerLanguage from "./images/personalization-settings-computer-05.png";
 
-import personalizationSettings001 from './images/personalization-settings-001.png';
-import personalizationSettings002 from './images/personalization-settings-002.png';
-import personalizationSettings003 from './images/personalization-settings-003.png';
-import personalizationSettings004 from './images/personalization-settings-004.png';
-import personalizationSettings005 from './images/personalization-settings-005.png';
+# Hồ sơ và cài đặt
 
+Phần cài đặt quản lý tài khoản, hồ sơ của bạn, và cách Mezon hiển thị, hoạt động trên từng thiết bị. Trang này liệt kê các mục cài đặt trong các bản phát hành tháng 11/2026 (web 2.1.5, máy tính 2.1.22, Android và iPhone 2.1.4).
 
-# Tùy chỉnh cá nhân hóa
-Ai cũng muốn không gian giao tiếp mang dấu ấn riêng. Với Mezon, bạn có thể tùy chỉnh hồ sơ, giao diện, ngôn ngữ và thông báo — để tạo nên phiên bản Mezon chỉ dành riêng cho bạn
+## Mở cài đặt
 
-<Tabs>
-<TabItem value="PC" label="PC">
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-Trong phần **Cài đặt cá nhân**, bạn sẽ thấy các mục sau:
+1. Nhấn **Hồ sơ** ở góc dưới bên phải.
+2. Nhấn biểu tượng bánh răng ở góc trên bên phải.
 
-### 1. Tài khoản – Thông tin tài khoản & mật khẩu
+<Image src={phoneProfile} alt="Thẻ Hồ sơ, biểu tượng bánh răng được đánh dấu" width={270} />
 
-<Image style={{ margin: '1rem 2rem' }} src={personalizationSettings001}></Image>
-
-* Quản lý tên người dùng, đặt lại mật khẩu.
-* Nếu bạn đăng ký bằng email, đừng quên thêm mật khẩu để đăng nhập nhanh hơn và bảo mật hơn.
-
-### 2. Hồ sơ – Hồ sơ cá nhân
-
-<Image style={{ margin: '1rem 2rem' }} src={personalizationSettings002}></Image>
-
-* Đặt tên hiển thị.
-* Thêm ảnh đại diện và tiểu sử ngắn.
-* Thay đổi Biểu tượng tin nhắn riêng - thay thế cho Logo Mezon để truy cập vào tin nhắn cá nhân
-* Thay đổi Hồ sơ Clan cho từng Clan. Đây là cách để bạn bè hoặc đồng đội trong Clan nhận ra bạn ngay lập tức.
-* Mã QR tới tài khoản cá nhân của bạn. Người khác có thể quét mã QR để kết nối/kết bạn/gọi điện cho bạn.
-
-:::tip
-Bạn có thể đặt tên hiển thị và ảnh đại diện riêng biệt khác nhau cho từng Clan bạn tham gia!
-:::
-
-:::warning Chú ý
-Giới hạn ảnh đại diện: 10MB
-
-Giới hạn ảnh biểu tượng tin nhắn riêng: 1MB
-
-(Mezon sẽ tự động cắt nếu vượt quá)
-:::
-
-### 3. Giao diện
-
-<Image style={{ margin: '1rem 2rem' }} src={personalizationSettings003}></Image>
-
-* Tùy chỉnh chủ đề màu hợp với phong cách của bạn
-
-:::tip
-Dùng chế độ tối khi chat ban đêm sẽ thoải mái mắt hơn.
-:::
-
-### 4. Thông báo – Cài đặt thông báo
-
-<Image style={{ margin: '1rem 2rem' }} src={personalizationSettings004}></Image>
-
-* Ẩn nội dung chi tiết khi cần sự riêng tư.
-
-:::tip
-Thông báo sẽ hiện tiêu đề mà không kèm nội dung, giúp bạn yên tâm hơn khi làm việc hoặc chia sẻ màn hình.
-:::
-
-### 5. Ngôn ngữ – Ngôn ngữ giao diện
-
-<Image style={{ margin: '1rem 2rem' }} src={personalizationSettings005}></Image>
-
-* Hiện Mezon hỗ trợ **Tiếng Việt** và **Tiếng Anh**.
-* Bạn có thể đổi ngôn ngữ bất kỳ lúc nào trong phần này.
-
-### 6. Đăng xuất
-
-* Nếu bạn dùng máy tính công cộng, hãy nhớ đăng xuất để tránh bị lộ thông tin
 </TabItem>
-<TabItem value='mobile' label="Mobile">
-<Heading as="h3">1. Hồ sơ – Trang thông tin cá nhân của bạn</Heading>
+<TabItem value="computer" label="Máy tính">
 
-<div align="center"><img style={{ width: '30%' }} src={personalizationSettingsMobile001} alt="personalization-settings-mobile-001" /></div>
+Nhấn biểu tượng bánh răng cạnh tên bạn, ở góc dưới bên trái.
 
-Tại đây, bạn có thể:
+<Image src={computerGear} alt="Tên của bạn ở góc dưới bên trái, biểu tượng bánh răng cài đặt được đánh dấu" />
 
-* Xem ảnh đại diện, tên hiển thị và tên đăng nhập.
-* Theo dõi số dư, lịch sử giao dịch, hoặc thực hiện chuyển khoản nhanh chóng.
-* Nhấn nút **Hồ sơ** để chỉnh sửa thông tin cá nhân như:
-  * Ảnh đại diện và trạng thái
-  * Tiểu sử ngắn
-  * Ảnh đại diện và tên hiển thị khác nhau cho từng **Clan**
-  * Biểu tượng tin nhắn riêng
-* Xem thời điểm bạn tham gia Mezon, danh sách bạn bè, và sao chép ID người dùng khi cần.
+Để đóng cài đặt, nhấn **ESC** ở góc trên bên phải.
 
-:::tip
-Bạn có thể đặt tên hiển thị và ảnh đại diện riêng biệt khác nhau cho từng Clan bạn tham gia!
-:::
-
-:::warning Chú ý
-Giới hạn ảnh đại diện: 10Mb
-
-Giới hạn ảnh biểu tượng tin nhắn riêng: 1Mb
-
-(Mezon sẽ tự động cắt nếu vượt quá)
-:::
-
-<Heading as="h3">2. Cài đặt – Quản lý tài khoản & ứng dụng</Heading>
-
-Nhấn vào biểu tượng **⚙️ Cài đặt** ở góc trên phải màn hình để mở các mục sau:
-
-<div align="center"><img style={{ width: '30%' }} src={personalizationSettingsMobile002} alt="personalization-settings-mobile-002" /></div>
-
-<Heading as="h4">2.1. Tài khoản</Heading>
-
-Quản lý toàn bộ thông tin đăng nhập:
-
-* Xem tên đăng nhập
-* Xem và đổi tên hiển thị
-* Xem và cập nhật số điện thoại
-* Xem danh sách người dùng bị chặn
-* Đặt hoặc thay đổi mật khẩu
-* Vô hiệu hóa tài khoản nếu muốn tạm nghỉ
-* Xóa tài khoản nếu bạn không còn nhu cầu sử dụng
-
-:::tip
-Nếu bạn đăng ký bằng email, đừng quên thêm mật khẩu để đăng nhập nhanh và an toàn hơn.
-:::
-
-<Heading as="h4">2.2. Yêu cầu kết bạn</Heading>
-
-* Quản lý lời mời kết bạn gửi đến bạn hoặc bạn đã gửi cho người khác.
-* Dễ dàng chấp nhận, từ chối hoặc hủy lời mời.
-
-<Heading as="h4">2.3. Mã QR của tôi & Quét mã QR</Heading>
-
-* Xem và chia sẻ mã QR hồ sơ để chia sẻ nhanh hồ sơ với bạn bè.
-* Dễ dàng tải và chia sẻ mã QR chuyển tiền
-* Sử dụng Quét mã QR để thêm bạn, tham gia Clan hoặc thực hiện thanh toán Mezon đồng chỉ trong vài giây.
-
-<Heading as="h4">2.4. Giao diện</Heading>
-
-* Chọn giao diện tùy theo sở thích.
-* Sử dụng giao diện tối để chat ban đêm dễ chịu hơn và tiết kiệm pin.
-
-<Heading as="h4">2.5. Ngôn ngữ</Heading>
-
-* Mezon hỗ trợ Tiếng Việt và Tiếng Anh.
-* Bạn có thể đổi ngôn ngữ bất kỳ lúc nào trong phần này.
-
-<Heading as="h4">2.6. Đăng xuất</Heading>
-
-* Nếu bạn đang dùng điện thoại công cộng hoặc chia sẻ thiết bị, hãy Đăng xuất để đảm bảo an toàn thông tin cá nhân.
-
-:::tip
-Giao diện mobile được thiết kế tối giản và thân thiện, giúp bạn dễ dàng cập nhật thông tin, điều chỉnh cài đặt và quản lý tài khoản của mình mọi lúc mọi nơi.
-:::
-
-<Heading as="h3">3. Mezon Shop</Heading>
-
-Tại **Mezon Shop**, bạn có thể mua các biểu tượng cảm xúc và nhãn dán hình ảnh độc quyền để làm cho cuộc trò chuyện thêm sinh động.
-
-Chỉ cần chọn biểu tượng cảm xúc hoặc nhãn dán hình ảnh mà bạn muốn, nhấn **Mở khóa** cho mỗi món.
 </TabItem>
 </Tabs>
+
+## Trong cài đặt có gì
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+| Mục | Bạn làm được gì |
+|---|---|
+| **Tài khoản** | Xem thông tin tài khoản. Đặt mật khẩu. |
+| **Trò chuyện** | Bật **Không nhận tin nhắn từ người lạ**. |
+| **Yêu cầu kết bạn** (iPhone: **Lời mời kết bạn**) | Chấp nhận hoặc từ chối yêu cầu kết bạn. |
+| **Quét mã QR** | Quét mã QR, ví dụ để [đăng nhập trên máy tính](./sign-up-and-log-in.mdx#log-in-on-a-computer-with-your-phone-qr-code). |
+| **Thiết bị** (chỉ Android) | Xem bạn đang đăng nhập ở đâu và đăng xuất một thiết bị. |
+| **Phiên bản ứng dụng** | Xem phiên bản Mezon bạn đang dùng. |
+| **Giao diện** | Chọn giao diện cho ứng dụng. |
+| **Ngôn ngữ** | Chọn English hoặc Tiếng Việt. |
+| **Đăng xuất** | Đăng xuất trên điện thoại này. |
+
+<Image src={phoneSettings} alt="Màn hình Cài đặt trên Android, dòng Ngôn ngữ được đánh dấu" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+| Mục | Bạn làm được gì |
+|---|---|
+| **Tài khoản** | Xem tên hiển thị, tên đăng nhập, email và số điện thoại. Đặt mật khẩu hoặc số điện thoại. |
+| **Thiết bị** | Xem bạn đang đăng nhập ở đâu và đăng xuất một thiết bị. |
+| **Hồ sơ** | Đổi tên, ảnh đại diện, tiểu sử, biểu tượng tin nhắn riêng và hồ sơ trong từng clan. |
+| **Giao diện** | Chọn giao diện màu. Bật hoặc tắt hiệu ứng icon. |
+| **Hoạt động** | Chọn có cho bạn bè thấy bạn đang làm gì hay không (**Hiển thị hoạt động của tôi**). |
+| **Tin nhắn** (ứng dụng máy tính: **Trò chuyện**) | Bật **Không nhận tin nhắn từ người lạ**. Bạn còn bật được **Câu trả lời nhanh**. |
+| **Thông báo** | Ẩn nội dung tin nhắn trong thông báo. |
+| **Ngôn ngữ** | Chọn một trong 16 ngôn ngữ. |
+| **Giọng nói** | Chọn micro và loa, chỉnh âm lượng, bật khử tiếng ồn và kiểm tra micro. |
+| **Máy chủ** | Chọn máy chủ Mezon để kết nối. Nếu không chắc, hãy để **Tự động**. Mục này không phải lúc nào cũng hiện. |
+| **Đăng xuất** | Đăng xuất trên máy tính hoặc trình duyệt này. |
+
+Ứng dụng máy tính còn có **Nâng cao** (tăng tốc đồ họa và công cụ cho nhà phát triển), **Hướng dẫn sử dụng** (giới thiệu nhanh màn hình) và **Kiểm tra cập nhật**.
+
+</TabItem>
+</Tabs>
+
+## Sửa hồ sơ {#edit-your-profile}
+
+Hồ sơ hiện tên hiển thị, ảnh đại diện và một đoạn tiểu sử ngắn. Bạn cũng có thể dùng tên và ảnh khác cho từng clan.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Nhấn **Hồ sơ** ở góc dưới bên phải.
+2. Nhấn nút sửa hồ sơ (Android: **Hồ sơ**, iPhone: **Chỉnh sửa hồ sơ**).
+3. Đổi ảnh, tên hoặc tiểu sử, rồi lưu.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Mở cài đặt và nhấn **Hồ sơ**.
+2. Chọn phần muốn đổi:
+   - **Hồ sơ người dùng**: tên hiển thị, ảnh đại diện, **Tiểu sử**, và **Biểu tượng tin nhắn riêng** (ảnh thay cho logo Mezon ở góc trên bên trái).
+   - **Hồ sơ Clan**: chọn một clan, rồi đặt **Biệt danh Clan** và ảnh đại diện cho clan đó.
+3. Nhấn **Lưu thay đổi**.
+
+</TabItem>
+</Tabs>
+
+:::note
+Ảnh đại diện tối đa 10 MB. Biểu tượng tin nhắn riêng tối đa 1 MB.
+:::
+
+Để đặt trạng thái (ví dụ **Không làm phiền**) trên máy tính, hãy nhấn vào tên của bạn ở góc dưới bên trái. Trên điện thoại, nhấn **Thêm trạng thái** ở thẻ **Hồ sơ**.
+
+## Trò chuyện {#chat}
+
+Bật **Không nhận tin nhắn từ người lạ** để chỉ bạn bè mới bắt đầu được cuộc trò chuyện với bạn. Người chưa là bạn bè sẽ thấy **Bạn không thể gửi tin nhắn cho người dùng này.**
+
+1. Mở cài đặt.
+2. Chọn **Tin nhắn** (điện thoại và ứng dụng máy tính: **Trò chuyện**).
+3. Bật **Không nhận tin nhắn từ người lạ**.
+
+<Image src={computerChat} alt="Cài đặt Trò chuyện trên web, công tắc Không nhận tin nhắn từ người lạ được đánh dấu" />
+
+## Thiết bị {#devices}
+
+Bạn có thể đăng nhập cùng lúc trên nhiều điện thoại, máy tính và trình duyệt. Mục **Thiết bị** liệt kê các thiết bị này. Thiết bị bạn đang dùng nằm ở **Thiết bị hiện tại**.
+
+1. Mở cài đặt.
+2. Chọn **Thiết bị**.
+3. Để đăng xuất một thiết bị, chọn **Đăng xuất khỏi thiết bị này** cạnh thiết bị đó.
+
+<Image src={computerDevices} alt="Cài đặt Thiết bị trên web, mục Thiết bị được đánh dấu" />
+
+:::warning
+Nếu thấy một thiết bị lạ, hãy đăng xuất thiết bị đó và đổi mật khẩu.
+:::
+
+Mục **Thiết bị** có trong ứng dụng web, ứng dụng máy tính và ứng dụng Android. Ứng dụng iPhone chưa có mục này.
+
+## Giao diện
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+Mở cài đặt, nhấn **Giao diện**, rồi chọn một giao diện. Phần xem trước cho thấy cuộc trò chuyện sẽ trông thế nào.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+Mở cài đặt, nhấn **Giao diện**, rồi nhấn một vòng tròn màu dưới **Chủ đề**. Đưa chuột vào vòng tròn để xem tên, ví dụ **Chủ đề tối** hoặc **Chủ đề sáng**.
+
+<Image src={computerTheme} alt="Cài đặt Giao diện trên web, các vòng tròn chủ đề được đánh dấu" />
+
+</TabItem>
+</Tabs>
+
+## Ngôn ngữ
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+Mở cài đặt, nhấn **Ngôn ngữ**, rồi chọn **English** hoặc **Tiếng Việt**. Ứng dụng điện thoại có hai ngôn ngữ này.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+Mở cài đặt, nhấn **Ngôn ngữ**, rồi chọn ngôn ngữ. Ứng dụng web và ứng dụng máy tính có 16 ngôn ngữ, trong đó có English và Tiếng Việt.
+
+<Image src={computerLanguage} alt="Cài đặt Ngôn ngữ, mục Tiếng Việt được đánh dấu" />
+
+Ứng dụng máy tính mở bằng tiếng Anh ở lần đầu: vào **Settings** → **Language** và chọn **Tiếng Việt**. Bạn chỉ cần đổi một lần.
+
+</TabItem>
+</Tabs>
+
+## Xem thêm
+
+- [Đăng ký và đăng nhập](./sign-up-and-log-in.mdx)
+- [Giới thiệu nhanh màn hình](./quick-tour.mdx)
+- [Phím tắt và định dạng chữ](./shortcuts.mdx)

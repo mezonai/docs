@@ -1,130 +1,87 @@
 ---
 sidebar_position: 3
-sidebar_label: Quick tour
-description: ""
+sidebar_label: Giới thiệu nhanh
+description: Các phần chính của màn hình Mezon trên điện thoại và trên máy tính.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import Heading from '@theme/Heading';
-import quickTour001 from './images/quick-tour-001.png';
+import phoneHome from "./images/quick-tour-phone-01.png";
+import computerHome from "./images/quick-tour-computer-01.png";
 
-# Quick tour
+# Giới thiệu nhanh màn hình
 
-<Tabs>
-<TabItem value="PC" label="PC">
+Trang này giới thiệu các phần chính của màn hình Mezon, để bạn biết tìm mọi thứ ở đâu.
 
-Giao diện của Mezon được thiết kế trực quan, giúp bạn dễ dàng nắm bắt ngay từ lần đầu sử dụng. Dưới đây là 7 khu vực chính bạn sẽ thường xuyên tương tác:
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-<Image style={{ margin: '1rem 2rem' }} src={quickTour001}></Image>
+<Image src={phoneHome} alt="Thẻ Clan trên Android: danh sách clan bên trái, danh sách kênh của clan đang mở và các thẻ ở cuối màn hình" width={270} />
 
-### 1. Logo Mezon
+## Các thẻ ở cuối màn hình
 
-- Đây là nơi tập trung **tất cả tin nhắn cá nhân và danh sách bạn bè** của bạn.
-- Chỉ cần nhấn vào logo, bạn sẽ thấy toàn bộ cuộc trò chuyện riêng và dễ dàng bắt đầu một tin nhắn mới.
+| Thẻ | Bạn tìm thấy gì |
+|---|---|
+| **Clan** | Các clan của bạn và kênh trong đó. Trên iPhone, thẻ này tên là **Kênh**. |
+| **Tin nhắn** | Tin nhắn trực tiếp và nhóm chat của bạn. |
+| **Thông báo** | Các thông báo của bạn, ví dụ khi có người nhắc đến bạn. |
+| **Hồ sơ** | Tên và trạng thái, ví Mezon Đồng, nút sửa hồ sơ, và biểu tượng bánh răng để mở [cài đặt](./personalization-settings.mdx). |
 
-:::tip
-Bạn có thể đổi logo Mezon thành bất kì hình ảnh nào bạn thích trong phần [Tùy chỉnh cá nhân hóa](personalization-settings).
-:::
+## Thẻ Clan
 
-### 2. Danh sách Clan
-
-- Hiển thị tất cả các **Clan** mà bạn đã tham gia.
-- Mỗi biểu tượng tương ứng với một Clan, nhấn để chuyển nhanh giữa các cộng đồng.
-- Tìm hiểu về Clan tại [**Clan là gì?**](../clan/what-is-clan)
-
-### 3. Khám phá
-
-- Khu vực giúp bạn **khám phá cộng đồng mới**.
-- Tìm những Clan sôi nổi theo chủ đề: học tập, làm việc, gaming, giải trí…
-- Bạn có thể tìm kiếm Clan tại: [**https://mezon.ai/clans/**](https://mezon.ai/clans)
-
-### 4. Tạo Clan mới
-
-- Nếu bạn muốn tạo không gian riêng cho nhóm bạn hoặc cộng đồng, hãy nhấn nút “+”.
-- Tại đây, bạn có thể khởi tạo Clan, đặt tên và mời bạn bè cùng tham gia.
-- Tìm hiểu cách tạo và tính năng của Clan tại: [**Tạo Clan của riêng bạn**](../clan/create-your-own-clan).
-
-### 5. Chi tiết Clan và Kênh
-
-- Khi chọn một Clan, khu vực này sẽ hiển thị toàn bộ **Kênh** bên trong:
-  - [**Kênh văn bản**](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel) (chat bằng văn bản)
-  - [**Kênh thoại**](../clan/create-your-own-clan/manage-clan/clan-structure/channels/voice-channel) (trò chuyện trực tiếp, video, và chia sẻ màn hình)
-  - [**Kênh phát trực tiếp**](../clan/create-your-own-clan/manage-clan/clan-structure/channels/stream-channel) (phát trực tiếp của admin Clan).
-- Đây là nơi bạn điều hướng giữa các kênh trong một Clan.
-
-### 6. Box Chat / Màn hình chính
-
-- Nếu bạn ở **Kênh văn bản**: hiển thị khung chat với bạn bè và thành viên Clan.
-- Nếu bạn ở **Kênh thoại/phát trực tiếp**: hiển thị thông tin người đang tham gia, bật/tắt mic, camera hoặc chia sẻ màn hình.
-
-### 7. Hồ sơ & Cài đặt cá nhân
-
-- Góc dưới cùng là nơi bạn quản lý thông tin cá nhân: avatar, tên hiển thị, bio, số dư Mezon Đồng, lịch sử giao dịch, trang thái tùy chỉnh.
-- Từ đây, bạn có thể truy cập nhanh vào [**Cài đặt**](personalization-settings) để điều chỉnh ngôn ngữ, thông báo, bảo mật và nhiều tùy chọn khác.
-
-:::warning Chú ý
-Nếu bạn chưa quen, hãy thử nhấn qua từng biểu tượng. Sau vài phút, bạn sẽ thấy mọi thứ rất trực quan và dễ nhớ.
-:::
+- **Cột bên trái:** các clan của bạn. Nhấn vào một clan để mở. Dưới các clan có **Khám phá** (hình la bàn, để tìm clan công khai) và **+** (để [tạo clan](../clan/create-your-own-clan/create-a-clan.mdx)).
+- **Phần đầu của clan:** tên clan và số thành viên. Nhấn vào tên để mở menu clan, ví dụ để mời người khác.
+- **Dưới tên clan:** **Search** (tìm kiếm, nút hiện bằng tiếng Anh), nút QR để quét mã QR, và nút lịch để xem [sự kiện](../clan/create-your-own-clan/manage-clan/creating-and-managing-events.mdx) của clan.
+- **Danh sách kênh:** các kênh được xếp theo danh mục. Dấu **#** là kênh văn bản để nhắn tin. Biểu tượng loa là kênh thoại để nói chuyện.
 
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-Giao diện Mezon trên điện thoại được tối ưu để bạn có thể kết nối, trò chuyện và quản lý cộng đồng ở mọi lúc, mọi nơi.\
-Dưới đây là **6 khu vực chính** mà bạn sẽ thường xuyên sử dụng:
+<TabItem value="computer" label="Máy tính">
 
-<div align="center">![quick-tour-mobile-001](./images/quick-tour-mobile-001.png)</div>
+<Image src={computerHome} alt="Ứng dụng web khi mở một clan: danh sách clan ở ngoài cùng bên trái, danh sách kênh, khung trò chuyện ở giữa và ô nhập tin nhắn ở dưới" />
 
-<Heading as="h3">1. Logo Mezon</Heading>
+## Cột bên trái: các clan của bạn
 
-- Đây là nơi tập trung **tất cả tin nhắn cá nhân và danh sách bạn bè** của bạn.
-- Chỉ cần nhấn vào logo, bạn sẽ thấy toàn bộ cuộc trò chuyện riêng và dễ dàng bắt đầu một tin nhắn mới.
+- **Logo Mezon** (trên cùng): tin nhắn trực tiếp và bạn bè.
+- **Biểu tượng clan:** nhấn để mở clan đó.
+- **Khám phá** (hình la bàn): tìm clan công khai trên trang web Mezon.
+- **+** (**Tạo Clan**): [tạo clan](../clan/create-your-own-clan/create-a-clan.mdx).
+
+Ứng dụng máy tính có thêm nút quay lại và đi tới ở trên cùng.
+
+## Danh sách kênh
+
+- **Tên clan** (trên cùng): nhấn vào để mở menu clan, ví dụ **Mời Người Tham Gia** hoặc **Cài Đặt Clan**.
+- **Sự kiện**, **Thành viên** và **Kênh** của clan.
+- **Danh mục** cùng các kênh trong đó. Dấu **#** là kênh văn bản. Biểu tượng loa là kênh thoại.
+
+Khi bạn nhấn logo Mezon, cột này hiện **Bạn bè** và **TIN NHẮN TRỰC TIẾP**.
+
+## Khung trò chuyện ở giữa
+
+- **Thanh trên cùng:** tên kênh và các nút cho chủ đề (thread), tin nhắn đã ghim, thành viên, thông báo và **Tìm kiếm**.
+- **Tin nhắn** của kênh.
+- **Ô nhập tin nhắn** ở dưới cùng: gõ tin nhắn rồi nhấn Enter.
+
+Trong kênh thoại, phần giữa hiện những người đang trong cuộc gọi và các nút micro, camera, chia sẻ màn hình.
+
+## Tên của bạn, góc dưới bên trái
+
+- Nhấn vào tên của bạn để xem số dư Mezon Đồng, **Chuyển token**, **Lịch sử giao dịch**, **Đặt trạng thái tùy chỉnh** và trạng thái của bạn.
+- Nhấn biểu tượng bánh răng để mở [cài đặt](./personalization-settings.mdx).
 
 :::tip
-Bạn có thể đổi logo Mezon thành bất kì hình ảnh nào bạn thích trong phần [Tùy chỉnh cá nhân hóa](personalization-settings).
+Nhấn Ctrl+K (⌘K trên Mac) để đi nhanh tới bất kỳ clan, kênh hay người nào. Xem [phím tắt](./shortcuts.mdx).
 :::
 
-<Heading as="h3">2. Danh sách Clan</Heading>
+## Hướng dẫn sử dụng trong ứng dụng máy tính
 
-- Thanh dọc bên trái hiển thị toàn bộ các Clan mà bạn đã tham gia.
-- Mỗi biểu tượng đại diện cho một Clan – chỉ cần chạm vào là bạn có thể chuyển nhanh giữa các cộng đồng khác nhau.
-- Tìm hiểu về Clan tại [**Clan là gì?**](../clan/what-is-clan)
-
-<Heading as="h3">3. Trang chính của Clan</Heading>
-
-Khi chọn vào một Clan, bạn sẽ thấy hình ảnh bìa, tên Clan, số thành viên và mô tả nhanh về cộng đồng đó.\
-Tại đây, bạn có thể:
-
-- Xem thông tin Clan
-- Tìm kiếm kênh, chủ đề hoặc thành viên
-- Quét mã QR để giao dịch token hay tham gia vào 1 clan khác
-- Xem lịch sự kiện của clan
-
-<Heading as="h3">4. Điều hướng Clan</Heading>
-
-- Khi chọn một Clan, khu vực này sẽ hiển thị toàn bộ Danh mục, Kênh và Chủ đề đang hoạt động bên trong.
-- Có 3 loại kênh:
-  - [**Kênh văn bản**](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel)
-  - [**Kênh thoại**](../clan/create-your-own-clan/manage-clan/clan-structure/channels/voice-channel)
-  - [**Kênh phát trực tiếp**](../clan/create-your-own-clan/manage-clan/clan-structure/channels/stream-channel)
-- Đây là nơi bạn điều hướng giữa các kênh trong một Clan.
-
-<Heading as="h3">5. Tạo Clan mới</Heading>
-
-Nếu muốn lập nhóm riêng, hãy chạm nút **“+”** ở cuối thanh Clan.\
-Bạn có thể đặt tên, tạo kênh riêng, thêm bạn bè và bắt đầu xây dựng cộng đồng của mình.
-
-<Heading as="h3">6. Thanh điều hướng dưới cùng</Heading>
-
-Đây là nơi bạn chuyển nhanh giữa các khu vực chính:
-
-- **Clans:** Danh sách tất cả cộng đồng
-- **Tin nhắn:** Trò chuyện 1-1 hoặc nhóm nhỏ
-- **Hộp thư:** Cập nhật hoạt động mới nhất
-- **Hồ sơ:** Quản lý thông tin cá nhân và cài đặt
-
-:::warning Chú ý
-Hãy thử vuốt hoặc chạm vào từng khu vực — sau vài phút, bạn sẽ thấy mọi thứ trong Mezon đều được bố trí rất trực quan và dễ sử dụng, kể cả trên di động.
-:::
+Ứng dụng máy tính có phần hướng dẫn ngắn. Phần này có thể tự chạy ở lần đầu bạn mở ứng dụng. Để mở lại, vào cài đặt và nhấn **Hướng dẫn sử dụng**. Chọn một phần, ví dụ **Bắt đầu** hoặc **Thoại và cuộc gọi**. Mỗi phần mất khoảng một phút.
 
 </TabItem>
 </Tabs>
+
+## Xem thêm
+
+- [Hồ sơ và cài đặt](./personalization-settings.mdx)
+- [Clan là gì](../clan/what-is-clan.mdx)
+- [Bắt đầu nhanh](../quick-start.mdx)

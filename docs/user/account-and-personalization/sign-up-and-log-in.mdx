@@ -1,53 +1,145 @@
 ---
-  sidebar_position: 2
-  sidebar_label: Sign Up & Log In
+sidebar_position: 2
+sidebar_label: Sign up and log in
+description: Log in to Mezon with a code sent by email or SMS, with a password, or with a QR code. Your first login creates your account.
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import signUpAndLogIn001 from './images/sign-up-and-log-in-001.png';
-import signUpAndLogIn002 from './images/sign-up-and-log-in-002.png';
-import signUpAndLogIn003 from './images/sign-up-and-log-in-003.png';
-import signUpAndLogIn004 from './images/sign-up-and-log-in-004.png';
-import signUpAndLogIn005 from './images/sign-up-and-log-in-005.png';
-import signUpAndLogIn006 from './images/sign-up-and-log-in-006.png';
+import phoneLogin from "./images/sign-up-and-log-in-phone-01.png";
+import webLogin from "./images/sign-up-and-log-in-computer-01.png";
 
-# Sign Up & Log In
-Signing up for Mezon is incredibly quick - it takes less than a minute to create your account and start chatting right away.
+# Sign up and log in
 
-### Sign Up with Email and OTP
+You do not need to sign up first. The first time you log in with a code, Mezon creates your account.
 
-<Image style={{ margin: '1rem 2rem' }} src={signUpAndLogIn001}></Image>
+## Ways to log in
 
-1. Enter your email → receive an **OTP** sent to your inbox.
-2. Enter the **OTP** to verify your account.
+| Method | Phone app | Desktop app | Web app |
+|---|---|---|---|
+| Code sent by SMS | Yes, Vietnamese mobile numbers (+84) | Yes, Vietnamese mobile numbers (+84) | Yes |
+| Code sent by email | Yes | Yes | Yes |
+| Email and password | Yes, after you [set a password](#set-a-password) | Yes, after you set a password | Yes, after you set a password |
+| QR code scanned with your phone | No (the phone is the scanner) | Yes | Yes |
 
-### Sign Up with Email and Password
+The code is a 6-digit one-time code (OTP).
 
-<Image style={{ margin: '1rem 2rem' }} src={signUpAndLogIn002}></Image>
+## Log in with a code {#log-in-with-a-code}
 
-After logging in for the first time, users can set a password in their profile settings.\
-Once the password is created, it can be used for future logins to **Mezon**.
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
 
-:::danger Note
-Each user can be logged in on up to **5 devices** simultaneously.
-:::
+1. Open Mezon and tap **Get Started**.
+2. Enter your phone number. To use email instead, tap **Login with Email OTP** and enter your email. Outside Vietnam, the email screen may show first.
 
-### Log In with QR (Desktop)
+<Image src={phoneLogin} alt="The phone login screen with the phone number field marked" width={270} />
 
-1. Open **Mezon** on your mobile device.
-2. Go to **Profile → Settings → Scan QR**.
+3. Tap **Send OTP**.
+4. Type the 6-digit code from the SMS or the email, then tap **Verify OTP**.
+5. If Mezon asks you to **Enter Mezon name**, type your name and tap **Update**.
 
-<div style={{ margin: '1rem', display: 'flex', alignItems: 'center', gap: '50px' }}>
-  <Image style={{ margin: '1rem 2rem' }} src={signUpAndLogIn003}></Image>
-  <span style={{ fontSize: '30px', fontWeight: 'bold' }}>→</span>
-  <Image style={{ margin: '1rem 2rem' }} src={signUpAndLogIn004}></Image>
-</div>
+</TabItem>
+<TabItem value="computer" label="Computer">
 
-3. **Scan the QR code** displayed on your computer screen.
+**Desktop app**
 
-<Image style={{ margin: '1rem 2rem' }} src={signUpAndLogIn005}></Image>
+1. Open Mezon. The **WELCOME BACK** screen shows a phone number field.
+2. Enter your phone number. To use email instead, click **Login with Email OTP** and enter your email.
+3. Click **Send OTP**.
+4. Type the 6-digit code.
+5. If Mezon asks you to **Enter Mezon name**, type your name and click **Update**.
+
+**Web app**
+
+1. Go to [mezon.ai](https://mezon.ai) and click **Login**.
+2. Type your email or phone number and click **Sign in**.
+3. Type the 6-digit code and click **Verify OTP**.
+
+<Image src={webLogin} alt="The Sign In page of the web app with the email or phone number field marked" />
+
+The web login page is in English only.
+
+</TabItem>
+</Tabs>
+
+Mezon opens. If this was your first login, your account is ready.
 
 :::tip
-**Quick Tip:** You can also tap the **Scan** button at the top of any Clan interface - no need to go through the Settings menu.
-
-<Image style={{ margin: '1rem 2rem' }} width={'50%'} src={signUpAndLogIn006}></Image>
+No code yet? Wait until the timer ends, then select **Resend OTP**. If you typed a wrong email or number, use the link to change it. Outside Vietnam, log in with your email.
 :::
+
+## Log in with a password {#log-in-with-a-password}
+
+You can use a password only after you [set one](#set-a-password).
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. On the login screen, tap **Login with Email & Password**.
+2. Enter your email and your password.
+3. Tap **Log In**.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+**Desktop app:** click **Login with Email & Password**, enter your email and password, then click **Log In**.
+
+**Web app:** under **Or sign in with**, click **Password**. Enter your email and password, then click **Sign in**. If you forgot your password, click **Forgot Password?**.
+
+</TabItem>
+</Tabs>
+
+## Set a password {#set-a-password}
+
+Your account needs an email address before you can set a password. If you logged in with a phone number, Mezon first asks you to link an email (web and iPhone: **Link Email Required**). Link your email, then set the password.
+
+The password needs at least 8 characters, with an uppercase letter, a lowercase letter, a number and a special character.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Tap **Profile** at the bottom of the screen.
+2. Tap the gear icon at the top right to open **Settings**.
+3. Tap **Account**. On an iPhone, then tap **Account Management**.
+4. Tap **Set Password**.
+5. Type the password twice and save.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Click the gear icon next to your name, at the bottom left.
+2. Click **Account**.
+3. Next to the password, click **Set Password**.
+4. Type the password twice and click **Save**.
+
+</TabItem>
+</Tabs>
+
+## Log in on a computer with your phone (QR code) {#log-in-on-a-computer-with-your-phone-qr-code}
+
+If you are logged in on your phone, you can log in on a computer without a code.
+
+1. On the computer, open the login screen. The desktop app shows the QR code under **Sign in by QR code**. The web login page shows it under **Log in with QR Code**.
+2. On the phone, tap **Profile**, then the gear icon, then **Scan QR Code** (iPhone: **QR Scan**). You can also tap the QR button at the top of a clan's channel list.
+3. Point the camera at the QR code on the computer.
+4. The phone shows **Log in on new device**. Tap **Log in**.
+
+The computer opens Mezon with your account.
+
+If the QR code has expired, click it (desktop app) or click the refresh icon (web) to get a new one.
+
+:::warning
+Only scan a QR code that you see on your own computer screen. Never confirm a code that someone sent you: they would get into your account.
+:::
+
+## Use Mezon on several devices
+
+You can stay logged in on your phone, your computer and in a browser at the same time. To see where you are logged in, or to log out one device, open [Settings → Devices](./personalization-settings.mdx#devices).
+
+To log out of the device you are using, open **Settings** and select **Logout**.
+
+## Related
+
+- [Download and install Mezon](./download-and-settings.mdx)
+- [Profile and settings](./personalization-settings.mdx)
+- [Quick start](../quick-start.mdx)

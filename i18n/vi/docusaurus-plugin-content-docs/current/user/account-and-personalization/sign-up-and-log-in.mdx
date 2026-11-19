@@ -1,56 +1,147 @@
 ---
-  sidebar_position: 2
-  sidebar_label: Đăng ký và Đăng nhập
+sidebar_position: 2
+sidebar_label: Đăng ký và đăng nhập
+description: Đăng nhập Mezon bằng mã gửi qua email hoặc SMS, bằng mật khẩu hoặc bằng mã QR. Lần đăng nhập đầu tiên sẽ tạo tài khoản cho bạn.
 ---
-
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import phoneLogin from "./images/sign-up-and-log-in-phone-01.png";
+import webLogin from "./images/sign-up-and-log-in-computer-01.png";
 
-import signUpAndLogIn001 from './images/sign-up-and-log-in-001.png';
-import signUpAndLogIn002 from './images/sign-up-and-log-in-002.png';
-import signUpAndLogIn003 from './images/sign-up-and-log-in-003.png';
-import signUpAndLogIn004 from './images/sign-up-and-log-in-004.png';
-import signUpAndLogIn005 from './images/sign-up-and-log-in-005.png';
-import signUpAndLogIn006 from './images/sign-up-and-log-in-006.png';
+# Đăng ký và đăng nhập
 
-# Đăng ký và Đăng nhập
-Đăng ký Mezon cực kỳ nhanh chóng – chỉ mất chưa đầy 1 phút để bạn có tài khoản riêng và bắt đầu trò chuyện.
+Bạn không cần đăng ký trước. Lần đầu bạn đăng nhập bằng mã, Mezon tự tạo tài khoản cho bạn.
 
-### Đăng ký bằng Email và OTP
+## Các cách đăng nhập
 
-<Image style={{ margin: '1rem 2rem' }} src={signUpAndLogIn001}></Image>
+| Cách | Ứng dụng điện thoại | Ứng dụng máy tính | Ứng dụng web |
+|---|---|---|---|
+| Mã gửi qua SMS | Có, số di động Việt Nam (+84) | Có, số di động Việt Nam (+84) | Có |
+| Mã gửi qua email | Có | Có | Có |
+| Email và mật khẩu | Có, sau khi bạn [đặt mật khẩu](#set-a-password) | Có, sau khi bạn đặt mật khẩu | Có, sau khi bạn đặt mật khẩu |
+| Quét mã QR bằng điện thoại | Không (điện thoại là máy quét) | Có | Có |
 
-1. Nhập email → nhận **OTP** gửi về hòm thư.
-2. Nhập OTP để xác minh.
+Mã là một dãy 6 số chỉ dùng một lần (OTP).
 
-### Đăng ký bằng Email và Mật khẩu
+## Đăng nhập bằng mã {#log-in-with-a-code}
 
-<Image style={{ margin: '1rem 2rem' }} src={signUpAndLogIn002}></Image>
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-Sau khi đăng nhập lần đầu, người dùng có thể cài đặt mật khẩu trong tùy chỉnh profile cá nhân
+1. Mở Mezon và nhấn **Bắt đầu nào**.
+2. Nhập số điện thoại. Nếu muốn dùng email, nhấn **Đăng nhập bằng Email OTP** rồi nhập email. Nếu bạn ở ngoài Việt Nam, màn hình email có thể hiện trước.
 
-Sau đó, người dùng có thể đăng nhập Mezon bằng mật khẩu vừa cài đặt ở những lần đăng nhập tiếp theo.
+<Image src={phoneLogin} alt="Màn hình đăng nhập trên điện thoại, ô số điện thoại được đánh dấu" width={270} />
 
-:::danger
-Mỗi người dùng có thể đăng nhập tối đa 5 thiết bị cùng một lúc.
+3. Nhấn **Gửi OTP**.
+4. Nhập mã 6 số trong tin nhắn SMS hoặc email, rồi nhấn **Xác nhận OTP** (iPhone: **Xác thực OTP**).
+5. Nếu Mezon hiện **Nhập tên Mezon**, hãy nhập tên của bạn và nhấn **Cập nhật**.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+**Ứng dụng máy tính**
+
+1. Mở Mezon. Màn hình **CHÀO MỪNG TRỞ LẠI** hiện ô số điện thoại.
+2. Nhập số điện thoại. Nếu muốn dùng email, nhấn **Đăng nhập bằng Email OTP** rồi nhập email.
+3. Nhấn **Gửi OTP**.
+4. Nhập mã 6 số.
+5. Nếu Mezon hiện **Nhập tên Mezon**, hãy nhập tên của bạn và nhấn **Cập nhật**.
+
+Ứng dụng máy tính mở bằng tiếng Anh ở lần đầu. Khi đó các nút có tên tiếng Anh, ví dụ **Login with Email OTP** và **Send OTP**. Xem cách đổi ngôn ngữ trong [Hồ sơ và cài đặt](./personalization-settings.mdx).
+
+**Ứng dụng web**
+
+1. Vào [mezon.ai](https://mezon.ai) và nhấn **Đăng Nhập**.
+2. Nhập email hoặc số điện thoại rồi nhấn **Sign in** (Đăng nhập).
+3. Nhập mã 6 số rồi nhấn **Verify OTP** (Xác nhận OTP).
+
+<Image src={webLogin} alt="Trang Sign In của ứng dụng web, ô email hoặc số điện thoại được đánh dấu" />
+
+Trang đăng nhập trên web chỉ có tiếng Anh.
+
+</TabItem>
+</Tabs>
+
+Mezon mở ra. Nếu đây là lần đăng nhập đầu tiên, tài khoản của bạn đã sẵn sàng.
+
+:::tip
+Chưa nhận được mã? Hãy chờ hết thời gian đếm ngược rồi chọn **Gửi lại OTP** (web: **Resend OTP**). Nếu bạn gõ sai email hoặc số điện thoại, hãy dùng liên kết để đổi lại. Nếu bạn ở ngoài Việt Nam, hãy đăng nhập bằng email.
 :::
 
-### Đăng nhập bằng QR (Máy tính)
+## Đăng nhập bằng mật khẩu {#log-in-with-a-password}
 
-1. Mở Mezon trên **điện thoại**.
-2. Vào **Hồ sơ** → **Cài đặt** → **Quét QR**
+Bạn chỉ dùng được mật khẩu sau khi đã [đặt mật khẩu](#set-a-password).
 
-<div style={{ margin: '1rem', display: 'flex', alignItems: 'center', gap: '50px' }}>
-  <Image style={{ margin: '1rem 2rem' }} src={signUpAndLogIn003}></Image>
-  <span style={{ fontSize: '30px', fontWeight: 'bold' }}>→</span>
-  <Image style={{ margin: '1rem 2rem' }} src={signUpAndLogIn004}></Image>
-</div>
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-3. Quét mã QR hiển thị trên màn hình máy tính.
+1. Ở màn hình đăng nhập, nhấn **Đăng nhập bằng Mật khẩu** (iPhone: **Đăng nhập bằng Email & Mật khẩu**).
+2. Nhập email và mật khẩu.
+3. Nhấn **Đăng nhập**.
 
-<Image style={{ margin: '1rem 2rem' }} src={signUpAndLogIn005}></Image>
+</TabItem>
+<TabItem value="computer" label="Máy tính">
 
-:::tip Mẹo nhanh
-Bạn cũng có thể nhấn nút **Quét** ở ngay đầu giao diện của bất kỳ Clan nào, không cần đi qua phần Cài đặt.
+**Ứng dụng máy tính:** nhấn **Đăng nhập bằng Email & Mật khẩu**, nhập email và mật khẩu, rồi nhấn **Đăng nhập**.
 
-<Image style={{ margin: '1rem 2rem' }} width={'50%'} src={signUpAndLogIn006}></Image>
+**Ứng dụng web:** dưới dòng **Or sign in with**, nhấn **Password** (Mật khẩu). Nhập email và mật khẩu, rồi nhấn **Sign in**. Nếu quên mật khẩu, nhấn **Forgot Password?**.
+
+</TabItem>
+</Tabs>
+
+## Đặt mật khẩu {#set-a-password}
+
+Tài khoản cần có email thì mới đặt được mật khẩu. Nếu bạn đăng nhập bằng số điện thoại, Mezon sẽ yêu cầu bạn liên kết email trước (web: **Yêu cầu liên kết email**, iPhone: **Yêu cầu liên kết Email**). Hãy liên kết email, rồi đặt mật khẩu.
+
+Mật khẩu cần ít nhất 8 ký tự, gồm chữ hoa, chữ thường, chữ số và ký tự đặc biệt.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Nhấn **Hồ sơ** ở cuối màn hình.
+2. Nhấn biểu tượng bánh răng ở góc trên bên phải để mở **Cài đặt**.
+3. Nhấn **Tài khoản**. Trên iPhone, nhấn tiếp **Quản lý tài khoản**.
+4. Nhấn **Đặt mật khẩu**.
+5. Nhập mật khẩu hai lần rồi lưu.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Nhấn biểu tượng bánh răng cạnh tên bạn, ở góc dưới bên trái.
+2. Nhấn **Tài khoản**.
+3. Ở dòng mật khẩu, nhấn **Đặt mật khẩu**.
+4. Nhập mật khẩu hai lần rồi nhấn **Lưu**.
+
+</TabItem>
+</Tabs>
+
+## Đăng nhập trên máy tính bằng điện thoại (mã QR) {#log-in-on-a-computer-with-your-phone-qr-code}
+
+Nếu đã đăng nhập Mezon trên điện thoại, bạn có thể đăng nhập trên máy tính mà không cần mã OTP.
+
+1. Trên máy tính, mở màn hình đăng nhập. Ứng dụng máy tính hiện mã QR ở mục **Đăng nhập bằng mã QR**. Trang đăng nhập web hiện mã ở mục **Log in with QR Code**.
+2. Trên điện thoại, nhấn **Hồ sơ**, rồi biểu tượng bánh răng, rồi **Quét mã QR**. Bạn cũng có thể nhấn nút QR ở đầu danh sách kênh của một clan.
+3. Đưa camera về phía mã QR trên máy tính.
+4. Điện thoại hiện **Đăng nhập trên thiết bị mới**. Nhấn **Đăng nhập**.
+
+Máy tính mở Mezon với tài khoản của bạn.
+
+Nếu mã QR đã hết hạn, hãy nhấn vào mã (ứng dụng máy tính) hoặc nhấn biểu tượng làm mới (web) để lấy mã mới.
+
+:::warning
+Chỉ quét mã QR hiện trên màn hình máy tính của chính bạn. Đừng bao giờ xác nhận mã do người khác gửi: họ sẽ vào được tài khoản của bạn.
 :::
+
+## Dùng Mezon trên nhiều thiết bị
+
+Bạn có thể đăng nhập cùng lúc trên điện thoại, máy tính và trình duyệt. Để xem bạn đang đăng nhập ở đâu, hoặc đăng xuất một thiết bị, hãy mở [Cài đặt → Thiết bị](./personalization-settings.mdx#devices).
+
+Để đăng xuất trên thiết bị đang dùng, hãy mở **Cài đặt** và chọn **Đăng xuất**.
+
+## Xem thêm
+
+- [Tải và cài đặt Mezon](./download-and-settings.mdx)
+- [Hồ sơ và cài đặt](./personalization-settings.mdx)
+- [Bắt đầu nhanh](../quick-start.mdx)
