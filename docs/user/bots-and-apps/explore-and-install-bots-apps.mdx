@@ -1,30 +1,92 @@
 ---
 sidebar_position: 3
-sidebar_label: Explore & Install Bots/Apps
+sidebar_label: Find and add bots and apps
+description: Find a bot or app in the Bots/Apps directory and add it to your clan.
 ---
-import { Steps, Step } from "@site/src/components/Steps";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import directoryList from "./images/explore-and-install-bots-apps-001.png";
+import computerAddToClan from "./images/explore-and-install-bots-apps-computer-01.png";
+import computerAuthorize from "./images/explore-and-install-bots-apps-computer-02.png";
+import computerSuccess from "./images/explore-and-install-bots-apps-computer-03.png";
+import computerWelcome from "./images/explore-and-install-bots-apps-computer-04.png";
 
-# Explore & Install Bots/Apps
-Ready to level up your Clan? Adding Bots and Apps to Mezon is quick and easy!
+# Find and add bots and apps
 
-<Steps>
-<Step title="Discover on Mezon Store">
+Find bots and apps in the Bots/Apps directory, then add them to a clan where you have the right permission.
 
-Visit [**top.mezon.ai**](https://top.mezon.ai) – Mezon’s official app marketplace – where you can explore hundreds of Bots and Apps created by the community and the Mezon team. Use search filters to find the applications that best suit your needs.
-</Step>
-<Step title="Select and Invite">
+## Who can add bots and apps
 
-Once you find a Bot/App you like, click the **"Invite"** button.
+| To add | You must be |
+|---|---|
+| A bot | The clan owner, or a member whose role has **Manage Clan** or **Administrator** |
+| An app | The clan owner, or a member whose role has **Manage Channels**, **Manage Clan** or **Administrator** |
 
-![explore-and-install-bots-apps-001](./images/explore-and-install-bots-apps-001.png)
-</Step>
-<Step title="Grant Safe Permissions">
+If you do not have the permission, ask the clan owner to add it for you.
 
-A permission window will appear. Select the Clan where you want to add the Bot/App, then click **"Authorize"**. Always carefully review the permissions requested by the Bot/App to ensure your Clan’s data remains secure.
+## Find a bot or app
 
-![explore-and-install-bots-apps-002](./images/explore-and-install-bots-apps-002.png)
+1. Open the Bots/Apps directory: [top.mezon.ai](https://top.mezon.ai).
+2. Search or scroll the list. Bots are marked **BOT** and apps are marked **APP**.
+3. Click **Invite** next to the one you want.
 
-**Done!**\
-After authorization, the Bot/App will immediately appear in your Clan’s member list and be ready to use.
-</Step>
-</Steps>
+<Image src={directoryList} alt="The Bots/Apps directory with an Invite button next to each bot and app" />
+
+The add page opens. It works the same for bots and apps, except for the extra fields for apps (see below). If you are not logged in, the page asks you to log in first.
+
+## Add a bot to your clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. On your phone, open [top.mezon.ai](https://top.mezon.ai) and tap **Invite** next to the bot. The Mezon app opens the add screen.
+2. Under **Add to clan** (iPhone: **ADD TO CLAN**), choose your clan.
+3. **Android:** tap **Authorize**. **iPhone:** tap **Add**.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. On the add page, click **Add to clan**.
+
+<Image src={computerAddToClan} alt="The add page of a bot with the Add to clan button marked" />
+
+2. Under **ADD TO CLAN**, choose your clan.
+3. Click **Authorize**.
+
+<Image src={computerAuthorize} alt="The permission screen with a clan chosen and the Authorize button marked" />
+
+The page shows **Success!**. Click **Go to** and the clan name to open your clan, or close the tab.
+
+<Image src={computerSuccess} alt="The Success screen after a bot was added to a clan" />
+
+</TabItem>
+</Tabs>
+
+The bot is now a member of your clan. Mezon posts a welcome message for it in the clan.
+
+<Image src={computerWelcome} alt="The welcome message for a new bot in a clan channel" />
+
+## Add an app to your clan
+
+Adding an app creates a new channel for it. These steps use the add page on a computer.
+
+1. On the add page, click **Add to clan**.
+2. Under **ADD TO CLAN**, choose your clan.
+3. Under **ADD TO CATEGORY**, choose the category for the new channel.
+4. Type a **CHANNEL NAME**, or leave it empty to use the app's name.
+5. Click **Authorize**.
+
+The app's channel appears in the category you chose.
+
+## About the permission screen
+
+The screen says that the bot or app "wants to access your Mezon account". It does not list permissions. The screen is in English only.
+
+After you add a bot, it has only the permissions of the @everyone role, which every member has, plus the roles you give it. To change what a bot can do, see [Manage bots and apps](./manage-bots-and-apps.mdx).
+
+## Related
+
+- [Stay safe with bots and apps](./safety-guidelines-for-bots-apps.mdx)
+- [Fix problems with bots and apps](./troubleshooting-bots-apps.mdx)
+- [Roles and permissions](../clan/create-your-own-clan/manage-clan/overview-settings/roles-and-permissions-management.mdx)

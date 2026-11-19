@@ -1,44 +1,117 @@
 ---
 sidebar_position: 2
-sidebar_label: Send & Transfer Mezon Dong
+sidebar_label: Send Mezon Dong
+description: Send Mezon Dong to someone, give a coffee, and see your transaction history.
 ---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
-import sendAndTransferMezonDong001 from './images/send-and-transfer-mezon-dong-001.png';
-import sendAndTransferMezonDong002 from './images/send-and-transfer-mezon-dong-002.png';
-import sendAndTransferMezonDong003 from './images/send-and-transfer-mezon-dong-003.png';
+import computerPanel from "./images/send-and-transfer-mezon-dong-computer-01.png";
+import computerSend from "./images/send-and-transfer-mezon-dong-computer-02.png";
+import computerProfileTransfer from "./images/send-and-transfer-mezon-dong-computer-03.png";
+import computerCoffee from "./images/send-and-transfer-mezon-dong-computer-04.png";
 
-# Send & Transfer Mezon Dong
-Mezon Dong are not just for spending—they’re also for sharing. You can send tokens to friends, colleagues, or Clan members in a few simple steps.
+# Send Mezon Dong
 
-### 1. Check Wallet Balance
+Send Mezon Dong to another person, give a coffee for a message, and check what you sent and received.
 
-Your token balance is always visible in your Mezon account profile.
+## Send Mezon Dong to someone
 
-* **Balance:** current amount (in VND).
-* **Transfer Funds:** send tokens to others.
-* **Transaction History:** review past transactions.
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
 
-<Image style={{ margin: '1rem 2rem' }}  src={sendAndTransferMezonDong001} alt="Send and Transfer Mezon Dong 001" />
+1. Tap **Profile** at the bottom of the screen.
+2. Tap **Transfer Funds**.
+3. Choose the person.
+4. Type the amount. You can add a note.
+5. **Android:** tap **Transfer Funds**. **iPhone:** tap **Send**, then tap **Transfer** to confirm.
 
-### 2. Transfer Tokens Directly
+</TabItem>
+<TabItem value="computer" label="Computer">
 
-When selecting **Transfer Funds**, a send window appears:
+1. Click your name at the bottom left.
+2. Click **Transfer Funds**.
 
-* **To:** enter recipient’s name or ID.
-* **Amount:** specify the number of tokens (shown in VND).
-* **Note (Optional):** add a message (e.g., “coffee treat”, “share clan fee”).\
-  Click **Send Tokens** to complete the transaction.
+<Image src={computerPanel} alt="Your profile panel with Balance, Transfer Funds and Transaction History, Transfer Funds marked" />
 
-<Image style={{ margin: '1rem 2rem' }}  src={sendAndTransferMezonDong002} alt="Send and Transfer Mezon Dong 002" />
+3. Under **To**, type the person's name and choose them in the list.
+4. Under **Amount**, type the amount in VND.
+5. You can change the **Note (Optional)**. It already has a default note.
+6. Click **Send Tokens**.
 
-:::tip
-All token transfers within Mezon are instant, free, and require no intermediaries.
+<Image src={computerSend} alt="The Send Tokens window with the To, Amount and Note fields, Send Tokens marked" />
+
+You can also start from a direct message with the person:
+
+1. Look at the person's profile on the right. If it is hidden, click **Show User Profile** (the profile icon at the top right).
+2. Click **Transfer** (the coin icon) at the top of the profile. The **To** field is already filled in.
+3. Type the amount and click **Send Tokens**.
+
+<Image src={computerProfileTransfer} alt="A person's profile in a direct message with the Transfer button marked" />
+
+</TabItem>
+</Tabs>
+
+The person gets a message from you in your direct message with them. It shows "Funds Transferred:", the amount and your note.
+
+:::note
+The amount must be more than 0 and not more than your balance. You cannot edit a transfer message after it is sent.
 :::
 
-### 3. Give a Coffee (Optional Gift)
+## Give a coffee
 
-For a small symbolic gift, use **Give A Coffee** (1 Coffee = 10,000 MEZ) to thank or encourage someone in your Clan.
+A coffee sends 10,000 đồng to the author of a message. You cannot give a coffee for your own message.
 
-<Image style={{ margin: '1rem 2rem' }}  src={sendAndTransferMezonDong003} alt="Send and Transfer Mezon Dong 003" />
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
 
-These options make Mezon Token a simple and friendly financial tool—perfect for internal payments or small daily gestures.
+1. Press and hold the message.
+2. **Android:** tap **Give Coffee**. **iPhone:** tap **Give A Coffee**.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Right-click the message.
+2. Click **Give A Coffee**. The coffee is sent at once, without a confirmation.
+
+<Image src={computerCoffee} alt="The message menu with Give A Coffee marked" />
+
+</TabItem>
+</Tabs>
+
+Mezon adds a coffee reaction to the message and sends the author a transfer message for 10,000 đồng.
+
+## Receive Mezon Dong with a QR code
+
+On a phone, you can show a transfer QR code. The person who pays scans it, and Mezon fills in your name as the recipient.
+
+1. Tap **Profile** at the bottom of the screen, then **Settings**.
+2. Tap **Scan QR Code** (iPhone: **QR Scan**).
+3. Tap **My QR Code**.
+4. Tap **Transfer QR** (iPhone: **QR Transfer**). Show this code to the person who pays.
+
+The person who pays opens **Scan QR Code** (iPhone: **QR Scan**) the same way and points the camera at your code. Their transfer screen opens with you as the recipient.
+
+## See your transaction history
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Tap **Profile** at the bottom of the screen.
+2. **Android:** tap **Transaction History**. **iPhone:** tap **History Transaction**.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Click your name at the bottom left.
+2. Click **Transaction History**.
+3. Choose **All Transactions**, **Sent Transactions** or **Received Transactions**.
+
+You can also click **Mezon transfer** under a transfer message to open your history.
+
+</TabItem>
+</Tabs>
+
+## Related
+
+- [What is Mezon Dong?](./what-is-mezon-dong.mdx)

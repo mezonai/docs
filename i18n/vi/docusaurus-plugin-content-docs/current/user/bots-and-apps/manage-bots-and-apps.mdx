@@ -1,45 +1,98 @@
 ---
 sidebar_position: 4
-sidebar_label: Quản lý Bots
+sidebar_label: Quản lý bot và ứng dụng
+description: Tìm các bot trong clan, gán vai trò cho bot, hoặc xóa bot khỏi clan.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import manageBotsAndAppsMobile001 from "./images/manage-bots-and-apps-mobile-001.png";
-import manageBotsAndAppsMobile002 from "./images/manage-bots-and-apps-mobile-002.png";
+import Image from "@site/src/components/Image";
+import computerMembers from "./images/manage-bots-and-apps-computer-01.png";
+import computerRemove from "./images/manage-bots-and-apps-computer-02.png";
 
-# Quản lý Bots
-Việc quản lý Bot và App cũng dễ dàng như cách bạn thêm chúng
+# Quản lý bot và ứng dụng trong kênh
 
-<Tabs>
-<TabItem value="PC" label="PC">
-### Xem & Điều chỉnh
-Truy cập phần Thành viên trong Clan của bạn. Tại đây, bạn sẽ thấy danh sách tất cả các Bot và App đang hoạt động.
+Bot là một thành viên của clan, nên bạn quản lý bot trong danh sách thành viên. Ứng dụng trong kênh là một kênh, nên bạn quản lý nó như các kênh khác.
 
-![manage-bots-and-apps-001](./images/manage-bots-and-apps-001.png)
+## Tìm các bot trong clan
 
-### Tùy chỉnh vai trò và quyền hạn
-Tương tự như thành viên thông thường, bạn có thể thiết lập vai trò cụ thể cho Bot/App. Điều này giúp bạn kiểm soát chặt chẽ các hành động mà chúng có thể thực hiện trong Clan. Điều chỉnh quyền hạn trong **Cài đặt Clan > Vai trò**.
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-![manage-bots-and-apps-002](./images/manage-bots-and-apps-002.png)
+1. Mở clan và nhấn vào tên clan ở trên cùng.
+2. Nhấn **Cài đặt**.
+3. Trong mục **Quản lý người dùng**, nhấn **Thành viên**.
+4. Nhấn vào bot. Màn hình **Chỉnh sửa thành viên** mở ra.
 
-### Quản lý nâng cao
-Nhấp vào Bot/App để xem Profile của chúng. Từ đây, bạn có thể gửi tin nhắn trực tiếp, chuyển quyền sở hữu (đối với Bot/App do bạn phát triển), hoặc gỡ Bot/App ra khỏi Clan nếu không còn nhu cầu sử dụng.
-
-![manage-bots-and-apps-003](./images/manage-bots-and-apps-003.png)
-
-:::tip
-Bot cũng được quản lý như một thành viên Clan bình thường. Nên bạn có thể tham khảo cách quản lý Bot thông qua [**Quản lý quyền hạn và vai trò**](../clan/create-your-own-clan/manage-clan/overview-settings/roles-and-permissions-management).
-:::
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-* **Xem & Điều chỉnh**: Truy cập phần Thành viên trong Clan của bạn. Tại đây, bạn sẽ thấy danh sách tất cả các Bot và App đang hoạt động.
+<TabItem value="computer" label="Máy tính">
 
-<img style={{ width: '30%' }} src={manageBotsAndAppsMobile001} alt="manage-bots-and-apps-mobile-001" />
+1. Mở clan của bạn.
+2. Nhấn **Thành viên** ở đầu danh sách kênh.
 
-* **Tùy chỉnh quyền hạn và vai trò**: Tương tự như thànvin thông thường, bạn có thể thiết lập vai trò cụ thể cho Bot/App. Điều này giúp bạn kiểm soát chặt chẽ các hành động mà chúng có thể thực hiện trong Clan. [**Xem hướng dẫn Quản lý quyền hạn và vai trò**](../clan/create-your-own-clan/manage-clan/overview-settings/roles-and-permissions-management)
+<Image src={computerMembers} alt="Trang Thành viên của clan, có một bot trong danh sách" />
 
-<img style={{ width: '30%' }} src={manageBotsAndAppsMobile002} alt="manage-bots-and-apps-mobile-002" />
-
-* Tại đây, bạn có thể chuyển quyền sở hữu hay khai trừ bot/app nếu có nhu cầu
 </TabItem>
 </Tabs>
+
+## Gán vai trò cho bot
+
+Giống mọi thành viên, bot chỉ làm được những gì vai trò của nó cho phép. Hãy tạo vai trò trước trong **Cài Đặt Clan** → **Vai trò**. Xem [Vai trò và quyền](../clan/create-your-own-clan/manage-clan/overview-settings/roles-and-permissions-management.mdx).
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Trên màn hình **Chỉnh sửa thành viên** của bot, nhấn **Chỉnh sửa vai trò**.
+2. Chọn vai trò rồi lưu.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+Bạn cần quyền **Quản lý Clan** và chỉ gán được các vai trò thấp hơn vai trò của bạn.
+
+1. Trên trang **Thành viên**, tìm bot.
+2. Nhấn **+** ở cột **VAI TRÒ** bên cạnh bot.
+3. Chọn vai trò.
+
+Nếu danh sách chỉ hiện **Không có vai trò nào.** thì chưa có vai trò nào bạn gán được.
+
+</TabItem>
+</Tabs>
+
+## Xóa bot khỏi clan
+
+Trên máy tính, bạn cần quyền **Quản lý Clan**. Trên điện thoại, bạn phải là chủ sở hữu clan hoặc có quyền **Quản trị viên**.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Trên màn hình **Chỉnh sửa thành viên** của bot, trong mục **Hành động**, nhấn **Đuổi** (Android) hoặc **Khai trừ** (iPhone).
+2. Nhấn **Đuổi** (Android) hoặc **Khai trừ** (iPhone) lần nữa để xác nhận.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Trên trang **Thành viên**, nhấn chuột phải vào bot.
+2. Nhấn **Xóa thành viên**.
+
+<Image src={computerRemove} alt="Menu của bot trong danh sách thành viên, mục Xóa thành viên được đánh dấu" />
+
+3. Nhấn **Đuổi** để xác nhận.
+
+</TabItem>
+</Tabs>
+
+Bot rời khỏi clan. Nếu muốn dùng lại, hãy thêm bot lần nữa từ trang Bots/Apps.
+
+:::warning
+Đừng chọn **Chuyển quyền sở hữu** cho bot. Mục này trao cả clan cho thành viên đó, dù là bot hay người. Bạn sẽ không còn là chủ sở hữu clan.
+:::
+
+## Quản lý ứng dụng trong kênh
+
+Ứng dụng trong kênh nằm trong một kênh riêng. Để đổi tên hoặc gỡ ứng dụng, hãy chỉnh sửa hoặc xóa kênh đó như mọi kênh khác.
+
+## Xem thêm
+
+- [Tìm và thêm bot, ứng dụng trong kênh](./explore-and-install-bots-apps.mdx)
+- [Quản lý thành viên](../clan/create-your-own-clan/manage-clan/member-management.mdx)
+- [Chuyển quyền sở hữu clan](../clan/create-your-own-clan/transferring-clan-ownership.mdx)

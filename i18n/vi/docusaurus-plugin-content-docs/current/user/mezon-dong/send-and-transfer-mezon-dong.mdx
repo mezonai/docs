@@ -1,54 +1,117 @@
 ---
 sidebar_position: 2
-sidebar_label: Gửi và nhận Mezon Đồng
+sidebar_label: Gửi Mezon Đồng
+description: Gửi Mezon Đồng cho người khác, tặng coffee và xem lịch sử giao dịch.
 ---
-import Image from '@site/src/components/Image';
-import sendAndTransferMezonDong001 from './images/send-and-transfer-mezon-dong-001.png';
-import sendAndTransferMezonDong002 from './images/send-and-transfer-mezon-dong-002.png';
-import sendAndTransferMezonDong003 from './images/send-and-transfer-mezon-dong-003.png';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import computerPanel from "./images/send-and-transfer-mezon-dong-computer-01.png";
+import computerSend from "./images/send-and-transfer-mezon-dong-computer-02.png";
+import computerProfileTransfer from "./images/send-and-transfer-mezon-dong-computer-03.png";
+import computerCoffee from "./images/send-and-transfer-mezon-dong-computer-04.png";
 
-# Gửi và nhận Mezon Đồng
+# Gửi Mezon Đồng
 
-Mezon Đồng không chỉ để tiêu dùng, mà còn để chia sẻ. Bạn có thể gửi Mezon Đồng cho bạn bè, đồng nghiệp hoặc thành viên trong Clan chỉ với vài bước đơn giản.
+Gửi Mezon Đồng cho người khác, tặng coffee cho một tin nhắn, và xem lại những gì bạn đã gửi và đã nhận.
 
-***
+## Gửi Mezon Đồng cho người khác
 
-### 1. Xem số dư trong ví Mezon
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-Số dư Mezon Đồng luôn được hiển thị trực tiếp trong hồ sơ tài khoản Mezon của bạn.\
-Tại đây bạn cũng có các tùy chọn:
+1. Nhấn **Hồ sơ** ở cuối màn hình.
+2. Nhấn **Chuyển khoản**.
+3. Chọn người nhận.
+4. Nhập số tiền. Bạn có thể thêm ghi chú.
+5. **Android:** nhấn **Chuyển khoản**. **iPhone:** nhấn **Gửi**, rồi nhấn **Chuyển** để xác nhận.
 
-* **Số dư:** số dư hiện tại (theo VND).
-* **Chuyển:** gửi Mezon Đồng cho người khác.
-* **Lịch sử giao dịch:** xem lại lịch sử giao dịch.
+</TabItem>
+<TabItem value="computer" label="Máy tính">
 
-<Image style={{ margin: '1rem 2rem' }} src={sendAndTransferMezonDong001} alt="send-and-transfer-mezon-dong-001" />
+1. Nhấn vào tên của bạn ở góc dưới bên trái.
+2. Nhấn **Chuyển token**.
 
-***
+<Image src={computerPanel} alt="Bảng hồ sơ của bạn với Số dư, Chuyển token và Lịch sử giao dịch, mục Chuyển token được đánh dấu" />
 
-### 2. Chuyển Token trực tiếp
+3. Ở ô **Đến**, nhập tên người nhận rồi chọn họ trong danh sách.
+4. Ở ô **Số lượng**, nhập số tiền theo VND.
+5. Bạn có thể sửa ô **Ghi chú (Tùy chọn)**. Ô này đã có sẵn một ghi chú mặc định.
+6. Nhấn **Gửi Token**.
 
-Khi chọn **Chuyển**, cửa sổ gửi Mezon Đồng sẽ hiện ra:
+<Image src={computerSend} alt="Cửa sổ Gửi Token với các ô Đến, Số lượng và Ghi chú, nút Gửi Token được đánh dấu" />
 
-1. **Đến:** nhập tên hoặc ID người nhận.
-2. **Số lượng:** số lượng Mezon Đồng cần gửi (hiển thị theo VND).
-3. **Ghi chú (Tùy chọn):** thêm ghi chú (ví dụ: “tặng 1 trà sữa nè”, “cho a xin lỗi đi mà”).
-4. Nhấn **Gửi** để hoàn tất giao dịch.
+Bạn cũng có thể bắt đầu từ tin nhắn trực tiếp với người đó:
 
-<Image style={{ margin: '1rem 2rem' }} src={sendAndTransferMezonDong002} alt="send-and-transfer-mezon-dong-002" />
+1. Xem hồ sơ của người đó ở bên phải. Nếu không thấy, nhấn **Hiển thị hồ sơ người dùng** (biểu tượng hồ sơ ở góc trên bên phải).
+2. Nhấn **Chuyển** (biểu tượng đồng xu) ở đầu hồ sơ. Ô **Đến** đã được điền sẵn.
+3. Nhập số tiền rồi nhấn **Gửi Token**.
 
-:::tip
-Tất cả giao dịch chuyển Token trong Mezon hoàn tất chỉ trong vài giây, hoàn toàn miễn phí và không cần trung gian.
+<Image src={computerProfileTransfer} alt="Hồ sơ của một người trong tin nhắn trực tiếp, nút Chuyển được đánh dấu" />
+
+</TabItem>
+</Tabs>
+
+Người nhận sẽ nhận được tin nhắn của bạn trong tin nhắn trực tiếp giữa hai người. Tin nhắn ghi "Funds Transferred:", số tiền và ghi chú của bạn.
+
+:::note
+Số tiền phải lớn hơn 0 và không vượt quá số dư của bạn. Bạn không thể sửa tin nhắn chuyển tiền sau khi đã gửi.
 :::
 
-***
+## Tặng coffee
 
-### 3. Tặng Coffee (Tuỳ chọn khác)
+Mỗi coffee gửi 10.000 đồng cho người viết tin nhắn. Bạn không thể tặng coffee cho tin nhắn của chính mình.
 
-Nếu muốn gửi một món quà nhỏ mang tính “tượng trưng”, bạn có thể dùng **tính năng Give A Coffee** (1 Coffee = 10,000 Mezon Đồng). Đây là cách thú vị để cảm ơn hoặc khích lệ ai đó trong Clan.
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
 
-<Image style={{ margin: '1rem 2rem' }} src={sendAndTransferMezonDong003} alt="send-and-transfer-mezon-dong-003" />
+1. Nhấn và giữ tin nhắn.
+2. Nhấn **Tặng cà phê**.
 
-***
+</TabItem>
+<TabItem value="computer" label="Máy tính">
 
-Với các lựa chọn này, Mezon Đồng trở thành một công cụ **kết nối tài chính đơn giản và thân thiện** – từ thanh toán nội bộ cho đến những lời cảm ơn nhỏ hàng ngày.
+1. Nhấn chuột phải vào tin nhắn.
+2. Nhấn **Tặng coffee**. Coffee được gửi ngay, không cần xác nhận.
+
+<Image src={computerCoffee} alt="Menu tin nhắn với mục Tặng coffee được đánh dấu" />
+
+</TabItem>
+</Tabs>
+
+Mezon thêm biểu cảm coffee vào tin nhắn và gửi cho người viết một tin nhắn chuyển tiền 10.000 đồng.
+
+## Nhận Mezon Đồng bằng mã QR
+
+Trên điện thoại, bạn có thể đưa ra một mã QR chuyển tiền. Người trả tiền quét mã, và Mezon tự điền bạn là người nhận.
+
+1. Nhấn **Hồ sơ** ở cuối màn hình, rồi nhấn **Cài đặt**.
+2. Nhấn **Quét mã QR**.
+3. Nhấn **Mã QR của tôi**.
+4. Nhấn **Mã QR chuyển tiền** (iPhone: **Mã QR chuyển khoản**). Đưa mã này cho người trả tiền.
+
+Người trả tiền mở **Quét mã QR** theo cách tương tự và đưa camera vào mã của bạn. Màn hình chuyển khoản của họ mở ra, với bạn là người nhận.
+
+## Xem lịch sử giao dịch
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Nhấn **Hồ sơ** ở cuối màn hình.
+2. Nhấn **Lịch sử giao dịch**.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Nhấn vào tên của bạn ở góc dưới bên trái.
+2. Nhấn **Lịch sử giao dịch**.
+3. Chọn **Tất cả giao dịch**, **Giao dịch gửi** hoặc **Giao dịch nhận**.
+
+Bạn cũng có thể nhấn **Mezon transfer** bên dưới một tin nhắn chuyển tiền để mở lịch sử giao dịch.
+
+</TabItem>
+</Tabs>
+
+## Xem thêm
+
+- [Mezon Đồng là gì?](./what-is-mezon-dong.mdx)

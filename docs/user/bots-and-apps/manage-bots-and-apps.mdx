@@ -1,55 +1,98 @@
 ---
 sidebar_position: 4
-sidebar_label: Manage Bots & Apps
+sidebar_label: Manage bots and apps
+description: Find the bots in your clan, give them roles, or remove them.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import manageBotsAndAppsMobile001 from './images/manage-bots-and-apps-mobile-001.png';
-import manageBotsAndAppsMobile002 from './images/manage-bots-and-apps-mobile-002.png';
+import Image from "@site/src/components/Image";
+import computerMembers from "./images/manage-bots-and-apps-computer-01.png";
+import computerRemove from "./images/manage-bots-and-apps-computer-02.png";
 
-# Manage Bots & Apps
-Managing Bots and Apps is just as easy as adding them.
+# Manage bots and apps
 
-### View & Adjust
+A bot is a member of your clan, so you manage it in the clan's member list. An app is a channel, so you manage it like other channels.
 
-Go to the **Members** section in your Clan. Here, you’ll see a list of all active Bots and Apps.
-<Tabs>
-<TabItem value="PC" label="PC">
-![manage-bots-and-apps-001](./images/manage-bots-and-apps-001.png)
+## Find the bots in your clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the clan and tap the clan name at the top.
+2. Tap **Settings**.
+3. Under **User Management**, tap **Members**.
+4. Tap the bot. The **Edit Member** screen opens.
+
 </TabItem>
-<TabItem value="mobile" label="Mobile">
-<div align="left"><img style={{ width: '30%' }} src={manageBotsAndAppsMobile001} alt="manage-bots-and-apps-mobile-001" /></div>
-</TabItem>
-</Tabs>
+<TabItem value="computer" label="Computer">
 
-### Customize Roles & Permissions
+1. Open your clan.
+2. Click **Members** at the top of the channel list.
 
-Just like regular members, you can assign specific roles to a Bot/App. This helps you control exactly what actions they can perform within your Clan. Adjust permissions under **Clan Settings > Roles**.
-<Tabs>
-<TabItem value="PC" label="PC">
-![manage-bots-and-apps-002](./images/manage-bots-and-apps-002.png)
-</TabItem>
-<TabItem value="mobile" label="Mobile">
-<div align="left"><img style={{ width: '40%' }} src={manageBotsAndAppsMobile002} alt="manage-bots-and-apps-mobile-002" /></div>
-</TabItem>
-</Tabs>
-
-### Advanced Management
-
-Click on a Bot/App to view its **Profile**. From here, you can:
-
-* Send direct messages to the Bot/App
-* Transfer ownership (for Bots/Apps you developed)
-* Remove the Bot/App from the Clan if it’s no longer needed
-<Tabs>
-<TabItem value="PC" label="PC">
-![manage-bots-and-apps-003](./images/manage-bots-and-apps-003.png)
-</TabItem>
-<TabItem value="mobile" label="Mobile">
+<Image src={computerMembers} alt="The Members page of a clan with a bot in the member list" />
 
 </TabItem>
 </Tabs>
 
-:::tip
-Bots are managed just like regular Clan members. You can review and adjust their permissions and roles the same way — through [**Role and Permission Management**.](../clan/create-your-own-clan/manage-clan/overview-settings/roles-and-permissions-management)
+## Give a bot a role
+
+A bot can do only what its roles allow, like any member. Create the role first in **Clan Settings** → **Roles**. See [Roles and permissions](../clan/create-your-own-clan/manage-clan/overview-settings/roles-and-permissions-management.mdx).
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. On the bot's **Edit Member** screen, tap **Edit Roles**.
+2. Choose the roles and save.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+You need the **Manage Clan** permission. You can give only roles below your own.
+
+1. On the **Members** page, find the bot.
+2. Click **+** in the **ROLES** column next to the bot.
+3. Choose the role.
+
+If the list says **No roles available.**, there is no role you can give yet.
+
+</TabItem>
+</Tabs>
+
+## Remove a bot from your clan
+
+On a computer you need the **Manage Clan** permission. On a phone you must be the clan owner or have **Administrator**.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. On the bot's **Edit Member** screen, under **Actions**, tap **Kick**.
+2. Tap **Kick** again to confirm.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. On the **Members** page, right-click the bot.
+2. Click **Remove Member**.
+
+<Image src={computerRemove} alt="The menu of a bot in the member list with Remove Member marked" />
+
+3. Click **Kick** to confirm.
+
+</TabItem>
+</Tabs>
+
+The bot leaves the clan. To use it again later, add it again from the Bots/Apps directory.
+
+:::warning
+Do not choose **Transfer Ownership** for a bot. This item gives the whole clan to that member, bot or person. You stop being the clan owner.
 :::
+
+## Manage an app
+
+An app lives in its own channel. To rename or remove an app, edit or delete its channel like any other channel.
+
+## Related
+
+- [Find and add bots and apps](./explore-and-install-bots-apps.mdx)
+- [Member management](../clan/create-your-own-clan/manage-clan/member-management.mdx)
+- [Transfer clan ownership](../clan/create-your-own-clan/transferring-clan-ownership.mdx)
