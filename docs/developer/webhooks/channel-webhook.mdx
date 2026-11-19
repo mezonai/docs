@@ -1,477 +1,243 @@
 ---
 sidebar_position: 3
-sidebar_label: Channel Webhook
+sidebar_label: Channel webhook
+description: Create a channel webhook and post messages to a Mezon channel with one HTTP request.
 ---
-
-# Channel Webhook
-
-Mezon provides a feature that allows users to send messages to channels through corresponding created webhooks.
-
-## Creating a Channel Webhook
-
-First, to work with channel webhooks, you need to make sure you are a member of a clan and have access to a channel.
-
-Creating a webhook is a pretty straightforward process.
-
-1. Go to the channel you want to create a webhook for, right-click to bring up a popup of actions that can be performed on that channel.
-
-   ![mezon-webhook-001](./images/mezon-webhook-001.png)
-
-2. Click on the **`Edit Channel`** option and then go to the **`Integrations`** tab.
-
-   ![mezon-webhook-002](./images/mezon-webhook-002.png)
-
-3. Click on **`New Webhook`** to proceed with creating a new webhook.
-
-   ![mezon-webhook-003](./images/mezon-webhook-003.png)
-
-- You will have one user (here named Spidey bot) and can customize this bot's name and avatar.
-
-- Click on **`Copy Webhook URL`** to get the webhook's endpoint, use it with the **[webhook payload](#webhook-specification)** to send messages to the channel.
-
-## Webhook Specification
-
-### Endpoint
-
-The webhook is delivered via an HTTP POST request to a unique URL generated for each webhook integration.
-
-**URL Structure:**
-
-```
-https://webhook.mezon.ai/webhooks/{channelId}/{token}
-```
-
-**URL Parameters:**
-
-| Parameter   | Type   | Description                                                                                                                                                                          |
-| :---------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `channelId` | string | A unique identifier for the channel.                                                                                                                                                 |
-| `token`     | string | A security token for authenticating the request. It appears to be a base64 encoded string or a JSON Web Token (JWT) containing information for verifying the request's authenticity. |
-
-### Request Header
-
-| Header         | Value              | Description                                        |
-| -------------- | ------------------ | -------------------------------------------------- |
-| `Content-Type` | `application/json` | Indicates that the request body is in JSON format. |
-
-### Request Body
-
-The body of the request contains a JSON object with details of the message that triggered the webhook.
-
-#### Root Object
-
-| Field     | Type   | Required | Description                                                      |
-| --------- | ------ | -------- | ---------------------------------------------------------------- |
-| `type`    | string | Yes      | The type of the webhook event. For this example, it is `"hook"`. |
-| `message` | object | Yes      | An object containing the details of the message.                 |
-
----
-
-### Message Formatting
-
-This object encapsulates the content and metadata of the message.
-
-| Field      | Type             | Required | Description                                                                                                                                                                                                                                                      |
-| ---------- | ---------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `t`        | string           | Yes      | The raw text content of the message.                                                                                                                                                                                                                             |
-| `mk`       | array of objects | No       | An array of objects describing markdown or special formatting applied to the message text. It's noteworthy that multiple `mk` arrays can be present. The possible values for `type` within this object could include `lk` (link) and `pre` (pre-formatted text). |
-| `mentions` | array of objects | No       | An array of objects, each representing a user mentioned in the message.                                                                                                                                                                                          |
-| `images`   | array of objects | No       | An array of objects, each representing an image attached to the message.                                                                                                                                                                                         |
-| `hg`       | array of objects | No       | An array of objects, each representing a channel hashtag mentioned in the message.                                                                                                                                                                               |
-
-#### `mk` Object (markdown)
-
-| Field  | Type    | Required | Description                                                              |
-| ------ | ------- | -------- | ------------------------------------------------------------------------ |
-| `type` | string  | Yes      | The type of formatting applied (e.g., `"lk"`, `"pre"`).                  |
-| `s`    | integer | Yes      | The starting character index of the formatted segment in the `t` string. |
-| `e`    | integer | Yes      | The ending character index of the formatted segment in the `t` string.   |
-
-#### `mentions` Object
-
-| Field      | Type    | Required | Description                                                    |
-| ---------- | ------- | -------- | -------------------------------------------------------------- |
-| `username` | string  | No       | The username of the mentioned user.                            |
-| `user_id`  | string  | No       | The unique identifier of the mentioned user.                   |
-| `s`        | integer | Yes      | The starting character index of the mention in the `t` string. |
-| `e`        | integer | Yes      | The ending character index of the mention in the `t` string.   |
-
-:::tip TIPS
-You can mention everyone in the channel in two ways:
-- **By user_id**: Use the unique identifier **`1775731111020111321`** to mention to everyone in the channel
-- **By username**: Use **`here`** as the username to mention everyone in the channel (@here)
-
-Either `username` or `user_id` must be provided, but not both.
-:::
-
-**Example 1: Mention @here by user_id**
-
-```json
-"mentions": [
-  {
-    "user_id": "1775731111020111321",
-    "s": 65,
-    "e": 88
-  }
-]
-```
-
-**Example 2: Mention @here by username**
-
-```json
-"mentions": [
-  {
-    "username": "here",
-    "s": 65,
-    "e": 88
-  }
-]
-```
-
-#### `images` Object
-
-| Field | Type    | Required | Description                                        |
-| ----- | ------- | -------- | -------------------------------------------------- |
-| `fn`  | string  | Yes      | The filename of the image.                         |
-| `sz`  | integer | Yes      | The size of the image in bytes.                    |
-| `url` | string  | Yes      | The public URL to access the image.                |
-| `ft`  | string  | Yes      | The MIME type of the image (e.g., `"image/jpeg"`). |
-| `w`   | integer | Yes      | The width of the image in pixels.                  |
-| `h`   | integer | Yes      | The height of the image in pixels.                 |
-
-#### `hg` Object (hashtag)
-
-| Field       | Type    | Required | Description                                                           |
-| ----------- | ------- | -------- | --------------------------------------------------------------------- |
-| `channelId` | string  | Yes      | The unique identifier of the channel being referenced.                |
-| `s`         | integer | Yes      | The starting character index of the hashtag in the `t` string.        |
-| `e`         | integer | Yes      | The ending character index of the hashtag in the `t` string.          |
-
-### Channel Webhook example
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-<Tabs>
-  <TabItem value="Bash" label="Bash" default>
-    ```bash
-    curl --location 'https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN' \
-    --header 'Content-Type: application/json' \
-    --data-raw '{
-        "type": "hook",
-        "message": {
-          "t": "[pre] Webhook message example: [lk] https://mezon.ai \n [mention] @aliceinmezon #general",
-          "mk": [
-            {
-              "type": "pre",
-              "s": 0,
-              "e": 30
-            },
-            {
-              "type": "lk",
-              "s": 36,
-              "e": 54
-            }
-          ],
-          "mentions": [
-            {
-              "user_id": "1783755414765047808",
-              "s": 65,
-              "e": 77
-            }
-          ],
-          "images": [
-            {
-              "fn": "thumbnail_dog1.jpg",
-              "sz": 5620,
-              "url": "https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg",
-              "ft": "image/jpeg",
-              "w": 275,
-              "h": 183
-            }
-          ],
-          "hg": [
-            {
-              "channelId": "1973524969530855424",
-              "s": 79,
-              "e": 86
-            }
-          ]
-        }
-      }
-    ```
-  </TabItem>
-  <TabItem value="Python" label="Python">
-    ```python
-    import http.client
-    import json
+# Channel webhook
 
-    conn = http.client.HTTPSConnection("webhook.mezon.ai")
-    payload = json.dumps({
-      "type": "hook",
-      "message": {
-        "t": "[pre] Webhook message example: [lk] https://mezon.ai \n [mention] @aliceinmezon #general",
+A channel webhook posts messages to one channel. The messages show the webhook's name and avatar, which you can change.
+
+## Create a channel webhook
+
+You need the **Manage Channels** permission in the clan. These steps use the Mezon web app on a computer.
+
+1. In the channel list, right-click the channel.
+2. Click **Edit Channel**.
+
+   ![The channel menu with Edit Channel](./images/channel-webhook-computer-01.png)
+
+3. Open the **Integrations** tab.
+
+   ![The channel settings with the Integrations tab](./images/channel-webhook-computer-02.png)
+
+4. Click **Create Webhook**. If the channel already has webhooks, click **View Webhook** instead.
+5. Click **New Webhook**. Mezon creates a webhook with a random name and avatar.
+6. Click the webhook to open it, then click **Copy Webhook URL**.
+
+   ![An open webhook with the Copy Webhook URL button](./images/channel-webhook-computer-03.png)
+
+Store the URL as a secret. In the open webhook you can also change its name, avatar and channel. If the URL leaks, click **Delete Webhook** and create a new one.
+
+## Send a message
+
+Send a `POST` request to the webhook URL with the header `Content-Type: application/json`. The URL has this form:
+
+```text
+https://webhook.mezon.ai/webhooks/CHANNEL_ID/TOKEN
+```
+
+Use the URL exactly as you copied it.
+
+### Body
+
+```json
+{
+  "type": "hook",
+  "message": {
+    "t": "Build passed: https://example.com/builds/42 @Hoa",
+    "mk": [
+      { "type": "b", "s": 0, "e": 12 },
+      { "type": "lk", "s": 14, "e": 43 }
+    ],
+    "mentions": [{ "user_id": "USER_ID", "s": 44, "e": 48 }]
+  }
+}
+```
+
+| Field | Type | Required | Meaning |
+|---|---|---|---|
+| `type` | string | Yes | Any value, for example `"hook"`. The key must be present. |
+| `message.t` | string | Yes | The text of the message. |
+| `message.mk` | array | No | Formatting ranges in `t`: `{ "type", "s", "e" }`. `type` is for example `"b"` (bold) or `"lk"` (link). |
+| `message.mentions` | array | No | Members to mention: `{ "user_id" or "username", "s", "e" }`. |
+| `message.images` | array | No | Images to show: `{ "url", "fn", "ft", "w", "h", "sz" }`. |
+
+`s` and `e` are the start and end positions of a range in `t`, counted in UTF-16 characters (as JavaScript counts them), with `e` not included. In the example, `"b"` covers `Build passed` (0 to 12) and the mention covers `@Hoa` (44 to 48).
+
+#### Mentions
+
+Give each mention a `user_id` (the member's id, as a string) or a `username`. Mentioned members get a mention notification. Mezon keeps only mentions of members who can see the channel: other names stay plain text and notify no one. `@here` does not work in webhook messages either.
+
+#### Images
+
+| Field | Meaning |
+|---|---|
+| `url` | The full public URL of the image, for example `https://example.com/chart.png`. A URL without a scheme and host, such as `/chart.png`, makes the request fail. |
+| `fn` | The file name. |
+| `ft` | The file type, for example `image/png`. |
+| `w`, `h` | Width and height in pixels. |
+| `sz` | Size in bytes. |
+
+### Examples
+
+Set `WEBHOOK_URL` to your webhook URL before you run them.
+
+<Tabs groupId="code">
+<TabItem value="bash" label="curl" default>
+
+```bash
+curl -X POST "$WEBHOOK_URL" \
+  -H "Content-Type: application/json" \
+  -d '{"type":"hook","message":{"t":"Build passed: https://example.com/builds/42 @Hoa","mk":[{"type":"b","s":0,"e":12},{"type":"lk","s":14,"e":43}],"mentions":[{"user_id":"USER_ID","s":44,"e":48}]}}'
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const payload = {
+  type: "hook",
+  message: {
+    t: "Build passed: https://example.com/builds/42 @Hoa",
+    mk: [
+      { type: "b", s: 0, e: 12 },
+      { type: "lk", s: 14, e: 43 },
+    ],
+    mentions: [{ user_id: "USER_ID", s: 44, e: 48 }],
+  },
+};
+
+fetch(process.env.WEBHOOK_URL, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload),
+}).then(async (response) => console.log(response.status, await response.text()));
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import json
+import os
+import urllib.request
+
+payload = {
+    "type": "hook",
+    "message": {
+        "t": "Build passed: https://example.com/builds/42 @Hoa",
         "mk": [
-          {
-            "type": "pre",
-            "s": 0,
-            "e": 30
-          },
-          {
-            "type": "lk",
-            "s": 36,
-            "e": 54
-          }
+            {"type": "b", "s": 0, "e": 12},
+            {"type": "lk", "s": 14, "e": 43},
         ],
-        "mentions": [
-          {
-            "user_id": "1783755414765047808",
-            "s": 65,
-            "e": 77
-          }
-        ],
-        "images": [
-          {
-            "fn": "thumbnail_dog1.jpg",
-            "sz": 5620,
-            "url": "https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg",
-            "ft": "image/jpeg",
-            "w": 275,
-            "h": 183
-          }
-        ],
-        "hg": [
-          {
-            "channelId": "1973524969530855424",
-            "s": 79,
-            "e": 86
-          }
-        ]
-      }
-    })
-    headers = {
-      'Content-Type': 'application/json'
-    }
-    conn.request("POST", "/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN", payload, headers)
-    res = conn.getresponse()
-    data = res.read()
-    print(data.decode("utf-8"))
-    ```
-  </TabItem>
-  <TabItem value="Go" label="Go">
-    ```go
-    package main
+        "mentions": [{"user_id": "USER_ID", "s": 44, "e": 48}],
+    },
+}
 
-    import (
-      "fmt"
-      "strings"
-      "net/http"
-      "io"
-    )
+request = urllib.request.Request(
+    os.environ["WEBHOOK_URL"],
+    data=json.dumps(payload).encode(),
+    headers={"Content-Type": "application/json"},
+    method="POST",
+)
+with urllib.request.urlopen(request) as response:
+    print(response.status, response.read().decode())
+```
 
-    func main() {
+</TabItem>
+<TabItem value="go" label="Go">
 
-      url := "https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN"
-      method := "POST"
+```go
+package main
 
-      payload := strings.NewReader(`{`+"
-    "+`
-      "type": "hook",`+"
-    "+`
-      "message": {`+"
-    "+`
-        "t": "[pre] Webhook message example: [lk] https://mezon.ai \n [mention] @aliceinmezon #general",`+"
-    "+`
-        "mk": [`+"
-    "+`
-          {`+"
-    "+`
-            "type": "pre",`+"
-    "+`
-            "s": 0,`+"
-    "+`
-            "e": 30`+"
-    "+`
-          },`+"
-    "+`
-          {`+"
-    "+`
-            "type": "lk",`+"
-    "+`
-            "s": 36,`+"
-    "+`
-            "e": 54`+"
-    "+`
-          }`+"
-    "+`
-        ],`+"
-    "+`
-        "mentions": [`+"
-    "+`
-          {`+"
-    "+`
-            "user_id": "1783755414765047808",`+"
-    "+`
-            "s": 65,`+"
-    "+`
-            "e": 77`+"
-    "+`
-          }`+"
-    "+`
-        ],`+"
-    "+`
-        "images": [`+"
-    "+`
-          {`+"
-    "+`
-            "fn": "thumbnail_dog1.jpg",`+"
-    "+`
-            "sz": 5620,`+"
-    "+`
-            "url": "https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg",`+"
-    "+`
-            "ft": "image/jpeg",`+"
-    "+`
-            "w": 275,`+"
-    "+`
-            "h": 183`+"
-    "+`
-          }`+"
-    "+`
-        ],`+"
-    "+`
-        "hg": [`+"
-    "+`
-          {`+"
-    "+`
-            "channelId": "1973524969530855424",`+"
-    "+`
-            "s": 79,`+"
-    "+`
-            "e": 86`+"
-    "+`
-          }`+"
-    "+`
-        ]`+"
-    "+`
-      }`+"
-    "+`
-    }`)
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+)
 
-      client := &http.Client {
-      }
-      req, err := http.NewRequest(method, url, payload)
+func main() {
+	payload := map[string]any{
+		"type": "hook",
+		"message": map[string]any{
+			"t": "Build passed: https://example.com/builds/42 @Hoa",
+			"mk": []map[string]any{
+				{"type": "b", "s": 0, "e": 12},
+				{"type": "lk", "s": 14, "e": 43},
+			},
+			"mentions": []map[string]any{{"user_id": "USER_ID", "s": 44, "e": 48}},
+		},
+	}
+	body, _ := json.Marshal(payload)
 
-      if err != nil {
-        fmt.Println(err)
-        return
-      }
-      req.Header.Add("Content-Type", "application/json")
+	response, err := http.Post(os.Getenv("WEBHOOK_URL"), "application/json", bytes.NewReader(body))
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer response.Body.Close()
+	text, _ := io.ReadAll(response.Body)
+	fmt.Println(response.StatusCode, string(text))
+}
+```
 
-      res, err := client.Do(req)
-      if err != nil {
-        fmt.Println(err)
-        return
-      }
-      defer res.Body.Close()
+</TabItem>
+<TabItem value="csharp" label="C#">
 
-      body, err := io.ReadAll(res.Body)
-      if err != nil {
-        fmt.Println(err)
-        return
-      }
-      fmt.Println(string(body))
-    }
-    ```
-  </TabItem>
-  <TabItem value="Java" label="Java">
-    ```java
-    OkHttpClient client = new OkHttpClient().newBuilder()
-      .build();
-    MediaType mediaType = MediaType.parse("application/json");
-    RequestBody body = RequestBody.create(mediaType, "{\r\n  \"type\": \"hook\",\r\n  \"message\": {\r\n    \"t\": \"[pre] Webhook message example: [lk] https://mezon.ai \\n [mention] @aliceinmezon #general\",\r\n    \"mk\": [\r\n      {\r\n        \"type\": \"pre\",\r\n        \"s\": 0,\r\n        \"e\": 30\r\n      },\r\n      {\r\n        \"type\": \"lk\",\r\n        \"s\": 36,\r\n        \"e\": 54\r\n      }\r\n    ],\r\n    \"mentions\": [\r\n      {\r\n        \"user_id\": \"1783755414765047808\",\r\n        \"s\": 65,\r\n        \"e\": 77\r\n      }\r\n    ],\r\n    \"images\": [\r\n      {\r\n        \"fn\": \"thumbnail_dog1.jpg\",\r\n        \"sz\": 5620,\r\n        \"url\": \"https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg\",\r\n        \"ft\": \"image/jpeg\",\r\n        \"w\": 275,\r\n        \"h\": 183\r\n      }\r\n    ],\r\n    \"hg\": [\r\n      {\r\n        \"channelId\": \"1973524969530855424\",\r\n        \"s\": 79,\r\n        \"e\": 86\r\n      }\r\n    ]\r\n  }\r\n}");
-    Request request = new Request.Builder()
-      .url("https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN")
-      .method("POST", body)
-      .addHeader("Content-Type", "application/json")
-      .build();
-    Response response = client.newCall(request).execute();
-    ```
-  </TabItem>
-  <TabItem value="CSharp" label="C#">
-    ```CSharp
-    var client = new HttpClient();
-    var request = new HttpRequestMessage(HttpMethod.Post, "https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN");
-    var content = new StringContent("{\r\n  \"type\": \"hook\",\r\n  \"message\": {\r\n    \"t\": \"[pre] Webhook message example: [lk] https://mezon.ai \\n [mention] @aliceinmezon #general\",\r\n    \"mk\": [\r\n      {\r\n        \"type\": \"pre\",\r\n        \"s\": 0,\r\n        \"e\": 30\r\n      },\r\n      {\r\n        \"type\": \"lk\",\r\n        \"s\": 36,\r\n        \"e\": 54\r\n      }\r\n    ],\r\n    \"mentions\": [\r\n      {\r\n        \"user_id\": \"1783755414765047808\",\r\n        \"s\": 65,\r\n        \"e\": 77\r\n      }\r\n    ],\r\n    \"images\": [\r\n      {\r\n        \"fn\": \"thumbnail_dog1.jpg\",\r\n        \"sz\": 5620,\r\n        \"url\": \"https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg\",\r\n        \"ft\": \"image/jpeg\",\r\n        \"w\": 275,\r\n        \"h\": 183\r\n      }\r\n    ],\r\n    \"hg\": [\r\n      {\r\n        \"channelId\": \"1973524969530855424\",\r\n        \"s\": 79,\r\n        \"e\": 86\r\n      }\r\n    ]\r\n  }\r\n}", null, "application/json");
-    request.Content = content;
-    var response = await client.SendAsync(request);
-    response.EnsureSuccessStatusCode();
-    Console.WriteLine(await response.Content.ReadAsStringAsync());
-    ```
-  </TabItem>
-  <TabItem value="Javascript" label="Javascript">
-    ```js
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+```csharp
+using System.Net.Http.Json;
 
-    const raw = JSON.stringify({
-      "type": "hook",
-      "message": {
-        "t": "[pre] Webhook message example: [lk] https://mezon.ai \n [mention] @aliceinmezon #general",
-        "mk": [
-          {
-            "type": "pre",
-            "s": 0,
-            "e": 30
-          },
-          {
-            "type": "lk",
-            "s": 36,
-            "e": 54
-          }
-        ],
-        "mentions": [
-          {
-            "user_id": "1783755414765047808",
-            "s": 65,
-            "e": 77
-          }
-        ],
-        "images": [
-          {
-            "fn": "thumbnail_dog1.jpg",
-            "sz": 5620,
-            "url": "https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg",
-            "ft": "image/jpeg",
-            "w": 275,
-            "h": 183
-          }
-        ],
-        "hg": [
-          {
-            "channelId": "1973524969530855424",
-            "s": 79,
-            "e": 86
-          }
-        ]
-      }
-    });
+var payload = new
+{
+    type = "hook",
+    message = new
+    {
+        t = "Build passed: https://example.com/builds/42 @Hoa",
+        mk = new[]
+        {
+            new { type = "b", s = 0, e = 12 },
+            new { type = "lk", s = 14, e = 43 },
+        },
+        mentions = new[] { new { user_id = "USER_ID", s = 44, e = 48 } },
+    },
+};
 
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow"
-    };
+using var http = new HttpClient();
+var response = await http.PostAsJsonAsync(Environment.GetEnvironmentVariable("WEBHOOK_URL"), payload);
+Console.WriteLine($"{(int)response.StatusCode} {await response.Content.ReadAsStringAsync()}");
+```
 
-    fetch("https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.error(error));
-    ```
-  </TabItem>
+</TabItem>
 </Tabs>
 
-**Result**
+The message appears in the channel:
 
-![mezon-webhook-004](./images/mezon-webhook-004.png)
+![The webhook message in the channel, with bold text, a link and a mention](./images/channel-webhook-computer-04.png)
+
+## Responses and limits
+
+Mezon answers `200` as soon as it has accepted the request, and posts the message right after. Problems found after that, such as a deleted channel, are not reported back.
+
+| Status | Body | Cause |
+|---|---|---|
+| `200` | (empty) | Accepted. |
+| `400` | `Invalid JSON` | The body is not JSON. |
+| `400` | `Invalid token` | The token is wrong, or it belongs to another channel than the one in the URL. |
+| `400` | `Invalid attachment URL` | An image `url` is not a full URL. |
+
+- A body without a `type` key is accepted with `200`, but its `message` is not posted.
+- If the message content (`t` and `mk`, as JSON) is longer than 4,000 bytes, Mezon posts "The original message was too long" instead. Letters with accents, such as Vietnamese letters, take 2 or 3 bytes each.
+- Hashtags (`hg`) are not supported: channel names in `t` stay plain text.
+- The sender is always the webhook's name and avatar.
+
+## Related
+
+- [Webhooks overview](./overview.mdx)
+- [Clan webhook](./clan-webhook.mdx)

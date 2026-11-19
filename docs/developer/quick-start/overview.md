@@ -1,183 +1,62 @@
 ---
-sidebar_label: Overview of Bots/Apps
+sidebar_label: What you can build
 sidebar_position: 1
+description: The ways to build on Mezon (bots, channel apps, webhooks and OAuth2) and what each one can do.
 ---
 
-# Overview of Mezon Bots/Apps
+# What you can build on Mezon
 
-![Overview of Apps](./images/mezon-bot-001.png)
+Mezon has four ways to build on it. This page says what each one does and where to start.
 
-On this page we'll answer the questions:
+| You want to | Use | Needs |
+|---|---|---|
+| Answer messages, run commands, post forms and buttons | [A bot](#bots) | A bot in the developer portal and a program that stays running |
+| Show your website inside a clan, with the Mezon user already known | [A channel app](#channel-apps) | An app in the developer portal and a website |
+| Post a message from another system (CI, monitoring, a form) | [A webhook](#webhooks) | A webhook URL from a channel or clan, and one HTTP request |
+| Let people sign in to your website with Mezon | [OAuth2](#oauth2) | An app in the developer portal with a redirect URI |
 
-- [What can bots and apps do?](#what-can-bots-and-apps-do)
-- [Where are apps installed?](#where-are-apps-installed)
-- [What APIs can apps use?](#what-apis-can-apps-use)
+## Bots
 
----
+A bot is a separate Mezon account that your program controls. You create it in the developer portal, which gives you a **Bot ID** and a **Token**. Your program logs in with both and stays connected.
 
-## What can bots and apps do?
+What a bot can do:
 
-You'll discover their full potential as you explore the documentation and start building, but let's first look at some key features you can build and integrate into your app.
+- Read the messages of the channels it can see, and reply, edit, delete and react.
+- Send direct messages, and ephemeral messages that only the chosen members see.
+- Send [interactive messages](../mezon-topics/interactive-message.mdx) with buttons, input fields and selects, and handle the clicks.
+- Create polls, list channels, voice channel members and roles, and update roles.
+- Publish video to a [stream channel](../mezon-topics/streaming-channel.mdx).
 
-### Send and manage messages
+A bot works only in the clans it was added to. Someone with the **Manage Clan** permission adds it with the bot's install link. Bots may call only some server APIs: see [What bots are allowed to do](../mezon-sdk/bot-api-access.md).
 
-Messages are fundamental to Mezon, and bots are no exception. Bots can send messages through multiple methods—using the **[Mezon Bot SDK](../mezon-sdk/integration-bot-sdk/overview.md)** for direct messaging, creating and managing webhooks for automated messaging, or responding through bot interactions. With proper permissions, bots can also manage messages by editing, deleting, and reacting to them in channels.
+There are two SDKs:
 
-### Create interactive experiences
+- [`mezon-sdk`](../mezon-sdk/integration-bot-sdk/overview.md) for JavaScript and TypeScript on Node.js.
+- [`Mezon.Net.Sdk`](../mezon-sdk/dotnet-sdk.md) for C# and other .NET languages.
 
-Bots can create interactive elements in messages, which we call **interactive messages**. Create a polls, reminders, and more... this allows direct interaction with clan members.
+Start with [Create a bot](./creating-mezon-bot.md).
 
-### Build embedded channel applications
+## Channel apps
 
-The **[Channel App SDK](../mezon-sdk/channel-app-sdk/overview.md)** enables apps to create **embedded web applications** that run directly within Mezon channels. These applications operate in secure iframes with bidirectional communication to the Mezon client, powering rich interactive experiences like games, productivity tools, polls, and collaborative workspaces where people are already connected.
+A channel app is your website, opened from a channel of a clan. When a member launches it, Mezon adds signed data about that member to your website's URL. Your server checks the signature and knows who the member is, without a separate login.
 
-### Customize clans and channels
+You do not need an SDK: a channel app is a normal website. Someone with the **Manage Channels** permission installs it, and it appears as a channel in the clan.
 
-With appropriate API endpoints and proper [permissions](../mezon-sdk/integration-bot-sdk/core-concepts#authentication-sessions), apps can customize clan and moderation experiences by accessing and managing core Mezon resources—including [users](../mezon-sdk/integration-bot-sdk/api-references#user-class), [channels](../mezon-sdk/integration-bot-sdk/api-references), [clans](../mezon-sdk/integration-bot-sdk/api-references#clan-class), roles, and moderation tools. Apps can create channels, manage member permissions, implement automated moderation, and organize clan structures.
+Start with [Create a channel app](./creating-mezon-app.md), then read [Channel apps overview](../mezon-sdk/channel-app-sdk/overview.md).
 
-### Real-time communication and events
+## Webhooks
 
-Apps can utilize **WebSocket connections** for real-time bidirectional communication with the Mezon platform. This allows apps to receive instant notifications about messages, user presence changes, voice channel activities, and other clan events. Apps can respond immediately to these events, delivering responsive and interactive experiences.
+A webhook is a URL that posts to Mezon. Your program sends one HTTP `POST` with a JSON body, and no login. Webhooks only send messages into Mezon; they do not tell your program about events in Mezon.
 
-### Voice and streaming integration
+- A [channel webhook](../webhooks/channel-webhook.mdx) posts a message to one channel.
+- A [clan webhook](../webhooks/clan-webhook.mdx) sends a message to one member of the clan, as an inbox notification.
 
-Mezon apps can integrate with **voice channels** and **streaming features**. Apps can manage voice channel memberships, receive voice events, register streaming channels for bots, and create voice-enabled interactive experiences. This opens possibilities for music bots, voice-activated commands, and collaborative voice experiences.
+## OAuth2
 
-### Token and economy features
+[OAuth2](../mezon-topics/oauth2.mdx) lets people sign in to your website with their Mezon account. You get their Mezon user id, username, display name and avatar.
 
-Apps can integrate with Mezon's **token system** to build economy-based features. Bots can send and receive tokens between users, track transaction histories, and create reward systems, games, or marketplace features that leverage Mezon's built-in token economy.0
+## Related
 
-
-
-### ...and more
-
-This developer documentation contains extensive features and capabilities to explore. Discover what's possible by browsing the documentation or [building your own app](https://mezon.ai/developers).
-
----
-
-## Where are apps installed?
-
-Mezon apps can be installed and used in various contexts depending on their type and configuration:
-
-### Bot Applications
-
-**Bot applications** are installed to specific clans by users with the **Manage Clan** permission. Once installed:
-- Bots can interact within that clan's channels and with clan members
-- Bots can send direct messages to users who interact with them
-- Bots are visible to all clan members and can be used by anyone in the clan
-- Bots maintain persistent presence and can respond to events 24/7
-
-### Channel Applications
-
-**Channel applications** run as embedded web experiences within specific channels:
-- Channel apps are loaded directly in channel interfaces as iframe applications
-- They can be accessed by any user with channel viewing permissions
-- Channel apps receive initialization parameters from the parent Mezon application
-- They communicate with Mezon through secure postMessage APIs for bidirectional interaction
-
-### Installation and Permissions
-
-The installation process and available contexts depend on:
-- **Clan permissions**: Users require appropriate permissions to install apps in clans
-- **App configuration**: Developers can configure which installation contexts their apps support
-- **Security settings**: Apps operate in secure contexts with appropriate permission scoping
-
----
-
-## What APIs can apps use?
-
-There are several APIs and SDKs you can choose from based on your app's functionality and the Mezon features you want to access. Below is an overview of the main APIs on the Mezon developer platform.
-
-### Mezon Bot SDK (Bot Applications)
-
-The **[Mezon Bot SDK](../mezon-sdk/integration-bot-sdk/overview)** is a comprehensive TypeScript library for building bot applications that interact with the Mezon platform through REST APIs and WebSocket connections.
-
-Use the Mezon SDK to:
-- **Authenticate bots** and manage sessions
-- **Send and receive messages** in real-time
-- **Manage clans, channels, and users**
-- **Handle voice and streaming events**
-- **Process token transactions**
-- **Listen to real-time events** via WebSocket connections
-
-### Channel App SDK (Web Applications)
-
-The **[Channel App SDK](../mezon-sdk/channel-app-sdk/overview)** is a lightweight JavaScript library for building web applications that run embedded within Mezon channels.
-
-Use the Channel App SDK to:
-- **Communicate with the parent Mezon application** via secure postMessage APIs
-- **Receive initialization parameters** and context from Mezon
-- **Handle theme changes** and responsive design updates
-- **Send events and data** back to the Mezon client
-- **Manage application state** across page reloads
-
-### HTTP REST API
-
-The **HTTP REST API** is a comprehensive interface that allows you to interact with core Mezon resources like channels, clans, users, messages, and more.
-
-Use the HTTP API to:
-- **Retrieve information** about Mezon resources
-- **Create, update, or delete** channels, messages, and other entities
-- **Manage clan and user relationships**
-- **Process authentication** and session management
-- **Upload and manage attachments**
-
-### WebSocket Gateway API
-
-The **WebSocket Gateway API** provides real-time event streaming for bot applications, delivering instant notifications about activities occurring across Mezon.
-
-Use the Gateway API to:
-- **Receive real-time events** like new messages, user joins, voice events
-- **Maintain persistent connections** for immediate responsiveness
-- **Handle clan and channel events** as they occur
-- **Process user presence** and activity updates
-
-### Webhook API
-
-**Webhooks** provide HTTP-based event delivery for applications that prefer REST-based event handling over persistent WebSocket connections.
-
-Use Webhooks to:
-- **Receive HTTP POST notifications** about Mezon events
-- **Process events asynchronously** in your application
-- **Integrate with serverless architectures**
-- **Handle events without maintaining persistent connections**
-
----
-
-## Start Building
-
-Now that we've covered the basics, it's time to start building your Mezon app! You can explore the rest of the documentation, visit the [developer portal](https://mezon.ai/developers), or check out the beginner resources below.
-
-### Bot Applications
-Build powerful bot applications that automate, moderate, and enhance clan experiences:
-
-- **[Bot SDK Overview](../mezon-sdk/integration-bot-sdk/overview)** - Learn about the comprehensive Mezon SDK for bot development
-- **[Getting Started with Bots](../mezon-sdk/integration-bot-sdk/getting-started)** - Step-by-step guide to create your first Mezon bot
-- **[Core Concepts](../mezon-sdk/integration-bot-sdk/core-concepts)** - Understand the fundamental concepts of bot development
-- **[Bot Usage Examples](../mezon-sdk/integration-bot-sdk/usage-and-examples)** - Practical examples and implementation patterns
-
-### Channel Applications
-Build embedded web applications that run directly within Mezon channels:
-
-- **[Channel App SDK Overview](../mezon-sdk/channel-app-sdk/overview)** - Learn about building embedded channel applications
-- **[Channel App Examples](../mezon-sdk/channel-app-sdk/usage-and-examples)** - Interactive examples including games and collaborative tools
-
-### Getting Your First App Running
-
-Ready to build your first Mezon application? Here's how to get started:
-
-1. **[Create a Bot Account](./creating-mezon-bot.md)** - Set up your developer account and create your first bot
-2. **Choose your app type** - Select between a bot application or channel application based on your use case
-3. **Install the appropriate SDK** - Use the Mezon SDK for bots or Channel App SDK for web applications
-4. **Follow the getting started guide** - Complete tutorials for your chosen app type
-5. **Deploy and test** - Install your app in a test clan and iterate on your implementation
-
-### Development Resources
-
-- **[API Reference](../mezon-sdk/integration-bot-sdk/api-references)** - Complete documentation of all available APIs and methods
-- **[Developer Portal](https://mezon.ai/developers)** - Manage your applications and access developer tools
-- **[Community Support](https://mezon.ai/)** - Connect with other developers and get help
-
----
-
-*Ready to transform how people connect and collaborate on Mezon? Start building your app today!*
+- [Mezon developer portal](https://mezon.ai/developers/applications)
+- [`mezon-sdk` on npm](https://www.npmjs.com/package/mezon-sdk)
+- [`Mezon.Net.Sdk` on NuGet](https://www.nuget.org/packages/Mezon.Net.Sdk)

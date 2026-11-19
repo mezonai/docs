@@ -1,302 +1,136 @@
 ---
 sidebar_position: 2
-sidebar_label: Clan Webhook
+sidebar_label: Webhook clan
+description: Tạo webhook clan và gửi tin nhắn vào hộp thư của một thành viên chỉ bằng một yêu cầu HTTP.
 ---
-
-# Clan Webhook
-
-Clan webhook gửi tin nhắn trực tiếp (DM) vào hộp thư đến của từng người; ai nhận tin phụ thuộc vào `username` hoặc `user ID` được cung cấp trên URL.
-
-## Tạo Clan Mezon Webhook
-
-Làm theo các bước sau để tạo webhook cho clan của bạn.
-
-1. Vào clan bạn muốn tạo webhook, nhấp vào banner clan để mở popup các thao tác có thể thực hiện trên clan đó.
-
-   ![mezon-webhook-005](./images/mezon-webhook-005.png)
-
-2. Nhấp **`Clan Settings`** rồi vào tab **`Integrations`**.
-
-- Với tư cách quản lý clan, bạn cũng có thể quản lý cả channel webhook và clan webhook tại đây.
-
-  ![mezon-webhook-006](./images/mezon-webhook-006.png)
-
-3. Nhấp **`Clan Webhooks`** rồi **`New Clan Webhook`** để tạo webhook mới.
-
-   ![mezon-webhook-007](./images/mezon-webhook-007.png)
-
-- Bạn sẽ có một user (ở đây tên Komu Knight) và có thể tùy chỉnh tên và avatar của bot này.
-
-- Nhấp **`Copy Webhook URL`** để lấy endpoint webhook, dùng cùng **[payload webhook](#webhook-specification)** để gửi tin nhắn tới người dùng trong clan.
-
-- Có hai cách tạo Webhook URL đầy đủ sau khi sao chép URL cơ sở bằng nút Copy Webhook URL
-
-  - **Cách 1**: Kết hợp URL đã sao chép với `Mezon Username` hợp lệ để có Webhook URL đầy đủ. `Mezon Username` có trong Account Settings của người dùng.
-
-  ![mezon-webhook-008](./images/mezon-webhook-008.png)
-
-  - **Cách 2**: Hoặc dùng URL đã sao chép kết hợp với `Mezon User ID` hợp lệ. `Mezon User ID` có trong popup tài khoản người dùng.
-
-  ![mezon-webhook-009](./images/mezon-webhook-009.png)
-
-:::tip Lưu ý
-Nếu bạn cho rằng token trên URL đã bị lộ hoặc lỗi thời, hãy reset và sao chép URL mới, đồng thời đảm bảo người dùng đã tham gia clan của bạn.
-:::
-
-## Đặc tả Webhook {#webhook-specification}
-
-### Endpoint
-
-Webhook được gửi qua yêu cầu HTTP POST tới URL duy nhất được tạo cho mỗi tích hợp webhook, kết hợp với định danh người dùng duy nhất.
-
-**Cấu trúc URL:**
-
-```
-https://webhook.mezon.ai/clanwebhooks/{token}/{user-identifier}
-```
-
-**Tham số URL:**
-
-| Tham số           | Kiểu   | Mô tả                                                                                                                                                                                |
-| :---------------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `token`           | string | Token bảo mật để xác thực yêu cầu. Có vẻ là chuỗi base64 hoặc JSON Web Token (JWT) chứa thông tin xác minh tính xác thực của yêu cầu.                                               |
-| `user-identifier` | string | Định danh duy nhất của người dùng Mezon. Có thể là username hoặc user ID.                                                                                                          |
-
-### Request Header
-
-| Header         | Giá trị            | Mô tả                                              |
-| -------------- | ------------------ | -------------------------------------------------- |
-| `Content-Type` | `application/json` | Cho biết body yêu cầu ở định dạng JSON.            |
-
-### Request Body
-
-Body yêu cầu chứa đối tượng JSON với nội dung và tệp đính kèm của tin nhắn sẽ gửi dưới dạng tin nhắn trực tiếp tới người dùng.
-
-#### Đối tượng gốc
-
-| Trường        | Kiểu             | Bắt buộc | Mô tả                                                        |
-| ------------- | ---------------- | -------- | ------------------------------------------------------------ |
-| `content`     | string           | Có       | Chuỗi JSON-encoded chứa chi tiết nội dung tin nhắn           |
-| `attachments` | array of objects | Không    | Mảng đối tượng đính kèm (ảnh, video, tệp, v.v.)              |
-
----
-
-### Nội dung tin nhắn
-
-Trường `content` chứa chuỗi JSON-encoded cần parse để truy cập cấu trúc tin nhắn.
-
-**Đối tượng Content đã parse:**
-
-| Trường | Kiểu             | Bắt buộc | Mô tả                                                          |
-| ------ | ---------------- | -------- | -------------------------------------------------------------- |
-| `t`    | string           | Có       | Nội dung văn bản thô của tin nhắn.                             |
-| `mk`   | array of objects | Không    | Mảng đối tượng mô tả markdown hoặc định dạng đặc biệt.        |
-
-#### Đối tượng `mk` (markdown)
-
-| Trường | Kiểu    | Bắt buộc | Mô tả                                                                    |
-| ------ | ------- | -------- | ------------------------------------------------------------------------ |
-| `type` | string  | Có       | Loại định dạng (ví dụ `"lk"` cho link, `"pre"` cho văn bản định dạng sẵn). |
-| `s`    | integer | Có       | Chỉ số ký tự bắt đầu của đoạn định dạng trong chuỗi `t`.                |
-| `e`    | integer | Có       | Chỉ số ký tự kết thúc của đoạn định dạng trong chuỗi `t`.                |
-
-### Tệp đính kèm
-
-Mảng `attachments` chứa các đối tượng đại diện tệp đính kèm tin nhắn.
-
-#### Đối tượng Attachment
-
-| Trường     | Kiểu   | Bắt buộc | Mô tả                                                          |
-| ---------- | ------ | -------- | -------------------------------------------------------------- |
-| `url`      | string | Có       | URL CDN công khai để truy cập tệp đính kèm.                   |
-| `filetype` | string | Có       | MIME type của tệp (ví dụ `"image/png"`, `"video/mp4"`).        |
-
-### Ví dụ Clan Webhook
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-<Tabs>
-  <TabItem value="Bash" label="Bash" default>
-    ```bash
-    curl --location --globoff 'https://webhook.mezon.ai/clanwebhooks/{YOUR_TOKEN}/{username_or_userid}' \
-    --header 'Content-Type: application/json' \
-    --data '{
-        "content": "{\"t\":\"Welcome to Mezon Clan webhook!!! [pre] This is a block message. [lk] https://mezon.ai\",\"mk\":[{\"type\":\"pre\",\"s\":33,\"e\":64},{\"type\":\"lk\",\"s\":68,\"e\":85}]}",
-        "attachments": [
-            {
-                "url": "https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg",
-                "filetype": "image/png"
-            },
-            {
-                "url": "https://cdn.mezon.vn/109056000/255856640/4198400/477_0bandicam_2024_11_19_11_10_14_507.mp4",
-                "filetype": "video/mp4"
-            }
-        ]
-    }'
-    ```
-  </TabItem>
-  <TabItem value="Python" label="Python">
-    ```python
-    import http.client
-    import json
+# Webhook clan
 
-    conn = http.client.HTTPSConnection("webhook.mezon.ai")
-    payload = json.dumps({
-      "content": "{\"t\":\"Welcome to Mezon Clan webhook!!! [pre] This is a block message. [lk] https://mezon.ai\",\"mk\":[{\"type\":\"pre\",\"s\":33,\"e\":64},{\"type\":\"lk\",\"s\":68,\"e\":85}]}",
-      "attachments": [
-        {
-          "url": "https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg",
-          "filetype": "image/png"
-        },
-        {
-          "url": "https://cdn.mezon.vn/109056000/255856640/4198400/477_0bandicam_2024_11_19_11_10_14_507.mp4",
-          "filetype": "video/mp4"
-        }
-      ]
-    })
-    headers = {
-      'Content-Type': 'application/json'
-    }
-    conn.request("POST", "/clanwebhooks/{YOUR_TOKEN}/{username_or_userid}", payload, headers)
-    res = conn.getresponse()
-    data = res.read()
-    print(data.decode("utf-8"))
-    ```
-  </TabItem>
-  <TabItem value="Go" label="Go">
-    ```go
-    package main
+Webhook clan gửi tin nhắn tới một thành viên của clan. Bạn chọn thành viên trong URL. Tin nhắn đến **Hộp thư** của thành viên, ở thẻ **Tin nhắn**, kèm tên clan cùng tên và ảnh đại diện của webhook.
 
-    import (
-      "fmt"
-      "strings"
-      "net/http"
-      "io"
-    )
+## Tạo webhook clan {#create-a-clan-webhook}
 
-    func main() {
+Bạn cần quyền **Quản lý kênh** để tạo webhook clan, và quyền **Quản lý Clan** để sửa hoặc xóa webhook clan. Các bước dưới đây dùng ứng dụng web Mezon trên máy tính.
 
-      url := "https://webhook.mezon.ai/clanwebhooks/{YOUR_TOKEN}/{username_or_userid}"
-      method := "POST"
+1. Nhấn vào tên clan ở đầu danh sách kênh.
+2. Nhấn **Cài Đặt Clan**.
 
-      payload := strings.NewReader(`{`+"
-    "+`
-        "content": "{\"t\":\"Welcome to Mezon Clan webhook!!! [pre] This is a block message. [lk] https://mezon.ai\",\"mk\":[{\"type\":\"pre\",\"s\":33,\"e\":64},{\"type\":\"lk\",\"s\":68,\"e\":85}]}",`+"
-    "+`
-        "attachments": [`+"
-    "+`
-            {`+"
-    "+`
-                "url": "https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg",`+"
-    "+`
-                "filetype": "image/png"`+"
-    "+`
-            },`+"
-    "+`
-            {`+"
-    "+`
-                "url": "https://cdn.mezon.vn/109056000/255856640/4198400/477_0bandicam_2024_11_19_11_10_14_507.mp4",`+"
-    "+`
-                "filetype": "video/mp4"`+"
-    "+`
-            }`+"
-    "+`
-        ]`+"
-    "+`
-    }`)
+   ![Menu clan với mục Cài Đặt Clan](./images/clan-webhook-computer-01.png)
 
-      client := &http.Client {
-      }
-      req, err := http.NewRequest(method, url, payload)
+3. Nhấn **Tích hợp** trong menu cài đặt.
+4. Cạnh **Webhook Clan**, nhấn **Tạo Webhook Clan**. Nếu clan đã có webhook clan, hãy nhấn **Xem Webhook Clan**.
 
-      if err != nil {
-        fmt.Println(err)
-        return
-      }
-      req.Header.Add("Content-Type", "application/json")
+   ![Trang Tích hợp với nút Tạo Webhook Clan](./images/clan-webhook-computer-02.png)
 
-      res, err := client.Do(req)
-      if err != nil {
-        fmt.Println(err)
-        return
-      }
-      defer res.Body.Close()
+5. Nhấn **Webhook Clan Mới**. Mezon tạo một webhook với tên và ảnh đại diện ngẫu nhiên.
+6. Nhấn vào webhook để mở, rồi nhấn **Sao chép URL webhook**.
 
-      body, err := io.ReadAll(res.Body)
-      if err != nil {
-        fmt.Println(err)
-        return
-      }
-      fmt.Println(string(body))
-    }
-    ```
-  </TabItem>
-  <TabItem value="Java" label="Java">
-    ```java
-    OkHttpClient client = new OkHttpClient().newBuilder()
-      .build();
-    MediaType mediaType = MediaType.parse("application/json");
-    RequestBody body = RequestBody.create(mediaType, "{\r\n    \"content\": \"{\\\"t\\\":\\\"Welcome to Mezon Clan webhook!!! [pre] This is a block message. [lk] https://mezon.ai\\\",\\\"mk\\\":[{\\\"type\\\":\\\"pre\\\",\\\"s\\\":33,\\\"e\\\":64},{\\\"type\\\":\\\"lk\\\",\\\"s\\\":68,\\\"e\\\":85}]}\",\r\n    \"attachments\": [\r\n        {\r\n            \"url\": \"https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg\",\r\n            \"filetype\": \"image/png\"\r\n        },\r\n        {\r\n            \"url\": \"https://cdn.mezon.vn/109056000/255856640/4198400/477_0bandicam_2024_11_19_11_10_14_507.mp4\",\r\n            \"filetype\": \"video/mp4\"\r\n        }\r\n    ]\r\n}");
-    Request request = new Request.Builder()
-      .url("https://webhook.mezon.ai/clanwebhooks/{YOUR_TOKEN}/{username_or_userid}")
-      .method("POST", body)
-      .addHeader("Content-Type", "application/json")
-      .build();
-    Response response = client.newCall(request).execute();
-    ```
-  </TabItem>
-  <TabItem value="CSharp" label="C#">
-    ```CSharp
-    var client = new HttpClient();
-    var request = new HttpRequestMessage(HttpMethod.Post, "https://webhook.mezon.ai/clanwebhooks/{YOUR_TOKEN}/{username_or_userid}");
-    var content = new StringContent("{\r\n    \"content\": \"{\\\"t\\\":\\\"Welcome to Mezon Clan webhook!!! [pre] This is a block message. [lk] https://mezon.ai\\\",\\\"mk\\\":[{\\\"type\\\":\\\"pre\\\",\\\"s\\\":33,\\\"e\\\":64},{\\\"type\\\":\\\"lk\\\",\\\"s\\\":68,\\\"e\\\":85}]}\",\r\n    \"attachments\": [\r\n        {\r\n            \"url\": \"https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg\",\r\n            \"filetype\": \"image/png\"\r\n        },\r\n        {\r\n            \"url\": \"https://cdn.mezon.vn/109056000/255856640/4198400/477_0bandicam_2024_11_19_11_10_14_507.mp4\",\r\n            \"filetype\": \"video/mp4\"\r\n        }\r\n    ]\r\n}", null, "application/json");
-    request.Content = content;
-    var response = await client.SendAsync(request);
-    response.EnsureSuccessStatusCode();
-    Console.WriteLine(await response.Content.ReadAsStringAsync());
-    ```
-  </TabItem>
-  <TabItem value="Javascript" label="Javascript">
-    ```js
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+   ![Webhook clan đang mở với nút Sao chép URL webhook](./images/clan-webhook-computer-03.png)
 
-    const raw = JSON.stringify({
-      "content": "{\"t\":\"Welcome to Mezon Clan webhook!!! [pre] This is a block message. [lk] https://mezon.ai\",\"mk\":[{\"type\":\"pre\",\"s\":33,\"e\":64},{\"type\":\"lk\",\"s\":68,\"e\":85}]}",
-      "attachments": [
-        {
-          "url": "https://cdn.mezon.vn/0/1843962578301095936/1829065039080853500/95_0thumbnail_dog1.jpg",
-          "filetype": "image/png"
-        },
-        {
-          "url": "https://cdn.mezon.vn/109056000/255856640/4198400/477_0bandicam_2024_11_19_11_10_14_507.mp4",
-          "filetype": "video/mp4"
-        }
-      ]
-    });
+Hãy giữ bí mật URL này. Nếu URL bị lộ, hãy nhấn **Đặt lại token**: URL cũ sẽ ngừng hoạt động.
 
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow"
-    };
+## Gửi tin nhắn {#send-a-message}
 
-    fetch("https://webhook.mezon.ai/clanwebhooks/{YOUR_TOKEN}/{username_or_userid}", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.error(error));
-    ```
-  </TabItem>
+Thêm thành viên vào cuối URL đã sao chép, rồi gửi `POST` với header `Content-Type: application/json`:
+
+```text
+https://webhook.mezon.ai/clanwebhooks/TOKEN/USERNAME_OR_USER_ID
+```
+
+Phần cuối là tên người dùng hoặc ID người dùng của thành viên. Thành viên phải ở trong clan.
+
+### Nội dung {#body}
+
+```json
+{
+  "content": "{\"t\":\"Your weekly report is ready.\"}",
+  "attachments": [{ "url": "https://example.com/report.png", "filetype": "image/png" }]
+}
+```
+
+| Trường | Kiểu | Bắt buộc | Ý nghĩa |
+|---|---|---|---|
+| `content` | string | Có | Tin nhắn, dạng chuỗi JSON: `{"t": "text", "mk": [...]}`. `t` là văn bản; `mk` thêm định dạng, như trong [webhook kênh](./channel-webhook.mdx#body). |
+| `attachments` | array | Không | Tệp cần hiện: `{ "url", "filetype" }`. Mezon chỉ hiện tệp đầu tiên. |
+
+`content` là một chuỗi chứa JSON, không phải đối tượng JSON. Hãy tạo nó bằng `JSON.stringify` (hoặc hàm tương đương trong ngôn ngữ của bạn), như trong các ví dụ.
+
+Mỗi `url` đính kèm phải là URL đầy đủ, có scheme và tên máy chủ.
+
+### Ví dụ {#examples}
+
+Đặt biến `CLAN_WEBHOOK_URL` bằng URL webhook clan của bạn, có tên người dùng hoặc ID người dùng của thành viên ở cuối.
+
+<Tabs groupId="code">
+<TabItem value="bash" label="curl" default>
+
+```bash
+curl -X POST "$CLAN_WEBHOOK_URL" \
+  -H "Content-Type: application/json" \
+  -d '{"content":"{\"t\":\"Your weekly report is ready.\"}"}'
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const body = {
+  content: JSON.stringify({ t: "Your weekly report is ready." }),
+  attachments: [{ url: "https://example.com/report.png", filetype: "image/png" }],
+};
+
+fetch(process.env.CLAN_WEBHOOK_URL, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(body),
+}).then(async (response) => console.log(response.status, await response.text()));
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import json
+import os
+import urllib.request
+
+body = {
+    "content": json.dumps({"t": "Your weekly report is ready."}),
+    "attachments": [{"url": "https://example.com/report.png", "filetype": "image/png"}],
+}
+
+request = urllib.request.Request(
+    os.environ["CLAN_WEBHOOK_URL"],
+    data=json.dumps(body).encode(),
+    headers={"Content-Type": "application/json"},
+    method="POST",
+)
+with urllib.request.urlopen(request) as response:
+    print(response.status, response.read().decode())
+```
+
+</TabItem>
 </Tabs>
 
-**Kết quả**
+Thành viên thấy tin nhắn trong **Hộp thư** → **Tin nhắn**:
 
-Bạn có thể xem tin nhắn gửi từ clan webhook trong **`Inbox`** của mình.
+![Tin nhắn của webhook clan trong hộp thư của thành viên](./images/clan-webhook-computer-04.png)
 
-![mezon-webhook-010](./images/mezon-webhook-010.png)
+## Phản hồi {#responses}
 
-:::note
-Thay `YOUR_TOKEN` bằng webhook token thực tế và `username_or_userid` bằng Mezon username hoặc user ID của người nhận. Người dùng phải là thành viên clan của bạn mới nhận được tin nhắn trực tiếp.
-:::
+| Mã | Nội dung | Nguyên nhân |
+|---|---|---|
+| `200` | (trống) | Đã gửi tin nhắn. |
+| `400` | `Invalid JSON` | Nội dung không phải JSON. |
+| `400` | `invalid token` | Token trong URL sai hoặc đã bị đặt lại. |
+| `400` | `User not in clan` | Thành viên không ở trong clan, hoặc tên người dùng không tồn tại. |
+| `400` | `Invalid attachment URL` | `url` đính kèm không phải URL đầy đủ. |
+| `404` | `Not Found` | URL không có tên người dùng hay ID người dùng ở cuối. |
+
+## Liên quan {#related}
+
+- [Tổng quan về webhook](./overview.mdx)
+- [Webhook kênh](./channel-webhook.mdx)

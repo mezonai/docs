@@ -1,49 +1,41 @@
 ---
 sidebar_position: 1
 sidebar_label: Tổng quan
+description: Đăng tin nhắn lên Mezon từ hệ thống khác bằng webhook kênh và webhook clan.
 ---
 
-# Tổng quan
+# Webhook
 
-Mezon Webhooks là một tính năng mạnh mẽ cho phép bạn tự động gửi tin nhắn đến các kênh và người dùng thông qua các yêu cầu HTTP POST. Với webhook, bạn có thể tích hợp các hệ thống bên ngoài và tự động hóa các luồng thông báo trong Mezon.
+Webhook là một URL bí mật dùng để đăng tin lên Mezon. Bất kỳ chương trình nào gửi được yêu cầu HTTP `POST` có JSON đều dùng được: một pipeline CI, một công cụ giám sát, một biểu mẫu. Bạn không cần bot, không cần đăng nhập và không cần SDK.
 
-## Các loại Webhook
+Webhook của Mezon chỉ có chiều vào: nó đăng tin vào Mezon. Nó không gửi sự kiện của Mezon về chương trình của bạn. Để phản hồi những gì xảy ra trong Mezon, hãy viết một [bot](../mezon-sdk/integration-bot-sdk/overview.md).
 
-Mezon cung cấp hai loại webhook chính:
+## Hai loại webhook {#two-kinds-of-webhooks}
 
-### Channel Webhook
-Channel Webhook cho phép bạn gửi tin nhắn trực tiếp đến một kênh cụ thể trong clan. Tin nhắn được gửi từ một bot user có thể tùy chỉnh tên và ảnh đại diện, giúp dễ dàng nhận biết nguồn của thông báo.
+| | Webhook kênh | Webhook clan |
+|---|---|---|
+| Đăng tới | Một kênh | Một thành viên của clan, chọn trong URL |
+| Tin nhắn hiện ở | Trong kênh, gửi bằng tên và ảnh đại diện của webhook | Trong **Hộp thư** của thành viên, ở thẻ **Tin nhắn** |
+| URL | `https://webhook.mezon.ai/webhooks/CHANNEL_ID/TOKEN` | `https://webhook.mezon.ai/clanwebhooks/TOKEN/USERNAME_OR_USER_ID` |
+| Nội dung | `{ "type": "hook", "message": { "t": "..." } }` | `{ "content": "{\"t\":\"...\"}" }` |
+| Tạo ở | Cài đặt của kênh → **Tích hợp** | Cài đặt clan → **Tích hợp** → **Webhook Clan** |
+| Quyền để tạo | **Quản lý kênh** | **Quản lý kênh** |
+| Hướng dẫn | [Webhook kênh](./channel-webhook.mdx) | [Webhook clan](./clan-webhook.mdx) |
 
-**Khi nào nên dùng:**
-- Thông báo hệ thống cho toàn bộ clan hoặc nhóm
-- Tích hợp với pipeline CI/CD
-- Cảnh báo ghi log và giám sát
-- Các luồng tự động hóa
+Sửa hoặc xóa webhook clan cần quyền **Quản lý Clan**.
 
-### Clan Webhook
-Clan Webhook cho phép bạn gửi Tin nhắn trực tiếp (DM) đến từng người dùng trong clan của bạn. Tin nhắn được gửi dựa trên username hoặc user ID được chỉ định trong URL.
+## Cách hoạt động {#how-it-works}
 
-**Khi nào nên dùng:**
-- Thông báo cá nhân cho từng người dùng
-- Cảnh báo và thông báo riêng tư
-- Cập nhật và nhắc nhở cá nhân
-- Giao tiếp một-một từ các hệ thống bên ngoài
+1. Tạo webhook trong Mezon.
+2. Sao chép URL của webhook. URL chứa token của webhook.
+3. Gửi một yêu cầu HTTP `POST` tới URL với nội dung JSON và header `Content-Type: application/json`.
+4. Tin nhắn hiện trong kênh, hoặc trong **Hộp thư** của thành viên.
 
-## Cách hoạt động
-
-1. **Tạo Webhook**: Thiết lập một tích hợp webhook trong cài đặt kênh hoặc clan
-2. **Lấy URL**: Sao chép URL webhook kèm token bảo mật của nó
-3. **Gửi yêu cầu**: Thực hiện một yêu cầu HTTP POST với payload JSON tới URL webhook
-4. **Nhận tin nhắn**: Tin nhắn xuất hiện trong kênh hoặc hộp thư của người dùng
-
-## Bắt đầu
-
-Để bắt đầu sử dụng webhook:
-
-1. Xem hướng dẫn chi tiết cho [Channel Webhook](./channel-webhook) hoặc [Clan Webhook](./clan-webhook)
-2. Tạo một webhook trong ứng dụng Mezon
-3. Sử dụng các ví dụ mã được cung cấp để gửi tin nhắn từ hệ thống của bạn
-
-:::tip Lưu ý bảo mật
-Luôn giữ token webhook của bạn an toàn và đặt lại nó nếu bạn nghi ngờ nó đã bị lộ hoặc bị xâm phạm.
+:::warning
+Bất kỳ ai có URL đều đăng tin được bằng nó. Đừng để URL trong mã nguồn, log hay tin nhắn chat. Nếu URL bị lộ, hãy xóa webhook kênh rồi tạo webhook mới, hoặc nhấn **Đặt lại token** ở webhook clan.
 :::
+
+## Liên quan {#related}
+
+- [Webhook kênh](./channel-webhook.mdx)
+- [Webhook clan](./clan-webhook.mdx)

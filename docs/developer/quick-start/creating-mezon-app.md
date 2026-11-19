@@ -1,49 +1,50 @@
 ---
-sidebar_label: Creating Mezon App
+sidebar_label: Create a channel app
 sidebar_position: 3
+description: Register your website as a channel app in the Mezon developer portal and install it in a clan.
 ---
 
-# Creating a Mezon App Account
+# Create a channel app
 
-Similar to bot accounts, creating an app account is also a fairly simple process.
+A channel app is your website, opened from a channel of a clan. Register it in the Mezon developer portal, then install it in a clan. Use a computer browser; you need a Mezon account.
 
-1. Make sure you’re logged on to the [Mezon website](https://mezon.ai/).
+## Create the app
 
-2. Access to the [developer portal](https://mezon.ai/developers).
+1. Open the [Mezon developer portal](https://mezon.ai/developers/applications) and log in with your Mezon account.
+2. Click **New Application or Bot**.
+3. Under **TYPE**, select **Create an application**.
+4. Under **NAME**, type the app's name.
+5. Under **URL**, type the address of your website, for example `https://app.example.com`.
+6. Tick the box to accept the Mezon Developer Terms of Service and Developer Policy.
+7. Click **Create**.
 
-3. Click on the `New Application` button.
+   ![The create form with the type Create an application, a name and a URL](./images/creating-mezon-app-computer-01.png)
 
-![mezon-app-001](./images/mezon-bot-001.png)
+The app's **General Information** page opens. It shows the app's id and its **Token**, as for a bot.
 
-4. Choose type is `Create an application` and give the app a name and click `Create`.
-5. Configure the URL to your web application.
-    
-![mezon-app-002](./images/mezon-app-001.png)
-
-6. The `General Information` provide your app's information.
-
-![mezon-app-003](./images/mezon-app-002.png)
-
-  - Use `App Id` as token to login when using **[Mezon App SDK](../mezon-sdk/channel-app-sdk/overview.md)**
-
-## Installing Your App
-
-So you have created a `App User` but that user is not actually part of any clan. If you want to use the app, you have to install the app via the installation URL in the `Installation` tab.
-
-1. Make sure you’re logged on to the [Mezon website](https://mezon.ai/).
-
-2. Navigate to the `Installation` in the [developer portal](https://mezon.ai/developers).
-
-![mezon-app-004](./images/mezon-app-003.png)
-
-Now you can use the install link to add the app to the clan. Copy and paste the URL into the browser, select the clan to install the app and click `Authorize`.
-
-![mezon-app-005](./images/mezon-app-004.png)
-
-You can customize the name of the channel app or it will be the default name. And your app will appear as a channel in the clan channel list.
-
-![mezon-app-006](./images/mezon-app-005.png)
-
-:::info NOTE
-The person adding the bot needs `Manage Clan` permissions to do so.
+:::warning
+Click **Copy Token** and keep the token on your server. The portal shows it only once. Your server needs it to check who opened the app: see [Check who opened your app](../mezon-sdk/channel-app-sdk/channel-app-auth-flow.mdx).
 :::
+
+## Install the app in a clan
+
+Installing the app adds a channel for it to the clan. You need the **Manage Channels** permission in that clan.
+
+1. Open the **Installation** tab of your app.
+2. Under **Install Link**, click **Copy**.
+3. Open the link in your browser.
+4. Under **Add to clan**, choose the clan.
+5. Under **Add to category**, choose the category for the app's channel.
+6. Under **Channel Name**, type a name for the channel, or leave it empty to use the app's name. The name keeps letters, digits, spaces, `-` and `_`, up to 32 characters.
+7. Click **Authorize**.
+
+   ![The install page with a clan, a category and a channel name](./images/creating-mezon-app-computer-02.png)
+
+The app appears as a channel in the clan's channel list.
+
+![The new app channel in the channel list](./images/creating-mezon-app-computer-03.png)
+
+## Next steps
+
+- [Channel apps overview](../mezon-sdk/channel-app-sdk/overview.md): how members open your app and what it receives.
+- [Check who opened your app](../mezon-sdk/channel-app-sdk/channel-app-auth-flow.mdx)

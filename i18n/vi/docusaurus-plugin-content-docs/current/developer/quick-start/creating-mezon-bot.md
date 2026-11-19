@@ -1,48 +1,68 @@
 ---
-sidebar_label: Tạo Bot Mezon
+sidebar_label: Tạo bot
 sidebar_position: 2
+description: Tạo bot trên Mezon Developer Portal, giữ token của bot và thêm bot vào clan.
 ---
 
-# Tạo tài khoản Bot Mezon
+# Tạo bot
 
-Để làm việc với thư viện và API của Mezon nói chung, trước tiên chúng ta cần tạo một tài khoản Bot Mezon.
+Tạo tài khoản cho bot trên Mezon Developer Portal, giữ lại ID Bot và token, rồi thêm bot vào một clan. Hãy dùng trình duyệt trên máy tính; bạn cần có tài khoản Mezon.
 
-Việc tạo tài khoản Bot khá đơn giản.
+## Tạo bot
 
-1. Đảm bảo bạn đã đăng nhập vào [trang Mezon](https://mezon.ai/).
+1. Mở [Mezon Developer Portal](https://mezon.ai/developers/applications) và đăng nhập bằng tài khoản Mezon.
+2. Nhấn **Tạo Ứng dụng hoặc Bot mới**.
 
-2. Truy cập [cổng nhà phát triển](https://mezon.ai/developers).
+   ![Trang Ứng dụng với nút Tạo Ứng dụng hoặc Bot mới](./images/creating-mezon-bot-computer-01.png)
 
-3. Nhấn vào nút `New Application`.
+3. Ở mục **LOẠI**, chọn **Tạo bot**.
+4. Ở mục **TÊN**, nhập tên bot.
+5. Đánh dấu ô đồng ý với Điều khoản Dịch vụ Nhà phát triển và Chính sách Nhà phát triển của Mezon. Nút **Tạo** chỉ bật sau khi bạn đánh dấu.
+6. Nhấn **Tạo**.
 
-![mezon-bot-001](./images/mezon-bot-001.png)
+   ![Biểu mẫu tạo với loại Tạo bot và tên đã nhập](./images/creating-mezon-bot-computer-02.png)
 
-4. Chọn loại là `Create a bot`, đặt tên cho bot rồi nhấn `Create`.
-    
-![mezon-bot-002](./images/mezon-bot-002.png)
+Trang **Thông tin chung** của bot mở ra.
 
-  - Bạn có thể ẩn bot của mình bằng tùy chọn `Shadow Bot`. Khi đó, các tương tác của bot sẽ hiển thị dưới tên của bạn trong các clan.
-
-5. Mục `General Information` cung cấp thông tin về bot của bạn.
-
-![mezon-bot-003](./images/mezon-bot-003.png)
-
-  - Dùng `Bot Id` làm token để đăng nhập khi sử dụng **[Mezon Bot SDK](../mezon-sdk/integration-bot-sdk/overview)**
-
-## Mời Bot của bạn
-
-Bạn đã tạo một Bot User nhưng nó chưa thực sự nằm trong clan nào.
-
-Nếu muốn mời bot, bạn phải tạo một đường dẫn mời (invite URL) cho nó.
-
-1. Đảm bảo bạn đã đăng nhập vào [trang Mezon](https://mezon.ai/).
-
-2. Vào mục `Installation` trong [cổng nhà phát triển](https://mezon.ai/developers).
-
-![mezon-bot-004](./images/mezon-bot-004.png)
-
-Bây giờ bạn có thể dùng đường dẫn cài đặt để thêm bot vào một clan. Sao chép và dán URL vào trình duyệt, chọn clan muốn mời bot vào, rồi nhấn `Authorize`.
-
-:::info LƯU Ý
-Người thêm bot cần có quyền `Manage Clan` để thực hiện việc này.
+:::note Bot Ẩn
+Biểu mẫu tạo có công tắc **Bot Ẩn**. Ở chế độ ẩn, bot có thể nhận tất cả tin nhắn gửi đến người tạo, nhưng không thể gửi tin nhắn. Hãy tắt công tắc này với bot thông thường.
 :::
+
+## Giữ ID Bot và token
+
+Chương trình của bạn đăng nhập bằng hai giá trị trên trang **Thông tin chung**:
+
+- **ID Bot**: ID người dùng của bot.
+- **Token**: khóa bí mật của bot.
+
+1. Nhấn **Sao chép Token**.
+2. Lưu token ở nơi an toàn, ví dụ trình quản lý bí mật hoặc biến môi trường trên máy chủ.
+
+   ![Trang Thông tin chung với ô ID Bot và Token](./images/creating-mezon-bot-computer-03.png)
+
+:::warning
+Developer Portal chỉ hiện token một lần, ngay khi token được tạo. Nếu làm mất token, hãy nhấn **Đặt lại Token** để lấy token mới, rồi cập nhật chương trình. Đừng bao giờ ghi token vào mã nguồn hay gửi trong tin nhắn.
+:::
+
+## Thêm bot vào clan
+
+Bot chỉ hoạt động trong các clan đã thêm nó. Để thêm bot, bạn cần quyền **Quản lý Clan** trong clan đó.
+
+1. Mở thẻ **Cài đặt** của bot.
+2. Ở mục **Liên kết Cài đặt**, nhấn **Sao chép**.
+
+   ![Thẻ Cài đặt với liên kết cài đặt và nút Sao chép](./images/creating-mezon-bot-computer-04.png)
+
+3. Mở liên kết trong trình duyệt.
+4. Ở mục **Add to clan** (thêm vào clan; trang này hiện tiếng Anh), chọn clan.
+5. Nhấn **Authorize** (ủy quyền).
+
+   ![Trang cài đặt với clan đã chọn và nút Authorize](./images/creating-mezon-bot-computer-05.png)
+
+Trang **Success!** xác nhận bot đã được thêm vào clan. Hãy gửi liên kết cài đặt cho các chủ sở hữu clan muốn dùng bot của bạn.
+
+## Bước tiếp theo
+
+- [Viết bot đầu tiên bằng JavaScript hoặc TypeScript](../mezon-sdk/integration-bot-sdk/getting-started.md)
+- [Viết bot đầu tiên bằng .NET](../mezon-sdk/dotnet-sdk.md)
+- [Bot được phép làm gì](../mezon-sdk/bot-api-access.md)

@@ -1,119 +1,164 @@
 ---
 sidebar_position: 1
 sidebar_label: OAuth2
+description: Cho phép người dùng đăng nhập vào trang web của bạn bằng tài khoản Mezon, với OAuth2 và OpenID Connect.
 ---
 
 # OAuth2
 
-OAuth2 cho phép nhà phát triển ứng dụng xây dựng ứng dụng bằng xác thực và dữ liệu từ Mezon API. Mezon chỉ hỗ trợ authorization code grant và một số luồng đặc thù của Mezon dành cho Bot và Webhook.
+Mezon là nhà cung cấp OAuth2 và OpenID Connect. Trang web của bạn có thể chuyển người dùng sang Mezon để đăng nhập, rồi nhận ID người dùng Mezon, tên người dùng, tên hiển thị và ảnh đại diện của họ. Trang này giải thích luồng mã ủy quyền (authorization code).
 
-## Tài nguyên dùng chung
+## Thiết lập ứng dụng {#set-up-your-app}
 
-Bước đầu tiên khi triển khai OAuth2 là [đăng ký ứng dụng nhà phát triển](https://mezon.ai/developers/applications) và lấy `client_id` cùng `client_secret`. Hầu hết người triển khai OAuth2 sẽ muốn tìm và dùng thư viện phù hợp với ngôn ngữ lập trình của họ. Với những ai tự triển khai OAuth2 từ đầu, hãy xem [RFC 6749](https://tools.ietf.org/html/rfc6749) để biết chi tiết. Sau khi tạo ứng dụng trên Mezon, hãy chuẩn bị sẵn `client_id` và `client_secret`.
+1. Mở [Mezon Developer Portal](https://mezon.ai/developers/applications) và mở ứng dụng của bạn (hoặc [tạo một ứng dụng](../quick-start/creating-mezon-app.md)).
+2. Mở thẻ **OAuth2**.
+3. Ở mục **Chuyển hướng**, nhấn **Thêm Chuyển hướng** và nhập URL nhận kết quả (callback), ví dụ `https://your-app.example.com/callback`. URL phải bắt đầu bằng `http://` hoặc `https://`.
+4. Ở mục **Trình tạo URL OAuth2**, trong **Phạm vi**, đánh dấu các scope mà trang web của bạn yêu cầu, rồi lưu thay đổi.
+5. Ở mục **Thông tin Client**, sao chép **Client ID**.
+6. Nhấn **Đặt lại secret** để tạo client secret, rồi lưu nó trên máy chủ. Bạn cần có ít nhất một redirect URI trước.
 
-###### URL OAuth2 {#oauth2-urls}
+Client secret phải nằm trên máy chủ. Luồng trong trang này cần có máy chủ.
 
-| URL                                  | Mô tả                        |
-| ------------------------------------ | ---------------------------- |
-| https://oauth2.mezon.ai/oauth2/auth  | URL ủy quyền cơ sở           |
-| https://oauth2.mezon.ai/oauth2/token | URL token                    |
-| https://oauth2.mezon.ai/userinfo     | URL thông tin người dùng     |
+## Các endpoint {#endpoints}
 
-> [!WARNING]
-> Theo các RFC liên quan, URL token và thu hồi token **chỉ** chấp nhận content type `application/x-www-form-urlencoded`. Nội dung JSON không được phép và sẽ trả về lỗi.
+Các URL này lấy từ tài liệu khám phá công khai tại `https://oauth2.mezon.ai/.well-known/openid-configuration` (đọc ngày 19/11/2026).
 
-###### Phạm vi OAuth2 (Scopes) {#oauth2-scopes}
+| Endpoint | URL |
+|---|---|
+| Ủy quyền | `https://oauth2.mezon.ai/oauth2/auth` |
+| Token | `https://oauth2.mezon.ai/oauth2/token` |
+| Thông tin người dùng | `https://oauth2.mezon.ai/userinfo` |
+| Thu hồi | `https://oauth2.mezon.ai/oauth2/revoke` |
+| Đăng xuất | `https://oauth2.mezon.ai/oauth2/sessions/logout` |
+| Khóa ký | `https://oauth2.mezon.ai/.well-known/jwks.json` |
 
-Đây là danh sách tất cả phạm vi OAuth2 mà Mezon hỗ trợ. Một số scope yêu cầu Mezon phê duyệt trước khi sử dụng. Yêu cầu chúng từ người dùng mà không có phê duyệt của Mezon có thể gây lỗi hoặc hành vi không được ghi nhận trong luồng OAuth2.
+## Scope {#scopes}
 
-| Tên            | Mô tả |
-| -------------- | ----- |
-| openid         |       |
-| offline        |       |
-| offline_access |       |
+| Scope | Cho bạn |
+|---|---|
+| `openid` | Một ID token chứa các claim của người dùng (xem [Claim của người dùng](#user-claims)). |
+| `offline` | Một refresh token, để lấy access token mới mà không phải hỏi lại người dùng. |
 
-## State và bảo mật {#state-and-security}
+Ứng dụng mới được yêu cầu `openid` và `offline`. Chỉ yêu cầu các scope đã đánh dấu trong danh sách **Phạm vi** của ứng dụng.
 
-Trước khi đi sâu vào ngữ nghĩa của các grant OAuth2 khác nhau, chúng ta cần dừng lại để thảo luận về bảo mật, đặc biệt là việc dùng tham số `state`. [Cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery) (CSRF) và [Clickjacking](https://en.wikipedia.org/wiki/Clickjacking) là các lỗ hổng bảo mật mà người triển khai OAuth phải xử lý. Điều này thường được thực hiện bằng tham số `state`. `state` được gửi trong yêu cầu ủy quyền và trả về trong phản hồi; giá trị này nên gắn yêu cầu của người dùng với trạng thái xác thực của họ. Ví dụ, `state` có thể là hash của cookie phiên người dùng, hoặc một nonce khác có thể liên kết với phiên của người dùng.
+## Luồng mã ủy quyền {#authorization-code-flow}
 
-Khi người dùng bắt đầu luồng ủy quyền trên client, một `state` duy nhất cho yêu cầu đó được tạo ra. Giá trị này được lưu ở nơi chỉ client và người dùng truy cập được, tức được bảo vệ bởi [same-origin policy](https://en.wikipedia.org/wiki/Same-origin_policy). Khi người dùng được chuyển hướng, tham số `state` được trả về. Client xác thực yêu cầu bằng cách kiểm tra `state` trả về có khớp với giá trị đã lưu hay không. Nếu khớp, đó là yêu cầu ủy quyền hợp lệ. Nếu không khớp, có thể ai đó đã chặn yêu cầu hoặc tự ủy quyền trái phép vào tài nguyên của người dùng khác, và yêu cầu nên bị từ chối.
+### 1. Chuyển người dùng sang Mezon {#1-send-the-user-to-mezon}
 
-Với Mezon, chúng tôi yêu cầu tham số `state` gồm 11 ký tự chữ và số. Tham số này được gửi trong URL và sẽ được mô tả chi tiết ở phần tiếp theo.
+Chuyển trình duyệt của người dùng tới URL ủy quyền:
 
-## Luồng Authorization Code
-
-Authorization code grant là dạng OAuth2 mà hầu hết nhà phát triển nhận ra là "OAuth2 chuẩn", gồm lấy mã ủy quyền và đổi lấy access token của người dùng. Nó cho phép máy chủ ủy quyền đóng vai trò trung gian giữa client và resource owner, nên thông tin đăng nhập của resource owner không bao giờ được chia sẻ trực tiếp với client.
-
-Mọi lời gọi tới endpoint OAuth2 yêu cầu HTTP Basic authentication hoặc `client_id` và `client_secret` cung cấp trong body form data.
-
-###### Ví dụ URL ủy quyền
-
-```
-https://oauth2.mezon.ai/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=https%3A%2F%2Fyour-app.example.com%2Fcallback&response_type=code&scope=openid+offline&state=7d2bf60ffcb
+```text
+https://oauth2.mezon.ai/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=https%3A%2F%2Fyour-app.example.com%2Fcallback&response_type=code&scope=openid%20offline&state=RANDOM_STATE
 ```
 
-`client_id` là `client_id` của ứng dụng. `scope` là danh sách [phạm vi OAuth2](#oauth2-scopes) phân tách bằng khoảng trắng đã mã hóa URL (`%20`). `redirect_uri` là URL bạn đã đăng ký khi tạo ứng dụng, đã mã hóa URL. `state` là chuỗi duy nhất đã đề cập ở [State và bảo mật](#state-and-security).
+| Tham số | Giá trị |
+|---|---|
+| `client_id` | **Client ID** của bạn. |
+| `redirect_uri` | Một trong các redirect URI của bạn, đã mã hóa URL. Phải khớp chính xác. |
+| `response_type` | `code` |
+| `scope` | Các scope, cách nhau bằng dấu cách (`%20`). |
+| `state` | Một giá trị ngẫu nhiên bạn tạo cho lần đăng nhập này và lưu trong phiên của người dùng. |
 
-Khi ai đó truy cập URL này, quá trình ủy quyền cho ứng dụng của bạn với các scope được yêu cầu sẽ bắt đầu.
+`state` chống tấn công giả mạo yêu cầu (CSRF): khi người dùng quay lại, hãy so với giá trị đã lưu, và dừng lại nếu chúng khác nhau. Hãy dùng một giá trị ngẫu nhiên dài, ví dụ 32 ký tự.
 
-Một thử thách được phát hành (chúng tôi gọi là `Đăng nhập tài khoản Mezon`) chuyển bạn tới trang đăng nhập Mezon. Nếu xác thực thành công, Mezon sẽ chuyển hướng bạn tới `redirect_uri`, kèm tham số query string bổ sung là `code`. `state` cũng được trả về nếu đã gửi trước đó và nên được xác thực tại thời điểm này.
+### 2. Nhận mã {#2-receive-the-code}
 
-> [!IMPORTANT]
-> Lưu ý: luôn xác minh `state` để tránh rủi ro bảo mật.
+Người dùng đăng nhập vào Mezon. Sau đó Mezon đưa trình duyệt quay về redirect URI của bạn:
 
-###### Ví dụ URL chuyển hướng
-
+```text
+https://your-app.example.com/callback?code=AUTHORIZATION_CODE&scope=openid+offline&state=RANDOM_STATE
 ```
-https://your-app.example.com/callback?code=AUTHORIZATION_CODE&scope=&state=7d2bf60ffcb
-```
 
-`code` giờ được đổi lấy access token của người dùng bằng cách gửi yêu cầu `POST` tới [URL token](#oauth2-urls) với các tham số sau:
+Kiểm tra `state`, rồi đổi `code` lấy token.
 
-- `grant_type` — phải là `authorization_code`
-- `code` — mã từ querystring
-- `state` — state từ querystring
-- `client_id` — `client_id` từ ứng dụng nhà phát triển
-- `client_secret` — `client_secret` từ ứng dụng nhà phát triển
-- `redirect_uri` — `redirect_uri` gắn với lần ủy quyền này, thường từ URL ủy quyền của bạn
+### 3. Đổi mã lấy token {#3-exchange-the-code-for-tokens}
 
-###### Ví dụ đổi Access Token
+Gửi `POST` tới URL token, với nội dung mã hóa dạng `application/x-www-form-urlencoded`. URL token không nhận JSON.
 
 ```python
 import requests
 
-API_ENDPOINT = 'https://oauth2.mezon.ai/'
-CLIENT_ID = 'YOUR_CLIENT_ID'
-CLIENT_SECRET = 'YOUR_CLIENT_SECRET'
-REDIRECT_URI = 'https://your-app.example.com/callback'
+TOKEN_URL = "https://oauth2.mezon.ai/oauth2/token"
+CLIENT_ID = "YOUR_CLIENT_ID"
+CLIENT_SECRET = "YOUR_CLIENT_SECRET"
+REDIRECT_URI = "https://your-app.example.com/callback"
 
-def exchange_code(code, state):
-  data = {
-    'grant_type': 'authorization_code',
-    'code': code,
-    'state': state,
-    'client_id': CLIENT_ID,
-    'client_secret': CLIENT_SECRET,
-    'redirect_uri': REDIRECT_URI
-  }
-  headers = {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  }
-  r = requests.post('%s/oauth2/token' % API_ENDPOINT, data=data, headers=headers)
-  r.raise_for_status()
-  return r.json()
+
+def exchange_code(code):
+    data = {
+        "grant_type": "authorization_code",
+        "code": code,
+        "redirect_uri": REDIRECT_URI,
+        "client_id": CLIENT_ID,
+        "client_secret": CLIENT_SECRET,
+    }
+    r = requests.post(TOKEN_URL, data=data)
+    r.raise_for_status()
+    return r.json()
 ```
 
-Phản hồi bạn nhận được:
+Gửi client id và secret trong nội dung form, như trên. Mezon thiết lập các ứng dụng tạo từ Developer Portal theo cách này (`client_secret_post`).
 
-###### Phản hồi Access Token
+Phản hồi:
 
 ```json
 {
-  "access_token": "ory_at_SHhqhMVwdB-Wsf3JVcM4K0zBkosl76ZqSAbWWVHiiCY.WJGnPNlsNrTsvWzNJZgX2r2YjOwKba3LevbS9SZco8A",
+  "access_token": "ACCESS_TOKEN",
   "expires_in": 3600,
-  "scope": "",
+  "id_token": "ID_TOKEN",
+  "refresh_token": "REFRESH_TOKEN",
+  "scope": "openid offline",
   "token_type": "bearer"
 }
 ```
 
-Có access token của người dùng cho phép ứng dụng của bạn thực hiện một số yêu cầu tới API thay mặt họ, giới hạn trong các scope đã yêu cầu. `expires_in` là thời gian (giây) cho đến khi access token hết hạn, giúp bạn dự đoán thời điểm hết hạn.
+`id_token` chỉ có khi dùng scope `openid`, và `refresh_token` chỉ có khi dùng `offline`. `expires_in` là thời gian sống của access token, tính bằng giây.
+
+### 4. Đọc thông tin người dùng {#4-read-the-user}
+
+Gọi URL thông tin người dùng với access token:
+
+```bash
+curl -H "Authorization: Bearer ACCESS_TOKEN" https://oauth2.mezon.ai/userinfo
+```
+
+## Claim của người dùng {#user-claims}
+
+Với scope `openid`, ID token và phản hồi thông tin người dùng chứa các claim sau, nếu người dùng có giá trị cho chúng:
+
+| Claim | Ý nghĩa |
+|---|---|
+| `user_id` | ID người dùng Mezon, cũng là ID mà bot, webhook và ứng dụng kênh nhìn thấy. Hãy lưu dưới dạng chuỗi: nó có tới 19 chữ số. Hãy dùng ID này để nhận diện người dùng. |
+| `username` | Tên người dùng. |
+| `display_name` | Tên hiển thị. |
+| `avatar` | URL ảnh đại diện. |
+| `mezon_id` | Mã định danh tài khoản do dịch vụ đăng nhập của Mezon cấp, là một chuỗi không mang ý nghĩa. Đây không phải ID người dùng. |
+| `email` | Địa chỉ email. |
+
+ID token là một JWT ký bằng RS256. Hãy kiểm tra nó bằng các khóa ở URL khóa ký.
+
+## Làm mới và thu hồi token {#refresh-and-revoke-tokens}
+
+Lấy access token mới bằng refresh token:
+
+```bash
+curl -X POST https://oauth2.mezon.ai/oauth2/token \
+  -d grant_type=refresh_token \
+  -d refresh_token=REFRESH_TOKEN \
+  -d client_id=YOUR_CLIENT_ID \
+  -d client_secret=YOUR_CLIENT_SECRET
+```
+
+Thu hồi token khi người dùng đăng xuất khỏi trang web của bạn:
+
+```bash
+curl -X POST https://oauth2.mezon.ai/oauth2/revoke \
+  -d token=REFRESH_TOKEN \
+  -d client_id=YOUR_CLIENT_ID \
+  -d client_secret=YOUR_CLIENT_SECRET
+```
+
+## Liên quan {#related}
+
+- [OAuth 2.0 (RFC 6749)](https://www.rfc-editor.org/rfc/rfc6749)
+- [Tạo ứng dụng trong kênh](../quick-start/creating-mezon-app.md)

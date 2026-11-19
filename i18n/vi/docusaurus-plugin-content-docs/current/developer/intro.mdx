@@ -1,112 +1,44 @@
 ---
-showTOC: false
 sidebar_label: Giới thiệu
-title: Giới thiệu
+title: Tài liệu cho lập trình viên Mezon
 sidebar_position: 1
+description: Xây dựng bot, ứng dụng trong kênh và các tích hợp cho Mezon.
 ---
 
-# ![Mezon Banner](./images/mezon-banner.png)
+# Tài liệu cho lập trình viên Mezon
 
-## Tính năng nổi bật của nền tảng
+Xây dựng bot, ứng dụng trong kênh và các tích hợp cho Mezon. Mọi bot và ứng dụng đều bắt đầu từ [Mezon Developer Portal](https://mezon.ai/developers/applications): bạn tạo chúng ở đó và lấy thông tin xác thực.
 
-<Columns> 
-  <Column className='text--left'>
-    ### **⚡ Hiệu năng cao**
-    - Thời gian phản hồi dưới một mili giây
-    - Hàng triệu kết nối đồng thời
-    - Độ tin cậy và khả năng mở rộng ở cấp doanh nghiệp
-  </Column>
-  
-  <Column className='text--left'>
-  ### **🌐 Đa nền tảng**
-    - Web, Desktop (Windows/macOS/Linux), Mobile (iOS/Android)
-    - SDK đồng nhất với API nhất quán trên mọi nền tảng
-    - Hỗ trợ Progressive Web App
-  </Column>
-  
-  <Column className='text--left'>
-  ### **💰 Nền kinh tế tích hợp**
-    - Hệ thống token gốc cho phần thưởng và giao dịch
-    - Công cụ kiếm tiền cho nhà phát triển và nhà sáng tạo
-    - Tích hợp liền mạch với các hệ thống thanh toán bên ngoài
-  </Column>
-</Columns>
+## Bắt đầu từ đây
 
----
+1. [Bạn có thể xây dựng gì](./quick-start/overview.md): bot, ứng dụng trong kênh, webhook và OAuth2 trên một trang.
+2. [Tạo bot](./quick-start/creating-mezon-bot.md) hoặc [tạo ứng dụng trong kênh](./quick-start/creating-mezon-app.md) trên Developer Portal.
+3. [Viết bot đầu tiên](./mezon-sdk/integration-bot-sdk/getting-started.md) với SDK JavaScript/TypeScript.
 
-## Xây dựng cùng Mezon
+## Bot
 
-Mezon tuyệt vời để chơi game và thư giãn cùng bạn bè, hay thậm chí xây dựng một cộng đồng toàn cầu. Với các SDK mạnh mẽ, giao tiếp thời gian thực và một hệ sinh thái sôi động, Mezon trao quyền cho nhà phát triển xây dựng thế hệ tương tác xã hội tiếp theo.
+Bot là một chương trình đăng nhập vào Mezon bằng tài khoản riêng. Bot đọc tin nhắn trong các clan đã thêm nó và trả lời.
 
-<Columns> 
-  <Column className='text--left'>
-    <Card href="./mezon-sdk/integration-bot-sdk" hoverable={true} shadow='tl'>
-    <CardHeader>
-      <h3>🤖 Ứng dụng Bot</h3>
-    </CardHeader>
-    <CardBody>
-      Phát triển các bot thông minh và tích hợp tự động để nâng cao trải nghiệm Mezon với khả năng xử lý mạnh mẽ ở phía máy chủ.
-    </CardBody>
-  </Card>
-  </Column>
-  <Column className='text--left'>
-    <Card href="./mezon-sdk/channel-app-sdk" hoverable={true} shadow='tl'>
-    <CardHeader>
-      <h3>🌐 Ứng dụng Kênh</h3>
-    </CardHeader>
-    <CardBody>
-     Xây dựng và tích hợp website của bạn trực tiếp trên kênh Mezon để mang lại trải nghiệm liền mạch với hệ sinh thái sẵn có.
-    </CardBody>
-  </Card>
-  </Column>
-</Columns>
+- [SDK bot cho JavaScript/TypeScript](./mezon-sdk/integration-bot-sdk/overview.md) (`mezon-sdk` trên npm, chạy trên Node.js)
+- [SDK bot cho .NET](./mezon-sdk/dotnet-sdk.md) (`Mezon.Net.Sdk` trên NuGet)
+- [Bot được phép làm gì](./mezon-sdk/bot-api-access.md)
+- [Tin nhắn tương tác](./mezon-topics/interactive-message.mdx): nút bấm, biểu mẫu và danh sách chọn
+- [Kênh phát trực tiếp](./mezon-topics/streaming-channel.mdx): phát video từ bot
 
----
+## Ứng dụng trong kênh
 
-## Webhooks
+Ứng dụng trong kênh là trang web của bạn, được mở từ một kênh trong clan. Mezon cho trang web biết người dùng là ai bằng dữ liệu có chữ ký.
 
-<Columns> 
-  <Column className='text--left'>
-    <Card href="./webhooks/clan-webhook" hoverable={true} shadow='tl'>
-    <CardHeader>
-      <h3>Clan webhook</h3>
-    </CardHeader>
-    <CardBody>
-    Gửi tin nhắn đến hộp thư của các thành viên trong clan.
-    </CardBody>
-  </Card>
-  </Column>
-  <Column className='text--left'>
-    <Card href="./webhooks/channel-webhook" hoverable={true} shadow='tl'>
-    <CardHeader>
-      <h3>Channel webhook</h3>
-    </CardHeader>
-    <CardBody>
-    Gửi tin nhắn đến một kênh cụ thể.
-    </CardBody>
-  </Card>
-  </Column>
-</Columns>
+- [Tổng quan về ứng dụng trong kênh](./mezon-sdk/channel-app-sdk/overview.md)
+- [Kiểm tra ai đã mở ứng dụng](./mezon-sdk/channel-app-sdk/channel-app-auth-flow.mdx)
 
----
+## Webhook
 
-## Tìm hỗ trợ
+Webhook cho phép bất kỳ chương trình nào đăng tin lên Mezon chỉ bằng một yêu cầu HTTP. Bạn không cần bot hay SDK.
 
-Kết nối với cộng đồng nhà phát triển, báo lỗi và cập nhật các thay đổi của nền tảng.
+- [Webhook kênh](./webhooks/channel-webhook.mdx): đăng tin nhắn vào một kênh.
+- [Webhook clan](./webhooks/clan-webhook.mdx): gửi tin nhắn vào hộp thư của một thành viên.
 
-### **🤝 Hỗ trợ từ cộng đồng**
-Nhận trợ giúp từ các nhà phát triển giàu kinh nghiệm và đội ngũ Mezon.
+## Đăng nhập bằng Mezon
 
-- **[Tham gia cộng đồng Mezon](https://mezon.ai/invite/1840697268164890624)** - Kết nối với các nhà phát triển khác và nhận hỗ trợ
-- **[Cổng nhà phát triển](https://mezon.ai/developers)** - Quản lý ứng dụng và truy cập công cụ dành cho nhà phát triển
-- **[Tài liệu API](./mezon-sdk)** - Tài liệu tham khảo đầy đủ cho mọi API hiện có
-
-### **🚀 Bắt đầu ngay hôm nay**
-Sẵn sàng xây dựng ứng dụng Mezon đầu tiên của bạn?
-
-- Bắt đầu bằng cách tạo **[Bot](./quick-start/creating-mezon-bot)** hoặc **[App](./quick-start/creating-mezon-app)** của bạn.
-- Làm theo **[Hướng dẫn](./mezon-sdk)** để xây dựng bot của riêng bạn.
-
----
-
-*Sẵn sàng thay đổi cách mọi người kết nối và cộng tác? Hãy bắt đầu xây dựng trên Mezon ngay hôm nay và tham gia cùng hàng triệu người dùng trong thế hệ trải nghiệm xã hội tiếp theo.*
+- [OAuth2](./mezon-topics/oauth2.mdx): cho phép người dùng đăng nhập vào trang web của bạn bằng tài khoản Mezon.

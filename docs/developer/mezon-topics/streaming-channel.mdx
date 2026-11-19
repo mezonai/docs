@@ -1,168 +1,136 @@
 ---
-sidebar_label: Streaming Channels
+sidebar_label: Stream channels
 sidebar_position: 3
+description: Publish live video from a bot to a Mezon stream channel with a publish grant and WHIP.
 ---
 
-# Streaming Channels
+# Stream channels
 
-Streaming channels in Mezon enable real-time video broadcasting and interactive streaming experiences within clans. This feature allows users to broadcast live video content to channel members, creating engaging multimedia experiences for communities.
+A stream channel shows live video to the members of a clan. A bot can publish video into a stream channel: it gets a short-lived grant from Mezon, then sends its video to the Mezon streaming server over WHIP ([RFC 9725](https://www.rfc-editor.org/rfc/rfc9725)). Members watch in the Mezon apps.
 
-## Overview
+The SDKs give you the grant. They contain no video code: you publish with a WebRTC library of your choice.
 
-Streaming channels provide a platform for:
+## How it works
 
-- **Live video broadcasting** within clan channels
-- **Real-time viewer interaction** through chat and reactions
-- **WebRTC-based streaming** for high-quality, low-latency transmission
-- **Bot integration** for automated streaming management
-- **Cross-platform support** for web, desktop, and mobile clients
+1. The bot asks Mezon for a publish grant for the channel. It gets a token, a WHIP URL and an expiry time.
+2. The bot sends its WebRTC offer to the WHIP URL, with the token.
+3. The streaming server answers. The bot connects and sends H.264 video and Opus audio.
+4. Mezon tells the clan that the channel is live.
+5. Members watch the stream in the Mezon apps, about 6 seconds behind the live picture or more.
+6. The bot ends the stream by deleting its WHIP session.
 
-## Channel Types
+## Before you start
 
-### Streaming Channel Type
+- A stream channel in a clan: see [Stream channel](../../user/clan/create-your-own-clan/manage-clan/clan-structure/channels/stream-channel.mdx).
+- The bot must be a member of the clan.
+- A WebRTC library that can create an SDP offer with H.264 and Opus and send media.
 
-```typescript
-ChannelType.CHANNEL_TYPE_STREAMING = 6;
+## Get a publish grant
+
+```ts
+const grant = await client.getStreamPlayback({ channel_id: "CHANNEL_ID", publish: true });
+if (!grant?.token || !grant.whip_url) throw new Error("No publish grant");
 ```
 
-Streaming channels are a specific channel type designed for video broadcasting functionality.
+In the [.NET SDK](../mezon-sdk/dotnet-sdk.md#stream-channels), call `GetStreamPlaybackAsync(new GetStreamPlaybackParams(channelId, publish: true))`.
 
-## How to Stream in a Streaming Channel
+| Field | Meaning |
+|---|---|
+| `token` | The bearer token for the WHIP request. Never log it. |
+| `whip_url` | Where to send the WHIP request. |
+| `expires_at` | When the token expires, in Unix seconds (a string in `mezon-sdk`). |
 
-### Step 1: Create a Stream Channel
+The token is valid for 10 minutes. The streaming server checks it only when a session starts, so a running stream continues after it expires. Get a new grant every time you start or restart publishing.
 
-First, you need to create a new channel within a Clan.
+The grant request fails with code 400 if the channel is not a stream channel, and 403 if the bot is not in the channel's clan. In `mezon-sdk` the failure is an object such as `{ code: 0, error: { code: 403, message: "Permission denied." } }`, not an `Error`.
 
-Navigate to the channels section and choose a category to create a new channel. When prompted for the channel type, select **Stream**. Other available types are Text and Voice.
+## Publish with WHIP
 
-![streaming-channel-001](./images/streaming-channel-001.png)
+Send the SDP offer from your WebRTC library to `whip_url`:
 
-You have to provide a name for your stream channel. Finalize the creation process.
+```ts
+async function startPublishing(channelId: string): Promise<string> {
+  const grant = await client.getStreamPlayback({ channel_id: channelId, publish: true });
+  if (!grant?.token || !grant.whip_url) throw new Error("No publish grant");
 
-![streaming-channel-002](./images/streaming-channel-002.png)
+  const offer = await createOffer(); // from your WebRTC library
+  const response = await fetch(grant.whip_url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/sdp",
+      Authorization: `Bearer ${grant.token}`,
+    },
+    body: offer,
+  });
+  if (response.status !== 201) {
+    throw new Error(`WHIP failed: ${response.status} ${await response.text()}`);
+  }
 
-### Step 2: Get Channel Information
+  await applyAnswer(await response.text()); // give the SDP answer to your WebRTC library
+  const location = response.headers.get("Location");
+  if (!location) throw new Error("WHIP answer has no Location header");
+  return new URL(location, grant.whip_url).toString();
+}
 
-After creating the channel, you must obtain its `clan_id` and `channel_id`. You can get this information from the browser URL or get it by listening to the channel creation event if you already have a Bot/App there.
+async function stopPublishing(resourceUrl: string) {
+  await fetch(resourceUrl, { method: "DELETE" });
+}
+```
 
-```javascript
-//mezon.ai/chat/clans/1840666462012837888/channels/1977287012746530816
+`createOffer` and `applyAnswer` stand for your WebRTC library's calls. The `Location` header is your session's URL: send `DELETE` to it when you stop. Keep it secret, like the token.
 
-// or
+### What the offer must contain
 
-https: this.client.onChannelCreated((channel) => {
-  this.logger.info("New channel created:", channel.channel_id);
-  this.logger.info("In clan:", channel.clan_id);
+- Audio: Opus at 48 kHz.
+- Video: H.264 with `packetization-mode=1`. Use Constrained Baseline (`profile-level-id=42e01f`), so every viewer can decode it.
+- At most 4 media sections. The server uses the first usable audio and the first usable video section.
+- ICE credentials and a SHA-256 DTLS fingerprint, with `a=setup:actpass` or `a=setup:active`. The server is ICE-lite and always the DTLS server. It does not use trickle ICE, and it supports IPv4 only.
+
+### What the media must look like
+
+- Send the SPS and PPS in band before each keyframe, and encode without B-frames.
+- Answer keyframe requests (PLI). If your encoder cannot, send a keyframe every 2 seconds.
+- Retransmit lost video packets (NACK) on the original stream: the server does not use RTX.
+- Keep sending. A session ends when nothing arrives from the bot for about 15 seconds.
+
+### Answers from the WHIP URL
+
+| Status | Meaning | What to do |
+|---|---|---|
+| `201` | Session created. The body is the SDP answer. | Connect and send media. |
+| `400` | The request or the offer is not valid. | Fix it; do not retry it unchanged. |
+| `401` | The token is missing, wrong or expired. | Get a new grant, then retry. |
+| `403` | The token is for another channel or role. | Do not retry. |
+| `406` | The offer has no codec the server accepts. | Offer H.264 and Opus. |
+| `409` | Another user is publishing in this channel. | Tell the user; only one publisher per channel. |
+| `413` | The request is too large. | Send a smaller offer. |
+| `503` | The server is full, busy or restarting. | Retry later, not before the `Retry-After` header says. |
+
+A new WHIP request from the same bot to the same channel replaces its running session, so a bot that reconnects does not get `409`.
+
+## Know when the channel is live
+
+```ts
+client.onStreamingJoinedEvent((event) => {
+  if (event.is_publisher) {
+    console.log("Live in channel", event.streaming_channel_id, "by", event.user_id);
+  }
+});
+client.onStreamingLeavedEvent((event) => {
+  console.log("Left", event.streaming_channel_id, event.streaming_user_id);
 });
 ```
 
-And these will be used in subsequent API calls.
+`onStreamingJoinedEvent` with `is_publisher: true` means someone went live. When the stream ends, `onStreamingLeavedEvent` arrives for the publisher.
 
-### Step 3: Bot Integration and Streaming
+## Limits
 
-To broadcast the stream, you need to create a bot to handle the code integration and WebSocket communication.
+- One publisher per channel at a time.
+- Up to 3 simulcast layers and 4 media sections per offer.
+- Viewers in the Mezon apps watch over HLS, so they see the stream several seconds late.
 
-#### Initialize the Bot
+## Related
 
-Initialize the Mezon client using your bot token and perform a login to retrieve an authentication token for the WebSocket connection[cite: 20].
-
-```javascript
-const client = new MezonClient(BOT_TOKEN);
-const dataLogin = await client.login();
-const data = JSON.parse(dataLogin);
-const token = data.token;
-```
-
-#### Initialize WebSocket Connection
-
-Use the token obtained in the previous step to establish a WebSocket connection with the `stn` service.
-
-```javascript
-const ws = new WebSocket(`wss://stn.mezon.ai/ws?token=${token}`);
-```
-
-#### Play Stream
-
-To start the stream, you must send a specific message object through the WebSocket.
-
-1. **Define Parameters (`params`)**: This object contains the details of the stream.
-
-   ```json
-   {
-     "ChannelId": "channel_streaming_id",
-     "Password": "",
-     "FileUrl": ""
-   }
-   ```
-
-2. **Construct the Socket Message (`messageSocket`)**: This message object tells the server to start a publisher (streamer).
-
-   - `ClanId`: The ID of the clan.
-   - `ChannelId`: The ID of the streaming channel.
-   - `UserId`: The Bot's user ID.
-   - `Value`: The `params` object defined above.
-   - `Key`: Must be set to `connect_publisher` to initiate the stream.
-
-   ```javascript
-   const messageSocket = {
-     ClanId: "clan_id",
-     ChannelId: "channel_streaming_id",
-     UserId: process.env.BOT_KOMU_ID,
-     Value: params,
-     Key: "connect_publisher",
-   };
-   ```
-
-3. **Send the Message**: Convert the `messageSocket` object to a JSON string and send it. Ensure the WebSocket connection is open before sending.
-
-   ```javascript
-   const json = JSON.stringify(messageSocket);
-   if (this.ws.readyState === WebSocket.OPEN) {
-     this.ws.send(json);
-   } else {
-     console.debug("ws: send not ready, skipping...");
-   }
-   ```
-
-#### Stop Stream
-
-To stop the stream, send another message object with a different key.
-
-1.  **Define Parameters (`params`)**: The structure is the same as for starting a stream.
-
-    ```json
-    {
-      "ChannelId": "channel_streaming_id",
-      "Password": "",
-      "FileUrl": ""
-    }
-    ```
-
-2.  **Construct the Socket Message (`messageSocket`)**: The structure is similar to the start message, but with a different `Key`.
-
-    - `Key`: Must be set to `'stop_publisher'` to terminate the stream.
-
-    ```javascript
-    const messageSocket = {
-        "ClanId": "clan_id",
-        "ChannelId": "channel_streaming_id",
-        "UserId": process.env.BOT_KOMU_ID,
-        "Value": params,
-        "Key": "stop_publisher"
-    };
-    ```
-
-3.  **Send the Message**: Convert the object to a JSON string and send it via the open WebSocket connection.
-
-    ```javascript
-    const json = JSON.stringify(messageSocket);
-    if (this.ws.readyState === WebSocket.OPEN) {
-      this.ws.send(json);
-    } else {
-      console.debug("ws: send not ready, skipping...");
-    }
-    ```
-
----
-
-Streaming channels provide a powerful foundation for building engaging live video experiences within Mezon communities. Whether you're creating entertainment bots, educational content, or community events, the streaming infrastructure supports rich multimedia interactions.
+- [Stream channel (user guide)](../../user/clan/create-your-own-clan/manage-clan/clan-structure/channels/stream-channel.mdx)
+- [What bots are allowed to do](../mezon-sdk/bot-api-access.md)
+- [WHIP (RFC 9725)](https://www.rfc-editor.org/rfc/rfc9725)

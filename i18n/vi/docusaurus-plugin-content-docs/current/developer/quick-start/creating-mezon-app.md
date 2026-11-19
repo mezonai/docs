@@ -1,49 +1,50 @@
 ---
-sidebar_label: Tạo App Mezon
+sidebar_label: Tạo ứng dụng trong kênh
 sidebar_position: 3
+description: Đăng ký trang web của bạn làm ứng dụng trong kênh trên Mezon Developer Portal và cài vào clan.
 ---
 
-# Tạo tài khoản App Mezon
+# Tạo ứng dụng trong kênh
 
-Tương tự như tài khoản bot, việc tạo tài khoản app cũng khá đơn giản.
+Ứng dụng trong kênh là trang web của bạn, được mở từ một kênh của clan. Hãy đăng ký ứng dụng trên Mezon Developer Portal, rồi cài vào một clan. Dùng trình duyệt trên máy tính; bạn cần có tài khoản Mezon.
 
-1. Đảm bảo bạn đã đăng nhập vào [trang Mezon](https://mezon.ai/).
+## Tạo ứng dụng
 
-2. Truy cập [cổng nhà phát triển](https://mezon.ai/developers).
+1. Mở [Mezon Developer Portal](https://mezon.ai/developers/applications) và đăng nhập bằng tài khoản Mezon.
+2. Nhấn **Tạo Ứng dụng hoặc Bot mới**.
+3. Ở mục **LOẠI**, chọn **Tạo ứng dụng**.
+4. Ở mục **TÊN**, nhập tên ứng dụng.
+5. Ở mục **URL**, nhập địa chỉ trang web, ví dụ `https://app.example.com`.
+6. Đánh dấu ô đồng ý với Điều khoản Dịch vụ Nhà phát triển và Chính sách Nhà phát triển của Mezon.
+7. Nhấn **Tạo**.
 
-3. Nhấn vào nút `New Application`.
+   ![Biểu mẫu tạo với loại Tạo ứng dụng, tên và URL](./images/creating-mezon-app-computer-01.png)
 
-![mezon-app-001](./images/mezon-bot-001.png)
+Trang **Thông tin chung** của ứng dụng mở ra. Trang này hiện ID của ứng dụng và **Token**, giống như với bot.
 
-4. Chọn loại là `Create an application`, đặt tên cho app rồi nhấn `Create`.
-5. Cấu hình URL trỏ tới ứng dụng web của bạn.
-    
-![mezon-app-002](./images/mezon-app-001.png)
-
-6. Mục `General Information` cung cấp thông tin về app của bạn.
-
-![mezon-app-003](./images/mezon-app-002.png)
-
-  - Dùng `App Id` làm token để đăng nhập khi sử dụng **[Mezon App SDK](../mezon-sdk/channel-app-sdk/overview)**
-
-## Cài đặt App của bạn
-
-Bạn đã tạo một `App User` nhưng người dùng đó chưa thực sự thuộc clan nào. Nếu muốn dùng app, bạn phải cài đặt app qua đường dẫn cài đặt trong tab `Installation`.
-
-1. Đảm bảo bạn đã đăng nhập vào [trang Mezon](https://mezon.ai/).
-
-2. Vào mục `Installation` trong [cổng nhà phát triển](https://mezon.ai/developers).
-
-![mezon-app-004](./images/mezon-app-003.png)
-
-Bây giờ bạn có thể dùng đường dẫn cài đặt để thêm app vào clan. Sao chép và dán URL vào trình duyệt, chọn clan để cài đặt app rồi nhấn `Authorize`.
-
-![mezon-app-005](./images/mezon-app-004.png)
-
-Bạn có thể tùy chỉnh tên cho channel app, hoặc nó sẽ dùng tên mặc định. App của bạn sẽ xuất hiện như một kênh trong danh sách kênh của clan.
-
-![mezon-app-006](./images/mezon-app-005.png)
-
-:::info LƯU Ý
-Người thêm app cần có quyền `Manage Clan` để thực hiện việc này.
+:::warning
+Nhấn **Sao chép Token** và giữ token trên máy chủ của bạn. Developer Portal chỉ hiện token một lần. Máy chủ cần token để kiểm tra ai đã mở ứng dụng: xem [Kiểm tra ai đã mở ứng dụng](../mezon-sdk/channel-app-sdk/channel-app-auth-flow.mdx).
 :::
+
+## Cài ứng dụng vào clan
+
+Khi cài, ứng dụng được thêm vào clan dưới dạng một kênh. Bạn cần quyền **Quản lý kênh** trong clan đó.
+
+1. Mở thẻ **Cài đặt** của ứng dụng.
+2. Ở mục **Liên kết Cài đặt**, nhấn **Sao chép**.
+3. Mở liên kết trong trình duyệt.
+4. Ở mục **Add to clan** (thêm vào clan), chọn clan. Trang này hiện nhãn bằng tiếng Anh.
+5. Ở mục **Add to category** (thêm vào danh mục), chọn danh mục cho kênh của ứng dụng.
+6. Ở mục **Channel Name** (tên kênh), nhập tên kênh, hoặc để trống để dùng tên ứng dụng. Tên chỉ giữ chữ cái, chữ số, dấu cách, `-` và `_`, tối đa 32 ký tự.
+7. Nhấn **Authorize** (ủy quyền).
+
+   ![Trang cài đặt với clan, danh mục và tên kênh](./images/creating-mezon-app-computer-02.png)
+
+Ứng dụng hiện ra như một kênh trong danh sách kênh của clan.
+
+![Kênh của ứng dụng mới trong danh sách kênh](./images/creating-mezon-app-computer-03.png)
+
+## Bước tiếp theo
+
+- [Tổng quan về ứng dụng trong kênh](../mezon-sdk/channel-app-sdk/overview.md): thành viên mở ứng dụng thế nào và ứng dụng nhận được gì.
+- [Kiểm tra ai đã mở ứng dụng](../mezon-sdk/channel-app-sdk/channel-app-auth-flow.mdx)

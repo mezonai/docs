@@ -1,223 +1,124 @@
 ---
 sidebar_position: 3
+sidebar_label: Khái niệm cốt lõi
+description: Client, đăng nhập và phiên, kết nối, bộ nhớ đệm, sự kiện, ID và giới hạn trong mezon-sdk.
 ---
 
 # Khái niệm cốt lõi
 
-Hiểu các khái niệm cốt lõi này sẽ giúp bạn sử dụng `mezon-sdk` hiệu quả.
+Trang này giải thích cách `mezon-sdk` 2.8.66 hoạt động, để bạn tổ chức bot cho phù hợp.
 
-## MezonClient
+## Client {#the-client}
 
-**`MezonClient` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/client/MezonClient.ts)]** là giao diện chính để tương tác với nền tảng Mezon. Nó kế thừa `EventEmitter` của Node.js để cung cấp khả năng xử lý sự kiện thời gian thực. Client đóng gói mọi chức năng cần thiết, bao gồm:
+`MezonClient` là lớp duy nhất bạn tự tạo. Mọi thứ khác (clan, kênh, người dùng, tin nhắn) đến từ bộ nhớ đệm và sự kiện của client.
 
-- **Quản lý kết nối** qua `SocketManager` cho giao tiếp WebSocket
-- **Xử lý xác thực** qua `SessionManager` để quản lý phiên và xác thực token
-- **Gọi API** qua một instance `MezonApi` nội bộ cho các thao tác REST API
-- **Xử lý sự kiện thời gian thực** qua `EventManager` và `SocketManager` để cập nhật trực tiếp
-- **Truy cập cấu trúc dữ liệu** bao gồm kênh, tin nhắn, người dùng và clan thông qua các manager có cache
-- **Cache dữ liệu cục bộ** dùng `CacheManager` để tối ưu hiệu năng
-- **Lưu trữ tin nhắn** qua `MessageDatabase` dùng SQLite cho khả năng ngoại tuyến
-- **Giới hạn tốc độ** qua `AsyncThrottleQueue` để quản lý các yêu cầu gửi đi
-- **Hỗ trợ nhắn tin trực tiếp** với quản lý kênh DM chuyên dụng
+```ts
+import { MezonClient } from "mezon-sdk";
 
-### Thuộc tính và phương thức chính
+const client = new MezonClient({
+  botId: process.env.MEZON_BOT_ID ?? "",
+  token: process.env.MEZON_BOT_TOKEN ?? "",
+});
+```
 
-- **`login()`**: Xác thực client và thiết lập kết nối
-- **`createDMchannel(userId)`**: Tạo kênh tin nhắn trực tiếp với người dùng
-- **Trình lắng nghe sự kiện**: Bộ phương thức `on*` đầy đủ cho các sự kiện thời gian thực như tin nhắn, cập nhật kênh, hành động người dùng và nhiều hơn nữa
-- **Quản lý bạn bè**: Các phương thức để thêm, chấp nhận và liệt kê bạn bè
-- **`closeSocket()`**: Đóng kết nối WebSocket đúng cách và đặt lại các manager
+Đối tượng cấu hình (`ClientConfigDto`) nhận:
 
-## Xác thực (Sessions) {#authentication-sessions}
+| Tùy chọn | Kiểu | Mặc định | Ý nghĩa |
+|---|---|---|---|
+| `botId` | `string` | (bắt buộc) | ID Bot lấy từ Developer Portal. |
+| `token` | `string` | (bắt buộc) | Token của bot. |
+| `host` | `string` | `"gw.mezon.ai"` | Cổng (gateway) Mezon dùng để đăng nhập. |
+| `port` | `string` | `"443"` | Cổng mạng của gateway. |
+| `useSSL` | `boolean` | `true` | Dùng HTTPS khi đăng nhập. |
+| `timeout` | `number` | `7000` | Thời gian chờ mỗi yêu cầu, tính bằng mili giây. |
 
-- **`SessionManager` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/manager/session_manager.ts)]**: Xử lý toàn bộ vòng đời xác thực:
-  - **Xác thực dựa trên token** dùng API key để lấy session token (JWT)
-  - **Quản lý phiên** bao gồm lưu trữ và truy xuất các phiên đang hoạt động
-  - **Tích hợp API** phối hợp với `MezonApi` cho các yêu cầu xác thực
-  - **Tự động xử lý phiên** cho mọi lời gọi API được ủy quyền và giao tiếp WebSocket
+Hãy giữ giá trị mặc định khi dùng dịch vụ Mezon công khai.
 
-- **`Session` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/session.ts)]**: Đại diện cho một phiên người dùng đã xác thực, chứa:
-  - **Thông tin xác thực người dùng** bao gồm token và định danh người dùng (`user_id`)
-  - **Endpoint máy chủ** phân giải URL API động từ phản hồi xác thực
-  - **Quản lý token** với logic hết hạn và làm mới
-  - **Tham số kết nối** dùng để thiết lập kết nối WebSocket
+## Đăng nhập và phiên
 
-### Luồng xác thực
+`await client.login()` thực hiện toàn bộ việc kết nối:
 
-Quá trình `MezonClient.login()` bao gồm:
-1. **Xác thực ban đầu** với API client tạm thời dùng bot ID và token
-2. **Phân giải endpoint động** lấy `api_url` từ phản hồi phiên để định tuyến tối ưu
-3. **Khởi tạo manager** thiết lập mọi thành phần SDK (API client, session, socket, channel, event manager)
-4. **Khởi tạo MMN/ZK** thiết lập hệ thống bằng chứng zero-knowledge cho việc chuyển token an toàn:
-   - Tạo cặp khóa tạm thời (ephemeral) để ký giao dịch
-   - Lấy địa chỉ ví cho bot
-   - Lấy các bằng chứng zero-knowledge cho giao dịch bảo vệ quyền riêng tư
-5. **Kết nối WebSocket** thiết lập kênh giao tiếp thời gian thực
-6. **Khởi tạo kênh DM** tải các kênh tin nhắn trực tiếp hiện có
-7. **Phát trạng thái ready** báo hiệu xác thực và thiết lập hoàn tất thành công
+1. Gửi ID Bot và token tới gateway và nhận một phiên.
+2. Mở kết nối TLS tới địa chỉ có trong phiên.
+3. Tham gia mọi clan mà bot thuộc về và tải các kênh tin nhắn trực tiếp của bot.
+4. Phát sự kiện `ready` và trả về phiên dưới dạng chuỗi JSON.
 
-SDK tự động xử lý:
-- Định tuyến và cân bằng tải phía máy chủ thông qua phân giải endpoint động
-- Hạ tầng chuyển token an toàn với bằng chứng zero-knowledge
-- Tự động quản lý nonce cho giao dịch
-- Đường kết nối tối ưu cho giao tiếp thời gian thực
+`login()` thử tối đa 10 lần. Trước lần thử thứ hai, nó chờ 10 giây, mỗi lần sau chờ gấp đôi, tối đa 60 giây (tổng cộng khoảng 7 phút), rồi báo lỗi `Error`. Đừng ghi log chuỗi mà nó trả về: chuỗi này chứa token của phiên.
 
-## Giao tiếp thời gian thực (Sockets)
+Phiên có hạn dùng. SDK tự đăng nhập lại khi cần một phiên hợp lệ. Bạn cũng có thể tự kiểm tra:
 
-- **`SocketManager` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/manager/socket_manager.ts)]**: Thiết lập và duy trì kết nối WebSocket tới máy chủ Mezon cho các sự kiện và tin nhắn thời gian thực. Nó xử lý kết nối, ngắt kết nối, logic kết nối lại, và tuần tự hóa/giải tuần tự hóa tin nhắn bằng Protocol Buffers qua `WebSocketAdapterPb`. Manager này tích hợp với hệ thống hàng đợi tin nhắn và cơ sở dữ liệu để xử lý tin nhắn đáng tin cậy.
+- `client.isSessionExpired(bufferSec?)` trả về `true` nếu phiên hết hạn trong vòng `bufferSec` giây.
+- `await client.ensureValidSession(bufferSec?)` đăng nhập lại nếu cần và trả về phiên.
 
-- **`DefaultSocket` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/socket.ts)]**: Một triển khai socket ở mức thấp hơn được các manager sử dụng.
+Gọi `client.closeSocket()` để ngắt kết nối.
 
-- **Sự kiện thời gian thực**: SDK cung cấp hỗ trợ sự kiện thời gian thực phong phú thông qua các phương thức lắng nghe sự kiện của `MezonClient`:
-  - **Sự kiện tin nhắn**: `onChannelMessage()`, `onMessageReaction()`, `onMessageButtonClicked()`
-  - **Sự kiện kênh**: `onChannelCreated()`, `onChannelUpdated()`, `onChannelDeleted()`
-  - **Sự kiện người dùng**: `onUserChannelAdded()`, `onUserChannelRemoved()`, `onAddClanUser()`, `onUserClanRemoved()`
-  - **Sự kiện xã hội**: `onGiveCoffee()`, `onTokenSend()`, `onNotification()`
-  - **Sự kiện thoại**: `onVoiceStartedEvent()`, `onVoiceEndedEvent()`, `onVoiceJoinedEvent()`, `onVoiceLeavedEvent()`
-  - **Sự kiện streaming**: `onStreamingJoinedEvent()`, `onStreamingLeavedEvent()`
-  - **Sự kiện vai trò**: `onRoleEvent()`, `onRoleAssign()`
-  - **Sự kiện tương tác**: `onDropdownBoxSelected()`, `onQuickMenuEvent()`, `onWebrtcSignalingFwd()`
-  
-  Các sự kiện này được định nghĩa trong `src/constants/enum.ts` và cho phép phát triển ứng dụng thời gian thực toàn diện.
+## Kết nối
 
-## Kênh (Channels)
+Sau khi đăng nhập, mọi lệnh gọi API và mọi sự kiện đều đi qua một kết nối TLS. Lệnh gọi thất bại bị reject với một giá trị thường, không phải `Error`, nên `error.message` là `undefined`; hãy ghi log cả giá trị.
 
-- **`ChannelManager` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/manager/channel_manager.ts)]**: Quản lý các thao tác liên quan đến kênh với hỗ trợ chuyên biệt cho kênh Tin nhắn trực tiếp (DM). Các chức năng chính bao gồm:
-  - Tạo và lấy các kênh DM
-  - Khởi tạo tất cả kênh DM trong quá trình thiết lập client qua `initAllDmChannels()`
-  - Quản lý trạng thái và metadata của kênh
-  - Phối hợp với `SocketManager` và `SessionManager` để cập nhật thời gian thực
+- Lỗi kết nối reject với một chuỗi, ví dụ "Socket connection has not been established yet." khi gọi trước khi `login()` xong.
+- Lệnh gọi bị máy chủ từ chối reject với một đối tượng `{ code, error: { code, message } }`. Ví dụ, API mà bot không được dùng reject với `error.code` 403 và `error.message` "Permission denied.": xem [Bot được phép làm gì](../bot-api-access.md).
 
-- **`TextChannel` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/structures/TextChannel.ts)]**: Đại diện cho một kênh giao tiếp dạng văn bản (ví dụ: kênh clan, kênh DM hoặc luồng thảo luận). Nó cung cấp các phương thức để:
-  - Gửi tin nhắn và quản lý lịch sử tin nhắn
-  - Tương tác với thuộc tính và metadata của kênh
-  - Tích hợp với việc lưu trữ tin nhắn qua `MessageDatabase`
-  - Xử lý tin nhắn thời gian thực qua hệ thống hàng đợi tin nhắn
-  
-  Kênh hỗ trợ nhiều loại bao gồm văn bản, thoại và luồng thảo luận như định nghĩa trong enum `ChannelType` từ `src/constants/enum.ts`. `MezonClient` duy trì các kênh thông qua `CacheManager` để truy cập hiệu quả và tự động tải khi cần.
+## Bộ nhớ đệm
 
-## Tin nhắn (Messages)
+Client giữ ba bộ nhớ đệm. Mỗi bộ có `get(id)` (chỉ đọc bộ nhớ đệm), `fetch(id)` (đọc bộ nhớ đệm, nếu không có thì tải), `values()`, `size`, `filter()`, `map()` và `first()`.
 
-- **`Message` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/structures/Message.ts)]**: Đại diện cho một tin nhắn đơn lẻ trong kênh với metadata đầy đủ bao gồm:
-  - Nội dung tin nhắn, thông tin người gửi và dấu thời gian
-  - Tệp đính kèm, cảm xúc, nhắc đến (mention) và tham chiếu tin nhắn
-  - Tích hợp với `TextChannel` cha và nhắn tin có giới hạn tốc độ qua `AsyncThrottleQueue`
-  - Các phương thức thao tác tin nhắn (trả lời, cập nhật, xóa, thả cảm xúc)
+| Bộ nhớ đệm | Được nạp | `fetch(id)` làm gì |
+|---|---|---|
+| `client.clans` | Khi đăng nhập, với mọi clan có bot. Clan `"0"` chứa các kênh tin nhắn trực tiếp của bot. | Trả về clan đã có. Báo lỗi với clan mà bot không tham gia. |
+| `client.channels` | Khi bot gặp các kênh. | Tải kênh từ máy chủ. |
+| `client.users` | Khi bạn lấy người dùng. | Mở (hoặc tạo) kênh tin nhắn trực tiếp với người đó và trả về một `User` để bạn gọi `sendDM`. |
 
-- **Khởi tạo tin nhắn**: Tin nhắn được tạo qua interface `MessageInitData` chứa mọi thuộc tính cần thiết như `id`, `clan_id`, `channel_id`, `sender_id`, `content`, `reactions`, `mentions`, `attachments`, `references` và `create_time_seconds`.
+Mỗi clan có `clan.channels`, được nạp bằng `await clan.loadChannels()`. Mỗi kênh có `channel.messages`. `channel.messages.fetch(id)` đọc kho SQLite cục bộ: nó chỉ tìm thấy những tin nhắn bot nhận được trong lúc đang chạy.
 
-- **Định dạng tin nhắn**: Các tiện ích như `format_message_input.ts` và `generate_reply_message.ts` đảm bảo cấu trúc tin nhắn nhất quán giữa các loại tin nhắn khác nhau, bao gồm xử lý đặc biệt cho việc chuyển token.
+`TextChannel`, `Message`, `User` và `Clan` không được xuất (export) khỏi gói. Hãy để TypeScript tự suy ra kiểu từ các lệnh gọi trả về chúng.
 
-- **Lưu trữ tin nhắn**: `MessageDatabase.ts` dùng SQLite để lưu tin nhắn cục bộ thông qua phương thức `saveMessage()`, cho phép các tính năng như:
-  - Xem tin nhắn ngoại tuyến
-  - Tải lịch sử tin nhắn nhanh hơn
-  - Cache tin nhắn cục bộ để cải thiện hiệu năng
-  - Đồng bộ tin nhắn giữa các phiên
+## Sự kiện
 
-- **Xử lý tin nhắn thời gian thực**: `MezonClient` tự động xử lý tin nhắn đến qua `_initChannelMessageCache()`, tạo các instance `Message` và cập nhật cả cache trong bộ nhớ lẫn lưu trữ bền vững.
+Đăng ký hàm xử lý bằng các phương thức `on...`. Mỗi phương thức trả về client, nên bạn có thể gọi nối tiếp. Hãy đăng ký trước khi gọi `login()`.
 
-## Sự kiện (Events)
+```ts
+client
+  .onChannelMessage((message) => console.log(message.content?.t))
+  .onMessageButtonClicked((click) => console.log(click.button_id));
+```
 
-- **`EventManager` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/manager/event_manager.ts)]**: Một hệ thống để phát và lắng nghe các sự kiện tùy chỉnh phía client cũng như sự kiện do máy chủ đẩy xuống. Điều này cho phép các phần khác nhau trong ứng dụng (hoặc bot) của bạn phản ứng với những gì xảy ra trên nền tảng Mezon hoặc trong chính SDK.
+Danh sách đầy đủ có trong [Tham chiếu API](./api-references.md#events). Các sự kiện hay dùng nhất:
 
-- **Sự kiện Socket (`src/message-socket-events/`)**: Các trình xử lý cụ thể cho sự kiện socket như `user_channel_added` hoặc `user_channel_updated`.
+| Sự kiện | Khi nào |
+|---|---|
+| `onChannelMessage` | Có tin nhắn trong kênh hoặc tin nhắn trực tiếp mà bot nhìn thấy. |
+| `onMessageButtonClicked` | Thành viên nhấn nút hoặc chọn một mục trong [tin nhắn tương tác](../../mezon-topics/interactive-message.mdx) của bot. |
+| `onMessageReaction` | Ai đó thêm biểu cảm vào tin nhắn. |
+| `onAddClanUser`, `onUserClanRemoved` | Thành viên vào hoặc rời clan. |
+| `onChannelCreated`, `onChannelUpdated`, `onChannelDeleted` | Kênh thay đổi. |
+| `onStreamingJoinedEvent`, `onStreamingLeavedEvent` | Ai đó bắt đầu hoặc dừng phát trong kênh phát trực tiếp. |
 
-## Clan & Người dùng
+`client.on("ready", ...)` chạy khi đăng nhập xong.
 
-- **`Clan` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/structures/Clan.ts)]**: Đại diện cho một clan (máy chủ/cộng đồng) trên nền tảng Mezon, chứa:
-  - Nhiều kênh có thể truy cập qua tập hợp kênh của clan
-  - Các thành viên với quyền dựa trên vai trò
-  - Metadata riêng của clan (ID, tên, kênh chào mừng)
-  - Tích hợp với `MezonApi`, `SocketManager` và `MessageDatabase`
-  - Tải kênh động qua phương thức `loadChannels()`
-  - Một clan đặc biệt với ID "0" đại diện cho không gian DM để nhắn tin trực tiếp
+## Nội dung tin nhắn
 
-- **`User` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/structures/User.ts)]**: Đại diện cho một người dùng trên nền tảng Mezon với thông tin hồ sơ đầy đủ:
-  - **Định danh cơ bản**: ID, username, tên hiển thị và ảnh đại diện
-  - **Dữ liệu riêng theo clan**: biệt danh trong clan (`clan_nick`) và ảnh đại diện trong clan (`clan_avatar`) cho từng ngữ cảnh clan
-  - **Tích hợp DM**: ID kênh DM liên kết để hỗ trợ nhắn tin trực tiếp
-  - **Hành động người dùng**: Các phương thức cho thao tác riêng của người dùng như gửi tin nhắn trực tiếp
-  
-  Người dùng được quản lý qua interface `UserInitData` và được các clan tự động cache. `MezonClient` duy trì dữ liệu người dùng xuyên suốt cả ngữ cảnh clan lẫn không gian DM toàn cục (clan "0"), cho phép tương tác người dùng nhất quán bất kể ngữ cảnh.
+Nội dung tin nhắn là một đối tượng `ChannelMessageContent`. Văn bản nằm trong `t`. Các khóa khác thêm định dạng và thành phần:
 
-- **Quản lý người dùng**: Client tự động xử lý cache người dùng qua `_initUserClanCache()`, thực hiện:
-  - Tạo các instance người dùng cho cả ngữ cảnh clan và DM
-  - Duy trì tính nhất quán của dữ liệu người dùng qua các clan khác nhau
-  - Xử lý việc tải người dùng động từ dữ liệu kênh DM
-  - Cập nhật thông tin người dùng từ các sự kiện tin nhắn thời gian thực
+| Khóa | Chứa |
+|---|---|
+| `t` | Văn bản. |
+| `mk` | Các đoạn định dạng trong `t`: `{ type, s, e }`, trong đó `type` là ví dụ `"b"` (in đậm) hoặc `"lk"` (liên kết), còn `s` và `e` là vị trí bắt đầu và kết thúc trong `t`. |
+| `embed` | Các thẻ tin nhắn tương tác tạo bằng `InteractiveBuilder`. |
+| `components` | Các hàng nút bấm và danh sách chọn: `[{ components: [...] }]`. |
 
-## Cache và quản lý dữ liệu
+Phần nhắc đến và tệp đính kèm là các tham số riêng của `send` và `reply`. Xem [Cách dùng và ví dụ](./usage-and-examples.md).
 
-- **`CacheManager` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/utils/CacheManager.ts)]**: Cung cấp một lớp cache tinh vi cho dữ liệu được truy cập thường xuyên với khả năng tự động tải:
-  - **Cache tổng quát** cho mọi loại dữ liệu (clan, kênh, người dùng)
-  - **Tự động tải** qua các hàm fetch được cung cấp ở constructor (ví dụ `_fetchClanFromAPI`, `_fetchChannelFromAPI`)
-  - **Tối ưu bộ nhớ** giảm các lời gọi API lặp lại và cải thiện hiệu năng
-  - **Tích hợp với MezonClient** qua các cache manager `this.clans` và `this.channels`
-  - **Tải lười (lazy loading)** - dữ liệu chỉ được tải khi truy cập qua `fetch()` hoặc `get()`
+## ID
 
-- **`AsyncThrottleQueue` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/utils/AsyncThrottleQueue.ts)]**: Thành phần quan trọng để quản lý các yêu cầu gửi đi và duy trì giới hạn tốc độ:
-  - **Giới hạn tốc độ** tránh các giới hạn từ máy chủ và đảm bảo hoạt động mượt mà
-  - **Xếp hàng yêu cầu** quản lý nhắn tin và gọi API với khối lượng lớn
-  - **Được dùng rộng rãi** bởi MezonClient cho gửi tin nhắn, gọi API và thao tác socket
-  - **Xử lý nền** quản lý các tác vụ trong hàng đợi mà không chặn luồng chính của ứng dụng
+ID trong Mezon (người dùng, clan, kênh, tin nhắn) là số 64 bit. SDK nhận và trả chúng dưới dạng chuỗi. Hãy giữ chúng ở dạng chuỗi: số trong JavaScript mất độ chính xác khi lớn hơn 2^53.
 
-- **`Collection` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/utils/Collection.ts)]**: Một tiện ích `Map` nâng cao cung cấp khả năng quản lý cấu trúc dữ liệu tiên tiến:
-  - **Mở rộng chức năng của Map** với các phương thức tiện lợi để lọc, ánh xạ và tìm phần tử
-  - **Được dùng xuyên suốt SDK** để quản lý các tập hợp người dùng, kênh, tin nhắn và thực thể khác
-  - **Tối ưu hiệu năng** cho các thao tác đọc/ghi thường xuyên trên tập dữ liệu lớn
-  - **An toàn kiểu** duy trì tính tương thích với TypeScript
+## Tốc độ gửi
 
-- **`MessageDatabase` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/sqlite/MessageDatabase.ts)]**: Hệ thống lưu trữ bền vững dựa trên SQLite:
-  - **Lưu trữ tin nhắn cục bộ** cho truy cập ngoại tuyến và tải nhanh hơn
-  - **Tự động đồng bộ** với các sự kiện thời gian thực qua phương thức `saveMessage()`
-  - **Cache tích hợp** hoạt động cùng cache trong bộ nhớ để đạt hiệu năng tối ưu
-  - **Bền vững qua các phiên** duy trì lịch sử tin nhắn giữa các lần khởi động lại ứng dụng
+SDK xếp hàng các tin nhắn gửi đi và gửi tối đa 80 tin mỗi giây từ một client. Trang này không nói về giới hạn phía máy chủ.
 
-## Tính năng xã hội
+## Liên quan
 
-Mezon SDK cung cấp các khả năng tương tác xã hội toàn diện:
-
-### Hệ thống bạn bè
-- **`getListFriends()`**: Lấy danh sách bạn bè với hỗ trợ phân trang (tham số `limit`, `state`, `cursor`)
-- **`addFriend(username)`**: Gửi lời mời kết bạn tới người dùng theo username
-- **`acceptFriend(userId, username)`**: Chấp nhận lời mời kết bạn đến
-- **Tự động xử lý lời mời kết bạn**: Client tự động xử lý lời mời kết bạn qua các sự kiện thông báo
-
-### Hệ thống chuyển token
-
-Mezon SDK cung cấp hỗ trợ toàn diện cho việc chuyển token an toàn bằng **Mezon Money Network (MMN)** với bằng chứng zero-knowledge để tăng cường quyền riêng tư:
-
-- **`sendToken(tokenEvent)`**: Gửi tiền ảo/token giữa người dùng với xử lý ZK proof tự động
-- **`getEphemeralKeyPair()`**: Tạo cặp khóa tạm thời để ký giao dịch an toàn
-- **`getAddress(userId)`**: Lấy địa chỉ ví của người dùng
-- **`getZkProofs(data)`**: Lấy bằng chứng zero-knowledge cho giao dịch bảo vệ quyền riêng tư
-- **`getCurrentNonce(userId)`**: Lấy nonce giao dịch hiện tại để sắp xếp đúng thứ tự
-- **`onTokenSend()`**: Lắng nghe sự kiện chuyển token với thông báo DM tự động
-
-**Tính năng chính:**
-- **Bảo vệ quyền riêng tư**: Dùng bằng chứng zero-knowledge để bảo vệ chi tiết giao dịch
-- **Tự động khởi tạo**: Hạ tầng ZK được thiết lập trong quá trình đăng nhập
-- **Quản lý nonce**: SDK tự động xử lý thứ tự giao dịch
-- **Tỷ lệ thập phân**: Số tiền được tự động chuẩn hóa về độ chính xác đúng
-- **Xử lý lỗi**: Thông báo lỗi đầy đủ cho các giao dịch thất bại
-- **Biên nhận giao dịch**: Trả về hash và trạng thái giao dịch để xác minh
-
-**Luồng giao dịch:**
-1. SDK duy trì cặp khóa tạm thời, địa chỉ ví và ZK proof sau khi đăng nhập
-2. Khi gửi token, SDK tự động lấy nonce hiện tại
-3. Giao dịch được ký bằng khóa riêng tạm thời
-4. ZK proof được đính kèm để bảo vệ quyền riêng tư của người gửi/người nhận
-5. Giao dịch được gửi tới MMN và trả về tx_hash nếu thành công
-6. Người nhận tự động nhận được thông báo DM kèm chi tiết giao dịch
-
-- **Hệ thống Coffee**: Tính năng tương tác xã hội qua sự kiện `onGiveCoffee()` để tặng quà thân mật
-
-### Phần tử tương tác
-- **Nút trong tin nhắn**: Hỗ trợ nút tương tác trong tin nhắn qua `onMessageButtonClicked()`
-- **Lựa chọn dropdown**: Xử lý lựa chọn của người dùng từ menu dropdown qua `onDropdownBoxSelected()`
-- **Menu nhanh**: Hỗ trợ menu hành động nhanh qua `onQuickMenuEvent()`
-
-### Tính năng thoại và video
-- **Kênh thoại**: Quản lý phiên thoại đầy đủ với các sự kiện bắt đầu, kết thúc, tham gia và rời đi
-- **Báo hiệu WebRTC**: Hỗ trợ giao tiếp ngang hàng trực tiếp qua `onWebrtcSignalingFwd()`
-- **Hỗ trợ streaming**: Khả năng phát trực tiếp với xử lý sự kiện tham gia/rời đi
+- [Bắt đầu](./getting-started.md)
+- [Tham chiếu API](./api-references.md)
+- [Bot được phép làm gì](../bot-api-access.md)

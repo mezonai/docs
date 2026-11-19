@@ -4,6 +4,6 @@
   "link": {
     "type": "generated-index",
     "slug": "developer/webhooks",
-    "description": "Comprehensive guides and documentation to help you start working with Webhooks as quickly as possible."
+    "description": "Post messages to Mezon channels and members with webhooks."
   }
 }

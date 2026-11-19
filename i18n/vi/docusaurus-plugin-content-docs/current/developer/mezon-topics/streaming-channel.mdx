@@ -1,168 +1,136 @@
 ---
-sidebar_label: Kênh Streaming
+sidebar_label: Kênh phát trực tiếp
 sidebar_position: 3
+description: Phát video trực tiếp từ bot vào kênh phát trực tiếp của Mezon bằng quyền phát và WHIP.
 ---
 
-# Kênh Streaming
+# Kênh phát trực tiếp
 
-Kênh streaming trên Mezon cho phép phát video thời gian thực và trải nghiệm streaming tương tác trong clan. Tính năng này giúp người dùng phát sóng video trực tiếp tới thành viên kênh, tạo trải nghiệm đa phương tiện hấp dẫn cho cộng đồng.
+Kênh phát trực tiếp hiển thị video trực tiếp cho các thành viên của clan. Bot có thể phát video vào kênh phát trực tiếp: bot xin Mezon một quyền phát ngắn hạn, rồi gửi video tới máy chủ phát trực tiếp của Mezon qua WHIP ([RFC 9725](https://www.rfc-editor.org/rfc/rfc9725)). Thành viên xem trong các ứng dụng Mezon.
 
-## Tổng quan
+SDK cấp cho bạn quyền phát. SDK không chứa mã xử lý video: bạn phát bằng một thư viện WebRTC tùy chọn.
 
-Kênh streaming cung cấp nền tảng cho:
+## Cách hoạt động {#how-it-works}
 
-- **Phát video trực tiếp** trong kênh clan
-- **Tương tác người xem thời gian thực** qua chat và cảm xúc
-- **Streaming dựa trên WebRTC** để truyền chất lượng cao, độ trễ thấp
-- **Tích hợp bot** để quản lý streaming tự động
-- **Hỗ trợ đa nền tảng** cho web, desktop và mobile
+1. Bot xin Mezon quyền phát cho kênh. Bot nhận một token, một URL WHIP và thời điểm hết hạn.
+2. Bot gửi offer WebRTC tới URL WHIP, kèm token.
+3. Máy chủ phát trực tiếp trả lời. Bot kết nối và gửi video H.264 và âm thanh Opus.
+4. Mezon báo cho clan rằng kênh đang phát.
+5. Thành viên xem trong các ứng dụng Mezon, chậm hơn hình trực tiếp khoảng 6 giây hoặc hơn.
+6. Bot kết thúc buổi phát bằng cách xóa phiên WHIP của mình.
 
-## Loại kênh
+## Trước khi bắt đầu {#before-you-start}
 
-### Loại kênh Streaming
+- Một kênh phát trực tiếp trong clan: xem [Kênh phát trực tiếp](../../user/clan/create-your-own-clan/manage-clan/clan-structure/channels/stream-channel.mdx).
+- Bot phải là thành viên của clan.
+- Một thư viện WebRTC tạo được SDP offer có H.264 và Opus, và gửi được media.
 
-```typescript
-ChannelType.CHANNEL_TYPE_STREAMING = 6;
+## Xin quyền phát {#get-a-publish-grant}
+
+```ts
+const grant = await client.getStreamPlayback({ channel_id: "CHANNEL_ID", publish: true });
+if (!grant?.token || !grant.whip_url) throw new Error("No publish grant");
 ```
 
-Kênh streaming là loại kênh riêng được thiết kế cho chức năng phát video.
+Trong [SDK .NET](../mezon-sdk/dotnet-sdk.md#stream-channels), gọi `GetStreamPlaybackAsync(new GetStreamPlaybackParams(channelId, publish: true))`.
 
-## Cách stream trong kênh Streaming
+| Trường | Ý nghĩa |
+|---|---|
+| `token` | Bearer token cho yêu cầu WHIP. Đừng bao giờ ghi log giá trị này. |
+| `whip_url` | Nơi gửi yêu cầu WHIP. |
+| `expires_at` | Thời điểm token hết hạn, tính bằng giây Unix (là chuỗi trong `mezon-sdk`). |
 
-### Bước 1: Tạo kênh Stream
+Token có hiệu lực 10 phút. Máy chủ phát trực tiếp chỉ kiểm tra token khi một phiên bắt đầu, nên buổi phát đang chạy vẫn tiếp tục sau khi token hết hạn. Hãy xin quyền phát mới mỗi lần bạn bắt đầu hoặc khởi động lại việc phát.
 
-Trước tiên, bạn cần tạo kênh mới trong một Clan.
+Yêu cầu xin quyền phát lỗi với mã 400 nếu kênh không phải kênh phát trực tiếp, và 403 nếu bot không ở trong clan của kênh. Trong `mezon-sdk`, lỗi là một đối tượng như `{ code: 0, error: { code: 403, message: "Permission denied." } }`, không phải `Error`.
 
-Đi tới phần kênh và chọn danh mục để tạo kênh mới. Khi được hỏi loại kênh, chọn **Stream**. Các loại khác là Text và Voice.
+## Phát bằng WHIP {#publish-with-whip}
 
-![streaming-channel-001](./images/streaming-channel-001.png)
+Gửi SDP offer từ thư viện WebRTC tới `whip_url`:
 
-Bạn cần đặt tên cho kênh stream. Hoàn tất quá trình tạo.
+```ts
+async function startPublishing(channelId: string): Promise<string> {
+  const grant = await client.getStreamPlayback({ channel_id: channelId, publish: true });
+  if (!grant?.token || !grant.whip_url) throw new Error("No publish grant");
 
-![streaming-channel-002](./images/streaming-channel-002.png)
+  const offer = await createOffer(); // from your WebRTC library
+  const response = await fetch(grant.whip_url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/sdp",
+      Authorization: `Bearer ${grant.token}`,
+    },
+    body: offer,
+  });
+  if (response.status !== 201) {
+    throw new Error(`WHIP failed: ${response.status} ${await response.text()}`);
+  }
 
-### Bước 2: Lấy thông tin kênh
+  await applyAnswer(await response.text()); // give the SDP answer to your WebRTC library
+  const location = response.headers.get("Location");
+  if (!location) throw new Error("WHIP answer has no Location header");
+  return new URL(location, grant.whip_url).toString();
+}
 
-Sau khi tạo kênh, bạn phải lấy `clan_id` và `channel_id`. Có thể lấy từ URL trình duyệt hoặc lắng nghe sự kiện tạo kênh nếu đã có Bot/App trong clan.
+async function stopPublishing(resourceUrl: string) {
+  await fetch(resourceUrl, { method: "DELETE" });
+}
+```
 
-```javascript
-//mezon.ai/chat/clans/1840666462012837888/channels/1977287012746530816
+`createOffer` và `applyAnswer` là các lệnh gọi của thư viện WebRTC bạn dùng. Header `Location` là URL của phiên: gửi `DELETE` tới URL này khi dừng. Hãy giữ bí mật URL này, như token.
 
-// hoặc
+### Offer phải có gì {#what-the-offer-must-contain}
 
-https: this.client.onChannelCreated((channel) => {
-  this.logger.info("New channel created:", channel.channel_id);
-  this.logger.info("In clan:", channel.clan_id);
+- Âm thanh: Opus 48 kHz.
+- Video: H.264 với `packetization-mode=1`. Hãy dùng Constrained Baseline (`profile-level-id=42e01f`) để mọi người xem đều giải mã được.
+- Tối đa 4 phần media. Máy chủ dùng phần âm thanh dùng được đầu tiên và phần video dùng được đầu tiên.
+- Thông tin ICE và dấu vân tay DTLS SHA-256, với `a=setup:actpass` hoặc `a=setup:active`. Máy chủ là ICE-lite và luôn là máy chủ DTLS. Máy chủ không dùng trickle ICE và chỉ hỗ trợ IPv4.
+
+### Media phải như thế nào {#what-the-media-must-look-like}
+
+- Gửi SPS và PPS trong luồng trước mỗi khung hình chính (keyframe), và mã hóa không dùng B-frame.
+- Đáp ứng yêu cầu keyframe (PLI). Nếu bộ mã hóa không làm được, hãy gửi một keyframe mỗi 2 giây.
+- Gửi lại gói video bị mất (NACK) trên chính luồng gốc: máy chủ không dùng RTX.
+- Luôn gửi dữ liệu. Phiên kết thúc khi máy chủ không nhận được gì từ bot trong khoảng 15 giây.
+
+### Phản hồi từ URL WHIP {#answers-from-the-whip-url}
+
+| Mã | Ý nghĩa | Việc cần làm |
+|---|---|---|
+| `201` | Phiên đã được tạo. Nội dung là SDP answer. | Kết nối và gửi media. |
+| `400` | Yêu cầu hoặc offer không hợp lệ. | Sửa lại; đừng gửi lại y nguyên. |
+| `401` | Token thiếu, sai hoặc hết hạn. | Xin quyền phát mới rồi thử lại. |
+| `403` | Token dành cho kênh hoặc vai trò khác. | Đừng thử lại. |
+| `406` | Offer không có codec nào máy chủ chấp nhận. | Dùng H.264 và Opus. |
+| `409` | Một người dùng khác đang phát trong kênh này. | Báo cho người dùng; mỗi kênh chỉ có một người phát. |
+| `413` | Yêu cầu quá lớn. | Gửi offer nhỏ hơn. |
+| `503` | Máy chủ đầy, bận hoặc đang khởi động lại. | Thử lại sau, không sớm hơn thời gian trong header `Retry-After`. |
+
+Một yêu cầu WHIP mới từ cùng bot cho cùng kênh sẽ thay phiên đang chạy, nên bot kết nối lại không bị `409`.
+
+## Biết khi nào kênh đang phát {#know-when-the-channel-is-live}
+
+```ts
+client.onStreamingJoinedEvent((event) => {
+  if (event.is_publisher) {
+    console.log("Live in channel", event.streaming_channel_id, "by", event.user_id);
+  }
+});
+client.onStreamingLeavedEvent((event) => {
+  console.log("Left", event.streaming_channel_id, event.streaming_user_id);
 });
 ```
 
-Các giá trị này sẽ được dùng trong các lời gọi API tiếp theo.
+`onStreamingJoinedEvent` với `is_publisher: true` nghĩa là có người bắt đầu phát. Khi buổi phát kết thúc, `onStreamingLeavedEvent` đến cho người phát.
 
-### Bước 3: Tích hợp Bot và Streaming
+## Giới hạn {#limits}
 
-Để phát stream, bạn cần tạo bot xử lý tích hợp mã và giao tiếp WebSocket.
+- Mỗi kênh chỉ có một người phát tại một thời điểm.
+- Tối đa 3 lớp simulcast và 4 phần media trong mỗi offer.
+- Người xem trong các ứng dụng Mezon xem qua HLS, nên họ thấy buổi phát chậm vài giây.
 
-#### Khởi tạo Bot
+## Liên quan {#related}
 
-Khởi tạo Mezon client bằng bot token và đăng nhập để lấy token xác thực cho kết nối WebSocket.
-
-```javascript
-const client = new MezonClient(BOT_TOKEN);
-const dataLogin = await client.login();
-const data = JSON.parse(dataLogin);
-const token = data.token;
-```
-
-#### Khởi tạo kết nối WebSocket
-
-Dùng token ở bước trước để thiết lập kết nối WebSocket với dịch vụ `stn`.
-
-```javascript
-const ws = new WebSocket(`wss://stn.mezon.ai/ws?token=${token}`);
-```
-
-#### Phát Stream
-
-Để bắt đầu stream, bạn phải gửi một đối tượng message cụ thể qua WebSocket.
-
-1. **Định nghĩa tham số (`params`)**: Đối tượng này chứa chi tiết stream.
-
-   ```json
-   {
-     "ChannelId": "channel_streaming_id",
-     "Password": "",
-     "FileUrl": ""
-   }
-   ```
-
-2. **Tạo Socket Message (`messageSocket`)**: Message này báo cho server bắt đầu publisher (người phát).
-
-   - `ClanId`: ID của clan.
-   - `ChannelId`: ID của kênh streaming.
-   - `UserId`: User ID của Bot.
-   - `Value`: Đối tượng `params` đã định nghĩa ở trên.
-   - `Key`: Phải là `connect_publisher` để khởi tạo stream.
-
-   ```javascript
-   const messageSocket = {
-     ClanId: "clan_id",
-     ChannelId: "channel_streaming_id",
-     UserId: process.env.BOT_KOMU_ID,
-     Value: params,
-     Key: "connect_publisher",
-   };
-   ```
-
-3. **Gửi Message**: Chuyển `messageSocket` thành chuỗi JSON và gửi. Đảm bảo kết nối WebSocket đã mở trước khi gửi.
-
-   ```javascript
-   const json = JSON.stringify(messageSocket);
-   if (this.ws.readyState === WebSocket.OPEN) {
-     this.ws.send(json);
-   } else {
-     console.debug("ws: send not ready, skipping...");
-   }
-   ```
-
-#### Dừng Stream
-
-Để dừng stream, gửi message khác với key khác.
-
-1.  **Định nghĩa tham số (`params`)**: Cấu trúc giống khi bắt đầu stream.
-
-    ```json
-    {
-      "ChannelId": "channel_streaming_id",
-      "Password": "",
-      "FileUrl": ""
-    }
-    ```
-
-2.  **Tạo Socket Message (`messageSocket`)**: Cấu trúc tương tự message bắt đầu, nhưng `Key` khác.
-
-    - `Key`: Phải là `'stop_publisher'` để kết thúc stream.
-
-    ```javascript
-    const messageSocket = {
-        "ClanId": "clan_id",
-        "ChannelId": "channel_streaming_id",
-        "UserId": process.env.BOT_KOMU_ID,
-        "Value": params,
-        "Key": "stop_publisher"
-    };
-    ```
-
-3.  **Gửi Message**: Chuyển đối tượng thành chuỗi JSON và gửi qua kết nối WebSocket đang mở.
-
-    ```javascript
-    const json = JSON.stringify(messageSocket);
-    if (this.ws.readyState === WebSocket.OPEN) {
-      this.ws.send(json);
-    } else {
-      console.debug("ws: send not ready, skipping...");
-    }
-    ```
-
----
-
-Kênh streaming là nền tảng mạnh để xây dựng trải nghiệm video trực tiếp hấp dẫn trong cộng đồng Mezon. Dù bạn tạo bot giải trí, nội dung giáo dục hay sự kiện cộng đồng, hạ tầng streaming đều hỗ trợ tương tác đa phương tiện phong phú.
+- [Kênh phát trực tiếp (hướng dẫn người dùng)](../../user/clan/create-your-own-clan/manage-clan/clan-structure/channels/stream-channel.mdx)
+- [Bot được phép làm gì](../mezon-sdk/bot-api-access.md)
+- [WHIP (RFC 9725)](https://www.rfc-editor.org/rfc/rfc9725)

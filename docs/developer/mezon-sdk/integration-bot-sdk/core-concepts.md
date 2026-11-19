@@ -1,223 +1,124 @@
 ---
 sidebar_position: 3
+sidebar_label: Core concepts
+description: The client, login and session, the socket, caches, events, ids and limits in mezon-sdk.
 ---
 
-# Core Concepts
+# Core concepts
 
-Understanding these core concepts will help you effectively use the `mezon-sdk`.
+This page explains how `mezon-sdk` 2.8.66 works, so you can structure a bot around it.
 
-## MezonClient
+## The client
 
-The **`MezonClient` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/client/MezonClient.ts)]** is the primary interface for interacting with the Mezon platform. It extends Node.js's `EventEmitter` to provide real-time event handling capabilities. The client encapsulates all the necessary functionalities, including:
+`MezonClient` is the only class you create. Everything else (clans, channels, users, messages) comes from the client's caches and events.
 
-- **Connection management** via `SocketManager` for WebSocket communications
-- **Authentication handling** through `SessionManager` for session management and token authentication
-- **API calls** through an internal `MezonApi` instance for REST API operations
-- **Real-time event handling** via `EventManager` and `SocketManager` for live updates
-- **Data structure access** including channels, messages, users, and clans through cached managers
-- **Local data caching** using `CacheManager` for performance optimization
-- **Message persistence** via `MessageDatabase` using SQLite for offline capabilities
-- **Rate limiting** through `AsyncThrottleQueue` for managing outgoing requests
-- **Direct messaging** support with dedicated DM channel management
+```ts
+import { MezonClient } from "mezon-sdk";
 
-### Key Properties and Methods
+const client = new MezonClient({
+  botId: process.env.MEZON_BOT_ID ?? "",
+  token: process.env.MEZON_BOT_TOKEN ?? "",
+});
+```
 
-- **`login()`**: Authenticates the client and establishes connections
-- **`createDMchannel(userId)`**: Creates direct message channels with users
-- **Event listeners**: Comprehensive set of `on*` methods for real-time events like messages, channel updates, user actions, and more
-- **Friend management**: Methods for adding, accepting, and listing friends
-- **`closeSocket()`**: Properly closes WebSocket connections and resets managers
+The configuration object (`ClientConfigDto`) takes:
 
-## Authentication (Sessions)
+| Option | Type | Default | Meaning |
+|---|---|---|---|
+| `botId` | `string` | (required) | The bot's Bot ID from the developer portal. |
+| `token` | `string` | (required) | The bot's token. |
+| `host` | `string` | `"gw.mezon.ai"` | The Mezon gateway used for login. |
+| `port` | `string` | `"443"` | Gateway port. |
+| `useSSL` | `boolean` | `true` | Use HTTPS for login. |
+| `timeout` | `number` | `7000` | Request timeout in milliseconds. |
 
-- **`SessionManager` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/manager/session_manager.ts)]**: Handles the complete authentication lifecycle:
-  - **Token-based authentication** using API keys to obtain session tokens (JWT)
-  - **Session management** including storage and retrieval of active sessions
-  - **API integration** coordinates with `MezonApi` for authentication requests
-  - **Automatic session handling** for all authorized API calls and WebSocket communication
+Keep the defaults for the public Mezon service.
 
-- **`Session` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/session.ts)]**: Represents an authenticated user session containing:
-  - **User credentials** including tokens and user identification (`user_id`)
-  - **Server endpoints** dynamic API URL resolution from authentication response
-  - **Token management** with expiration and refresh logic
-  - **Connection parameters** used for establishing WebSocket connections
+## Login and session
 
-### Authentication Flow
+`await client.login()` does the whole connection:
 
-The `MezonClient.login()` process involves:
-1. **Initial authentication** with temporary API client using bot ID and token
-2. **Dynamic endpoint resolution** parsing `api_url` from session response for optimal routing
-3. **Manager initialization** setting up all SDK components (API client, session, socket, channel, event managers)
-4. **MMN/ZK initialization** setting up zero-knowledge proof system for secure token transfers:
-   - Generates ephemeral key pair for transaction signing
-   - Retrieves wallet address for the bot
-   - Obtains zero-knowledge proofs for privacy-preserving transactions
-5. **WebSocket connection** establishing real-time communication channel
-6. **DM channel initialization** loading existing direct message channels
-7. **Ready state emission** signaling successful authentication and setup completion
+1. It sends the Bot ID and token to the gateway and receives a session.
+2. It opens a TLS socket to the address in the session.
+3. It joins every clan the bot belongs to and loads the bot's direct message channels.
+4. It emits `ready` and resolves with the session as a JSON string.
 
-The SDK automatically handles:
-- Server-side routing and load balancing through dynamic endpoint resolution
-- Secure token transfer infrastructure with zero-knowledge proofs
-- Automatic nonce management for transactions
-- Optimal connection paths for real-time communication
+`login()` tries up to 10 times. It waits 10 seconds before the second try and doubles the wait each time, up to 60 seconds (about 7 minutes in all), then rejects with an `Error`. Do not log the string it resolves with: it contains the session tokens.
 
-## Real-time Communication (Sockets)
+The session expires. The SDK logs in again by itself when it needs a valid session. You can also check it:
 
-- **`SocketManager` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/manager/socket_manager.ts)]**: Establishes and maintains the WebSocket connection to the Mezon server for real-time events and messaging. It handles connection, disconnection, reconnection logic, and message serialization/deserialization using Protocol Buffers via `WebSocketAdapterPb`. The manager integrates with the message queue system and database for reliable message handling.
+- `client.isSessionExpired(bufferSec?)` returns `true` if the session expires within `bufferSec` seconds.
+- `await client.ensureValidSession(bufferSec?)` logs in again if needed and returns the session.
 
-- **`DefaultSocket` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/socket.ts)]**: A lower-level socket implementation used by managers.
+Call `client.closeSocket()` to disconnect.
 
-- **Real-time Events**: The SDK provides extensive real-time event support through the `MezonClient`'s event listener methods:
-  - **Message Events**: `onChannelMessage()`, `onMessageReaction()`, `onMessageButtonClicked()`
-  - **Channel Events**: `onChannelCreated()`, `onChannelUpdated()`, `onChannelDeleted()`
-  - **User Events**: `onUserChannelAdded()`, `onUserChannelRemoved()`, `onAddClanUser()`, `onUserClanRemoved()`
-  - **Social Events**: `onGiveCoffee()`, `onTokenSend()`, `onNotification()`
-  - **Voice Events**: `onVoiceStartedEvent()`, `onVoiceEndedEvent()`, `onVoiceJoinedEvent()`, `onVoiceLeavedEvent()`
-  - **Streaming Events**: `onStreamingJoinedEvent()`, `onStreamingLeavedEvent()`
-  - **Role Events**: `onRoleEvent()`, `onRoleAssign()`
-  - **Interactive Events**: `onDropdownBoxSelected()`, `onQuickMenuEvent()`, `onWebrtcSignalingFwd()`
-  
-  These events are defined in `src/constants/enum.ts` and allow for comprehensive real-time application development.
+## The socket
 
-## Channels
+After login, every API call and every event uses one TLS socket. Failed calls reject with a plain value, not an `Error`, so `error.message` is `undefined`; log the whole value instead.
 
-- **`ChannelManager` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/manager/channel_manager.ts)]**: Manages channel-related operations with specialized support for Direct Message (DM) channels. Key functionalities include:
-  - Creating and fetching DM channels
-  - Initializing all DM channels during client setup via `initAllDmChannels()`
-  - Managing channel state and metadata
-  - Coordinating with `SocketManager` and `SessionManager` for real-time updates
+- Socket problems reject with a string, for example "Socket connection has not been established yet." when a call is made before `login()` finishes.
+- Calls the server refuses reject with an object `{ code, error: { code, message } }`. For example, an API that bots may not use rejects with `error.code` 403 and `error.message` "Permission denied.": see [What bots are allowed to do](../bot-api-access.md).
 
-- **`TextChannel` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/structures/TextChannel.ts)]**: Represents a text-based communication channel (e.g., clan channels, DM channels, or threads). It provides methods for:
-  - Sending messages and managing message history
-  - Interacting with channel properties and metadata
-  - Integration with message persistence through `MessageDatabase`
-  - Real-time message handling via the message queue system
-  
-  Channels support various types including text, voice, and threads as defined in `ChannelType` enum from `src/constants/enum.ts`. The `MezonClient` maintains channels through a `CacheManager` for efficient access and automatic fetching when needed.
+## Caches
 
-## Messages
+The client keeps three caches. Each cache has `get(id)` (local only), `fetch(id)` (local, else load), `values()`, `size`, `filter()`, `map()` and `first()`.
 
-- **`Message` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/structures/Message.ts)]**: Represents a single message within a channel with comprehensive metadata including:
-  - Message content, sender information, and timestamps
-  - Attachments, reactions, mentions, and message references
-  - Integration with the parent `TextChannel` and rate-limited messaging via `AsyncThrottleQueue`
-  - Methods for message manipulation (reply, update, delete, react)
+| Cache | Filled | `fetch(id)` does |
+|---|---|---|
+| `client.clans` | At login, with every clan the bot is in. Clan `"0"` holds the bot's direct message channels. | Returns a cached clan. It throws for a clan the bot is not in. |
+| `client.channels` | As the bot sees channels. | Loads the channel from the server. |
+| `client.users` | As you fetch users. | Opens (or creates) a direct message channel with that user and returns a `User` you can `sendDM` to. |
 
-- **Message Initialization**: Messages are created through `MessageInitData` interface containing all necessary properties like `id`, `clan_id`, `channel_id`, `sender_id`, `content`, `reactions`, `mentions`, `attachments`, `references`, and `create_time_seconds`.
+Each clan has `clan.channels`, filled by `await clan.loadChannels()`. Each channel has `channel.messages`. `channel.messages.fetch(id)` reads the local SQLite store: it finds only the messages the bot received while it was running.
 
-- **Message Formatting**: Utilities like `format_message_input.ts` and `generate_reply_message.ts` ensure consistent message structures across different message types including special handling for token transfers.
-
-- **Message Persistence**: `MessageDatabase.ts` uses SQLite to store messages locally through the `saveMessage()` method, enabling features like:
-  - Offline message viewing
-  - Faster message history loading
-  - Local message caching for improved performance
-  - Message synchronization between sessions
-
-- **Real-time Message Handling**: The `MezonClient` automatically handles incoming messages through `_initChannelMessageCache()` which creates `Message` instances and updates both in-memory caches and persistent storage.
+`TextChannel`, `Message`, `User` and `Clan` are not exported from the package. Let TypeScript infer their types from the calls that return them.
 
 ## Events
 
-- **`EventManager` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/manager/event_manager.ts)]**: A system for emitting and listening to custom client-side and server-pushed events. This allows different parts of your application (or your bot) to react to occurrences within the Mezon platform or the SDK itself.
+Register handlers with the `on...` methods. Each one returns the client, so you can chain them. Register them before you call `login()`.
 
-- **Socket Events (`src/message-socket-events/`)**: Specific handlers for socket events like `user_channel_added` or `user_channel_updated`.
+```ts
+client
+  .onChannelMessage((message) => console.log(message.content?.t))
+  .onMessageButtonClicked((click) => console.log(click.button_id));
+```
 
-## Clans & Users
+The full list is in the [API reference](./api-references.md#events). The most used ones:
 
-- **`Clan` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/structures/Clan.ts)]**: Represents a clan (server/community) on the Mezon platform containing:
-  - Multiple channels accessible through the clan's channel collection
-  - Member users with role-based permissions
-  - Clan-specific metadata (ID, name, welcome channel)
-  - Integration with `MezonApi`, `SocketManager`, and `MessageDatabase`
-  - Dynamic channel loading via `loadChannels()` method
-  - A special clan with ID "0" represents the DM space for direct messaging
+| Event | When |
+|---|---|
+| `onChannelMessage` | A message arrives in a channel or direct message the bot can see. |
+| `onMessageButtonClicked` | A member clicks a button or picks an option in the bot's [interactive message](../../mezon-topics/interactive-message.mdx). |
+| `onMessageReaction` | Someone reacts to a message. |
+| `onAddClanUser`, `onUserClanRemoved` | A member joins or leaves a clan. |
+| `onChannelCreated`, `onChannelUpdated`, `onChannelDeleted` | Channels change. |
+| `onStreamingJoinedEvent`, `onStreamingLeavedEvent` | Someone goes live or stops in a stream channel. |
 
-- **`User` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/structures/User.ts)]**: Represents a user on the Mezon platform with comprehensive profile information:
-  - **Basic Identity**: ID, username, display name, and avatar
-  - **Clan-specific Data**: clan nickname (`clan_nick`) and clan avatar (`clan_avatar`) for different clan contexts
-  - **DM Integration**: Associated DM channel ID for direct messaging capabilities
-  - **User Actions**: Methods for user-specific operations like sending direct messages
-  
-  Users are managed through `UserInitData` interface and are automatically cached by clans. The `MezonClient` maintains user data across both clan contexts and the global DM space (clan "0"), allowing for consistent user interactions regardless of context.
+`client.on("ready", ...)` fires when the login is complete.
 
-- **User Management**: The client automatically handles user caching through `_initUserClanCache()` which:
-  - Creates user instances for both clan and DM contexts
-  - Maintains user data consistency across different clan memberships
-  - Handles dynamic user loading from DM channel data
-  - Updates user information from real-time message events
+## Message content
 
-## Caching and Data Management
+A message's content is a `ChannelMessageContent` object. The text is in `t`. Other keys add formatting and parts:
 
-- **`CacheManager` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/utils/CacheManager.ts)]**: Provides a sophisticated caching layer for frequently accessed data with automatic fetching capabilities:
-  - **Generic caching** for any data type (clans, channels, users)
-  - **Automatic fetching** via constructor-provided fetch functions (e.g., `_fetchClanFromAPI`, `_fetchChannelFromAPI`)
-  - **Memory optimization** reducing repeated API calls and improving performance
-  - **Integrated with MezonClient** through `this.clans` and `this.channels` cache managers
-  - **Lazy loading** - data is fetched only when accessed via `fetch()` or `get()` methods
+| Key | Holds |
+|---|---|
+| `t` | The text. |
+| `mk` | Formatting ranges in `t`: `{ type, s, e }`, where `type` is for example `"b"` (bold) or `"lk"` (link), and `s` and `e` are the start and end positions in `t`. |
+| `embed` | Interactive message cards built with `InteractiveBuilder`. |
+| `components` | Rows of buttons and selects: `[{ components: [...] }]`. |
 
-- **`AsyncThrottleQueue` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/utils/AsyncThrottleQueue.ts)]**: Critical component for managing outgoing requests and maintaining rate limits:
-  - **Rate limiting** prevents server-imposed limits and ensures smooth operation
-  - **Request queuing** manages high-volume messaging and API calls
-  - **Used extensively** by MezonClient for message sending, API calls, and socket operations
-  - **Background processing** handles queued tasks without blocking main application flow
+Mentions and attachments are separate arguments of `send` and `reply`. See [Usage and examples](./usage-and-examples.md).
 
-- **`Collection` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/mezon-client/utils/Collection.ts)]**: An enhanced `Map` utility providing advanced data structure management:
-  - **Extended Map functionality** with convenient methods for filtering, mapping, and finding items
-  - **Used throughout SDK** for managing collections of users, channels, messages, and other entities
-  - **Performance optimized** for frequent read/write operations on large datasets
-  - **Type-safe** operations maintaining TypeScript compatibility
+## Ids
 
-- **`MessageDatabase` [[src](https://github.com/mezonai/mezon-js/blob/master/packages/mezon-sdk/src/sqlite/MessageDatabase.ts)]**: SQLite-based persistent storage system:
-  - **Local message storage** for offline access and faster loading
-  - **Automatic synchronization** with real-time events via `saveMessage()` method
-  - **Integrated caching** works alongside in-memory caches for optimal performance
-  - **Cross-session persistence** maintains message history between application restarts
+Mezon ids (users, clans, channels, messages) are 64-bit numbers. The SDK gives and takes them as strings. Keep them as strings: JavaScript numbers lose precision above 2^53.
 
-## Social Features
+## Sending rate
 
-The Mezon SDK provides comprehensive social interaction capabilities:
+The SDK queues outgoing messages and sends at most 80 per second from one client. Server limits are not documented here.
 
-### Friend System
-- **`getListFriends()`**: Retrieve friend lists with pagination support (`limit`, `state`, `cursor` parameters)
-- **`addFriend(username)`**: Send friend requests to users by username
-- **`acceptFriend(userId, username)`**: Accept incoming friend requests
-- **Automatic friend request handling**: The client automatically processes friend requests through notification events
+## Related
 
-### Token Transfer System
-
-The Mezon SDK provides comprehensive support for secure token transfers using the **Mezon Money Network (MMN)** with zero-knowledge proofs for enhanced privacy:
-
-- **`sendToken(tokenEvent)`**: Send virtual currency/tokens between users with automatic ZK proof handling
-- **`getEphemeralKeyPair()`**: Generate temporary key pairs for secure transaction signing
-- **`getAddress(userId)`**: Retrieve wallet addresses for users
-- **`getZkProofs(data)`**: Obtain zero-knowledge proofs for privacy-preserving transactions
-- **`getCurrentNonce(userId)`**: Fetch current transaction nonce for proper sequencing
-- **`onTokenSend()`**: Listen for token transfer events with automatic DM notifications
-
-**Key Features:**
-- **Privacy-preserving**: Uses zero-knowledge proofs to protect transaction details
-- **Automatic initialization**: ZK infrastructure is set up during login process
-- **Nonce management**: SDK automatically handles transaction sequencing
-- **Decimal scaling**: Amounts are automatically scaled to the correct precision
-- **Error handling**: Comprehensive error messages for failed transactions
-- **Transaction receipts**: Returns transaction hash and status for verification
-
-**Transaction Flow:**
-1. SDK maintains ephemeral key pair, wallet address, and ZK proofs after login
-2. When sending tokens, SDK fetches current nonce automatically
-3. Transaction is signed with ephemeral private key
-4. ZK proof is attached to protect sender/receiver privacy
-5. Transaction is submitted to MMN and returns tx_hash if successful
-6. Recipient automatically receives DM notification with transaction details
-
-- **Coffee system**: Social interaction feature via `onGiveCoffee()` events for casual gifting
-
-### Interactive Elements
-- **Message buttons**: Support for interactive buttons in messages via `onMessageButtonClicked()`
-- **Dropdown selections**: Handle user selections from dropdown menus via `onDropdownBoxSelected()`
-- **Quick menus**: Support for quick action menus via `onQuickMenuEvent()`
-
-### Voice and Video Features
-- **Voice channels**: Complete voice session management with start, end, join, and leave events
-- **WebRTC signaling**: Direct peer-to-peer communication support via `onWebrtcSignalingFwd()`
-- **Streaming support**: Live streaming capabilities with join/leave event handling
+- [Getting started](./getting-started.md)
+- [API reference](./api-references.md)
+- [What bots are allowed to do](../bot-api-access.md)

@@ -1,181 +1,62 @@
 ---
-sidebar_label: Tổng quan về Bots/Apps
+sidebar_label: Bạn có thể xây dựng gì
 sidebar_position: 1
+description: Các cách xây dựng trên Mezon (bot, ứng dụng trong kênh, webhook và OAuth2) và mỗi cách làm được gì.
 ---
 
-# Tổng quan về Bots/Apps trên Mezon
+# Bạn có thể xây dựng gì trên Mezon
 
-![Overview of Apps](./images/mezon-bot-001.png)
+Có bốn cách để xây dựng trên Mezon. Trang này cho biết mỗi cách làm được gì và bắt đầu từ đâu.
 
-Trên trang này, chúng ta sẽ trả lời các câu hỏi:
+| Bạn muốn | Dùng | Cần có |
+|---|---|---|
+| Trả lời tin nhắn, chạy lệnh, gửi biểu mẫu và nút bấm | [Bot](#bots) | Một bot trên Developer Portal và một chương trình chạy liên tục |
+| Hiển thị trang web của bạn trong clan, biết sẵn người dùng Mezon là ai | [Ứng dụng trong kênh](#channel-apps) | Một ứng dụng trên Developer Portal và một trang web |
+| Đăng tin nhắn từ hệ thống khác (CI, giám sát, biểu mẫu) | [Webhook](#webhooks) | URL webhook của một kênh hoặc clan, và một yêu cầu HTTP |
+| Cho phép người dùng đăng nhập vào trang web của bạn bằng Mezon | [OAuth2](#oauth2) | Một ứng dụng trên Developer Portal có redirect URI |
 
-- [Bots và apps có thể làm gì?](#what-can-bots-and-apps-do)
-- [Apps được cài đặt ở đâu?](#where-are-apps-installed)
-- [Apps có thể dùng những API nào?](#what-apis-can-apps-use)
+## Bot {#bots}
 
----
+Bot là một tài khoản Mezon riêng do chương trình của bạn điều khiển. Bạn tạo bot trên Developer Portal và nhận **ID Bot** cùng **Token**. Chương trình đăng nhập bằng cả hai giá trị này và giữ kết nối.
 
-## Bots và apps có thể làm gì? {#what-can-bots-and-apps-do}
+Bot có thể:
 
-Bạn sẽ khám phá hết tiềm năng của chúng khi tìm hiểu tài liệu và bắt tay vào xây dựng, nhưng trước tiên hãy xem qua một số tính năng chính bạn có thể xây dựng và tích hợp vào app của mình.
+- Đọc tin nhắn trong các kênh bot nhìn thấy, rồi trả lời, sửa, xóa và thêm biểu cảm.
+- Gửi tin nhắn trực tiếp, và tin nhắn ephemeral (chỉ những thành viên được chọn mới thấy).
+- Gửi [tin nhắn tương tác](../mezon-topics/interactive-message.mdx) có nút bấm, ô nhập và danh sách chọn, rồi xử lý lượt nhấn.
+- Tạo bình chọn, xem danh sách kênh, thành viên trong kênh thoại và vai trò, và cập nhật vai trò.
+- Phát video vào [kênh phát trực tiếp](../mezon-topics/streaming-channel.mdx).
 
-### Gửi và quản lý tin nhắn
+Bot chỉ hoạt động trong các clan đã thêm nó. Người có quyền **Quản lý Clan** thêm bot bằng liên kết cài đặt của bot. Bot chỉ được gọi một số API máy chủ: xem [Bot được phép làm gì](../mezon-sdk/bot-api-access.md).
 
-Tin nhắn là nền tảng của Mezon, và bot cũng không ngoại lệ. Bot có thể gửi tin nhắn qua nhiều cách — dùng **[Mezon Bot SDK](../mezon-sdk/integration-bot-sdk/overview)** để nhắn tin trực tiếp, tạo và quản lý webhook cho tin nhắn tự động, hoặc phản hồi thông qua các tương tác của bot. Với quyền phù hợp, bot cũng có thể quản lý tin nhắn bằng cách chỉnh sửa, xóa và thả cảm xúc trong các kênh.
+Có hai SDK:
 
-### Tạo trải nghiệm tương tác
+- [`mezon-sdk`](../mezon-sdk/integration-bot-sdk/overview.md) cho JavaScript và TypeScript trên Node.js.
+- [`Mezon.Net.Sdk`](../mezon-sdk/dotnet-sdk.md) cho C# và các ngôn ngữ .NET khác.
 
-Bot có thể tạo các phần tử tương tác trong tin nhắn, mà chúng ta gọi là **tin nhắn tương tác** (interactive messages). Tạo bình chọn, lời nhắc và nhiều hơn nữa... cho phép tương tác trực tiếp với các thành viên trong clan.
+Bắt đầu với [Tạo bot](./creating-mezon-bot.md).
 
-### Xây dựng ứng dụng kênh nhúng
+## Ứng dụng trong kênh {#channel-apps}
 
-**[Channel App SDK](../mezon-sdk/channel-app-sdk/overview)** cho phép các app tạo ra **ứng dụng web nhúng** chạy trực tiếp bên trong các kênh Mezon. Những ứng dụng này hoạt động trong iframe an toàn với giao tiếp hai chiều tới client Mezon, mang lại các trải nghiệm tương tác phong phú như trò chơi, công cụ năng suất, bình chọn và không gian cộng tác ngay nơi mọi người đang kết nối.
+Ứng dụng trong kênh là trang web của bạn, được mở từ một kênh của clan. Khi thành viên khởi chạy ứng dụng, Mezon thêm dữ liệu có chữ ký về thành viên đó vào URL trang web. Máy chủ của bạn kiểm tra chữ ký và biết thành viên là ai, không cần đăng nhập riêng.
 
-### Tùy biến clan và kênh
+Bạn không cần SDK: ứng dụng trong kênh là một trang web bình thường. Người có quyền **Quản lý kênh** cài đặt ứng dụng, và ứng dụng hiện ra như một kênh trong clan.
 
-Với các endpoint API phù hợp và [quyền](../mezon-sdk/integration-bot-sdk/core-concepts#authentication-sessions) thích hợp, app có thể tùy biến trải nghiệm clan và kiểm duyệt bằng cách truy cập và quản lý các tài nguyên cốt lõi của Mezon — bao gồm [người dùng](../mezon-sdk/integration-bot-sdk/api-references#user-class), [kênh](../mezon-sdk/integration-bot-sdk/api-references), [clan](../mezon-sdk/integration-bot-sdk/api-references#clan-class), vai trò và công cụ kiểm duyệt. App có thể tạo kênh, quản lý quyền thành viên, triển khai kiểm duyệt tự động và tổ chức cấu trúc clan.
+Bắt đầu với [Tạo ứng dụng trong kênh](./creating-mezon-app.md), sau đó đọc [Tổng quan về ứng dụng trong kênh](../mezon-sdk/channel-app-sdk/overview.md).
 
-### Giao tiếp và sự kiện thời gian thực
+## Webhook {#webhooks}
 
-App có thể sử dụng **kết nối WebSocket** để giao tiếp hai chiều thời gian thực với nền tảng Mezon. Điều này cho phép app nhận thông báo tức thì về tin nhắn, thay đổi trạng thái hiện diện của người dùng, hoạt động kênh thoại và các sự kiện khác trong clan. App có thể phản hồi ngay lập tức, mang lại trải nghiệm nhạy bén và tương tác.
+Webhook là một URL đăng tin lên Mezon. Chương trình của bạn gửi một yêu cầu HTTP `POST` có nội dung JSON, không cần đăng nhập. Webhook chỉ gửi tin nhắn vào Mezon; nó không báo cho chương trình của bạn về sự kiện trong Mezon.
 
-### Tích hợp thoại và streaming
+- [Webhook kênh](../webhooks/channel-webhook.mdx) đăng tin nhắn vào một kênh.
+- [Webhook clan](../webhooks/clan-webhook.mdx) gửi tin nhắn đến một thành viên của clan, dưới dạng thông báo trong hộp thư.
 
-App Mezon có thể tích hợp với **kênh thoại** và **tính năng streaming**. App có thể quản lý thành viên kênh thoại, nhận sự kiện thoại, đăng ký kênh streaming cho bot và tạo trải nghiệm tương tác có hỗ trợ thoại. Điều này mở ra khả năng cho bot nhạc, lệnh kích hoạt bằng giọng nói và các trải nghiệm thoại cộng tác.
+## OAuth2 {#oauth2}
 
-### Tính năng token và kinh tế
+[OAuth2](../mezon-topics/oauth2.mdx) cho phép người dùng đăng nhập vào trang web của bạn bằng tài khoản Mezon. Bạn nhận được ID người dùng Mezon, tên người dùng, tên hiển thị và ảnh đại diện của họ.
 
-App có thể tích hợp với **hệ thống token** của Mezon để xây dựng các tính năng dựa trên nền kinh tế. Bot có thể gửi và nhận token giữa người dùng, theo dõi lịch sử giao dịch và tạo hệ thống phần thưởng, trò chơi hoặc tính năng chợ tận dụng nền kinh tế token tích hợp sẵn của Mezon.
+## Liên quan
 
-### ...và nhiều hơn nữa
-
-Tài liệu nhà phát triển này chứa rất nhiều tính năng và khả năng để khám phá. Hãy tìm hiểu những gì có thể bằng cách duyệt tài liệu hoặc [xây dựng app của riêng bạn](https://mezon.ai/developers).
-
----
-
-## Apps được cài đặt ở đâu? {#where-are-apps-installed}
-
-App Mezon có thể được cài đặt và sử dụng trong nhiều ngữ cảnh khác nhau tùy theo loại và cấu hình của chúng:
-
-### Ứng dụng Bot
-
-**Ứng dụng bot** được cài đặt vào các clan cụ thể bởi người dùng có quyền **Manage Clan**. Sau khi cài đặt:
-- Bot có thể tương tác trong các kênh của clan đó và với các thành viên clan
-- Bot có thể gửi tin nhắn trực tiếp đến những người tương tác với nó
-- Bot hiển thị với tất cả thành viên clan và ai cũng có thể sử dụng
-- Bot duy trì sự hiện diện liên tục và có thể phản hồi sự kiện 24/7
-
-### Ứng dụng Kênh
-
-**Ứng dụng kênh** chạy như các trải nghiệm web nhúng bên trong các kênh cụ thể:
-- App kênh được tải trực tiếp trong giao diện kênh dưới dạng ứng dụng iframe
-- Bất kỳ người dùng nào có quyền xem kênh đều có thể truy cập
-- App kênh nhận tham số khởi tạo từ ứng dụng Mezon cha
-- Chúng giao tiếp với Mezon qua các API postMessage an toàn để tương tác hai chiều
-
-### Cài đặt và Quyền
-
-Quá trình cài đặt và các ngữ cảnh khả dụng phụ thuộc vào:
-- **Quyền trong clan**: Người dùng cần quyền phù hợp để cài đặt app trong clan
-- **Cấu hình app**: Nhà phát triển có thể cấu hình app của họ hỗ trợ những ngữ cảnh cài đặt nào
-- **Cài đặt bảo mật**: App hoạt động trong các ngữ cảnh an toàn với phạm vi quyền phù hợp
-
----
-
-## Apps có thể dùng những API nào? {#what-apis-can-apps-use}
-
-Có một số API và SDK bạn có thể chọn dựa trên chức năng của app và các tính năng Mezon bạn muốn truy cập. Dưới đây là tổng quan các API chính trên nền tảng nhà phát triển Mezon.
-
-### Mezon Bot SDK (Ứng dụng Bot)
-
-**[Mezon Bot SDK](../mezon-sdk/integration-bot-sdk/overview)** là một thư viện TypeScript toàn diện để xây dựng các ứng dụng bot tương tác với nền tảng Mezon thông qua REST API và kết nối WebSocket.
-
-Dùng Mezon SDK để:
-- **Xác thực bot** và quản lý phiên
-- **Gửi và nhận tin nhắn** theo thời gian thực
-- **Quản lý clan, kênh và người dùng**
-- **Xử lý sự kiện thoại và streaming**
-- **Xử lý giao dịch token**
-- **Lắng nghe sự kiện thời gian thực** qua kết nối WebSocket
-
-### Channel App SDK (Ứng dụng Web)
-
-**[Channel App SDK](../mezon-sdk/channel-app-sdk/overview)** là một thư viện JavaScript gọn nhẹ để xây dựng các ứng dụng web chạy nhúng bên trong các kênh Mezon.
-
-Dùng Channel App SDK để:
-- **Giao tiếp với ứng dụng Mezon cha** qua các API postMessage an toàn
-- **Nhận tham số khởi tạo** và ngữ cảnh từ Mezon
-- **Xử lý thay đổi giao diện** và cập nhật thiết kế đáp ứng
-- **Gửi sự kiện và dữ liệu** trở lại client Mezon
-- **Quản lý trạng thái ứng dụng** qua các lần tải lại trang
-
-### HTTP REST API
-
-**HTTP REST API** là một giao diện toàn diện cho phép bạn tương tác với các tài nguyên cốt lõi của Mezon như kênh, clan, người dùng, tin nhắn và nhiều hơn nữa.
-
-Dùng HTTP API để:
-- **Lấy thông tin** về các tài nguyên Mezon
-- **Tạo, cập nhật hoặc xóa** kênh, tin nhắn và các thực thể khác
-- **Quản lý quan hệ giữa clan và người dùng**
-- **Xử lý xác thực** và quản lý phiên
-- **Tải lên và quản lý tệp đính kèm**
-
-### WebSocket Gateway API
-
-**WebSocket Gateway API** cung cấp luồng sự kiện thời gian thực cho các ứng dụng bot, gửi thông báo tức thì về các hoạt động đang diễn ra trên Mezon.
-
-Dùng Gateway API để:
-- **Nhận sự kiện thời gian thực** như tin nhắn mới, người dùng tham gia, sự kiện thoại
-- **Duy trì kết nối liên tục** để phản hồi tức thì
-- **Xử lý sự kiện clan và kênh** ngay khi chúng xảy ra
-- **Xử lý trạng thái hiện diện** và cập nhật hoạt động của người dùng
-
-### Webhook API
-
-**Webhook** cung cấp cơ chế gửi sự kiện dựa trên HTTP cho các ứng dụng thích xử lý sự kiện theo kiểu REST thay vì kết nối WebSocket liên tục.
-
-Dùng Webhook để:
-- **Nhận thông báo HTTP POST** về các sự kiện Mezon
-- **Xử lý sự kiện bất đồng bộ** trong ứng dụng của bạn
-- **Tích hợp với kiến trúc serverless**
-- **Xử lý sự kiện mà không cần duy trì kết nối liên tục**
-
----
-
-## Bắt đầu xây dựng
-
-Giờ thì chúng ta đã nắm được những điều cơ bản, đã đến lúc bắt đầu xây dựng app Mezon của bạn! Bạn có thể khám phá phần còn lại của tài liệu, ghé thăm [cổng nhà phát triển](https://mezon.ai/developers), hoặc xem các tài nguyên cho người mới bắt đầu bên dưới.
-
-### Ứng dụng Bot
-Xây dựng các ứng dụng bot mạnh mẽ để tự động hóa, kiểm duyệt và nâng cao trải nghiệm clan:
-
-- **[Tổng quan Bot SDK](../mezon-sdk/integration-bot-sdk/overview)** - Tìm hiểu về Mezon SDK toàn diện cho phát triển bot
-- **[Bắt đầu với Bot](../mezon-sdk/integration-bot-sdk/getting-started)** - Hướng dẫn từng bước để tạo bot Mezon đầu tiên của bạn
-- **[Khái niệm cốt lõi](../mezon-sdk/integration-bot-sdk/core-concepts)** - Hiểu các khái niệm nền tảng của phát triển bot
-- **[Ví dụ sử dụng Bot](../mezon-sdk/integration-bot-sdk/usage-and-examples)** - Các ví dụ thực tế và mẫu triển khai
-
-### Ứng dụng Kênh
-Xây dựng các ứng dụng web nhúng chạy trực tiếp bên trong các kênh Mezon:
-
-- **[Tổng quan Channel App SDK](../mezon-sdk/channel-app-sdk/overview)** - Tìm hiểu về xây dựng ứng dụng kênh nhúng
-- **[Ví dụ Channel App](../mezon-sdk/channel-app-sdk/usage-and-examples)** - Các ví dụ tương tác bao gồm trò chơi và công cụ cộng tác
-
-### Đưa app đầu tiên của bạn vào hoạt động
-
-Sẵn sàng xây dựng ứng dụng Mezon đầu tiên? Đây là cách bắt đầu:
-
-1. **[Tạo tài khoản Bot](./creating-mezon-bot)** - Thiết lập tài khoản nhà phát triển và tạo bot đầu tiên của bạn
-2. **Chọn loại app** - Lựa chọn giữa ứng dụng bot hoặc ứng dụng kênh tùy theo trường hợp sử dụng
-3. **Cài đặt SDK phù hợp** - Dùng Mezon SDK cho bot hoặc Channel App SDK cho ứng dụng web
-4. **Làm theo hướng dẫn bắt đầu** - Hoàn thành các hướng dẫn cho loại app bạn chọn
-5. **Triển khai và kiểm thử** - Cài đặt app vào một clan thử nghiệm và tinh chỉnh cách triển khai
-
-### Tài nguyên phát triển
-
-- **[Tài liệu API](../mezon-sdk/integration-bot-sdk/api-references)** - Tài liệu đầy đủ về mọi API và phương thức hiện có
-- **[Cổng nhà phát triển](https://mezon.ai/developers)** - Quản lý ứng dụng và truy cập công cụ dành cho nhà phát triển
-- **[Hỗ trợ cộng đồng](https://mezon.ai/)** - Kết nối với các nhà phát triển khác và nhận trợ giúp
-
----
-
-*Sẵn sàng thay đổi cách mọi người kết nối và cộng tác trên Mezon? Hãy bắt đầu xây dựng app của bạn ngay hôm nay!*
+- [Mezon Developer Portal](https://mezon.ai/developers/applications)
+- [`mezon-sdk` trên npm](https://www.npmjs.com/package/mezon-sdk)
+- [`Mezon.Net.Sdk` trên NuGet](https://www.nuget.org/packages/Mezon.Net.Sdk)
