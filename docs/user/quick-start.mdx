@@ -6,6 +6,7 @@ description: Start Mezon on your phone, join your team's clan, chat, talk, add f
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
 import qrMobileDownload from "./images/quick-start/qr-mobile-download.png";
 import phoneWelcome from "./images/quick-start/phone-01-welcome.png";
 import phoneLoginEmail from "./images/quick-start/phone-02-login-email.png";
@@ -53,123 +54,92 @@ import computerInviteLink from "./images/quick-start/computer-22-invite-link.png
 
 # Get started with Mezon
 
-This guide shows the first things to do in Mezon. **Start on your phone**: install Mezon, log in and join your team's clan. Then you can add your computer. This way you have one account, and you are already in your team's clan on every device.
+**Start on your phone**: install Mezon, log in and join your team's clan. Then add your computer. You keep one account, and your clans are on every device.
 
-## What you need
+**You need:**
 
 - A phone with Android 7.0 or later, or an iPhone with iOS 13.0 or later.
 - An email address you can open.
-- The invite link or invite QR code of your team's clan. Your team leader sends it, for example in a group chat.
+- Your team's clan invite link or QR code. Your team leader sends it, for example in a group chat.
 - For the computer (optional): Windows 10 (version 1809) or later, macOS 13 or later, or 64-bit Linux (Ubuntu or Debian).
 
 :::note
-A **clan** is your team's space in Mezon. A clan has **channels**: text channels for messages and voice channels for talking.
+A **clan** is your team's space in Mezon. It has **channels**: text channels for messages and voice channels for talking.
 :::
 
 ## 1. Install Mezon on your phone
 
-**Reading this on your phone?** Tap this link: [mezon.ai/mobile-download](https://mezon.ai/mobile-download). It opens the right store for your phone (Google Play or the App Store).
+<Columns>
+<Column className="col--3">
 
-**Reading this on a computer or on paper?** Scan this QR code with your phone's camera. It opens the same page.
+<Image src={qrMobileDownload} alt="QR code that opens the Mezon download page for phones" width={160} />
 
-<Image src={qrMobileDownload} alt="QR code that opens the Mezon download page for phones" width={200} />
+</Column>
+<Column>
 
-Or install it yourself:
+- **On your phone:** tap [mezon.ai/mobile-download](https://mezon.ai/mobile-download). It opens Google Play or the App Store.
+- **On a computer or on paper:** scan the QR code with your phone's camera. It opens the same page.
+- **Or search for Mezon in the store:** [Google Play](https://play.google.com/store/apps/details?id=com.mezon.mobile) (publisher **NCCPLUS**), tap **Install**. [App Store](https://apps.apple.com/app/mezon/id6502750046) (provider **NCCPLUS VIETNAM JOINT STOCK COMPANY**), tap **Get**.
 
-- **Android phone:** open **Google Play**, search for **Mezon** (publisher **NCCPLUS**) and tap **Install**. Link: [Mezon on Google Play](https://play.google.com/store/apps/details?id=com.mezon.mobile).
-- **iPhone:** open the **App Store**, search for **Mezon** (provider **NCCPLUS VIETNAM JOINT STOCK COMPANY**) and tap **Get**. Link: [Mezon on the App Store](https://apps.apple.com/app/mezon/id6502750046).
+</Column>
+</Columns>
 
-## 2. Log in on your phone (this also creates your account)
+## 2. Log in on your phone
 
-You do not need to sign up first. The first time you log in, Mezon creates your account.
+You do not need to sign up: the first login creates your account.
 
-1. Open Mezon and tap **Get Started**.
+<ShotSteps>
+<Shot src={phoneWelcome} alt="The Mezon welcome screen with the Get Started button">Open Mezon and tap **Get Started**.</Shot>
+<Shot src={phoneLoginEmail} alt="The log-in screen with the email field">If you see a phone number field, tap **Login with Email OTP**. Type your email. Tap **Send OTP**.</Shot>
+<Shot src={phoneAllowNotifications} alt="The notification permission question with the Allow button">Type the 6-digit code from your email. Tap **Verify OTP**. Then tap **Allow** for notifications.</Shot>
+</ShotSteps>
 
-<Image src={phoneWelcome} alt="The Mezon welcome screen with the Get Started button" width={270} />
+If Mezon asks for a Mezon name, type your name without accents or spaces, for example **nguyenvanan**, and tap **Update**. This becomes your username.
 
-2. If you see a phone number field, tap **Login with Email OTP**.
-3. Enter your email.
-
-<Image src={phoneLoginEmail} alt="The log-in screen with the email field" width={270} />
-
-4. Tap **Send OTP**. Mezon sends a 6-digit code (OTP) to your email.
-5. Type the code and tap **Verify OTP**.
-6. If Mezon asks for a Mezon name, type your name without accents or spaces, for example **nguyenvanan**. This becomes your username. Then tap **Update**.
-7. When Mezon asks to send notifications, tap **Allow**. Then you see new messages.
-
-<Image src={phoneAllowNotifications} alt="The notification permission question with the Allow button" width={270} />
-
-Mezon opens.
+You can also log in with a Vietnamese mobile number. The code then comes by SMS.
 
 :::warning
-Use the same email on all your devices. If you log in with another email or phone number, Mezon creates a second, separate account.
+Use the same email (or phone number) on all your devices. Another email or number creates a second, separate account.
 :::
-
-You can also log in with a Vietnamese mobile number. The code then comes by SMS. Use the same number every time.
 
 ### Change the language
 
-The Android app starts in English. To use Vietnamese:
+The Android app starts in English. On an iPhone, Mezon uses the phone's language; you can change it in the same place.
 
-1. Tap **Profile** at the bottom, then the gear icon at the top.
-
-<Image src={phoneProfileSettings} alt="The Profile tab with the gear icon marked" width={270} />
-
-2. Tap **Language**.
-
-<Image src={phoneSettingsLanguage} alt="Settings with the Language row marked" width={270} />
-
-3. Tap **Tiếng Việt**.
-
-<Image src={phoneLanguageChoice} alt="The language list with English and Tiếng Việt" width={270} />
-
-On an iPhone, Mezon uses the phone's language. You can change it in the same place.
+<ShotSteps>
+<Shot src={phoneProfileSettings} alt="The Profile tab with the gear icon marked">Tap **Profile** at the bottom, then the gear icon at the top.</Shot>
+<Shot src={phoneSettingsLanguage} alt="Settings with the Language row marked">Tap **Language**.</Shot>
+<Shot src={phoneLanguageChoice} alt="The language list with English and Tiếng Việt">Tap **Tiếng Việt**.</Shot>
+</ShotSteps>
 
 ## 3. Join your team's clan
 
-Your team leader sends you an invite link or an invite QR code.
+Your team leader sends you an invite link or an invite QR code. Use either one.
 
-**With a link**
+<ShotSteps plain>
+<Shot src={phoneInviteOpen} alt="The invite screen with the clan name and the Join button">**With a link:** open the link on your phone (it looks like `https://mezon.ai/invite/...`). Mezon shows the clan. Tap **Join**.</Shot>
+<Shot src={phoneQrIcon} alt="The Clans tab with the QR code icon next to the search box marked">**With a QR code:** tap **Clans** at the bottom, then the QR code icon next to the search box. Point the camera at the code. Tap **Join**.</Shot>
+</ShotSteps>
 
-1. Open the link on your phone. It looks like `https://mezon.ai/invite/...`.
-2. Mezon opens and shows the clan. Tap **Join**.
-
-<Image src={phoneInviteOpen} alt="The invite screen with the clan name and the Join button" width={270} />
-
-**With a QR code**
-
-1. Tap **Clans** at the bottom of the screen.
-2. Tap the QR code icon at the top, next to the search box.
-
-<Image src={phoneQrIcon} alt="The Clans tab with the QR code icon next to the search box marked" width={270} />
-
-3. Point the camera at the QR code.
-4. Tap **Join**.
-
-The same scanner is also in **Profile** → gear icon → **Scan QR Code** (iPhone: **QR Scan**).
-
-If the QR code is a picture in a chat on your phone, save the picture first. Then, on the scan screen, tap the picture icon at the bottom left (iPhone: **Choose from Photo Library**) and pick it.
-
-The clan opens. If you were not logged in yet, log in first; Mezon then shows the invite again.
+- The scanner is also in **Profile** → gear icon → **Scan QR Code** (iPhone: **QR Scan**).
+- If the QR code is a picture in a chat on your phone, save the picture. On the scan screen, tap the picture icon at the bottom left (iPhone: **Choose from Photo Library**) and pick it.
+- If you were not logged in yet, log in first. Mezon then shows the invite again.
 
 ## 4. Find your way around
 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-- The tabs at the bottom are **Clans**, **Messages**, **Notifications** and **Profile**.
-- In **Clans**, the bar on the left shows your clans. Each picture is one clan. Tap a picture to open that clan and see its channels.
-- Your conversations with one person are in **Messages**.
-
-<Image src={phoneMessagesTab} alt="The Messages tab with the conversation list" width={270} />
+<ShotSteps plain>
+<Shot src={phoneMessagesTab} alt="The Messages tab with the conversation list">The tabs at the bottom are **Clans**, **Messages**, **Notifications** and **Profile**. In **Clans**, each picture in the bar on the left is one clan: tap it to see its channels. Your chats with one person are in **Messages**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
 
-- The bar on the far left shows your clans. Each picture is one clan. Click a picture to open that clan and see its channels.
-- The **Mezon logo** at the top of that bar opens your direct messages and your friends.
-
-<Image src={computerHomeDm} alt="The Mezon logo at the top left, which opens direct messages" />
+<ShotSteps wide plain>
+<Shot src={computerHomeDm} alt="The Mezon logo at the top left, which opens direct messages">Each picture in the bar on the far left is one clan: click it to see its channels. The **Mezon logo** at the top of that bar opens your direct messages and your friends.</Shot>
+</ShotSteps>
 
 </TabItem>
 </Tabs>
@@ -179,37 +149,20 @@ The clan opens. If you were not logged in yet, log in first; Mezon then shows th
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Open a channel and tap its name at the top.
-2. In **Members**, tap the person.
-
-<Image src={phoneMemberList} alt="The members list of a channel" width={270} />
-
-3. Tap **Message**.
-
-<Image src={phoneProfileMessage} alt="A member's profile with the Message button" width={270} />
-
-4. Type your message in the box at the bottom.
-5. Tap the send button on the right. It appears when you start typing.
-
-<Image src={phoneComposerSend} alt="A message typed in the box, with the send button marked" width={270} />
-
-The newest messages are at the bottom, just above the box where you type. The conversation also appears in **Messages**.
-
-<Image src={phoneDmChat} alt="A conversation between two people, with the message box at the bottom" width={270} />
+<ShotSteps>
+<Shot src={phoneMemberList} alt="The members list of a channel">Open a channel and tap its name at the top. In **Members**, tap the person.</Shot>
+<Shot src={phoneProfileMessage} alt="A member's profile with the Message button">Tap **Message**.</Shot>
+<Shot src={phoneComposerSend} alt="A message typed in the box, with the send button marked">Type your message in the box at the bottom. Tap the send button on the right (it appears when you type).</Shot>
+<Shot src={phoneDmChat} alt="A conversation between two people, with the message box at the bottom">The newest messages are at the bottom. The chat is also in **Messages**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
 
-1. In a channel, click the members icon at the top right.
-2. Right-click the person and click **Message**.
-
-<Image src={computerMemberMenu} alt="The member menu with Message" />
-
-3. Type in the box at the bottom and press **Enter**.
-
-The newest messages are at the bottom, just above the box where you type. The conversation also appears under **DIRECT MESSAGES** (click the Mezon logo at the top left).
-
-<Image src={computerDirectMessage} alt="A conversation between two people" />
+<ShotSteps wide>
+<Shot src={computerMemberMenu} alt="The member menu with Message">In a channel, click the members icon at the top right. Right-click the person and click **Message**.</Shot>
+<Shot src={computerDirectMessage} alt="A conversation between two people">Type in the box at the bottom and press **Enter**. The chat is also under **DIRECT MESSAGES** (Mezon logo at the top left).</Shot>
+</ShotSteps>
 
 </TabItem>
 </Tabs>
@@ -221,30 +174,18 @@ You can message people in your clan without being friends, unless they only acce
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Tap **Messages** at the bottom.
-2. Tap **Add Friend** at the top.
+<ShotSteps plain>
+<Shot src={phoneAddFriend} alt="The Messages tab with the Add Friend button marked">**Messages** → **Add Friend** → **Add by username or phone number**. Type the person's username or phone number. Tap **Send Friend Request**.</Shot>
+</ShotSteps>
 
-<Image src={phoneAddFriend} alt="The Messages tab with the Add Friend button marked" width={270} />
-
-3. Tap **Add by username or phone number**.
-4. Type the person's username or phone number.
-5. Tap **Send Friend Request**.
-
-Mezon confirms that the request was sent. When the other person accepts, you become friends. Your friend list is in **Profile** → **Your Friends**. Requests sent to you are under **Friend Requests** there: tap the green check mark to accept.
-
-You can also tap **Add Friend** on a person's profile in a clan.
+When the other person accepts, you become friends. Your friends are in **Profile** → **Your Friends**. Requests sent to you are under **Friend Requests** there: tap the green check mark to accept. You can also tap **Add Friend** on a person's profile in a clan.
 
 </TabItem>
 <TabItem value="computer" label="Computer">
 
-1. Click the Mezon logo at the top left.
-2. Click **Friends** at the top of the list next to it.
-3. Click **Add Friend** at the top.
-
-<Image src={computerAddFriend} alt="The Friends page with the Add Friend tab marked" />
-
-4. Type the person's username.
-5. Click **Send Friend Request**.
+<ShotSteps wide plain>
+<Shot src={computerAddFriend} alt="The Friends page with the Add Friend tab marked">Mezon logo at the top left → **Friends** → **Add Friend**. Type the person's username. Click **Send Friend Request**.</Shot>
+</ShotSteps>
 
 Requests sent to you are in the **Pending** tab: click the check mark to accept.
 
@@ -258,39 +199,24 @@ Voice channels have a speaker icon in the channel list.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Tap the voice channel.
-2. Tap **Join as Speaker**.
+<ShotSteps>
+<Shot src={phoneVoiceSheet} alt="The voice channel sheet with Join as Speaker">Tap the voice channel. Tap **Join as Speaker**.</Shot>
+<Shot src={phoneAllowMicrophone} alt="The microphone permission question">The first time, allow the microphone: tap **While using the app**.</Shot>
+<Shot src={phoneInCall} alt="The voice channel screen with the buttons at the bottom">Your microphone starts off: tap the microphone button to talk. Tap the red button to leave.</Shot>
+</ShotSteps>
 
-<Image src={phoneVoiceSheet} alt="The voice channel sheet with Join as Speaker" width={270} />
-
-3. The first time, allow Mezon to use the microphone: tap **While using the app**.
-
-<Image src={phoneAllowMicrophone} alt="The microphone permission question" width={270} />
-
-4. Your microphone starts off. Tap the microphone button at the bottom to talk.
-5. To leave, tap the red button.
-
-<Image src={phoneInCall} alt="The voice channel screen with the buttons at the bottom" width={270} />
-
-While you talk, each person has a tile with their name. A crossed-out microphone means that person is muted. The buttons at the bottom are, from left to right: camera, microphone, chat, share screen and the red button to leave.
+Each person has a tile with their name; a crossed-out microphone means muted. The buttons at the bottom, from left to right: camera, microphone, chat, share screen, leave.
 
 </TabItem>
 <TabItem value="computer" label="Computer">
 
-1. Click the voice channel.
-2. Click **Join as Speaker**.
+<ShotSteps wide>
+<Shot src={computerVoiceJoin} alt="The voice channel screen before joining, with Join as Speaker">Click the voice channel, then **Join as Speaker**. The first time, allow the microphone.</Shot>
+<Shot src={computerVoiceCall} alt="A voice channel with two people and the buttons at the bottom">Your microphone starts off: click the microphone button to talk. To leave, click the red button (**Disconnect**; desktop app: **Leave**).</Shot>
+</ShotSteps>
 
-<Image src={computerVoiceJoin} alt="The voice channel screen before joining, with Join as Speaker" />
-
-If 20 or more people are inside, the button says **Join as Audience** and you can only listen. To talk, click the arrow next to it and choose **Join as Speaker**.
-
-3. The first time, allow Mezon to use the microphone.
-4. Your microphone starts off. Click the microphone button at the bottom to talk.
-5. To leave, click the red button at the bottom (**Disconnect**; desktop app: **Leave**).
-
-<Image src={computerVoiceCall} alt="A voice channel with two people and the buttons at the bottom" />
-
-The person who is speaking has a green frame. The buttons at the bottom also turn on your camera and share your screen. Point at a button to see its name.
+- If 20 or more people are inside, the button says **Join as Audience** and you can only listen. To talk, click the arrow next to it and choose **Join as Speaker**.
+- The person who is speaking has a green frame. Point at a button to see its name; the buttons also turn on your camera and share your screen.
 
 </TabItem>
 </Tabs>
@@ -299,53 +225,24 @@ The person who is speaking has a green frame. The buttons at the bottom also tur
 
 Do this after your phone is set up. Your clans and messages are already there.
 
-**Install**
+**Install:** go to [mezon.ai](https://mezon.ai), scroll to the bottom and click **DESKTOP**. Click the button for your computer: **Windows**, **macOS** or **Linux Build**. Windows and macOS open the store; Linux downloads a `.deb` file that you open with your software installer.
 
-1. Go to [mezon.ai](https://mezon.ai) and scroll to the bottom of the page.
-2. Click **DESKTOP**. One button appears for your computer: **Windows**, **macOS** or **Linux Build**.
+<Image src={computerDownload} alt="The download buttons at the bottom of mezon.ai, with the DESKTOP menu open" width={460} />
 
-<Image src={computerDownload} alt="The download buttons at the bottom of mezon.ai, with the DESKTOP menu open" />
+Direct links: [Microsoft Store](https://apps.microsoft.com/detail/9pf25lf1fj17) · [Mac App Store](https://apps.apple.com/app/mezon-desktop/id6756601798?mt=12). When a newer version exists, Mezon offers it inside the app. No install? Use Mezon in a web browser: go to [mezon.ai](https://mezon.ai) and click **Login** at the top.
 
-3. Click that button. Windows and macOS open the store; Linux downloads a `.deb` file.
-4. Install Mezon from the store. On Linux, open the downloaded file with your software installer.
+**Log in with your phone (QR code):** the easiest way, and it keeps one account. The login screen on the computer shows a QR code.
 
-Direct links: [Microsoft Store](https://apps.microsoft.com/detail/9pf25lf1fj17) · [Mac App Store](https://apps.apple.com/app/mezon-desktop/id6756601798?mt=12). When a newer version exists, Mezon offers it inside the app.
+<ShotSteps wide>
+<Shot src={computerSignIn} alt="The web Sign In page with the QR code on the right">On your phone: **Profile** → gear icon → **Scan QR Code** (iPhone: **QR Scan**). Point the camera at the QR code on the computer. Tap **Log in**. Mezon opens on the computer with your clans and messages.</Shot>
+<Shot src={computerLanguage} alt="The Language page in settings">The desktop app starts in English. To change it: gear icon next to your name (bottom left) → **App Settings** → **Language** → **Tiếng Việt**.</Shot>
+</ShotSteps>
 
-You can also use Mezon in a web browser without installing it: go to [mezon.ai](https://mezon.ai) and click **Login** at the top. Then log in with your phone, as shown below.
-
-**Log in with your phone (QR code)**
-
-This is the easiest way, and it keeps one account. The login screen on the computer shows a QR code.
-
-<Image src={computerSignIn} alt="The web Sign In page with the QR code on the right" />
-
-1. On your phone, tap **Profile**, then the gear icon.
-2. Tap **Scan QR Code** (iPhone: **QR Scan**).
-3. Point the camera at the QR code on the computer.
-4. Tap **Log in**.
-
-Mezon opens on the computer with your clans and messages.
-
-You can also log in with the same email or phone number that you used on your phone. Mezon sends you a 6-digit code.
-
-- **Desktop app:** it asks for a phone number first. To use your email, click **Login with Email OTP**. Type it and click **Send OTP**.
-- **Web:** type your email or phone number and click **Sign in**.
-
-Then type the code.
+Or log in with the same email or phone number as on your phone, then type the 6-digit code that Mezon sends. Desktop app: it asks for a phone number first; to use your email, click **Login with Email OTP**, type it and click **Send OTP**. Web: type your email or phone number and click **Sign in**.
 
 :::warning
 Only scan a Mezon QR code that you see on your own computer. Never confirm a code that someone sent you.
 :::
-
-**Change the language**
-
-The desktop app starts in English.
-
-1. Click the gear icon next to your name, at the bottom left.
-2. Under **App Settings**, click **Language**.
-3. Click **Tiếng Việt**. The language changes at once.
-
-<Image src={computerLanguage} alt="The Language page in settings" />
 
 ## 8. For team leaders: create a clan, add channels, invite people
 
@@ -354,47 +251,27 @@ The desktop app starts in English.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Tap **+** at the bottom of the clan bar on the left.
-
-<Image src={phoneAddClan} alt="The plus button at the bottom of the clan bar" width={270} />
-
-2. Tap **Create My Own**.
-
-<Image src={phoneCreateClanChoice} alt="The Create Your Clan screen with Create My Own and templates" width={270} />
-
-3. Type the clan name. You can add a picture with **Upload**.
-4. Tap **Create Clan**.
-
-<Image src={phoneCreateClanForm} alt="The clan name form with the Create Clan button" width={270} />
-
-Your new clan opens. It already has a text channel called **general**.
-
-<Image src={phoneNewClan} alt="A new clan with the general channel" width={270} />
+<ShotSteps>
+<Shot src={phoneAddClan} alt="The plus button at the bottom of the clan bar">Tap **+** at the bottom of the clan bar on the left.</Shot>
+<Shot src={phoneCreateClanChoice} alt="The Create Your Clan screen with Create My Own and templates">Tap **Create My Own**.</Shot>
+<Shot src={phoneCreateClanForm} alt="The clan name form with the Create Clan button">Type the clan name. You can add a picture with **Upload**. Tap **Create Clan**.</Shot>
+<Shot src={phoneNewClan} alt="A new clan with the general channel">Your new clan opens with a text channel called **general**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
 
-1. Click **+** (**Create Clan**) in the clan bar on the far left.
-
-<Image src={computerCreateClanButton} alt="The plus button in the clan bar" />
-
-2. Click **Create My Own**.
-
-<Image src={computerCreateClanChoose} alt="The Create Your Clan dialog with Create My Own" />
-
-3. Type the clan name under **CLAN NAME**. You can add a picture with **Upload**.
-4. Click **Create**.
-
-<Image src={computerCreateClanName} alt="The Customize Your Clan dialog with a name typed" />
-
-Your new clan opens. It already has a text channel called **general**.
-
-<Image src={computerNewClan} alt="A new clan open on the general channel" />
+<ShotSteps wide>
+<Shot src={computerCreateClanButton} alt="The plus button in the clan bar">Click **+** (**Create Clan**) in the clan bar on the far left.</Shot>
+<Shot src={computerCreateClanChoose} alt="The Create Your Clan dialog with Create My Own">Click **Create My Own**.</Shot>
+<Shot src={computerCreateClanName} alt="The Customize Your Clan dialog with a name typed">Type the name under **CLAN NAME**. You can add a picture with **Upload**. Click **Create**.</Shot>
+<Shot src={computerNewClan} alt="A new clan open on the general channel">Your new clan opens with a text channel called **general**.</Shot>
+</ShotSteps>
 
 </TabItem>
 </Tabs>
 
-The clan name can have up to 64 characters. It must not be used by any other clan in Mezon; if it is, choose another name.
+The clan name can have up to 64 characters and must not be used by another clan in Mezon.
 
 ### Add a channel
 
@@ -403,37 +280,19 @@ Only the clan owner and people with a role that can manage channels can add chan
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Open your clan.
-2. Press and hold the category name, for example **PUBLIC CHANNELS**.
-3. Tap **Create channel**.
-
-<Image src={phoneCategoryMenu} alt="The menu after pressing and holding a category name, with Create channel" width={270} />
-
-4. Type the channel name.
-5. Choose **Text** for messages or **Voice** for talking.
-6. Tap **Create** at the top right.
-
-<Image src={phoneCreateChannel} alt="The Create Channel form with the name and channel types" width={270} />
-
-The new channel appears in the list. Voice channels have a speaker icon.
-
-<Image src={phoneChannelList} alt="The channel list with two text channels and one voice channel" width={270} />
+<ShotSteps>
+<Shot src={phoneCategoryMenu} alt="The menu after pressing and holding a category name, with Create channel">In your clan, press and hold the category name (for example **PUBLIC CHANNELS**). Tap **Create channel**.</Shot>
+<Shot src={phoneCreateChannel} alt="The Create Channel form with the name and channel types">Type the channel name. Choose **Text** for messages or **Voice** for talking. Tap **Create** at the top right.</Shot>
+<Shot src={phoneChannelList} alt="The channel list with two text channels and one voice channel">The new channel appears in the list. Voice channels have a speaker icon.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
 
-1. Open your clan.
-2. Point at the category name, for example **PUBLIC CHANNELS**, and click the **+** next to it.
-
-<Image src={computerCreateChannelButton} alt="The plus button next to the category name" />
-
-3. Choose **Text** for messages or **Voice** for talking.
-4. Type the channel name.
-5. Click **Create Channel**.
-
-<Image src={computerCreateChannel} alt="The create channel dialog with the channel types and name" />
-
-The new channel opens.
+<ShotSteps wide>
+<Shot src={computerCreateChannelButton} alt="The plus button next to the category name">In your clan, point at the category name (for example **PUBLIC CHANNELS**) and click the **+** next to it.</Shot>
+<Shot src={computerCreateChannel} alt="The create channel dialog with the channel types and name">Choose **Text** or **Voice**. Type the channel name. Click **Create Channel**. The new channel opens.</Shot>
+</ShotSteps>
 
 </TabItem>
 </Tabs>
@@ -445,36 +304,28 @@ Anyone in a clan can invite people.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Open the clan and tap the clan name at the top.
-2. Tap **Invite**.
+<ShotSteps>
+<Shot src={phoneClanMenu} alt="The clan menu with Invite">Open the clan and tap the clan name at the top. Tap **Invite**.</Shot>
+<Shot src={phoneInviteSheet} alt="The invite sheet with Share Invite, Copy Link and QR Code">Choose how to send the invite (see below).</Shot>
+</ShotSteps>
 
-<Image src={phoneClanMenu} alt="The clan menu with Invite" width={270} />
-
-3. Choose one:
-   - **Share Invite**, to send the link with another app.
-   - **Copy Link**, then paste the link in a message.
-   - **QR Code**, to show the code or to save or share it as a picture.
-   - **Invite** next to a friend's name, to send the link to that friend in Mezon.
-
-<Image src={phoneInviteSheet} alt="The invite sheet with Share Invite, Copy Link and QR Code" width={270} />
+- **Share Invite**: send the link with another app.
+- **Copy Link**: then paste the link in a message.
+- **QR Code**: show the code, or save or share it as a picture.
+- **Invite** next to a friend's name: send the link to that friend in Mezon.
 
 </TabItem>
 <TabItem value="computer" label="Computer">
 
-1. Click the clan name at the top of the channel list.
-2. Click **Invite People**.
-
-<Image src={computerClanMenu} alt="The clan menu with Invite People" />
-
-3. Click **Copy** (desktop app: **Copy Link**) and paste the link in a message. Or click **Invite** next to a friend's name.
-4. For a QR code, click **COPY QR**. On the web you can then click **Download** to save it as a picture.
-
-<Image src={computerInviteLink} alt="The invite dialog with the link and the Copy button" />
+<ShotSteps wide>
+<Shot src={computerClanMenu} alt="The clan menu with Invite People">Click the clan name at the top of the channel list. Click **Invite People**.</Shot>
+<Shot src={computerInviteLink} alt="The invite dialog with the link and the Copy button">Click **Copy** (desktop app: **Copy Link**) and paste the link in a message, or click **Invite** next to a friend. For a QR code, click **COPY QR**; on the web, **Download** saves it as a picture.</Shot>
+</ShotSteps>
 
 </TabItem>
 </Tabs>
 
-To bring a whole team in, post two links in your team's group chat. The first is [mezon.ai/mobile-download](https://mezon.ai/mobile-download). The second is your clan's invite link. People install Mezon, log in, then tap the invite link to join. You can also post the two QR codes, for people who read the chat on a computer.
+**To bring a whole team in**, post two links in your team's group chat: [mezon.ai/mobile-download](https://mezon.ai/mobile-download) and your clan's invite link. People install Mezon, log in, then tap the invite link. For people who read the chat on a computer, you can also post the two QR codes.
 
 :::warning
 Anyone who has the link or the QR code can join your clan. Share it only with your team. If a link does not work, open the invite again to get a new one.

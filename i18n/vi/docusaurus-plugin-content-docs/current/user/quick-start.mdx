@@ -6,6 +6,7 @@ description: Bắt đầu dùng Mezon trên điện thoại, vào clan của nh�
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
 import qrMobileDownload from "@site/docs/user/images/quick-start/qr-mobile-download.png";
 import phoneWelcome from "@site/docs/user/images/quick-start/phone-01-welcome.png";
 import phoneLoginEmail from "@site/docs/user/images/quick-start/phone-02-login-email.png";
@@ -53,9 +54,9 @@ import computerInviteLink from "./images/quick-start/computer-22-invite-link.png
 
 # Bắt đầu dùng Mezon
 
-Trang này hướng dẫn bạn những việc cần làm đầu tiên với Mezon. **Hãy bắt đầu trên điện thoại**: cài Mezon, đăng nhập và vào clan của nhóm. Sau đó bạn có thể dùng thêm trên máy tính. Như vậy bạn chỉ có một tài khoản, và dù dùng thiết bị nào, bạn cũng đã ở sẵn trong clan của nhóm.
+**Hãy bắt đầu trên điện thoại**: cài Mezon, đăng nhập và vào clan của nhóm. Sau đó dùng thêm trên máy tính. Như vậy bạn chỉ có một tài khoản, và thiết bị nào cũng có sẵn clan của bạn.
 
-## Bạn cần có
+**Bạn cần có:**
 
 - Điện thoại Android 7.0 trở lên, hoặc iPhone iOS 13.0 trở lên.
 - Một địa chỉ email bạn mở được.
@@ -68,110 +69,77 @@ Trang này hướng dẫn bạn những việc cần làm đầu tiên với Mez
 
 ## 1. Cài Mezon trên điện thoại
 
-**Bạn đang đọc trên điện thoại?** Nhấn vào liên kết này: [mezon.ai/mobile-download](https://mezon.ai/mobile-download). Liên kết sẽ mở đúng cửa hàng ứng dụng cho điện thoại của bạn (Google Play hoặc App Store).
+<Columns>
+<Column className="col--3">
 
-**Bạn đang đọc trên máy tính hoặc trên giấy?** Dùng camera điện thoại quét mã QR này. Mã sẽ mở cùng trang đó.
+<Image src={qrMobileDownload} alt="Mã QR mở trang tải Mezon cho điện thoại" width={160} />
 
-<Image src={qrMobileDownload} alt="Mã QR mở trang tải Mezon cho điện thoại" width={200} />
+</Column>
+<Column>
 
-Hoặc tự cài:
+- **Đang đọc trên điện thoại:** nhấn [mezon.ai/mobile-download](https://mezon.ai/mobile-download). Liên kết mở Google Play hoặc App Store.
+- **Đang đọc trên máy tính hoặc trên giấy:** dùng camera điện thoại quét mã QR. Mã mở cùng trang đó.
+- **Hoặc tìm Mezon trong cửa hàng:** [Google Play](https://play.google.com/store/apps/details?id=com.mezon.mobile) (CH Play; nhà phát triển **NCCPLUS**), nhấn **Cài đặt**. [App Store](https://apps.apple.com/app/mezon/id6502750046) (nhà cung cấp **NCCPLUS VIETNAM JOINT STOCK COMPANY**), nhấn **Nhận**.
 
-- **Điện thoại Android:** mở **Google Play** (CH Play), tìm **Mezon** (nhà phát triển **NCCPLUS**) và nhấn **Cài đặt**. Liên kết: [Mezon trên Google Play](https://play.google.com/store/apps/details?id=com.mezon.mobile).
-- **iPhone:** mở **App Store**, tìm **Mezon** (nhà cung cấp **NCCPLUS VIETNAM JOINT STOCK COMPANY**) và nhấn **Nhận**. Liên kết: [Mezon trên App Store](https://apps.apple.com/app/mezon/id6502750046).
+</Column>
+</Columns>
 
-## 2. Đăng nhập trên điện thoại (đồng thời tạo tài khoản)
+## 2. Đăng nhập trên điện thoại
 
-Bạn không cần đăng ký trước. Lần đầu đăng nhập, Mezon tự tạo tài khoản cho bạn.
+Bạn không cần đăng ký trước: lần đầu đăng nhập, Mezon tự tạo tài khoản. Ứng dụng Android hiện tiếng Anh cho đến khi bạn đổi ngôn ngữ, nên các nút dưới đây ghi bằng tiếng Anh, kèm nghĩa tiếng Việt.
 
-Ứng dụng Android hiển thị tiếng Anh cho đến khi bạn đổi ngôn ngữ (xem phần **Đổi ngôn ngữ** ngay dưới). Vì vậy các nút ở bước này được ghi bằng tiếng Anh, kèm nghĩa tiếng Việt.
+<ShotSteps>
+<Shot src={phoneWelcome} alt="Màn hình chào mừng của Mezon với nút Get Started">Mở Mezon và nhấn **Get Started** (Bắt đầu).</Shot>
+<Shot src={phoneLoginEmail} alt="Màn hình đăng nhập với ô email">Nếu thấy ô số điện thoại, nhấn **Login with Email OTP** (Đăng nhập bằng email). Nhập email. Nhấn **Send OTP** (Gửi mã).</Shot>
+<Shot src={phoneAllowNotifications} alt="Câu hỏi cho phép gửi thông báo với nút Cho phép">Nhập mã 6 số trong email. Nhấn **Verify OTP** (Xác nhận mã). Rồi nhấn **Cho phép** để nhận thông báo.</Shot>
+</ShotSteps>
 
-1. Mở Mezon và nhấn **Get Started** (Bắt đầu).
+Nếu Mezon hỏi tên Mezon, hãy nhập tên viết liền, không dấu, ví dụ **nguyenvanan**, rồi nhấn **Update** (Cập nhật). Đây sẽ là tên người dùng của bạn. Trên iPhone dùng tiếng Việt, các nút hiện bằng tiếng Việt: **Bắt đầu nào**, **Gửi OTP**, **Xác thực OTP**, **Cập nhật**.
 
-<Image src={phoneWelcome} alt="Màn hình chào mừng của Mezon với nút Get Started" width={270} />
-
-2. Nếu thấy ô số điện thoại, nhấn **Login with Email OTP** (Đăng nhập bằng email).
-3. Nhập email của bạn.
-
-<Image src={phoneLoginEmail} alt="Màn hình đăng nhập với ô email" width={270} />
-
-4. Nhấn **Send OTP** (Gửi mã). Mezon gửi một mã 6 số (OTP) vào email của bạn.
-5. Nhập mã rồi nhấn **Verify OTP** (Xác nhận mã).
-6. Nếu Mezon hỏi tên Mezon, hãy nhập tên viết liền, không dấu, ví dụ **nguyenvanan**. Đây sẽ là tên người dùng của bạn. Rồi nhấn **Update** (Cập nhật).
-7. Khi Mezon xin gửi thông báo, nhấn **Cho phép** để không bỏ lỡ tin nhắn mới.
-
-<Image src={phoneAllowNotifications} alt="Câu hỏi cho phép gửi thông báo với nút Cho phép" width={270} />
-
-Mezon mở ra. Nếu iPhone của bạn dùng tiếng Việt, các nút hiện bằng tiếng Việt: **Bắt đầu nào**, **Gửi OTP**, **Xác thực OTP**, **Cập nhật**.
+Bạn cũng có thể đăng nhập bằng số điện thoại Việt Nam. Khi đó mã được gửi qua SMS.
 
 :::warning
-Hãy dùng cùng một email trên mọi thiết bị. Nếu đăng nhập bằng email hoặc số điện thoại khác, Mezon sẽ tạo thêm một tài khoản riêng.
+Hãy dùng cùng một email (hoặc số điện thoại) trên mọi thiết bị. Email hoặc số khác sẽ tạo thêm một tài khoản riêng.
 :::
-
-Bạn cũng có thể đăng nhập bằng số điện thoại Việt Nam. Khi đó mã được gửi qua SMS. Hãy luôn dùng cùng một số.
 
 ### Đổi ngôn ngữ
 
-Ứng dụng Android mở bằng tiếng Anh. Để dùng tiếng Việt:
+Ứng dụng Android mở bằng tiếng Anh. Trên iPhone, Mezon dùng ngôn ngữ của điện thoại; bạn cũng đổi được ở đúng chỗ này.
 
-1. Nhấn **Profile** (Hồ sơ) ở dưới cùng, rồi nhấn biểu tượng bánh răng ở phía trên.
-
-<Image src={phoneProfileSettings} alt="Thẻ Profile, biểu tượng bánh răng được đánh dấu" width={270} />
-
-2. Nhấn **Language** (Ngôn ngữ).
-
-<Image src={phoneSettingsLanguage} alt="Màn hình Settings, dòng Language được đánh dấu" width={270} />
-
-3. Nhấn **Tiếng Việt**.
-
-<Image src={phoneLanguageChoice} alt="Danh sách ngôn ngữ có English và Tiếng Việt" width={270} />
-
-Trên iPhone, Mezon dùng ngôn ngữ của điện thoại. Bạn cũng có thể đổi ngôn ngữ ở đúng chỗ này.
+<ShotSteps>
+<Shot src={phoneProfileSettings} alt="Thẻ Profile, biểu tượng bánh răng được đánh dấu">Nhấn **Profile** (Hồ sơ) ở dưới cùng, rồi nhấn biểu tượng bánh răng ở phía trên.</Shot>
+<Shot src={phoneSettingsLanguage} alt="Màn hình Settings, dòng Language được đánh dấu">Nhấn **Language** (Ngôn ngữ).</Shot>
+<Shot src={phoneLanguageChoice} alt="Danh sách ngôn ngữ có English và Tiếng Việt">Nhấn **Tiếng Việt**.</Shot>
+</ShotSteps>
 
 ## 3. Vào clan của nhóm
 
-Trưởng nhóm sẽ gửi cho bạn một liên kết mời hoặc một mã QR mời.
+Trưởng nhóm sẽ gửi cho bạn một liên kết mời hoặc một mã QR mời. Dùng cách nào cũng được.
 
-**Bằng liên kết**
+<ShotSteps plain>
+<Shot src={phoneInviteOpen} alt="Màn hình lời mời với tên clan và nút Tham gia">**Bằng liên kết:** mở liên kết trên điện thoại (có dạng `https://mezon.ai/invite/...`). Mezon hiện clan. Nhấn **Tham gia**.</Shot>
+<Shot src={phoneQrIcon} alt="Thẻ Clan, biểu tượng mã QR cạnh ô tìm kiếm được đánh dấu">**Bằng mã QR:** nhấn thẻ **Clan** (iPhone: **Kênh**) ở dưới cùng, rồi nhấn biểu tượng mã QR cạnh ô tìm kiếm. Hướng camera vào mã. Nhấn **Tham gia**.</Shot>
+</ShotSteps>
 
-1. Mở liên kết trên điện thoại. Liên kết có dạng `https://mezon.ai/invite/...`.
-2. Mezon mở ra và hiện clan. Nhấn **Tham gia**.
-
-<Image src={phoneInviteOpen} alt="Màn hình lời mời với tên clan và nút Tham gia" width={270} />
-
-**Bằng mã QR**
-
-1. Nhấn thẻ **Clan** (iPhone: **Kênh**) ở dưới cùng màn hình.
-2. Nhấn biểu tượng mã QR ở phía trên, cạnh ô tìm kiếm.
-
-<Image src={phoneQrIcon} alt="Thẻ Clan, biểu tượng mã QR cạnh ô tìm kiếm được đánh dấu" width={270} />
-
-3. Hướng camera vào mã QR.
-4. Nhấn **Tham gia**.
-
-Bạn cũng mở được màn hình quét ở **Hồ sơ** → biểu tượng bánh răng → **Quét mã QR**.
-
-Nếu mã QR là một ảnh trong tin nhắn trên chính điện thoại của bạn, hãy lưu ảnh trước. Sau đó, ở màn hình quét, nhấn biểu tượng hình ảnh ở góc dưới bên trái (iPhone: **Chọn từ Thư viện ảnh**) và chọn ảnh đó.
-
-Clan mở ra. Nếu bạn chưa đăng nhập, hãy đăng nhập trước; sau đó Mezon hiện lại lời mời.
+- Màn hình quét cũng có ở **Hồ sơ** → biểu tượng bánh răng → **Quét mã QR**.
+- Nếu mã QR là một ảnh trong tin nhắn trên chính điện thoại của bạn, hãy lưu ảnh. Ở màn hình quét, nhấn biểu tượng hình ảnh ở góc dưới bên trái (iPhone: **Chọn từ Thư viện ảnh**) và chọn ảnh đó.
+- Nếu bạn chưa đăng nhập, hãy đăng nhập trước. Sau đó Mezon hiện lại lời mời.
 
 ## 4. Làm quen với màn hình
 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-- Các thẻ ở dưới cùng là **Clan** (iPhone: **Kênh**), **Tin nhắn**, **Thông báo** và **Hồ sơ**.
-- Trong thẻ **Clan**, thanh bên trái hiện các clan của bạn. Mỗi hình là một clan. Nhấn vào hình để mở clan đó và xem các kênh.
-- Các cuộc trò chuyện riêng với từng người nằm trong thẻ **Tin nhắn**.
-
-<Image src={phoneMessagesTab} alt="Thẻ Tin nhắn với danh sách cuộc trò chuyện" width={270} />
+<ShotSteps plain>
+<Shot src={phoneMessagesTab} alt="Thẻ Tin nhắn với danh sách cuộc trò chuyện">Các thẻ ở dưới cùng là **Clan** (iPhone: **Kênh**), **Tin nhắn**, **Thông báo** và **Hồ sơ**. Trong thẻ **Clan**, mỗi hình ở thanh bên trái là một clan: nhấn vào để xem các kênh. Trò chuyện riêng với từng người nằm trong thẻ **Tin nhắn**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
 
-- Thanh ngoài cùng bên trái hiện các clan của bạn. Mỗi hình là một clan. Nhấn vào hình để mở clan đó và xem các kênh.
-- **Logo Mezon** ở đầu thanh này mở tin nhắn trực tiếp và danh sách bạn bè của bạn.
-
-<Image src={computerHomeDm} alt="Logo Mezon ở góc trên bên trái, dùng để mở tin nhắn trực tiếp" />
+<ShotSteps wide plain>
+<Shot src={computerHomeDm} alt="Logo Mezon ở góc trên bên trái, dùng để mở tin nhắn trực tiếp">Mỗi hình ở thanh ngoài cùng bên trái là một clan: nhấn vào để xem các kênh. **Logo Mezon** ở đầu thanh này mở tin nhắn trực tiếp và danh sách bạn bè.</Shot>
+</ShotSteps>
 
 </TabItem>
 </Tabs>
@@ -181,74 +149,45 @@ Clan mở ra. Nếu bạn chưa đăng nhập, hãy đăng nhập trước; sau 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Mở một kênh và nhấn vào tên kênh ở phía trên.
-2. Trong danh sách thành viên, nhấn vào người bạn muốn nhắn.
-
-<Image src={phoneMemberList} alt="Danh sách thành viên của kênh" width={270} />
-
-3. Nhấn **Message** (Nhắn tin; nút này hiện bằng tiếng Anh).
-
-<Image src={phoneProfileMessage} alt="Hồ sơ thành viên với nút Message" width={270} />
-
-4. Nhập tin nhắn vào ô ở dưới cùng.
-5. Nhấn nút gửi ở bên phải. Nút này hiện ra khi bạn bắt đầu gõ.
-
-<Image src={phoneComposerSend} alt="Tin nhắn đã gõ trong ô, nút gửi được đánh dấu" width={270} />
-
-Tin nhắn mới nhất nằm ở dưới cùng, ngay trên ô nhập tin nhắn. Cuộc trò chuyện cũng hiện trong thẻ **Tin nhắn**.
-
-<Image src={phoneDmChat} alt="Cuộc trò chuyện giữa hai người, ô nhập tin nhắn ở dưới cùng" width={270} />
+<ShotSteps>
+<Shot src={phoneMemberList} alt="Danh sách thành viên của kênh">Mở một kênh và nhấn vào tên kênh ở phía trên. Trong danh sách thành viên, nhấn vào người bạn muốn nhắn.</Shot>
+<Shot src={phoneProfileMessage} alt="Hồ sơ thành viên với nút Message">Nhấn **Message** (Nhắn tin; nút này hiện bằng tiếng Anh).</Shot>
+<Shot src={phoneComposerSend} alt="Tin nhắn đã gõ trong ô, nút gửi được đánh dấu">Nhập tin nhắn vào ô ở dưới cùng. Nhấn nút gửi ở bên phải (nút hiện ra khi bạn gõ).</Shot>
+<Shot src={phoneDmChat} alt="Cuộc trò chuyện giữa hai người, ô nhập tin nhắn ở dưới cùng">Tin nhắn mới nhất nằm ở dưới cùng. Cuộc trò chuyện cũng có trong thẻ **Tin nhắn**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
 
-1. Trong một kênh, nhấn biểu tượng thành viên ở góc trên bên phải.
-2. Nhấn chuột phải vào người bạn muốn nhắn và chọn **Tin nhắn**.
-
-<Image src={computerMemberMenu} alt="Menu thành viên có mục Tin nhắn" />
-
-3. Nhập tin nhắn vào ô ở dưới cùng và nhấn **Enter**.
-
-Tin nhắn mới nhất nằm ở dưới cùng, ngay trên ô nhập tin nhắn. Cuộc trò chuyện cũng hiện trong **TIN NHẮN TRỰC TIẾP** (nhấn logo Mezon ở góc trên bên trái).
-
-<Image src={computerDirectMessage} alt="Cuộc trò chuyện giữa hai người" />
+<ShotSteps wide>
+<Shot src={computerMemberMenu} alt="Menu thành viên có mục Tin nhắn">Trong một kênh, nhấn biểu tượng thành viên ở góc trên bên phải. Nhấn chuột phải vào người đó và chọn **Tin nhắn**.</Shot>
+<Shot src={computerDirectMessage} alt="Cuộc trò chuyện giữa hai người">Nhập tin nhắn vào ô ở dưới cùng và nhấn **Enter**. Cuộc trò chuyện cũng có trong **TIN NHẮN TRỰC TIẾP** (logo Mezon ở góc trên bên trái).</Shot>
+</ShotSteps>
 
 </TabItem>
 </Tabs>
 
 ### Kết bạn
 
-Bạn nhắn tin được cho người trong clan mà không cần kết bạn, trừ khi người đó chỉ nhận tin nhắn từ bạn bè. Kết bạn giúp bạn dễ tìm lại người đó và dễ mời họ hơn.
+Bạn nhắn tin được cho người trong clan mà không cần kết bạn, trừ khi người đó chỉ nhận tin nhắn từ bạn bè. Kết bạn giúp bạn dễ tìm lại và dễ mời người đó hơn.
 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Nhấn thẻ **Tin nhắn** ở dưới cùng.
-2. Nhấn **Thêm bạn** ở phía trên.
+<ShotSteps plain>
+<Shot src={phoneAddFriend} alt="Thẻ Tin nhắn, nút Thêm bạn được đánh dấu">**Tin nhắn** → **Thêm bạn** → **Thêm bằng tên người dùng** (iPhone: **Thêm bằng tên người dùng hoặc số điện thoại**). Nhập tên người dùng hoặc số điện thoại của người đó. Nhấn **Gửi yêu cầu kết bạn**.</Shot>
+</ShotSteps>
 
-<Image src={phoneAddFriend} alt="Thẻ Tin nhắn, nút Thêm bạn được đánh dấu" width={270} />
-
-3. Nhấn **Thêm bằng tên người dùng** (iPhone: **Thêm bằng tên người dùng hoặc số điện thoại**).
-4. Nhập tên người dùng hoặc số điện thoại của người đó.
-5. Nhấn **Gửi yêu cầu kết bạn**.
-
-Mezon báo đã gửi yêu cầu. Khi người kia chấp nhận, hai bạn sẽ thành bạn bè. Danh sách bạn bè nằm ở **Hồ sơ** → **Bạn bè của bạn** (iPhone: **Bạn bè**). Các yêu cầu người khác gửi cho bạn nằm ở mục **Yêu cầu kết bạn** trong đó: nhấn dấu tích xanh để chấp nhận.
-
-Bạn cũng có thể nhấn **Add Friend** (Thêm bạn; nút hiện bằng tiếng Anh) trên hồ sơ của một người trong clan.
+Khi người kia chấp nhận, hai bạn thành bạn bè. Danh sách bạn bè nằm ở **Hồ sơ** → **Bạn bè của bạn** (iPhone: **Bạn bè**). Yêu cầu người khác gửi cho bạn nằm ở mục **Yêu cầu kết bạn** trong đó: nhấn dấu tích xanh để chấp nhận. Bạn cũng có thể nhấn **Add Friend** (Thêm bạn; nút hiện bằng tiếng Anh) trên hồ sơ của một người trong clan.
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
 
-1. Nhấn logo Mezon ở góc trên bên trái.
-2. Nhấn **Bạn bè** ở đầu danh sách bên cạnh.
-3. Nhấn **Thêm Bạn** ở phía trên.
+<ShotSteps wide plain>
+<Shot src={computerAddFriend} alt="Trang Bạn bè, thẻ Thêm Bạn được đánh dấu">Logo Mezon ở góc trên bên trái → **Bạn bè** → **Thêm Bạn**. Nhập tên người dùng của người đó. Nhấn **Gửi lời mời kết bạn**.</Shot>
+</ShotSteps>
 
-<Image src={computerAddFriend} alt="Trang Bạn bè, thẻ Thêm Bạn được đánh dấu" />
-
-4. Nhập tên người dùng của người đó.
-5. Nhấn **Gửi lời mời kết bạn**.
-
-Các yêu cầu người khác gửi cho bạn nằm ở thẻ **Đang chờ xử lý**: nhấn dấu tích để chấp nhận.
+Yêu cầu người khác gửi cho bạn nằm ở thẻ **Đang chờ xử lý**: nhấn dấu tích để chấp nhận.
 
 </TabItem>
 </Tabs>
@@ -260,94 +199,50 @@ Kênh thoại có biểu tượng loa trong danh sách kênh.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Nhấn vào kênh thoại.
-2. Nhấn **Join as Speaker** (Tham gia để nói; nút này hiện bằng tiếng Anh).
+<ShotSteps>
+<Shot src={phoneVoiceSheet} alt="Bảng kênh thoại với nút Join as Speaker">Nhấn vào kênh thoại. Nhấn **Join as Speaker** (Tham gia để nói; nút này hiện bằng tiếng Anh).</Shot>
+<Shot src={phoneAllowMicrophone} alt="Câu hỏi cho phép dùng micro">Lần đầu, cho phép Mezon dùng micro: nhấn **Trong khi dùng ứng dụng**.</Shot>
+<Shot src={phoneInCall} alt="Màn hình kênh thoại với các nút ở dưới cùng">Micro của bạn đang tắt: nhấn nút micro để nói. Nhấn nút màu đỏ để rời phòng.</Shot>
+</ShotSteps>
 
-<Image src={phoneVoiceSheet} alt="Bảng kênh thoại với nút Join as Speaker" width={270} />
-
-3. Lần đầu, hãy cho phép Mezon dùng micro: nhấn **Trong khi dùng ứng dụng**.
-
-<Image src={phoneAllowMicrophone} alt="Câu hỏi cho phép dùng micro" width={270} />
-
-4. Khi mới vào phòng, micro của bạn đang tắt. Nhấn nút micro ở dưới cùng để nói.
-5. Muốn rời phòng, nhấn nút màu đỏ.
-
-<Image src={phoneInCall} alt="Màn hình kênh thoại với các nút ở dưới cùng" width={270} />
-
-Trong phòng, mỗi người có một ô kèm tên. Micro bị gạch chéo nghĩa là người đó đang tắt micro. Các nút ở dưới cùng, từ trái sang phải: camera, micro, trò chuyện, chia sẻ màn hình và nút đỏ để rời phòng.
+Mỗi người có một ô kèm tên; micro bị gạch chéo nghĩa là người đó đang tắt micro. Các nút ở dưới cùng, từ trái sang phải: camera, micro, trò chuyện, chia sẻ màn hình, rời phòng.
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
 
-1. Nhấn vào kênh thoại.
-2. Nhấn **Tham gia để nói**.
+<ShotSteps wide>
+<Shot src={computerVoiceJoin} alt="Màn hình kênh thoại trước khi vào, có nút Tham gia để nói">Nhấn vào kênh thoại, rồi nhấn **Tham gia để nói**. Lần đầu, hãy cho phép Mezon dùng micro.</Shot>
+<Shot src={computerVoiceCall} alt="Kênh thoại có hai người và các nút ở dưới cùng">Micro của bạn đang tắt: nhấn nút micro để nói. Muốn rời phòng, nhấn nút màu đỏ (**Ngắt kết nối**; ứng dụng máy tính: **Rời phòng**).</Shot>
+</ShotSteps>
 
-<Image src={computerVoiceJoin} alt="Màn hình kênh thoại trước khi vào, có nút Tham gia để nói" />
-
-Nếu trong phòng đã có từ 20 người, nút sẽ là **Tham gia để nghe** và bạn chỉ nghe được. Muốn nói, nhấn mũi tên bên cạnh và chọn **Tham gia để nói**.
-
-3. Lần đầu, hãy cho phép Mezon dùng micro.
-4. Khi mới vào phòng, micro của bạn đang tắt. Nhấn nút micro ở dưới cùng để nói.
-5. Muốn rời phòng, nhấn nút màu đỏ ở dưới cùng (**Ngắt kết nối**; ứng dụng máy tính: **Rời phòng**).
-
-<Image src={computerVoiceCall} alt="Kênh thoại có hai người và các nút ở dưới cùng" />
-
-Người đang nói có khung màu xanh lá. Các nút ở dưới cùng còn dùng để bật camera và chia sẻ màn hình. Đưa chuột vào một nút để xem tên nút.
+- Nếu trong phòng đã có từ 20 người, nút sẽ là **Tham gia để nghe** và bạn chỉ nghe được. Muốn nói, nhấn mũi tên bên cạnh và chọn **Tham gia để nói**.
+- Người đang nói có khung màu xanh lá. Đưa chuột vào một nút để xem tên nút; các nút này còn dùng để bật camera và chia sẻ màn hình.
 
 </TabItem>
 </Tabs>
 
 ## 7. Dùng thêm Mezon trên máy tính
 
-Hãy làm bước này sau khi đã cài xong trên điện thoại. Khi đăng nhập cùng tài khoản, clan và tin nhắn của bạn sẽ có sẵn ở đó.
+Hãy làm bước này sau khi đã cài xong trên điện thoại. Clan và tin nhắn của bạn đã có sẵn ở đó.
 
-**Cài đặt**
+**Cài đặt:** vào [mezon.ai](https://mezon.ai), cuộn xuống cuối trang và nhấn **DESKTOP**. Nhấn nút cho máy của bạn: **Windows**, **macOS** hoặc **Linux Build**. Windows và macOS mở cửa hàng ứng dụng; Linux tải về một tệp `.deb`, bạn mở tệp đó bằng trình cài phần mềm.
 
-1. Vào [mezon.ai](https://mezon.ai) và cuộn xuống cuối trang.
-2. Nhấn **DESKTOP**. Một nút cho máy của bạn hiện ra: **Windows**, **macOS** hoặc **Linux Build**.
+<Image src={computerDownload} alt="Các nút tải ở cuối trang mezon.ai, menu DESKTOP đang mở" width={460} />
 
-<Image src={computerDownload} alt="Các nút tải ở cuối trang mezon.ai, menu DESKTOP đang mở" />
+Liên kết trực tiếp: [Microsoft Store](https://apps.microsoft.com/detail/9pf25lf1fj17) · [Mac App Store](https://apps.apple.com/app/mezon-desktop/id6756601798?mt=12). Khi có bản mới, Mezon sẽ báo ngay trong ứng dụng. Không muốn cài? Dùng Mezon trên trình duyệt: vào [mezon.ai](https://mezon.ai) và nhấn **Đăng Nhập** ở phía trên.
 
-3. Nhấn nút đó. Windows và macOS mở cửa hàng ứng dụng; Linux tải về một tệp `.deb`.
-4. Cài Mezon từ cửa hàng. Trên Linux, mở tệp vừa tải bằng trình cài phần mềm.
+**Đăng nhập bằng điện thoại (mã QR):** cách dễ nhất, và bạn vẫn dùng đúng một tài khoản. Màn hình đăng nhập trên máy tính có một mã QR.
 
-Liên kết trực tiếp: [Microsoft Store](https://apps.microsoft.com/detail/9pf25lf1fj17) · [Mac App Store](https://apps.apple.com/app/mezon-desktop/id6756601798?mt=12). Khi có bản mới, Mezon sẽ báo ngay trong ứng dụng.
+<ShotSteps wide>
+<Shot src={computerSignIn} alt="Trang Sign In trên web với mã QR ở bên phải">Trên điện thoại: **Hồ sơ** → biểu tượng bánh răng → **Quét mã QR**. Hướng camera vào mã QR trên máy tính. Nhấn **Đăng nhập**. Mezon mở ra trên máy tính, với clan và tin nhắn của bạn.</Shot>
+<Shot src={computerLanguage} alt="Trang Language trong phần cài đặt">Ứng dụng máy tính mở bằng tiếng Anh. Để đổi: biểu tượng bánh răng cạnh tên bạn (góc dưới bên trái) → **App Settings** (Cài đặt ứng dụng) → **Language** (Ngôn ngữ) → **Tiếng Việt**.</Shot>
+</ShotSteps>
 
-Bạn cũng có thể dùng Mezon trên trình duyệt mà không cần cài: vào [mezon.ai](https://mezon.ai) và nhấn **Đăng Nhập** ở phía trên. Sau đó đăng nhập bằng điện thoại như hướng dẫn ngay dưới đây.
-
-**Đăng nhập bằng điện thoại (mã QR)**
-
-Đây là cách dễ nhất, và bạn vẫn dùng đúng một tài khoản. Màn hình đăng nhập trên máy tính có một mã QR.
-
-<Image src={computerSignIn} alt="Trang Sign In trên web với mã QR ở bên phải" />
-
-1. Trên điện thoại, nhấn **Hồ sơ**, rồi nhấn biểu tượng bánh răng.
-2. Nhấn **Quét mã QR**.
-3. Hướng camera vào mã QR trên máy tính.
-4. Nhấn **Đăng nhập**.
-
-Mezon mở ra trên máy tính, với clan và tin nhắn của bạn.
-
-Bạn cũng có thể đăng nhập bằng đúng email hoặc số điện thoại đã dùng trên điện thoại. Mezon sẽ gửi cho bạn một mã 6 số.
-
-- **Ứng dụng máy tính:** ô đầu tiên là số điện thoại. Muốn dùng email, nhấn **Login with Email OTP**. Nhập email rồi nhấn **Send OTP**.
-- **Web:** nhập email hoặc số điện thoại rồi nhấn **Sign in**.
-
-Sau đó nhập mã.
+Bạn cũng có thể đăng nhập bằng đúng email hoặc số điện thoại đã dùng trên điện thoại, rồi nhập mã 6 số Mezon gửi cho bạn. Ứng dụng máy tính: ô đầu tiên là số điện thoại; muốn dùng email, nhấn **Login with Email OTP**, nhập email rồi nhấn **Send OTP**. Web: nhập email hoặc số điện thoại rồi nhấn **Sign in**.
 
 :::warning
 Chỉ quét mã QR Mezon hiện trên máy tính của chính bạn. Đừng bao giờ xác nhận mã do người khác gửi.
 :::
-
-**Đổi ngôn ngữ**
-
-Ứng dụng máy tính mở bằng tiếng Anh.
-
-1. Nhấn biểu tượng bánh răng cạnh tên của bạn, ở góc dưới bên trái.
-2. Trong **App Settings** (Cài đặt ứng dụng), nhấn **Language** (Ngôn ngữ).
-3. Nhấn **Tiếng Việt**. Ngôn ngữ đổi ngay.
-
-<Image src={computerLanguage} alt="Trang Language trong phần cài đặt" />
 
 ## 8. Dành cho trưởng nhóm: tạo clan, thêm kênh, mời người
 
@@ -356,47 +251,27 @@ Chỉ quét mã QR Mezon hiện trên máy tính của chính bạn. Đừng bao
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Nhấn **+** ở cuối thanh clan bên trái.
-
-<Image src={phoneAddClan} alt="Nút dấu cộng ở cuối thanh clan" width={270} />
-
-2. Nhấn **Tự tạo clan** (iPhone: **Tự tạo**).
-
-<Image src={phoneCreateClanChoice} alt="Màn hình Tạo clan của bạn với Tự tạo clan và các mẫu" width={270} />
-
-3. Nhập tên clan. Bạn có thể thêm ảnh bằng **Tải lên**.
-4. Nhấn **Tạo clan**.
-
-<Image src={phoneCreateClanForm} alt="Ô tên clan và nút Tạo clan" width={270} />
-
-Clan mới mở ra, đã có sẵn một kênh văn bản tên **general**.
-
-<Image src={phoneNewClan} alt="Clan mới chỉ có kênh general" width={270} />
+<ShotSteps>
+<Shot src={phoneAddClan} alt="Nút dấu cộng ở cuối thanh clan">Nhấn **+** ở cuối thanh clan bên trái.</Shot>
+<Shot src={phoneCreateClanChoice} alt="Màn hình Tạo clan của bạn với Tự tạo clan và các mẫu">Nhấn **Tự tạo clan** (iPhone: **Tự tạo**).</Shot>
+<Shot src={phoneCreateClanForm} alt="Ô tên clan và nút Tạo clan">Nhập tên clan. Bạn có thể thêm ảnh bằng **Tải lên**. Nhấn **Tạo clan**.</Shot>
+<Shot src={phoneNewClan} alt="Clan mới chỉ có kênh general">Clan mới mở ra, đã có sẵn kênh văn bản **general**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
 
-1. Nhấn **+** (**Tạo Clan**) ở thanh clan ngoài cùng bên trái.
-
-<Image src={computerCreateClanButton} alt="Nút dấu cộng ở thanh clan" />
-
-2. Nhấn **Tạo mẫu riêng** (nghĩa là tự tạo clan của bạn).
-
-<Image src={computerCreateClanChoose} alt="Hộp thoại Tạo Clan của bạn với Tạo mẫu riêng" />
-
-3. Nhập tên clan vào ô **TÊN CLAN**. Bạn có thể thêm ảnh bằng **Tải lên**.
-4. Nhấn **Tạo**.
-
-<Image src={computerCreateClanName} alt="Hộp thoại Tùy chỉnh Clan của bạn với tên đã nhập" />
-
-Clan mới mở ra, đã có sẵn một kênh văn bản tên **general**.
-
-<Image src={computerNewClan} alt="Clan mới đang mở kênh general" />
+<ShotSteps wide>
+<Shot src={computerCreateClanButton} alt="Nút dấu cộng ở thanh clan">Nhấn **+** (**Tạo Clan**) ở thanh clan ngoài cùng bên trái.</Shot>
+<Shot src={computerCreateClanChoose} alt="Hộp thoại Tạo Clan của bạn với Tạo mẫu riêng">Nhấn **Tạo mẫu riêng** (nghĩa là tự tạo clan của bạn).</Shot>
+<Shot src={computerCreateClanName} alt="Hộp thoại Tùy chỉnh Clan của bạn với tên đã nhập">Nhập tên vào ô **TÊN CLAN**. Bạn có thể thêm ảnh bằng **Tải lên**. Nhấn **Tạo**.</Shot>
+<Shot src={computerNewClan} alt="Clan mới đang mở kênh general">Clan mới mở ra, đã có sẵn kênh văn bản **general**.</Shot>
+</ShotSteps>
 
 </TabItem>
 </Tabs>
 
-Tên clan dài tối đa 64 ký tự và không được trùng với clan nào khác trong Mezon. Nếu bị trùng, hãy chọn tên khác.
+Tên clan dài tối đa 64 ký tự và không được trùng với clan nào khác trong Mezon.
 
 ### Thêm kênh
 
@@ -405,37 +280,19 @@ Chỉ chủ sở hữu clan và người có vai trò được quản lý kênh 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Mở clan của bạn.
-2. Nhấn giữ tên danh mục, ví dụ **PUBLIC CHANNELS**.
-3. Nhấn **Tạo kênh**.
-
-<Image src={phoneCategoryMenu} alt="Menu hiện ra sau khi nhấn giữ tên danh mục, có Tạo kênh" width={270} />
-
-4. Nhập tên kênh.
-5. Chọn **Văn bản** để nhắn tin hoặc **Thoại** để nói chuyện.
-6. Nhấn **Tạo** ở góc trên bên phải.
-
-<Image src={phoneCreateChannel} alt="Màn hình tạo kênh với tên kênh và các loại kênh" width={270} />
-
-Kênh mới hiện trong danh sách. Kênh thoại có biểu tượng loa.
-
-<Image src={phoneChannelList} alt="Danh sách kênh gồm hai kênh văn bản và một kênh thoại" width={270} />
+<ShotSteps>
+<Shot src={phoneCategoryMenu} alt="Menu hiện ra sau khi nhấn giữ tên danh mục, có Tạo kênh">Trong clan, nhấn giữ tên danh mục (ví dụ **PUBLIC CHANNELS**). Nhấn **Tạo kênh**.</Shot>
+<Shot src={phoneCreateChannel} alt="Màn hình tạo kênh với tên kênh và các loại kênh">Nhập tên kênh. Chọn **Văn bản** để nhắn tin hoặc **Thoại** để nói chuyện. Nhấn **Tạo** ở góc trên bên phải.</Shot>
+<Shot src={phoneChannelList} alt="Danh sách kênh gồm hai kênh văn bản và một kênh thoại">Kênh mới hiện trong danh sách. Kênh thoại có biểu tượng loa.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
 
-1. Mở clan của bạn.
-2. Đưa chuột vào tên danh mục, ví dụ **KÊNH CÔNG KHAI**, rồi nhấn dấu **+** bên cạnh.
-
-<Image src={computerCreateChannelButton} alt="Nút dấu cộng cạnh tên danh mục" />
-
-3. Chọn **Văn bản** để nhắn tin hoặc **Thoại** để nói chuyện.
-4. Nhập tên kênh.
-5. Nhấn **Tạo kênh**.
-
-<Image src={computerCreateChannel} alt="Hộp thoại tạo kênh với các loại kênh và tên kênh" />
-
-Kênh mới mở ra.
+<ShotSteps wide>
+<Shot src={computerCreateChannelButton} alt="Nút dấu cộng cạnh tên danh mục">Trong clan, đưa chuột vào tên danh mục (ví dụ **KÊNH CÔNG KHAI**) rồi nhấn dấu **+** bên cạnh.</Shot>
+<Shot src={computerCreateChannel} alt="Hộp thoại tạo kênh với các loại kênh và tên kênh">Chọn **Văn bản** hoặc **Thoại**. Nhập tên kênh. Nhấn **Tạo kênh**. Kênh mới mở ra.</Shot>
+</ShotSteps>
 
 </TabItem>
 </Tabs>
@@ -447,36 +304,28 @@ Mọi thành viên trong clan đều mời được người khác.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Mở clan và nhấn vào tên clan ở phía trên.
-2. Nhấn **Lời mời** (iPhone: **Mời**).
+<ShotSteps>
+<Shot src={phoneClanMenu} alt="Menu clan có mục Lời mời">Mở clan và nhấn vào tên clan ở phía trên. Nhấn **Lời mời** (iPhone: **Mời**).</Shot>
+<Shot src={phoneInviteSheet} alt="Bảng mời với Chia sẻ lời mời, Sao chép link và Mã QR">Chọn cách gửi lời mời (xem bên dưới).</Shot>
+</ShotSteps>
 
-<Image src={phoneClanMenu} alt="Menu clan có mục Lời mời" width={270} />
-
-3. Chọn một cách:
-   - **Chia sẻ lời mời**: gửi liên kết qua ứng dụng khác (Zalo, SMS...).
-   - **Sao chép link**: rồi dán liên kết vào tin nhắn.
-   - **Mã QR**: cho người khác quét, hoặc lưu và chia sẻ mã dưới dạng ảnh.
-   - **Mời** cạnh tên một người bạn: gửi liên kết cho người đó ngay trong Mezon.
-
-<Image src={phoneInviteSheet} alt="Bảng mời với Chia sẻ lời mời, Sao chép link và Mã QR" width={270} />
+- **Chia sẻ lời mời**: gửi liên kết qua ứng dụng khác (Zalo, SMS...).
+- **Sao chép link**: rồi dán liên kết vào tin nhắn.
+- **Mã QR**: cho người khác quét, hoặc lưu và chia sẻ mã dưới dạng ảnh.
+- **Mời** cạnh tên một người bạn: gửi liên kết cho người đó ngay trong Mezon.
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
 
-1. Nhấn vào tên clan ở đầu danh sách kênh.
-2. Nhấn **Mời Người Tham Gia**.
-
-<Image src={computerClanMenu} alt="Menu clan có mục Mời Người Tham Gia" />
-
-3. Nhấn **Sao chép** rồi dán liên kết vào tin nhắn. Hoặc nhấn **Mời** cạnh tên một người bạn.
-4. Muốn có mã QR, nhấn **SAO CHÉP QR**. Trên web, bạn có thể nhấn tiếp **Tải về** để lưu mã thành ảnh.
-
-<Image src={computerInviteLink} alt="Hộp thoại mời với liên kết và nút Sao chép" />
+<ShotSteps wide>
+<Shot src={computerClanMenu} alt="Menu clan có mục Mời Người Tham Gia">Nhấn vào tên clan ở đầu danh sách kênh. Nhấn **Mời Người Tham Gia**.</Shot>
+<Shot src={computerInviteLink} alt="Hộp thoại mời với liên kết và nút Sao chép">Nhấn **Sao chép** rồi dán liên kết vào tin nhắn, hoặc nhấn **Mời** cạnh tên một người bạn. Muốn có mã QR, nhấn **SAO CHÉP QR**; trên web, nhấn **Tải về** để lưu mã thành ảnh.</Shot>
+</ShotSteps>
 
 </TabItem>
 </Tabs>
 
-Để đưa cả nhóm vào Mezon, hãy gửi hai liên kết vào nhóm chat của đội. Liên kết thứ nhất là [mezon.ai/mobile-download](https://mezon.ai/mobile-download). Liên kết thứ hai là liên kết mời vào clan của bạn. Mọi người cài Mezon, đăng nhập, rồi nhấn vào liên kết mời để vào clan. Bạn cũng có thể gửi kèm hai mã QR cho những ai đọc nhóm chat trên máy tính.
+**Để đưa cả nhóm vào Mezon**, hãy gửi hai liên kết vào nhóm chat của đội: [mezon.ai/mobile-download](https://mezon.ai/mobile-download) và liên kết mời vào clan của bạn. Mọi người cài Mezon, đăng nhập, rồi nhấn vào liên kết mời. Với những ai đọc nhóm chat trên máy tính, bạn có thể gửi kèm hai mã QR.
 
 :::warning
 Ai có liên kết hoặc mã QR cũng vào được clan của bạn. Chỉ gửi cho người trong nhóm. Nếu liên kết không dùng được, hãy mở lại phần mời để lấy liên kết mới.
