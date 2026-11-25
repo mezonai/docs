@@ -6,6 +6,9 @@ description: Make another member the owner of your clan.
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneEditMember from "./images/transferring-clan-ownership-phone-01.png";
+import phoneConfirm from "./images/transferring-clan-ownership-phone-02.png";
 import computerMenu from "./images/transferring-clan-ownership-computer-01.png";
 import computerDialog from "./images/transferring-clan-ownership-computer-02.png";
 
@@ -23,8 +26,13 @@ The clan owner can make another member the owner, for example when the person wh
 3. Under **User Management**, tap **Members**.
 4. Tap the member who will be the new owner. The **Edit Member** screen opens.
 5. Under **Actions**, tap **Transfer Ownership**.
-6. Tick the box that says you understand.
+6. Turn on the switch that says you understand (iPhone: tick the box).
 7. Tap **Transfer**.
+
+<ShotSteps plain>
+<Shot src={phoneEditMember} alt="The Edit Member screen with Transfer Ownership marked">Step 5: **Transfer Ownership** under **Actions**.</Shot>
+<Shot src={phoneConfirm} alt="The Transfer Ownership screen with the acknowledgement switch and the Transfer button">Steps 6 and 7: the switch, then **Transfer**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Computer">

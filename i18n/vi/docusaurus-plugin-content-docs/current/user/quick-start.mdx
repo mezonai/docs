@@ -10,6 +10,7 @@ import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
 import qrMobileDownload from "@site/docs/user/images/quick-start/qr-mobile-download.png";
 import phoneWelcome from "@site/docs/user/images/quick-start/phone-01-welcome.png";
 import phoneLoginEmail from "@site/docs/user/images/quick-start/phone-02-login-email.png";
+import phoneLoginOtp from "@site/docs/user/images/quick-start/phone-02-login-otp.png";
 import phoneAllowNotifications from "./images/quick-start/phone-10-allow-notifications.png";
 import phoneProfileSettings from "@site/docs/user/images/quick-start/phone-11-profile-settings.png";
 import phoneSettingsLanguage from "@site/docs/user/images/quick-start/phone-11-settings-language.png";
@@ -34,6 +35,33 @@ import phoneAllowMicrophone from "./images/quick-start/phone-10-allow-microphone
 import phoneInCall from "./images/quick-start/phone-08-in-call.png";
 import phoneClanMenu from "./images/quick-start/phone-09-clan-menu.png";
 import phoneInviteSheet from "./images/quick-start/phone-09-invite-sheet.png";
+import iphoneWelcome from "./images/quick-start/iphone-01-welcome.png";
+import iphoneLoginSms from "./images/quick-start/iphone-02-login-sms.png";
+import iphoneLoginEmail from "./images/quick-start/iphone-02-login-email.png";
+import iphoneAllowNotifications from "./images/quick-start/iphone-10-allow-notifications.png";
+import iphoneProfileSettings from "./images/quick-start/iphone-11-profile-settings.png";
+import iphoneSettingsLanguage from "./images/quick-start/iphone-11-settings-language.png";
+import iphoneLanguageChoice from "./images/quick-start/iphone-11-language-choice.png";
+import iphoneInviteLinkOpen from "./images/quick-start/iphone-05-invite-link-open.png";
+import iphoneLicenseAgreement from "./images/quick-start/iphone-05-license-agreement.png";
+import iphoneQrIcon from "./images/quick-start/iphone-05-qr-icon.png";
+import iphoneMessagesTab from "./images/quick-start/iphone-03-messages-tab.png";
+import iphoneAddFriend from "./images/quick-start/iphone-12-add-friend.png";
+import iphoneAddClanButton from "./images/quick-start/iphone-04-add-clan-button.png";
+import iphoneCreateClanChoice from "./images/quick-start/iphone-04-create-clan-choice.png";
+import iphoneCreateClanForm from "./images/quick-start/iphone-04-create-clan-form.png";
+import iphoneCategoryMenu from "./images/quick-start/iphone-06-category-menu.png";
+import iphoneCreateTextChannel from "./images/quick-start/iphone-06-create-text-channel.png";
+import iphoneChannelList from "./images/quick-start/iphone-06-channel-list.png";
+import iphoneMemberList from "./images/quick-start/iphone-07-member-list.png";
+import iphoneProfileMessage from "./images/quick-start/iphone-07-profile-message.png";
+import iphoneComposerSend from "./images/quick-start/iphone-07-composer-send.png";
+import iphoneDmChat from "./images/quick-start/iphone-07-dm-chat.png";
+import iphoneVoiceChannelSheet from "./images/quick-start/iphone-08-voice-channel-sheet.png";
+import iphoneAllowMicrophone from "./images/quick-start/iphone-10-allow-microphone.png";
+import iphoneInCall from "./images/quick-start/iphone-08-in-call.png";
+import iphoneClanMenu from "./images/quick-start/iphone-09-clan-menu.png";
+import iphoneInviteSheet from "./images/quick-start/iphone-09-invite-sheet.png";
 import computerDownload from "./images/quick-start/computer-02-download-desktop.png";
 import computerSignIn from "./images/quick-start/computer-03-sign-in.png";
 import computerLanguage from "@site/docs/user/images/quick-start/computer-23-language.png";
@@ -86,17 +114,34 @@ import computerInviteLink from "./images/quick-start/computer-22-invite-link.png
 
 ## 2. Đăng nhập trên điện thoại
 
-Bạn không cần đăng ký trước: lần đầu đăng nhập, Mezon tự tạo tài khoản. Ứng dụng Android hiện tiếng Anh cho đến khi bạn đổi ngôn ngữ, nên các nút dưới đây ghi bằng tiếng Anh, kèm nghĩa tiếng Việt.
+Bạn không cần đăng ký trước: lần đầu đăng nhập, Mezon tự tạo tài khoản. Ứng dụng Android hiện tiếng Anh cho đến khi bạn đổi ngôn ngữ, nên các nút Android dưới đây ghi bằng tiếng Anh, kèm nghĩa tiếng Việt. iPhone dùng ngôn ngữ của điện thoại.
+
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
 
 <ShotSteps>
 <Shot src={phoneWelcome} alt="Màn hình chào mừng của Mezon với nút Get Started">Mở Mezon và nhấn **Get Started** (Bắt đầu).</Shot>
-<Shot src={phoneLoginEmail} alt="Màn hình đăng nhập với ô email">Nếu thấy ô số điện thoại, nhấn **Login with Email OTP** (Đăng nhập bằng email). Nhập email. Nhấn **Send OTP** (Gửi mã).</Shot>
-<Shot src={phoneAllowNotifications} alt="Câu hỏi cho phép gửi thông báo với nút Cho phép">Nhập mã 6 số trong email. Nhấn **Verify OTP** (Xác nhận mã). Rồi nhấn **Cho phép** để nhận thông báo.</Shot>
+<Shot src={phoneLoginEmail} alt="Màn hình đăng nhập với ô email">Nhập email. Nhấn **Send OTP** (Gửi mã).</Shot>
+<Shot src={phoneLoginOtp} alt="Màn hình nhập mã với sáu ô và nút Verify OTP">Nhập mã 6 số trong email. Nhấn **Verify OTP** (Xác nhận mã).</Shot>
+<Shot src={phoneAllowNotifications} alt="Câu hỏi cho phép gửi thông báo với nút Cho phép">Nhấn **Cho phép** để nhận thông báo.</Shot>
 </ShotSteps>
 
-Nếu Mezon hỏi tên Mezon, hãy nhập tên viết liền, không dấu, ví dụ **nguyenvanan**, rồi nhấn **Update** (Cập nhật). Đây sẽ là tên người dùng của bạn. Trên iPhone dùng tiếng Việt, các nút hiện bằng tiếng Việt: **Bắt đầu nào**, **Gửi OTP**, **Xác thực OTP**, **Cập nhật**.
+</TabItem>
+<TabItem value="iphone" label="iPhone">
 
-Bạn cũng có thể đăng nhập bằng số điện thoại Việt Nam. Khi đó mã được gửi qua SMS.
+<ShotSteps>
+<Shot src={iphoneWelcome} alt="Màn hình chào mừng của Mezon với nút Bắt đầu nào">Mở Mezon và nhấn **Bắt đầu nào**.</Shot>
+<Shot src={iphoneLoginSms} alt="Màn hình đăng nhập đầu tiên, hỏi số điện thoại">Màn hình đầu tiên hỏi số điện thoại. Muốn dùng email, nhấn **Đăng nhập bằng Email OTP** ở bên dưới.</Shot>
+<Shot src={iphoneLoginEmail} alt="Màn hình đăng nhập với ô email">Nhập email. Nhấn **Gửi OTP**.</Shot>
+<Shot src={iphoneAllowNotifications} alt="Câu hỏi cho phép gửi thông báo với nút Cho phép">Nhập mã 6 số trong email. Nhấn **Xác thực OTP**. Rồi nhấn **Cho phép** để nhận thông báo.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
+
+Nếu Mezon hỏi tên Mezon, hãy nhập tên viết liền, không dấu, ví dụ **nguyenvanan**, rồi nhấn **Update** (Cập nhật; iPhone: **Cập nhật**). Đây sẽ là tên người dùng của bạn.
+
+Bạn cũng có thể đăng nhập bằng số điện thoại Việt Nam (Android: nhấn **Login with SMS OTP**). Khi đó mã được gửi qua SMS.
 
 :::warning
 Hãy dùng cùng một email (hoặc số điện thoại) trên mọi thiết bị. Email hoặc số khác sẽ tạo thêm một tài khoản riêng.
@@ -104,7 +149,10 @@ Hãy dùng cùng một email (hoặc số điện thoại) trên mọi thiết b
 
 ### Đổi ngôn ngữ
 
-Ứng dụng Android mở bằng tiếng Anh. Trên iPhone, Mezon dùng ngôn ngữ của điện thoại; bạn cũng đổi được ở đúng chỗ này.
+Ứng dụng Android mở bằng tiếng Anh. Trên iPhone, lần đầu mở Mezon dùng ngôn ngữ của điện thoại; bạn cũng đổi được ở đúng chỗ này.
+
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
 
 <ShotSteps>
 <Shot src={phoneProfileSettings} alt="Thẻ Profile, biểu tượng bánh răng được đánh dấu">Nhấn **Profile** (Hồ sơ) ở dưới cùng, rồi nhấn biểu tượng bánh răng ở phía trên.</Shot>
@@ -112,14 +160,41 @@ Hãy dùng cùng một email (hoặc số điện thoại) trên mọi thiết b
 <Shot src={phoneLanguageChoice} alt="Danh sách ngôn ngữ có English và Tiếng Việt">Nhấn **Tiếng Việt**.</Shot>
 </ShotSteps>
 
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneProfileSettings} alt="Thẻ Hồ sơ, biểu tượng bánh răng được đánh dấu">Nhấn **Hồ sơ** ở dưới cùng, rồi nhấn biểu tượng bánh răng ở phía trên.</Shot>
+<Shot src={iphoneSettingsLanguage} alt="Màn hình Cài đặt, dòng Ngôn ngữ được đánh dấu">Nhấn **Ngôn ngữ**.</Shot>
+<Shot src={iphoneLanguageChoice} alt="Màn hình Cài đặt ngôn ngữ có English và Tiếng Việt">Nhấn **Tiếng Việt** hoặc **English**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
+
 ## 3. Vào clan của nhóm
 
 Trưởng nhóm sẽ gửi cho bạn một liên kết mời hoặc một mã QR mời. Dùng cách nào cũng được.
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps plain>
 <Shot src={phoneInviteOpen} alt="Màn hình lời mời với tên clan và nút Tham gia">**Bằng liên kết:** mở liên kết trên điện thoại (có dạng `https://mezon.ai/invite/...`). Mezon hiện clan. Nhấn **Tham gia**.</Shot>
-<Shot src={phoneQrIcon} alt="Thẻ Clan, biểu tượng mã QR cạnh ô tìm kiếm được đánh dấu">**Bằng mã QR:** nhấn thẻ **Clan** (iPhone: **Kênh**) ở dưới cùng, rồi nhấn biểu tượng mã QR cạnh ô tìm kiếm. Hướng camera vào mã. Nhấn **Tham gia**.</Shot>
+<Shot src={phoneQrIcon} alt="Thẻ Clan, biểu tượng mã QR cạnh ô tìm kiếm được đánh dấu">**Bằng mã QR:** nhấn thẻ **Clan** ở dưới cùng, rồi nhấn biểu tượng mã QR cạnh ô tìm kiếm. Hướng camera vào mã. Nhấn **Tham gia**.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps plain>
+<Shot src={iphoneInviteLinkOpen} alt="Màn hình lời mời với tên clan và nút Tham gia">**Bằng liên kết:** mở liên kết trên điện thoại (có dạng `https://mezon.ai/invite/...`). Mezon hiện clan. Nhấn **Tham gia**.</Shot>
+<Shot src={iphoneQrIcon} alt="Thẻ Kênh, biểu tượng mã QR cạnh ô tìm kiếm được đánh dấu">**Bằng mã QR:** nhấn thẻ **Kênh** ở dưới cùng, rồi nhấn biểu tượng mã QR cạnh ô tìm kiếm. Hướng camera vào mã. Nhấn **Tham gia**.</Shot>
+<Shot src={iphoneLicenseAgreement} alt="Thỏa thuận cấp phép với nút Yes, Agree">**Sau khi vào clan:** lần đầu mở một kênh, Mezon hiện **License Agreement** (Thỏa thuận cấp phép; màn hình này bằng tiếng Anh). Nhấn **Yes, Agree** (Đồng ý).</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 - Màn hình quét cũng có ở **Hồ sơ** → biểu tượng bánh răng → **Quét mã QR**.
 - Nếu mã QR là một ảnh trong tin nhắn trên chính điện thoại của bạn, hãy lưu ảnh. Ở màn hình quét, nhấn biểu tượng hình ảnh ở góc dưới bên trái (iPhone: **Chọn từ Thư viện ảnh**) và chọn ảnh đó.
@@ -130,9 +205,22 @@ Trưởng nhóm sẽ gửi cho bạn một liên kết mời hoặc một mã QR
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps plain>
-<Shot src={phoneMessagesTab} alt="Thẻ Tin nhắn với danh sách cuộc trò chuyện">Các thẻ ở dưới cùng là **Clan** (iPhone: **Kênh**), **Tin nhắn**, **Thông báo** và **Hồ sơ**. Trong thẻ **Clan**, mỗi hình ở thanh bên trái là một clan: nhấn vào để xem các kênh. Trò chuyện riêng với từng người nằm trong thẻ **Tin nhắn**.</Shot>
+<Shot src={phoneMessagesTab} alt="Thẻ Tin nhắn với danh sách cuộc trò chuyện">Các thẻ ở dưới cùng là **Clan**, **Tin nhắn**, **Thông báo** và **Hồ sơ**. Trong thẻ **Clan**, mỗi hình ở thanh bên trái là một clan: nhấn vào để xem các kênh. Trò chuyện riêng với từng người nằm trong thẻ **Tin nhắn**.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps plain>
+<Shot src={iphoneMessagesTab} alt="Thẻ Tin nhắn với danh sách cuộc trò chuyện">Các thẻ ở dưới cùng là **Kênh**, **Tin nhắn**, **Thông báo** và **Hồ sơ**. Trong thẻ **Kênh**, mỗi hình ở thanh bên trái là một clan: nhấn vào để xem các kênh. Trò chuyện riêng với từng người nằm trong thẻ **Tin nhắn**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -149,12 +237,28 @@ Trưởng nhóm sẽ gửi cho bạn một liên kết mời hoặc một mã QR
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps>
 <Shot src={phoneMemberList} alt="Danh sách thành viên của kênh">Mở một kênh và nhấn vào tên kênh ở phía trên. Trong danh sách thành viên, nhấn vào người bạn muốn nhắn.</Shot>
 <Shot src={phoneProfileMessage} alt="Hồ sơ thành viên với nút Message">Nhấn **Message** (Nhắn tin; nút này hiện bằng tiếng Anh).</Shot>
 <Shot src={phoneComposerSend} alt="Tin nhắn đã gõ trong ô, nút gửi được đánh dấu">Nhập tin nhắn vào ô ở dưới cùng. Nhấn nút gửi ở bên phải (nút hiện ra khi bạn gõ).</Shot>
 <Shot src={phoneDmChat} alt="Cuộc trò chuyện giữa hai người, ô nhập tin nhắn ở dưới cùng">Tin nhắn mới nhất nằm ở dưới cùng. Cuộc trò chuyện cũng có trong thẻ **Tin nhắn**.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneMemberList} alt="Danh sách thành viên của kênh">Mở một kênh và nhấn vào tên kênh ở phía trên. Trong danh sách thành viên, nhấn vào người bạn muốn nhắn.</Shot>
+<Shot src={iphoneProfileMessage} alt="Hồ sơ thành viên với nút Message">Nhấn **Message** (Nhắn tin; nút này hiện bằng tiếng Anh).</Shot>
+<Shot src={iphoneComposerSend} alt="Tin nhắn đã gõ trong ô, nút gửi được đánh dấu">Nhập tin nhắn vào ô ở dưới cùng. Nhấn nút gửi ở bên phải (nút hiện ra khi bạn gõ).</Shot>
+<Shot src={iphoneDmChat} alt="Cuộc trò chuyện giữa hai người, ô nhập tin nhắn ở dưới cùng">Tin nhắn mới nhất nằm ở dưới cùng. Cuộc trò chuyện cũng có trong thẻ **Tin nhắn**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -174,9 +278,22 @@ Bạn nhắn tin được cho người trong clan mà không cần kết bạn, 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps plain>
-<Shot src={phoneAddFriend} alt="Thẻ Tin nhắn, nút Thêm bạn được đánh dấu">**Tin nhắn** → **Thêm bạn** → **Thêm bằng tên người dùng** (iPhone: **Thêm bằng tên người dùng hoặc số điện thoại**). Nhập tên người dùng hoặc số điện thoại của người đó. Nhấn **Gửi yêu cầu kết bạn**.</Shot>
+<Shot src={phoneAddFriend} alt="Thẻ Tin nhắn, nút Thêm bạn được đánh dấu">**Tin nhắn** → **Thêm bạn** → **Thêm bằng tên người dùng**. Nhập tên người dùng hoặc số điện thoại của người đó. Nhấn **Gửi yêu cầu kết bạn**.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps plain>
+<Shot src={iphoneAddFriend} alt="Thẻ Tin nhắn, nút Thêm bạn được đánh dấu">**Tin nhắn** → **Thêm bạn** → **Thêm bằng tên người dùng hoặc số điện thoại**. Nhập tên người dùng hoặc số điện thoại của người đó. Nhấn **Gửi yêu cầu kết bạn**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 Khi người kia chấp nhận, hai bạn thành bạn bè. Danh sách bạn bè nằm ở **Hồ sơ** → **Bạn bè của bạn** (iPhone: **Bạn bè**). Yêu cầu người khác gửi cho bạn nằm ở mục **Yêu cầu kết bạn** trong đó: nhấn dấu tích xanh để chấp nhận. Bạn cũng có thể nhấn **Add Friend** (Thêm bạn; nút hiện bằng tiếng Anh) trên hồ sơ của một người trong clan.
 
@@ -199,11 +316,26 @@ Kênh thoại có biểu tượng loa trong danh sách kênh.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps>
 <Shot src={phoneVoiceSheet} alt="Bảng kênh thoại với nút Join as Speaker">Nhấn vào kênh thoại. Nhấn **Join as Speaker** (Tham gia để nói; nút này hiện bằng tiếng Anh).</Shot>
 <Shot src={phoneAllowMicrophone} alt="Câu hỏi cho phép dùng micro">Lần đầu, cho phép Mezon dùng micro: nhấn **Trong khi dùng ứng dụng**.</Shot>
 <Shot src={phoneInCall} alt="Màn hình kênh thoại với các nút ở dưới cùng">Micro của bạn đang tắt: nhấn nút micro để nói. Nhấn nút màu đỏ để rời phòng.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneVoiceChannelSheet} alt="Bảng kênh thoại với nút Join as Speaker">Nhấn vào kênh thoại. Nhấn **Join as Speaker** (Tham gia để nói; nút này hiện bằng tiếng Anh).</Shot>
+<Shot src={iphoneAllowMicrophone} alt="Câu hỏi cho phép dùng micrô">Lần đầu, cho phép Mezon dùng micro: nhấn **Cho phép**.</Shot>
+<Shot src={iphoneInCall} alt="Màn hình kênh thoại với các nút ở dưới cùng">Micro của bạn đang tắt: nhấn nút micro để nói. Nhấn nút màu đỏ để rời phòng.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 Mỗi người có một ô kèm tên; micro bị gạch chéo nghĩa là người đó đang tắt micro. Các nút ở dưới cùng, từ trái sang phải: camera, micro, trò chuyện, chia sẻ màn hình, rời phòng.
 
@@ -251,12 +383,27 @@ Chỉ quét mã QR Mezon hiện trên máy tính của chính bạn. Đừng bao
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps>
 <Shot src={phoneAddClan} alt="Nút dấu cộng ở cuối thanh clan">Nhấn **+** ở cuối thanh clan bên trái.</Shot>
-<Shot src={phoneCreateClanChoice} alt="Màn hình Tạo clan của bạn với Tự tạo clan và các mẫu">Nhấn **Tự tạo clan** (iPhone: **Tự tạo**).</Shot>
+<Shot src={phoneCreateClanChoice} alt="Màn hình Tạo clan của bạn với Tự tạo clan và các mẫu">Nhấn **Tự tạo clan**.</Shot>
 <Shot src={phoneCreateClanForm} alt="Ô tên clan và nút Tạo clan">Nhập tên clan. Bạn có thể thêm ảnh bằng **Tải lên**. Nhấn **Tạo clan**.</Shot>
 <Shot src={phoneNewClan} alt="Clan mới chỉ có kênh general">Clan mới mở ra, đã có sẵn kênh văn bản **general**.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneAddClanButton} alt="Nút dấu cộng ở cuối thanh clan">Nhấn **+** ở cuối thanh clan bên trái.</Shot>
+<Shot src={iphoneCreateClanChoice} alt="Màn hình Tạo clan của bạn với Tự tạo và các mẫu">Nhấn **Tự tạo**.</Shot>
+<Shot src={iphoneCreateClanForm} alt="Ô tên clan và nút Tạo Clan">Nhập tên clan. Bạn có thể thêm ảnh bằng **TẢI LÊN**. Nhấn **Tạo Clan**. Clan mới mở ra, đã có sẵn kênh văn bản **general**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -280,11 +427,26 @@ Chỉ chủ sở hữu clan và người có vai trò được quản lý kênh 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps>
 <Shot src={phoneCategoryMenu} alt="Menu hiện ra sau khi nhấn giữ tên danh mục, có Tạo kênh">Trong clan, nhấn giữ tên danh mục (ví dụ **PUBLIC CHANNELS**). Nhấn **Tạo kênh**.</Shot>
 <Shot src={phoneCreateChannel} alt="Màn hình tạo kênh với tên kênh và các loại kênh">Nhập tên kênh. Chọn **Văn bản** để nhắn tin hoặc **Thoại** để nói chuyện. Nhấn **Tạo** ở góc trên bên phải.</Shot>
 <Shot src={phoneChannelList} alt="Danh sách kênh gồm hai kênh văn bản và một kênh thoại">Kênh mới hiện trong danh sách. Kênh thoại có biểu tượng loa.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneCategoryMenu} alt="Bảng hiện ra sau khi nhấn giữ tên danh mục, chỉ có Tạo kênh">Trong clan, nhấn giữ tên danh mục (ví dụ **PUBLIC CHANNELS**). Nhấn **Tạo kênh**.</Shot>
+<Shot src={iphoneCreateTextChannel} alt="Màn hình tạo kênh với tên kênh và các loại kênh">Nhập tên kênh. Chọn **Văn bản** để nhắn tin hoặc **Thoại** để nói chuyện. Nhấn **Tạo** ở góc trên bên phải.</Shot>
+<Shot src={iphoneChannelList} alt="Danh sách kênh gồm hai kênh văn bản và một kênh thoại">Kênh mới hiện trong danh sách. Kênh thoại có biểu tượng loa.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -304,10 +466,24 @@ Mọi thành viên trong clan đều mời được người khác.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps>
-<Shot src={phoneClanMenu} alt="Menu clan có mục Lời mời">Mở clan và nhấn vào tên clan ở phía trên. Nhấn **Lời mời** (iPhone: **Mời**).</Shot>
+<Shot src={phoneClanMenu} alt="Menu clan có mục Lời mời">Mở clan và nhấn vào tên clan ở phía trên. Nhấn **Lời mời**.</Shot>
 <Shot src={phoneInviteSheet} alt="Bảng mời với Chia sẻ lời mời, Sao chép link và Mã QR">Chọn cách gửi lời mời (xem bên dưới).</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneClanMenu} alt="Menu clan có mục Mời">Mở clan và nhấn vào tên clan ở phía trên. Nhấn **Mời**.</Shot>
+<Shot src={iphoneInviteSheet} alt="Bảng mời với Chia sẻ lời mời, Sao chép link và Mã QR">Chọn cách gửi lời mời (xem bên dưới).</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 - **Chia sẻ lời mời**: gửi liên kết qua ứng dụng khác (Zalo, SMS...).
 - **Sao chép link**: rồi dán liên kết vào tin nhắn.

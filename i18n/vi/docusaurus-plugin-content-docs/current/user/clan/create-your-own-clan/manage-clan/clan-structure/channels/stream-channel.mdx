@@ -6,6 +6,9 @@ description: Xem phát trực tiếp trong kênh phát trực tiếp trên đi�
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import streamPhone01 from "./images/stream-channel-phone-01.png";
+import streamPhone02 from "./images/stream-channel-phone-02.png";
 import streamComputer01 from "./images/stream-channel-computer-01.png";
 import streamComputer02 from "./images/stream-channel-computer-02.png";
 
@@ -20,12 +23,14 @@ Bạn xem được trên điện thoại Android, iPhone, ứng dụng máy tín
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Nhấn vào kênh phát trực tiếp.
-2. Khi có người đang phát, bạn thấy tên người đó và số người đang xem. Nhấn **Join Stream** (Tham gia phát trực tiếp; nút này hiện bằng tiếng Anh).
-3. Video bắt đầu chạy. Nhấn vào video để hiện hoặc ẩn các nút.
-4. Dùng các nút ở dưới cùng để đổi nơi phát âm thanh hoặc chất lượng video, hoặc để mở phần trò chuyện.
-5. Nhấn nút toàn màn hình để xem trên cả màn hình.
-6. Để thôi xem, nhấn nút màu đỏ.
+<ShotSteps>
+<Shot src={streamPhone01} alt="Bảng của kênh phát trực tiếp với người đang phát, nút Join Stream được đánh dấu">Nhấn vào kênh phát trực tiếp. Khi có người đang phát, bạn thấy tên người đó và số người đang xem. Nhấn **Join Stream** (Tham gia phát trực tiếp; nút này hiện bằng tiếng Anh).</Shot>
+<Shot src={streamPhone02} alt="Buổi phát trực tiếp đang chạy, chữ LIVE và số người xem ở trên, các nút ở dưới cùng">Video bắt đầu chạy. Nhấn vào video để hiện hoặc ẩn các nút.</Shot>
+</ShotSteps>
+
+- Các nút ở dưới cùng dùng để đổi nơi phát âm thanh hoặc chất lượng video, hoặc để mở phần trò chuyện.
+- Nút toàn màn hình ở góc trên bên phải.
+- Để thôi xem, nhấn nút màu đỏ.
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">

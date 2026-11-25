@@ -6,7 +6,11 @@ description: Các phần chính của màn hình Mezon trên điện thoại và
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
 import phoneHome from "./images/quick-tour-phone-01.png";
+import phoneMessages from "./images/quick-tour-phone-02.png";
+import phoneNotifications from "./images/quick-tour-phone-03.png";
+import iphoneHome from "./images/quick-tour-iphone-01.png";
 import computerHome from "./images/quick-tour-computer-01.png";
 
 # Giới thiệu nhanh màn hình
@@ -16,7 +20,18 @@ Trang này giới thiệu các phần chính của màn hình Mezon, để bạn
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <Image src={phoneHome} alt="Thẻ Clan trên Android: danh sách clan bên trái, danh sách kênh của clan đang mở và các thẻ ở cuối màn hình" width={270} />
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<Image src={iphoneHome} alt="Thẻ Kênh trên iPhone: danh sách clan bên trái, danh sách kênh của clan đang mở và các thẻ ở cuối màn hình" width={270} />
+
+</TabItem>
+</Tabs>
 
 ## Các thẻ ở cuối màn hình
 
@@ -26,6 +41,11 @@ Trang này giới thiệu các phần chính của màn hình Mezon, để bạn
 | **Tin nhắn** | Tin nhắn trực tiếp và nhóm chat của bạn. |
 | **Thông báo** | Các thông báo của bạn, ví dụ khi có người nhắc đến bạn. |
 | **Hồ sơ** | Tên và trạng thái, ví Mezon Đồng, nút sửa hồ sơ, và biểu tượng bánh răng để mở [cài đặt](./personalization-settings.mdx). |
+
+<ShotSteps plain>
+<Shot src={phoneMessages} alt="Thẻ Tin nhắn với danh sách cuộc trò chuyện">Thẻ **Tin nhắn**.</Shot>
+<Shot src={phoneNotifications} alt="Thẻ Thông báo với các thẻ Nhắc đến, Tin nhắn, Thảo luận ngắn và Dành cho bạn">Thẻ **Thông báo**, chia thành **Nhắc đến**, **Tin nhắn**, **Thảo luận ngắn** và **Dành cho bạn**.</Shot>
+</ShotSteps>
 
 ## Thẻ Clan
 

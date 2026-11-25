@@ -6,6 +6,10 @@ description: Ghim tin nhắn quan trọng trong kênh văn bản để mọi ng�
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import pinnedPhone01 from "./images/pinned-messages-phone-01.png";
+import pinnedPhone02 from "./images/pinned-messages-phone-02.png";
+import pinnedPhone03 from "./images/pinned-messages-phone-03.png";
 import pinnedComputer01 from "./images/pinned-messages-computer-01.png";
 import pinnedComputer02 from "./images/pinned-messages-computer-02.png";
 
@@ -18,9 +22,10 @@ Ghim một tin nhắn để mọi người dễ tìm lại, ví dụ nội quy, 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Nhấn giữ tin nhắn.
-2. Nhấn **Ghim tin nhắn**.
-3. Nhấn **Có** (iPhone: **Đồng ý**) để xác nhận.
+<ShotSteps>
+<Shot src={pinnedPhone01} alt="Menu của tin nhắn đã vuốt lên, mục Ghim tin nhắn được đánh dấu">Nhấn giữ tin nhắn. Vuốt menu lên rồi nhấn **Ghim tin nhắn**.</Shot>
+<Shot src={pinnedPhone02} alt="Hộp thoại xác nhận ghim tin nhắn, nút Có được đánh dấu">Nhấn **Có** (iPhone: **Đồng ý**) để xác nhận.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -45,6 +50,9 @@ Bạn không ghim được tin nhắn bên trong một thảo luận ngắn.
 
 1. Nhấn vào tên kênh ở phía trên.
 2. Mở thẻ **Ghim** (Android: **Pins**).
+
+<Image src={pinnedPhone03} alt="Thẻ Pins của kênh với các tin nhắn đã ghim" width={270} />
+
 3. Nhấn vào một tin nhắn đã ghim để đi tới tin nhắn đó trong khung chat.
 4. Muốn bỏ ghim, nhấn dấu **X** bên cạnh tin nhắn.
 

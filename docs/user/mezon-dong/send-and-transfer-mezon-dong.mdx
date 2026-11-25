@@ -6,6 +6,12 @@ description: Send Mezon Dong to someone, give a coffee, and see your transaction
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneProfile from "./images/send-and-transfer-mezon-dong-phone-01.png";
+import phoneTransfer from "./images/send-and-transfer-mezon-dong-phone-02.png";
+import phoneCoffee from "./images/send-and-transfer-mezon-dong-phone-03.png";
+import phoneScanner from "./images/send-and-transfer-mezon-dong-phone-04.png";
+import phoneTransferQr from "./images/send-and-transfer-mezon-dong-phone-05.png";
 import computerPanel from "./images/send-and-transfer-mezon-dong-computer-01.png";
 import computerSend from "./images/send-and-transfer-mezon-dong-computer-02.png";
 import computerProfileTransfer from "./images/send-and-transfer-mezon-dong-computer-03.png";
@@ -20,11 +26,10 @@ Send Mezon Dong to another person, give a coffee for a message, and check what y
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Tap **Profile** at the bottom of the screen.
-2. Tap **Transfer Funds**.
-3. Choose the person.
-4. Type the amount. You can add a note.
-5. **Android:** tap **Transfer Funds**. **iPhone:** tap **Send**, then tap **Transfer** to confirm.
+<ShotSteps>
+<Shot src={phoneProfile} alt="The Profile tab with the balance and Transfer Funds marked">Tap **Profile** at the bottom of the screen. Tap **Transfer Funds**.</Shot>
+<Shot src={phoneTransfer} alt="The Transfer Funds form with the person, the amount and a note filled in, Transfer Funds marked">Choose the person. Type the amount. You can add a note. **Android:** tap **Transfer Funds**. **iPhone:** tap **Send**, then tap **Transfer** to confirm.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -68,6 +73,8 @@ A coffee sends 10,000 đồng to the author of a message. You cannot give a coff
 1. Press and hold the message.
 2. **Android:** tap **Give Coffee**. **iPhone:** tap **Give A Coffee**.
 
+<Image src={phoneCoffee} alt="The actions of a message with Give Coffee marked" width={270} />
+
 </TabItem>
 <TabItem value="computer" label="Computer">
 
@@ -85,10 +92,10 @@ Mezon adds a coffee reaction to the message and sends the author a transfer mess
 
 On a phone, you can show a transfer QR code. The person who pays scans it, and Mezon fills in your name as the recipient.
 
-1. Tap **Profile** at the bottom of the screen, then **Settings**.
-2. Tap **Scan QR Code** (iPhone: **QR Scan**).
-3. Tap **My QR Code**.
-4. Tap **Transfer QR** (iPhone: **QR Transfer**). Show this code to the person who pays.
+<ShotSteps>
+<Shot src={phoneScanner} alt="The QR scanner with My QR Code marked">Tap **Profile**, then the gear icon, then **Scan QR Code** (iPhone: **QR Scan**). Tap **My QR Code**.</Shot>
+<Shot src={phoneTransferQr} alt="The Transfer QR tab with a blurred QR code">Tap **Transfer QR** (iPhone: **QR Transfer**). Show this code to the person who pays.</Shot>
+</ShotSteps>
 
 The person who pays opens **Scan QR Code** (iPhone: **QR Scan**) the same way and points the camera at your code. Their transfer screen opens with you as the recipient.
 

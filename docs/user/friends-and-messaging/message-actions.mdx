@@ -7,6 +7,9 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
 import messageActionsComputer01 from "./images/message-actions-computer-01.png";
+import messageActionsPhone01 from "./images/message-actions-phone-01.png";
+import messageActionsPhone02 from "./images/message-actions-phone-02.png";
+import messageActionsPhone03 from "./images/message-actions-phone-03.png";
 
 # Message actions
 
@@ -18,6 +21,8 @@ These actions work in direct messages, group chats and clan channels.
 <TabItem value="phone" label="Phone">
 
 Press and hold a message. A menu opens with a row of emoji at the top and the actions below.
+
+<Image src={messageActionsPhone01} alt="The menu of a message: Give Coffee, Reply, Forward, Forward All Nearby, Copy Text, Share Text and Add To Inbox" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -44,6 +49,7 @@ The table uses the labels of the computer apps. Where a phone app uses a differe
 | **Forward Message** | Sends a copy to other conversations or channels. Search, select one or more, add an optional message, then send. On Android the label is **Forward**. | Phone, computer |
 | **Forward All Messages** | Forwards this message and the messages right after it from the same person. On phones the label is **Forward All Nearby**. | Phone, computer |
 | **Copy Text** | Copies the text. On a computer, select part of the text first to see **Copy Selected Text**. | Phone, computer |
+| **Share Text** | Opens your phone's share menu, so you can send the text to another app. | Phone |
 | **Pin Message** | Pins the message so everyone finds it later. See [Pinned messages](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/pinned-messages.mdx). | Phone, computer |
 | **Mark Unread** | Marks the message as unread, so you can come back to it. | Computer |
 | **Add To Inbox** | Saves the message in your Inbox. See [Inbox](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/inbox.mdx). | Phone, computer |
@@ -67,6 +73,8 @@ In clan channels the menu also has **Create Thread** and **Topic Discussion**. S
 2. Speak while you hold it.
 3. Release to send. To cancel, slide your finger to the left before you release.
 
+<Image src={messageActionsPhone02} alt="A voice message being recorded, with the timer and Slide to cancel" width={270} />
+
 The first time, allow Mezon to use the microphone.
 
 </TabItem>
@@ -88,6 +96,8 @@ The first time, allow Mezon to use the microphone.
 1. Tap **+** at the left of the message box.
 2. Pick photos or videos, or tap **Upload a file**.
 3. Tap send.
+
+<Image src={messageActionsPhone03} alt="The attach panel with recent photos and Upload a file marked" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Computer">

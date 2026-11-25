@@ -6,6 +6,12 @@ description: Gửi Mezon Đồng cho người khác, tặng coffee và xem lịc
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneProfile from "./images/send-and-transfer-mezon-dong-phone-01.png";
+import phoneTransfer from "./images/send-and-transfer-mezon-dong-phone-02.png";
+import phoneCoffee from "./images/send-and-transfer-mezon-dong-phone-03.png";
+import phoneScanner from "./images/send-and-transfer-mezon-dong-phone-04.png";
+import phoneTransferQr from "./images/send-and-transfer-mezon-dong-phone-05.png";
 import computerPanel from "./images/send-and-transfer-mezon-dong-computer-01.png";
 import computerSend from "./images/send-and-transfer-mezon-dong-computer-02.png";
 import computerProfileTransfer from "./images/send-and-transfer-mezon-dong-computer-03.png";
@@ -20,11 +26,10 @@ Gửi Mezon Đồng cho người khác, tặng coffee cho một tin nhắn, và 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Nhấn **Hồ sơ** ở cuối màn hình.
-2. Nhấn **Chuyển khoản**.
-3. Chọn người nhận.
-4. Nhập số tiền. Bạn có thể thêm ghi chú.
-5. **Android:** nhấn **Chuyển khoản**. **iPhone:** nhấn **Gửi**, rồi nhấn **Chuyển** để xác nhận.
+<ShotSteps>
+<Shot src={phoneProfile} alt="Thẻ Hồ sơ, số dư và mục Chuyển khoản được đánh dấu">Nhấn **Hồ sơ** ở cuối màn hình. Nhấn **Chuyển khoản**.</Shot>
+<Shot src={phoneTransfer} alt="Biểu mẫu Chuyển khoản đã điền người nhận, số tiền và ghi chú, nút Chuyển khoản được đánh dấu">Chọn người nhận. Nhập số tiền. Bạn có thể thêm ghi chú. **Android:** nhấn **Chuyển khoản**. **iPhone:** nhấn **Gửi**, rồi nhấn **Chuyển** để xác nhận.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -68,6 +73,8 @@ Mỗi coffee gửi 10.000 đồng cho người viết tin nhắn. Bạn không t
 1. Nhấn và giữ tin nhắn.
 2. Nhấn **Tặng cà phê**.
 
+<Image src={phoneCoffee} alt="Các thao tác với tin nhắn, mục Tặng cà phê được đánh dấu" width={270} />
+
 </TabItem>
 <TabItem value="computer" label="Máy tính">
 
@@ -85,10 +92,10 @@ Mezon thêm biểu cảm coffee vào tin nhắn và gửi cho người viết m�
 
 Trên điện thoại, bạn có thể đưa ra một mã QR chuyển tiền. Người trả tiền quét mã, và Mezon tự điền bạn là người nhận.
 
-1. Nhấn **Hồ sơ** ở cuối màn hình, rồi nhấn **Cài đặt**.
-2. Nhấn **Quét mã QR**.
-3. Nhấn **Mã QR của tôi**.
-4. Nhấn **Mã QR chuyển tiền** (iPhone: **Mã QR chuyển khoản**). Đưa mã này cho người trả tiền.
+<ShotSteps>
+<Shot src={phoneScanner} alt="Màn hình quét mã QR, nút Mã QR của tôi được đánh dấu">Nhấn **Hồ sơ**, rồi biểu tượng bánh răng, rồi **Quét mã QR**. Nhấn **Mã QR của tôi**.</Shot>
+<Shot src={phoneTransferQr} alt="Thẻ Mã QR chuyển tiền với mã QR đã làm mờ">Nhấn **Mã QR chuyển tiền** (iPhone: **Mã QR chuyển khoản**). Đưa mã này cho người trả tiền.</Shot>
+</ShotSteps>
 
 Người trả tiền mở **Quét mã QR** theo cách tương tự và đưa camera vào mã của bạn. Màn hình chuyển khoản của họ mở ra, với bạn là người nhận.
 

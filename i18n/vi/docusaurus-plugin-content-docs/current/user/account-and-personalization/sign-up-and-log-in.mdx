@@ -6,7 +6,11 @@ description: Đăng nhập Mezon bằng mã gửi qua email hoặc SMS, bằng m
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
 import phoneLogin from "./images/sign-up-and-log-in-phone-01.png";
+import phoneScanQr from "./images/sign-up-and-log-in-phone-02.png";
+import phoneConfirmQr from "./images/sign-up-and-log-in-phone-03.png";
+import phoneSetPassword from "./images/sign-up-and-log-in-phone-04.png";
 import webLogin from "./images/sign-up-and-log-in-computer-01.png";
 
 # Đăng ký và đăng nhập
@@ -106,6 +110,8 @@ Mật khẩu cần ít nhất 8 ký tự, gồm chữ hoa, chữ thường, ch�
 4. Nhấn **Đặt mật khẩu**.
 5. Nhập mật khẩu hai lần rồi lưu.
 
+<Image src={phoneSetPassword} alt="Màn hình Tài khoản, mục Đặt mật khẩu được đánh dấu" width={270} />
+
 </TabItem>
 <TabItem value="computer" label="Máy tính">
 
@@ -121,10 +127,14 @@ Mật khẩu cần ít nhất 8 ký tự, gồm chữ hoa, chữ thường, ch�
 
 Nếu đã đăng nhập Mezon trên điện thoại, bạn có thể đăng nhập trên máy tính mà không cần mã OTP.
 
-1. Trên máy tính, mở màn hình đăng nhập. Ứng dụng máy tính hiện mã QR ở mục **Đăng nhập bằng mã QR**. Trang đăng nhập web hiện mã ở mục **Log in with QR Code**.
-2. Trên điện thoại, nhấn **Hồ sơ**, rồi biểu tượng bánh răng, rồi **Quét mã QR**. Bạn cũng có thể nhấn nút QR ở đầu danh sách kênh của một clan.
-3. Đưa camera về phía mã QR trên máy tính.
-4. Điện thoại hiện **Đăng nhập trên thiết bị mới**. Nhấn **Đăng nhập**.
+Trên máy tính, mở màn hình đăng nhập. Ứng dụng máy tính hiện mã QR ở mục **Đăng nhập bằng mã QR**. Trang đăng nhập web hiện mã ở mục **Log in with QR Code**. Sau đó, trên điện thoại:
+
+<ShotSteps>
+<Shot src={phoneScanQr} alt="Màn hình Cài đặt, mục Quét mã QR được đánh dấu">Nhấn **Hồ sơ**, rồi biểu tượng bánh răng, rồi **Quét mã QR**. Đưa camera về phía mã QR trên máy tính.</Shot>
+<Shot src={phoneConfirmQr} alt="Màn hình Đăng nhập trên thiết bị mới, nút Đăng nhập được đánh dấu">Điện thoại hiện **Đăng nhập trên thiết bị mới**. Nhấn **Đăng nhập**.</Shot>
+</ShotSteps>
+
+Bạn cũng có thể mở máy quét bằng nút QR ở đầu danh sách kênh của một clan.
 
 Máy tính mở Mezon với tài khoản của bạn.
 

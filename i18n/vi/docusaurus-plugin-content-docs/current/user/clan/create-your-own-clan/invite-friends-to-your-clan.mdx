@@ -6,6 +6,9 @@ description: Chia sẻ liên kết mời hoặc mã QR, hoặc mời bạn bè t
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneMenu from "./images/invite-friends-to-your-clan-phone-01.png";
+import phoneSheet from "./images/invite-friends-to-your-clan-phone-02.png";
 import computerMenu from "./images/invite-friends-to-your-clan-computer-01.png";
 import computerDialog from "./images/invite-friends-to-your-clan-computer-02.png";
 import computerQr from "./images/invite-friends-to-your-clan-computer-03.png";
@@ -19,13 +22,15 @@ Mọi thành viên trong clan đều mời được người khác. Bạn gửi 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Mở clan và nhấn vào tên clan ở trên cùng.
-2. Nhấn **Lời mời** (iPhone: **Mời**).
-3. Chọn một cách:
-   - **Sao chép link**, rồi dán liên kết vào tin nhắn.
-   - **Chia sẻ lời mời**, để gửi liên kết qua một ứng dụng khác trên điện thoại.
-   - **Mã QR**, để hiện mã cho người khác quét bằng điện thoại. Nhấn biểu tượng tải về để lưu mã thành ảnh, hoặc biểu tượng chia sẻ để gửi mã qua ứng dụng khác.
-   - **Mời** cạnh tên một người bạn, để gửi liên kết cho người đó ngay trong Mezon. Nút đổi thành **Đã mời**.
+<ShotSteps>
+<Shot src={phoneMenu} alt="Menu clan, mục Lời mời được đánh dấu">Mở clan và nhấn vào tên clan ở trên cùng. Nhấn **Lời mời** (iPhone: **Mời**).</Shot>
+<Shot src={phoneSheet} alt="Bảng Mời bạn bè với Chia sẻ lời mời, Sao chép link và Mã QR">Chọn cách gửi lời mời (xem danh sách bên dưới).</Shot>
+</ShotSteps>
+
+- **Sao chép link**, rồi dán liên kết vào tin nhắn.
+- **Chia sẻ lời mời**, để gửi liên kết qua một ứng dụng khác trên điện thoại.
+- **Mã QR**, để hiện mã cho người khác quét bằng điện thoại. Nhấn biểu tượng tải về để lưu mã thành ảnh, hoặc biểu tượng chia sẻ để gửi mã qua ứng dụng khác.
+- **Mời** cạnh tên một người bạn, để gửi liên kết cho người đó ngay trong Mezon. Nút đổi thành **Đã mời**.
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">

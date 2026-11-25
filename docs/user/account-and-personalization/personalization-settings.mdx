@@ -8,6 +8,8 @@ import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
 import phoneProfile from "./images/personalization-settings-phone-01.png";
 import phoneSettings from "./images/personalization-settings-phone-02.png";
+import phoneChat from "./images/personalization-settings-phone-03.png";
+import phoneTheme from "./images/personalization-settings-phone-05.png";
 import computerGear from "./images/personalization-settings-computer-01.png";
 import computerChat from "./images/personalization-settings-computer-02.png";
 import computerDevices from "./images/personalization-settings-computer-03.png";
@@ -114,11 +116,22 @@ To set a status (for example **Do Not Disturb**) on a computer, click your name 
 
 Turn on **Don't receive messages from strangers** to let only your friends start a conversation with you. People who are not your friends then see **You can't send a message to this user.**
 
-1. Open the settings.
-2. Select **Chat**.
-3. Turn on **Don't receive messages from strangers**.
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+Open the settings, tap **Chat**, then turn on **Don't receive messages from strangers**.
+
+<Image src={phoneChat} alt="The Chat settings with the Don't receive messages from strangers switch marked" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+Open the settings, click **Chat**, then turn on **Don't receive messages from strangers**.
 
 <Image src={computerChat} alt="The Chat settings on the web with the Don't receive messages from strangers switch marked" />
+
+</TabItem>
+</Tabs>
 
 ## Devices {#devices}
 
@@ -142,6 +155,8 @@ If you see a device you do not know, log it out and change your password.
 <TabItem value="phone" label="Phone">
 
 Open the settings, tap **Appearance**, then choose a theme. A preview shows how chats will look.
+
+<Image src={phoneTheme} alt="The App theme screen with a chat preview and the theme choices" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Computer">

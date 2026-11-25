@@ -6,8 +6,10 @@ description: Create text, voice and stream channels in your clan, and change a c
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
 import channelsPhone01 from "./images/channels-phone-01.png";
 import channelsPhone02 from "./images/channels-phone-02.png";
+import channelsPhone03 from "./images/channels-phone-03.png";
 import channelsComputer01 from "./images/channels-computer-01.png";
 import channelsComputer02 from "./images/channels-computer-02.png";
 import channelsComputer03 from "./images/channels-computer-03.png";
@@ -28,18 +30,10 @@ The clan owner and roles with the **Administrator**, **Manage Clan** or **Manage
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Open your clan.
-2. Press and hold a category name, for example **PUBLIC CHANNELS**.
-3. Tap **Create channel**.
-
-<Image src={channelsPhone01} alt="The category menu with Create channel at the bottom" width={270} />
-
-4. Type the channel name.
-5. Choose the type: **Text**, **Voice** or **Stream**.
-6. To make a text or voice channel private, turn on **Private Channel**.
-7. Tap **Create**.
-
-<Image src={channelsPhone02} alt="The Create Channel screen with the Voice type selected" width={270} />
+<ShotSteps>
+<Shot src={channelsPhone01} alt="The category menu with Create channel marked">Open your clan. Press and hold a category name, for example **PUBLIC CHANNELS**. Tap **Create channel**.</Shot>
+<Shot src={channelsPhone02} alt="The Create Channel screen with a name typed and the Voice type marked">Type the channel name. Choose **Text**, **Voice** or **Stream**. To make a text or voice channel private, turn on **Private Channel**. Tap **Create**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -79,6 +73,9 @@ The clan owner and roles that can manage channels can change a channel's setting
 
 1. Press and hold the channel name.
 2. Tap **Edit Channel**.
+
+<Image src={channelsPhone03} alt="The channel menu with Edit Channel marked" width={270} />
+
 3. Change the name or the topic, or tap **Change Category** to move the channel.
 
 </TabItem>

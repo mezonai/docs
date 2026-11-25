@@ -6,6 +6,9 @@ description: Chuyển quyền chủ sở hữu clan cho một thành viên khác
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneEditMember from "./images/transferring-clan-ownership-phone-01.png";
+import phoneConfirm from "./images/transferring-clan-ownership-phone-02.png";
 import computerMenu from "./images/transferring-clan-ownership-computer-01.png";
 import computerDialog from "./images/transferring-clan-ownership-computer-02.png";
 
@@ -23,8 +26,13 @@ Chủ sở hữu clan có thể chuyển quyền chủ sở hữu cho một thà
 3. Trong phần **Quản lý người dùng**, nhấn **Thành viên**.
 4. Nhấn vào thành viên sẽ làm chủ sở hữu mới. Màn hình **Chỉnh sửa thành viên** mở ra.
 5. Trong phần **Hành động**, nhấn **Chuyển quyền sở hữu**.
-6. Đánh dấu vào ô xác nhận bạn đã hiểu.
+6. Bật công tắc xác nhận bạn đã hiểu (iPhone: đánh dấu vào ô).
 7. Nhấn **Chuyển**.
+
+<ShotSteps plain>
+<Shot src={phoneEditMember} alt="Màn hình Chỉnh sửa thành viên, mục Chuyển quyền sở hữu được đánh dấu">Bước 5: **Chuyển quyền sở hữu** trong phần **Hành động**.</Shot>
+<Shot src={phoneConfirm} alt="Màn hình Chuyển quyền sở hữu với công tắc xác nhận và nút Chuyển">Bước 6 và 7: công tắc, rồi **Chuyển**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">

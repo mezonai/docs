@@ -6,6 +6,10 @@ description: Find a bot or app in the Bots/Apps directory and add it to your cla
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneAuthorize from "./images/explore-and-install-bots-apps-phone-01.png";
+import iphoneSelectClan from "./images/explore-and-install-bots-apps-iphone-01.png";
+import iphoneAdd from "./images/explore-and-install-bots-apps-iphone-02.png";
 import directoryList from "./images/explore-and-install-bots-apps-001.png";
 import computerAddToClan from "./images/explore-and-install-bots-apps-computer-01.png";
 import computerAuthorize from "./images/explore-and-install-bots-apps-computer-02.png";
@@ -41,8 +45,24 @@ The add page opens. It works the same for bots and apps, except for the extra fi
 <TabItem value="phone" label="Phone">
 
 1. On your phone, open [top.mezon.ai](https://top.mezon.ai) and tap **Invite** next to the bot. The Mezon app opens the add screen.
-2. Under **Add to clan** (iPhone: **ADD TO CLAN**), choose your clan.
+2. Under **ADD TO CLAN**, choose your clan.
 3. **Android:** tap **Authorize**. **iPhone:** tap **Add**.
+
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
+<Image src={phoneAuthorize} alt="The Authorize screen with a clan chosen under ADD TO CLAN and the Authorize button marked" width={270} />
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps plain>
+<Shot src={iphoneSelectClan} alt="The add screen of a bot with Select a clan marked">Tap **Select a clan** and choose your clan.</Shot>
+<Shot src={iphoneAdd} alt="The add screen with a clan chosen and the Add button marked">Tap **Add**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -81,7 +101,7 @@ The app's channel appears in the category you chose.
 
 ## About the permission screen
 
-The screen says that the bot or app "wants to access your Mezon account". It does not list permissions. The screen is in English only.
+The screen says that the bot or app "wants to access your Mezon account". It does not list permissions. On a computer and on an iPhone, the screen is in English only.
 
 After you add a bot, it has only the permissions of the @everyone role, which every member has, plus the roles you give it. To change what a bot can do, see [Manage bots and apps](./manage-bots-and-apps.mdx).
 

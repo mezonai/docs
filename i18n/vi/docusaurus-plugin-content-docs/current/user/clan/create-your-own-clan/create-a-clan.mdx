@@ -6,6 +6,10 @@ description: Tạo clan từ đầu hoặc từ một mẫu, rồi đặt tên v
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phonePlus from "./images/create-a-clan-phone-01.png";
+import phoneChoose from "./images/create-a-clan-phone-02.png";
+import phoneForm from "./images/create-a-clan-phone-03.png";
 import computerChoose from "./images/create-a-clan-computer-01.png";
 import computerName from "./images/create-a-clan-computer-02.png";
 
@@ -18,11 +22,11 @@ Ai có tài khoản Mezon cũng tạo được clan. Bạn sẽ là chủ sở h
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Trong danh sách clan bên trái, nhấn **+**.
-2. Nhấn **Tự tạo clan** (iPhone: **Tự tạo**). Hoặc nhấn một mẫu trong phần **Bắt đầu từ mẫu**.
-3. Nhập tên clan.
-4. Muốn thêm ảnh, nhấn **Tải lên** rồi chọn ảnh.
-5. Nhấn **Tạo clan**.
+<ShotSteps>
+<Shot src={phonePlus} alt="Danh sách clan, nút + được đánh dấu">Trong danh sách clan bên trái, nhấn **+**.</Shot>
+<Shot src={phoneChoose} alt="Màn hình Tạo clan của bạn, mục Tự tạo clan được đánh dấu">Nhấn **Tự tạo clan** (iPhone: **Tự tạo**). Hoặc nhấn một mẫu trong phần **BẮT ĐẦU TỪ MẪU**.</Shot>
+<Shot src={phoneForm} alt="Biểu mẫu Tùy chỉnh Clan của bạn đã nhập tên, nút Tạo clan được đánh dấu">Nhập tên clan. Muốn thêm ảnh, nhấn **Tải lên**. Nhấn **Tạo clan**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">

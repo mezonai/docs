@@ -6,6 +6,13 @@ description: Create a group chat with up to 20 people, rename it, add or remove 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import groupPhone01 from "./images/group-chats-phone-01.png";
+import groupPhone02 from "./images/group-chats-phone-02.png";
+import groupPhone03 from "./images/group-chats-phone-03.png";
+import groupPhone04 from "./images/group-chats-phone-04.png";
+import groupIphone01 from "./images/group-chats-iphone-01.png";
+import groupIphone02 from "./images/group-chats-iphone-02.png";
 import groupComputer01 from "./images/group-chats-computer-01.png";
 import groupComputer02 from "./images/group-chats-computer-02.png";
 import groupComputer03 from "./images/group-chats-computer-03.png";
@@ -27,6 +34,8 @@ You can add only your friends. See [Add friends](./add-friends.mdx).
 2. Tap the round button at the bottom right. On Android, tap **New Group** next.
 3. Select two or more friends.
 4. Tap **Create**.
+
+<Image src={groupPhone01} alt="The New Group screen with two friends selected and Create marked" width={270} />
 
 You can also start a group from a conversation with one person: tap the person's name at the top, then **Add Members**. Mezon creates a new group with that person and the friends you pick.
 
@@ -55,7 +64,9 @@ Every member can do this.
 
 1. Open the group chat.
 2. Tap the group name at the top.
-3. Change the name or the picture. On Android, tap **Customize Group** first.
+3. Tap **Customize Group**, then change the name or the picture.
+
+<Image src={groupPhone02} alt="The group details with Customize Group marked" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -81,6 +92,8 @@ Every member can add their own friends, up to 20 members in total.
 2. Tap **Add Members**.
 3. Select friends and confirm.
 
+<Image src={groupPhone03} alt="The group details with Add Members marked" width={270} />
+
 </TabItem>
 <TabItem value="computer" label="Computer">
 
@@ -100,9 +113,10 @@ Only the person who created the group can remove members. On a computer, the cre
 
 **iPhone**
 
-1. Open the group chat and tap the group name at the top.
-2. In **Members**, tap the person.
-3. Tap **Remove From Group**, then **Remove**.
+<ShotSteps>
+<Shot src={groupIphone01} alt="The group details with the member list and one member marked">Open the group chat and tap the group name at the top. In **Members**, tap the person.</Shot>
+<Shot src={groupIphone02} alt="A member's sheet with Remove From Group marked">Tap **Remove From Group**, then **Remove**.</Shot>
+</ShotSteps>
 
 **Android:** the app cannot remove members yet. Use an iPhone or a computer.
 
@@ -130,6 +144,8 @@ You can rejoin only if a member adds you again.
 3. Tap **Leave Group** and confirm.
 
 If you are the last member, the button is **Delete Group**.
+
+<Image src={groupPhone04} alt="The menu of a group chat with Leave Group marked" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Computer">

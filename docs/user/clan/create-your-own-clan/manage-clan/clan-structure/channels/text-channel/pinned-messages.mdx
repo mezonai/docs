@@ -6,6 +6,10 @@ description: Pin important messages in a text channel so everyone can find them,
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import pinnedPhone01 from "./images/pinned-messages-phone-01.png";
+import pinnedPhone02 from "./images/pinned-messages-phone-02.png";
+import pinnedPhone03 from "./images/pinned-messages-phone-03.png";
 import pinnedComputer01 from "./images/pinned-messages-computer-01.png";
 import pinnedComputer02 from "./images/pinned-messages-computer-02.png";
 
@@ -18,9 +22,10 @@ Pin a message to keep it easy to find, for example rules, a schedule or an addre
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Press and hold the message.
-2. Tap **Pin Message**.
-3. Tap **Yes** to confirm.
+<ShotSteps>
+<Shot src={pinnedPhone01} alt="The message menu swiped up, with Pin Message marked">Press and hold the message. Swipe the menu up and tap **Pin Message**.</Shot>
+<Shot src={pinnedPhone02} alt="The Pin Message question with the Yes button marked">Tap **Yes** to confirm.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -45,6 +50,9 @@ You cannot pin a message inside a topic.
 
 1. Tap the channel name at the top.
 2. Open the **Pins** tab.
+
+<Image src={pinnedPhone03} alt="The Pins tab of a channel with the pinned messages" width={270} />
+
 3. Tap a pinned message to go to it in the chat.
 4. To unpin it, tap the **X** next to it.
 

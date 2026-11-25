@@ -6,6 +6,8 @@ description: Tạo sự kiện của clan trong kênh thoại, ở nơi khác ho
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import phoneWhere from "./images/creating-and-managing-events-phone-01.png";
+import phoneList from "./images/creating-and-managing-events-phone-02.png";
 import computerList from "./images/creating-and-managing-events-computer-01.png";
 import computerWhere from "./images/creating-and-managing-events-computer-02.png";
 import computerInfo from "./images/creating-and-managing-events-computer-03.png";
@@ -40,6 +42,8 @@ Bạn cũng có thể chọn sự kiện dành cho ai:
 3. Chọn **Kênh thoại**, **Địa điểm khác** hoặc **Tạo sự kiện bên ngoài**. Chọn kênh thoại, hoặc nhập địa chỉ. Nhấn **Tiếp** (iPhone: **Tiếp theo**).
 4. Nhập **Tên sự kiện**. Chọn **Ngày**, **Giờ bắt đầu** và **Giờ kết thúc**. Muốn sự kiện lặp lại, chọn ở mục **Lặp lại**. Nhấn **Tiếp** (iPhone: **Tiếp theo**).
 5. Xem lại bản xem trước và nhấn **Tạo sự kiện**.
+
+<Image src={phoneWhere} alt="Bước 1/3 của sự kiện mới: Kênh thoại, Địa điểm khác và Tạo sự kiện bên ngoài" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -80,8 +84,7 @@ Sự kiện xuất hiện trong danh sách sự kiện. Trên máy tính, số s
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-- **Android:** mở clan và nhấn **Sự kiện** trong danh sách kênh.
-- **iPhone:** mở clan và nhấn biểu tượng sự kiện ở đầu danh sách kênh, cạnh ô tìm kiếm.
+Mở clan và nhấn biểu tượng sự kiện ở đầu danh sách kênh, cạnh ô tìm kiếm.
 
 Nhấn vào một sự kiện để xem chi tiết và những ai quan tâm.
 
@@ -107,11 +110,16 @@ Sự kiện tự bắt đầu khi đến giờ bắt đầu.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
+**Android:**
+
 1. Mở danh sách sự kiện.
-2. Mở menu của sự kiện.
-3. Chọn một thao tác:
-   - **Android:** **Chỉnh sửa sự kiện**, **Hủy sự kiện**, **Sao chép liên kết sự kiện** hoặc **Sao chép nội dung**.
-   - **iPhone:** **Chỉnh sửa sự kiện**, **Xóa sự kiện**, **Sao chép liên kết sự kiện** hoặc **Sao chép nội dung**.
+2. Muốn sửa sự kiện, nhấn **Chỉnh sửa sự kiện** trên sự kiện đó.
+3. Dấu ba chấm (**⋮**) trên sự kiện mở **Sao chép nội dung**, và **Sao chép liên kết sự kiện** nếu sự kiện ở trong một kênh.
+4. Muốn hủy sự kiện, nhấn vào sự kiện, rồi dấu ba chấm ở trên cùng, rồi **Hủy sự kiện**.
+
+<Image src={phoneList} alt="Danh sách sự kiện với Chỉnh sửa sự kiện và menu ba chấm hiện Sao chép nội dung" width={270} />
+
+**iPhone:** mở danh sách sự kiện và menu của sự kiện. Chọn **Chỉnh sửa sự kiện**, **Xóa sự kiện**, **Sao chép liên kết sự kiện** hoặc **Sao chép nội dung**.
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">

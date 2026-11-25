@@ -6,6 +6,9 @@ description: Add the clan's own emoji, image stickers and sound effects, and see
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneEmoji from "./images/emoji-image-and-voice-stickers-phone-01.png";
+import phoneSound from "./images/emoji-image-and-voice-stickers-phone-02.png";
 import computerEmoji from "./images/emoji-image-and-voice-stickers-computer-01.png";
 import computerSticker from "./images/emoji-image-and-voice-stickers-computer-02.png";
 import computerSound from "./images/emoji-image-and-voice-stickers-computer-03.png";
@@ -36,6 +39,11 @@ A clan can have up to 250 emoji and 250 image stickers. On the phone apps, you c
 4. Choose the file. For a sound, choose the part to keep.
 5. Type a name.
 6. Tap **Upload**.
+
+<ShotSteps plain>
+<Shot src={phoneEmoji} alt="The Emoji page with Upload Emoji marked">**Emoji** → **Upload Emoji**.</Shot>
+<Shot src={phoneSound} alt="The Sound Effect page with Upload Sound marked">**Sound Effect** → **Upload Sound**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Computer">

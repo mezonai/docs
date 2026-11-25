@@ -5,6 +5,11 @@ description: Keyboard shortcuts in the Mezon web and desktop apps, how to format
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneBuzz from "./images/shortcuts-phone-01.png";
+import phoneAnonymous from "./images/shortcuts-phone-02.png";
+import iphoneActions from "./images/shortcuts-iphone-01.png";
 
 # Keyboard shortcuts and text formatting
 
@@ -17,6 +22,22 @@ The phone apps have no keyboard shortcuts. You find the same actions in the mess
 
 - **Buzz:** a message with a ringing sound, to get attention. Tap the menu button next to **+** in the message box, then tap **Buzz**.
 - **Anonymous:** post in a clan channel without your name. Tap the menu button next to **+** in the message box, then tap **Anonymous**. To stop, tap **Turn off anonymous** (iPhone: **Anonymous On**).
+
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
+<ShotSteps plain>
+<Shot src={phoneBuzz} alt="The extra actions in the message box with Buzz marked">**Buzz**</Shot>
+<Shot src={phoneAnonymous} alt="The extra actions in the message box with Anonymous marked">**Anonymous**</Shot>
+</ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<Image src={iphoneActions} alt="The extra actions in the message box on iPhone with Buzz and Anonymous marked" width={270} />
+
+</TabItem>
+</Tabs>
 
 Anonymous works only in clan channels, and only when the clan allows it.
 

@@ -6,6 +6,10 @@ description: Find the bots in your clan, give them roles, or remove them.
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import phoneMembers from "./images/manage-bots-and-apps-phone-01.png";
+import phoneKick from "./images/manage-bots-and-apps-phone-02.png";
+import iphoneMembers from "./images/manage-bots-and-apps-iphone-01.png";
+import iphoneKick from "./images/manage-bots-and-apps-iphone-02.png";
 import computerMembers from "./images/manage-bots-and-apps-computer-01.png";
 import computerRemove from "./images/manage-bots-and-apps-computer-02.png";
 
@@ -22,6 +26,19 @@ A bot is a member of your clan, so you manage it in the clan's member list. An a
 2. Tap **Settings**.
 3. Under **User Management**, tap **Members**.
 4. Tap the bot. The **Edit Member** screen opens.
+
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
+<Image src={phoneMembers} alt="The clan member list with the bot marked" width={270} />
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<Image src={iphoneMembers} alt="The clan member list on iPhone with the bot marked" width={270} />
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -67,6 +84,19 @@ On a computer you need the **Manage Clan** permission. On a phone you must be th
 
 1. On the bot's **Edit Member** screen, under **Actions**, tap **Kick**.
 2. Tap **Kick** again to confirm.
+
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
+<Image src={phoneKick} alt="The Edit Member screen of a bot with Kick marked" width={270} />
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<Image src={iphoneKick} alt="The Edit Member screen of a bot on iPhone with Kick marked" width={270} />
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Computer">

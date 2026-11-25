@@ -6,6 +6,10 @@ description: Tìm bot hoặc ứng dụng trong kênh trên trang Bots/Apps và 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneAuthorize from "./images/explore-and-install-bots-apps-phone-01.png";
+import iphoneSelectClan from "./images/explore-and-install-bots-apps-iphone-01.png";
+import iphoneAdd from "./images/explore-and-install-bots-apps-iphone-02.png";
 import directoryList from "./images/explore-and-install-bots-apps-001.png";
 import computerAddToClan from "./images/explore-and-install-bots-apps-computer-01.png";
 import computerAuthorize from "./images/explore-and-install-bots-apps-computer-02.png";
@@ -41,8 +45,24 @@ Trang thêm sẽ mở ra. Cách thêm bot và ứng dụng giống nhau, chỉ k
 <TabItem value="phone" label="Điện thoại">
 
 1. Trên điện thoại, mở [top.mezon.ai](https://top.mezon.ai) và nhấn **Mời** bên cạnh bot. Ứng dụng Mezon mở màn hình thêm bot.
-2. Ở mục **Thêm vào clan** (iPhone: **ADD TO CLAN**), chọn clan của bạn.
+2. Ở mục **THÊM VÀO CLAN** (iPhone: **ADD TO CLAN**), chọn clan của bạn.
 3. **Android:** nhấn **Ủy quyền**. **iPhone:** nhấn **Add** (màn hình này trên iPhone chỉ có tiếng Anh).
+
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
+<Image src={phoneAuthorize} alt="Màn hình Ủy quyền, đã chọn clan ở mục THÊM VÀO CLAN, nút Ủy quyền được đánh dấu" width={270} />
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps plain>
+<Shot src={iphoneSelectClan} alt="Màn hình thêm bot, ô Select a clan được đánh dấu">Nhấn **Select a clan** (chọn clan) rồi chọn clan của bạn.</Shot>
+<Shot src={iphoneAdd} alt="Màn hình thêm bot đã chọn clan, nút Add được đánh dấu">Nhấn **Add** (thêm).</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -83,7 +103,7 @@ Kênh của ứng dụng xuất hiện trong danh mục bạn đã chọn.
 
 ## Về màn hình cấp quyền
 
-Màn hình ghi rằng bot hoặc ứng dụng "wants to access your Mezon account" (muốn truy cập tài khoản Mezon của bạn). Màn hình không liệt kê quyền nào và chỉ có tiếng Anh.
+Màn hình ghi rằng bot hoặc ứng dụng "wants to access your Mezon account" (muốn truy cập tài khoản Mezon của bạn). Màn hình không liệt kê quyền nào. Trên máy tính và iPhone, màn hình chỉ có tiếng Anh.
 
 Sau khi được thêm, bot chỉ có các quyền của vai trò @everyone (vai trò mọi thành viên đều có), cộng thêm các vai trò bạn gán cho nó. Để thay đổi những gì bot làm được, xem [Quản lý bot và ứng dụng trong kênh](./manage-bots-and-apps.mdx).
 

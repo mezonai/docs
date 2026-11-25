@@ -6,6 +6,9 @@ description: Watch a live stream in a stream channel on a phone or a computer, a
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import streamPhone01 from "./images/stream-channel-phone-01.png";
+import streamPhone02 from "./images/stream-channel-phone-02.png";
 import streamComputer01 from "./images/stream-channel-computer-01.png";
 import streamComputer02 from "./images/stream-channel-computer-02.png";
 
@@ -20,12 +23,14 @@ You can watch on an Android phone, an iPhone, the desktop app and the web app.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Tap the stream channel.
-2. When someone is live, you see their name and how many people are watching. Tap **Join Stream**.
-3. The video starts. Tap the video to show or hide the controls.
-4. Use the buttons at the bottom to change the sound output or the quality, or to open the chat.
-5. Tap the full-screen button to watch on the whole screen.
-6. To stop watching, tap the red button.
+<ShotSteps>
+<Shot src={streamPhone01} alt="The stream channel sheet with the person who is live and the Join Stream button marked">Tap the stream channel. When someone is live, you see their name and how many people are watching. Tap **Join Stream**.</Shot>
+<Shot src={streamPhone02} alt="A live stream playing, with LIVE and the viewer count at the top and the buttons at the bottom">The video starts. Tap the video to show or hide the controls.</Shot>
+</ShotSteps>
+
+- The buttons at the bottom change the sound output or the quality, or open the chat.
+- The full-screen button is at the top right.
+- To stop watching, tap the red button.
 
 </TabItem>
 <TabItem value="computer" label="Computer">

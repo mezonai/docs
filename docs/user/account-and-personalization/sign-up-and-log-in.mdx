@@ -6,7 +6,11 @@ description: Log in to Mezon with a code sent by email or SMS, with a password, 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
 import phoneLogin from "./images/sign-up-and-log-in-phone-01.png";
+import phoneScanQr from "./images/sign-up-and-log-in-phone-02.png";
+import phoneConfirmQr from "./images/sign-up-and-log-in-phone-03.png";
+import phoneSetPassword from "./images/sign-up-and-log-in-phone-04.png";
 import webLogin from "./images/sign-up-and-log-in-computer-01.png";
 
 # Sign up and log in
@@ -104,6 +108,8 @@ The password needs at least 8 characters, with an uppercase letter, a lowercase 
 4. Tap **Set Password**.
 5. Type the password twice and save.
 
+<Image src={phoneSetPassword} alt="The Account screen with Set Password marked" width={270} />
+
 </TabItem>
 <TabItem value="computer" label="Computer">
 
@@ -119,10 +125,14 @@ The password needs at least 8 characters, with an uppercase letter, a lowercase 
 
 If you are logged in on your phone, you can log in on a computer without a code.
 
-1. On the computer, open the login screen. The desktop app shows the QR code under **Sign in by QR code**. The web login page shows it under **Log in with QR Code**.
-2. On the phone, tap **Profile**, then the gear icon, then **Scan QR Code** (iPhone: **QR Scan**). You can also tap the QR button at the top of a clan's channel list.
-3. Point the camera at the QR code on the computer.
-4. The phone shows **Log in on new device**. Tap **Log in**.
+On the computer, open the login screen. The desktop app shows the QR code under **Sign in by QR code**. The web login page shows it under **Log in with QR Code**. Then, on the phone:
+
+<ShotSteps>
+<Shot src={phoneScanQr} alt="Settings with Scan QR Code marked">Tap **Profile**, then the gear icon, then **Scan QR Code** (iPhone: **QR Scan**). Point the camera at the QR code on the computer.</Shot>
+<Shot src={phoneConfirmQr} alt="The Log in on new device screen with the Log in button marked">The phone shows **Log in on new device**. Tap **Log in**.</Shot>
+</ShotSteps>
+
+You can also open the scanner with the QR button at the top of a clan's channel list.
 
 The computer opens Mezon with your account.
 

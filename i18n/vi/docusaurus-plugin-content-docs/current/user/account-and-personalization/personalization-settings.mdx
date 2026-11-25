@@ -8,6 +8,8 @@ import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
 import phoneProfile from "./images/personalization-settings-phone-01.png";
 import phoneSettings from "./images/personalization-settings-phone-02.png";
+import phoneChat from "./images/personalization-settings-phone-03.png";
+import phoneTheme from "./images/personalization-settings-phone-05.png";
 import computerGear from "./images/personalization-settings-computer-01.png";
 import computerChat from "./images/personalization-settings-computer-02.png";
 import computerDevices from "./images/personalization-settings-computer-03.png";
@@ -114,11 +116,22 @@ Hồ sơ hiện tên hiển thị, ảnh đại diện và một đoạn tiểu 
 
 Bật **Không nhận tin nhắn từ người lạ** để chỉ bạn bè mới bắt đầu được cuộc trò chuyện với bạn. Người chưa là bạn bè sẽ thấy **Bạn không thể gửi tin nhắn cho người dùng này.**
 
-1. Mở cài đặt.
-2. Chọn **Tin nhắn** (điện thoại và ứng dụng máy tính: **Trò chuyện**).
-3. Bật **Không nhận tin nhắn từ người lạ**.
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+Mở cài đặt, nhấn **Trò chuyện**, rồi bật **Không nhận tin nhắn từ người lạ**.
+
+<Image src={phoneChat} alt="Cài đặt Trò chuyện, công tắc Không nhận tin nhắn từ người lạ được đánh dấu" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+Mở cài đặt, chọn **Tin nhắn** (ứng dụng máy tính: **Trò chuyện**), rồi bật **Không nhận tin nhắn từ người lạ**.
 
 <Image src={computerChat} alt="Cài đặt Trò chuyện trên web, công tắc Không nhận tin nhắn từ người lạ được đánh dấu" />
+
+</TabItem>
+</Tabs>
 
 ## Thiết bị {#devices}
 
@@ -142,6 +155,8 @@ Mục **Thiết bị** có trong ứng dụng web, ứng dụng máy tính và �
 <TabItem value="phone" label="Điện thoại">
 
 Mở cài đặt, nhấn **Giao diện**, rồi chọn một giao diện. Phần xem trước cho thấy cuộc trò chuyện sẽ trông thế nào.
+
+<Image src={phoneTheme} alt="Màn hình Chủ đề ứng dụng với phần xem trước cuộc trò chuyện và các giao diện để chọn" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">

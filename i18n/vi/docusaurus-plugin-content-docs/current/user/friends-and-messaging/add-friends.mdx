@@ -6,6 +6,15 @@ description: Gửi lời mời kết bạn, chấp nhận hoặc từ chối l�
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import addFriendsPhone01 from "./images/add-friends-phone-01.png";
+import addFriendsPhone02 from "./images/add-friends-phone-02.png";
+import addFriendsPhone03 from "./images/add-friends-phone-03.png";
+import addFriendsPhone04 from "./images/add-friends-phone-04.png";
+import addFriendsPhone05 from "./images/add-friends-phone-05.png";
+import addFriendsIphone01 from "./images/add-friends-iphone-01.png";
+import addFriendsIphone02 from "./images/add-friends-iphone-02.png";
+import addFriendsIphone03 from "./images/add-friends-iphone-03.png";
 import addFriendsComputer01 from "./images/add-friends-computer-01.png";
 import addFriendsComputer02 from "./images/add-friends-computer-02.png";
 import addFriendsComputer03 from "./images/add-friends-computer-03.png";
@@ -21,11 +30,26 @@ Bạn cần biết tên người dùng Mezon của người đó. Trên điện 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Mở thẻ **Tin nhắn** ở cuối màn hình.
-2. Nhấn **Thêm bạn** ở phía trên.
-3. Nhấn **Thêm bằng tên người dùng hoặc số điện thoại** (trên Android: **Thêm bằng tên người dùng**).
-4. Nhập tên người dùng hoặc số điện thoại.
-5. Nhấn **Gửi yêu cầu kết bạn**.
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
+<ShotSteps>
+<Shot src={addFriendsPhone01} alt="Thẻ Tin nhắn, nút Thêm bạn được đánh dấu">Mở thẻ **Tin nhắn** ở cuối màn hình. Nhấn **Thêm bạn** ở phía trên.</Shot>
+<Shot src={addFriendsPhone02} alt="Màn hình Thêm bạn bè, mục Thêm bằng tên người dùng được đánh dấu">Nhấn **Thêm bằng tên người dùng**.</Shot>
+<Shot src={addFriendsPhone03} alt="Ô thêm bạn đã nhập tên người dùng, nút Gửi yêu cầu kết bạn được đánh dấu">Nhập tên người dùng hoặc số điện thoại. Nhấn **Gửi yêu cầu kết bạn**.</Shot>
+</ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={addFriendsIphone03} alt="Thẻ Tin nhắn, nút Thêm bạn được đánh dấu">Mở thẻ **Tin nhắn** ở cuối màn hình. Nhấn **Thêm bạn** ở phía trên.</Shot>
+<Shot src={addFriendsIphone01} alt="Màn hình Thêm bạn bè, mục Thêm bằng tên người dùng hoặc số điện thoại được đánh dấu">Nhấn **Thêm bằng tên người dùng hoặc số điện thoại**.</Shot>
+<Shot src={addFriendsIphone02} alt="Ô thêm bạn đã nhập tên người dùng, nút Gửi yêu cầu kết bạn được đánh dấu">Nhập tên người dùng hoặc số điện thoại. Nhấn **Gửi yêu cầu kết bạn**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -55,8 +79,10 @@ Trên máy tính, tên người dùng của bạn nằm ở mục **TÊN ĐĂNG 
 <TabItem value="phone" label="Điện thoại">
 
 1. Mở thẻ **Tin nhắn** và nhấn **Thêm bạn**.
-2. Tìm lời mời ở mục **Yêu cầu kết bạn đến** (Android) hoặc thẻ **Đã nhận** (iPhone).
+2. Tìm lời mời ở thẻ **Đã nhận**.
 3. Nhấn dấu tích để chấp nhận, hoặc dấu X để từ chối.
+
+<Image src={addFriendsPhone04} alt="Thẻ Đã nhận có một lời mời kết bạn, dấu tích được đánh dấu" width={270} />
 
 Bạn cũng có thể mở **Hồ sơ** → biểu tượng bánh răng (**Cài đặt**) → **Yêu cầu kết bạn** (iPhone: **Lời mời kết bạn**). Thẻ **Đã nhận** là lời mời người khác gửi cho bạn. Thẻ **Đã gửi** là lời mời bạn đã gửi.
 
@@ -105,6 +131,8 @@ Bạn có thể chặn bất kỳ ai, kể cả người chưa phải bạn bè.
 1. Mở thẻ **Tin nhắn**.
 2. Nhấn giữ cuộc trò chuyện với người đó.
 3. Nhấn **Xóa bạn** hoặc **Chặn người dùng**.
+
+<Image src={addFriendsPhone05} alt="Menu của một cuộc trò chuyện, mục Chặn người dùng được đánh dấu" width={270} />
 
 Để xem hoặc bỏ chặn những người bạn đã chặn, mở **Hồ sơ** → biểu tượng bánh răng (**Cài đặt**) → **Tài khoản** → **Người dùng bị chặn**.
 

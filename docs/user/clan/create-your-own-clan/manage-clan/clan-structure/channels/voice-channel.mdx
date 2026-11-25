@@ -6,6 +6,7 @@ description: Join a voice channel as a speaker or a listener, and use the microp
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
 import voicePhone01 from "./images/voice-channel-phone-01.png";
 import voicePhone02 from "./images/voice-channel-phone-02.png";
 import voiceComputer01 from "./images/voice-channel-computer-01.png";
@@ -22,17 +23,10 @@ In a voice channel, members of the clan talk, turn on their cameras and share th
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Tap the voice channel.
-2. Tap **Join as Speaker**.
-
-<Image src={voicePhone01} alt="The voice channel sheet with the Join as Speaker button and its menu open" width={270} />
-
-To only listen, tap the arrow next to the button and choose **Join as audience**.
-
-3. The first time, allow Mezon to use the microphone.
-4. Tap the microphone button to turn your microphone on or off.
-
-<Image src={voicePhone02} alt="A voice call on a phone with the controls at the bottom" width={270} />
+<ShotSteps>
+<Shot src={voicePhone01} alt="The voice channel sheet with the join menu open and Join as Speaker marked">Tap the voice channel. Tap **Join as Speaker**. To only listen, tap the arrow next to the button and choose **Join as audience**.</Shot>
+<Shot src={voicePhone02} alt="A voice call with two people and the controls at the bottom">The first time, allow Mezon to use the microphone. Tap the microphone button to turn your microphone on or off.</Shot>
+</ShotSteps>
 
 **iPhone:** you join with your microphone off. Tap the microphone button when you want to talk.
 

@@ -6,6 +6,9 @@ description: Thêm biểu cảm, nhãn dán hình ảnh và hiệu ứng âm tha
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneEmoji from "./images/emoji-image-and-voice-stickers-phone-01.png";
+import phoneSound from "./images/emoji-image-and-voice-stickers-phone-02.png";
 import computerEmoji from "./images/emoji-image-and-voice-stickers-computer-01.png";
 import computerSticker from "./images/emoji-image-and-voice-stickers-computer-02.png";
 import computerSound from "./images/emoji-image-and-voice-stickers-computer-03.png";
@@ -36,6 +39,11 @@ Mỗi clan có tối đa 250 biểu cảm và 250 nhãn dán hình ảnh. Trên 
 4. Chọn tệp. Với âm thanh, chọn đoạn muốn giữ.
 5. Nhập tên.
 6. Nhấn **Tải lên**.
+
+<ShotSteps plain>
+<Shot src={phoneEmoji} alt="Trang Biểu cảm, nút Tải lên biểu cảm được đánh dấu">**Biểu cảm** → **Tải lên biểu cảm**.</Shot>
+<Shot src={phoneSound} alt="Trang Hiệu ứng âm thanh, nút Tải âm thanh lên được đánh dấu">**Hiệu ứng âm thanh** → **Tải âm thanh lên**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">

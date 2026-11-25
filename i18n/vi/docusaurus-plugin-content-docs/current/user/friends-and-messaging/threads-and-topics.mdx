@@ -6,6 +6,11 @@ description: Khác nhau giữa chủ đề và thảo luận ngắn trong kênh 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import threadsPhone01 from "./images/threads-and-topics-phone-01.png";
+import threadsPhone02 from "./images/threads-and-topics-phone-02.png";
+import threadsPhone03 from "./images/threads-and-topics-phone-03.png";
+import threadsPhone04 from "./images/threads-and-topics-phone-04.png";
 import threadsComputer01 from "./images/threads-and-topics-computer-01.png";
 import threadsComputer02 from "./images/threads-and-topics-computer-02.png";
 import threadsComputer03 from "./images/threads-and-topics-computer-03.png";
@@ -34,9 +39,11 @@ Trong ứng dụng, tên gọi chưa thống nhất: thảo luận ngắn còn �
 <TabItem value="phone" label="Điện thoại">
 
 1. Nhấn giữ tin nhắn bạn muốn bàn thêm.
-2. Nhấn **Tạo chủ đề**.
+2. Nhấn **Tạo chủ đề**. Nếu chưa thấy mục này, hãy vuốt menu lên.
 3. Nhập tên chủ đề.
 4. Nhập tin nhắn đầu tiên rồi gửi.
+
+<Image src={threadsPhone01} alt="Menu tin nhắn trong kênh của clan, mục Tạo chủ đề được đánh dấu" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -70,8 +77,10 @@ Tên chủ đề cần ít nhất 4 ký tự. Nếu menu không có **Tạo ch�
 <TabItem value="phone" label="Điện thoại">
 
 1. Nhấn giữ một tin nhắn trong kênh văn bản hoặc chủ đề của clan.
-2. Nhấn **Thảo luận chủ đề** (Android: **Thảo luận ngắn**).
+2. Nhấn **Thảo luận chủ đề** (Android: **Thảo luận ngắn**). Nếu chưa thấy mục này, hãy vuốt menu lên.
 3. Nhập câu trả lời rồi gửi.
+
+<Image src={threadsPhone02} alt="Menu tin nhắn trong kênh của clan, mục Thảo luận ngắn được đánh dấu" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -86,7 +95,7 @@ Tên chủ đề cần ít nhất 4 ký tự. Nếu menu không có **Tạo ch�
 </TabItem>
 </Tabs>
 
-Dưới tin nhắn có một nút cho biết số câu trả lời, ví dụ **1 tin nhắn**. Nhấn vào nút đó để mở thảo luận ngắn. Trên điện thoại, nút này còn có chữ **Xem thảo luận ngắn** (iPhone hiện bằng tiếng Anh: **View Topic**).
+Dưới tin nhắn có một nút cho biết số câu trả lời, ví dụ **1 tin nhắn** (Android: **1 Trả lời**). Nhấn vào nút đó để mở thảo luận ngắn. Trên iPhone, nút này còn có chữ **View Topic** (Xem thảo luận ngắn; hiện bằng tiếng Anh).
 
 Trên máy tính, một thanh dưới tên kênh hiện thảo luận ngắn hoặc tin nhắn ghim mới nhất. Nhấn vào thanh đó để đi tới nơi đó.
 
@@ -97,8 +106,10 @@ Trên máy tính, một thanh dưới tên kênh hiện thảo luận ngắn ho�
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-- Mở thẻ **Thông báo** ở cuối màn hình, rồi chọn **Thảo luận ngắn**. Thẻ này liệt kê các thảo luận ngắn có hoạt động mới.
-- **Android:** nút **Xem thảo luận ngắn** hiện một số màu đỏ khi có người nhắc đến bạn trong thảo luận ngắn đó.
+<ShotSteps plain>
+<Shot src={threadsPhone03} alt="Thẻ Thông báo, mục Thảo luận ngắn được đánh dấu và có một thảo luận">Mở thẻ **Thông báo** ở cuối màn hình, rồi chọn **Thảo luận ngắn**. Thẻ này liệt kê các thảo luận ngắn có hoạt động mới.</Shot>
+<Shot src={threadsPhone04} alt="Một tin nhắn có nút số câu trả lời và số màu đỏ được đánh dấu">**Android:** nút số câu trả lời dưới tin nhắn hiện một số màu đỏ khi có người nhắc đến bạn trong thảo luận ngắn đó.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">

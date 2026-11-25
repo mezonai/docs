@@ -6,6 +6,10 @@ description: Chọn tin nhắn nào sẽ báo cho bạn trong cả clan, trong m
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneClanMenu from "./images/managing-notifications-in-a-clan-phone-01.png";
+import phoneLevels from "./images/managing-notifications-in-a-clan-phone-02.png";
+import phoneChannelMenu from "./images/managing-notifications-in-a-clan-phone-03.png";
 import computerClanMenu from "./images/managing-notifications-in-a-clan-computer-01.png";
 import computerDialog from "./images/managing-notifications-in-a-clan-computer-02.png";
 import computerMute from "./images/managing-notifications-in-a-clan-computer-03.png";
@@ -33,9 +37,10 @@ Nếu bạn ở trong nhiều clan, hãy đặt phần lớn clan ở mức **Ch
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Mở clan và nhấn vào tên clan ở trên cùng.
-2. Nhấn **Thông báo**.
-3. Chọn **Tất cả**, **Chỉ @mention** hoặc **Không có gì**.
+<ShotSteps>
+<Shot src={phoneClanMenu} alt="Menu clan, mục Thông báo được đánh dấu">Mở clan và nhấn vào tên clan ở trên cùng. Nhấn **Thông báo**.</Shot>
+<Shot src={phoneLevels} alt="Các mức thông báo của clan: Tất cả, Chỉ @mention và Không có gì">Chọn **Tất cả**, **Chỉ @mention** hoặc **Không có gì**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -59,6 +64,8 @@ Bạn cũng có thể nhấn vào tên clan ở đầu danh sách kênh rồi ch
 1. Nhấn giữ kênh.
 2. Nhấn **Cài đặt thông báo**.
 3. Chọn mức mặc định, **Tất cả**, **Chỉ @mention** hoặc **Không có gì**.
+
+<Image src={phoneChannelMenu} alt="Menu kênh, mục Tắt thông báo kênh và Cài đặt thông báo được đánh dấu" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">

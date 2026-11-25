@@ -5,6 +5,11 @@ description: Phím tắt trong ứng dụng web và ứng dụng máy tính Mezo
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneBuzz from "./images/shortcuts-phone-01.png";
+import phoneAnonymous from "./images/shortcuts-phone-02.png";
+import iphoneActions from "./images/shortcuts-iphone-01.png";
 
 # Phím tắt và định dạng chữ
 
@@ -17,6 +22,22 @@ Trang này liệt kê phím tắt của ứng dụng web 2.1.5 và ứng dụng 
 
 - **Buzz:** tin nhắn kèm tiếng chuông để gây chú ý. Nhấn nút menu cạnh dấu **+** trong ô nhập tin nhắn, rồi nhấn **Buzz**.
 - **Ẩn danh:** đăng tin trong kênh của clan mà không hiện tên bạn. Nhấn nút menu cạnh dấu **+** trong ô nhập tin nhắn. Android: nhấn **Ẩn danh**; để tắt, nhấn **Tắt ẩn danh**. iPhone: nút hiện bằng tiếng Anh, nhấn **Anonymous**; để tắt, nhấn **Anonymous On**.
+
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
+<ShotSteps plain>
+<Shot src={phoneBuzz} alt="Các thao tác thêm trong ô nhập tin nhắn, mục Buzz được đánh dấu">**Buzz**</Shot>
+<Shot src={phoneAnonymous} alt="Các thao tác thêm trong ô nhập tin nhắn, mục Ẩn danh được đánh dấu">**Ẩn danh**</Shot>
+</ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<Image src={iphoneActions} alt="Các thao tác thêm trong ô nhập tin nhắn trên iPhone, mục Buzz và Anonymous được đánh dấu" width={270} />
+
+</TabItem>
+</Tabs>
 
 Chế độ ẩn danh chỉ dùng được trong kênh của clan, và chỉ khi clan cho phép.
 

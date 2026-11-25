@@ -6,8 +6,10 @@ description: Tạo kênh văn bản, kênh thoại, kênh phát trực tiếp tr
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
 import channelsPhone01 from "./images/channels-phone-01.png";
 import channelsPhone02 from "./images/channels-phone-02.png";
+import channelsPhone03 from "./images/channels-phone-03.png";
 import channelsComputer01 from "./images/channels-computer-01.png";
 import channelsComputer02 from "./images/channels-computer-02.png";
 import channelsComputer03 from "./images/channels-computer-03.png";
@@ -28,18 +30,10 @@ Chủ sở hữu clan và các vai trò có quyền **Quản trị viên**, **Qu
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Mở clan của bạn.
-2. Nhấn giữ tên một danh mục, ví dụ **PUBLIC CHANNELS**.
-3. Nhấn **Tạo kênh**.
-
-<Image src={channelsPhone01} alt="Menu của danh mục, mục Tạo kênh ở dưới cùng" width={270} />
-
-4. Nhập tên kênh.
-5. Chọn loại kênh: **Văn bản**, **Thoại** hoặc **Phát trực tiếp**.
-6. Muốn kênh văn bản hoặc kênh thoại là riêng tư, hãy bật **Kênh riêng** (iPhone: **Kênh riêng tư**).
-7. Nhấn **Tạo**.
-
-<Image src={channelsPhone02} alt="Màn hình tạo kênh, loại Thoại đang được chọn" width={270} />
+<ShotSteps>
+<Shot src={channelsPhone01} alt="Menu của danh mục, mục Tạo kênh được đánh dấu">Mở clan của bạn. Nhấn giữ tên một danh mục, ví dụ **PUBLIC CHANNELS**. Nhấn **Tạo kênh**.</Shot>
+<Shot src={channelsPhone02} alt="Màn hình Tạo kênh đã nhập tên, loại Thoại được đánh dấu">Nhập tên kênh. Chọn **Văn bản**, **Thoại** hoặc **Phát trực tiếp**. Muốn kênh văn bản hoặc kênh thoại là riêng tư, hãy bật **Kênh riêng** (iPhone: **Kênh riêng tư**). Nhấn **Tạo**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -79,6 +73,9 @@ Chủ sở hữu clan và các vai trò có quyền **Quản lý kênh** có th�
 
 1. Nhấn giữ tên kênh.
 2. Nhấn **Chỉnh sửa kênh**.
+
+<Image src={channelsPhone03} alt="Menu của kênh, mục Chỉnh sửa kênh được đánh dấu" width={270} />
+
 3. Đổi tên kênh hoặc **Chủ đề kênh**, hoặc nhấn **Đổi danh mục** (iPhone: **Thay đổi danh mục**) để chuyển kênh.
 
 </TabItem>

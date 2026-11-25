@@ -6,6 +6,13 @@ description: Tạo nhóm chat tối đa 20 người, đổi tên nhóm, thêm ho
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import groupPhone01 from "./images/group-chats-phone-01.png";
+import groupPhone02 from "./images/group-chats-phone-02.png";
+import groupPhone03 from "./images/group-chats-phone-03.png";
+import groupPhone04 from "./images/group-chats-phone-04.png";
+import groupIphone01 from "./images/group-chats-iphone-01.png";
+import groupIphone02 from "./images/group-chats-iphone-02.png";
 import groupComputer01 from "./images/group-chats-computer-01.png";
 import groupComputer02 from "./images/group-chats-computer-02.png";
 import groupComputer03 from "./images/group-chats-computer-03.png";
@@ -27,6 +34,8 @@ Bạn chỉ thêm được bạn bè của mình. Xem [Kết bạn](./add-friend
 2. Nhấn nút tròn ở góc dưới bên phải. Trên Android, nhấn tiếp **Nhóm mới**.
 3. Chọn từ hai người bạn trở lên.
 4. Nhấn **Tạo**.
+
+<Image src={groupPhone01} alt="Màn hình Nhóm mới với hai người bạn được chọn, nút Tạo được đánh dấu" width={270} />
 
 Bạn cũng có thể tạo nhóm từ cuộc trò chuyện với một người: nhấn vào tên người đó ở phía trên, rồi nhấn **Thêm thành viên** (trên Android nút này hiện bằng tiếng Anh: **Add Members**). Mezon tạo một nhóm mới gồm người đó và những người bạn bạn chọn.
 
@@ -55,7 +64,9 @@ Mọi thành viên đều làm được việc này.
 
 1. Mở nhóm chat.
 2. Nhấn vào tên nhóm ở phía trên.
-3. Đổi tên hoặc ảnh. Trên Android, nhấn **Tùy chỉnh nhóm** trước.
+3. Nhấn **Tùy chỉnh nhóm**, rồi đổi tên hoặc ảnh.
+
+<Image src={groupPhone02} alt="Thông tin nhóm, mục Tùy chỉnh nhóm được đánh dấu" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -81,6 +92,8 @@ Mọi thành viên đều có thể thêm bạn bè của mình, miễn là nhó
 2. Nhấn **Thêm thành viên** (trên Android: **Add Members**).
 3. Chọn bạn bè và xác nhận.
 
+<Image src={groupPhone03} alt="Thông tin nhóm, nút Add Members được đánh dấu" width={270} />
+
 </TabItem>
 <TabItem value="computer" label="Máy tính">
 
@@ -100,9 +113,10 @@ Chỉ người tạo nhóm mới xóa được thành viên. Trên máy tính, n
 
 **iPhone**
 
-1. Mở nhóm chat và nhấn vào tên nhóm ở phía trên.
-2. Trong **Thành viên**, nhấn vào người đó.
-3. Nhấn **Xóa khỏi nhóm**, rồi nhấn **Xóa**.
+<ShotSteps>
+<Shot src={groupIphone01} alt="Thông tin nhóm với danh sách thành viên, một thành viên được đánh dấu">Mở nhóm chat và nhấn vào tên nhóm ở phía trên. Trong **Thành viên**, nhấn vào người đó.</Shot>
+<Shot src={groupIphone02} alt="Bảng thông tin của một thành viên, mục Xóa khỏi nhóm được đánh dấu">Nhấn **Xóa khỏi nhóm**, rồi nhấn **Xóa**.</Shot>
+</ShotSteps>
 
 **Android:** ứng dụng chưa có chức năng xóa thành viên. Hãy dùng iPhone hoặc máy tính.
 
@@ -130,6 +144,8 @@ Bạn chỉ vào lại nhóm được khi có thành viên thêm bạn lần n�
 3. Nhấn **Rời nhóm** và xác nhận.
 
 Nếu bạn là thành viên cuối cùng, nút này là **Xóa nhóm**.
+
+<Image src={groupPhone04} alt="Menu của nhóm chat, mục Rời nhóm được đánh dấu" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">

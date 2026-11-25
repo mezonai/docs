@@ -6,6 +6,11 @@ description: The difference between threads and topics in a clan channel, how to
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import threadsPhone01 from "./images/threads-and-topics-phone-01.png";
+import threadsPhone02 from "./images/threads-and-topics-phone-02.png";
+import threadsPhone03 from "./images/threads-and-topics-phone-03.png";
+import threadsPhone04 from "./images/threads-and-topics-phone-04.png";
 import threadsComputer01 from "./images/threads-and-topics-computer-01.png";
 import threadsComputer02 from "./images/threads-and-topics-computer-02.png";
 import threadsComputer03 from "./images/threads-and-topics-computer-03.png";
@@ -32,9 +37,11 @@ Threads and topics keep side conversations out of the main chat of a clan text c
 <TabItem value="phone" label="Phone">
 
 1. Press and hold the message you want to talk about.
-2. Tap **Create Thread**.
+2. Tap **Create Thread**. If you do not see it, swipe the menu up.
 3. Type a thread name.
 4. Type the first message and send it.
+
+<Image src={threadsPhone01} alt="The message menu in a clan channel with Create Thread marked" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -68,8 +75,10 @@ A thread name needs at least 4 characters. If **Create Thread** is not in the me
 <TabItem value="phone" label="Phone">
 
 1. Press and hold a message in a clan text channel or thread.
-2. Tap **Topic Discussion**.
+2. Tap **Topic Discussion**. If you do not see it, swipe the menu up.
 3. Type your reply and send it.
+
+<Image src={threadsPhone02} alt="The message menu in a clan channel with Topic Discussion marked" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -84,7 +93,7 @@ A thread name needs at least 4 characters. If **Create Thread** is not in the me
 </TabItem>
 </Tabs>
 
-Under the message, a button shows the number of replies, for example **1 reply**. Click or tap it to open the topic. On phones the button also says **View topic**.
+Under the message, a button shows the number of replies, for example **1 reply** (Android: **1 Reply**). Click or tap it to open the topic. On iPhone the button also says **View Topic**.
 
 On a computer, a bar under the channel name shows the latest topic or pinned message. Click it to jump there.
 
@@ -95,8 +104,10 @@ On a computer, a bar under the channel name shows the latest topic or pinned mes
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-- Open the **Notifications** tab at the bottom, then **Topics** (**Topic** on iPhone). It lists the topics with new activity.
-- **Android:** the **View topic** button shows a red number when someone mentions you in that topic.
+<ShotSteps plain>
+<Shot src={threadsPhone03} alt="The Notifications tab with Topics marked and one topic listed">Open the **Notifications** tab at the bottom, then **Topics** (**Topic** on iPhone). It lists the topics with new activity.</Shot>
+<Shot src={threadsPhone04} alt="A message with its replies button and a red number marked">**Android:** the replies button under the message shows a red number when someone mentions you in that topic.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Computer">

@@ -6,7 +6,11 @@ description: The main parts of the Mezon screen on a phone and on a computer.
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
 import phoneHome from "./images/quick-tour-phone-01.png";
+import phoneMessages from "./images/quick-tour-phone-02.png";
+import phoneNotifications from "./images/quick-tour-phone-03.png";
+import iphoneHome from "./images/quick-tour-iphone-01.png";
 import computerHome from "./images/quick-tour-computer-01.png";
 
 # Quick tour of the screen
@@ -16,7 +20,18 @@ This page shows the main parts of the Mezon screen, so you know where to find th
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <Image src={phoneHome} alt="The Clans tab on Android: the clan list on the left, the channel list of the open clan, and the tabs at the bottom" width={270} />
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<Image src={iphoneHome} alt="The Clans tab on iPhone: the clan list on the left, the channel list of the open clan, and the tabs at the bottom" width={270} />
+
+</TabItem>
+</Tabs>
 
 ## Tabs at the bottom
 
@@ -26,6 +41,11 @@ This page shows the main parts of the Mezon screen, so you know where to find th
 | **Messages** | Your direct messages and group chats. |
 | **Notifications** | Your notifications, for example when someone mentions you. |
 | **Profile** | Your name and status, your Mezon Dong wallet, **Edit Profile**, and the gear icon for [settings](./personalization-settings.mdx). |
+
+<ShotSteps plain>
+<Shot src={phoneMessages} alt="The Messages tab with the list of conversations">The **Messages** tab.</Shot>
+<Shot src={phoneNotifications} alt="The Notifications tab with the Mentions, Messages, Topics and For You tabs">The **Notifications** tab, sorted into **Mentions**, **Messages**, **Topics** and **For You**.</Shot>
+</ShotSteps>
 
 ## Clans tab
 

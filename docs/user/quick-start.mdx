@@ -10,6 +10,7 @@ import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
 import qrMobileDownload from "./images/quick-start/qr-mobile-download.png";
 import phoneWelcome from "./images/quick-start/phone-01-welcome.png";
 import phoneLoginEmail from "./images/quick-start/phone-02-login-email.png";
+import phoneLoginOtp from "./images/quick-start/phone-02-login-otp.png";
 import phoneAllowNotifications from "./images/quick-start/phone-10-allow-notifications.png";
 import phoneProfileSettings from "./images/quick-start/phone-11-profile-settings.png";
 import phoneSettingsLanguage from "./images/quick-start/phone-11-settings-language.png";
@@ -34,6 +35,33 @@ import phoneAllowMicrophone from "./images/quick-start/phone-10-allow-microphone
 import phoneInCall from "./images/quick-start/phone-08-in-call.png";
 import phoneClanMenu from "./images/quick-start/phone-09-clan-menu.png";
 import phoneInviteSheet from "./images/quick-start/phone-09-invite-sheet.png";
+import iphoneWelcome from "./images/quick-start/iphone-01-welcome.png";
+import iphoneLoginSms from "./images/quick-start/iphone-02-login-sms.png";
+import iphoneLoginEmail from "./images/quick-start/iphone-02-login-email.png";
+import iphoneAllowNotifications from "./images/quick-start/iphone-10-allow-notifications.png";
+import iphoneProfileSettings from "./images/quick-start/iphone-11-profile-settings.png";
+import iphoneSettingsLanguage from "./images/quick-start/iphone-11-settings-language.png";
+import iphoneLanguageChoice from "./images/quick-start/iphone-11-language-choice.png";
+import iphoneInviteLinkOpen from "./images/quick-start/iphone-05-invite-link-open.png";
+import iphoneLicenseAgreement from "./images/quick-start/iphone-05-license-agreement.png";
+import iphoneQrIcon from "./images/quick-start/iphone-05-qr-icon.png";
+import iphoneMessagesTab from "./images/quick-start/iphone-03-messages-tab.png";
+import iphoneAddFriend from "./images/quick-start/iphone-12-add-friend.png";
+import iphoneAddClanButton from "./images/quick-start/iphone-04-add-clan-button.png";
+import iphoneCreateClanChoice from "./images/quick-start/iphone-04-create-clan-choice.png";
+import iphoneCreateClanForm from "./images/quick-start/iphone-04-create-clan-form.png";
+import iphoneCategoryMenu from "./images/quick-start/iphone-06-category-menu.png";
+import iphoneCreateTextChannel from "./images/quick-start/iphone-06-create-text-channel.png";
+import iphoneChannelList from "./images/quick-start/iphone-06-channel-list.png";
+import iphoneMemberList from "./images/quick-start/iphone-07-member-list.png";
+import iphoneProfileMessage from "./images/quick-start/iphone-07-profile-message.png";
+import iphoneComposerSend from "./images/quick-start/iphone-07-composer-send.png";
+import iphoneDmChat from "./images/quick-start/iphone-07-dm-chat.png";
+import iphoneVoiceChannelSheet from "./images/quick-start/iphone-08-voice-channel-sheet.png";
+import iphoneAllowMicrophone from "./images/quick-start/iphone-10-allow-microphone.png";
+import iphoneInCall from "./images/quick-start/iphone-08-in-call.png";
+import iphoneClanMenu from "./images/quick-start/iphone-09-clan-menu.png";
+import iphoneInviteSheet from "./images/quick-start/iphone-09-invite-sheet.png";
 import computerDownload from "./images/quick-start/computer-02-download-desktop.png";
 import computerSignIn from "./images/quick-start/computer-03-sign-in.png";
 import computerLanguage from "./images/quick-start/computer-23-language.png";
@@ -88,15 +116,32 @@ A **clan** is your team's space in Mezon. It has **channels**: text channels for
 
 You do not need to sign up: the first login creates your account.
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps>
 <Shot src={phoneWelcome} alt="The Mezon welcome screen with the Get Started button">Open Mezon and tap **Get Started**.</Shot>
-<Shot src={phoneLoginEmail} alt="The log-in screen with the email field">If you see a phone number field, tap **Login with Email OTP**. Type your email. Tap **Send OTP**.</Shot>
-<Shot src={phoneAllowNotifications} alt="The notification permission question with the Allow button">Type the 6-digit code from your email. Tap **Verify OTP**. Then tap **Allow** for notifications.</Shot>
+<Shot src={phoneLoginEmail} alt="The log-in screen with the email field">Type your email. Tap **Send OTP**.</Shot>
+<Shot src={phoneLoginOtp} alt="The code screen with six boxes and the Verify OTP button">Type the 6-digit code from your email. Tap **Verify OTP**.</Shot>
+<Shot src={phoneAllowNotifications} alt="The notification permission question with the Allow button">Tap **Allow** for notifications.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneWelcome} alt="The Mezon welcome screen with the Get started button">Open Mezon and tap **Get started**.</Shot>
+<Shot src={iphoneLoginSms} alt="The first log-in screen, which asks for a phone number">The first screen asks for a phone number. To use your email, tap **Login with Email OTP** below.</Shot>
+<Shot src={iphoneLoginEmail} alt="The log-in screen with the email field">Type your email. Tap **Send OTP**.</Shot>
+<Shot src={iphoneAllowNotifications} alt="The notification permission question with the Allow button">Type the 6-digit code from your email. Tap **Verify OTP**. Then tap **Allow** for notifications.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 If Mezon asks for a Mezon name, type your name without accents or spaces, for example **nguyenvanan**, and tap **Update**. This becomes your username.
 
-You can also log in with a Vietnamese mobile number. The code then comes by SMS.
+You can also log in with a Vietnamese mobile number (Android: tap **Login with SMS OTP**). The code then comes by SMS.
 
 :::warning
 Use the same email (or phone number) on all your devices. Another email or number creates a second, separate account.
@@ -104,7 +149,10 @@ Use the same email (or phone number) on all your devices. Another email or numbe
 
 ### Change the language
 
-The Android app starts in English. On an iPhone, Mezon uses the phone's language; you can change it in the same place.
+The Android app starts in English. On an iPhone, Mezon starts in the phone's language; you can change it in the same place.
+
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
 
 <ShotSteps>
 <Shot src={phoneProfileSettings} alt="The Profile tab with the gear icon marked">Tap **Profile** at the bottom, then the gear icon at the top.</Shot>
@@ -112,14 +160,41 @@ The Android app starts in English. On an iPhone, Mezon uses the phone's language
 <Shot src={phoneLanguageChoice} alt="The language list with English and Tiếng Việt">Tap **Tiếng Việt**.</Shot>
 </ShotSteps>
 
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneProfileSettings} alt="The Profile tab with the gear icon marked">Tap **Profile** at the bottom, then the gear icon at the top.</Shot>
+<Shot src={iphoneSettingsLanguage} alt="Settings with the Language row marked">Tap **Language**.</Shot>
+<Shot src={iphoneLanguageChoice} alt="The Language Settings list with English and Tiếng Việt">Tap **Tiếng Việt**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
+
 ## 3. Join your team's clan
 
 Your team leader sends you an invite link or an invite QR code. Use either one.
+
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
 
 <ShotSteps plain>
 <Shot src={phoneInviteOpen} alt="The invite screen with the clan name and the Join button">**With a link:** open the link on your phone (it looks like `https://mezon.ai/invite/...`). Mezon shows the clan. Tap **Join**.</Shot>
 <Shot src={phoneQrIcon} alt="The Clans tab with the QR code icon next to the search box marked">**With a QR code:** tap **Clans** at the bottom, then the QR code icon next to the search box. Point the camera at the code. Tap **Join**.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps plain>
+<Shot src={iphoneInviteLinkOpen} alt="The invite screen with the clan name and the Join button">**With a link:** open the link on your phone (it looks like `https://mezon.ai/invite/...`). Mezon shows the clan. Tap **Join**.</Shot>
+<Shot src={iphoneQrIcon} alt="The Clans tab with the QR code icon next to the search box marked">**With a QR code:** tap **Clans** at the bottom, then the QR code icon next to the search box. Point the camera at the code. Tap **Join**.</Shot>
+<Shot src={iphoneLicenseAgreement} alt="The License Agreement with the Yes, Agree button">**After you join:** Mezon shows the **License Agreement** the first time you open a channel. Tap **Yes, Agree**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 - The scanner is also in **Profile** → gear icon → **Scan QR Code** (iPhone: **QR Scan**).
 - If the QR code is a picture in a chat on your phone, save the picture. On the scan screen, tap the picture icon at the bottom left (iPhone: **Choose from Photo Library**) and pick it.
@@ -130,9 +205,22 @@ Your team leader sends you an invite link or an invite QR code. Use either one.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps plain>
 <Shot src={phoneMessagesTab} alt="The Messages tab with the conversation list">The tabs at the bottom are **Clans**, **Messages**, **Notifications** and **Profile**. In **Clans**, each picture in the bar on the left is one clan: tap it to see its channels. Your chats with one person are in **Messages**.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps plain>
+<Shot src={iphoneMessagesTab} alt="The Messages tab with the conversation list">The tabs at the bottom are **Clans**, **Messages**, **Notifications** and **Profile**. In **Clans**, each picture in the bar on the left is one clan: tap it to see its channels. Your chats with one person are in **Messages**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -149,12 +237,28 @@ Your team leader sends you an invite link or an invite QR code. Use either one.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps>
 <Shot src={phoneMemberList} alt="The members list of a channel">Open a channel and tap its name at the top. In **Members**, tap the person.</Shot>
 <Shot src={phoneProfileMessage} alt="A member's profile with the Message button">Tap **Message**.</Shot>
 <Shot src={phoneComposerSend} alt="A message typed in the box, with the send button marked">Type your message in the box at the bottom. Tap the send button on the right (it appears when you type).</Shot>
 <Shot src={phoneDmChat} alt="A conversation between two people, with the message box at the bottom">The newest messages are at the bottom. The chat is also in **Messages**.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneMemberList} alt="The members list of a channel">Open a channel and tap its name at the top. In **Members**, tap the person.</Shot>
+<Shot src={iphoneProfileMessage} alt="A member's profile with the Message button">Tap **Message**.</Shot>
+<Shot src={iphoneComposerSend} alt="A message typed in the box, with the send button marked">Type your message in the box at the bottom. Tap the send button on the right (it appears when you type).</Shot>
+<Shot src={iphoneDmChat} alt="A conversation between two people, with the message box at the bottom">The newest messages are at the bottom. The chat is also in **Messages**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -174,9 +278,22 @@ You can message people in your clan without being friends, unless they only acce
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps plain>
 <Shot src={phoneAddFriend} alt="The Messages tab with the Add Friend button marked">**Messages** → **Add Friend** → **Add by username or phone number**. Type the person's username or phone number. Tap **Send Friend Request**.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps plain>
+<Shot src={iphoneAddFriend} alt="The Messages tab with the Add Friend button marked">**Messages** → **Add Friend** → **Add by username or phone number**. Type the person's username or phone number. Tap **Send Friend Request**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 When the other person accepts, you become friends. Your friends are in **Profile** → **Your Friends**. Requests sent to you are under **Friend Requests** there: tap the green check mark to accept. You can also tap **Add Friend** on a person's profile in a clan.
 
@@ -199,11 +316,26 @@ Voice channels have a speaker icon in the channel list.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps>
 <Shot src={phoneVoiceSheet} alt="The voice channel sheet with Join as Speaker">Tap the voice channel. Tap **Join as Speaker**.</Shot>
 <Shot src={phoneAllowMicrophone} alt="The microphone permission question">The first time, allow the microphone: tap **While using the app**.</Shot>
 <Shot src={phoneInCall} alt="The voice channel screen with the buttons at the bottom">Your microphone starts off: tap the microphone button to talk. Tap the red button to leave.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneVoiceChannelSheet} alt="The voice channel sheet with Join as Speaker">Tap the voice channel. Tap **Join as Speaker**.</Shot>
+<Shot src={iphoneAllowMicrophone} alt="The microphone permission question">The first time, allow the microphone: tap **Allow**.</Shot>
+<Shot src={iphoneInCall} alt="The voice channel screen with the buttons at the bottom">Your microphone starts off: tap the microphone button to talk. Tap the red button to leave.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 Each person has a tile with their name; a crossed-out microphone means muted. The buttons at the bottom, from left to right: camera, microphone, chat, share screen, leave.
 
@@ -251,12 +383,27 @@ Only scan a Mezon QR code that you see on your own computer. Never confirm a cod
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps>
 <Shot src={phoneAddClan} alt="The plus button at the bottom of the clan bar">Tap **+** at the bottom of the clan bar on the left.</Shot>
 <Shot src={phoneCreateClanChoice} alt="The Create Your Clan screen with Create My Own and templates">Tap **Create My Own**.</Shot>
 <Shot src={phoneCreateClanForm} alt="The clan name form with the Create Clan button">Type the clan name. You can add a picture with **Upload**. Tap **Create Clan**.</Shot>
 <Shot src={phoneNewClan} alt="A new clan with the general channel">Your new clan opens with a text channel called **general**.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneAddClanButton} alt="The plus button at the bottom of the clan bar">Tap **+** at the bottom of the clan bar on the left.</Shot>
+<Shot src={iphoneCreateClanChoice} alt="The Create Your Clan screen with Create My Own and templates">Tap **Create My Own**.</Shot>
+<Shot src={iphoneCreateClanForm} alt="The clan name form with the Create Clan button">Type the clan name. You can add a picture with **UPLOAD**. Tap **Create Clan**. Your new clan opens with a text channel called **general**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -280,11 +427,26 @@ Only the clan owner and people with a role that can manage channels can add chan
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps>
 <Shot src={phoneCategoryMenu} alt="The menu after pressing and holding a category name, with Create channel">In your clan, press and hold the category name (for example **PUBLIC CHANNELS**). Tap **Create channel**.</Shot>
 <Shot src={phoneCreateChannel} alt="The Create Channel form with the name and channel types">Type the channel name. Choose **Text** for messages or **Voice** for talking. Tap **Create** at the top right.</Shot>
 <Shot src={phoneChannelList} alt="The channel list with two text channels and one voice channel">The new channel appears in the list. Voice channels have a speaker icon.</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneCategoryMenu} alt="The sheet after pressing and holding a category name, with Create Channel">In your clan, press and hold the category name (for example **PUBLIC CHANNELS**). Tap **Create Channel**.</Shot>
+<Shot src={iphoneCreateTextChannel} alt="The Create Channel form with the name and channel types">Type the channel name. Choose **Text** for messages or **Voice** for talking. Tap **Create** at the top right.</Shot>
+<Shot src={iphoneChannelList} alt="The channel list with two text channels and one voice channel">The new channel appears in the list. Voice channels have a speaker icon.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -304,10 +466,24 @@ Anyone in a clan can invite people.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
 <ShotSteps>
 <Shot src={phoneClanMenu} alt="The clan menu with Invite">Open the clan and tap the clan name at the top. Tap **Invite**.</Shot>
 <Shot src={phoneInviteSheet} alt="The invite sheet with Share Invite, Copy Link and QR Code">Choose how to send the invite (see below).</Shot>
 </ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={iphoneClanMenu} alt="The clan menu with Invite">Open the clan and tap the clan name at the top. Tap **Invite**.</Shot>
+<Shot src={iphoneInviteSheet} alt="The invite sheet with Share Invite, Copy Link and QR Code">Choose how to send the invite (see below).</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 - **Share Invite**: send the link with another app.
 - **Copy Link**: then paste the link in a message.

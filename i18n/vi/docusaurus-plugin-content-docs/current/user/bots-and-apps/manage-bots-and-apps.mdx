@@ -6,6 +6,10 @@ description: Tìm các bot trong clan, gán vai trò cho bot, hoặc xóa bot kh
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import phoneMembers from "./images/manage-bots-and-apps-phone-01.png";
+import phoneKick from "./images/manage-bots-and-apps-phone-02.png";
+import iphoneMembers from "./images/manage-bots-and-apps-iphone-01.png";
+import iphoneKick from "./images/manage-bots-and-apps-iphone-02.png";
 import computerMembers from "./images/manage-bots-and-apps-computer-01.png";
 import computerRemove from "./images/manage-bots-and-apps-computer-02.png";
 
@@ -22,6 +26,19 @@ Bot là một thành viên của clan, nên bạn quản lý bot trong danh sác
 2. Nhấn **Cài đặt**.
 3. Trong mục **Quản lý người dùng**, nhấn **Thành viên**.
 4. Nhấn vào bot. Màn hình **Chỉnh sửa thành viên** mở ra.
+
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
+<Image src={phoneMembers} alt="Danh sách thành viên của clan, bot được đánh dấu" width={270} />
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<Image src={iphoneMembers} alt="Danh sách thành viên của clan trên iPhone, bot được đánh dấu" width={270} />
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
@@ -67,6 +84,19 @@ Trên máy tính, bạn cần quyền **Quản lý Clan**. Trên điện thoại
 
 1. Trên màn hình **Chỉnh sửa thành viên** của bot, trong mục **Hành động**, nhấn **Đuổi** (Android) hoặc **Khai trừ** (iPhone).
 2. Nhấn **Đuổi** (Android) hoặc **Khai trừ** (iPhone) lần nữa để xác nhận.
+
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
+<Image src={phoneKick} alt="Màn hình Chỉnh sửa thành viên của bot, nút Đuổi được đánh dấu" width={270} />
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<Image src={iphoneKick} alt="Màn hình Chỉnh sửa thành viên của bot trên iPhone, nút Khai trừ được đánh dấu" width={270} />
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">

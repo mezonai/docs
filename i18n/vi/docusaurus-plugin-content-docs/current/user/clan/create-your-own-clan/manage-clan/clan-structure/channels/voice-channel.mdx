@@ -6,6 +6,7 @@ description: Vào kênh thoại để nói hoặc chỉ để nghe; dùng micro,
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
 import voicePhone01 from "./images/voice-channel-phone-01.png";
 import voicePhone02 from "./images/voice-channel-phone-02.png";
 import voiceComputer01 from "./images/voice-channel-computer-01.png";
@@ -22,17 +23,10 @@ Trong kênh thoại, các thành viên của clan nói chuyện, bật camera v�
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
 
-1. Nhấn vào kênh thoại.
-2. Nhấn **Join as Speaker** (Tham gia để nói). Trên điện thoại, các nút này hiện bằng tiếng Anh.
-
-<Image src={voicePhone01} alt="Bảng vào kênh thoại với nút Join as Speaker và menu đang mở" width={270} />
-
-Nếu chỉ muốn nghe, nhấn mũi tên bên cạnh nút và chọn **Join as audience** (Tham gia để nghe).
-
-3. Lần đầu tiên, hãy cho phép Mezon dùng micro.
-4. Nhấn nút micro để bật hoặc tắt micro.
-
-<Image src={voicePhone02} alt="Cuộc gọi trong kênh thoại trên điện thoại, các nút ở dưới cùng" width={270} />
+<ShotSteps>
+<Shot src={voicePhone01} alt="Bảng vào kênh thoại đang mở menu, nút Join as Speaker được đánh dấu">Nhấn vào kênh thoại. Nhấn **Join as Speaker** (Tham gia để nói; các nút này hiện bằng tiếng Anh). Nếu chỉ muốn nghe, nhấn mũi tên bên cạnh nút và chọn **Join as audience** (Tham gia để nghe).</Shot>
+<Shot src={voicePhone02} alt="Cuộc gọi trong kênh thoại có hai người, các nút ở dưới cùng">Lần đầu tiên, hãy cho phép Mezon dùng micro. Nhấn nút micro để bật hoặc tắt micro.</Shot>
+</ShotSteps>
 
 **iPhone:** khi vào kênh, micro của bạn đang tắt. Nhấn nút micro khi muốn nói.
 

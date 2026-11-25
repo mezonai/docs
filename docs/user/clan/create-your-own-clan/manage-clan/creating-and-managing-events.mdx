@@ -6,6 +6,8 @@ description: Create a clan event in a voice channel, at another place, or as an 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import phoneWhere from "./images/creating-and-managing-events-phone-01.png";
+import phoneList from "./images/creating-and-managing-events-phone-02.png";
 import computerList from "./images/creating-and-managing-events-computer-01.png";
 import computerWhere from "./images/creating-and-managing-events-computer-02.png";
 import computerInfo from "./images/creating-and-managing-events-computer-03.png";
@@ -40,6 +42,8 @@ You can also choose who the event is for:
 3. Choose **Voice Channel**, **Somewhere else** or **Create External Event**. Pick the voice channel, or type the address. Tap **Next**.
 4. Type the **Event name**. Choose the **Date**, **Start time** and **End time**. To repeat the event, choose **Repeat**. Tap **Next**.
 5. Check the preview and tap **Create Event**.
+
+<Image src={phoneWhere} alt="Step 1 of 3 of a new event: Voice Channel, Somewhere else and Create External Event" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -80,8 +84,7 @@ The event appears in the list of events. On a computer, the number of upcoming e
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-- **Android:** open the clan and tap **Events** in the channel list.
-- **iPhone:** open the clan and tap the event icon at the top of the channel list, next to the search box.
+Open the clan and tap the event icon at the top of the channel list, next to the search box.
 
 Tap an event to see its details and who is interested.
 
@@ -107,11 +110,16 @@ To remind people, copy the event link and post it in a channel.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
+**Android:**
+
 1. Open the list of events.
-2. Open the menu of the event.
-3. Choose an action:
-   - **Android:** **Edit Event**, **Cancel Event**, **Copy Event Link** or **Copy Content**.
-   - **iPhone:** **Edit Event**, **Delete Event**, **Copy Event Link** or **Copy Content**.
+2. To edit the event, tap **Edit Event** on it.
+3. The three dots (**⋮**) on the event open **Copy Content**, and **Copy Event Link** for an event in a channel.
+4. To cancel the event, tap the event, then the three dots at the top, then **Cancel Event**.
+
+<Image src={phoneList} alt="The list of events with Edit Event and the three-dot menu showing Copy Content" width={270} />
+
+**iPhone:** open the list of events and the menu of the event. Choose **Edit Event**, **Delete Event**, **Copy Event Link** or **Copy Content**.
 
 </TabItem>
 <TabItem value="computer" label="Computer">

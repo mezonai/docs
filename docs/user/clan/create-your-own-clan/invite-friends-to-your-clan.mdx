@@ -6,6 +6,9 @@ description: Share an invite link or a QR code, or invite your Mezon friends to 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneMenu from "./images/invite-friends-to-your-clan-phone-01.png";
+import phoneSheet from "./images/invite-friends-to-your-clan-phone-02.png";
 import computerMenu from "./images/invite-friends-to-your-clan-computer-01.png";
 import computerDialog from "./images/invite-friends-to-your-clan-computer-02.png";
 import computerQr from "./images/invite-friends-to-your-clan-computer-03.png";
@@ -19,13 +22,15 @@ Every member of a clan can invite people. Send an invite link or a QR code, or i
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Open the clan and tap the clan name at the top.
-2. Tap **Invite**.
-3. Choose one:
-   - **Copy Link**, then paste the link in a message.
-   - **Share Invite**, to send the link with another app on your phone.
-   - **QR Code**, to show a code that people scan with their phone. Tap the download icon to save it as a picture, or the share icon to send it with another app.
-   - **Invite** next to a friend's name, to send the link to that friend in Mezon. The button then shows **Invited**.
+<ShotSteps>
+<Shot src={phoneMenu} alt="The clan menu with Invite marked">Open the clan and tap the clan name at the top. Tap **Invite**.</Shot>
+<Shot src={phoneSheet} alt="The Invite a friend sheet with Share Invite, Copy Link and QR Code">Choose how to send the invite (see the list below).</Shot>
+</ShotSteps>
+
+- **Copy Link**, then paste the link in a message.
+- **Share Invite**, to send the link with another app on your phone.
+- **QR Code**, to show a code that people scan with their phone. Tap the download icon to save it as a picture, or the share icon to send it with another app.
+- **Invite** next to a friend's name, to send the link to that friend in Mezon. The button then shows **Invited**.
 
 </TabItem>
 <TabItem value="computer" label="Computer">

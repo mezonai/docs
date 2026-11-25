@@ -6,6 +6,10 @@ description: Create a clan from scratch or from a template, and give it a name a
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phonePlus from "./images/create-a-clan-phone-01.png";
+import phoneChoose from "./images/create-a-clan-phone-02.png";
+import phoneForm from "./images/create-a-clan-phone-03.png";
 import computerChoose from "./images/create-a-clan-computer-01.png";
 import computerName from "./images/create-a-clan-computer-02.png";
 
@@ -18,11 +22,11 @@ Anyone with a Mezon account can create a clan. You become the clan owner.
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. In the clan list on the left, tap **+**.
-2. Tap **Create My Own**. Or tap a template under **Start from a template**.
-3. Type the clan name.
-4. To add a picture, tap **Upload** and choose an image.
-5. Tap **Create Clan**.
+<ShotSteps>
+<Shot src={phonePlus} alt="The clan list with the + button marked">In the clan list on the left, tap **+**.</Shot>
+<Shot src={phoneChoose} alt="The Create Your Clan screen with Create My Own marked">Tap **Create My Own**. Or tap a template under **START FROM A TEMPLATE**.</Shot>
+<Shot src={phoneForm} alt="The Customize Your Clan form with a name typed and Create Clan marked">Type the clan name. To add a picture, tap **Upload**. Tap **Create Clan**.</Shot>
+</ShotSteps>
 
 </TabItem>
 <TabItem value="computer" label="Computer">

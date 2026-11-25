@@ -6,6 +6,15 @@ description: Send a friend request, accept or refuse requests, and remove or blo
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import addFriendsPhone01 from "./images/add-friends-phone-01.png";
+import addFriendsPhone02 from "./images/add-friends-phone-02.png";
+import addFriendsPhone03 from "./images/add-friends-phone-03.png";
+import addFriendsPhone04 from "./images/add-friends-phone-04.png";
+import addFriendsPhone05 from "./images/add-friends-phone-05.png";
+import addFriendsIphone01 from "./images/add-friends-iphone-01.png";
+import addFriendsIphone02 from "./images/add-friends-iphone-02.png";
+import addFriendsIphone03 from "./images/add-friends-iphone-03.png";
 import addFriendsComputer01 from "./images/add-friends-computer-01.png";
 import addFriendsComputer02 from "./images/add-friends-computer-02.png";
 import addFriendsComputer03 from "./images/add-friends-computer-03.png";
@@ -21,11 +30,26 @@ You need the person's Mezon username. On a phone you can also use their phone nu
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
 
-1. Open the **Messages** tab at the bottom of the screen.
-2. Tap **Add Friend** at the top.
-3. Tap **Add by username or phone number**.
-4. Type the username or the phone number.
-5. Tap **Send Friend Request**.
+<Tabs groupId="phone-os">
+<TabItem value="android" label="Android">
+
+<ShotSteps>
+<Shot src={addFriendsPhone01} alt="The Messages tab with Add Friend marked">Open the **Messages** tab at the bottom. Tap **Add Friend** at the top.</Shot>
+<Shot src={addFriendsPhone02} alt="The Add Friends screen with Add by username or phone number marked">Tap **Add by username or phone number**.</Shot>
+<Shot src={addFriendsPhone03} alt="The add-friend form with a username typed and Send Friend Request marked">Type the username or the phone number. Tap **Send Friend Request**.</Shot>
+</ShotSteps>
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<ShotSteps>
+<Shot src={addFriendsIphone03} alt="The Messages tab with Add Friend marked">Open the **Messages** tab at the bottom. Tap **Add Friend** at the top.</Shot>
+<Shot src={addFriendsIphone01} alt="The Add Friend screen with Add by username or phone number marked">Tap **Add by username or phone number**.</Shot>
+<Shot src={addFriendsIphone02} alt="The add-friend form with a username typed and Send Friend Request marked">Type the username or the phone number. Tap **Send Friend Request**.</Shot>
+</ShotSteps>
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="computer" label="Computer">
@@ -55,8 +79,10 @@ On a computer, your own username is shown under **USERNAME** when you click the 
 <TabItem value="phone" label="Phone">
 
 1. Open the **Messages** tab and tap **Add Friend**.
-2. Find the request under **Incoming friend request** (Android) or on the **Received** tab (iPhone).
+2. Find the request on the **Received** tab.
 3. Tap the check mark to accept, or the cross to refuse.
+
+<Image src={addFriendsPhone04} alt="The Received tab with a friend request and the check mark marked" width={270} />
 
 You can also open **Profile** → the gear icon (**Settings**) → **Friend Requests**. The **Received** tab lists requests to you. The **Sent** tab lists requests you sent.
 
@@ -105,6 +131,8 @@ You can block anyone, even a person who is not your friend. A blocked person can
 1. Open the **Messages** tab.
 2. Press and hold the conversation with the person.
 3. Tap **Remove Friend** or **Block User**.
+
+<Image src={addFriendsPhone05} alt="The menu of a conversation with Block User marked" width={270} />
 
 To see or unblock the people you blocked, open **Profile** → the gear icon (**Settings**) → **Account** → **Blocked Users**.
 
