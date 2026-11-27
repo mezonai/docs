@@ -1,0 +1,63 @@
+---
+sidebar_position: 9
+sidebar_label: Chuyển quyền sở hữu clan
+description: Chuyển quyền chủ sở hữu clan cho một thành viên khác trên điện thoại hoặc máy tính.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneSettingsShortcut from "../images/transferring-clan-ownership-phone-03.png";
+import phoneEditMember from "../images/transferring-clan-ownership-phone-01.png";
+import phoneConfirm from "../images/transferring-clan-ownership-phone-02.png";
+import computerMenu from "../images/transferring-clan-ownership-computer-01.png";
+import computerDialog from "../images/transferring-clan-ownership-computer-02.png";
+
+# Chuyển quyền sở hữu clan
+
+Chủ sở hữu clan có thể chuyển quyền chủ sở hữu cho một thành viên khác, ví dụ khi người quản lý clan thay đổi. Chỉ chủ sở hữu hiện tại làm được việc này.
+
+## Chuyển quyền sở hữu
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Mở clan và nhấn vào tên clan ở trên cùng.
+2. Nhấn **Cài đặt**.
+3. Trong phần **Quản lý người dùng**, nhấn **Chuyển quyền sở hữu** (có trên cả Android và iPhone) và chọn thành viên sẽ làm chủ sở hữu mới. Bạn cũng có thể mở **Thành viên**, nhấn vào thành viên đó rồi nhấn **Chuyển quyền sở hữu** trong phần **Hành động**.
+4. Bật công tắc xác nhận bạn đã hiểu (iPhone: đánh dấu vào ô).
+5. Nhấn **Chuyển**.
+
+<ShotSteps plain>
+<Shot src={phoneSettingsShortcut} alt="Cài đặt clan trên điện thoại với mục Chuyển quyền sở hữu được đánh dấu trong Quản lý người dùng">Từ **Cài đặt clan**: nhấn **Chuyển quyền sở hữu** trong phần **Quản lý người dùng**.</Shot>
+<Shot src={phoneEditMember} alt="Màn hình Chỉnh sửa thành viên, mục Chuyển quyền sở hữu được đánh dấu">Hoặc từ màn hình thành viên: **Chuyển quyền sở hữu** trong phần **Hành động**.</Shot>
+<Shot src={phoneConfirm} alt="Màn hình Chuyển quyền sở hữu với công tắc xác nhận và nút Chuyển">Xác nhận bằng công tắc, rồi nhấn **Chuyển**.</Shot>
+</ShotSteps>
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Mở clan và nhấn **Thành viên** ở đầu danh sách kênh.
+2. Nhấn chuột phải vào thành viên sẽ làm chủ sở hữu mới.
+3. Nhấn **Chuyển quyền sở hữu**.
+
+<Image src={computerMenu} alt="Trang Thành viên với menu của một thành viên và mục Chuyển quyền sở hữu" />
+
+4. Đánh dấu vào ô **Tôi xác nhận rằng bằng cách chuyển quyền sở hữu clan này cho ..., nó chính thức thuộc về họ.**
+5. Nhấn **Chuyển Quyền Sở Hữu**.
+
+<Image src={computerDialog} alt="Hộp thoại Chuyển quyền sở hữu Clan đã đánh dấu ô xác nhận, với nút Chuyển Quyền Sở Hữu" />
+
+</TabItem>
+</Tabs>
+
+Thành viên kia trở thành chủ sở hữu clan ngay lập tức.
+
+:::warning
+Bạn mất quyền chủ sở hữu ngay lập tức. Bạn không tự lấy lại được: chỉ người vừa nhận quyền chủ sở hữu mới chuyển lại clan cho bạn được.
+:::
+
+## Liên quan
+
+- [Quản lý thành viên](./members-and-moderation.mdx)
+- [Rời clan](../join-and-explore-clans.mdx)

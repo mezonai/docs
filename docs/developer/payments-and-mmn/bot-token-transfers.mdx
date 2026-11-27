@@ -1,0 +1,123 @@
+---
+sidebar_position: 2
+sidebar_label: Bot token transfers
+description: Send Mezon Dong (₫) and react to incoming token transfers from bots using mezon-sdk 2.8.68 and Mezon.Net.Sdk 1.11.0.
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Bot token transfers
+
+Both `mezon-sdk` (`2.8.68`) and `Mezon.Net.Sdk` (`1.11.0`) initialize the bot's MMN wallet automatically during `login()` / `LoginAsync()` when the session returns an `id_token` (standard bots only—see [Shadow Bot limitation](./overview.md#shadow-bot-limitation)).
+
+## Sending tokens and listening for transfers
+
+<Tabs groupId="sdk-lang">
+<TabItem value="ts" label="TypeScript (mezon-sdk 2.8.68)" default>
+
+`mezon-sdk` defaults `mmnApiUrl` to `https://dong.mezon.ai/mmn-api/` and `zkApiUrl` to `https://dong.mezon.ai/zk-api/`.
+
+```ts
+import { MezonClient } from "mezon-sdk";
+
+const client = new MezonClient({
+  botId: process.env.MEZON_BOT_ID!,
+  token: process.env.MEZON_BOT_TOKEN!,
+});
+
+// Listen for incoming or outgoing token transfer events
+client.onTokenSend(async (event) => {
+  console.log(
+    `Transfer ${event.transaction_id}: ${event.sender_id} -> ${event.receiver_id} (${event.amount}₫) | ${event.note ?? ""}`,
+  );
+});
+
+await client.login();
+
+// Send 10,000 Mezon Dong (mezon-sdk scales by 10^6 internally)
+const tx = await client.sendToken({
+  receiver_id: "RECEIVER_USER_ID",
+  amount: 10000,
+  note: "Weekly trivia prize",
+  extra_attribute: JSON.stringify({ campaign: "trivia-42" }),
+});
+
+console.log("Submitted tx hash:", tx.tx_hash);
+```
+
+:::note Automatic DM receipt in `mezon-sdk`
+When `client.onTokenSend` fires with `event.sender_id === client.clientId`, `mezon-sdk`'s internal listener (`_onTokenSendInternal`) automatically opens the receiver's DM channel and sends a `TypeMessage.SendToken` (`11`) receipt message.
+:::
+
+:::caution `listTransactionDetail` is a stub in `mezon-sdk` 2.8.68
+`client.listTransactionDetail(txId)` only logs to stdout in `2.8.68`. To query confirmed transaction details or wallet history, use [`IndexerClient` in `mmn-client-js`](./mmn-sdks.md#typescript-mmn-client-js) or look up the hash on [`dong.mezon.ai`](https://dong.mezon.ai).
+:::
+
+</TabItem>
+<TabItem value="csharp" label="C# (Mezon.Net.Sdk 1.11.0)">
+
+`Mezon.Net.Sdk` includes `Mezon.Net.Mmn` on `.NET 6`, `.NET 8`, `.NET 9`, and `.NET 10` (excluded on `.NET Standard 2.1`). Configure `MMNApiUrl` and `ZkApiUrl` on `MezonClientOptions` before calling `LoginAsync()`:
+
+```csharp
+using System.Numerics;
+using Mezon.Net.Sdk;
+
+var options = new MezonClientOptions(botId, token)
+{
+    MMNApiUrl = "https://dong.mezon.ai/mmn-api/",
+    ZkApiUrl = "https://dong.mezon.ai/zk-api/",
+};
+
+await using var client = new MezonClient(options);
+
+client.TokenSent += () =>
+{
+    Console.WriteLine("TokenSent event received");
+    return Task.CompletedTask;
+};
+
+await client.LoginAsync();
+
+// Derive recipient's deterministic MMN Base58 address from their Mezon user ID
+var recipientAddress = client.GetAddress(receiverUserId);
+
+// Scale human-readable Dong by 10^6 base units (10,000₫ -> 10_000_000_000)
+var amountInBaseUnits = new BigInteger(10_000) * BigInteger.Pow(10, 6);
+
+var result = await client.SendTransferAsync(
+    recipient: recipientAddress,
+    amount: amountInBaseUnits,
+    textData: "Weekly trivia prize",
+    extraInfo: new Dictionary<string, string>
+    {
+        ["UserSenderId"] = client.BotId.ToString(),
+        ["UserReceiverId"] = receiverUserId.ToString(),
+        ["type"] = "transfer_token",
+    });
+
+Console.WriteLine($"Submitted tx hash: {result.TxHash}, ok={result.Ok}");
+```
+
+:::tip Built-in nonce lock in `Mezon.Net.Sdk`
+`SendTransferAsync` guards pending-nonce lookup, signing, and `AddTxAsync` with an internal `SemaphoreSlim`, so concurrent calls from multiple command handlers never collide on the same nonce.
+:::
+
+</TabItem>
+</Tabs>
+
+## Key differences between JS and .NET APIs
+
+| Behavior | `mezon-sdk` (`2.8.68`) | `Mezon.Net.Sdk` (`1.11.0`) |
+|---|---|---|
+| Recipient argument | Mezon `receiver_id` (SDK derives MMN address) | MMN Base58 address (call `client.GetAddress(userId)`) |
+| Amount unit | Human-readable Dong (auto-scaled by `10^6`) | Raw `BigInteger` in base units (`dong * 10^6`) |
+| Default endpoints | Pre-filled (`dong.mezon.ai/mmn-api/` & `/zk-api/`) | Set `Options.MMNApiUrl` and `Options.ZkApiUrl` |
+| Concurrent calls | Serialize in user code | Serialized automatically via `_mmnTransferGate` |
+| Failure handling | Throws `Error("Transaction failed: ...")` | Returns `AddTxResponse` (`Ok`, `TxHash`, `Error`) or throws if MMN not initialized |
+
+## Related
+
+- [Payments & MMN overview](./overview.md)
+- [Standalone MMN SDKs](./mmn-sdks.md)
+- [Events reference](../reference/events-reference.md)

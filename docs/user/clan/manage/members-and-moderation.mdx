@@ -1,0 +1,162 @@
+---
+sidebar_position: 3
+sidebar_label: Manage members
+description: See who is in the clan, give roles, remove or temporarily ban members, and check the clan audit log.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import phoneMembers from "./images/member-management-phone-01.png";
+import phoneEditRoles from "./images/member-management-phone-02.png";
+import phoneKick from "./images/member-management-phone-03.png";
+import computerMembers from "./images/member-management-computer-01.png";
+import computerMenu from "./images/member-management-computer-02.png";
+import computerAuditLog from "./images/audit-log-computer-01.png";
+import phoneAuditLog from "./images/settings-audit-log-phone-01.png";
+
+# Manage members
+
+See who is in your clan, give them roles, remove members who should not be there, and review moderation actions in the audit log. The actions you see depend on your role.
+
+## See the members
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the clan and tap the clan name at the top.
+2. Tap **Settings**.
+3. Under **User Management**, tap **Members**.
+
+Type a name in the search box to find someone.
+
+<Image src={phoneMembers} alt="The Members screen of Clan Settings with the search box and the list of members" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Open the clan.
+2. Click **Members** at the top of the channel list.
+
+The table shows each member's name, when they joined the clan (**MEMBER SINCE**), when they joined Mezon (**JOINED MEZON**) and their **ROLES**. To find someone, type in **Search by clannick, display name or username**.
+
+<Image src={computerMembers} alt="The Members page with the list of members and their roles" />
+
+</TabItem>
+</Tabs>
+
+## Give a member a role
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. In **Members**, tap the member. The **Edit Member** screen opens.
+2. Tap **Edit Roles**.
+3. Choose the roles and save.
+
+<Image src={phoneEditRoles} alt="The Edit Member screen with Edit Roles marked" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. On the **Members** page, find the member.
+2. In the **ROLES** column, click **+**.
+3. Choose a role.
+
+The list shows only the roles below your own highest role.
+
+</TabItem>
+</Tabs>
+
+You can also add many members to a role at once. See [Roles and permissions](./roles-and-permissions.mdx).
+
+## Remove a member from the clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. In **Members**, tap the member.
+2. Under **Actions**, tap **Kick**.
+3. You can type a reason in **Kick Reason**.
+4. Confirm.
+
+<Image src={phoneKick} alt="The Edit Member screen with Kick marked under Actions" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. On the **Members** page, right-click the member.
+2. Click **Remove Member**.
+3. Confirm.
+
+<Image src={computerMenu} alt="The menu of a member on the Members page with Remove Member" />
+
+In a channel, you can also right-click a member's name and choose **Kick**.
+
+</TabItem>
+</Tabs>
+
+The member leaves the clan at once. They can come back only with a new invite.
+
+## Ban a member from a channel for a while
+
+A ban stops a member from chatting in one channel for a time you choose. You ban people on a computer:
+
+1. Open the channel.
+2. Right-click the member's name, in the member list or on one of their messages.
+3. Point at **Ban**.
+4. Choose how long: **For 15 Minutes**, **For 1 Hour**, **For 3 Hours**, **For 8 Hours**, **For 24 Hours** or **Until I turn it back on**.
+
+To lift the ban on a computer, right-click the member again and choose **Unban**. **Android:** open the channel settings, then **Ban List**, and tap **Unban**.
+
+## Who can do what
+
+| Action | Who |
+|---|---|
+| See the member list | every member |
+| Give roles on the **Members** page | the clan owner, and roles with **Manage Clan**; only roles below your own |
+| **Remove Member** on the **Members** page | the clan owner, and roles with **Manage Clan** |
+| **Kick** (phones, and the member menu in a channel) | the clan owner, and roles with **Administrator** |
+| **Ban** and **Unban** in a channel | roles with **Administrator** |
+| **Transfer Ownership** | the clan owner only, see [Transfer clan ownership](./transfer-ownership.mdx) |
+
+Nobody can remove the clan owner.
+
+## Audit log {#audit-log}
+
+The audit log lists the changes made in your clan: who did what, and when. For example, it shows when someone creates a channel, creates an event or changes a role.
+
+The clan owner and members with the **Manage Clan** permission can see it.
+
+### Open the audit log
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the clan and tap the clan name at the top.
+2. Tap **Settings**, then tap **Audit Log**.
+
+<Image src={phoneAuditLog} alt="The Audit Log screen on a phone listing recent clan management actions" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Open **Clan Settings** and click **Audit Log**, under **MODERATION**.
+
+<Image src={computerAuditLog} alt="The Audit Log with filters by user, by action and by date, and a list of changes" />
+
+</TabItem>
+</Tabs>
+
+Each line shows the member, the action, the item that changed and the time. The newest changes are at the top.
+
+### Filter the list on a computer
+
+- **Filter by User**: show the actions of one member.
+- **Filter by Action**: show one kind of action, for example creating a role.
+- The date box: show the actions of one day.
+
+## Related
+
+- [Roles and permissions](./roles-and-permissions.mdx)
+- [Invite people to your clan](../invite-people.mdx)
+- [Clan settings](./settings.mdx)

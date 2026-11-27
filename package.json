@@ -13,11 +13,16 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "check:health": "node scripts/check-docs-health.mjs",
+    "check:links": "node scripts/check-build-links.mjs build",
+    "verify": "npm run typecheck && npm run check:health && npm run build && npm run check:links"
   },
   "dependencies": {
     "@docusaurus/core": "3.9.1",
+    "@docusaurus/plugin-client-redirects": "3.9.1",
     "@docusaurus/preset-classic": "3.9.1",
+    "@docusaurus/theme-mermaid": "3.9.1",
     "@easyops-cn/docusaurus-search-local": "^0.52.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",

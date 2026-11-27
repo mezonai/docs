@@ -1,0 +1,81 @@
+---
+sidebar_position: 1
+sidebar_label: Tổng quan
+description: Bot, ứng dụng trong kênh và AI agent trong cuộc gọi thoại làm được gì trong clan, và nơi lập trình viên bắt đầu xây dựng cho Mezon.
+---
+import Image from "@site/src/components/Image";
+import phoneAgentButton from "./images/what-is-a-bot-phone-01.png";
+
+# Bot và ứng dụng trong kênh
+
+Bot và ứng dụng trong kênh mang thêm công cụ vào clan của bạn. Bot tham gia clan như một thành viên, còn ứng dụng trong kênh chạy như một ứng dụng web trong kênh riêng của nó.
+
+## Bot {#bots}
+
+Bot là một chương trình tham gia clan của bạn như một thành viên. Tùy vào cách nhà phát triển làm ra nó, bot có thể trả lời tin nhắn, đăng thông tin cập nhật hoặc tổ chức trò chơi.
+
+### Bot thường được dùng để làm gì
+
+Mỗi bot làm đúng những việc mà nhà phát triển đã tạo cho nó. Một vài ví dụ:
+
+- Đăng lời nhắc vào một kênh mỗi sáng.
+- Trả lời các câu hỏi thường gặp của thành viên mới.
+- Tổ chức câu đố hoặc trò chơi trong kênh.
+- Đăng thông tin cập nhật từ một công cụ khác mà nhóm bạn đang dùng.
+
+Đọc phần mô tả của bot trên [trang Bots/Apps](https://top.mezon.ai) để biết cách dùng bot đó.
+
+### Bot hoạt động thế nào trong clan
+
+- Chỉ chủ sở hữu clan hoặc thành viên có quyền **Quản lý Clan** hoặc **Quản trị viên** mới thêm được bot. Xem [Tìm và thêm bot, ứng dụng](./find-and-add.mdx).
+- Sau khi vào clan, bot có tên trong danh sách thành viên. Mezon đăng một tin nhắn chào mừng bot trong clan.
+- Giống mọi thành viên, bot chỉ làm được những gì vai trò của nó cho phép. Bạn chọn vai trò cho bot. Xem [Quản lý bot và ứng dụng](./manage.mdx).
+- Bot chỉ trả lời khi chương trình của nhà phát triển đang chạy. Khi chương trình không chạy, bot sẽ hiện trạng thái ngoại tuyến trong danh sách thành viên.
+
+### AI agent trong cuộc gọi thoại
+
+Mezon có một AI agent là KOMU Agent. Bạn có thể thêm agent này vào cuộc gọi trong kênh thoại. Chỉ người có quyền quản lý kênh mới thấy nút này.
+
+- **Máy tính:** nút hình robot nằm trong thanh điều khiển ở cuối cuộc gọi. Đưa chuột lên nút để thấy chữ **Thêm AI agent**. Nhấn nút để thêm agent. Nhấn lại (**Gỡ AI agent**) để gỡ agent ra. Một gợi ý tên **Bật KOMU Agent** sẽ chỉ vào nút này cho đến khi bạn đóng gợi ý.
+- **Điện thoại:** nút hình robot nằm ở đầu màn hình cuộc gọi, không có chữ. Nhấn nút để thêm agent, nhấn lại để gỡ agent ra.
+
+<Image src={phoneAgentButton} alt="Cuộc gọi thoại trên điện thoại, nút hình robot ở đầu màn hình được đánh dấu" width={270} />
+
+## Ứng dụng trong kênh {#apps}
+
+Ứng dụng trong kênh là một ứng dụng web mà clan thêm vào thành một kênh riêng. Khi bạn mở một ứng dụng trong kênh, ứng dụng đó có thể cho bạn đăng nhập bằng tài khoản Mezon, nên bạn không cần tạo tài khoản mới.
+
+### Ứng dụng trong kênh thường được dùng để làm gì
+
+Mỗi ứng dụng làm đúng những việc mà nhà phát triển đã tạo cho nó. Một vài ví dụ:
+
+- Bảng công việc chung cho cả nhóm.
+- Câu đố hoặc trò chơi cho thành viên clan.
+- Biểu mẫu để thu thập câu trả lời của thành viên.
+
+### Ứng dụng trong kênh hoạt động thế nào trong clan
+
+- Chỉ chủ sở hữu clan hoặc thành viên có quyền **Quản lý kênh** (hoặc **Quản lý Clan**, **Quản trị viên**) mới thêm được ứng dụng. Xem [Tìm và thêm bot, ứng dụng](./find-and-add.mdx).
+- Khi bạn thêm một ứng dụng, Mezon tạo một kênh cho nó trong danh mục bạn chọn.
+- Trên máy tính, các ứng dụng của clan hiện thành một hàng biểu tượng trong danh sách kênh. Nhấn vào biểu tượng để mở ứng dụng đó trong một cửa sổ trình duyệt mới.
+- Khi bạn mở một ứng dụng trong kênh, Mezon cho ứng dụng đó biết bạn là ai. Nhờ vậy ứng dụng có thể cho bạn đăng nhập bằng tài khoản Mezon.
+
+Ứng dụng trong kênh được liệt kê cùng với bot trên [trang Bots/Apps](https://top.mezon.ai).
+
+## Dành cho lập trình viên {#for-developers}
+
+Lập trình viên có thể tự tạo bot và ứng dụng trong kênh cho Mezon, và kết nối dịch vụ bên ngoài qua webhook:
+
+- **Cổng nhà phát triển:** tạo bot hoặc ứng dụng tại [mezon.ai/developers](https://mezon.ai/developers/). Nhấn **Tạo Ứng dụng hoặc Bot mới**.
+- **Tài liệu cho lập trình viên:** bắt đầu từ [Tài liệu dành cho lập trình viên Mezon](../../developer/intro.mdx).
+- **Bot:** [Tạo bot](../../developer/getting-started/create-a-bot.md), sau đó đọc [tổng quan SDK bot JavaScript/TypeScript](../../developer/bot-sdks/javascript/overview.md).
+- **Ứng dụng trong kênh:** [Tạo ứng dụng trong kênh](../../developer/getting-started/create-a-channel-app.md), sau đó đọc [tổng quan ứng dụng trong kênh](../../developer/channel-apps-and-widgets/channel-apps/overview.md).
+- **Webhook:** gửi tin nhắn vào Mezon từ dịch vụ khác. Xem [tổng quan về webhook](../../developer/webhooks/overview.mdx). Người quản lý clan quản lý webhook trong **Cài Đặt Clan** → **Tích hợp** (xem [Tích hợp](../clan/manage/settings.mdx#integrations)).
+
+## Xem thêm
+
+- [Tìm và thêm bot, ứng dụng](./find-and-add.mdx)
+- [An toàn khi dùng bot và ứng dụng](./find-and-add.mdx#stay-safe)
+- [Quản lý bot và ứng dụng](./manage.mdx)
+- [Kênh thoại](../clan/channels/voice-channel.mdx)
+- [Tích hợp](../clan/manage/settings.mdx#integrations)

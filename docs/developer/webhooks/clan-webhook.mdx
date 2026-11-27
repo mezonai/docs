@@ -1,7 +1,7 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 sidebar_label: Clan webhook
-description: Create a clan webhook and send a message to one member's inbox with one HTTP request.
+description: Send targeted inbox notifications to individual clan members with a single HTTP POST using clan webhooks.
 ---
 
 import Tabs from "@theme/Tabs";
@@ -9,60 +9,62 @@ import TabItem from "@theme/TabItem";
 
 # Clan webhook
 
-A clan webhook sends a message to one member of the clan. You choose the member in the URL. The message arrives in the member's **Inbox**, on the **Messages** tab, with the clan's name and the webhook's name and avatar.
+A clan webhook delivers a persistent notification directly into one clan member's **Inbox → Messages** tab, displaying the clan name alongside the webhook's name and avatar. You choose the recipient dynamically in the final URL path segment.
+
+<ApiBadge method="POST" path="https://webhook.mezon.ai/clanwebhooks/YOUR_WEBHOOK_TOKEN/USERNAME_OR_USER_ID" />
+
+## Permissions
+
+| Action | Required clan permission (`api_clan_webhook.go`) |
+|---|---|
+| Create a clan webhook (`GenerateClanWebhook`) | **Manage Channel** |
+| Update, reset token, or delete (`UpdateClanWebhookById`, `DeleteClanWebhookById`) | **Manage Clan** |
 
 ## Create a clan webhook
 
-You need the **Manage Channels** permission to create a clan webhook, and **Manage Clan** to edit or delete one. These steps use the Mezon web app on a computer.
+1. Click the clan name at the top of the channel sidebar and select **Clan Settings**.
 
-1. Click the clan name at the top of the channel list.
-2. Click **Clan Settings**.
+   ![Clan menu showing Clan Settings](./images/clan-webhook-computer-01.png)
 
-   ![The clan menu with Clan Settings](./images/clan-webhook-computer-01.png)
+2. Open **Integrations** and click **Create Clan Webhook** (or **View Clan Webhook** if clan webhooks already exist).
 
-3. Click **Integrations** in the settings menu.
-4. Next to **Clan Webhooks**, click **Create Clan Webhook**. If the clan already has clan webhooks, click **View Clan Webhook** instead.
+   ![Integrations settings showing Create Clan Webhook](./images/clan-webhook-computer-02.png)
 
-   ![The Integrations page with the Create Clan Webhook button](./images/clan-webhook-computer-02.png)
+3. Click **New Clan Webhook**, expand the entry, and click **Copy Webhook URL**.
 
-5. Click **New Clan Webhook**. Mezon creates a webhook with a random name and avatar.
-6. Click the webhook to open it, then click **Copy Webhook URL**.
+   ![Expanded clan webhook showing Copy Webhook URL](./images/clan-webhook-computer-03.png)
 
-   ![An open clan webhook with the Copy Webhook URL button](./images/clan-webhook-computer-03.png)
-
-Store the URL as a secret. If it leaks, click **Reset Token**: the old URL stops working.
+Keep the URL secret. If it ever leaks, click **Reset Token** (requires **Manage Clan**) to invalidate the old token immediately.
 
 ## Send a message
 
-Add the member to the end of the copied URL, then send a `POST` with the header `Content-Type: application/json`:
+Append the target member's **username** or **user ID** (snowflake) to the copied URL and send an `HTTP POST` with `Content-Type: application/json`:
 
 ```text
-https://webhook.mezon.ai/clanwebhooks/TOKEN/USERNAME_OR_USER_ID
+https://webhook.mezon.ai/clanwebhooks/YOUR_WEBHOOK_TOKEN/USERNAME_OR_USER_ID
 ```
 
-The last part is the member's username or user id. The member must be in the clan.
+The recipient must be a current member of the clan (`CheckUserInClan`).
 
-### Body
+### Request body
 
 ```json
 {
-  "content": "{\"t\":\"Your weekly report is ready.\"}",
-  "attachments": [{ "url": "https://example.com/report.png", "filetype": "image/png" }]
+  "content": "{\"t\":\"Your weekly report is ready.\",\"mk\":[{\"type\":\"b\",\"s\":0,\"e\":18}]}",
+  "attachments": [
+    { "url": "https://example.com/report.png", "filetype": "image/png" }
+  ]
 }
 ```
 
-| Field | Type | Required | Meaning |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `content` | string | Yes | The message, as a JSON string: `{"t": "text", "mk": [...]}`. `t` is the text; `mk` adds formatting, as in a [channel webhook](./channel-webhook.mdx#body). |
-| `attachments` | array | No | Files to show: `{ "url", "filetype" }`. Mezon shows only the first one. |
-
-`content` is a string that contains JSON, not a JSON object. Build it with `JSON.stringify` (or your language's equivalent), as in the examples.
-
-Each attachment `url` must be a full URL, with a scheme and a host.
+| `content` | string | Yes | **A JSON-encoded string** (not a JSON object) representing `{ "t": "...", "mk": [...] }`. Serialize it with `JSON.stringify` / `json.dumps` / `json.Marshal` / `JsonSerializer.Serialize`. |
+| `attachments` | array | No | Array of `{ "url", "filetype" }`. Every `url` is validated (`ValidateURL` requires full scheme + host). Mezon embeds the **first** attachment (`AttachmentLink` / `AttachmentType`) and sets `HasMoreAttachment = true` when more than one attachment is supplied (`api_clan_webhook.go`). |
 
 ### Examples
 
-Set `CLAN_WEBHOOK_URL` to your clan webhook URL, with the member's username or user id at the end.
+Set `CLAN_WEBHOOK_URL="https://webhook.mezon.ai/clanwebhooks/YOUR_WEBHOOK_TOKEN/USERNAME_OR_USER_ID"` in your environment.
 
 <Tabs groupId="code">
 <TabItem value="bash" label="curl" default>
@@ -70,7 +72,7 @@ Set `CLAN_WEBHOOK_URL` to your clan webhook URL, with the member's username or u
 ```bash
 curl -X POST "$CLAN_WEBHOOK_URL" \
   -H "Content-Type: application/json" \
-  -d '{"content":"{\"t\":\"Your weekly report is ready.\"}"}'
+  -d '{"content":"{\"t\":\"Your weekly report is ready.\"}","attachments":[{"url":"https://example.com/report.png","filetype":"image/png"}]}'
 ```
 
 </TabItem>
@@ -82,11 +84,12 @@ const body = {
   attachments: [{ url: "https://example.com/report.png", filetype: "image/png" }],
 };
 
-fetch(process.env.CLAN_WEBHOOK_URL, {
+const res = await fetch(process.env.CLAN_WEBHOOK_URL, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(body),
-}).then(async (response) => console.log(response.status, await response.text()));
+});
+console.log(res.status, await res.text());
 ```
 
 </TabItem>
@@ -102,33 +105,85 @@ body = {
     "attachments": [{"url": "https://example.com/report.png", "filetype": "image/png"}],
 }
 
-request = urllib.request.Request(
+req = urllib.request.Request(
     os.environ["CLAN_WEBHOOK_URL"],
-    data=json.dumps(body).encode(),
+    data=json.dumps(body).encode("utf-8"),
     headers={"Content-Type": "application/json"},
     method="POST",
 )
-with urllib.request.urlopen(request) as response:
-    print(response.status, response.read().decode())
+with urllib.request.urlopen(req) as res:
+    print(res.status, res.read().decode())
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+)
+
+func main() {
+	inner, _ := json.Marshal(map[string]any{"t": "Your weekly report is ready."})
+	body, _ := json.Marshal(map[string]any{
+		"content": string(inner),
+		"attachments": []map[string]string{
+			{"url": "https://example.com/report.png", "filetype": "image/png"},
+		},
+	})
+
+	resp, err := http.Post(os.Getenv("CLAN_WEBHOOK_URL"), "application/json", bytes.NewReader(body))
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+	text, _ := io.ReadAll(resp.Body)
+	fmt.Println(resp.StatusCode, string(text))
+}
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+using System.Net.Http.Json;
+using System.Text.Json;
+
+var body = new
+{
+    content = JsonSerializer.Serialize(new { t = "Your weekly report is ready." }),
+    attachments = new[] { new { url = "https://example.com/report.png", filetype = "image/png" } },
+};
+
+using var http = new HttpClient();
+var response = await http.PostAsJsonAsync(Environment.GetEnvironmentVariable("CLAN_WEBHOOK_URL"), body);
+Console.WriteLine($"{(int)response.StatusCode} {await response.Content.ReadAsStringAsync()}");
 ```
 
 </TabItem>
 </Tabs>
 
-The member sees the message in **Inbox** → **Messages**:
+The recipient sees the notification under **Inbox → Messages**:
 
-![The clan webhook message in the member's inbox](./images/clan-webhook-computer-04.png)
+![Clan webhook notification inside the recipient's Inbox Messages tab](./images/clan-webhook-computer-04.png)
 
-## Responses
+## Error responses
 
-| Status | Body | Cause |
+| HTTP status | Response body | Cause |
 |---|---|---|
-| `200` | (empty) | The message was sent. |
-| `400` | `Invalid JSON` | The body is not JSON. |
-| `400` | `invalid token` | The token in the URL is wrong or was reset. |
-| `400` | `User not in clan` | The member is not in the clan, or the username does not exist. |
-| `400` | `Invalid attachment URL` | An attachment `url` is not a full URL. |
-| `404` | `Not Found` | The URL has no username or user id at the end. |
+| `200` | *(empty)* | Notification queued and badge updated. |
+| `400` | `Invalid JSON` | Body is not valid JSON. |
+| `400` | `invalid token` | Token is invalid, deleted, or was reset. |
+| `400` | `User not in clan` | Target user ID / username does not belong to the clan. |
+| `400` | `Invalid attachment URL` | An attachment `url` lacks a valid scheme and host. |
+| `404` | `Not Found` | URL is missing the trailing `/{username_or_user_id}` path segment. |
 
 ## Related
 

@@ -1,0 +1,111 @@
+---
+sidebar_position: 3
+sidebar_label: Kênh thoại
+description: Vào kênh thoại để nói hoặc nghe, dùng bình luận trực tiếp và ứng dụng tương tác, xem các nút điều khiển và giới hạn sức chứa.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import voicePhone01 from "./images/voice-channel-phone-01.png";
+import voicePhone02 from "./images/voice-channel-phone-02.png";
+import voiceComputer01 from "./images/voice-channel-computer-01.png";
+import voiceComputer02 from "./images/voice-channel-computer-02.png";
+import voiceComputer03 from "./images/voice-channel-computer-03.png";
+import voiceComputer04 from "./images/voice-channel-computer-04.png";
+
+# Kênh thoại
+
+Trong kênh thoại, các thành viên của clan nói chuyện, bật camera, chia sẻ màn hình và dùng chung các ứng dụng tương tác. Kênh thoại có biểu tượng cái loa trong danh sách kênh. Kênh thoại riêng tư có cái loa kèm ổ khóa nhỏ. Chỉ chủ sở hữu clan, quản trị viên và những thành viên, vai trò được thêm vào mới thấy và vào được kênh.
+
+## Vào kênh thoại
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+<ShotSteps>
+<Shot src={voicePhone01} alt="Bảng vào kênh thoại đang mở menu, nút Join as Speaker được đánh dấu">Nhấn vào kênh thoại. Nhấn **Join as Speaker** (Tham gia để nói; các nút này hiện bằng tiếng Anh). Nếu chỉ muốn nghe, nhấn mũi tên bên cạnh nút và chọn **Join as audience** (Tham gia để nghe).</Shot>
+<Shot src={voicePhone02} alt="Cuộc gọi trong kênh thoại có hai người, các nút ở dưới cùng">Lần đầu tiên, hãy cho phép Mezon dùng micro. Nhấn nút micro để bật hoặc tắt micro.</Shot>
+</ShotSteps>
+
+**iPhone:** khi vào kênh, micro của bạn đang tắt. Nhấn nút micro khi muốn nói.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Nhấn vào kênh thoại.
+2. Nhấn **Tham gia để nói**.
+
+<Image src={voiceComputer01} alt="Kênh thoại trước khi vào, có nút Tham gia để nói" />
+
+Nếu chỉ muốn nghe, nhấn mũi tên bên cạnh nút và chọn **Tham gia để nghe**.
+
+<Image src={voiceComputer02} alt="Menu vào kênh với Tham gia để nói và Tham gia để nghe" />
+
+3. Lần đầu tiên, hãy cho phép Mezon dùng micro. Trên trình duyệt web, chọn **Cho phép** khi trình duyệt hỏi.
+4. Dùng các nút ở dưới cùng để bật hoặc tắt micro, camera, hoặc để chia sẻ màn hình.
+
+<Image src={voiceComputer03} alt="Kênh thoại sau khi vào, thanh điều khiển ở dưới cùng" />
+
+</TabItem>
+</Tabs>
+
+Để rời kênh, trên điện thoại hãy nhấn nút màu đỏ. Trên máy tính, nhấn **Ngắt kết nối** (ứng dụng máy tính: **Rời phòng**).
+
+:::note
+Khi trong kênh thoại đã có từ 20 người trở lên, Mezon tự chọn mặc định **Tham gia để nghe** trên mọi nền tảng (Android, iPhone, web và ứng dụng máy tính). Bạn vẫn có thể chọn **Tham gia để nói** ở mũi tên bên cạnh nút.
+:::
+
+## Người nói và người nghe
+
+- **Người nói** được bật micro, bật camera và chia sẻ màn hình.
+- **Người nghe** nghe và xem. Muốn nói, hãy giữ nút nhấn để nói: trên máy tính, giữ phím **Space**; trên điện thoại, nhấn giữ **Giữ để nói**. Thả ra thì micro tắt.
+- Chỉ người nói mới được chia sẻ màn hình.
+
+## Các nút trên máy tính
+
+Thanh điều khiển nằm ở dưới cùng của cuộc gọi.
+
+| Nút | Dùng để |
+|---|---|
+| Micro, camera | Bật hoặc tắt. Mũi tên nhỏ cạnh mỗi nút để chọn thiết bị. |
+| **Chia sẻ màn hình** | Cho mọi người trong cuộc gọi xem một cửa sổ hoặc cả màn hình của bạn. |
+| **Giơ tay** | Báo cho mọi người biết bạn muốn nói. |
+| **Bình luận trực tiếp** | Gửi bình luận ngắn hiện ngay trong màn hình cuộc gọi thoại (bản web và ứng dụng máy tính). |
+| **Thêm AI agent** | Thêm trợ lý AI KOMU vào cuộc gọi. Chỉ dành cho người có quyền **Quản lý kênh**. |
+| **Ghi cuộc gọi** | Ghi lại cuộc gọi trên máy tính của bạn. Mọi người trong cuộc gọi đều thấy bạn đang ghi. |
+| Biểu cảm và hiệu ứng âm thanh | Gửi một biểu cảm hoặc một âm thanh ngắn vào cuộc gọi. |
+| **Phòng chia nhóm** | Chia cuộc gọi thành các phòng nhỏ. Chỉ dành cho người có quyền **Quản lý Clan**. Mỗi phòng dùng một kênh thoại công khai đang trống của clan. |
+| Toàn màn hình | Hiện cuộc gọi trên toàn màn hình. |
+| **Ngắt kết nối** (ứng dụng máy tính: **Rời phòng**) | Rời cuộc gọi. |
+
+Bạn còn có thể:
+
+- Nhấn chuột phải vào ô của một người và dùng **Âm lượng người dùng** để chỉnh tiếng người đó to hoặc nhỏ, từ 0 đến 150%. Chỉ bạn nghe thấy thay đổi này.
+- Người có quyền **Quản lý kênh** còn có thể nhấn chuột phải vào ô của một người để **Tắt micro** hoặc **Đuổi** người đó khỏi cuộc gọi.
+- Khi đang trong cuộc gọi, khung **Đã kết nối Thoại** luôn ở góc dưới bên trái, kể cả khi bạn mở kênh khác. Khung này có nút micro, camera, màn hình, nút rời kênh, và một nút sao chép liên kết tới kênh.
+
+<Image src={voiceComputer04} alt="Khung Đã kết nối Thoại ở góc dưới bên trái với các nút của cuộc gọi" />
+
+## Các nút trên điện thoại
+
+- Ở dưới cùng: camera, micro, trò chuyện, chia sẻ màn hình và nút đỏ để rời kênh.
+- Ở trên cùng: mũi tên thu nhỏ cuộc gọi để bạn dùng phần khác của ứng dụng, giơ tay, chọn nơi phát âm thanh (loa ngoài hoặc loa trong), và nút ba chấm (thêm tùy chọn) với biểu cảm, âm thanh và chống ồn.
+- Người nói có thể chia sẻ màn hình điện thoại.
+
+## Ứng dụng tương tác trong kênh thoại
+
+Thành viên trong kênh thoại có thể mở các ứng dụng tương tác — như đố vui (quiz), bảng trắng dùng chung (whiteboard) hoặc các ứng dụng trong kênh khác — ngay bên trong cuộc gọi. Ứng dụng tương tác trong kênh thoại hoạt động trên Android, iPhone, trình duyệt web và ứng dụng máy tính để mọi người cùng tham gia trong lúc trao đổi.
+
+## Giới hạn và Clan Pro
+
+- **Số người tham gia:** Kênh thoại hỗ trợ tối đa **100 người** với gói clan Miễn phí và tối đa **500 người** với **Clan Pro**. Xem [Clan Pro và User Pro](../../account-and-personalization/pro-plan.mdx) để biết chi tiết các gói.
+- Số camera và số màn hình chia sẻ cùng lúc có giới hạn. Mezon sẽ báo khi đã đủ.
+- Mỗi lúc bạn chỉ ở trong cuộc gọi trên một thiết bị. Nếu bạn vào từ thiết bị khác, thiết bị trước sẽ bị ngắt kết nối.
+
+## Liên quan
+
+- [Bắt đầu dùng Mezon](../../quick-start.mdx)
+- [Kênh](./index.mdx)
+- [Kênh phát trực tiếp](./stream-channel.mdx)
+- [Clan Pro và User Pro](../../account-and-personalization/pro-plan.mdx)

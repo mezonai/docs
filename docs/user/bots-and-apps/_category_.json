@@ -1,6 +1,6 @@
 {
-  "label": "Bots & Apps",
-  "position": 5,
+  "label": "Bots and apps",
+  "position": 7,
   "link": {
     "type": "doc",
     "id": "user/bots-and-apps/index"

@@ -1,0 +1,140 @@
+---
+sidebar_position: 4
+sidebar_label: Notifications in a clan
+description: Choose which messages notify you in a whole clan, in a category or in one channel, and mute a channel for a while.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phoneClanMenu from "./images/managing-notifications-in-a-clan-phone-01.png";
+import phoneLevels from "./images/managing-notifications-in-a-clan-phone-02.png";
+import phoneChannelMenu from "./images/managing-notifications-in-a-clan-phone-03.png";
+import computerClanMenu from "./images/managing-notifications-in-a-clan-computer-01.png";
+import computerDialog from "./images/managing-notifications-in-a-clan-computer-02.png";
+import computerMute from "./images/managing-notifications-in-a-clan-computer-03.png";
+import notificationSettingsPhone01 from "../channels/images/notification-settings-phone-01.png";
+import notificationSettingsComputer01 from "../channels/images/notification-settings-computer-01.png";
+
+# Notifications in a clan
+
+You choose how much each clan notifies you. You can set one level for the whole clan, and a different level for a category or a channel. These settings are yours only. They do not change anything for other members.
+
+## Notification levels
+
+| Level | You get a notification for |
+|---|---|
+| **All** (phones: **All messages**) | every new message |
+| **Only @mention** | messages that mention you |
+| **Nothing** | no messages |
+
+A channel can also use **Use Category Default** (phones: **Use default settings**). It then follows the level set above it.
+
+:::tip
+If you are in many clans, set most of them to **Only @mention**. You still see messages meant for you.
+:::
+
+## Set the level for a whole clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+<ShotSteps>
+<Shot src={phoneClanMenu} alt="The clan menu with Notifications marked">Open the clan and tap the clan name at the top. Tap **Notifications**.</Shot>
+<Shot src={phoneLevels} alt="The clan notification levels All messages, Only @mention and Nothing">Choose **All messages**, **Only @mention** or **Nothing**.</Shot>
+</ShotSteps>
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. In the clan bar on the far left, right-click the clan icon.
+2. Point at **Notification Settings**.
+3. Choose **All**, **Only @mention** or **Nothing**.
+
+<Image src={computerClanMenu} alt="The clan icon menu with Notification Settings and the levels All, Only @mention and Nothing" />
+
+You can also click the clan name at the top of the channel list and choose **Notification Settings**. The window has the same three levels under **CLAN NOTIFICATION SETTINGS**.
+
+</TabItem>
+</Tabs>
+
+## Channel notification overrides {#channel-notifications}
+
+Each channel or category can override the clan's default notification level. These settings change only your own notifications.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Press and hold the channel name in the channel list.
+2. Tap **Notification Settings**.
+
+<Image src={phoneChannelMenu} alt="The channel menu with Mute Channel and Notification Settings marked" width={270} />
+
+3. Choose **Use default settings**, **All messages**, **Only @mention** or **Nothing**.
+
+<Image src={notificationSettingsPhone01} alt="The Channel Notification Settings sheet with its four options" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+Change notifications directly inside a channel:
+
+1. Open the channel.
+2. Click the bell (**Notification Settings**) at the top right.
+
+<Image src={notificationSettingsComputer01} alt="The notification menu of a channel with Mute Channel, Use Category Default, All, Only @mention and Nothing" />
+
+3. Choose **Use Category Default**, **All**, **Only @mention** or **Nothing**.
+
+You can also right-click a channel or category name in the channel list, point at **Notification Settings**, and pick a level.
+
+To see all your exceptions in one place, click the clan name, then **Notification Settings**. Under **NOTIFICATION OVERRIDES**, pick a channel or a category and set its level, or mute it.
+
+<Image src={computerDialog} alt="The Notification Setting window with the clan level and the Notification Overrides list" />
+
+</TabItem>
+</Tabs>
+
+:::tip
+In busy channels, choose **Only @mention**. You still see messages meant for you, without a sound for every message.
+:::
+
+## Mute a channel for a while
+
+Muting stops the notifications of a channel for a time you choose.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Press and hold the channel.
+2. Tap **Mute Channel**.
+3. Choose how long: from 15 minutes to 24 hours, or until you turn it back on.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Right-click the channel (or click the bell icon at the top right of the channel).
+2. Point at **Mute Channel**.
+3. Choose **For 15 Minutes**, **For 1 Hour**, **For 3 Hours**, **For 8 Hours**, **For 24 Hours** or **Until I turn it back on**.
+
+<Image src={computerMute} alt="The channel menu with Mute Channel and the list of durations" />
+
+To mute a whole category, right-click the category name and choose **Mute Category**.
+
+</TabItem>
+</Tabs>
+
+To turn the notifications on again, open the same menu and choose **Unmute Channel**.
+
+## Default level for new members
+
+On the phone apps, the clan owner and members with the **Administrator** permission can choose the level for members who never chose one. Open the clan, tap the clan name, tap **Settings**, then **Overview**, and choose a level under **Default notifications** (iPhone: **Default Notification Settings**). For a large clan, **Only @mention** is a good choice.
+
+## Desktop app: the number on the app icon
+
+In the desktop app, the number on the Mezon icon in the taskbar or the Dock counts your mentions in clans, your unread direct messages in conversations you did not mute, and your new friend requests.
+
+## Related
+
+- [Inbox](../channels/inbox.mdx)
+- [Clan settings](./settings.mdx)

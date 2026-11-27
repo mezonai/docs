@@ -1,0 +1,8 @@
+{
+  "label": "Bot SDKs",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Official JavaScript/TypeScript and .NET SDKs for building Mezon bots, plus legacy SDK status."
+  }
+}

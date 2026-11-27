@@ -1,0 +1,126 @@
+---
+sidebar_position: 2
+sidebar_label: Vai trò và quyền
+description: Đặt những việc mọi thành viên được làm, tạo vai trò với quyền, màu và biểu tượng riêng, rồi thêm thành viên vào vai trò.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import phoneCreateRole from "./images/roles-and-permissions-management-phone-01.png";
+import computerRoles from "./images/roles-and-permissions-management-computer-01.png";
+import computerDisplay from "./images/roles-and-permissions-management-computer-02.png";
+import computerPermissions from "./images/roles-and-permissions-management-computer-03.png";
+import computerAddMembers from "./images/roles-and-permissions-management-computer-04.png";
+
+# Vai trò và quyền
+
+Vai trò là một nhóm thành viên có cùng quyền, cùng màu và biểu tượng. Mọi thành viên đều có vai trò **@everyone**, hiện với tên **Everyone**. Muốn cho một số thành viên thêm quyền, hãy tạo một vai trò cho họ.
+
+Chủ sở hữu clan và thành viên có quyền **Quản lý Clan** quản lý được vai trò.
+
+## Các quyền
+
+| Quyền | Cho phép |
+|---|---|
+| **Quản trị viên** | Quản lý toàn bộ clan, chỉ dưới chủ sở hữu clan. |
+| **Quản lý Clan** | Đổi cài đặt clan, quản lý vai trò và kênh, và giám sát thành viên. |
+| **Quản lý kênh** | Tạo, chỉnh sửa và xóa kênh. |
+| **Quản lý chủ đề** | Tạo, chỉnh sửa và xóa chủ đề trong kênh, kể cả chủ đề riêng tư. |
+| **Gửi tin nhắn** | Gửi tin nhắn trong các kênh công khai, kể cả trong chủ đề và thảo luận ngắn của kênh. |
+| **Xóa tin nhắn** | Xóa tin nhắn trong các kênh công khai, kể cả trong chủ đề và thảo luận ngắn của kênh. |
+| **Xem kênh** | Xem các kênh công khai. |
+
+**Quản trị viên** và **Quản lý Clan** khác nhau ở một vài chỗ. Ví dụ, chỉ **Quản trị viên** mới thấy trang **Kênh** ở đầu danh sách kênh.
+
+### Chủ sở hữu clan
+
+Người tạo clan là chủ sở hữu clan. Chủ sở hữu làm được mọi việc, không bị xóa khỏi clan, và là người duy nhất có thể [chuyển quyền sở hữu](./transfer-ownership.mdx) hoặc [xóa clan](./settings.mdx#delete-a-clan).
+
+## Đặt những việc mọi thành viên được làm
+
+Vai trò **Everyone** áp dụng cho mọi thành viên. Trong clan mới, **Gửi tin nhắn** và **Xem kênh** được bật sẵn.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Mở clan, nhấn vào tên clan, rồi nhấn **Cài đặt**.
+2. Trong phần **Quản lý người dùng**, nhấn **Vai trò**.
+3. Nhấn vào mục quyền mặc định ở đầu danh sách.
+4. Bật hoặc tắt các quyền, rồi lưu.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Mở **Cài Đặt Clan** và nhấn **Vai trò**.
+2. Nhấn **Quyền mặc định**.
+3. Nhấn thẻ **Quyền**.
+4. Bật hoặc tắt các quyền.
+5. Nhấn **Lưu Thay Đổi**.
+
+<Image src={computerPermissions} alt="Thẻ Quyền của vai trò Everyone, với Gửi tin nhắn và Xem kênh đang bật" />
+
+</TabItem>
+</Tabs>
+
+## Tạo vai trò
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Mở **Cài đặt**, rồi **Vai trò**.
+2. Nhấn **+**.
+3. Bước 1: nhập **Tên vai trò**, chọn màu và nhấn **Tạo**.
+4. Bước 2: bật các quyền của vai trò và nhấn **Tiếp** (iPhone: **Tiếp theo**).
+5. Bước 3: chọn các thành viên nhận vai trò và nhấn **Xong** (iPhone: **Hoàn tất**).
+
+Ở bước 2 và 3, bạn có thể nhấn **Bỏ qua bước này** và làm sau.
+
+<Image src={phoneCreateRole} alt="Bước 1/3, Tạo vai trò mới, đã nhập tên vai trò, nút Tạo được đánh dấu" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Mở **Cài Đặt Clan** và nhấn **Vai trò**.
+2. Nhấn **Tạo Vai Trò**.
+
+<Image src={computerRoles} alt="Trang Vai trò với Quyền mặc định, danh sách vai trò và nút Tạo Vai Trò" />
+
+3. Ở thẻ **Hiển thị**, nhập **TÊN VAI TRÒ** và chọn **MÀU VAI TRÒ**. Muốn thêm **BIỂU TƯỢNG VAI TRÒ**, nhấn **Chọn hình ảnh**.
+4. Nhấn **Lưu Thay Đổi**.
+
+<Image src={computerDisplay} alt="Thẻ Hiển thị của một vai trò với tên, màu và biểu tượng, và nút Lưu Thay Đổi" />
+
+5. Ở thẻ **Quyền**, bật những việc vai trò được làm, rồi nhấn **Lưu Thay Đổi**.
+6. Ở thẻ **Quản lý thành viên**, nhấn **Thêm thành viên**, đánh dấu các thành viên và nhấn **Thêm**.
+
+<Image src={computerAddMembers} alt="Cửa sổ Thêm thành viên với một thành viên được đánh dấu và nút Thêm" />
+
+</TabItem>
+</Tabs>
+
+Biểu tượng vai trò có thể là ảnh dưới 256 KB, hoặc một biểu cảm của clan. Dùng ảnh tối thiểu 64 x 64 pixel.
+
+## Đổi thứ tự vai trò
+
+Trên máy tính, kéo một vai trò lên hoặc xuống trong danh sách ở trang **Vai trò**. Thành viên có nhiều vai trò sẽ mang màu của vai trò cao nhất.
+
+## Chỉnh sửa hoặc xóa vai trò
+
+- **Máy tính:** nhấn vào vai trò ở trang **Vai trò**, chỉnh sửa rồi nhấn **Lưu Thay Đổi**. Muốn xóa, nhấn biểu tượng thùng rác màu đỏ cạnh vai trò.
+- **Điện thoại:** nhấn vào vai trò, chỉnh sửa rồi nhấn **Lưu**. Muốn xóa, nhấn **Xóa vai trò**.
+
+Bạn chỉ chỉnh sửa được các vai trò thấp hơn vai trò cao nhất của mình.
+
+## Quyền cho riêng một kênh
+
+Một kênh có thể có quy tắc riêng, ví dụ kênh chỉ một số thành viên xem được, hoặc kênh chỉ một số thành viên được viết.
+
+- **Máy tính:** nhấn chuột phải vào kênh, nhấn **Chỉnh sửa kênh**, rồi mở **Quyền hạn**. Dùng **Kênh riêng tư** để chọn ai xem được kênh, hoặc **Nâng cao** để đặt quyền cho một vai trò hay một thành viên. **Chặn mọi người gửi tin nhắn** biến kênh thành kênh chỉ đọc, trừ những người bạn chọn.
+- **Điện thoại:** nhấn giữ kênh, nhấn **Chỉnh sửa kênh**, rồi mở quyền của kênh. Có thẻ cơ bản và thẻ nâng cao.
+
+Xem [Kênh](../channels/index.mdx) để biết thêm về kênh riêng tư.
+
+## Liên quan
+
+- [Quản lý thành viên](./members-and-moderation.mdx)
+- [Cài đặt clan](./settings.mdx)

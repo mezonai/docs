@@ -1,0 +1,8 @@
+{
+  "label": ".NET (C#)",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Build C# and .NET bots with Mezon.Net.Sdk 1.11.0: DI setup, commands, interactions, L1/L2/L3 caching, and API reference."
+  }
+}

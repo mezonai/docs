@@ -1,0 +1,213 @@
+---
+sidebar_position: 1
+sidebar_label: Clan settings
+title: Clan settings
+description: Open Clan Settings, change overview details, manage integrations, restore archived channels, upgrade to Clan Pro, or delete a clan.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import phoneSettings from "./images/overview-settings-phone-01.png";
+import computerMenu from "./images/overview-settings-computer-01.png";
+import computerSidebar from "./images/overview-settings-computer-02.png";
+import computerOverview from "./images/overview-computer-01.png";
+import phoneOverview from "./images/settings-overview-phone-01.png";
+import computerIntegrations from "./images/integrations-computer-01.png";
+import phoneIntegrations from "./images/settings-integrations-phone-01.png";
+import phoneDelete from "./images/delete-clan-phone-01.png";
+import computerDelete from "./images/delete-clan-computer-01.png";
+
+# Clan settings
+
+**Clan Settings** holds the options of a clan: its name and picture, roles, emoji, webhooks, Pro plan and more. The items you see depend on your role.
+
+## Open Clan Settings
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the clan and tap the clan name at the top.
+2. Tap **Settings**.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Open the clan and click the clan name at the top of the channel list.
+2. Click **Clan Settings**.
+
+<Image src={computerMenu} alt="The clan menu with Clan Settings" />
+
+To close the settings, click **ESC** at the top right, or press the Esc key.
+
+</TabItem>
+</Tabs>
+
+## What is in Clan Settings on a computer
+
+<Image src={computerSidebar} alt="The list of items in Clan Settings, from Overview to Delete Clan" width={210} />
+
+| Item | What it is for | Who sees it |
+|---|---|---|
+| [**Overview**](#overview) | Name, picture, banner, Clan Pro decoration frame, system messages, anonymous mode | the clan owner, **Administrator** |
+| [**Roles**](./roles-and-permissions.mdx) | Roles and permissions | the clan owner, **Manage Clan** |
+| [**Category Order**](../channels/categories.mdx#category-order) | Your own order of the categories | every member |
+| **Archived Channels** | Bring back archived channels (see below) | the clan owner, **Administrator**, **Manage Clan** |
+| [**Emoji**, **Image Stickers**, **Sound Effect**](./emoji-stickers-and-sounds.mdx) | The clan's own emoji, stickers and sounds | every member |
+| [**Integrations**](#integrations) | Webhooks | the clan owner, **Manage Clan** or **Manage Channels** |
+| [**Audit Log**](./members-and-moderation.mdx#audit-log) | History of admin actions | the clan owner, **Manage Clan** |
+| [**Onboarding**](./onboarding.mdx) | Guide and questions for new members | the clan owner, **Manage Clan** |
+| [**Enable Community**](./community.mdx) (later **Community Overview**) | List the clan on Discover | the clan owner, **Administrator** |
+| [**Upgrade Clan Pro**](../../account-and-personalization/pro-plan.mdx) | Upgrade the clan to Clan Pro or redeem a coupon | the clan owner only |
+| [**Delete Clan**](#delete-a-clan) | Delete the clan | the clan owner only |
+
+**Desktop app:** the community item is called **Clan Community**.
+
+## What is in Clan Settings on a phone
+
+The phone apps have fewer items:
+
+- Under **Settings**: **Overview**, **Audit Log**, **Integrations**, **Emoji**, **Sticker**, **Sound Effect** and **Enable Community**.
+- Under **User Management**: **Members**, **Roles**, **Invites**, and (for the clan owner on both Android and iPhone) **Transfer Ownership**.
+
+<Image src={phoneSettings} alt="Clan Settings on a phone with the Settings and User Management sections" width={270} />
+
+**Category Order**, **Archived Channels**, **Onboarding** and **Upgrade Clan Pro** are only on a computer. To delete a clan on a phone, see [Delete a clan](#delete-a-clan).
+
+## Restore an archived channel
+
+An archived channel is hidden from the channel list for all members. Its messages are kept. Bring it back on a computer:
+
+1. Open **Clan Settings**.
+2. Click **Archived Channels**.
+3. Click **Restore** next to the channel.
+
+The channel shows in the channel list again.
+
+## Overview {#overview}
+
+**Overview** holds the clan name, the clan picture and banner, and the system message settings. The clan owner and members with the **Administrator** permission can change them.
+
+### Change the name, picture or banner
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the clan, tap the clan name, then tap **Settings**.
+2. Tap **Overview**.
+3. Change the **Clan name**, tap the clan picture to change it, or tap the banner to change it.
+4. Save your changes.
+
+<Image src={phoneOverview} alt="Clan Overview settings on a phone showing the clan icon, banner, clan name and system messages options" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Open **Clan Settings**. **Overview** opens first.
+2. Change what you need:
+   - Click **Upload Image** to change the clan picture.
+   - Type a new name under **CLAN NAME**.
+   - Under **CLAN BANNER BACKGROUND**, click **Upload Background**. The banner shows at the top of your channel list.
+   - If your clan has [Clan Pro](../../account-and-personalization/pro-plan.mdx), you can also choose a **Clan Pro decoration frame** around the clan icon.
+3. A bar appears at the bottom. Click **Save Changes**, or **Reset** to undo.
+
+<Image src={computerOverview} alt="The Overview page with the clan picture, the clan name, the banner and the system messages channel" />
+
+</TabItem>
+</Tabs>
+
+| Image | Recommended size | Largest file |
+|---|---|---|
+| Clan picture | at least 512 x 512 pixels (smallest 128 x 128) | 1 MB |
+| Banner | at least 960 x 540 pixels, shape 16:9 | 10 MB |
+
+The name follows the same rules as when you [create a clan](../create-a-clan.mdx).
+
+### Choose where system messages go
+
+Mezon posts system messages in one channel, for example when someone joins. Under **SYSTEM MESSAGES CHANNEL** (on phones, the system messages section), choose the channel. Then turn each message on or off:
+
+- **Send a random welcome message when someone joins this clan.**
+- **Send helpful tips for clan setup.**
+- **Send a log when an action is applied to the clan**
+
+### Turn off anonymous mode
+
+Members can sometimes post without showing their name. To stop this in your clan, turn on **Prevent Anonymous** (phones: **Anonymous mode**). Its description says **Prevent users from using anonymous mode**.
+
+### Phone only
+
+- **Default notifications**: the level for members who never chose one. See [Notifications in a clan](./notifications.mdx).
+- **Delete clan** (owner only). See [Delete a clan](#delete-a-clan).
+
+## Integrations {#integrations}
+
+**Integrations** lists the webhooks of your clan. A webhook is a web address that another app or website can call to post a message in Mezon, for example a build server or a form.
+
+The clan owner and members with the **Manage Clan** or **Manage Channels** permission can see **Integrations**.
+
+### Two kinds of webhooks
+
+- **Webhooks** post messages in one channel of the clan.
+- **Clan Webhooks** send a message to one member of the clan.
+
+### Create a webhook on a computer
+
+1. Open **Clan Settings** and click **Integrations**.
+2. Click **Create Webhook** or **Create Clan Webhook**. If you already have webhooks, click **View Webhook** or **View Clan Webhook**, then **New Webhook** or **New Clan Webhook**.
+
+<Image src={computerIntegrations} alt="The Integrations page with Webhooks and Clan Webhooks and their Create buttons" />
+
+3. Open the new webhook. Change its name (up to 64 characters), its picture and, for a channel webhook, its **CHANNEL**.
+4. If you changed something, click **Save Changes** in the bar at the bottom.
+5. Click **Copy Webhook URL**, and paste the URL in the other app.
+
+:::warning
+Anyone who has the webhook URL can post in your clan. Keep it secret. If it leaks, click **Reset Token** and use the new URL.
+:::
+
+To remove a webhook, open it and click **Delete Webhook**.
+
+**Phones:** open **Settings** → **Integrations** to view and manage **Webhooks** and **Clan Webhooks** on mobile.
+
+<Image src={phoneIntegrations} alt="Clan Integrations on a phone showing Webhooks and Clan Webhooks" width={270} />
+
+For webhook payload formats and developer examples, see [Webhooks for developers](../../../developer/webhooks/overview.mdx) and [Bots and apps](../../bots-and-apps/index.mdx).
+
+## Delete a clan {#delete-a-clan}
+
+Only the clan owner can delete a clan. Deleting removes the clan for all its members, with its channels and messages.
+
+If you only want to stop running the clan, [transfer the ownership](./transfer-ownership.mdx) to another member instead.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the clan and tap the clan name at the top.
+2. Tap **Delete Clan**. You also find it in **Settings** → **Overview**.
+3. Confirm.
+
+<Image src={phoneDelete} alt="The clan menu of the owner with Delete Clan marked" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Open **Clan Settings**.
+2. Click **Delete Clan** at the bottom of the list.
+3. Type the clan name in **Enter clan name**.
+4. Click **Delete Clan**.
+
+<Image src={computerDelete} alt="The Delete clan window with the clan name typed and the Delete Clan button" />
+
+</TabItem>
+</Tabs>
+
+:::danger
+A deleted clan cannot be restored. Its channels, messages and settings are gone for everyone.
+:::
+
+## Related
+
+- [Manage members](./members-and-moderation.mdx)
+- [Channels](../channels/index.mdx)
+- [Transfer clan ownership](./transfer-ownership.mdx)
+- [Clan Pro and User Pro](../../account-and-personalization/pro-plan.mdx)

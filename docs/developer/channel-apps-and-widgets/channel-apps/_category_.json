@@ -1,0 +1,9 @@
+{
+  "label": "Channel apps",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "slug": "developer/channel-apps-and-widgets/channel-apps",
+    "description": "Launch web applications inside Mezon channels and verify signed launch data."
+  }
+}

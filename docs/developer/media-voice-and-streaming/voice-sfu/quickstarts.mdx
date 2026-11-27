@@ -1,0 +1,298 @@
+---
+sidebar_position: 3
+sidebar_label: Quickstarts
+description: Connect to a Mezon Voice SFU room, publish audio, and receive remote tracks in TypeScript, Go, Rust, Kotlin, Python, and C#.
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Voice SFU quickstarts
+
+Every example below joins a Mezon voice room (`CHANNEL_TYPE_MEZON_VOICE = 10`) using the `sfuUrl` and HS256 JWT `token` returned by [`GenerateMeetToken`](./concepts-and-tokens.md#obtaining-a-meet-token-generatemeettoken). Remember that every SFU session starts **muted on the server**—enable the microphone (or push-to-talk for audience roles) before writing audio.
+
+:::warning Pre-1.0 SDKs
+All six SFU SDKs are pre-1.0. For production bots, replace static token helpers (`TokenProvider.fixed` / `sfu.StaticToken`) with a live `TokenProvider` function that calls `GenerateMeetToken` whenever the SDK requests a `reconnect`, `expiring`, or `rejected` refresh.
+:::
+
+<Tabs groupId="sfu-lang">
+<TabItem value="ts-browser" label="TypeScript (Browser)" default>
+
+```bash
+npm install mezon-sfu-sdk
+```
+
+```ts
+import { Room } from "mezon-sfu-sdk";
+
+const room = new Room({ role: "speaker" });
+
+room.on("trackSubscribed", (track, participant) => {
+  const el = track.attach();
+  document.querySelector("#tiles")?.append(el);
+  console.log("Subscribed to", participant.info.displayName);
+});
+
+room.on("participantDisconnected", (participant) => {
+  console.log(`${participant.info.displayName} left`);
+});
+
+await room.connect(sfuUrl, async ({ reason }) => {
+  // Fetch a fresh meet token from your backend or bot session
+  return fetchMeetToken(reason);
+});
+
+await room.localParticipant.setMicrophoneEnabled(true);
+// Browser-only screen share:
+// await room.localParticipant.setScreenShareEnabled(true);
+```
+
+</TabItem>
+<TabItem value="ts-node" label="TypeScript (Node.js)">
+
+```bash
+npm install mezon-sfu-sdk @roamhq/wrtc ws
+```
+
+```ts
+import wrtc from "@roamhq/wrtc";
+import WebSocket from "ws";
+import { Room } from "mezon-sfu-sdk";
+import { createWrtcPlatform, PcmAudioSource, PcmAudioSink } from "mezon-sfu-sdk/node";
+
+const room = new Room({
+  platform: createWrtcPlatform({ wrtc, WebSocket }),
+});
+
+room.on("trackSubscribed", (track, participant) => {
+  if (track.kind === "audio") {
+    const sink = new PcmAudioSink(wrtc, track.mediaStreamTrack);
+    sink.on("data", (frame) => {
+      // Decoded PCM frame from participant (read sampleRate/channelCount per frame)
+      void participant;
+      void frame;
+    });
+  }
+});
+
+const source = new PcmAudioSource(wrtc); // 16-bit PCM, 48 kHz mono by default
+await room.connect(process.env.MEZON_SFU_URL!, process.env.MEZON_SFU_TOKEN!);
+await room.localParticipant.setMicrophoneEnabled(true, { track: source.track });
+source.write(pcmSamples);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```bash
+go get github.com/mezonai/mezon-sfu-sdk-go
+```
+
+```go
+package main
+
+import (
+	"context"
+	"log"
+	"os"
+	"time"
+
+	sfu "github.com/mezonai/mezon-sfu-sdk-go"
+	"github.com/pion/webrtc/v4/pkg/media"
+)
+
+func joinVoice(ctx context.Context, opusFrame []byte) error {
+	room := sfu.NewRoom(sfu.Options{
+		Handlers: sfu.Handlers{
+			OnTrackSubscribed: func(track *sfu.RemoteTrack, p *sfu.RemoteParticipant) {
+				go func() {
+					for {
+						pkt, err := track.ReadRTP() // Opus or VP8 RTP; io.EOF when unsubscribed
+						if err != nil {
+							return
+						}
+						_ = pkt
+					}
+				}()
+			},
+			OnMessageReceived: func(text string, from sfu.MessageSender) {
+				log.Println(from.UserID, text)
+			},
+		},
+	})
+
+	if err := room.Connect(ctx, os.Getenv("MEZON_SFU_URL"), sfu.StaticToken(os.Getenv("MEZON_SFU_TOKEN"))); err != nil {
+		return err
+	}
+	defer room.Disconnect()
+
+	if err := room.LocalParticipant().SetMicrophoneEnabled(ctx, true); err != nil {
+		return err
+	}
+
+	// Include RFC 6464 audio level (0 loudest..127 silence) for fixed-slot VAD
+	return room.LocalParticipant().Microphone().WriteSampleWithLevel(
+		media.Sample{Data: opusFrame, Duration: 20 * time.Millisecond},
+		30,
+	)
+}
+```
+
+</TabItem>
+<TabItem value="rust" label="Rust">
+
+```toml
+# Cargo.toml
+[dependencies]
+mezon-sfu = "0.1.0"
+tokio = { version = "1", features = ["full"] }
+bytes = "1"
+```
+
+```rust
+use std::time::Duration;
+use mezon_sfu::{Options, Room, RoomEvent, TokenProvider};
+
+async fn run(url: &str, token: &str, opus_frame: bytes::Bytes) -> mezon_sfu::Result<()> {
+    let (room, mut events) = Room::new(Options::default());
+    room.connect(url, TokenProvider::fixed(token)).await?;
+
+    room.local_participant().set_microphone_enabled(true).await?;
+    room.local_participant()
+        .microphone()
+        .write_opus(opus_frame, Duration::from_millis(20), Some(30))
+        .await?;
+
+    while let Some(event) = events.recv().await {
+        if let RoomEvent::TrackSubscribed(track, participant) = event {
+            tokio::spawn(async move {
+                while let Some(packet) = track.read_rtp().await {
+                    let _ = (&participant, packet);
+                }
+            });
+        }
+    }
+
+    room.disconnect().await;
+    Ok(())
+}
+```
+
+</TabItem>
+<TabItem value="kotlin" label="Kotlin (JVM / Android)">
+
+```kotlin
+// Gradle coordinates (group = "ai.mezon", version = "0.1.0"):
+// implementation("ai.mezon:mezon-sfu:0.1.0")
+// implementation("ai.mezon:mezon-sfu-webrtc-jvm:0.1.0") // or mezon-sfu-android on Android
+import ai.mezon.sfu.*
+import ai.mezon.sfu.webrtc.JvmMediaEngine
+
+suspend fun run(url: String, token: String, pcm: ShortArray) {
+    val engine = JvmMediaEngine() // One per process; close last
+    val room = Room(Options(), engine)
+    try {
+        room.connect(url, TokenProvider.fixed(token))
+        room.localParticipant.setMicrophoneEnabled(true)
+        room.localParticipant.microphone.writePcm(pcm, sampleRate = 48_000, channels = 1)
+
+        room.events.collect { event ->
+            if (event is RoomEvent.TrackSubscribed && event.track.source == TrackSource.MICROPHONE) {
+                event.track.addAudioSink { frame ->
+                    // Decoded 48 kHz mono PCM on a WebRTC thread; return quickly
+                }
+            }
+        }
+    } finally {
+        room.close()
+        room.awaitClosed()
+        engine.close()
+    }
+}
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```bash
+pip install mezon-sfu-sdk
+```
+
+```python
+import asyncio
+from mezon_sfu import Options, RemoteTrack, Room, TokenProvider, TrackSubscribed
+
+
+async def run(url: str, token: str, pcm: bytes) -> None:
+    async with asyncio.TaskGroup() as listeners, Room(Options()) as room:
+        await room.connect(url, TokenProvider.fixed(token))
+        await room.local_participant.set_microphone_enabled(True)
+        room.local_participant.microphone.write_pcm(pcm, sample_rate=48_000, channels=1)
+
+        async for event in room.events():
+            if isinstance(event, TrackSubscribed) and event.track.kind == "audio":
+                listeners.create_task(listen(event.track))
+
+
+async def listen(track: RemoteTrack) -> None:
+    async for frame in track.audio_frames():
+        # Decoded 48 kHz stereo 16-bit PCM (20 ms frames)
+        _ = frame
+```
+
+</TabItem>
+<TabItem value="csharp" label="C# (.NET)">
+
+```bash
+dotnet add package Mezon.Net.Sdk.Sfu --version 1.11.0
+```
+
+```csharp
+using Mezon.Net.Sdk.Sfu;
+
+var url = Environment.GetEnvironmentVariable("MEZON_SFU_URL")!;
+var token = Environment.GetEnvironmentVariable("MEZON_SFU_TOKEN")!;
+
+await using var room = new Room(new RoomOptions());
+await room.ConnectAsync(url, TokenProvider.Fixed(token));
+await room.LocalParticipant.SetMicrophoneEnabledAsync(true);
+
+// Write encoded Opus packets (e.g. read with OggOpusReader)
+// room.LocalParticipant.Microphone.WriteOpus(opusBytes, TimeSpan.FromMilliseconds(20));
+
+await foreach (var evt in room.Events.ReadAllAsync())
+{
+    switch (evt)
+    {
+        case ParticipantConnected p:
+            Console.WriteLine($"Joined: {p.Participant.Info.DisplayName}");
+            break;
+        case MessageReceived m:
+            Console.WriteLine($"Chat from {m.UserId}: {m.Message}");
+            break;
+        case Disconnected dc:
+            Console.WriteLine($"Disconnected: {dc.Reason}");
+            break;
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Audience & Push-to-Talk pattern
+
+To join as a listener and speak only on demand:
+
+- **TypeScript:** `new Room({ role: "audience" })` → `await room.localParticipant.setPushToTalk(true)`
+- **Go:** `sfu.NewRoom(sfu.Options{Role: sfu.RoleAudience})` → `room.LocalParticipant().SetPushToTalk(ctx, true)`
+- **Rust:** `Options { role: Role::Audience, ..Default::default() }` → `room.local_participant().set_push_to_talk(true).await?`
+- **Kotlin:** `Options(role = Role.AUDIENCE)` → `room.localParticipant.setPushToTalk(true)`
+- **Python:** `Options(role=Role.AUDIENCE)` → `await room.local_participant.set_push_to_talk(True)`
+- **.NET:** `new RoomOptions { Role = Role.Audience }` → `await room.LocalParticipant.SetPushToTalkAsync(true)`
+
+## Related
+
+- [Concepts & tokens](./concepts-and-tokens.md)
+- [SFU SDKs overview](./sdks-overview.md)
+- [Publishing with WHIP](../stream-channels/publishing-with-whip.mdx)

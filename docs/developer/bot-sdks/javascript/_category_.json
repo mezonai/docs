@@ -1,0 +1,8 @@
+{
+  "label": "JavaScript & TypeScript",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Build Node.js bots with mezon-sdk 2.8.68: quickstart, caches, recipes, and full API reference."
+  }
+}

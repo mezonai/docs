@@ -1,0 +1,102 @@
+---
+sidebar_position: 2
+sidebar_label: Text channel
+title: Text channel
+description: A tour of a text channel on a phone and a computer, how to view channel members, and how to archive a channel or thread.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import textChannelPhone01 from "./images/text-channel-phone-01.png";
+import textChannelComputer01 from "./images/text-channel-computer-01.png";
+import membersComputer01 from "./images/members-computer-01.png";
+
+# Text channel
+
+A text channel is where members of a clan write messages and share pictures and files. Text channels have a **#** icon in the channel list.
+
+## On a computer
+
+The buttons at the top right of a text channel open its tools. From left to right:
+
+<Image src={textChannelComputer01} alt="The top bar of a text channel with its buttons, the Inbox button and the search box" />
+
+| Button | What it opens |
+|---|---|
+| **Canvas** | Notes kept in the channel. See [Canvas](./canvas.mdx). |
+| **Switch to Timeline View** | The timeline view of the channel. Click the button again to go back to the chat. |
+| **Threads** | The channel's threads. See [Threads](../../friends-and-messaging/threads-and-topics.mdx#threads). |
+| **Members** | The people who can see the channel. See [Channel members](#members). |
+| **Pinned Messages** | Messages pinned in the channel. See [Pinned messages](./pinned-messages.mdx). |
+| **Notification Settings** | Which messages notify you. See [Channel notification overrides](../manage/notifications.mdx#channel-notifications). |
+| **Gallery** | Pictures and videos sent in the channel. See [Gallery](./files-and-gallery.mdx#gallery). |
+| **Files** | Files sent in the channel. See [Files and gallery](./files-and-gallery.mdx). |
+| **Inbox** | Your mentions, saved messages and topics. See [Inbox](./inbox.mdx). |
+| Search box | Search the messages of the channel. See [Search](./search.mdx). |
+
+**Desktop app:** the buttons are in the same order. Press **Ctrl+F** (**Cmd+F** on a Mac) to search.
+
+Under the top bar, a pin bar can show the newest pinned message and the newest topic. To hide it, click the cross at its right end (**Hide pin bar**), then click **Hide**. It comes back when there is a new pinned message or topic.
+
+## On a phone
+
+- Tap the channel name at the top of the chat to open the channel details. There you find buttons for search, threads, mute and settings, and the tabs **Members**, **Media**, **Files**, **Pins** and **Canvas**.
+
+  <Image src={textChannelPhone01} alt="The channel details with the Search, Threads and Mute buttons and the Members tab open" width={270} />
+
+- Your mentions and topics are in the **Notifications** tab at the bottom of the app.
+
+## Talk in a different place
+
+- A [thread](../../friends-and-messaging/threads-and-topics.mdx#threads) is a small channel inside the channel, with its own name.
+- A [topic](../../friends-and-messaging/threads-and-topics.mdx#topics) is a short discussion that starts from one message.
+
+## Channel members {#members}
+
+The member list shows the people who can see the channel, split into online and offline.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Tap the channel name at the top.
+2. Open the **Members** tab.
+3. Tap a name to open that person's profile.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Click the **Members** button at the top right of the channel.
+
+<Image src={membersComputer01} alt="A text channel with the member list open on the right, Mai online and three members offline" />
+
+2. Click a name to open that person's profile. From there you can send them a message.
+3. Click **Members** again to hide the list.
+
+</TabItem>
+</Tabs>
+
+On a computer, people with the **Manage Clan** permission can also give a role to a member from that member's profile. They can only give roles that are lower than their own, unless they are the clan owner.
+
+## Archive a channel {#archive-a-channel}
+
+Archiving hides a text channel or a thread from the channel list for all members while keeping its message history. You archive channels and threads on a computer (web browser or desktop app).
+
+The clan owner, members with the **Administrator**, **Manage Clan** or **Manage Channels** permission, and the person who created the channel or thread can archive it.
+
+1. Right-click the text channel or thread in the channel list.
+2. Click **Archive Channel** (or **Archive Thread** for a thread).
+3. Click **Archive** to confirm.
+
+When you archive a channel:
+
+- It disappears from the channel list for everyone, while all messages stay preserved.
+- Any child threads and scheduled events in that channel are deactivated.
+
+To bring an archived channel back later, the clan owner or a member with **Administrator** or **Manage Clan** can restore it in **Clan Settings** → **Archived Channels**. See [Restore an archived channel](../manage/settings.mdx).
+
+## Related
+
+- [Channels](./index.mdx)
+- [Voice channel](./voice-channel.mdx)
+- [Roles and permissions](../manage/roles-and-permissions.mdx)
+- [Manage members](../manage/members-and-moderation.mdx)

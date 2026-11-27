@@ -1,20 +1,104 @@
 {
+  "homepage.badge": {
+    "message": "Tài liệu chính thức · EN & VI"
+  },
   "homepage.getStarted": {
-    "message": "Bắt đầu"
+    "message": "Bắt đầu nhanh"
+  },
+  "homepage.developerCta": {
+    "message": "Tài liệu nhà phát triển"
+  },
+  "homepage.chip.userGuide": {
+    "message": "Hướng dẫn sử dụng"
+  },
+  "homepage.chip.features": {
+    "message": "Tổng quan tính năng"
+  },
+  "homepage.chip.proPlan": {
+    "message": "User & Clan Pro"
+  },
+  "homepage.chip.sdks": {
+    "message": "SDK & Bot"
+  },
+  "homepage.chip.webhooks": {
+    "message": "Webhooks"
+  },
+  "homepage.chip.oauth2": {
+    "message": "OAuth2"
+  },
+  "homepage.quickStartTitle": {
+    "message": "Bắt đầu nhanh"
+  },
+  "homepage.quickStartDesc": {
+    "message": "Cài Mezon trên điện thoại và máy tính, tham gia clan qua liên kết hoặc mã QR và gửi tin nhắn đầu tiên trong vài phút."
+  },
+  "homepage.quickStartCta": {
+    "message": "Bắt đầu ngay"
   },
   "homepage.userDocumentationTitle": {
     "message": "Hướng dẫn sử dụng"
   },
   "homepage.userDocumentation": {
-    "message": "Hướng dẫn từng bước giúp bạn khám phá tính năng, quản lý không gian làm việc và sử dụng Mezon hiệu quả nhất."
-  },
-  "homepage.developerDocumentationTitle": {
-    "message": "Tài liệu nhà phát triển"
-  },
-  "homepage.developerDocumentation": {
-    "message": "Tài liệu và ví dụ cho SDK, Webhook và các tích hợp để xây dựng và mở rộng nền tảng."
+    "message": "Hướng dẫn từng bước về nhắn tin, kênh thoại và phát trực tiếp, quản trị clan, gói Pro, bot và Mezon Đồng."
   },
   "homepage.readMore": {
-    "message": "Xem thêm"
+    "message": "Khám phá hướng dẫn"
+  },
+  "homepage.developerDocumentationTitle": {
+    "message": "Tài liệu nhà phát triển & SDK"
+  },
+  "homepage.developerDocumentation": {
+    "message": "Xây dựng bot, ứng dụng trong kênh, client thoại SFU và tích hợp MMN với các bộ SDK chính thức JavaScript, .NET, Go, Rust, Kotlin và Python."
+  },
+  "homepage.developerReadMore": {
+    "message": "Mở tài liệu nhà phát triển"
+  },
+  "homepage.integrationsTitle": {
+    "message": "Webhooks, OAuth2 & Phát trực tiếp"
+  },
+  "homepage.integrationsDesc": {
+    "message": "Kết nối hệ thống ngoài bằng Channel/Clan Webhook, Đăng nhập bằng Mezon (OAuth2/OIDC), widget chat nhúng và phát trực tiếp qua WHIP."
+  },
+  "homepage.integrationsCta": {
+    "message": "Xem tích hợp"
+  },
+  "badge.platform.all": {
+    "message": "Mọi nền tảng"
+  },
+  "badge.platform.phone": {
+    "message": "Điện thoại"
+  },
+  "badge.platform.android": {
+    "message": "Android"
+  },
+  "badge.platform.iphone": {
+    "message": "iPhone"
+  },
+  "badge.platform.computer": {
+    "message": "Máy tính"
+  },
+  "badge.platform.web": {
+    "message": "Web"
+  },
+  "badge.platform.desktop": {
+    "message": "Desktop"
+  },
+  "badge.plan.free": {
+    "message": "Miễn phí"
+  },
+  "badge.plan.userPro": {
+    "message": "User Pro"
+  },
+  "badge.plan.clanPro": {
+    "message": "Clan Pro"
+  },
+  "badge.plan.pro": {
+    "message": "Pro"
+  },
+  "badge.botAccess.allowed": {
+    "message": "Cho phép"
+  },
+  "badge.botAccess.denied": {
+    "message": "Bị chặn"
   }
 }

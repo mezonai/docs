@@ -1,0 +1,9 @@
+{
+  "label": "Media, voice & streaming",
+  "position": 9,
+  "link": {
+    "type": "generated-index",
+    "slug": "developer/media-voice-and-streaming",
+    "description": "Build realtime voice/video rooms with the Mezon SFU SDKs and broadcast live streams with WHIP and HLS."
+  }
+}

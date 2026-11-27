@@ -1,0 +1,9 @@
+{
+  "label": "Channel apps & widgets",
+  "position": 6,
+  "link": {
+    "type": "generated-index",
+    "slug": "developer/channel-apps-and-widgets",
+    "description": "Embed web apps inside clans, integrate Mezon Light SDK, or add the Mezon Chat Widget to your site."
+  }
+}

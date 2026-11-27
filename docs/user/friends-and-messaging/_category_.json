@@ -1,6 +1,6 @@
 {
-  "label": "Friends and Messaging",
-  "position": 3,
+  "label": "Friends and messaging",
+  "position": 5,
   "link": {
     "type": "doc",
     "id": "user/friends-and-messaging/index"

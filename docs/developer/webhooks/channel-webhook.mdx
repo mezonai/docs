@@ -1,7 +1,7 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 sidebar_label: Channel webhook
-description: Create a channel webhook and post messages to a Mezon channel with one HTTP request.
+description: Create a channel webhook and post messages using Native Mezon, GitHub Webhook, or Discord-compatible payloads.
 ---
 
 import Tabs from "@theme/Tabs";
@@ -9,40 +9,49 @@ import TabItem from "@theme/TabItem";
 
 # Channel webhook
 
-A channel webhook posts messages to one channel. The messages show the webhook's name and avatar, which you can change.
+A channel webhook posts messages into a single Mezon channel (or thread) under the webhook's configured name and avatar.
+
+<ApiBadge method="POST" path="https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN" />
 
 ## Create a channel webhook
 
-You need the **Manage Channels** permission in the clan. These steps use the Mezon web app on a computer.
+You need the **Manage Channel** permission in the clan.
 
-1. In the channel list, right-click the channel.
-2. Click **Edit Channel**.
+1. Right-click the target channel in the channel sidebar and select **Edit Channel**.
 
-   ![The channel menu with Edit Channel](./images/channel-webhook-computer-01.png)
+   ![Channel context menu showing Edit Channel](./images/channel-webhook-computer-01.png)
 
-3. Open the **Integrations** tab.
+2. Open the **Integrations** tab.
 
-   ![The channel settings with the Integrations tab](./images/channel-webhook-computer-02.png)
+   ![Channel settings Integrations tab](./images/channel-webhook-computer-02.png)
 
-4. Click **Create Webhook**. If the channel already has webhooks, click **View Webhook** instead.
-5. Click **New Webhook**. Mezon creates a webhook with a random name and avatar.
-6. Click the webhook to open it, then click **Copy Webhook URL**.
+3. Click **Create Webhook** (or **View Webhook** if the channel already has webhooks), then click **New Webhook**.
+4. Expand the new webhook and click **Copy Webhook URL**.
 
-   ![An open webhook with the Copy Webhook URL button](./images/channel-webhook-computer-03.png)
+   ![Expanded webhook showing Copy Webhook URL](./images/channel-webhook-computer-03.png)
 
-Store the URL as a secret. In the open webhook you can also change its name, avatar and channel. If the URL leaks, click **Delete Webhook** and create a new one.
+Store the URL in a secret environment variable such as `WEBHOOK_URL`.
 
-## Send a message
+## Supported payload formats
 
-Send a `POST` request to the webhook URL with the header `Content-Type: application/json`. The URL has this form:
+`mezon-api` (`webhook_service.go`) inspects top-level JSON keys in **strict priority order** to route incoming requests to one of three built-in parsers:
 
-```text
-https://webhook.mezon.ai/webhooks/CHANNEL_ID/TOKEN
-```
+| Priority | Trigger key | Parser | Best for |
+|---|---|---|---|
+| 1 | `repository` | **GitHub Webhook** | Connecting GitHub repository webhooks directly without middleware |
+| 2 | `type` | **Native Mezon** | Full control over UTF-16 markdown ranges (`mk`), `@mentions`, and `images` |
+| 3 | `content` | **Discord-compatible (`COMMON`)** | Drop-in compatibility with Discord-style webhook senders |
+| — | *(none of the above)* | Ignored | Returns `200 OK`, but **no message is posted** |
 
-Use the URL exactly as you copied it.
+:::tip Key precedence
+Because `repository` is checked before `type`, and `type` before `content`, avoid mixing top-level keys from different formats in the same JSON body.
+:::
 
-### Body
+---
+
+### Format 1: Native Mezon (`type` key)
+
+Use any non-empty top-level `type` key (for example `"hook"`) and place your payload inside `message`:
 
 ```json
 {
@@ -53,46 +62,87 @@ Use the URL exactly as you copied it.
       { "type": "b", "s": 0, "e": 12 },
       { "type": "lk", "s": 14, "e": 43 }
     ],
-    "mentions": [{ "user_id": "USER_ID", "s": 44, "e": 48 }]
+    "mentions": [
+      { "user_id": "USER_ID", "s": 44, "e": 48 }
+    ],
+    "images": [
+      {
+        "url": "https://example.com/chart.png",
+        "fn": "chart.png",
+        "ft": "image/png",
+        "w": 640,
+        "h": 360,
+        "sz": 42180
+      }
+    ],
+    "username": "ci-bot"
   }
 }
 ```
 
-| Field | Type | Required | Meaning |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `type` | string | Yes | Any value, for example `"hook"`. The key must be present. |
-| `message.t` | string | Yes | The text of the message. |
-| `message.mk` | array | No | Formatting ranges in `t`: `{ "type", "s", "e" }`. `type` is for example `"b"` (bold) or `"lk"` (link). |
-| `message.mentions` | array | No | Members to mention: `{ "user_id" or "username", "s", "e" }`. |
-| `message.images` | array | No | Images to show: `{ "url", "fn", "ft", "w", "h", "sz" }`. |
+| `type` | string | Yes | Routing key (any value such as `"hook"`). |
+| `message.t` | string | Yes | Plain message text. |
+| `message.mk` | array | No | Formatting spans `{ "type", "s", "e" }` using UTF-16 code-unit offsets (`e` exclusive). Common types: `"b"` (bold), `"lk"` (link), `"t"` (code block). |
+| `message.mentions` | array | No | Mention targets `{ "user_id" or "username", "s", "e" }`. Only members who have access to the channel are notified; others stay plain text. `@here` is not supported. |
+| `message.images` | array | No | Image attachments `{ "url", "fn", "ft", "w", "h", "sz" }`. Every `url` must be a full `http://` or `https://` URL or the request fails with `400 Invalid attachment URL`. |
+| `message.username` | string | No | Optional metadata string passed to the message dispatcher (Mezon displays the webhook's configured profile name and avatar). |
 
-`s` and `e` are the start and end positions of a range in `t`, counted in UTF-16 characters (as JavaScript counts them), with `e` not included. In the example, `"b"` covers `Build passed` (0 to 12) and the mention covers `@Hoa` (44 to 48).
+---
 
-#### Mentions
+### Format 2: GitHub Webhook (`repository` key)
 
-Give each mention a `user_id` (the member's id, as a string) or a `username`. Mentioned members get a mention notification. Mezon keeps only mentions of members who can see the channel: other names stay plain text and notify no one. `@here` does not work in webhook messages either.
+Paste your Mezon channel webhook URL directly into a GitHub repository under **Settings → Webhooks → Add webhook**, with **Content type** set to `application/json`.
 
-#### Images
+`mezon-api` (`github_handler.go`) automatically formats these GitHub events with clickable markdown links:
 
-| Field | Meaning |
-|---|---|
-| `url` | The full public URL of the image, for example `https://example.com/chart.png`. A URL without a scheme and host, such as `/chart.png`, makes the request fail. |
-| `fn` | The file name. |
-| `ft` | The file type, for example `image/png`. |
-| `w`, `h` | Width and height in pixels. |
-| `sz` | Size in bytes. |
+- **Push events** (`head_commit`, `commits`, `pusher`, `ref`): displays the sender, repository + branch name, commit count, and up to **5 commits** with commit messages, links, and committer names.
+- **Pull request opened** (`action: "opened"`, `pull_request`): displays the sender, repository, `head -> base` branch pair, and PR link.
+- **Pull request merged** (`action: "closed"`, `pull_request.merged: true`): displays the sender, repository, `head -> base` branch pair, and merged PR link.
 
-### Examples
+Other GitHub event payloads (such as `ping` or `issues`) return `200 OK` without posting a message.
 
-Set `WEBHOOK_URL` to your webhook URL before you run them.
+---
+
+### Format 3: Discord-compatible (`content` key)
+
+Any tool that already sends Discord-style webhook payloads works out of the box when the JSON body contains a top-level `content` key:
+
+```json
+{
+  "content": "Deployment finished: https://status.example.com\n```bash\nversion=v2.4.0\n```",
+  "username": "Release Bot",
+  "avatar_url": "https://example.com/avatar.png"
+}
+```
+
+`mezon-api` (`common/event.go`) automatically detects and converts:
+
+- **`http://` and `https://` URLs** → clickable `lk` markdown ranges (UTF-16 offsets).
+- **Fenced triple-backtick code blocks** (```` ```...``` ````) → `t` code-block markdown ranges (UTF-16 offsets).
+
+:::note Discord `embeds` not yet parsed
+Only `content`, `username`, and `avatar_url` are modeled in the `COMMON` handler. Discord `embeds` arrays are currently ignored; use the Native Mezon format if you need images or structured formatting.
+:::
+
+## Code examples
+
+Set `WEBHOOK_URL="https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN"` in your environment before running these snippets.
 
 <Tabs groupId="code">
 <TabItem value="bash" label="curl" default>
 
 ```bash
+# Native Mezon format
 curl -X POST "$WEBHOOK_URL" \
   -H "Content-Type: application/json" \
   -d '{"type":"hook","message":{"t":"Build passed: https://example.com/builds/42 @Hoa","mk":[{"type":"b","s":0,"e":12},{"type":"lk","s":14,"e":43}],"mentions":[{"user_id":"USER_ID","s":44,"e":48}]}}'
+
+# Discord-compatible format
+curl -X POST "$WEBHOOK_URL" \
+  -H "Content-Type: application/json" \
+  -d '{"content":"Build passed: https://example.com/builds/42"}'
 ```
 
 </TabItem>
@@ -111,11 +161,12 @@ const payload = {
   },
 };
 
-fetch(process.env.WEBHOOK_URL, {
+const res = await fetch(process.env.WEBHOOK_URL, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(payload),
-}).then(async (response) => console.log(response.status, await response.text()));
+});
+console.log(res.status, await res.text());
 ```
 
 </TabItem>
@@ -138,14 +189,14 @@ payload = {
     },
 }
 
-request = urllib.request.Request(
+req = urllib.request.Request(
     os.environ["WEBHOOK_URL"],
-    data=json.dumps(payload).encode(),
+    data=json.dumps(payload).encode("utf-8"),
     headers={"Content-Type": "application/json"},
     method="POST",
 )
-with urllib.request.urlopen(request) as response:
-    print(response.status, response.read().decode())
+with urllib.request.urlopen(req) as res:
+    print(res.status, res.read().decode())
 ```
 
 </TabItem>
@@ -177,14 +228,13 @@ func main() {
 	}
 	body, _ := json.Marshal(payload)
 
-	response, err := http.Post(os.Getenv("WEBHOOK_URL"), "application/json", bytes.NewReader(body))
+	resp, err := http.Post(os.Getenv("WEBHOOK_URL"), "application/json", bytes.NewReader(body))
 	if err != nil {
-		fmt.Println(err)
-		return
+		panic(err)
 	}
-	defer response.Body.Close()
-	text, _ := io.ReadAll(response.Body)
-	fmt.Println(response.StatusCode, string(text))
+	defer resp.Body.Close()
+	text, _ := io.ReadAll(resp.Body)
+	fmt.Println(resp.StatusCode, string(text))
 }
 ```
 
@@ -217,27 +267,29 @@ Console.WriteLine($"{(int)response.StatusCode} {await response.Content.ReadAsStr
 </TabItem>
 </Tabs>
 
-The message appears in the channel:
+The rendered message appears in the channel:
 
-![The webhook message in the channel, with bold text, a link and a mention](./images/channel-webhook-computer-04.png)
+![Rendered webhook message showing bold text, link, and member mention](./images/channel-webhook-computer-04.png)
 
-## Responses and limits
+## Limits and error responses
 
-Mezon answers `200` as soon as it has accepted the request, and posts the message right after. Problems found after that, such as a deleted channel, are not reported back.
+Mezon validates JSON syntax, image URLs, and token ownership synchronously, then enqueues delivery to the channel worker (`webhook_service.go`). Downstream delivery failures (such as a deleted channel) occur asynchronously after `200 OK`.
 
-| Status | Body | Cause |
+| Limit | Value | Behavior when exceeded |
 |---|---|---|
-| `200` | (empty) | Accepted. |
-| `400` | `Invalid JSON` | The body is not JSON. |
-| `400` | `Invalid token` | The token is wrong, or it belongs to another channel than the one in the URL. |
-| `400` | `Invalid attachment URL` | An image `url` is not a full URL. |
+| HTTP request body | **4 MiB** (`MaxRequestBodySize`) | Rejected by HTTP server before handler executes |
+| Serialized Native Mezon message JSON (`t` + `mk`) | **4,000 bytes** | Replaced with `"The original message was too long"` and mentions are cleared (note: multi-byte UTF-8 characters such as Vietnamese accents take 2–3 bytes each) |
+| Hashtags (`hg`) | Not supported | Channel hashtags in `t` remain plain text |
 
-- A body without a `type` key is accepted with `200`, but its `message` is not posted.
-- If the message content (`t` and `mk`, as JSON) is longer than 4,000 bytes, Mezon posts "The original message was too long" instead. Letters with accents, such as Vietnamese letters, take 2 or 3 bytes each.
-- Hashtags (`hg`) are not supported: channel names in `t` stay plain text.
-- The sender is always the webhook's name and avatar.
+| HTTP status | Response body | Cause |
+|---|---|---|
+| `200` | *(empty)* | Request accepted (or silently ignored if none of `repository`, `type`, or `content` is present). |
+| `400` | `Invalid JSON` | Request body is not valid JSON. |
+| `400` | `Invalid token` | Token is invalid, disabled, or belongs to a different channel ID. |
+| `400` | `Invalid attachment URL` | An entry in `message.images[].url` is not a full URL with scheme and host. |
 
 ## Related
 
 - [Webhooks overview](./overview.mdx)
 - [Clan webhook](./clan-webhook.mdx)
+- [Message format and entities](../core-concepts/message-format-and-entities.md)

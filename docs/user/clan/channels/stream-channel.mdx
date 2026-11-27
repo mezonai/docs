@@ -1,0 +1,121 @@
+---
+sidebar_position: 4
+sidebar_label: Stream channel
+description: Watch a live stream on any device, go live directly from Mezon on a computer, or broadcast from OBS Studio with WHIP.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import streamPhone01 from "./images/stream-channel-phone-01.png";
+import streamPhone02 from "./images/stream-channel-phone-02.png";
+import streamComputer01 from "./images/stream-channel-computer-01.png";
+import streamComputer02 from "./images/stream-channel-computer-02.png";
+import streamGoLive01 from "./images/stream-channel-golive-01.png";
+import streamGoLive02 from "./images/stream-channel-golive-02.png";
+import streamObs01 from "./images/stream-channel-obs-01.png";
+
+# Stream channel
+
+In a stream channel, one person broadcasts live video and the other members of the clan watch. A stream channel has a broadcast icon (a dot with waves) in the channel list. Stream channels are always public: every member of the clan can open them and watch.
+
+Only one person can be live in a stream channel at a time.
+
+## Watch a stream
+
+You can watch on an Android phone, an iPhone, the desktop app and the web app.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+<ShotSteps>
+<Shot src={streamPhone01} alt="The stream channel sheet with the person who is live and the Join Stream button marked">Tap the stream channel. When someone is live, you see their name and how many people are watching. Tap **Join Stream**.</Shot>
+<Shot src={streamPhone02} alt="A live stream playing, with LIVE and the viewer count at the top and the buttons at the bottom">The video starts. Tap the video to show or hide the controls.</Shot>
+</ShotSteps>
+
+- The buttons at the bottom change the sound output or the quality, or open the chat.
+- The full-screen button is at the top right.
+- To stop watching, tap the red button.
+- **iPhone:** supports background audio playback and Bluetooth audio routing while watching a stream.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Click the stream channel.
+2. When someone is live, you see their name. Click **Join stream**.
+
+<Image src={streamComputer01} alt="A stream channel with Mai is live and the Join stream button" />
+
+3. The video starts. Point at the video to show the controls.
+4. Use the controls to change the volume or the **Quality**, send **Live Comments** over the stream, or watch in full screen.
+5. To stop watching, click the red button in the middle.
+
+<Image src={streamComputer02} alt="A live stream playing, with the volume, quality and full-screen controls and the viewers below" />
+
+To open the side chat while you watch, click **Show Chat** at the top right.
+
+</TabItem>
+</Tabs>
+
+When no one is live, the channel shows **No one is currently in stream** (and the channel's **Stream Thumbnail**, if set).
+
+The video **Quality** can be **Auto**, **High**, **Medium** or **Low**. **Auto** changes the quality to match your connection. Choose **Low** if the video stops often.
+
+The number next to the eye icon shows the live viewer count. The viewer avatars under the video show who is watching.
+
+## Go Live from Mezon
+
+On a computer (web browser or desktop app), **any member** of the stream channel can go live directly inside Mezon when nobody is currently live.
+
+1. Open the stream channel while no one is live.
+2. Click **Go Live**.
+
+<Image src={streamGoLive01} alt="An idle stream channel showing Join stream and the Go Live button marked" />
+
+3. Choose your sources:
+   - **Video:** click **Go Live** to share a screen or window (with optional **Camera** picture-in-picture overlay), or choose **Camera only**.
+   - **Microphone:** enabled by default. Toggle **Microphone** on or off at any time.
+   - **System audio:** off by default. Turn on **Also share system audio** if you want viewers to hear audio from your computer or browser tab.
+
+<Image src={streamGoLive02} alt="The Go Live setup dialog with system audio, Microphone, Camera, Camera only and Go Live controls" width={620} />
+
+4. Start broadcasting. Your stream goes live at **720p @ 30 fps** (H.264 video up to 2.5 Mbps, Opus stereo audio at 128 kbps).
+5. When you are done, click **End stream** (or **Stop**).
+
+:::note
+Only one person can publish in a stream channel at a time. If someone else is already live, **Go Live** is unavailable until their stream ends.
+:::
+
+## Stream from OBS Studio (WHIP)
+
+On a computer, members with the **Manage Channels** permission (as well as **Manage Clan**, **Administrator** and the clan owner) can broadcast from external software such as **OBS Studio 30+** using **WHIP (RFC 9725)**. Mezon uses WHIP — **RTMP is not used**.
+
+1. Right-click the stream channel in the channel list (or click its gear icon) and open **Edit Channel**.
+2. Open the **Stream** tab.
+3. Click **Get stream key** to generate and copy the **WHIP Server URL** and **Bearer Token**.
+
+<Image src={streamObs01} alt="The Stream settings tab showing stream thumbnail upload and the Get stream key button for OBS and WHIP encoders" />
+4. In **OBS Studio 30+**, open **Settings** → **Stream**, set **Service** to **WHIP**, paste the **Server** URL and **Bearer Token**, and start streaming.
+
+In the same **Streaming** tab, channel managers can also upload a **Stream Thumbnail** (JPG, PNG, GIF or WEBP, up to 10 MB). Members see this picture while no one is live.
+
+:::warning
+Keep your **Bearer Token** secret. Anyone who has the WHIP Server URL and Bearer Token can publish live video to this stream channel.
+:::
+
+## Who can create a stream channel
+
+The clan owner and roles with the **Administrator**, **Manage Clan** or **Manage Channels** permission can create a stream channel. Create it like any other channel and choose the type **Stream**. See [Create a channel](./index.mdx#create-a-channel).
+
+## Limits and Clan Pro
+
+- Only one publisher can be live per stream channel at a time.
+- Stream duration and viewer limits depend on your clan plan (Clan Free vs Clan Pro). See [Clan Pro and User Pro](../../account-and-personalization/pro-plan.mdx) for details.
+- For technical WHIP publishing details and encoder settings, see [Publishing with WHIP](../../../developer/media-voice-and-streaming/stream-channels/publishing-with-whip.mdx).
+
+## Related
+
+- [Channels](./index.mdx)
+- [Voice channel](./voice-channel.mdx)
+- [Clan Pro and User Pro](../../account-and-personalization/pro-plan.mdx)
+- [Publishing with WHIP (Developer docs)](../../../developer/media-voice-and-streaming/stream-channels/publishing-with-whip.mdx)

@@ -1,0 +1,122 @@
+---
+sidebar_position: 2
+sidebar_label: Bình chọn (Polls)
+description: Tạo, tra cứu và đóng cuộc bình chọn gốc của Mezon từ bot bằng mezon-sdk và Mezon.Net.Sdk.
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import pollsComputer01 from "./images/polls-computer-01.png";
+
+# Bình chọn (Polls)
+
+Bình chọn gốc của Mezon hiển thị trực tiếp trong tin nhắn kênh (`TypeMessage.Poll = 18`), cho phép thành viên clan chọn một hoặc nhiều đáp án, đồng thời tự động cập nhật số phiếu theo thời gian thực và đóng lại khi hết hạn.
+
+<Image src={pollsComputer01} alt="Thẻ bình chọn gốc của Mezon hiển thị trong kênh với các lựa chọn, nút Xem kết quả và Bình chọn" width={480} />
+
+## Khả năng và ràng buộc
+
+| Quy tắc | Giá trị máy chủ áp dụng (`mezon-api`) |
+|---|---|
+| Câu hỏi (`question`) | Không được để trống sau khi bỏ khoảng trắng đầu/cuối |
+| Đáp án (`answers`) | Từ **2 đến 20** lựa chọn (được đánh chỉ mục `0..N-1`) |
+| Thời hạn (`expire_hours`) | Từ **1 đến 168** giờ (1 giờ đến 7 ngày) |
+| Loại bình chọn (`PollType`) | `SINGLE = 0` (chọn một đáp án) hoặc `MULTIPLE = 1` (chọn nhiều đáp án) |
+| Đóng bình chọn | **Chỉ người tạo bình chọn** (`poll.AuthorID == userID`) mới được đóng sớm; bình chọn hết hạn sẽ tự đóng qua bộ lập lịch máy chủ |
+| Bot bỏ phiếu (`VotePoll`) | <BotAccessBadge allowed={false} note="Chặn với bot" /> `VotePoll` không nằm trong danh sách API cho phép bot; bot chỉ có thể tạo, đọc và đóng bình chọn, không thể bỏ phiếu |
+
+## Tạo, đọc kết quả và đóng bình chọn
+
+<Tabs groupId="sdk-lang">
+<TabItem value="ts" label="TypeScript (mezon-sdk)" default>
+
+```ts
+// 1. Tạo bình chọn
+const created = await client.createPoll({
+  clan_id: "CLAN_ID",
+  channel_id: "CHANNEL_ID",
+  question: "Trưa nay ăn gì?",
+  answers: ["Phở", "Bánh mì", "Bún chả"],
+  expire_hours: 24,
+  type: 0, // 0 = SINGLE, 1 = MULTIPLE
+});
+
+if (!created?.poll_id) {
+  throw new Error("Không tạo được bình chọn");
+}
+
+// 2. Đọc kết quả hiện tại và danh sách người đã bầu
+// Có thể tra cứu theo poll_id, hoặc theo cặp { message_id, channel_id }.
+const status = await client.getPoll({ poll_id: created.poll_id });
+console.log("Tổng số phiếu:", status?.total_votes);
+console.log("Số phiếu từng đáp án:", status?.answer_counts);
+console.log("Chi tiết người bầu:", status?.voter_details);
+
+// 3. Đóng bình chọn sớm (chỉ người tạo)
+await client.closePoll({ poll_id: created.poll_id });
+```
+
+</TabItem>
+<TabItem value="csharp" label="C# (Mezon.Net.Sdk)">
+
+```csharp
+using Mezon.Net.Models;
+
+// 1. Tạo bình chọn
+var created = await client.CreatePollAsync(new CreatePollParams(
+    clanId: clanId,
+    channelId: channelId,
+    question: "Trưa nay ăn gì?",
+    answers: new[] { "Phở", "Bánh mì", "Bún chả" },
+    expireHours: 24,
+    type: 0 // 0 = SINGLE, 1 = MULTIPLE
+));
+
+// 2. Đọc kết quả hiện tại và chi tiết người bầu
+var status = await client.GetPollAsync(new GetPollParams(pollId: created.PollId));
+Console.WriteLine($"Tổng số phiếu: {status.TotalVotes}");
+
+// 3. Đóng bình chọn sớm (chỉ người tạo)
+await client.ClosePollAsync(new ClosePollParams(pollId: created.PollId));
+```
+
+</TabItem>
+</Tabs>
+
+## Tham chiếu API
+
+### `CreatePoll` <ApiBadge method="RPC" path="CreatePoll" /> <BotAccessBadge allowed={true} />
+
+Yêu cầu bot là thành viên của kênh và có quyền gửi tin nhắn.
+
+| Trường | Kiểu | Bắt buộc | Ghi chú |
+|---|---|---|---|
+| `clan_id` | int64 / string | Có | Snowflake ID của clan |
+| `channel_id` | int64 / string | Có | Snowflake ID của kênh đích |
+| `question` | string | Có | Câu hỏi không rỗng |
+| `answers` | `string[]` | Có | 2–20 nhãn đáp án |
+| `expire_hours` | int32 | Có | Thời hạn theo giờ (`1`–`168`) |
+| `type` | `PollType` (`0` \| `1`) | Không | Mặc định `SINGLE` (`0`); đặt `1` cho `MULTIPLE` |
+
+Trả về `poll_id`, `message_id`, `question`, `answers` (`[{ index, label }]`), `answer_counts`, `exp` (Unix giây), `is_closed`, `creator_id`, `type`, và `total_votes`.
+
+### `GetPoll` <ApiBadge method="RPC" path="GetPoll" /> <BotAccessBadge allowed={true} />
+
+Tra cứu bình chọn theo `poll_id` (nếu khác 0) hoặc theo cặp `message_id` + `channel_id`.
+
+Trả về siêu dữ liệu bình chọn kèm `answer_counts`, `total_votes` và `voter_details` (mảng `{ answer_index, user_ids }`).
+
+### `ClosePoll` <ApiBadge method="RPC" path="ClosePoll" /> <BotAccessBadge allowed={true} />
+
+Nhận `poll_id` hoặc cặp `message_id` + `channel_id`. Trả về `PermissionDenied` nếu người gọi không phải người tạo bình chọn. Gọi đóng trên bình chọn đã đóng sẽ thành công an toàn (idempotent). Khi đóng, máy chủ cập nhật tin nhắn bình chọn gốc trong kênh với `is_closed: true` và kết quả cuối cùng.
+
+### `VotePoll` <ApiBadge method="RPC" path="VotePoll" /> <BotAccessBadge allowed={false} />
+
+Chỉ dành cho tài khoản người dùng thật. Phiên bot gọi `VotePoll` sẽ bị từ chối với mã `403 Permission denied` tại `mezon-proto-server` / `Unauthenticated` tại `mezon-api`.
+
+## Liên quan
+
+- [Tin nhắn tương tác](./interactive-messages.mdx)
+- [Quyền hạn và phạm vi truy cập API](../core-concepts/permissions-and-api-access.md)
+- [Tham chiếu sự kiện](../reference/events-reference.md)

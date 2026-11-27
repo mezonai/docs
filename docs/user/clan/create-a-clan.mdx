@@ -1,0 +1,77 @@
+---
+sidebar_position: 3
+sidebar_label: Create a clan
+description: Create a clan from scratch or from a template, and give it a name and a picture.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phonePlus from "./images/create-a-clan-phone-01.png";
+import phoneChoose from "./images/create-a-clan-phone-02.png";
+import phoneForm from "./images/create-a-clan-phone-03.png";
+import computerChoose from "./images/create-a-clan-computer-01.png";
+import computerName from "./images/create-a-clan-computer-02.png";
+
+# Create a clan
+
+Anyone with a Mezon account can create a clan. You become the clan owner.
+
+## Create the clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+<ShotSteps>
+<Shot src={phonePlus} alt="The clan list with the + button marked">In the clan list on the left, tap **+**.</Shot>
+<Shot src={phoneChoose} alt="The Create Your Clan screen with Create My Own marked">Tap **Create My Own**. Or tap a template under **START FROM A TEMPLATE**.</Shot>
+<Shot src={phoneForm} alt="The Customize Your Clan form with a name typed and Create Clan marked">Type the clan name. To add a picture, tap **Upload**. Tap **Create Clan**.</Shot>
+</ShotSteps>
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. In the clan bar on the far left, click **+** (**Create Clan**).
+2. Click **Create My Own**. Or click a template under **START FROM A TEMPLATE**.
+
+<Image src={computerChoose} alt="The Create Your Clan dialog with Create My Own and the list of templates" />
+
+3. Type the name under **CLAN NAME**.
+4. To add a picture, click **Upload** and choose an image.
+5. Click **Create**.
+
+<Image src={computerName} alt="The Customize Your Clan dialog with a clan name filled in and the Create button" />
+
+</TabItem>
+</Tabs>
+
+Your new clan opens. It has one category, **PUBLIC CHANNELS**, with the text channel **general**. A template also adds its own categories and channels.
+
+In a web browser, the **general** channel shows a short start list: **Invite your friends**, **Send your first message**, **Download the Mezon App** and **Create your channel**.
+
+## Templates
+
+A template creates channels for a purpose, so you do not start empty. The templates are **Gaming**, **Friends**, **Study Group**, **School Club**, **Local Community** and **Artists & Creators**. **Create My Own** starts with the **general** channel only.
+
+You can rename, add or delete channels later.
+
+## Name and picture rules
+
+- The name can have up to 64 characters.
+- Use letters (Vietnamese letters too), numbers, spaces, `_` and `-`. The name cannot start with a space, `_` or `-`.
+- In a web browser you can also use emoji in the name. The phone apps and the desktop app do not accept emoji.
+- No other clan in Mezon may use the same name.
+- The picture is optional. Use an image of 1 MB or less.
+- If you skip the picture, Mezon gives the clan a picture automatically.
+
+You can change the name and the picture later in [Clan Settings → Overview](./manage/settings.mdx#overview).
+
+:::note
+You can be in up to 50 clans, including the ones you created. When you reach 50, leave a clan before you create a new one.
+:::
+
+## Next steps
+
+- [Invite people to your clan](./invite-people.mdx)
+- [Add channels and categories](./channels/index.mdx)
+- [Roles and permissions](./manage/roles-and-permissions.mdx)

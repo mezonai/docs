@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
 sidebar_label: Thao tác với tin nhắn
-description: Trả lời, thêm biểu cảm, sửa, xóa, chuyển tiếp, ghim và báo cáo tin nhắn, gửi tin nhắn thoại và tệp, định dạng chữ.
+description: Trả lời, thêm biểu cảm nhanh, tạo bình chọn, quét mã QR trên ảnh, sửa, chuyển tiếp, ghim và báo cáo tin nhắn, gửi tin nhắn thoại và tệp, định dạng chữ.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -10,6 +10,7 @@ import messageActionsComputer01 from "./images/message-actions-computer-01.png";
 import messageActionsPhone01 from "./images/message-actions-phone-01.png";
 import messageActionsPhone02 from "./images/message-actions-phone-02.png";
 import messageActionsPhone03 from "./images/message-actions-phone-03.png";
+import messageActionsPoll01 from "./images/message-actions-poll-01.png";
 
 # Thao tác với tin nhắn
 
@@ -36,13 +37,20 @@ Nhấn chuột phải vào một tin nhắn. Menu các thao tác mở ra.
 
 Menu chỉ hiện những thao tác bạn được dùng. Ví dụ, **Chỉnh sửa tin nhắn** chỉ có ở tin nhắn của chính bạn.
 
+## Biểu cảm nhanh
+
+Trên ứng dụng web, ứng dụng máy tính và iPhone, bạn có thể thả biểu cảm trực tiếp vào tin nhắn mà không cần mở bảng biểu cảm đầy đủ:
+
+- **Máy tính:** di chuột lên một tin nhắn và nhấn biểu cảm nhanh trên thanh công cụ nổi. Trên ứng dụng web, bạn có thể tùy chỉnh biểu cảm nhanh bằng mục **Đặt cảm xúc nhanh** (hoặc gỡ bằng **Xóa cảm xúc nhanh**).
+- **Điện thoại:** nhấn giữ một tin nhắn rồi nhấn biểu cảm ở hàng trên cùng. Trên iPhone, nút thả biểu cảm nhanh còn hiện trực tiếp trên tin nhắn.
+
 ## Mỗi thao tác làm gì
 
 Bảng dùng tên các nút trên máy tính. Khi ứng dụng điện thoại dùng tên khác, bảng có ghi rõ.
 
 | Thao tác | Tác dụng | Ở đâu |
 |---|---|---|
-| Biểu cảm | Thêm biểu cảm vào tin nhắn. Trên điện thoại, nhấn một biểu cảm ở hàng trên cùng. Trên máy tính, nhấn **Thêm biểu cảm**. | Điện thoại, máy tính |
+| Biểu cảm | Thêm biểu cảm vào tin nhắn. Di chuột để thả biểu cảm nhanh, nhấn một biểu cảm ở hàng trên cùng trên điện thoại, hoặc nhấn **Thêm biểu cảm** trên máy tính. | Điện thoại, máy tính |
 | **Trả lời** | Viết câu trả lời gắn với tin nhắn đó. | Điện thoại, máy tính |
 | **Chỉnh sửa tin nhắn** | Sửa nội dung tin nhắn của chính bạn. | Điện thoại, máy tính |
 | **Xóa tin nhắn** | Xóa tin nhắn sau khi bạn xác nhận. | Điện thoại, máy tính |
@@ -50,9 +58,9 @@ Bảng dùng tên các nút trên máy tính. Khi ứng dụng điện thoại d
 | **Chuyển tiếp tất cả tin nhắn** | Chuyển tiếp tin nhắn này cùng các tin nhắn liền sau của cùng một người. Trên iPhone tên là **Chuyển tiếp nhiều tin gần nhau**. | Điện thoại, máy tính |
 | **Sao chép văn bản** | Sao chép nội dung chữ. Trên máy tính, bôi đen một phần chữ trước để thấy **Sao chép văn bản đã chọn**. | Điện thoại, máy tính |
 | **Chia sẻ văn bản** | Mở menu chia sẻ của điện thoại để gửi nội dung chữ sang ứng dụng khác. | Điện thoại |
-| **Ghim tin nhắn** | Ghim tin nhắn để mọi người tìm lại sau. Xem [Tin nhắn đã ghim](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/pinned-messages.mdx). | Điện thoại, máy tính |
+| **Ghim tin nhắn** | Ghim tin nhắn để mọi người tìm lại sau. Xem [Tin nhắn đã ghim](../clan/channels/pinned-messages.mdx). | Điện thoại, máy tính |
 | **Đánh dấu chưa đọc** | Đánh dấu tin nhắn là chưa đọc để bạn quay lại sau. | Máy tính |
-| **Thêm vào hộp thư** | Lưu tin nhắn vào Hộp thư của bạn. Xem [Hộp thư](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/inbox.mdx). | Điện thoại, máy tính |
+| **Thêm vào hộp thư** | Lưu tin nhắn vào Hộp thư của bạn. Xem [Hộp thư](../clan/channels/inbox.mdx). | Điện thoại, máy tính |
 | **Báo cáo tin nhắn** | Báo cáo tin nhắn với Mezon. Chọn vấn đề, rồi nhấn **Gửi báo cáo**. Trên điện thoại tên là **Báo cáo**. | Điện thoại, máy tính |
 | **Tặng coffee** | Tặng tác giả một ly cà phê, trả bằng Mezon Đồng. Trên điện thoại tên là **Tặng cà phê**. Xem [Tặng cà phê](../mezon-dong/send-and-transfer-mezon-dong.mdx). | Điện thoại, máy tính |
 
@@ -115,9 +123,32 @@ Bạn cũng có thể kéo tệp vào cuộc trò chuyện hoặc dán tệp và
 Trên ứng dụng web, ứng dụng máy tính và ứng dụng Android, mỗi ảnh tối đa 50 MB và mỗi tệp khác tối đa 1 GB. Trên máy tính, bạn gửi được tối đa 50 tệp trong một tin nhắn. Trên điện thoại, mỗi lần chọn được tối đa 20 tệp.
 :::
 
-## Định dạng chữ
+## Quét mã QR trên ảnh
 
-Gõ các ký hiệu này quanh chữ của bạn. Mezon hiện kết quả khi tin nhắn được gửi.
+Khi có người gửi một ảnh chứa mã QR trong cuộc trò chuyện, bạn không cần lưu ảnh hay mở camera:
+
+1. Nhấn vào ảnh để mở xem toàn màn hình.
+2. Nhấn nút **Quét mã QR** ngay trên màn hình xem ảnh.
+
+Mezon đọc trực tiếp mã QR từ ảnh. Tính năng này có trên Android, iPhone và ứng dụng web.
+
+## Tạo và tham gia bình chọn
+
+Trong kênh của clan, bạn có thể tạo bình chọn chọn một đáp án hoặc chọn nhiều đáp án để lấy ý kiến thành viên:
+
+1. Nhấn **+** ở bên trái ô nhập tin nhắn và chọn **Tạo bình chọn**.
+2. Nhập **Câu hỏi** và ít nhất hai **Câu trả lời**. Chọn **Thêm câu trả lời** để thêm lựa chọn.
+3. Chọn **Thời gian** (từ 1 giờ đến 1 tuần).
+4. Nếu muốn mọi người chọn được nhiều phương án, bật **Cho phép chọn nhiều đáp án**.
+5. Nhấn **Đăng**.
+
+Để bình chọn, chọn một hoặc nhiều đáp án trên thẻ bình chọn rồi nhấn **Bình chọn**. Nhấn **Xem kết quả** để xem tỷ lệ chọn, hoặc **Bỏ bình chọn** để đổi lựa chọn khi bình chọn vẫn đang mở. Người tạo có thể đóng sớm từ menu tin nhắn bằng mục **Kết thúc bình chọn ngay**.
+
+<Image src={messageActionsPoll01} alt="Thẻ bình chọn trong kênh với câu hỏi, các lựa chọn, nút Xem kết quả và Bình chọn" width={480} />
+
+## Định dạng chữ và gửi tin nhắn dài
+
+Gõ các ký hiệu Markdown này quanh chữ của bạn. Mezon hiện kết quả khi tin nhắn được gửi.
 
 | Bạn gõ | Kết quả |
 |---|---|
@@ -125,14 +156,16 @@ Gõ các ký hiệu này quanh chữ của bạn. Mezon hiện kết quả khi t
 | `*nghiêng*` hoặc `_nghiêng_` | *nghiêng* |
 | `~~gạch ngang~~` | ~~gạch ngang~~ |
 | `` `mã` `` | `mã` |
-| ` ``` ` ở dòng trước và dòng sau | một khối mã |
+| ```` ``` ```` ở dòng trước và dòng sau | một khối mã |
 | `# Tiêu đề` ở đầu dòng | tiêu đề. Dùng `#` đến `######` cho sáu cỡ chữ. |
 | `- mục` hoặc `* mục` ở đầu dòng | danh sách gạch đầu dòng |
 | `1. mục` ở đầu dòng | danh sách đánh số |
 | `> câu` ở đầu dòng | đoạn trích dẫn |
 | `[chữ hiển thị](https://example.com)` | liên kết với chữ do bạn đặt |
 
-Ứng dụng máy tính không hiện danh sách, trích dẫn và liên kết có chữ riêng; các phần này hiện đúng như bạn gõ. Ứng dụng web và ứng dụng điện thoại hiện đủ mọi định dạng trong bảng.
+- **Sao chép và dán văn bản có định dạng (web và máy tính):** khi bạn sao chép chữ có định dạng (tiêu đề, in đậm, in nghiêng, gạch ngang và mã) rồi dán vào ô nhập tin nhắn, Mezon giữ lại định dạng dạng Markdown. Nhấn **Ctrl+Shift+V** (**⌘+Shift+V** trên Mac) để dán dạng chữ thường.
+- **Tin nhắn dài (web và máy tính):** nếu tin nhắn vượt quá giới hạn ký tự của một tin nhắn đơn, Mezon có thể tự động tách thành nhiều tin nhắn liên tiếp hoặc hỏi bạn xác nhận trước khi gửi dưới dạng tệp văn bản đính kèm.
+- **Khác biệt giữa các nền tảng:** ứng dụng web và ứng dụng điện thoại hiện đủ mọi định dạng trong bảng. Ứng dụng máy tính định dạng tiêu đề, in đậm, in nghiêng, gạch ngang và mã; danh sách, trích dẫn và liên kết có chữ riêng hiện đúng như bạn gõ.
 
 ## Gọi sự chú ý bằng Buzz
 
@@ -145,4 +178,5 @@ Buzz gửi một tin nhắn ngắn kèm chuông báo tới mọi người trong 
 
 - [Tin nhắn trực tiếp](./direct-messages.mdx)
 - [Chủ đề và thảo luận ngắn](./threads-and-topics.mdx)
-- [Tìm kiếm tin nhắn](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/search.mdx)
+- [Phím tắt và định dạng chữ](../account-and-personalization/shortcuts.mdx)
+- [Tìm kiếm tin nhắn](../clan/channels/search.mdx)

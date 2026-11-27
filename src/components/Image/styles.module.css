@@ -1,0 +1,33 @@
+.wrapper {
+  margin: 0.75rem 0 1.25rem;
+}
+
+.trigger {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: zoom-in;
+  max-width: 100%;
+  line-height: 0;
+}
+
+.img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.trigger:hover .img,
+.trigger:focus-visible .img {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 16px rgba(88, 101, 242, 0.16);
+}
+
+.caption {
+  margin-top: 0.4rem;
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-700);
+}

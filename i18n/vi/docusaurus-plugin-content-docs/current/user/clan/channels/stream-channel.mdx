@@ -1,0 +1,121 @@
+---
+sidebar_position: 4
+sidebar_label: Kênh phát trực tiếp
+description: Xem phát trực tiếp trên mọi thiết bị, phát trực tiếp ngay từ Mezon trên máy tính, hoặc phát từ OBS Studio bằng WHIP.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import streamPhone01 from "./images/stream-channel-phone-01.png";
+import streamPhone02 from "./images/stream-channel-phone-02.png";
+import streamComputer01 from "./images/stream-channel-computer-01.png";
+import streamComputer02 from "./images/stream-channel-computer-02.png";
+import streamGoLive01 from "./images/stream-channel-golive-01.png";
+import streamGoLive02 from "./images/stream-channel-golive-02.png";
+import streamObs01 from "./images/stream-channel-obs-01.png";
+
+# Kênh phát trực tiếp
+
+Trong kênh phát trực tiếp, một người phát video trực tiếp và các thành viên khác trong clan xem. Kênh phát trực tiếp có biểu tượng sóng phát (một chấm với các vòng sóng) trong danh sách kênh. Kênh này luôn công khai: mọi thành viên trong clan đều mở được và xem được.
+
+Mỗi lúc chỉ có một người được phát trong một kênh phát trực tiếp.
+
+## Xem phát trực tiếp
+
+Bạn xem được trên điện thoại Android, iPhone, ứng dụng máy tính và bản web.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+<ShotSteps>
+<Shot src={streamPhone01} alt="Bảng của kênh phát trực tiếp với người đang phát, nút Join Stream được đánh dấu">Nhấn vào kênh phát trực tiếp. Khi có người đang phát, bạn thấy tên người đó và số người đang xem. Nhấn **Join Stream** (Tham gia phát trực tiếp; nút này hiện bằng tiếng Anh).</Shot>
+<Shot src={streamPhone02} alt="Buổi phát trực tiếp đang chạy, chữ LIVE và số người xem ở trên, các nút ở dưới cùng">Video bắt đầu chạy. Nhấn vào video để hiện hoặc ẩn các nút.</Shot>
+</ShotSteps>
+
+- Các nút ở dưới cùng dùng để đổi nơi phát âm thanh hoặc chất lượng video, hoặc để mở phần trò chuyện.
+- Nút toàn màn hình ở góc trên bên phải.
+- Để thôi xem, nhấn nút màu đỏ.
+- **iPhone:** hỗ trợ phát âm thanh chạy nền và định tuyến âm thanh qua Bluetooth trong lúc xem phát trực tiếp.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Nhấn vào kênh phát trực tiếp.
+2. Khi có người đang phát, bạn thấy tên người đó. Nhấn **Tham gia phát trực tiếp**.
+
+<Image src={streamComputer01} alt="Kênh phát trực tiếp với dòng Mai đang phát trực tiếp và nút Tham gia phát trực tiếp" />
+
+3. Video bắt đầu chạy. Đưa chuột vào video để hiện các nút.
+4. Dùng các nút để chỉnh âm lượng, đổi **Chất lượng**, gửi **Bình luận trực tiếp** ngay trên màn hình phát, hoặc xem toàn màn hình.
+5. Để thôi xem, nhấn nút màu đỏ ở giữa.
+
+<Image src={streamComputer02} alt="Video phát trực tiếp đang chạy, có nút âm lượng, chất lượng, toàn màn hình và người xem ở phía dưới" />
+
+Muốn mở khung trò chuyện bên cạnh trong lúc xem, nhấn **Hiển thị cuộc trò chuyện** ở góc trên bên phải.
+
+</TabItem>
+</Tabs>
+
+Khi không có ai phát, kênh hiện dòng **Hiện không có ai trong phát trực tiếp** (cùng **Ảnh bìa Stream** nếu đã đặt).
+
+**Chất lượng** video có các mức **Tự động**, **Cao**, **Vừa** và **Thấp**. Mức **Tự động** thay đổi theo kết nối mạng của bạn. Hãy chọn **Thấp** nếu video hay bị dừng. Trên điện thoại Android, các mức này hiện bằng tiếng Anh: **Auto**, **High**, **Medium**, **Low**.
+
+Con số cạnh biểu tượng con mắt là số người đang xem trực tiếp. Ảnh đại diện dưới video cho biết những ai đang xem.
+
+## Phát trực tiếp từ Mezon
+
+Trên máy tính (trình duyệt web hoặc ứng dụng máy tính), **bất kỳ thành viên nào** của kênh phát trực tiếp đều có thể nhấn **Phát trực tiếp** khi chưa có ai đang phát.
+
+1. Mở kênh phát trực tiếp khi chưa có ai phát.
+2. Nhấn **Phát trực tiếp**.
+
+<Image src={streamGoLive01} alt="Kênh phát trực tiếp khi chưa có ai phát, nút Phát trực tiếp được đánh dấu" />
+
+3. Chọn nguồn phát:
+   - **Video:** nhấn **Phát trực tiếp** để chia sẻ toàn màn hình hoặc một cửa sổ (có thể bật thêm **Camera** dạng hình trong hình PiP), hoặc chọn **Chỉ camera**.
+   - **Micro:** bật sẵn mặc định. Bạn có thể bật hoặc tắt **Micro** bất cứ lúc nào.
+   - **Âm thanh hệ thống:** tắt mặc định. Bật **Chia sẻ cả âm thanh hệ thống** nếu muốn người xem nghe âm thanh từ máy tính hoặc thẻ trình duyệt.
+
+<Image src={streamGoLive02} alt="Hộp thoại Phát trực tiếp với các nút Chia sẻ cả âm thanh hệ thống, Micro, Camera, Chỉ camera và Phát trực tiếp" width={620} />
+
+4. Bắt đầu phát. Mezon phát trực tiếp ở độ phân giải **720p @ 30 fps** (video H.264 tối đa 2,5 Mbps, âm thanh Opus stereo 128 kbps).
+5. Khi xong, nhấn **Kết thúc phát** (hoặc nút dừng).
+
+:::note
+Mỗi kênh phát trực tiếp chỉ có một người phát tại một thời điểm. Nếu đã có người đang phát, nút **Phát trực tiếp** sẽ không khả dụng cho đến khi buổi phát đó kết thúc.
+:::
+
+## Phát trực tiếp từ OBS Studio (WHIP)
+
+Trên máy tính, thành viên có quyền **Quản lý kênh** (cùng **Quản lý Clan**, **Quản trị viên** và chủ sở hữu clan) có thể phát trực tiếp từ phần mềm bên ngoài như **OBS Studio 30+** qua giao thức **WHIP (RFC 9725)**. Mezon dùng WHIP — **không dùng RTMP**.
+
+1. Nhấn chuột phải vào kênh phát trực tiếp (hoặc nhấn biểu tượng bánh răng cạnh tên kênh) và mở **Chỉnh sửa kênh**.
+2. Mở thẻ **Phát trực tiếp**.
+3. Nhấn **Lấy khoá phát** để tạo và sao chép **WHIP Server URL** cùng **Bearer Token**.
+
+<Image src={streamObs01} alt="Thẻ cài đặt Phát trực tiếp với phần tải ảnh bìa và nút Lấy khoá phát cho OBS và phần mềm hỗ trợ WHIP" />
+4. Trong **OBS Studio 30+**, mở **Settings** → **Stream**, chọn **Service** là **WHIP**, dán **Server** URL và **Bearer Token**, rồi bắt đầu phát.
+
+Cũng tại thẻ **Phát trực tiếp** này, người quản lý kênh có thể tải lên **Ảnh bìa Stream** (JPG, PNG, GIF hoặc WEBP, tối đa 10 MB). Mọi người sẽ thấy ảnh này khi không có ai phát.
+
+:::warning
+Hãy giữ bí mật **Bearer Token**. Bất kỳ ai có WHIP Server URL và Bearer Token đều có thể phát video trực tiếp vào kênh này.
+:::
+
+## Ai được tạo kênh phát trực tiếp
+
+Chủ sở hữu clan và các vai trò có quyền **Quản trị viên**, **Quản lý Clan** hoặc **Quản lý kênh** được tạo kênh phát trực tiếp. Cách tạo giống như mọi kênh khác, chỉ cần chọn loại **Phát trực tiếp**. Xem [Tạo kênh](./index.mdx#create-a-channel).
+
+## Giới hạn và Clan Pro
+
+- Mỗi kênh phát trực tiếp chỉ cho phép một người phát tại một thời điểm.
+- Thời lượng phát trực tiếp và giới hạn số người xem phụ thuộc vào gói của clan (Miễn phí so với Clan Pro). Xem [Clan Pro và User Pro](../../account-and-personalization/pro-plan.mdx) để biết chi tiết.
+- Để xem hướng dẫn kỹ thuật về WHIP và cấu hình mã hóa, xem [Phát trực tiếp bằng WHIP](../../../developer/media-voice-and-streaming/stream-channels/publishing-with-whip.mdx).
+
+## Liên quan
+
+- [Kênh](./index.mdx)
+- [Kênh thoại](./voice-channel.mdx)
+- [Clan Pro và User Pro](../../account-and-personalization/pro-plan.mdx)
+- [Phát trực tiếp bằng WHIP (Tài liệu nhà phát triển)](../../../developer/media-voice-and-streaming/stream-channels/publishing-with-whip.mdx)

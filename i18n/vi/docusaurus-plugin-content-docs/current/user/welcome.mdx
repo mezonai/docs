@@ -1,62 +1,71 @@
 ---
 id: welcome
-showTOC: false
+hide_table_of_contents: true
 sidebar_label: Chào mừng
 sidebar_position: 1
-description: Bắt đầu tìm hiểu Mezon, ứng dụng để nhắn tin, gọi điện và làm việc cùng nhau trong clan, trên điện thoại và máy tính.
+description: Bắt đầu tìm hiểu Mezon, ứng dụng nhắn tin, gọi điện, phát trực tiếp và làm việc cùng nhau trong clan, trên điện thoại và máy tính.
 ---
 
 # Chào mừng đến với Mezon
 
 ![Ảnh bìa tài liệu Mezon](./images/welcome-001.png)
 
-**Mezon** là nền tảng để kết nối, làm việc và giải trí. Bạn nhắn tin với từng người hoặc cả nhóm, nói chuyện trong kênh thoại, và làm việc cùng nhau trong các cộng đồng gọi là clan. Mezon chạy trên điện thoại Android, iPhone, máy tính Windows, macOS, Linux và trên trình duyệt web.
+**Mezon** là nền tảng kết nối, làm việc và giải trí. Bạn nhắn tin với từng người hoặc cả nhóm, họp trong kênh thoại, phát và xem trực tiếp trong kênh phát trực tiếp, và tổ chức đội nhóm hay cộng đồng trong các clan. Mezon chạy trên Android, iPhone, Windows, macOS, Linux và trình duyệt web.
 
 ## Mới dùng Mezon? Bắt đầu từ đây
 
-1. [**Bắt đầu nhanh**](./quick-start.mdx): cài Mezon, đăng nhập, vào clan của nhóm, nhắn tin, nói chuyện và mời người khác.
-2. [**Tính năng chính**](./features-at-a-glance.mdx): mọi việc bạn làm được trong Mezon, và trên thiết bị nào.
+<FeatureGrid columns={2}>
+  <FeatureCard
+    title="Bắt đầu nhanh"
+    badge="Nên đọc trước"
+    description="Cài Mezon trên điện thoại và máy tính, vào clan của nhóm bằng liên kết hoặc mã QR, nhắn tin, gọi thoại và mời người khác."
+    to="/user/quick-start"
+  />
+  <FeatureCard
+    title="Tính năng chính"
+    badge="Tra cứu nhanh"
+    description="Tổng hợp toàn bộ tính năng có trên Mezon theo từng chủ đề, nền tảng và gói Pro."
+    to="/user/features-at-a-glance"
+  />
+</FeatureGrid>
 
 ## Hướng dẫn
 
-### Tài khoản và cá nhân hóa
-
-Tải Mezon, đăng nhập, làm quen với màn hình, đổi hồ sơ và cài đặt.
-
-Xem [Tài khoản và cá nhân hóa](./account-and-personalization/index.mdx).
-
-### Bạn bè và tin nhắn
-
-Kết bạn, gửi tin nhắn trực tiếp, tạo nhóm chat, gọi thoại hoặc gọi video với một người.
-
-Xem [Bạn bè và tin nhắn](./friends-and-messaging/index.mdx).
-
-### Clan
-
-Clan là không gian cho một đội, một lớp học hay một cộng đồng. Clan có kênh văn bản để nhắn tin, kênh thoại để nói chuyện, và kênh phát trực tiếp để xem các buổi phát trực tiếp. Chủ sở hữu clan thêm kênh, gán vai trò, mời người khác và lên lịch sự kiện.
-
-Xem [Clan là gì](./clan/what-is-clan.mdx).
-
-### Bot và ứng dụng
-
-Thêm bot và ứng dụng vào clan để làm được nhiều việc hơn, ví dụ chạy lệnh hoặc mở một ứng dụng web ngay trong kênh. Bạn còn có thể thêm AI agent vào cuộc gọi thoại.
-
-Xem [Bot và ứng dụng](./bots-and-apps/index.mdx).
-
-### Mezon Đồng
-
-Mezon Đồng là đơn vị tiền dùng trong Mezon. Bạn gửi Mezon Đồng cho người khác và xem lịch sử giao dịch.
-
-Xem [Mezon Đồng](./mezon-dong/index.mdx).
-
-### Câu hỏi và các trang web
-
-Tìm câu trả lời nhanh và danh sách các trang web chính thức của Mezon.
-
-Xem [Tài nguyên](./resources/index.mdx).
+<FeatureGrid columns={2}>
+  <FeatureCard
+    title="Tài khoản và cá nhân hóa"
+    description="Tải Mezon, đăng nhập, làm quen giao diện, tùy chỉnh cài đặt và tìm hiểu gói User Pro, Clan Pro."
+    to="/user/account-and-personalization"
+  />
+  <FeatureCard
+    title="Bạn bè và nhắn tin"
+    description="Kết bạn, nhắn tin trực tiếp, tạo nhóm chat, gọi thoại/video 1-1 và dùng chủ đề, thảo luận ngắn."
+    to="/user/friends-and-messaging"
+  />
+  <FeatureCard
+    title="Clan, kênh và Go Live"
+    description="Tham gia hoặc tạo clan, quản lý vai trò và sự kiện, họp trong kênh thoại và phát hoặc xem trực tiếp."
+    to="/user/clan"
+  />
+  <FeatureCard
+    title="Bot và ứng dụng"
+    description="Tìm và cài bot, ứng dụng trong kênh, thêm AI agent vào cuộc gọi thoại và bảo vệ an toàn cho clan."
+    to="/user/bots-and-apps"
+  />
+  <FeatureCard
+    title="Mezon Đồng"
+    description="Chuyển Mezon Đồng, tặng cà phê, mở khóa vật phẩm, nâng cấp gói Pro và tra cứu giao dịch công khai."
+    to="/user/mezon-dong"
+  />
+  <FeatureCard
+    title="Tài nguyên và FAQ"
+    description="Câu trả lời nhanh cho các thắc mắc thường gặp và danh sách các trang web chính thức của Mezon."
+    to="/user/resources"
+  />
+</FeatureGrid>
 
 ## Dành cho nhà phát triển
 
-Tạo bot và ứng dụng cho Mezon với Mezon SDK, webhook và API.
+Xây dựng bot, ứng dụng trong kênh, widget chat nhúng, client thoại SFU và tích hợp Webhook hoặc OAuth2.
 
-Xem [tài liệu cho nhà phát triển](../developer/intro.mdx).
+Xem [Tài liệu dành cho nhà phát triển](../developer/intro.mdx).

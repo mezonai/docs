@@ -1,0 +1,9 @@
+{
+  "label": "Interactive features",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "slug": "developer/interactive-features",
+    "description": "Build buttons, forms, polls, and quick menu commands for Mezon bots."
+  }
+}

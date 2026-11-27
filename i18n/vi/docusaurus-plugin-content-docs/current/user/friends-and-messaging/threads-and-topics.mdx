@@ -1,7 +1,7 @@
 ---
 sidebar_position: 6
 sidebar_label: Chủ đề và thảo luận ngắn
-description: Khác nhau giữa chủ đề và thảo luận ngắn trong kênh của clan, cách tạo và cách tìm câu trả lời mới.
+description: Khác nhau giữa chủ đề và thảo luận ngắn trong kênh văn bản của clan, cách tạo và cách tìm câu trả lời mới.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -16,6 +16,8 @@ import threadsComputer02 from "./images/threads-and-topics-computer-02.png";
 import threadsComputer03 from "./images/threads-and-topics-computer-03.png";
 import threadsComputer04 from "./images/threads-and-topics-computer-04.png";
 import threadsComputer05 from "./images/threads-and-topics-computer-05.png";
+import channelThreadsCreate from "../clan/channels/images/threads-computer-01.png";
+import channelThreadsForm from "../clan/channels/images/threads-computer-02.png";
 
 # Chủ đề và thảo luận ngắn
 
@@ -27,13 +29,21 @@ Trong ứng dụng, tên gọi chưa thống nhất: thảo luận ngắn còn �
 
 | | Chủ đề | Thảo luận ngắn |
 |---|---|---|
-| Là gì | Một kênh nhỏ có tên, nằm dưới kênh cha | Một cuộc trao đổi ngắn về một tin nhắn |
-| Thấy ở đâu | Trong danh sách kênh, dưới kênh cha | Dưới tin nhắn, ở nút số câu trả lời |
-| Ai được tạo | Chủ sở hữu clan và người có vai trò được cấp quyền **Quản lý chủ đề** | Mọi người được gửi tin nhắn trong kênh |
+| Là gì | Một kênh nhỏ có tên riêng, nằm dưới kênh cha | Một cuộc trao đổi ngắn về một tin nhắn |
+| Bắt đầu từ | Bảng **Chủ đề**, hoặc một tin nhắn | Một tin nhắn |
+| Có tên | Có | Không |
 | Tùy chọn riêng tư | Có: **Chủ đề riêng tư** | Không |
+| Thấy ở đâu | Trong danh sách kênh, dưới kênh cha | Dưới tin nhắn ở nút số câu trả lời, hoặc trong Hộp thư |
+| Ai được tạo | Chủ sở hữu clan và người có vai trò được cấp quyền **Quản lý chủ đề** | Mọi người được gửi tin nhắn trong kênh |
 | Mục trong menu | **Tạo chủ đề** | **Thảo luận chủ đề** (Android: **Thảo luận ngắn**) |
 
-## Tạo chủ đề
+## Chủ đề {#threads}
+
+Chủ đề là một kênh nhỏ bên trong kênh văn bản, có tên riêng. Hãy dùng chủ đề cho một việc cần bàn lâu, để kênh chính vẫn dễ theo dõi.
+
+### Tạo chủ đề
+
+Bạn cần quyền **Quản lý chủ đề**. Chủ sở hữu clan luôn có quyền này. Nếu không có quyền, bạn sẽ không thấy nút **Tạo** hay mục **Tạo chủ đề**.
 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
@@ -41,12 +51,15 @@ Trong ứng dụng, tên gọi chưa thống nhất: thảo luận ngắn còn �
 1. Nhấn giữ tin nhắn bạn muốn bàn thêm.
 2. Nhấn **Tạo chủ đề**. Nếu chưa thấy mục này, hãy vuốt menu lên.
 3. Nhập tên chủ đề.
-4. Nhập tin nhắn đầu tiên rồi gửi.
+4. Muốn chủ đề riêng tư, hãy bật **Chủ đề riêng tư**.
+5. Nhập tin nhắn đầu tiên rồi gửi.
 
 <Image src={threadsPhone01} alt="Menu tin nhắn trong kênh của clan, mục Tạo chủ đề được đánh dấu" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Máy tính">
+
+**Từ một tin nhắn**
 
 1. Nhấn chuột phải vào tin nhắn bạn muốn bàn thêm.
 2. Nhấn **Tạo chủ đề**.
@@ -57,21 +70,38 @@ Trong ứng dụng, tên gọi chưa thống nhất: thảo luận ngắn còn �
 4. Muốn giới hạn người xem, hãy tích **Chủ đề riêng tư**. Chỉ người bạn mời và người điều hành mới xem được chủ đề riêng tư.
 5. Nhập tin nhắn đầu tiên và nhấn **Enter**.
 
+**Từ bảng Chủ đề**
+
+1. Nhấn nút **Chủ đề** ở góc trên bên phải của kênh.
+2. Nhấn **Tạo**.
+
+<Image src={channelThreadsCreate} alt="Bảng Chủ đề với nút Tạo" />
+
+3. Nhập tên vào ô **Tên chủ đề**, đánh dấu **Chủ đề riêng tư** nếu cần, nhập tin nhắn đầu tiên và nhấn **Enter**.
+
+<Image src={channelThreadsForm} alt="Bảng Chủ đề mới với ô Tên chủ đề, Chủ đề riêng tư và ô nhập tin nhắn" />
+
 </TabItem>
 </Tabs>
 
-Chủ đề hiện trong danh sách kênh, dưới kênh cha. Kênh hiện một dòng thông báo rằng bạn đã tạo chủ đề.
+Chủ đề hiện trong danh sách kênh dưới kênh cha, và kênh hiện một dòng thông báo rằng bạn đã tạo chủ đề. Tên chủ đề cần ít nhất 4 ký tự (dài hơn 3 ký tự). Muốn mời ai vào chủ đề, hãy nhắc đến họ bằng **@** trong chủ đề.
 
-Tên chủ đề cần ít nhất 4 ký tự. Nếu menu không có **Tạo chủ đề**, vai trò của bạn chưa có quyền **Quản lý chủ đề**.
-
-## Tìm chủ đề
+### Tìm chủ đề
 
 - **Máy tính:** nhấn vào chủ đề dưới kênh cha trong danh sách kênh. Hoặc nhấn **Chủ đề** ở phía trên kênh để xem các chủ đề đã tham gia, đang hoạt động và đã lưu trữ.
-- **Điện thoại:** nhấn vào chủ đề trong danh sách kênh. Hoặc nhấn tên kênh ở phía trên, rồi nhấn **Chủ đề**.
+- **Điện thoại:** nhấn vào chủ đề trong danh sách kênh. Hoặc nhấn tên kênh ở phía trên, rồi nhấn **Chủ đề** (Android: **Threads**).
 
 <Image src={threadsComputer02} alt="Khung Chủ đề của một kênh, mở từ nút Chủ đề được đánh dấu" />
 
-## Tạo thảo luận ngắn
+Chủ đề lâu không có tin nhắn mới sẽ không hiện trong danh sách kênh nữa. Cài đặt **Ẩn sau thời gian không hoạt động** của kênh quyết định sau bao lâu. Bạn vẫn tìm thấy chúng trong danh sách **Chủ đề**.
+
+## Thảo luận ngắn {#topics}
+
+Thảo luận ngắn là một cuộc trao đổi nhanh về một tin nhắn. Các trả lời nằm gọn trong thảo luận ngắn, nên kênh chính vẫn dễ theo dõi. Thảo luận ngắn không có tên và không thể đặt riêng tư.
+
+Bất kỳ ai được gửi tin nhắn trong kênh văn bản hoặc trong chủ đề đều bắt đầu được thảo luận ngắn. Bạn không dùng được thảo luận ngắn trong tin nhắn trực tiếp, nhóm chat, kênh thoại, kênh phát trực tiếp, hoặc bên trong một thảo luận ngắn khác.
+
+### Tạo thảo luận ngắn
 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
@@ -95,13 +125,13 @@ Tên chủ đề cần ít nhất 4 ký tự. Nếu menu không có **Tạo ch�
 </TabItem>
 </Tabs>
 
-Dưới tin nhắn có một nút cho biết số câu trả lời, ví dụ **1 tin nhắn** (Android: **1 Trả lời**). Nhấn vào nút đó để mở thảo luận ngắn. Trên iPhone, nút này còn có chữ **View Topic** (Xem thảo luận ngắn; hiện bằng tiếng Anh).
+Dưới tin nhắn có một nút cho biết số câu trả lời, ví dụ **1 tin nhắn** (Android: **1 Trả lời**). Nhấn vào nút đó để mở thảo luận ngắn. Trên điện thoại, nút này còn hiện **Xem thảo luận ngắn** (iPhone: **View Topic**, hiện bằng tiếng Anh).
 
 Trên máy tính, một thanh dưới tên kênh hiện thảo luận ngắn hoặc tin nhắn ghim mới nhất. Nhấn vào thanh đó để đi tới nơi đó.
 
 <Image src={threadsComputer04} alt="Một kênh có thảo luận ngắn mở ở bên phải, nút số câu trả lời dưới tin nhắn được đánh dấu" />
 
-## Tìm câu trả lời mới trong thảo luận ngắn
+### Tìm câu trả lời mới trong thảo luận ngắn
 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Điện thoại">
@@ -128,6 +158,5 @@ Chấm trắng là thảo luận ngắn có câu trả lời chưa đọc. Chấ
 ## Xem thêm
 
 - [Thao tác với tin nhắn](./message-actions.mdx)
-- [Chủ đề trong kênh văn bản](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/threads.mdx)
-- [Thảo luận ngắn trong kênh văn bản](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/topic.mdx)
-- [Hộp thư](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/inbox.mdx)
+- [Kênh văn bản](../clan/channels/text-channel.mdx)
+- [Hộp thư](../clan/channels/inbox.mdx)

@@ -1,48 +1,57 @@
 ---
-sidebar_position: 3
-sidebar_label: Webhook kênh
-description: Tạo webhook kênh và đăng tin nhắn vào một kênh Mezon chỉ bằng một yêu cầu HTTP.
+sidebar_position: 2
+sidebar_label: Channel webhook
+description: Tạo Channel Webhook và gửi tin nhắn bằng định dạng Mezon gốc, GitHub Webhook hoặc định dạng tương thích Discord.
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-# Webhook kênh
+# Channel webhook
 
-Webhook kênh đăng tin nhắn vào một kênh. Tin nhắn hiện với tên và ảnh đại diện của webhook, và bạn có thể đổi chúng.
+Channel webhook gửi tin nhắn vào một kênh (hoặc luồng) Mezon cố định dưới tên và ảnh đại diện đã cấu hình cho webhook.
 
-## Tạo webhook kênh {#create-a-channel-webhook}
+<ApiBadge method="POST" path="https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN" />
 
-Bạn cần quyền **Quản lý kênh** trong clan. Các bước dưới đây dùng ứng dụng web Mezon trên máy tính.
+## Tạo Channel Webhook
 
-1. Trong danh sách kênh, nhấn chuột phải vào kênh.
-2. Nhấn **Chỉnh sửa kênh**.
+Bạn cần quyền **Manage Channel** trong clan.
 
-   ![Menu của kênh với mục Chỉnh sửa kênh](./images/channel-webhook-computer-01.png)
+1. Nhấp chuột phải vào kênh đích trên thanh danh sách kênh và chọn **Edit Channel**.
 
-3. Mở thẻ **Tích hợp**.
+   ![Menu chuột phải kênh hiển thị mục Edit Channel](./images/channel-webhook-computer-01.png)
 
-   ![Cài đặt kênh với thẻ Tích hợp](./images/channel-webhook-computer-02.png)
+2. Mở thẻ **Integrations**.
 
-4. Nhấn **Tạo Webhook**. Nếu kênh đã có webhook, hãy nhấn **Xem Webhook**.
-5. Nhấn **Webhook Mới**. Mezon tạo một webhook với tên và ảnh đại diện ngẫu nhiên.
-6. Nhấn vào webhook để mở, rồi nhấn **Sao chép URL webhook**.
+   ![Thẻ Integrations trong cài đặt kênh](./images/channel-webhook-computer-02.png)
 
-   ![Webhook đang mở với nút Sao chép URL webhook](./images/channel-webhook-computer-03.png)
+3. Bấm **Create Webhook** (hoặc **View Webhook** nếu kênh đã có webhook), sau đó bấm **New Webhook**.
+4. Mở webhook vừa tạo và bấm **Copy Webhook URL**.
 
-Hãy giữ bí mật URL này. Trong webhook đang mở, bạn cũng đổi được tên, ảnh đại diện và kênh của webhook. Nếu URL bị lộ, hãy nhấn **Xóa Webhook** rồi tạo webhook mới.
+   ![Webhook đã mở kèm nút Copy Webhook URL](./images/channel-webhook-computer-03.png)
 
-## Gửi tin nhắn {#send-a-message}
+Lưu URL này vào biến môi trường bí mật, ví dụ `WEBHOOK_URL`.
 
-Gửi một yêu cầu `POST` tới URL webhook với header `Content-Type: application/json`. URL có dạng:
+## 3 định dạng payload được hỗ trợ
 
-```text
-https://webhook.mezon.ai/webhooks/CHANNEL_ID/TOKEN
-```
+`mezon-api` (`webhook_service.go`) kiểm tra khóa JSON ở cấp cao nhất theo **thứ tự ưu tiên cố định** để định tuyến sang một trong ba bộ phân tích tích hợp sẵn:
 
-Hãy dùng đúng URL bạn đã sao chép.
+| Thứ tự ưu tiên | Khóa kích hoạt | Bộ phân tích | Phù hợp cho |
+|---|---|---|---|
+| 1 | `repository` | **GitHub Webhook** | Trỏ thẳng webhook kho mã GitHub vào Mezon không cần trung gian |
+| 2 | `type` | **Mezon gốc** | Kiểm soát đầy đủ định dạng markdown UTF-16 (`mk`), `@mentions` và `images` |
+| 3 | `content` | **Tương thích Discord (`COMMON`)** | Dùng ngay với các công cụ gửi webhook theo chuẩn Discord |
+| — | *(không có khóa nào trên)* | Bỏ qua | Trả về `200 OK` nhưng **không đăng tin nhắn** |
 
-### Nội dung {#body}
+:::tip Thứ tự ưu tiên khóa
+Vì `repository` được kiểm tra trước `type`, và `type` trước `content`, đừng trộn các khóa cấp cao nhất của nhiều định dạng trong cùng một body JSON.
+:::
+
+---
+
+### Định dạng 1: Mezon gốc (khóa `type`)
+
+Đặt khóa cấp cao nhất `type` bất kỳ (ví dụ `"hook"`) và đặt nội dung tin nhắn trong đối tượng `message`:
 
 ```json
 {
@@ -53,46 +62,87 @@ Hãy dùng đúng URL bạn đã sao chép.
       { "type": "b", "s": 0, "e": 12 },
       { "type": "lk", "s": 14, "e": 43 }
     ],
-    "mentions": [{ "user_id": "USER_ID", "s": 44, "e": 48 }]
+    "mentions": [
+      { "user_id": "USER_ID", "s": 44, "e": 48 }
+    ],
+    "images": [
+      {
+        "url": "https://example.com/chart.png",
+        "fn": "chart.png",
+        "ft": "image/png",
+        "w": 640,
+        "h": 360,
+        "sz": 42180
+      }
+    ],
+    "username": "ci-bot"
   }
 }
 ```
 
 | Trường | Kiểu | Bắt buộc | Ý nghĩa |
 |---|---|---|---|
-| `type` | string | Có | Giá trị bất kỳ, ví dụ `"hook"`. Khóa này phải có mặt. |
-| `message.t` | string | Có | Văn bản của tin nhắn. |
-| `message.mk` | array | Không | Các đoạn định dạng trong `t`: `{ "type", "s", "e" }`. `type` là ví dụ `"b"` (in đậm) hoặc `"lk"` (liên kết). |
-| `message.mentions` | array | Không | Thành viên được nhắc đến: `{ "user_id" hoặc "username", "s", "e" }`. |
-| `message.images` | array | Không | Ảnh cần hiện: `{ "url", "fn", "ft", "w", "h", "sz" }`. |
+| `type` | string | Có | Khóa định tuyến (giá trị bất kỳ, vd `"hook"`). |
+| `message.t` | string | Có | Văn bản nội dung tin nhắn. |
+| `message.mk` | array | Không | Các vùng định dạng `{ "type", "s", "e" }` tính theo đơn vị mã UTF-16 (`e` không bao gồm). Ví dụ: `"b"` (in đậm), `"lk"` (liên kết), `"t"` (khối mã). |
+| `message.mentions` | array | Không | Danh sách nhắc tên `{ "user_id" hoặc "username", "s", "e" }`. Chỉ thành viên có quyền xem kênh mới nhận thông báo; tên khác giữ nguyên văn bản thuần. Không hỗ trợ `@here`. |
+| `message.images` | array | Không | Ảnh đính kèm `{ "url", "fn", "ft", "w", "h", "sz" }`. Mọi `url` phải là URL đầy đủ có `http://` hoặc `https://`, nếu không sẽ trả về `400 Invalid attachment URL`. |
+| `message.username` | string | Không | Chuỗi siêu dữ liệu tùy chọn (Mezon luôn hiển thị tên và ảnh đại diện cấu hình trên webhook). |
 
-`s` và `e` là vị trí bắt đầu và kết thúc của một đoạn trong `t`, đếm theo ký tự UTF-16 (như JavaScript đếm), không tính vị trí `e`. Trong ví dụ, `"b"` bao `Build passed` (0 đến 12) và phần nhắc đến bao `@Hoa` (44 đến 48).
+---
 
-#### Nhắc đến {#mentions}
+### Định dạng 2: GitHub Webhook (khóa `repository`)
 
-Mỗi phần nhắc đến cần `user_id` (ID của thành viên, dạng chuỗi) hoặc `username`. Thành viên được nhắc đến sẽ nhận thông báo nhắc đến. Mezon chỉ giữ phần nhắc đến những thành viên nhìn thấy kênh: tên khác vẫn là văn bản thường và không ai nhận thông báo. `@here` cũng không hoạt động trong tin nhắn webhook.
+Dán thẳng URL Channel Webhook Mezon vào kho GitHub tại **Settings → Webhooks → Add webhook**, chọn **Content type** là `application/json`.
 
-#### Ảnh {#images}
+`mezon-api` (`github_handler.go`) tự động định dạng các sự kiện GitHub sau kèm liên kết bấm được:
 
-| Trường | Ý nghĩa |
-|---|---|
-| `url` | URL công khai đầy đủ của ảnh, ví dụ `https://example.com/chart.png`. URL thiếu scheme và tên máy chủ, như `/chart.png`, làm yêu cầu bị lỗi. |
-| `fn` | Tên tệp. |
-| `ft` | Loại tệp, ví dụ `image/png`. |
-| `w`, `h` | Chiều rộng và chiều cao, tính bằng điểm ảnh. |
-| `sz` | Dung lượng, tính bằng byte. |
+- **Sự kiện Push** (`head_commit`, `commits`, `pusher`, `ref`): hiển thị người đẩy, tên kho + nhánh, số lượng commit và tối đa **5 commit** kèm thông điệp, liên kết và tên người commit.
+- **Mở Pull Request** (`action: "opened"`, `pull_request`): hiển thị người tạo, tên kho, cặp nhánh `head -> base` và liên kết PR.
+- **Merge Pull Request** (`action: "closed"`, `pull_request.merged: true`): hiển thị người merge, tên kho, cặp nhánh `head -> base` và liên kết PR.
 
-### Ví dụ {#examples}
+Các sự kiện GitHub khác (như `ping` hay `issues`) vẫn trả `200 OK` nhưng không đăng tin nhắn.
 
-Đặt biến `WEBHOOK_URL` bằng URL webhook của bạn trước khi chạy.
+---
+
+### Định dạng 3: Tương thích Discord (khóa `content`)
+
+Mọi công cụ gửi webhook kiểu Discord hoạt động ngay khi body JSON có khóa `content` ở cấp cao nhất:
+
+```json
+{
+  "content": "Triển khai hoàn tất: https://status.example.com\n```bash\nversion=v2.4.0\n```",
+  "username": "Release Bot",
+  "avatar_url": "https://example.com/avatar.png"
+}
+```
+
+`mezon-api` (`common/event.go`) tự động nhận diện và chuyển đổi:
+
+- **Liên kết `http://` và `https://`** → vùng định dạng liên kết `lk` (chỉ số UTF-16).
+- **Khối mã ba dấu huyền** (```` ```...``` ````) → vùng định dạng khối mã `t` (chỉ số UTF-16).
+
+:::note Chưa hỗ trợ mảng `embeds` của Discord
+Bộ phân tích `COMMON` hiện chỉ đọc `content`, `username` và `avatar_url`. Mảng `embeds` của Discord được bỏ qua; hãy dùng định dạng Mezon gốc nếu bạn cần gửi ảnh hoặc định dạng phong phú.
+:::
+
+## Ví dụ mã nguồn
+
+Đặt `WEBHOOK_URL="https://webhook.mezon.ai/webhooks/YOUR_CHANNEL_ID/YOUR_WEBHOOK_TOKEN"` trước khi chạy.
 
 <Tabs groupId="code">
 <TabItem value="bash" label="curl" default>
 
 ```bash
+# Định dạng Mezon gốc
 curl -X POST "$WEBHOOK_URL" \
   -H "Content-Type: application/json" \
   -d '{"type":"hook","message":{"t":"Build passed: https://example.com/builds/42 @Hoa","mk":[{"type":"b","s":0,"e":12},{"type":"lk","s":14,"e":43}],"mentions":[{"user_id":"USER_ID","s":44,"e":48}]}}'
+
+# Định dạng tương thích Discord
+curl -X POST "$WEBHOOK_URL" \
+  -H "Content-Type: application/json" \
+  -d '{"content":"Build passed: https://example.com/builds/42"}'
 ```
 
 </TabItem>
@@ -111,11 +161,12 @@ const payload = {
   },
 };
 
-fetch(process.env.WEBHOOK_URL, {
+const res = await fetch(process.env.WEBHOOK_URL, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(payload),
-}).then(async (response) => console.log(response.status, await response.text()));
+});
+console.log(res.status, await res.text());
 ```
 
 </TabItem>
@@ -138,14 +189,14 @@ payload = {
     },
 }
 
-request = urllib.request.Request(
+req = urllib.request.Request(
     os.environ["WEBHOOK_URL"],
-    data=json.dumps(payload).encode(),
+    data=json.dumps(payload).encode("utf-8"),
     headers={"Content-Type": "application/json"},
     method="POST",
 )
-with urllib.request.urlopen(request) as response:
-    print(response.status, response.read().decode())
+with urllib.request.urlopen(req) as res:
+    print(res.status, res.read().decode())
 ```
 
 </TabItem>
@@ -177,14 +228,13 @@ func main() {
 	}
 	body, _ := json.Marshal(payload)
 
-	response, err := http.Post(os.Getenv("WEBHOOK_URL"), "application/json", bytes.NewReader(body))
+	resp, err := http.Post(os.Getenv("WEBHOOK_URL"), "application/json", bytes.NewReader(body))
 	if err != nil {
-		fmt.Println(err)
-		return
+		panic(err)
 	}
-	defer response.Body.Close()
-	text, _ := io.ReadAll(response.Body)
-	fmt.Println(response.StatusCode, string(text))
+	defer resp.Body.Close()
+	text, _ := io.ReadAll(resp.Body)
+	fmt.Println(resp.StatusCode, string(text))
 }
 ```
 
@@ -217,27 +267,29 @@ Console.WriteLine($"{(int)response.StatusCode} {await response.Content.ReadAsStr
 </TabItem>
 </Tabs>
 
-Tin nhắn hiện trong kênh:
+Tin nhắn hiển thị trong kênh như sau:
 
-![Tin nhắn webhook trong kênh, có chữ in đậm, liên kết và phần nhắc đến](./images/channel-webhook-computer-04.png)
+![Tin nhắn webhook hiển thị trong kênh với chữ đậm, liên kết và nhắc tên](./images/channel-webhook-computer-04.png)
 
-## Phản hồi và giới hạn {#responses-and-limits}
+## Giới hạn và mã phản hồi
 
-Mezon trả lời `200` ngay khi nhận yêu cầu, rồi đăng tin nhắn ngay sau đó. Các vấn đề phát hiện sau thời điểm này, như kênh đã bị xóa, không được báo lại.
+Mezon kiểm tra cú pháp JSON, URL ảnh và tính hợp lệ của token đồng bộ, sau đó đẩy tác vụ vào hàng đợi gửi (`webhook_service.go`). Các lỗi phát sinh sau bước này (như kênh đã bị xóa) không được phản hồi lại trong HTTP response.
 
-| Mã | Nội dung | Nguyên nhân |
+| Giới hạn | Ngưỡng | Hành vi khi vượt ngưỡng |
 |---|---|---|
-| `200` | (trống) | Đã nhận. |
-| `400` | `Invalid JSON` | Nội dung không phải JSON. |
-| `400` | `Invalid token` | Token sai, hoặc token thuộc về một kênh khác với kênh trong URL. |
-| `400` | `Invalid attachment URL` | `url` của ảnh không phải URL đầy đủ. |
+| Kích thước body HTTP | **4 MiB** (`MaxRequestBodySize`) | Máy chủ HTTP từ chối trước khi vào handler |
+| JSON tin nhắn Mezon gốc (`t` + `mk`) | **4.000 byte** | Thay nội dung bằng `"The original message was too long"` và xóa mentions (lưu ý ký tự tiếng Việt có dấu tốn 2–3 byte UTF-8) |
+| Hashtag (`hg`) | Không hỗ trợ | Tên kênh trong `t` giữ nguyên văn bản thuần |
 
-- Nội dung không có khóa `type` vẫn được nhận với mã `200`, nhưng `message` của nó không được đăng.
-- Nếu nội dung tin nhắn (`t` và `mk`, dạng JSON) dài hơn 4.000 byte, Mezon đăng câu "The original message was too long" thay vào đó. Chữ có dấu, như chữ tiếng Việt, chiếm 2 hoặc 3 byte mỗi chữ.
-- Không hỗ trợ hashtag (`hg`): tên kênh trong `t` vẫn là văn bản thường.
-- Người gửi luôn là tên và ảnh đại diện của webhook.
+| Mã HTTP | Nội dung trả về | Nguyên nhân |
+|---|---|---|
+| `200` | *(rỗng)* | Đã chấp nhận (hoặc bỏ qua nếu thiếu cả `repository`, `type` và `content`). |
+| `400` | `Invalid JSON` | Body không phải JSON hợp lệ. |
+| `400` | `Invalid token` | Token sai, đã vô hiệu hóa hoặc thuộc kênh khác với URL. |
+| `400` | `Invalid attachment URL` | Một mục `message.images[].url` không phải URL đầy đủ có scheme và host. |
 
-## Liên quan {#related}
+## Liên quan
 
-- [Tổng quan về webhook](./overview.mdx)
-- [Webhook clan](./clan-webhook.mdx)
+- [Tổng quan Webhooks](./overview.mdx)
+- [Clan webhook](./clan-webhook.mdx)
+- [Định dạng tin nhắn và thực thể](../core-concepts/message-format-and-entities.md)

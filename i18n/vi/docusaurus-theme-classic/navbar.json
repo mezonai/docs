@@ -7,29 +7,33 @@
     "message": "Mezon Logo",
     "description": "The alt text of navbar logo"
   },
-  "item.label.Docs": {
-    "message": "Tài liệu",
-    "description": "Navbar item with label Docs"
+  "item.label.Quick Start": {
+    "message": "Bắt đầu nhanh",
+    "description": "Navbar item with label Quick Start"
   },
   "item.label.User Guide": {
-    "message": "Dành cho người dùng",
+    "message": "Hướng dẫn sử dụng",
     "description": "Navbar item with label User Guide"
   },
   "item.label.Developer Docs": {
-    "message": "Dành cho nhà phát triển",
+    "message": "Tài liệu nhà phát triển",
     "description": "Navbar item with label Developer Docs"
+  },
+  "item.label.Mezon": {
+    "message": "Mezon",
+    "description": "Navbar dropdown with external Mezon links"
   },
   "item.label.Home": {
     "message": "Trang chủ",
     "description": "Navbar item with label Home"
   },
-  "item.label.Developers": {
-    "message": "Nhà phát triển",
-    "description": "Navbar item with label Developers"
+  "item.label.Developers Portal": {
+    "message": "Cổng nhà phát triển",
+    "description": "Navbar item with label Developers Portal"
   },
-  "item.label.Bots/Apps": {
-    "message": "Bots/Apps",
-    "description": "Navbar item with label Bots/Apps"
+  "item.label.Bots & Apps": {
+    "message": "Bot & Ứng dụng",
+    "description": "Navbar item with label Bots & Apps"
   },
   "item.label.Discover": {
     "message": "Khám phá",

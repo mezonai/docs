@@ -1,0 +1,9 @@
+{
+  "label": "AI & MCP",
+  "position": 11,
+  "link": {
+    "type": "generated-index",
+    "slug": "developer/ai-and-mcp",
+    "description": "Subscribe to AI Agent lifecycle events and integrate AI assistants with Mezon via MCP."
+  }
+}

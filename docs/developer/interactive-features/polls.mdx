@@ -1,0 +1,122 @@
+---
+sidebar_position: 2
+sidebar_label: Polls
+description: Create, query, and close native Mezon polls from bots using mezon-sdk and Mezon.Net.Sdk.
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import pollsComputer01 from "./images/polls-computer-01.png";
+
+# Polls
+
+Native Mezon polls render directly inside a channel message (`TypeMessage.Poll = 18`), let clan members cast single-choice or multiple-choice votes, and automatically update live vote tallies and close upon expiration.
+
+<Image src={pollsComputer01} alt="A native Mezon poll rendered in a channel with answer choices, Show results and Vote controls" width={480} />
+
+## Capabilities and constraints
+
+| Rule | Enforced value (`mezon-api`) |
+|---|---|
+| Question | Must be non-empty after trimming whitespace |
+| Answers | **2 to 20** options (labels are trimmed; indexed `0..N-1`) |
+| Expiration (`expire_hours`) | **1 to 168** hours (1 hour to 7 days) |
+| Poll type (`PollType`) | `SINGLE = 0` (one choice per voter) or `MULTIPLE = 1` (multiple choices) |
+| Closing a poll | **Only the poll creator** (`poll.AuthorID == userID`) can close it early; expired polls close automatically via the server scheduler |
+| Bot voting (`VotePoll`) | <BotAccessBadge allowed={false} note="Blocked for bots" /> `VotePoll` is not in the bot API allowlist; bots can create, read, and close polls, but cannot cast votes |
+
+## Create, read, and close a poll
+
+<Tabs groupId="sdk-lang">
+<TabItem value="ts" label="TypeScript (mezon-sdk)" default>
+
+```ts
+// 1. Create a poll
+const created = await client.createPoll({
+  clan_id: "CLAN_ID",
+  channel_id: "CHANNEL_ID",
+  question: "Where should we have lunch?",
+  answers: ["Pho", "Banh mi", "Bun cha"],
+  expire_hours: 24,
+  type: 0, // 0 = SINGLE, 1 = MULTIPLE
+});
+
+if (!created?.poll_id) {
+  throw new Error("Failed to create poll");
+}
+
+// 2. Read current results and voter details
+// You can look up by poll_id, or by { message_id, channel_id }.
+const status = await client.getPoll({ poll_id: created.poll_id });
+console.log("Total votes:", status?.total_votes);
+console.log("Counts per answer:", status?.answer_counts);
+console.log("Voter details:", status?.voter_details);
+
+// 3. Close the poll early (creator only)
+await client.closePoll({ poll_id: created.poll_id });
+```
+
+</TabItem>
+<TabItem value="csharp" label="C# (Mezon.Net.Sdk)">
+
+```csharp
+using Mezon.Net.Models;
+
+// 1. Create a poll
+var created = await client.CreatePollAsync(new CreatePollParams(
+    clanId: clanId,
+    channelId: channelId,
+    question: "Where should we have lunch?",
+    answers: new[] { "Pho", "Banh mi", "Bun cha" },
+    expireHours: 24,
+    type: 0 // 0 = SINGLE, 1 = MULTIPLE
+));
+
+// 2. Read current results and voter details
+var status = await client.GetPollAsync(new GetPollParams(pollId: created.PollId));
+Console.WriteLine($"Total votes: {status.TotalVotes}");
+
+// 3. Close the poll early (creator only)
+await client.ClosePollAsync(new ClosePollParams(pollId: created.PollId));
+```
+
+</TabItem>
+</Tabs>
+
+## API reference
+
+### `CreatePoll` <ApiBadge method="RPC" path="CreatePoll" /> <BotAccessBadge allowed={true} />
+
+Requires the caller to be a member of the channel with send permission.
+
+| Field | Type | Required | Notes |
+|---|---|---|---|
+| `clan_id` | int64 / string | Yes | Clan snowflake ID |
+| `channel_id` | int64 / string | Yes | Target channel snowflake ID |
+| `question` | string | Yes | Non-empty poll question |
+| `answers` | `string[]` | Yes | 2–20 option labels |
+| `expire_hours` | int32 | Yes | Lifetime in hours (`1`–`168`) |
+| `type` | `PollType` (`0` \| `1`) | No | Defaults to `SINGLE` (`0`); set `1` for `MULTIPLE` |
+
+Returns `poll_id`, `message_id`, `question`, `answers` (`[{ index, label }]`), `answer_counts`, `exp` (Unix seconds), `is_closed`, `creator_id`, `type`, and `total_votes`.
+
+### `GetPoll` <ApiBadge method="RPC" path="GetPoll" /> <BotAccessBadge allowed={true} />
+
+Look up a poll either by `poll_id` (if non-zero) or by the pair `message_id` + `channel_id`.
+
+Returns the poll metadata along with live `answer_counts`, `total_votes`, and `voter_details` (an array of `{ answer_index, user_ids }`).
+
+### `ClosePoll` <ApiBadge method="RPC" path="ClosePoll" /> <BotAccessBadge allowed={true} />
+
+Accepts either `poll_id` or `message_id` + `channel_id`. Returns `PermissionDenied` if the caller is not the poll creator. Closing an already-closed poll succeeds idempotently. Upon closing, the server updates the original poll message in the channel with `is_closed: true` and final vote counts.
+
+### `VotePoll` <ApiBadge method="RPC" path="VotePoll" /> <BotAccessBadge allowed={false} />
+
+Reserved for human user accounts. Calling `VotePoll` with a bot session is rejected with `403 Permission denied` by `mezon-proto-server` / `Unauthenticated` by `mezon-api`.
+
+## Related
+
+- [Interactive messages](./interactive-messages.mdx)
+- [Permissions and API access](../core-concepts/permissions-and-api-access.md)
+- [Events reference](../reference/events-reference.md)

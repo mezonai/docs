@@ -1,0 +1,9 @@
+{
+  "label": "Payments & MMN",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "slug": "developer/payments-and-mmn",
+    "description": "Send Mezon Dong tokens from bots and integrate directly with the MMN blockchain SDKs."
+  }
+}

@@ -1,0 +1,164 @@
+---
+sidebar_position: 3
+sidebar_label: Quản lý thành viên
+description: Xem ai đang ở trong clan, gán vai trò, xóa hoặc tạm cấm thành viên, và xem nhật ký kiểm tra của clan.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import phoneMembers from "./images/member-management-phone-01.png";
+import phoneEditRoles from "./images/member-management-phone-02.png";
+import phoneKick from "./images/member-management-phone-03.png";
+import computerMembers from "./images/member-management-computer-01.png";
+import computerMenu from "./images/member-management-computer-02.png";
+import computerAuditLog from "./images/audit-log-computer-01.png";
+import phoneAuditLog from "./images/settings-audit-log-phone-01.png";
+
+# Quản lý thành viên
+
+Xem ai đang ở trong clan, gán vai trò cho họ, xóa những thành viên không nên ở đó, và xem lại các thao tác quản trị trong nhật ký kiểm tra. Các thao tác bạn thấy tùy vào vai trò của bạn.
+
+## Xem danh sách thành viên
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Mở clan và nhấn vào tên clan ở trên cùng.
+2. Nhấn **Cài đặt**.
+3. Trong phần **Quản lý người dùng**, nhấn **Thành viên**.
+
+Nhập tên vào ô tìm kiếm để tìm một người.
+
+<Image src={phoneMembers} alt="Màn hình Thành viên trong Cài đặt clan với ô tìm kiếm và danh sách thành viên" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Mở clan.
+2. Nhấn **Thành viên** ở đầu danh sách kênh.
+
+Bảng hiện tên của từng thành viên, ngày họ vào clan (**THÀNH VIÊN TỪ**), ngày họ tham gia Mezon (**THAM GIA MEZON**) và **VAI TRÒ** của họ. Để tìm một người, nhập vào ô **Tìm kiếm**.
+
+<Image src={computerMembers} alt="Trang Thành viên với danh sách thành viên và vai trò của họ" />
+
+</TabItem>
+</Tabs>
+
+## Gán vai trò cho thành viên
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Trong **Thành viên**, nhấn vào thành viên. Màn hình **Chỉnh sửa thành viên** mở ra.
+2. Nhấn **Chỉnh sửa vai trò**.
+3. Chọn các vai trò rồi lưu.
+
+<Image src={phoneEditRoles} alt="Màn hình Chỉnh sửa thành viên, mục Chỉnh sửa vai trò được đánh dấu" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Trên trang **Thành viên**, tìm thành viên đó.
+2. Ở cột **VAI TRÒ**, nhấn **+**.
+3. Chọn một vai trò.
+
+Danh sách chỉ hiện các vai trò thấp hơn vai trò cao nhất của bạn.
+
+</TabItem>
+</Tabs>
+
+Bạn cũng có thể thêm nhiều thành viên vào một vai trò cùng lúc. Xem [Vai trò và quyền](./roles-and-permissions.mdx).
+
+## Xóa thành viên khỏi clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Trong **Thành viên**, nhấn vào thành viên.
+2. Trong phần **Hành động**, nhấn **Đuổi** (iPhone: **Khai trừ**).
+3. Bạn có thể nhập lý do vào ô **Lý do đuổi** (iPhone: **Lý do khai trừ**).
+4. Xác nhận.
+
+<Image src={phoneKick} alt="Màn hình Chỉnh sửa thành viên, mục Đuổi trong phần Hành động được đánh dấu" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Trên trang **Thành viên**, nhấn chuột phải vào thành viên.
+2. Nhấn **Xóa thành viên**.
+3. Xác nhận.
+
+<Image src={computerMenu} alt="Menu của một thành viên trên trang Thành viên với mục Xóa thành viên" />
+
+Trong một kênh, bạn cũng có thể nhấn chuột phải vào tên một thành viên và chọn **Đuổi**.
+
+</TabItem>
+</Tabs>
+
+Thành viên rời clan ngay lập tức. Họ chỉ vào lại được khi có lời mời mới.
+
+## Tạm cấm một thành viên trong một kênh
+
+Lệnh cấm ngăn một thành viên trò chuyện trong một kênh trong khoảng thời gian bạn chọn. Bạn cấm thành viên trên máy tính:
+
+1. Mở kênh.
+2. Nhấn chuột phải vào tên thành viên, trong danh sách thành viên hoặc trên một tin nhắn của họ.
+3. Trỏ chuột vào **Chặn** (nghĩa là cấm thành viên trong kênh này).
+4. Chọn thời gian: **15 phút**, **1 giờ**, **3 giờ**, **8 giờ**, **24 giờ** hoặc **Cho đến khi tôi bật lại**.
+
+Để bỏ cấm trên máy tính, nhấn chuột phải vào thành viên đó lần nữa và chọn **Bỏ chặn**. **Android:** mở cài đặt kênh, chọn **Danh sách cấm**, rồi nhấn **Bỏ cấm**.
+
+## Ai làm được gì
+
+| Thao tác | Ai |
+|---|---|
+| Xem danh sách thành viên | mọi thành viên |
+| Gán vai trò trên trang **Thành viên** | chủ sở hữu clan, và vai trò có quyền **Quản lý Clan**; chỉ các vai trò thấp hơn vai trò của bạn |
+| **Xóa thành viên** trên trang **Thành viên** | chủ sở hữu clan, và vai trò có quyền **Quản lý Clan** |
+| **Đuổi** (trên điện thoại, và menu thành viên trong kênh) | chủ sở hữu clan, và vai trò có quyền **Quản trị viên** |
+| **Chặn** và **Bỏ chặn** trong kênh | vai trò có quyền **Quản trị viên** |
+| **Chuyển quyền sở hữu** | chỉ chủ sở hữu clan, xem [Chuyển quyền sở hữu clan](./transfer-ownership.mdx) |
+
+Không ai xóa được chủ sở hữu clan.
+
+## Nhật ký kiểm tra {#audit-log}
+
+Nhật ký kiểm tra liệt kê các thay đổi trong clan: ai đã làm gì và khi nào. Ví dụ, nhật ký ghi lại khi có người tạo kênh, tạo sự kiện hoặc đổi một vai trò.
+
+Chủ sở hữu clan và thành viên có quyền **Quản lý Clan** xem được nhật ký này.
+
+### Mở nhật ký kiểm tra
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Mở clan và nhấn vào tên clan ở trên cùng.
+2. Nhấn **Cài đặt**, rồi nhấn **Nhật ký chỉnh sửa** (iPhone: **Nhật ký hoạt động**).
+
+<Image src={phoneAuditLog} alt="Màn hình Nhật ký chỉnh sửa trên điện thoại liệt kê các thay đổi gần đây của clan" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Mở **Cài Đặt Clan** và nhấn **Nhật ký kiểm tra** trong phần **KIỂM DUYỆT** (ứng dụng máy tính: **Nhật ký hoạt động**).
+
+<Image src={computerAuditLog} alt="Nhật ký kiểm tra với bộ lọc theo người dùng, theo hành động và theo ngày, cùng danh sách thay đổi" />
+
+</TabItem>
+</Tabs>
+
+Mỗi dòng hiện thành viên, thao tác, mục đã thay đổi và thời gian. Thay đổi mới nhất ở trên cùng. Tên các thao tác trong nhật ký hiện bằng tiếng Anh, ví dụ "create event".
+
+### Lọc danh sách trên máy tính
+
+Ở đầu nhật ký có hai bộ lọc **Lọc theo** và một ô ngày:
+
+- Bộ lọc thứ nhất: chỉ hiện thao tác của một thành viên.
+- Bộ lọc thứ hai: chỉ hiện một loại thao tác, ví dụ tạo vai trò.
+- Ô ngày: chỉ hiện thao tác của một ngày.
+
+## Liên quan
+
+- [Vai trò và quyền](./roles-and-permissions.mdx)
+- [Mời người khác vào clan](../invite-people.mdx)
+- [Cài đặt clan](./settings.mdx)

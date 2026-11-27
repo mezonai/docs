@@ -1,0 +1,9 @@
+{
+  "label": "Voice SFU",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "slug": "developer/media-voice-and-streaming/voice-sfu",
+    "description": "Connect bots, apps, and services to Mezon voice channels across six SFU SDK languages."
+  }
+}
