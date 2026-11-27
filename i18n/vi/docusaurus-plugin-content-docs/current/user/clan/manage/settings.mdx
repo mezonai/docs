@@ -1,0 +1,213 @@
+---
+sidebar_position: 1
+sidebar_label: Cài đặt clan
+title: Cài đặt clan
+description: Mở Cài đặt Clan, đổi thông tin tổng quan, quản lý tích hợp, khôi phục kênh đã lưu trữ, nâng cấp Clan Pro hoặc xóa clan.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import phoneSettings from "./images/overview-settings-phone-01.png";
+import computerMenu from "./images/overview-settings-computer-01.png";
+import computerSidebar from "./images/overview-settings-computer-02.png";
+import computerOverview from "./images/overview-computer-01.png";
+import phoneOverview from "./images/settings-overview-phone-01.png";
+import computerIntegrations from "./images/integrations-computer-01.png";
+import phoneIntegrations from "./images/settings-integrations-phone-01.png";
+import phoneDelete from "./images/delete-clan-phone-01.png";
+import computerDelete from "./images/delete-clan-computer-01.png";
+
+# Cài đặt clan
+
+**Cài Đặt Clan** chứa các tùy chọn của clan: tên và ảnh, vai trò, biểu cảm, webhook, gói Pro và nhiều mục khác. Các mục bạn thấy tùy vào vai trò của bạn.
+
+## Mở Cài đặt Clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Mở clan và nhấn vào tên clan ở trên cùng.
+2. Nhấn **Cài đặt**.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Mở clan và nhấn vào tên clan ở đầu danh sách kênh.
+2. Nhấn **Cài Đặt Clan**.
+
+<Image src={computerMenu} alt="Menu clan có mục Cài Đặt Clan" />
+
+Để đóng cài đặt, nhấn **ESC** ở góc trên bên phải, hoặc nhấn phím Esc.
+
+</TabItem>
+</Tabs>
+
+## Cài đặt Clan trên máy tính có gì
+
+<Image src={computerSidebar} alt="Danh sách các mục trong Cài đặt Clan, từ Tổng quan đến Xóa clan" width={210} />
+
+| Mục | Dùng để | Ai thấy |
+|---|---|---|
+| [**Tổng quan**](#overview) | Tên, ảnh, banner, khung trang trí Clan Pro, tin nhắn hệ thống, chế độ ẩn danh | chủ sở hữu clan, **Quản trị viên** |
+| [**Vai trò**](./roles-and-permissions.mdx) | Vai trò và quyền | chủ sở hữu clan, **Quản lý Clan** |
+| [**Thứ tự danh mục**](../channels/categories.mdx#category-order) | Thứ tự danh mục của riêng bạn | mọi thành viên |
+| **Kênh đã lưu trữ** | Khôi phục kênh đã lưu trữ (xem bên dưới) | chủ sở hữu clan, **Quản trị viên**, **Quản lý Clan** |
+| [**Biểu cảm**, **Nhãn dán hình ảnh**, **Hiệu ứng âm thanh**](./emoji-stickers-and-sounds.mdx) | Biểu cảm, nhãn dán và âm thanh riêng của clan | mọi thành viên |
+| [**Tích hợp**](#integrations) | Webhook | chủ sở hữu clan, **Quản lý Clan** hoặc **Quản lý kênh** |
+| [**Nhật ký kiểm tra**](./members-and-moderation.mdx#audit-log) | Lịch sử các thao tác quản trị | chủ sở hữu clan, **Quản lý Clan** |
+| [**Hướng dẫn**](./onboarding.mdx) | Hướng dẫn và câu hỏi cho thành viên mới | chủ sở hữu clan, **Quản lý Clan** |
+| [**Kích hoạt cộng đồng**](./community.mdx) (sau đó là **Tổng quan cộng đồng**) | Đưa clan lên Khám phá | chủ sở hữu clan, **Quản trị viên** |
+| [**Nâng cấp Clan Pro**](../../account-and-personalization/pro-plan.mdx) | Nâng cấp clan lên Clan Pro hoặc nhập mã ưu đãi | chỉ chủ sở hữu clan |
+| [**Xóa clan**](#delete-a-clan) | Xóa clan | chỉ chủ sở hữu clan |
+
+**Ứng dụng máy tính:** mục cộng đồng tên là **Cộng đồng Clan**, và nhật ký kiểm tra tên là **Nhật ký hoạt động**.
+
+## Cài đặt Clan trên điện thoại có gì
+
+Ứng dụng điện thoại có ít mục hơn:
+
+- Trong **Cài đặt**: **Tổng quan**, **Nhật ký chỉnh sửa** (iPhone: **Nhật ký hoạt động**), **Tích hợp**, **Biểu cảm**, **Nhãn dán**, **Hiệu ứng âm thanh** và **Kích hoạt cộng đồng** (iPhone: **Bật cộng đồng**).
+- Trong **Quản lý người dùng**: **Thành viên**, **Vai trò**, **Lời mời**, và (với chủ sở hữu clan trên cả Android và iPhone) **Chuyển quyền sở hữu**.
+
+<Image src={phoneSettings} alt="Cài đặt clan trên điện thoại với phần Cài đặt và Quản lý người dùng" width={270} />
+
+**Thứ tự danh mục**, **Kênh đã lưu trữ**, **Hướng dẫn** và **Nâng cấp Clan Pro** chỉ có trên máy tính. Để xóa clan trên điện thoại, xem [Xóa clan](#delete-a-clan).
+
+## Khôi phục kênh đã lưu trữ
+
+Kênh đã lưu trữ bị ẩn khỏi danh sách kênh của mọi thành viên. Tin nhắn trong kênh vẫn được giữ. Bạn khôi phục kênh trên máy tính:
+
+1. Mở **Cài Đặt Clan**.
+2. Nhấn **Kênh đã lưu trữ**.
+3. Nhấn **Khôi phục** cạnh kênh đó.
+
+Kênh hiện lại trong danh sách kênh.
+
+## Tổng quan {#overview}
+
+**Tổng quan** chứa tên clan, ảnh và banner của clan, và cài đặt tin nhắn hệ thống. Chủ sở hữu clan và thành viên có quyền **Quản trị viên** thay đổi được các mục này.
+
+### Đổi tên, ảnh hoặc banner
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Mở clan, nhấn vào tên clan, rồi nhấn **Cài đặt**.
+2. Nhấn **Tổng quan**.
+3. Đổi **Tên clan**, nhấn vào ảnh clan để đổi ảnh, hoặc nhấn vào banner để đổi banner.
+4. Lưu thay đổi.
+
+<Image src={phoneOverview} alt="Màn hình Tổng quan của cài đặt clan trên điện thoại với ảnh clan, banner, tên clan và cài đặt tin nhắn hệ thống" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Mở **Cài Đặt Clan**. Trang **Tổng quan** mở ra đầu tiên.
+2. Đổi những gì bạn cần:
+   - Nhấn **Tải lên hình ảnh** để đổi ảnh clan.
+   - Nhập tên mới ở ô **TÊN CLAN**.
+   - Ở phần **HÌNH NỀN BANNER CLAN**, nhấn **Tải lên hình nền**. Banner hiện ở đầu danh sách kênh của bạn.
+   - Nếu clan của bạn có gói [Clan Pro](../../account-and-personalization/pro-plan.mdx), bạn còn có thể chọn **khung trang trí Clan Pro** bao quanh biểu tượng clan.
+3. Một thanh hiện ra ở dưới cùng. Nhấn **Lưu Thay Đổi**, hoặc **Đặt lại** để hoàn tác.
+
+<Image src={computerOverview} alt="Trang Tổng quan với ảnh clan, tên clan, banner và kênh tin nhắn hệ thống" />
+
+</TabItem>
+</Tabs>
+
+| Ảnh | Kích thước khuyến nghị | Dung lượng tối đa |
+|---|---|---|
+| Ảnh clan | từ 512 x 512 pixel (nhỏ nhất 128 x 128) | 1 MB |
+| Banner | từ 960 x 540 pixel, tỷ lệ 16:9 | 10 MB |
+
+Tên clan theo cùng quy tắc như khi [tạo clan](../create-a-clan.mdx).
+
+### Chọn kênh nhận tin nhắn hệ thống
+
+Mezon đăng tin nhắn hệ thống vào một kênh, ví dụ khi có người vào clan. Ở phần **KÊNH TIN NHẮN HỆ THỐNG** (trên điện thoại là phần tin nhắn hệ thống), chọn kênh. Sau đó bật hoặc tắt từng loại tin nhắn:
+
+- tin nhắn chào mừng ngẫu nhiên khi có người vào clan
+- mẹo hữu ích để thiết lập clan
+- nhật ký khi có một thao tác được áp dụng cho clan
+
+### Tắt chế độ ẩn danh
+
+Thành viên đôi khi có thể đăng bài mà không hiện tên. Để chặn việc này trong clan, bật **Chế độ ẩn danh**. Dòng mô tả của mục này là **Chặn người dùng sử dụng chế độ ẩn danh**.
+
+### Chỉ có trên điện thoại
+
+- **Thông báo mặc định**: mức thông báo cho những thành viên chưa tự chọn mức. Xem [Thông báo trong clan](./notifications.mdx).
+- **Xóa clan** (chỉ chủ sở hữu). Xem [Xóa clan](#delete-a-clan).
+
+## Tích hợp {#integrations}
+
+**Tích hợp** liệt kê các webhook của clan. Webhook là một địa chỉ web mà ứng dụng hoặc trang web khác gọi tới để đăng tin nhắn vào Mezon, ví dụ một hệ thống build hoặc một biểu mẫu.
+
+Chủ sở hữu clan và thành viên có quyền **Quản lý Clan** hoặc **Quản lý kênh** thấy được mục **Tích hợp**.
+
+### Hai loại webhook
+
+- **Webhook** đăng tin nhắn vào một kênh của clan.
+- **Webhook Clan** gửi tin nhắn đến một thành viên của clan.
+
+### Tạo webhook trên máy tính
+
+1. Mở **Cài Đặt Clan** và nhấn **Tích hợp**.
+2. Nhấn **Tạo Webhook** hoặc **Tạo Webhook Clan**. Nếu đã có webhook, nhấn **Xem Webhook** hoặc **Xem Webhook Clan**, rồi nhấn **Webhook Mới** hoặc **Webhook Clan Mới**.
+
+<Image src={computerIntegrations} alt="Trang Tích hợp với Webhook và Webhook Clan cùng các nút Tạo" />
+
+3. Mở webhook vừa tạo. Đổi tên (tối đa 64 ký tự), ảnh, và với webhook kênh thì đổi cả **KÊNH**.
+4. Nếu có thay đổi, nhấn **Lưu Thay Đổi** ở thanh dưới cùng.
+5. Nhấn **Sao chép URL webhook**, rồi dán URL vào ứng dụng kia.
+
+:::warning
+Ai có URL webhook cũng đăng được tin nhắn vào clan của bạn. Hãy giữ bí mật. Nếu URL bị lộ, nhấn **Đặt lại token** và dùng URL mới.
+:::
+
+Muốn gỡ một webhook, mở webhook đó và nhấn **Xóa Webhook**.
+
+**Điện thoại:** mở **Cài đặt** → **Tích hợp** để xem và quản lý **Webhooks** và **Clan Webhooks** trên di động.
+
+<Image src={phoneIntegrations} alt="Màn hình Tích hợp của clan trên điện thoại hiển thị Webhooks và Clan Webhooks" width={270} />
+
+Để xem định dạng payload webhook và ví dụ cho nhà phát triển, xem [Webhook cho nhà phát triển](../../../developer/webhooks/overview.mdx) và [Bot và ứng dụng](../../bots-and-apps/index.mdx).
+
+## Xóa clan {#delete-a-clan}
+
+Chỉ chủ sở hữu clan mới xóa được clan. Xóa clan sẽ xóa clan cho mọi thành viên, cùng với các kênh và tin nhắn.
+
+Nếu bạn chỉ muốn thôi quản lý clan, hãy [chuyển quyền sở hữu](./transfer-ownership.mdx) cho một thành viên khác.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Mở clan và nhấn vào tên clan ở trên cùng.
+2. Nhấn **Xóa clan** (iPhone: **Xóa Clan**). Mục này cũng có trong **Cài đặt** → **Tổng quan**.
+3. Xác nhận.
+
+<Image src={phoneDelete} alt="Menu clan của chủ sở hữu, mục Xóa clan được đánh dấu" width={270} />
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Mở **Cài Đặt Clan**.
+2. Nhấn **Xóa clan** ở cuối danh sách.
+3. Nhập tên clan vào ô **Nhập tên clan**.
+4. Nhấn **Xóa clan**.
+
+<Image src={computerDelete} alt="Cửa sổ xóa clan với tên clan đã nhập và nút Xóa clan" />
+
+</TabItem>
+</Tabs>
+
+:::danger
+Clan đã xóa không khôi phục được. Kênh, tin nhắn và cài đặt của clan mất hết với mọi người.
+:::
+
+## Liên quan
+
+- [Quản lý thành viên](./members-and-moderation.mdx)
+- [Kênh](../channels/index.mdx)
+- [Chuyển quyền sở hữu clan](./transfer-ownership.mdx)
+- [Clan Pro và User Pro](../../account-and-personalization/pro-plan.mdx)

@@ -1,44 +1,107 @@
 ---
-sidebar_label: Intro
+sidebar_label: Introduction
 title: Mezon developer documentation
 sidebar_position: 1
-description: Build bots, channel apps and integrations for Mezon.
+description: Build bots, channel apps, webhooks, OAuth2 integrations, voice/streaming media clients, and Mezon Dong payment flows on the Mezon platform.
 ---
 
 # Mezon developer documentation
 
-Build bots, channel apps and integrations for Mezon. Every app and bot starts in the [Mezon developer portal](https://mezon.ai/developers/applications), where you create it and get its credentials.
+Mezon is an extensible messaging, voice, streaming, and payments platform. Every bot, channel app, and OAuth2 client starts in the [Mezon Developer Portal](https://mezon.ai/developers/applications), where you register an application ID and issue credentials.
 
-## Start here
+## Choose your integration path
 
-1. [What you can build](./quick-start/overview.md): bots, channel apps, webhooks and OAuth2 in one page.
-2. [Create a bot](./quick-start/creating-mezon-bot.md) or [create a channel app](./quick-start/creating-mezon-app.md) in the developer portal.
-3. [Write your first bot](./mezon-sdk/integration-bot-sdk/getting-started.md) with the JavaScript/TypeScript SDK.
+<FeatureGrid columns={2}>
+  <FeatureCard
+    title="Getting started"
+    description="Understand the Developer Portal, create a bot or channel app, and choose the right SDK from the ecosystem matrix."
+    to="/developer/getting-started/portal-overview"
+    badge="Start here"
+  />
+  <FeatureCard
+    title="Core concepts"
+    description="Gateway bootstrap, TLS abridged TCP framing, session JWT lifecycles, bot API allowlists, and message JSON payloads."
+    to="/developer/core-concepts/architecture-and-transport"
+    badge="Architecture"
+  />
+  <FeatureCard
+    title="JavaScript & TypeScript SDK"
+    description="Node.js bot SDK (mezon-sdk 2.8.68) with typed events, local SQLite cache, interactive builders, and MMN transfers."
+    to="/developer/bot-sdks/javascript/overview"
+    badge="v2.8.68"
+  />
+  <FeatureCard
+    title=".NET (C#) SDK"
+    description="Multi-targeted .NET bot SDK (Mezon.Net.Sdk 1.11.0) with DI, commands, interaction routing, and Redis/SQLite caching."
+    to="/developer/bot-sdks/dotnet/overview"
+    badge="v1.11.0"
+  />
+  <FeatureCard
+    title="Interactive features"
+    description="Build rich embeds, buttons, forms, selects, polls, and clan quick menu commands."
+    to="/developer/interactive-features/interactive-messages"
+    badge="UX"
+  />
+  <FeatureCard
+    title="Channel apps & widgets"
+    description="Embed web apps inside clan channels with signed launch data, or add Mezon chat to your site."
+    to="/developer/channel-apps-and-widgets/channel-apps/overview"
+    badge="Web"
+  />
+  <FeatureCard
+    title="Voice SFU & stream channels"
+    description="Join real-time voice rooms with 6 language SFU SDKs, or publish live video over WHIP to stream channels."
+    to="/developer/media-voice-and-streaming/overview"
+    badge="Media"
+  />
+  <FeatureCard
+    title="Webhooks, OAuth2 & payments"
+    description="Post messages with one HTTP request, sign users in with Mezon OAuth2, or transfer Mezon Dong via MMN."
+    to="/developer/webhooks/overview"
+    badge="Integrations"
+  />
+</FeatureGrid>
 
-## Bots
+## Platform architecture
 
-A bot is a program that logs in to Mezon with its own account. It reads messages in the clans it was added to and answers them.
+All bots and clients authenticate once against the Mezon Gateway (`gw.mezon.ai`), which assigns regional/shard endpoints for realtime sockets and HTTP APIs. From there, bots stay connected over persistent TLS abridged TCP sockets to `mezon-proto-server` while media, payments, and AI agent events flow through dedicated services.
 
-- [JavaScript/TypeScript bot SDK](./mezon-sdk/integration-bot-sdk/overview.md) (`mezon-sdk` on npm, Node.js)
-- [.NET bot SDK](./mezon-sdk/dotnet-sdk.md) (`Mezon.Net.Sdk` on NuGet)
-- [What bots are allowed to do](./mezon-sdk/bot-api-access.md)
-- [Interactive messages](./mezon-topics/interactive-message.mdx): buttons, forms and selects
-- [Stream channels](./mezon-topics/streaming-channel.mdx): publish video from a bot
+```mermaid
+flowchart LR
+    Client["Bot / Client / Channel App"]
+    GW["Mezon Gateway (gw.mezon.ai)"]
+    Proto["Realtime Proto-Server (TLS Abridged TCP / WS)"]
+    API["Mezon API (PostgreSQL / Business RPCs)"]
+    SFU["Voice & Meeting SFU (WebRTC)"]
+    Stream["Streaming Server (WHIP / LL-HLS)"]
+    MMN["Mezon Dong Network (MMN / ZK)"]
 
-## Channel apps
+    Client -->|"1. HTTPS AuthenticateApp / OAuth2"| GW
+    GW -->|"2. JWT + api_url, ws_url, tcp_url, id_token"| Client
+    Client <-->|"3. 0xEF TLS TCP Envelope & RPCs"| Proto
+    Proto <-->|"NATS request/event bus"| API
+    Client -->|"4. Media grants (GenerateMeetToken / GetStreamPlayback)"| Proto
+    Client <-->|"5a. WebRTC voice/video"| SFU
+    Client -->|"5b. WHIP ingest / LL-HLS playback"| Stream
+    Client -->|"5c. ZK-proven token transfers"| MMN
+```
 
-A channel app is your website, opened from a channel in a clan. Mezon tells your website who the user is with signed data.
+## Integration surfaces at a glance
 
-- [Channel apps overview](./mezon-sdk/channel-app-sdk/overview.md)
-- [Check who opened your app](./mezon-sdk/channel-app-sdk/channel-app-auth-flow.mdx)
+| Integration type | Best for | Runtime & transport | Starting point |
+| --- | --- | --- | --- |
+| **Bots** | Commands, interactive cards, moderation, polls, streaming grants, token transfers | Persistent Node.js (`mezon-sdk`) or .NET (`Mezon.Net.Sdk`) over TLS TCP | [Create a bot](./getting-started/create-a-bot.md) |
+| **Channel apps** | Full web applications launched inside a clan channel with signed user context | Any web stack verifying HMAC launch data (`?data=`) | [Create a channel app](./getting-started/create-a-channel-app.md) |
+| **Webhooks** | One-way notifications from CI/CD, monitoring, or backend jobs | Single HTTPS `POST` — no bot account or SDK required | [Webhooks overview](./webhooks/overview.mdx) |
+| **OAuth2** | "Sign in with Mezon" on external websites | Standard Authorization Code flow + ID tokens | [OAuth2 flow](./oauth2/authorization-code-flow.mdx) |
+| **Light SDK & Chat Widget** | Embedded chat experiences for external web apps | Browser JS (`mezon-light-sdk`, `mezon-chat-widget`) | [Light SDK](./channel-apps-and-widgets/light-sdk.md) |
+| **Voice SFU & Streaming** | Voice bots, meeting recorders, live stream publishers | WebRTC SFU SDKs (6 languages) + WHIP / LL-HLS | [Media overview](./media-voice-and-streaming/overview.md) |
+| **AI & MCP** | Voice/room AI session events and LLM tool integration | Agent SSE (`connectMezonAgentSSE`) and MCP | [AI agent events](./ai-and-mcp/ai-agent-events.md) |
 
-## Webhooks
+## Quick links
 
-A webhook lets any program post to Mezon with one HTTP request. You need no bot and no SDK.
-
-- [Channel webhook](./webhooks/channel-webhook.mdx): post a message to a channel.
-- [Clan webhook](./webhooks/clan-webhook.mdx): send a message to one member's inbox.
-
-## Log in with Mezon
-
-- [OAuth2](./mezon-topics/oauth2.mdx): let people sign in to your website with their Mezon account.
+- [SDK ecosystem matrix](./getting-started/sdk-ecosystem-matrix.md) — compare supported versions, runtimes, and stability tiers.
+- [Permissions & bot API access](./core-concepts/permissions-and-api-access.md) — exact server allowlists for bot and external tokens.
+- [Events reference](./reference/events-reference.md) — complete catalog of realtime and SSE events.
+- [Error codes & troubleshooting](./reference/error-codes-and-troubleshooting.md) — common HTTP, socket, and SDK failures.
+- [Changelog](./reference/changelog.md) — notable platform and SDK changes.

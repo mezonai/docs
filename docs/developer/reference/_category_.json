@@ -1,0 +1,9 @@
+{
+  "label": "Reference",
+  "position": 12,
+  "link": {
+    "type": "generated-index",
+    "slug": "developer/reference",
+    "description": "Unified realtime event catalog, error codes, troubleshooting guides, and platform changelog."
+  }
+}

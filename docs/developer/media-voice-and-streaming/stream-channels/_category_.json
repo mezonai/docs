@@ -1,0 +1,9 @@
+{
+  "label": "Stream channels",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "slug": "developer/media-voice-and-streaming/stream-channels",
+    "description": "Publish live video over WHIP (RFC 9725) and handle HLS playback and realtime stream events."
+  }
+}

@@ -15,76 +15,84 @@
     "message": "Mạng xã hội",
     "description": "The title of the footer links column with title=Social Media in the footer"
   },
+  "link.item.label.Quick Start": {
+    "message": "Bắt đầu nhanh",
+    "description": "The label of footer link with label=Quick Start"
+  },
   "link.item.label.Welcome": {
     "message": "Chào mừng",
     "description": "The label of footer link with label=Welcome linking to /user/welcome"
   },
   "link.item.label.Account and Personalization": {
     "message": "Tài khoản và cá nhân hóa",
-    "description": "The label of footer link with label=Account and Personalization linking to /user/account-and-personalization"
+    "description": "The label of footer link with label=Account and Personalization"
   },
   "link.item.label.Friends and Messaging": {
-    "message": "Bạn bè và Tin nhắn trực tiếp",
-    "description": "The label of footer link with label=Friends and Messaging linking to /user/friends-and-messaging"
+    "message": "Bạn bè và nhắn tin",
+    "description": "The label of footer link with label=Friends and Messaging"
   },
   "link.item.label.Clan": {
     "message": "Clan",
-    "description": "The label of footer link with label=Clan linking to /user/clan"
+    "description": "The label of footer link with label=Clan"
   },
   "link.item.label.Bots and Apps": {
-    "message": "Bots và Apps",
-    "description": "The label of footer link with label=Bots and Apps linking to /user/bots-and-apps"
+    "message": "Bot và ứng dụng",
+    "description": "The label of footer link with label=Bots and Apps"
   },
   "link.item.label.Mezon Dong": {
     "message": "Mezon Đồng",
-    "description": "The label of footer link with label=Mezon Dong linking to /user/mezon-dong"
+    "description": "The label of footer link with label=Mezon Dong"
   },
   "link.item.label.Resources": {
     "message": "Tài nguyên",
-    "description": "The label of footer link with label=Resources linking to /user/resources"
+    "description": "The label of footer link with label=Resources"
   },
   "link.item.label.Introduction": {
     "message": "Giới thiệu",
-    "description": "The label of footer link with label=Introduction linking to /developer/intro"
+    "description": "The label of footer link with label=Introduction"
   },
-  "link.item.label.Quick Start": {
-    "message": "Bắt đầu nhanh",
-    "description": "The label of footer link with label=Quick Start linking to /developer/quick-start"
+  "link.item.label.Getting Started": {
+    "message": "Bắt đầu",
+    "description": "The label of footer link with label=Getting Started"
   },
-  "link.item.label.Mezon SDK": {
-    "message": "Mezon SDK",
-    "description": "The label of footer link with label=Mezon SDK linking to /developer/mezon-sdk"
+  "link.item.label.SDK Ecosystem": {
+    "message": "Hệ sinh thái SDK",
+    "description": "The label of footer link with label=SDK Ecosystem"
   },
   "link.item.label.Webhooks": {
     "message": "Webhooks",
-    "description": "The label of footer link with label=Webhooks linking to /developer/webhooks"
+    "description": "The label of footer link with label=Webhooks"
   },
-  "link.item.label.Topics": {
-    "message": "Chủ đề",
-    "description": "The label of footer link with label=Topics linking to /developer/mezon-topics"
+  "link.item.label.OAuth2": {
+    "message": "OAuth2",
+    "description": "The label of footer link with label=OAuth2"
+  },
+  "link.item.label.Voice SFU & Streaming": {
+    "message": "Thoại SFU & Phát trực tiếp",
+    "description": "The label of footer link with label=Voice SFU & Streaming"
   },
   "link.item.label.About Us": {
     "message": "Về chúng tôi",
-    "description": "The label of footer link with label=About Us linking to https://ncc.plus/#about"
+    "description": "The label of footer link with label=About Us"
   },
   "link.item.label.Contact": {
     "message": "Liên hệ",
-    "description": "The label of footer link with label=Contact linking to https://ncc.plus/#contact"
+    "description": "The label of footer link with label=Contact"
   },
   "link.item.label.Privacy Policy": {
     "message": "Chính sách bảo mật",
-    "description": "The label of footer link with label=Privacy Policy linking to https://mezon.ai/privacy"
+    "description": "The label of footer link with label=Privacy Policy"
   },
   "link.item.label.Terms of Service": {
     "message": "Điều khoản dịch vụ",
-    "description": "The label of footer link with label=Terms of Service linking to https://mezon.ai/terms"
+    "description": "The label of footer link with label=Terms of Service"
   },
   "link.item.label.Facebook": {
     "message": "Facebook",
-    "description": "The label of footer link with label=Facebook linking to https://www.facebook.com/mezonworld"
+    "description": "The label of footer link with label=Facebook"
   },
   "link.item.label.GitHub": {
     "message": "GitHub",
-    "description": "The label of footer link with label=GitHub linking to https://github.com/mezonai"
+    "description": "The label of footer link with label=GitHub"
   }
 }

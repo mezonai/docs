@@ -1,41 +1,41 @@
 ---
 sidebar_position: 1
 sidebar_label: Overview
-description: Post messages to Mezon from other systems with channel webhooks and clan webhooks.
+description: Post messages to Mezon channels or member inboxes over HTTP using incoming channel webhooks and clan webhooks.
 ---
 
-# Webhooks
+# Webhooks overview
 
-A webhook is a secret URL that posts to Mezon. Any program that can send an HTTP `POST` with JSON can use it: a CI pipeline, a monitoring tool, a form. You need no bot, no login and no SDK.
+A Mezon webhook is a secret HTTPS URL that lets any external system—CI/CD pipelines, GitHub repositories, alerting tools, or backend scripts—post messages into Mezon with a single `HTTP POST` request. No bot account, WebSocket session, or SDK is required.
 
-Mezon webhooks are incoming only: they post into Mezon. They do not send Mezon events to your program. To react to what happens in Mezon, write a [bot](../mezon-sdk/integration-bot-sdk/overview.md).
+Mezon webhooks are **incoming only**: they deliver data *into* Mezon. If you need to receive Mezon events, handle commands, or render interactive buttons, build a [bot](../getting-started/create-a-bot.md) with the [JavaScript/TypeScript SDK](../bot-sdks/javascript/overview.md) or [.NET SDK](../bot-sdks/dotnet/overview.md).
 
-## Two kinds of webhooks
+## Channel webhook vs. clan webhook
 
-| | Channel webhook | Clan webhook |
+| Feature | Channel webhook | Clan webhook |
 |---|---|---|
-| Posts to | One channel | One member of the clan, chosen in the URL |
-| The message appears | In the channel, sent by the webhook's name and avatar | In the member's **Inbox**, on the **Messages** tab |
-| URL | `https://webhook.mezon.ai/webhooks/CHANNEL_ID/TOKEN` | `https://webhook.mezon.ai/clanwebhooks/TOKEN/USERNAME_OR_USER_ID` |
-| Body | `{ "type": "hook", "message": { "t": "..." } }` | `{ "content": "{\"t\":\"...\"}" }` |
-| Create it in | The channel's settings → **Integrations** | The clan's settings → **Integrations** → **Clan Webhooks** |
-| Permission to create | **Manage Channels** | **Manage Channels** |
+| Target | One specific channel (or thread) | One clan member specified in the URL |
+| Where it appears | Inside the channel under the webhook's name and avatar | Inside the member's **Inbox → Messages** tab |
+| Endpoint | <ApiBadge method="POST" path="https://webhook.mezon.ai/webhooks/{channel_id}/{token}" /> | <ApiBadge method="POST" path="https://webhook.mezon.ai/clanwebhooks/{token}/{username_or_user_id}" /> |
+| Supported payloads | **3 formats:** Native Mezon (`type`), GitHub (`repository`), Discord-compatible (`content`) | Single format: `{ "content": "{\"t\":\"...\"}", "attachments": [...] }` |
+| Permission to create | **Manage Channel** | **Manage Channel** |
+| Permission to edit / delete | **Manage Channel** | **Manage Clan** |
+| Token rotation | Delete and recreate the webhook | Click **Reset Token** in Clan Webhook settings |
 | Guide | [Channel webhook](./channel-webhook.mdx) | [Clan webhook](./clan-webhook.mdx) |
-
-Editing or deleting a clan webhook needs the **Manage Clan** permission.
 
 ## How it works
 
-1. Create the webhook in Mezon.
-2. Copy its URL. The URL contains the webhook's token.
-3. Send an HTTP `POST` to the URL with a JSON body and the header `Content-Type: application/json`.
-4. The message appears in the channel, or in the member's **Inbox**.
+1. Create a channel webhook or clan webhook in Mezon settings.
+2. Copy the generated webhook URL (it embeds the secret authentication token).
+3. Send an `HTTP POST` with `Content-Type: application/json` and a supported payload.
+4. Mezon validates the token and delivers the message asynchronously (channel webhook) or immediately as a persistent inbox notification (clan webhook).
 
-:::warning
-Anyone who has the URL can post with it. Keep it out of source code, logs and chat messages. If it leaks, delete the channel webhook and create a new one, or click **Reset Token** on the clan webhook.
+:::warning Treat webhook URLs as secrets
+Anyone who possesses a webhook URL can post messages as that webhook. Never hardcode webhook URLs in source control, client-side JavaScript, or public logs—inject them through environment variables or a secret manager. If a URL leaks, delete the channel webhook immediately or click **Reset Token** on the clan webhook.
 :::
 
 ## Related
 
 - [Channel webhook](./channel-webhook.mdx)
 - [Clan webhook](./clan-webhook.mdx)
+- [Create a bot](../getting-started/create-a-bot.md)

@@ -1,62 +1,71 @@
 ---
 id: welcome
-showTOC: false
+hide_table_of_contents: true
 sidebar_label: Welcome
 sidebar_position: 1
-description: Start here to learn Mezon, the app to chat, call and work together in clans, on your phone and your computer.
+description: Start here to learn Mezon, the app to chat, call, stream, and work together in clans, on your phone and computer.
 ---
 
 # Welcome to Mezon
 
 ![The Mezon documentation banner](./images/welcome-001.png)
 
-**Mezon** is the live, work and play platform. Chat with one person or a group, talk in voice channels, and work together in communities called clans. Mezon runs on Android phones, iPhones, Windows, macOS and Linux computers, and in a web browser.
+**Mezon** is the live, work, and play platform. Chat one-to-one or in groups, meet in voice channels, broadcast in stream channels, and organize teams or communities in clans. Mezon runs on Android, iPhone, Windows, macOS, Linux, and in a web browser.
 
 ## New to Mezon? Start here
 
-1. [**Quick start**](./quick-start.mdx): install Mezon, log in, join your team's clan, chat, talk and invite people.
-2. [**Features at a glance**](./features-at-a-glance.mdx): everything you can do in Mezon, and on which devices.
+<FeatureGrid columns={2}>
+  <FeatureCard
+    title="Quick start"
+    badge="Start here"
+    description="Install Mezon on your phone and computer, join your team's clan by link or QR code, chat, call, and invite people."
+    to="/user/quick-start"
+  />
+  <FeatureCard
+    title="Features at a glance"
+    badge="Directory"
+    description="A complete overview of what you can do in Mezon today across phone, computer, and Pro plans."
+    to="/user/features-at-a-glance"
+  />
+</FeatureGrid>
 
 ## Guides
 
-### Account and personalization
-
-Download Mezon, log in, find your way around the screen, and change your profile and settings.
-
-See [Account and personalization](./account-and-personalization/index.mdx).
-
-### Friends and messages
-
-Add friends, send direct messages, start group chats, and call one person by voice or video.
-
-See [Friends and messaging](./friends-and-messaging/index.mdx).
-
-### Clans
-
-A clan is a space for a team, a class or a community. It has text channels for messages, voice channels for talking, and stream channels for watching live streams. Clan owners add channels, give roles, invite people and plan events.
-
-See [What is a clan](./clan/what-is-clan.mdx).
-
-### Bots and apps
-
-Add bots and apps to your clan to do more, for example run commands or open a web app in a channel. You can also add an AI agent to a voice call.
-
-See [Bots and apps](./bots-and-apps/index.mdx).
-
-### Mezon Dong
-
-Mezon Dong is the currency inside Mezon. Send it to other people and see your transaction history.
-
-See [Mezon Dong](./mezon-dong/index.mdx).
-
-### Questions and websites
-
-Find quick answers and the list of official Mezon websites.
-
-See [Resources](./resources/index.mdx).
+<FeatureGrid columns={2}>
+  <FeatureCard
+    title="Account & personalization"
+    description="Download Mezon, log in, tour the interface, customize settings, and compare User Pro and Clan Pro plans."
+    to="/user/account-and-personalization"
+  />
+  <FeatureCard
+    title="Friends & messaging"
+    description="Add friends, send direct messages, run group chats, make 1-to-1 calls, and organize threads and topics."
+    to="/user/friends-and-messaging"
+  />
+  <FeatureCard
+    title="Clans, channels & Go Live"
+    description="Join or create clans, manage roles and events, meet in voice channels, and broadcast or watch live streams."
+    to="/user/clan"
+  />
+  <FeatureCard
+    title="Bots & apps"
+    description="Find and install bots and channel apps, add the AI agent to voice calls, and keep your clan safe."
+    to="/user/bots-and-apps"
+  />
+  <FeatureCard
+    title="Mezon Dong"
+    description="Send Mezon Dong, give a coffee, unlock items, upgrade to Pro, and look up public transactions."
+    to="/user/mezon-dong"
+  />
+  <FeatureCard
+    title="Resources & FAQ"
+    description="Quick answers to common questions and the directory of official Mezon websites."
+    to="/user/resources"
+  />
+</FeatureGrid>
 
 ## For developers
 
-Build bots and apps for Mezon with the Mezon SDK, webhooks and APIs.
+Build bots, channel apps, embeddable chat widgets, voice SFU clients, and webhook or OAuth2 integrations.
 
-See the [developer docs](../developer/intro.mdx).
+See the [Developer Documentation](../developer/intro.mdx).

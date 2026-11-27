@@ -1,6 +1,6 @@
 .row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1rem;
   list-style: none;
   padding: 0;
@@ -8,7 +8,7 @@
 }
 
 .wide {
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
 }
 
 .item {
@@ -21,10 +21,21 @@
 
 .frame {
   display: block;
+  width: 100%;
+  padding: 0;
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 8px;
   overflow: hidden;
   background: var(--ifm-color-emphasis-100);
+  cursor: zoom-in;
+  line-height: 0;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.frame:hover,
+.frame:focus-visible {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 14px rgba(88, 101, 242, 0.16);
 }
 
 .frame img {
@@ -33,13 +44,10 @@
   height: auto;
 }
 
-.wide .frame {
-  aspect-ratio: 16 / 10;
-}
-
 .wide .frame img {
-  height: 100%;
+  max-height: 280px;
   object-fit: contain;
+  margin: 0 auto;
 }
 
 .caption {
@@ -47,7 +55,7 @@
   gap: 0.5rem;
   align-items: flex-start;
   font-size: 0.9rem;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .number {
@@ -91,7 +99,7 @@
   font-size: 1rem;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .wide .item:only-child {
     flex-direction: column;
   }

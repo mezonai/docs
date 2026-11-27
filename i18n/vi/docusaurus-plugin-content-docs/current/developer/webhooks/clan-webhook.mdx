@@ -1,68 +1,70 @@
 ---
-sidebar_position: 2
-sidebar_label: Webhook clan
-description: Tạo webhook clan và gửi tin nhắn vào hộp thư của một thành viên chỉ bằng một yêu cầu HTTP.
+sidebar_position: 3
+sidebar_label: Clan webhook
+description: Gửi thông báo trực tiếp vào hộp thư của từng thành viên clan bằng một yêu cầu HTTP POST qua Clan Webhook.
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-# Webhook clan
+# Clan webhook
 
-Webhook clan gửi tin nhắn tới một thành viên của clan. Bạn chọn thành viên trong URL. Tin nhắn đến **Hộp thư** của thành viên, ở thẻ **Tin nhắn**, kèm tên clan cùng tên và ảnh đại diện của webhook.
+Clan webhook gửi thông báo lưu bền vững trực tiếp vào mục **Inbox → Messages** của một thành viên trong clan, kèm tên clan cùng tên và ảnh đại diện của webhook. Bạn chỉ định người nhận động ngay ở phần cuối URL.
 
-## Tạo webhook clan {#create-a-clan-webhook}
+<ApiBadge method="POST" path="https://webhook.mezon.ai/clanwebhooks/YOUR_WEBHOOK_TOKEN/USERNAME_OR_USER_ID" />
 
-Bạn cần quyền **Quản lý kênh** để tạo webhook clan, và quyền **Quản lý Clan** để sửa hoặc xóa webhook clan. Các bước dưới đây dùng ứng dụng web Mezon trên máy tính.
+## Quyền hạn
 
-1. Nhấn vào tên clan ở đầu danh sách kênh.
-2. Nhấn **Cài Đặt Clan**.
+| Thao tác | Quyền clan bắt buộc (`api_clan_webhook.go`) |
+|---|---|
+| Tạo clan webhook (`GenerateClanWebhook`) | **Manage Channel** |
+| Sửa, đặt lại token hoặc xóa (`UpdateClanWebhookById`, `DeleteClanWebhookById`) | **Manage Clan** |
 
-   ![Menu clan với mục Cài Đặt Clan](./images/clan-webhook-computer-01.png)
+## Tạo Clan Webhook
 
-3. Nhấn **Tích hợp** trong menu cài đặt.
-4. Cạnh **Webhook Clan**, nhấn **Tạo Webhook Clan**. Nếu clan đã có webhook clan, hãy nhấn **Xem Webhook Clan**.
+1. Bấm vào tên clan ở đầu danh sách kênh và chọn **Clan Settings**.
 
-   ![Trang Tích hợp với nút Tạo Webhook Clan](./images/clan-webhook-computer-02.png)
+   ![Menu clan hiển thị mục Clan Settings](./images/clan-webhook-computer-01.png)
 
-5. Nhấn **Webhook Clan Mới**. Mezon tạo một webhook với tên và ảnh đại diện ngẫu nhiên.
-6. Nhấn vào webhook để mở, rồi nhấn **Sao chép URL webhook**.
+2. Mở mục **Integrations** và bấm **Create Clan Webhook** (hoặc **View Clan Webhook** nếu đã có clan webhook).
 
-   ![Webhook clan đang mở với nút Sao chép URL webhook](./images/clan-webhook-computer-03.png)
+   ![Trang Integrations với nút Create Clan Webhook](./images/clan-webhook-computer-02.png)
 
-Hãy giữ bí mật URL này. Nếu URL bị lộ, hãy nhấn **Đặt lại token**: URL cũ sẽ ngừng hoạt động.
+3. Bấm **New Clan Webhook**, mở mục vừa tạo rồi bấm **Copy Webhook URL**.
 
-## Gửi tin nhắn {#send-a-message}
+   ![Clan webhook đang mở với nút Copy Webhook URL](./images/clan-webhook-computer-03.png)
 
-Thêm thành viên vào cuối URL đã sao chép, rồi gửi `POST` với header `Content-Type: application/json`:
+Bảo mật URL này cẩn thận. Nếu bị lộ, bấm **Reset Token** (cần quyền **Manage Clan**) để vô hiệu hóa ngay token cũ.
+
+## Gửi tin nhắn
+
+Nối **username** hoặc **user ID** (snowflake) của thành viên nhận vào cuối URL đã sao chép, rồi gửi `HTTP POST` với header `Content-Type: application/json`:
 
 ```text
-https://webhook.mezon.ai/clanwebhooks/TOKEN/USERNAME_OR_USER_ID
+https://webhook.mezon.ai/clanwebhooks/YOUR_WEBHOOK_TOKEN/USERNAME_OR_USER_ID
 ```
 
-Phần cuối là tên người dùng hoặc ID người dùng của thành viên. Thành viên phải ở trong clan.
+Người nhận bắt buộc phải đang là thành viên của clan (`CheckUserInClan`).
 
-### Nội dung {#body}
+### Cấu trúc body
 
 ```json
 {
-  "content": "{\"t\":\"Your weekly report is ready.\"}",
-  "attachments": [{ "url": "https://example.com/report.png", "filetype": "image/png" }]
+  "content": "{\"t\":\"Báo cáo tuần của bạn đã sẵn sàng.\",\"mk\":[{\"type\":\"b\",\"s\":0,\"e\":12}]}",
+  "attachments": [
+    { "url": "https://example.com/report.png", "filetype": "image/png" }
+  ]
 }
 ```
 
-| Trường | Kiểu | Bắt buộc | Ý nghĩa |
+| Trường | Kiểu | Bắt buộc | Mô tả |
 |---|---|---|---|
-| `content` | string | Có | Tin nhắn, dạng chuỗi JSON: `{"t": "text", "mk": [...]}`. `t` là văn bản; `mk` thêm định dạng, như trong [webhook kênh](./channel-webhook.mdx#body). |
-| `attachments` | array | Không | Tệp cần hiện: `{ "url", "filetype" }`. Mezon chỉ hiện tệp đầu tiên. |
+| `content` | string | Có | **Chuỗi JSON đã tuần tự hóa** (không phải object JSON) có dạng `{ "t": "...", "mk": [...] }`. Dùng `JSON.stringify` / `json.dumps` / `json.Marshal` / `JsonSerializer.Serialize`. |
+| `attachments` | array | Không | Mảng `{ "url", "filetype" }`. Mọi `url` đều được kiểm tra (`ValidateURL` yêu cầu đủ scheme và host). Mezon hiển thị tệp **đầu tiên** (`AttachmentLink` / `AttachmentType`) và đặt cờ `HasMoreAttachment = true` khi có nhiều hơn một tệp (`api_clan_webhook.go`). |
 
-`content` là một chuỗi chứa JSON, không phải đối tượng JSON. Hãy tạo nó bằng `JSON.stringify` (hoặc hàm tương đương trong ngôn ngữ của bạn), như trong các ví dụ.
+### Ví dụ mã nguồn
 
-Mỗi `url` đính kèm phải là URL đầy đủ, có scheme và tên máy chủ.
-
-### Ví dụ {#examples}
-
-Đặt biến `CLAN_WEBHOOK_URL` bằng URL webhook clan của bạn, có tên người dùng hoặc ID người dùng của thành viên ở cuối.
+Đặt `CLAN_WEBHOOK_URL="https://webhook.mezon.ai/clanwebhooks/YOUR_WEBHOOK_TOKEN/USERNAME_OR_USER_ID"` trong biến môi trường.
 
 <Tabs groupId="code">
 <TabItem value="bash" label="curl" default>
@@ -70,7 +72,7 @@ Mỗi `url` đính kèm phải là URL đầy đủ, có scheme và tên máy ch
 ```bash
 curl -X POST "$CLAN_WEBHOOK_URL" \
   -H "Content-Type: application/json" \
-  -d '{"content":"{\"t\":\"Your weekly report is ready.\"}"}'
+  -d '{"content":"{\"t\":\"Báo cáo tuần của bạn đã sẵn sàng.\"}","attachments":[{"url":"https://example.com/report.png","filetype":"image/png"}]}'
 ```
 
 </TabItem>
@@ -78,15 +80,16 @@ curl -X POST "$CLAN_WEBHOOK_URL" \
 
 ```js
 const body = {
-  content: JSON.stringify({ t: "Your weekly report is ready." }),
+  content: JSON.stringify({ t: "Báo cáo tuần của bạn đã sẵn sàng." }),
   attachments: [{ url: "https://example.com/report.png", filetype: "image/png" }],
 };
 
-fetch(process.env.CLAN_WEBHOOK_URL, {
+const res = await fetch(process.env.CLAN_WEBHOOK_URL, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(body),
-}).then(async (response) => console.log(response.status, await response.text()));
+});
+console.log(res.status, await res.text());
 ```
 
 </TabItem>
@@ -98,39 +101,91 @@ import os
 import urllib.request
 
 body = {
-    "content": json.dumps({"t": "Your weekly report is ready."}),
+    "content": json.dumps({"t": "Báo cáo tuần của bạn đã sẵn sàng."}),
     "attachments": [{"url": "https://example.com/report.png", "filetype": "image/png"}],
 }
 
-request = urllib.request.Request(
+req = urllib.request.Request(
     os.environ["CLAN_WEBHOOK_URL"],
-    data=json.dumps(body).encode(),
+    data=json.dumps(body).encode("utf-8"),
     headers={"Content-Type": "application/json"},
     method="POST",
 )
-with urllib.request.urlopen(request) as response:
-    print(response.status, response.read().decode())
+with urllib.request.urlopen(req) as res:
+    print(res.status, res.read().decode())
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+)
+
+func main() {
+	inner, _ := json.Marshal(map[string]any{"t": "Báo cáo tuần của bạn đã sẵn sàng."})
+	body, _ := json.Marshal(map[string]any{
+		"content": string(inner),
+		"attachments": []map[string]string{
+			{"url": "https://example.com/report.png", "filetype": "image/png"},
+		},
+	})
+
+	resp, err := http.Post(os.Getenv("CLAN_WEBHOOK_URL"), "application/json", bytes.NewReader(body))
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+	text, _ := io.ReadAll(resp.Body)
+	fmt.Println(resp.StatusCode, string(text))
+}
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+using System.Net.Http.Json;
+using System.Text.Json;
+
+var body = new
+{
+    content = JsonSerializer.Serialize(new { t = "Báo cáo tuần của bạn đã sẵn sàng." }),
+    attachments = new[] { new { url = "https://example.com/report.png", filetype = "image/png" } },
+};
+
+using var http = new HttpClient();
+var response = await http.PostAsJsonAsync(Environment.GetEnvironmentVariable("CLAN_WEBHOOK_URL"), body);
+Console.WriteLine($"{(int)response.StatusCode} {await response.Content.ReadAsStringAsync()}");
 ```
 
 </TabItem>
 </Tabs>
 
-Thành viên thấy tin nhắn trong **Hộp thư** → **Tin nhắn**:
+Thành viên nhận sẽ thấy tin nhắn trong **Inbox → Messages**:
 
-![Tin nhắn của webhook clan trong hộp thư của thành viên](./images/clan-webhook-computer-04.png)
+![Thông báo clan webhook hiển thị trong Inbox Messages của thành viên](./images/clan-webhook-computer-04.png)
 
-## Phản hồi {#responses}
+## Mã phản hồi lỗi
 
-| Mã | Nội dung | Nguyên nhân |
+| Mã HTTP | Nội dung trả về | Nguyên nhân |
 |---|---|---|
-| `200` | (trống) | Đã gửi tin nhắn. |
-| `400` | `Invalid JSON` | Nội dung không phải JSON. |
-| `400` | `invalid token` | Token trong URL sai hoặc đã bị đặt lại. |
-| `400` | `User not in clan` | Thành viên không ở trong clan, hoặc tên người dùng không tồn tại. |
-| `400` | `Invalid attachment URL` | `url` đính kèm không phải URL đầy đủ. |
-| `404` | `Not Found` | URL không có tên người dùng hay ID người dùng ở cuối. |
+| `200` | *(rỗng)* | Đã gửi thông báo và cập nhật số đếm chưa đọc. |
+| `400` | `Invalid JSON` | Body không phải JSON hợp lệ. |
+| `400` | `invalid token` | Token sai, đã xóa hoặc đã bấm Reset Token. |
+| `400` | `User not in clan` | User ID / username không tồn tại hoặc không thuộc clan. |
+| `400` | `Invalid attachment URL` | Một `url` trong `attachments` thiếu scheme hoặc host hợp lệ. |
+| `404` | `Not Found` | URL thiếu phần `/{username_or_user_id}` ở cuối. |
 
-## Liên quan {#related}
+## Liên quan
 
-- [Tổng quan về webhook](./overview.mdx)
-- [Webhook kênh](./channel-webhook.mdx)
+- [Tổng quan Webhooks](./overview.mdx)
+- [Channel webhook](./channel-webhook.mdx)

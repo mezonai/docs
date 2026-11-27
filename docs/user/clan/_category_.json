@@ -1,8 +1,9 @@
 {
-  "label": "Clan",
-  "position": 4,
+  "label": "Clans",
+  "position": 6,
   "link": {
     "type": "generated-index",
-    "slug": "user/clan"
+    "slug": "/user/clan",
+    "description": "Join, create, organize, and manage clans in Mezon."
   }
 }

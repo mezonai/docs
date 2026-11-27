@@ -1,0 +1,75 @@
+---
+sidebar_position: 5
+sidebar_label: Pinned messages
+description: Pin important messages in a text channel so everyone can find them, and unpin them later.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import pinnedPhone01 from "./images/pinned-messages-phone-01.png";
+import pinnedPhone02 from "./images/pinned-messages-phone-02.png";
+import pinnedPhone03 from "./images/pinned-messages-phone-03.png";
+import pinnedComputer01 from "./images/pinned-messages-computer-01.png";
+import pinnedComputer02 from "./images/pinned-messages-computer-02.png";
+
+# Pinned messages
+
+Pin a message to keep it easy to find, for example rules, a schedule or an address. Everyone in the channel can see the pinned messages.
+
+## Pin a message
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+<ShotSteps>
+<Shot src={pinnedPhone01} alt="The message menu swiped up, with Pin Message marked">Press and hold the message. Swipe the menu up and tap **Pin Message**.</Shot>
+<Shot src={pinnedPhone02} alt="The Pin Message question with the Yes button marked">Tap **Yes** to confirm.</Shot>
+</ShotSteps>
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Right-click the message.
+2. Click **Pin Message**.
+3. Click **Oh yeah. Pin it** to confirm.
+
+<Image src={pinnedComputer01} alt="The Pin It. Pin It Good. dialog with the Oh yeah. Pin it button" />
+
+</TabItem>
+</Tabs>
+
+A note appears in the chat: "… pinned a message to this channel. See all pinned messages." On a computer, the newest pin also shows in the pin bar under the channel name.
+
+You cannot pin a message inside a topic.
+
+## See and unpin pinned messages
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Tap the channel name at the top.
+2. Open the **Pins** tab.
+
+<Image src={pinnedPhone03} alt="The Pins tab of a channel with the pinned messages" width={270} />
+
+3. Tap a pinned message to go to it in the chat.
+4. To unpin it, tap the **X** next to it.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Click the **Pinned Messages** button at the top right of the channel.
+
+<Image src={pinnedComputer02} alt="The Pinned Messages list with one pinned message, and the pin note in the chat" />
+
+2. Click **Jump** on a message to go to it in the chat.
+3. To unpin a message, click the cross next to it, then click **Unpin it**.
+
+</TabItem>
+</Tabs>
+
+## Related
+
+- [Text channel](./text-channel.mdx)
+- [Inbox](./inbox.mdx)

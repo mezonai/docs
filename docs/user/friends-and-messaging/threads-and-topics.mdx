@@ -1,7 +1,7 @@
 ---
 sidebar_position: 6
 sidebar_label: Threads and topics
-description: The difference between threads and topics in a clan channel, how to start them, and how to find new replies.
+description: The difference between threads and topics in a clan text channel, how to start them, and how to find new replies.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -16,6 +16,8 @@ import threadsComputer02 from "./images/threads-and-topics-computer-02.png";
 import threadsComputer03 from "./images/threads-and-topics-computer-03.png";
 import threadsComputer04 from "./images/threads-and-topics-computer-04.png";
 import threadsComputer05 from "./images/threads-and-topics-computer-05.png";
+import channelThreadsCreate from "../clan/channels/images/threads-computer-01.png";
+import channelThreadsForm from "../clan/channels/images/threads-computer-02.png";
 
 # Threads and topics
 
@@ -25,13 +27,21 @@ Threads and topics keep side conversations out of the main chat of a clan text c
 
 | | Thread | Topic |
 |---|---|---|
-| What it is | A small channel with a name, under its parent channel | A short discussion about one message |
-| Where you see it | In the channel list, under the parent channel | Under the message, as a replies button |
-| Who can start one | The clan owner and people whose role has **Manage Threads** | Everyone who can send messages in the channel |
+| What it is | A small channel with its own name, under its parent channel | A short discussion about one message |
+| Starts from | The **Threads** panel, or a message | One message |
+| Has a name | Yes | No |
 | Private option | Yes: **Private Thread** | No |
+| Where you see it | In the channel list, under the parent channel | Under the message as a replies button, or in the Inbox |
+| Who can start one | The clan owner and people whose role has **Manage Threads** | Everyone who can send messages in the channel |
 | Menu item | **Create Thread** | **Topic Discussion** |
 
-## Start a thread
+## Threads {#threads}
+
+A thread is a small channel inside a text channel, with its own name. Use a thread for a subject that needs a longer discussion, so the main channel stays easy to follow.
+
+### Start a thread
+
+You need the **Manage Threads** permission. The clan owner always has it. Without it, you do not see **Create** or **Create Thread**.
 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
@@ -39,12 +49,15 @@ Threads and topics keep side conversations out of the main chat of a clan text c
 1. Press and hold the message you want to talk about.
 2. Tap **Create Thread**. If you do not see it, swipe the menu up.
 3. Type a thread name.
-4. Type the first message and send it.
+4. To make it private, turn on **Private Thread**.
+5. Type the first message and send it.
 
 <Image src={threadsPhone01} alt="The message menu in a clan channel with Create Thread marked" width={270} />
 
 </TabItem>
 <TabItem value="computer" label="Computer">
+
+**From a message**
 
 1. Right-click the message you want to talk about.
 2. Click **Create Thread**.
@@ -55,21 +68,38 @@ Threads and topics keep side conversations out of the main chat of a clan text c
 4. To limit who sees it, tick **Private Thread**. Only people you invite and moderators can see a private thread.
 5. Type the first message and press **Enter**.
 
+**From the Threads panel**
+
+1. Click the **Threads** button at the top right of the channel.
+2. Click **Create**.
+
+<Image src={channelThreadsCreate} alt="The Threads panel with the Create button" />
+
+3. Type a name in **Thread Name**, optionally tick **Private Thread**, type the first message and press **Enter**.
+
+<Image src={channelThreadsForm} alt="The New Thread panel with Thread Name, Private Thread and the message box" />
+
 </TabItem>
 </Tabs>
 
-The thread appears in the channel list under the parent channel. The channel shows a notice that you started a thread.
+The thread appears in the channel list under its parent channel, and the channel shows a notice that you started a thread. A thread name needs at least 4 characters (longer than 3 characters). To invite people to a thread, mention them with **@** inside the thread.
 
-A thread name needs at least 4 characters. If **Create Thread** is not in the menu, your role does not have the **Manage Threads** permission.
-
-## Find threads
+### Find threads
 
 - **Computer:** click a thread under its channel in the channel list. Or click **Threads** at the top of the channel to see the threads you joined, active threads and archived threads.
-- **Phone:** tap the thread in the channel list. Or tap the channel name at the top, then **Threads**.
+- **Phone:** tap the thread in the channel list. Or tap the channel name at the top, then tap **Threads**.
 
 <Image src={threadsComputer02} alt="The Threads panel of a channel, opened from the Threads button that is marked" />
 
-## Start a topic
+Threads with no new messages for a while stop showing in the channel list. The channel's **Hide After Inactivity** setting decides when. You can still find them in the **Threads** list.
+
+## Topics {#topics}
+
+A topic is a short discussion about one message. Replies stay in the topic so the main channel stays easy to follow. A topic has no name and cannot be private.
+
+Anyone who can send messages in a text channel or a thread can start a topic. Topics are not available in direct messages, group chats, voice or stream channels, or inside another topic.
+
+### Start a topic
 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
@@ -93,13 +123,13 @@ A thread name needs at least 4 characters. If **Create Thread** is not in the me
 </TabItem>
 </Tabs>
 
-Under the message, a button shows the number of replies, for example **1 reply** (Android: **1 Reply**). Click or tap it to open the topic. On iPhone the button also says **View Topic**.
+Under the message, a button shows the number of replies, for example **1 reply** (Android: **1 Reply**). Click or tap it to open the topic. On a phone, the button also says **View topic** (iPhone: **View Topic**).
 
 On a computer, a bar under the channel name shows the latest topic or pinned message. Click it to jump there.
 
 <Image src={threadsComputer04} alt="A channel with a topic open on the right and the replies button under the message marked" />
 
-## Find new replies in topics
+### Find new replies in topics
 
 <Tabs groupId="platform" queryString>
 <TabItem value="phone" label="Phone">
@@ -126,6 +156,5 @@ A white dot marks a topic with unread replies. A red dot means someone mentioned
 ## Related
 
 - [Message actions](./message-actions.mdx)
-- [Threads in a text channel](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/threads.mdx)
-- [Topics in a text channel](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/topic.mdx)
-- [Inbox](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/inbox.mdx)
+- [Text channels](../clan/channels/text-channel.mdx)
+- [Inbox](../clan/channels/inbox.mdx)

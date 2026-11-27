@@ -1,0 +1,134 @@
+---
+slug: /user/clan/channels
+title: Channels
+description: How a clan is organized into categories and channels, how to create text, voice and stream channels, and how to change channel settings.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import clanStructureComputer01 from "./images/clan-structure-computer-01.png";
+import channelsPhone01 from "./images/channels-phone-01.png";
+import channelsPhone02 from "./images/channels-phone-02.png";
+import channelsPhone03 from "./images/channels-phone-03.png";
+import channelsComputer01 from "./images/channels-computer-01.png";
+import channelsComputer02 from "./images/channels-computer-02.png";
+import channelsComputer03 from "./images/channels-computer-03.png";
+import channelsComputer04 from "./images/channels-computer-04.png";
+
+# Channels
+
+A clan is organized into **categories**, and each category holds **channels** where members write, talk and watch together. A new clan has a category called **PUBLIC CHANNELS** with a text channel called **general**. A clan started from a template also gets the template's categories and channels.
+
+<Image src={clanStructureComputer01} alt="The channel list of a clan: the PUBLIC CHANNELS category with text, voice and stream channels, two of them private with a lock on the icon" />
+
+## Channel types
+
+| Type | Icon in the channel list | Use it for |
+|---|---|---|
+| [**Text**](./text-channel.mdx) | # | Messages, pictures, files, threads and topics |
+| [**Voice**](./voice-channel.mdx) | Speaker | Talking, video, screen sharing and interactive apps |
+| [**Stream**](./stream-channel.mdx) | Broadcast waves | Going live and watching one person's live stream |
+
+A private text channel shows a **#** with a small lock. A private voice channel shows a speaker with a small lock. Only the clan owner, administrators and the members and roles added to it can see a private channel. Stream channels are always open to every member of the clan.
+
+## Who can create categories and channels
+
+- **Categories:** the clan owner and roles with the **Administrator** or **Manage Clan** permission.
+- **Channels:** the clan owner and roles with the **Administrator**, **Manage Clan** or **Manage Channels** permission. Other members do not see the create button.
+
+A clan can have up to 1000 channels, threads included.
+
+## Create a channel {#create-a-channel}
+
+The clan owner and roles with the **Administrator**, **Manage Clan** or **Manage Channels** permission can create channels.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+<ShotSteps>
+<Shot src={channelsPhone01} alt="The category menu with Create channel marked">Open your clan. Press and hold a category name, for example **PUBLIC CHANNELS**. Tap **Create channel**.</Shot>
+<Shot src={channelsPhone02} alt="The Create Channel screen with a name typed and the Voice type marked">Type the channel name. Choose **Text**, **Voice** or **Stream**. To make a text or voice channel private, turn on **Private Channel**. Tap **Create**.</Shot>
+</ShotSteps>
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Open your clan.
+2. Point at a category name and click the **+** next to it.
+
+<Image src={channelsComputer01} alt="The plus button next to the PUBLIC CHANNELS category" />
+
+3. Choose the type: **Text**, **Voice** or **Stream**.
+4. Type the channel name.
+5. To make a text or voice channel private, turn on **Private Channel**.
+6. Click **Create Channel**.
+
+<Image src={channelsComputer02} alt="The create channel dialog with the Text type selected and a name typed in" />
+
+You can also right-click a channel in the category and choose **Create Text Channel** (**Create Voice Channel** on a voice channel).
+
+</TabItem>
+</Tabs>
+
+The new channel appears in the category.
+
+Rules for channels:
+
+- A channel name can have up to 64 characters. Use letters, numbers, spaces, `_` or `-`. It cannot start with a space, `_` or `-`.
+- Two channels in the same category cannot have the same name.
+- Stream channels cannot be private. Every member of the clan can see them.
+- A clan can have up to 1000 channels, threads included.
+
+## Change a channel's settings
+
+The clan owner and roles that can manage channels can change a channel's settings.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Press and hold the channel name.
+2. Tap **Edit Channel**.
+
+<Image src={channelsPhone03} alt="The channel menu with Edit Channel marked" width={270} />
+
+3. Change the name or the topic, or tap **Change Category** to move the channel.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Right-click the channel name.
+2. Click **Edit Channel**.
+
+<Image src={channelsComputer03} alt="The channel menu with Edit Channel" />
+
+3. Choose a tab on the left and make your changes.
+
+<Image src={channelsComputer04} alt="The Overview tab of a channel's settings with Channel Name, Channel Topic, Age-Restricted Channel and Hide After Inactivity" />
+
+</TabItem>
+</Tabs>
+
+On a computer, the settings have these tabs. Some tabs show only for some channel types.
+
+| Tab | What you can change |
+|---|---|
+| **Overview** | **Channel Name**. **Channel Topic**: tell members what the channel is for (up to 512 characters on a computer). **Age-Restricted Channel** (text channels): members must confirm their age before they see the messages. **Hide After Inactivity**: threads that have no new messages for this time no longer show in the channel list. |
+| **Category** | The category the channel is in. |
+| **Permissions** | Text and voice channels. Make the channel private, and choose which members and roles can see it and what they can do. See [Roles and permissions](../manage/roles-and-permissions.mdx). |
+| **Integrations** | Text channels. Create webhooks that post messages into the channel. See [Channel webhooks](../../../developer/webhooks/channel-webhook.mdx). |
+| **Quick Actions** | Text channels. **Flash Messages**: save a text and send it by typing `/` and its name. **Quick Menus**: commands that trigger a bot. |
+| **Streaming** | Stream channels. Copy the **WHIP Server URL** and **Bearer Token** for OBS Studio, and set a **Stream Thumbnail** shown while no one is live (JPG, PNG, GIF or WEBP, up to 10 MB). See [Stream channel](./stream-channel.mdx). |
+| **Delete Channel** | Delete the channel. The clan's welcome channel cannot be deleted. To hide a text channel without losing its messages, [archive it](./text-channel.mdx#archive-a-channel) instead. |
+
+:::danger
+Deleting a channel cannot be undone.
+:::
+
+## Related
+
+- [Categories](./categories.mdx)
+- [Text channel](./text-channel.mdx)
+- [Voice channel](./voice-channel.mdx)
+- [Stream channel](./stream-channel.mdx)
+- [Roles and permissions](../manage/roles-and-permissions.mdx)

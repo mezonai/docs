@@ -1,9 +1,0 @@
-{
-  "label": "Channel App SDK",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "slug": "developer/mezon-sdk/channel-app-sdk",
-    "description": "Build channel apps: websites that open from a Mezon channel and know who the member is."
-  }
-}

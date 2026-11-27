@@ -1,0 +1,161 @@
+---
+sidebar_position: 3
+sidebar_label: Manage bots and apps
+description: Find the bots in your clan, give them roles, remove bots or channel apps, and fix common problems.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import phoneMembers from "./images/manage-bots-and-apps-phone-01.png";
+import phoneKick from "./images/manage-bots-and-apps-phone-02.png";
+import iphoneMembers from "./images/manage-bots-and-apps-iphone-01.png";
+import iphoneKick from "./images/manage-bots-and-apps-iphone-02.png";
+import computerMembers from "./images/manage-bots-and-apps-computer-01.png";
+import computerRemove from "./images/manage-bots-and-apps-computer-02.png";
+
+# Manage bots and apps
+
+A bot is a member of your clan, so you manage it in the clan's member list. An app is a channel, so you manage it like other channels.
+
+## Find the bots in your clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. Open the clan and tap the clan name at the top.
+2. Tap **Settings**.
+3. Under **User Management**, tap **Members**.
+4. Tap the bot. The **Edit Member** screen opens.
+
+<Tabs groupId="phone-os" queryString>
+<TabItem value="android" label="Android">
+
+<Image src={phoneMembers} alt="The clan member list with the bot marked" width={270} />
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<Image src={iphoneMembers} alt="The clan member list on iPhone with the bot marked" width={270} />
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. Open your clan.
+2. Click **Members** at the top of the channel list.
+
+<Image src={computerMembers} alt="The Members page of a clan with a bot in the member list" />
+
+</TabItem>
+</Tabs>
+
+## Give a bot a role {#give-a-bot-a-role}
+
+A bot can do only what its roles allow, like any member. Create the role first in **Clan Settings** → **Roles**. See [Roles and permissions](../clan/manage/roles-and-permissions.mdx).
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. On the bot's **Edit Member** screen, tap **Edit Roles**.
+2. Choose the roles and save.
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+You need the **Manage Clan** permission. You can give only roles below your own.
+
+1. On the **Members** page, find the bot.
+2. Click **+** in the **ROLES** column next to the bot.
+3. Choose the role.
+
+If the list says **No roles available.**, there is no role you can give yet.
+
+</TabItem>
+</Tabs>
+
+## Remove a bot from your clan
+
+On a computer you need the **Manage Clan** permission. On a phone you must be the clan owner or have **Administrator**.
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Phone">
+
+1. On the bot's **Edit Member** screen, under **Actions**, tap **Kick**.
+2. Tap **Kick** again to confirm.
+
+<Tabs groupId="phone-os" queryString>
+<TabItem value="android" label="Android">
+
+<Image src={phoneKick} alt="The Edit Member screen of a bot with Kick marked" width={270} />
+
+</TabItem>
+<TabItem value="iphone" label="iPhone">
+
+<Image src={iphoneKick} alt="The Edit Member screen of a bot on iPhone with Kick marked" width={270} />
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="computer" label="Computer">
+
+1. On the **Members** page, right-click the bot.
+2. Click **Remove Member**.
+
+<Image src={computerRemove} alt="The menu of a bot in the member list with Remove Member marked" />
+
+3. Click **Kick** to confirm.
+
+</TabItem>
+</Tabs>
+
+The bot leaves the clan. To use it again later, add it again from the Bots/Apps directory.
+
+:::warning
+Do not choose **Transfer Ownership** for a bot. This item gives the whole clan to that member, bot or person. You stop being the clan owner.
+:::
+
+## Manage an app
+
+An app lives in its own channel. To rename or remove an app, edit or delete its channel like any other channel.
+
+## Troubleshooting {#troubleshooting}
+
+### "You are not the owner of this clan"
+
+You see "You are not the owner of this clan. Please choose your own clan." when you add a bot.
+
+This usually means you do not have the **Manage Clan** permission in the clan you chose. Choose another clan, or ask the clan owner to add the bot.
+
+### "You do not have permission to add to this clan"
+
+You see this message when you add an app. You need the **Manage Channels** permission in that clan. Choose another clan, or ask the clan owner to add the app.
+
+### "A channel with this name already exists"
+
+The app needs a new channel, and the category you chose already has a channel with that name. Type another **CHANNEL NAME**, or choose another category, and click **Authorize** again.
+
+### The bot does not answer
+
+1. Look at the clan's member list. If the bot is under offline members, its program is not running. Contact the bot's developer.
+2. Check that the bot can see and write in the channel. Its roles need the **View Channels** and **Send Messages** permissions there. See [Give a bot a role](#give-a-bot-a-role).
+3. Read the bot's description in the [Bots/Apps directory](https://top.mezon.ai) to check how to use it.
+
+### Contact Mezon
+
+If you still need help, contact the Mezon team:
+
+- Email: [hello@mezon.vn](mailto:hello@mezon.vn)
+- Phone: +84 24 6687 4606
+- Website: [mezon.ai](https://mezon.ai)
+- Facebook: [facebook.com/mezonworld](https://www.facebook.com/mezonworld)
+
+## Related
+
+- [Overview of bots and channel apps](./overview.mdx)
+- [Find and add bots and apps](./find-and-add.mdx)
+- [Stay safe with bots and apps](./find-and-add.mdx#stay-safe)
+- [Member management](../clan/manage/members-and-moderation.mdx)
+- [Transfer clan ownership](../clan/manage/transfer-ownership.mdx)

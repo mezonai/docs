@@ -1,27 +1,30 @@
-import React from "react";
 import MDXComponents from "@theme-original/MDXComponents";
-import Card from "@site/src/components/Card";
-import CardBody from "@site/src/components/Card/CardBody";
-import CardFooter from "@site/src/components/Card/CardFooter";
-import CardHeader from "@site/src/components/Card/CardHeader";
-import CardImage from "@site/src/components/Card/CardImage";
 import Columns from "@site/src/components/Columns";
 import Column from "@site/src/components/Columns/Column";
 import Image from "@site/src/components/Image";
-import { Steps, Step } from "@site/src/components/Steps";
 import { IndexCard, ListIndexCard } from "@site/src/components/IndexCard";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import {
+  PlatformBadge,
+  PlanBadge,
+  ApiBadge,
+  BotAccessBadge,
+} from "@site/src/components/Badges";
+import { FeatureGrid, FeatureCard } from "@site/src/components/FeatureGrid";
+
 export default {
   ...MDXComponents,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardImage,
   Image,
+  ShotSteps,
+  Shot,
   Columns,
   Column,
-  Steps,
-  Step,
   IndexCard,
   ListIndexCard,
+  PlatformBadge,
+  PlanBadge,
+  ApiBadge,
+  BotAccessBadge,
+  FeatureGrid,
+  FeatureCard,
 };

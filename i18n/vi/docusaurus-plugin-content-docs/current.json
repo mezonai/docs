@@ -4,99 +4,126 @@
     "description": "The label for version current"
   },
   "sidebar.userDocsSidebar.category.Account and personalization": {
-    "message": "Tài khoản và cá nhân hóa",
-    "description": "The label for category Account and personalization in sidebar userDocsSidebar"
+    "message": "Tài khoản và cá nhân hóa"
   },
-  "sidebar.userDocsSidebar.category.Friends and Messaging": {
-    "message": "Bạn bè và Tin nhắn trực tiếp",
-    "description": "The label for category Friends and Messaging in sidebar userDocsSidebar"
+  "sidebar.userDocsSidebar.category.Friends and messaging": {
+    "message": "Bạn bè và nhắn tin"
   },
-  "sidebar.userDocsSidebar.category.Clan": {
-    "message": "Clan",
-    "description": "The label for category Clan in sidebar userDocsSidebar"
+  "sidebar.userDocsSidebar.category.Clans": {
+    "message": "Clan"
   },
-  "sidebar.userDocsSidebar.category.Create your own clan": {
-    "message": "Tạo clan của riêng bạn",
-    "description": "The label for category Create your own clan in sidebar userDocsSidebar"
-  },
-  "sidebar.userDocsSidebar.category.Manage a clan": {
-    "message": "Quản lý clan",
-    "description": "The label for category Manage a clan in sidebar userDocsSidebar"
-  },
-  "sidebar.userDocsSidebar.category.Clan settings": {
-    "message": "Cài đặt clan",
-    "description": "The label for category Clan settings in sidebar userDocsSidebar"
-  },
-  "sidebar.userDocsSidebar.category.Clan Structure": {
-    "message": "Cấu trúc Clan",
-    "description": "The label for category Clan Structure in sidebar userDocsSidebar"
+  "sidebar.userDocsSidebar.category.Clans.link.generated-index.description": {
+    "message": "Tham gia, tạo mới, tổ chức và quản trị clan trên Mezon."
   },
   "sidebar.userDocsSidebar.category.Channels": {
-    "message": "Kênh trong Clan",
-    "description": "The label for category Channels in sidebar userDocsSidebar"
+    "message": "Kênh trong clan"
   },
-  "sidebar.userDocsSidebar.category.Text Channel": {
-    "message": "Kênh văn bản",
-    "description": "The label for category Text Channel in sidebar userDocsSidebar"
+  "sidebar.userDocsSidebar.category.Manage a clan": {
+    "message": "Quản lý clan"
   },
-  "sidebar.userDocsSidebar.category.Sample clans": {
-    "message": "Clan mẫu",
-    "description": "The label for category Sample clans in sidebar userDocsSidebar"
-  },
-  "sidebar.userDocsSidebar.category.Bots & Apps": {
-    "message": "Bot và ứng dụng",
-    "description": "The label for category Bots & Apps in sidebar userDocsSidebar"
+  "sidebar.userDocsSidebar.category.Bots and apps": {
+    "message": "Bot và ứng dụng"
   },
   "sidebar.userDocsSidebar.category.Mezon Dong": {
-    "message": "Mezon Đồng",
-    "description": "The label for category Mezon Dong in sidebar userDocsSidebar"
+    "message": "Mezon Đồng"
   },
   "sidebar.userDocsSidebar.category.Resources": {
-    "message": "Tài nguyên",
-    "description": "The label for category Resources in sidebar userDocsSidebar"
+    "message": "Tài nguyên"
   },
-  "sidebar.developerDocsSidebar.category.Quick Start": {
-    "message": "Bắt đầu nhanh",
-    "description": "The label for category Quick Start in sidebar developerDocsSidebar"
+  "sidebar.developerDocsSidebar.category.Getting started": {
+    "message": "Bắt đầu"
   },
-  "sidebar.developerDocsSidebar.category.Mezon SDK": {
-    "message": "Mezon SDK",
-    "description": "The label for category Mezon SDK in sidebar developerDocsSidebar"
+  "sidebar.developerDocsSidebar.category.Getting started.link.generated-index.description": {
+    "message": "Thiết lập ứng dụng và bot trên Developer Portal và chọn đúng Mezon SDK."
   },
-  "sidebar.developerDocsSidebar.category.Mezon SDK.link.generated-index.description": {
-    "message": "SDK cho bot và ứng dụng kênh của Mezon, và những gì bot được phép làm.",
-    "description": "The generated-index page description for category Mezon SDK in sidebar developerDocsSidebar"
+  "sidebar.developerDocsSidebar.category.Core concepts": {
+    "message": "Khái niệm cốt lõi"
   },
-  "sidebar.developerDocsSidebar.category.Mezon Bot SDK": {
-    "message": "Mezon Bot SDK",
-    "description": "The label for category Mezon Bot SDK in sidebar developerDocsSidebar"
+  "sidebar.developerDocsSidebar.category.Core concepts.link.generated-index.description": {
+    "message": "Kiến trúc, vận chuyển, xác thực, giới hạn API và định dạng tin nhắn trên Mezon."
   },
-  "sidebar.developerDocsSidebar.category.Mezon Bot SDK.link.generated-index.description": {
-    "message": "Viết bot Mezon bằng JavaScript hoặc TypeScript với mezon-sdk.",
-    "description": "The generated-index page description for category Mezon Bot SDK in sidebar developerDocsSidebar"
+  "sidebar.developerDocsSidebar.category.Bot SDKs": {
+    "message": "Bot SDK"
   },
-  "sidebar.developerDocsSidebar.category.Channel App SDK": {
-    "message": "Channel App SDK",
-    "description": "The label for category Channel App SDK in sidebar developerDocsSidebar"
+  "sidebar.developerDocsSidebar.category.Bot SDKs.link.generated-index.description": {
+    "message": "Các SDK chính thức để xây dựng bot Mezon bằng JavaScript/TypeScript và .NET."
   },
-  "sidebar.developerDocsSidebar.category.Channel App SDK.link.generated-index.description": {
-    "message": "Xây dựng ứng dụng kênh: trang web mở từ một kênh Mezon và biết thành viên nào đang dùng.",
-    "description": "The generated-index page description for category Channel App SDK in sidebar developerDocsSidebar"
+  "sidebar.developerDocsSidebar.category.JavaScript & TypeScript": {
+    "message": "JavaScript & TypeScript (mezon-sdk)"
+  },
+  "sidebar.developerDocsSidebar.category.JavaScript & TypeScript.link.generated-index.description": {
+    "message": "Xây dựng bot Mezon trên Node.js bằng mezon-sdk 2.8.68."
+  },
+  "sidebar.developerDocsSidebar.category..NET (C#)": {
+    "message": ".NET (Mezon.Net)"
+  },
+  "sidebar.developerDocsSidebar.category..NET (C#).link.generated-index.description": {
+    "message": "Xây dựng bot và tích hợp bằng bộ gói NuGet Mezon.Net v1.11.0."
+  },
+  "sidebar.developerDocsSidebar.category.Interactive features": {
+    "message": "Tính năng tương tác"
+  },
+  "sidebar.developerDocsSidebar.category.Interactive features.link.generated-index.description": {
+    "message": "Tin nhắn tương tác (nút, biểu mẫu), bình chọn và menu nhanh cho bot."
+  },
+  "sidebar.developerDocsSidebar.category.Channel apps & widgets": {
+    "message": "Ứng dụng kênh & widget"
+  },
+  "sidebar.developerDocsSidebar.category.Channel apps & widgets.link.generated-index.description": {
+    "message": "Xây dựng ứng dụng trong kênh, tích hợp Light SDK và nhúng widget chat Mezon."
+  },
+  "sidebar.developerDocsSidebar.category.Channel apps": {
+    "message": "Ứng dụng trong kênh"
+  },
+  "sidebar.developerDocsSidebar.category.Channel apps.link.generated-index.description": {
+    "message": "Mở ứng dụng web từ kênh Mezon và xác thực dữ liệu khởi chạy WebAppData."
   },
   "sidebar.developerDocsSidebar.category.Webhooks": {
-    "message": "Webhooks",
-    "description": "The label for category Webhooks in sidebar developerDocsSidebar"
+    "message": "Webhooks"
   },
   "sidebar.developerDocsSidebar.category.Webhooks.link.generated-index.description": {
-    "message": "Đăng tin nhắn vào kênh và gửi cho thành viên Mezon bằng webhook.",
-    "description": "The generated-index page description for category Webhooks in sidebar developerDocsSidebar"
+    "message": "Đăng tin nhắn vào kênh (Mezon, GitHub, Discord-compatible) và gửi thông báo tới thành viên clan."
   },
-  "sidebar.developerDocsSidebar.category.Topics": {
-    "message": "Chủ đề",
-    "description": "The label for category Topics in sidebar developerDocsSidebar"
+  "sidebar.developerDocsSidebar.category.OAuth2 & OIDC": {
+    "message": "OAuth2 & OIDC"
   },
-  "sidebar.developerDocsSidebar.category.Topics.link.generated-index.description": {
-    "message": "Tin nhắn tương tác, đăng nhập OAuth2 và kênh phát trực tiếp.",
-    "description": "The generated-index page description for category Topics in sidebar developerDocsSidebar"
+  "sidebar.developerDocsSidebar.category.OAuth2 & OIDC.link.generated-index.description": {
+    "message": "Tích hợp Đăng nhập bằng Mezon (OAuth2 / OIDC) với PKCE và kiểm chứng ID token."
+  },
+  "sidebar.developerDocsSidebar.category.Media, voice & streaming": {
+    "message": "Thoại SFU & phát trực tiếp"
+  },
+  "sidebar.developerDocsSidebar.category.Media, voice & streaming.link.generated-index.description": {
+    "message": "Kết nối phòng thoại qua 6 bộ SFU SDK và phát trực tiếp qua WHIP / LL-HLS."
+  },
+  "sidebar.developerDocsSidebar.category.Voice SFU": {
+    "message": "Thoại SFU (6 ngôn ngữ)"
+  },
+  "sidebar.developerDocsSidebar.category.Voice SFU.link.generated-index.description": {
+    "message": "Lấy Meet Token và kết nối phòng thoại mezon-sfu bằng TS, Go, Rust, Kotlin, .NET hoặc Python."
+  },
+  "sidebar.developerDocsSidebar.category.Stream channels": {
+    "message": "Kênh phát trực tiếp (WHIP / HLS)"
+  },
+  "sidebar.developerDocsSidebar.category.Stream channels.link.generated-index.description": {
+    "message": "Phát sóng vào kênh trực tiếp bằng WHIP và nhận sự kiện, luồng phát LL-HLS."
+  },
+  "sidebar.developerDocsSidebar.category.Payments & MMN": {
+    "message": "Thanh toán & MMN"
+  },
+  "sidebar.developerDocsSidebar.category.Payments & MMN.link.generated-index.description": {
+    "message": "Chuyển Mezon Đồng từ bot và làm việc trực tiếp với bộ MMN SDK."
+  },
+  "sidebar.developerDocsSidebar.category.AI & MCP": {
+    "message": "AI Agent & MCP"
+  },
+  "sidebar.developerDocsSidebar.category.AI & MCP.link.generated-index.description": {
+    "message": "Nhận sự kiện AI Agent SSE và tích hợp Mezon với Model Context Protocol (MCP)."
+  },
+  "sidebar.developerDocsSidebar.category.Reference": {
+    "message": "Tài liệu tham khảo"
+  },
+  "sidebar.developerDocsSidebar.category.Reference.link.generated-index.description": {
+    "message": "Danh mục sự kiện realtime, mã lỗi, xử lý sự cố và nhật ký thay đổi."
   }
 }

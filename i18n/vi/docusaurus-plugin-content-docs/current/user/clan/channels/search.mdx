@@ -1,0 +1,59 @@
+---
+sidebar_position: 9
+sidebar_label: Tìm kiếm
+description: Tìm tin nhắn trong kênh theo từ khóa, theo người gửi, theo người được nhắc đến hoặc theo loại tệp đính kèm.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import searchComputer01 from "./images/search-computer-01.png";
+
+# Tìm kiếm
+
+Tìm kiếm giúp bạn tìm tin nhắn trong kênh đang mở, kể cả các chủ đề của kênh mà bạn đã tham gia. Trong tin nhắn trực tiếp, bạn tìm trong cuộc trò chuyện đó.
+
+## Tìm tin nhắn
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Mở kênh và nhấn vào tên kênh ở phía trên.
+2. Nhấn **Tìm kiếm** (Android: **Search**).
+3. Gõ từ bạn muốn tìm.
+4. Nhấn vào một kết quả để đi tới tin nhắn đó.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Nhấn vào ô **Tìm kiếm** ở góc trên bên phải của kênh. Trên ứng dụng máy tính, bạn cũng có thể nhấn **Ctrl+F** (**Cmd+F** trên máy Mac).
+
+<Image src={searchComputer01} alt="Ô tìm kiếm với các tùy chọn: người gửi, người được nhắc đến và tệp đính kèm" />
+
+2. Gõ từ bạn muốn tìm và nhấn **Enter**.
+3. Nhấn **Nhảy tới** trên một kết quả để đi tới tin nhắn đó.
+
+</TabItem>
+</Tabs>
+
+## Dùng bộ lọc
+
+Trên máy tính, gõ một trong các dấu sau vào ô tìm kiếm. Một danh sách hiện ra để bạn chọn người hoặc loại nội dung.
+
+| Gõ | Bộ lọc | Tìm |
+|---|---|---|
+| `>` | `từ:` | Tin nhắn do một người gửi. Ví dụ: `>Nam`. |
+| `~` | `nhắc đến:` | Tin nhắn nhắc đến một người. Ví dụ: `~Mai`. |
+| `&` | `có:` | Tin nhắn có **hình ảnh**, **video** hoặc **liên kết**. |
+
+Bạn có thể dùng nhiều bộ lọc và từ khóa cùng lúc. Ví dụ: gõ `>` và chọn Nam, rồi gõ `&` và chọn **hình ảnh**. Ô tìm kiếm hiện `từ:Nam có:image` và tìm các ảnh Nam đã gửi.
+
+Trên điện thoại, nút lọc có hai bộ lọc là người gửi và người được nhắc đến.
+
+## Tìm đúng một cụm từ
+
+Đặt các từ trong dấu ngoặc kép, ví dụ `"họp thứ Sáu"` hoặc `'họp thứ Sáu'`. Khi đó Mezon chỉ tìm tin nhắn có các từ này đứng liền nhau, đúng thứ tự. Dấu ngoặc đơn và dấu ngoặc kép cho kết quả như nhau.
+
+## Liên quan
+
+- [Kênh văn bản](./text-channel.mdx)
+- [Tệp và thư viện](./files-and-gallery.mdx)

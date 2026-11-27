@@ -1,0 +1,8 @@
+{
+  "label": "Core concepts",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Platform architecture, TLS abridged TCP transport, session lifecycle, bot API allowlists, and message payloads."
+  }
+}

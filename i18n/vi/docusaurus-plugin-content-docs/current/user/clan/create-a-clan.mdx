@@ -1,0 +1,77 @@
+---
+sidebar_position: 3
+sidebar_label: Tạo clan
+description: Tạo clan từ đầu hoặc từ một mẫu, rồi đặt tên và ảnh cho clan.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import { ShotSteps, Shot } from "@site/src/components/ShotSteps";
+import phonePlus from "./images/create-a-clan-phone-01.png";
+import phoneChoose from "./images/create-a-clan-phone-02.png";
+import phoneForm from "./images/create-a-clan-phone-03.png";
+import computerChoose from "./images/create-a-clan-computer-01.png";
+import computerName from "./images/create-a-clan-computer-02.png";
+
+# Tạo clan
+
+Ai có tài khoản Mezon cũng tạo được clan. Bạn sẽ là chủ sở hữu clan.
+
+## Tạo clan
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+<ShotSteps>
+<Shot src={phonePlus} alt="Danh sách clan, nút + được đánh dấu">Trong danh sách clan bên trái, nhấn **+**.</Shot>
+<Shot src={phoneChoose} alt="Màn hình Tạo clan của bạn, mục Tự tạo clan được đánh dấu">Nhấn **Tự tạo clan** (iPhone: **Tự tạo**). Hoặc nhấn một mẫu trong phần **BẮT ĐẦU TỪ MẪU**.</Shot>
+<Shot src={phoneForm} alt="Biểu mẫu Tùy chỉnh Clan của bạn đã nhập tên, nút Tạo clan được đánh dấu">Nhập tên clan. Muốn thêm ảnh, nhấn **Tải lên**. Nhấn **Tạo clan**.</Shot>
+</ShotSteps>
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Ở thanh clan ngoài cùng bên trái, nhấn **+** (**Tạo Clan**).
+2. Nhấn **Tạo mẫu riêng** (nghĩa là tự tạo clan của bạn). Hoặc nhấn một mẫu trong phần **BẮT ĐẦU TỪ MỘT MẪU**.
+
+<Image src={computerChoose} alt="Hộp thoại Tạo Clan của bạn với Tạo mẫu riêng và danh sách mẫu" />
+
+3. Nhập tên ở ô **TÊN CLAN**.
+4. Muốn thêm ảnh, nhấn **Tải lên** rồi chọn ảnh.
+5. Nhấn **Tạo**.
+
+<Image src={computerName} alt="Hộp thoại Tùy chỉnh Clan của bạn với tên clan đã nhập và nút Tạo" />
+
+</TabItem>
+</Tabs>
+
+Clan mới mở ra. Clan có một danh mục **KÊNH CÔNG KHAI** với kênh văn bản **general**. Nếu chọn mẫu, clan có thêm các danh mục và kênh của mẫu đó.
+
+Trên trình duyệt web, kênh **general** hiện một danh sách việc nên làm: **Mời bạn bè của bạn**, **Gửi tin nhắn đầu tiên của bạn**, **Tải xuống ứng dụng Mezon** và **Tạo kênh của bạn**.
+
+## Mẫu clan
+
+Mẫu tạo sẵn các kênh cho một mục đích, để bạn không bắt đầu với clan trống. Các mẫu gồm **Trò chơi**, **Bạn bè**, **Nhóm học tập**, **Câu lạc bộ trường học**, **Cộng đồng địa phương** và **Nghệ sĩ & Nhà sáng tạo**. Tên mẫu trên điện thoại có thể hơi khác, ví dụ **Gaming**. Tự tạo clan thì clan chỉ có kênh **general**.
+
+Sau này bạn có thể đổi tên, thêm hoặc xóa kênh.
+
+## Quy tắc về tên và ảnh
+
+- Tên dài tối đa 64 ký tự.
+- Dùng chữ cái (kể cả chữ tiếng Việt), chữ số, dấu cách, `_` và `-`. Tên không được bắt đầu bằng dấu cách, `_` hoặc `-`.
+- Trên trình duyệt web, tên còn có thể chứa biểu tượng cảm xúc (emoji). Ứng dụng điện thoại và ứng dụng máy tính không nhận emoji.
+- Không clan nào khác trong Mezon được trùng tên.
+- Ảnh không bắt buộc. Dùng ảnh từ 1 MB trở xuống.
+- Nếu bạn không chọn ảnh, Mezon tự tạo ảnh cho clan.
+
+Bạn có thể đổi tên và ảnh sau trong [Cài đặt Clan → Tổng quan](./manage/settings.mdx#overview).
+
+:::note
+Bạn có thể ở trong tối đa 50 clan, tính cả các clan bạn tạo. Khi đã đủ 50, hãy rời một clan trước khi tạo clan mới.
+:::
+
+## Bước tiếp theo
+
+- [Mời người khác vào clan](./invite-people.mdx)
+- [Thêm kênh và danh mục](./channels/index.mdx)
+- [Vai trò và quyền](./manage/roles-and-permissions.mdx)

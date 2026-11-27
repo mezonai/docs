@@ -1,0 +1,9 @@
+{
+  "label": "OAuth2 & OIDC",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "slug": "developer/oauth2",
+    "description": "Authenticate users with Mezon accounts using OAuth 2.0 and OpenID Connect."
+  }
+}

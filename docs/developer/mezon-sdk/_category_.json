@@ -1,9 +1,0 @@
-{
-  "label": "Mezon SDK",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "slug": "developer/mezon-sdk",
-    "description": "SDKs for Mezon bots, channel apps, and what bots are allowed to do."
-  }
-}

@@ -1,0 +1,103 @@
+---
+sidebar_position: 3
+sidebar_label: Quick menu
+description: Register quick menu commands for Mezon bots and react when members trigger them.
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Quick menu
+
+Quick menu lets a bot register shortcut commands directly in Mezon's channel composer menu. Members pick a command from the menu without memorizing syntax, and Mezon delivers a `QuickMenuDataEvent` to your bot.
+
+## API permissions and server rules
+
+| Operation | Access for bots | Server constraints (`api_quick_menu.go`) |
+|---|---|---|
+| `AddQuickMenuAccess` | <BotAccessBadge allowed={true} /> | `bot_id` must match the authenticated bot ID; `menu_name` must pass `IsValidName`; `action_msg` must be **1–512 bytes**; optional `background` must be a valid image URL. |
+| `DeleteQuickMenuAccess` | <BotAccessBadge allowed={true} /> | `bot_id` must match the authenticated bot ID and the bot must be the entry's creator. |
+| `UpdateQuickMenuAccess` | <BotAccessBadge allowed={false} note="Returns PermissionDenied" /> | **Verified gotcha:** Even though `UpdateQuickMenuAccess` passes the transport allowlist, the `mezon-api` handler explicitly rejects bot sessions (`appname && shadow`) with `codes.PermissionDenied`. To change a bot's quick menu entry, **delete and re-add it**. |
+| `ListQuickMenuAccess` | <BotAccessBadge allowed={false} /> | Blocked by the bot API allowlist (`403 Permission denied`). Persist menu IDs on your bot's side if you need to manage them later. |
+
+:::warning Updating quick menu entries from a bot
+Do not call `UpdateQuickMenuAccess` from a bot—`mezon-api` hard-codes an early `PermissionDenied` return for bot tokens. Delete the old entry with `deleteQuickMenuAccess` / `DeleteQuickMenuAccessAsync` and recreate it with `addQuickMenuAccess` / `AddQuickMenuAccessAsync`.
+:::
+
+## Register, listen, and remove quick menu entries
+
+<Tabs groupId="sdk-lang">
+<TabItem value="ts" label="TypeScript (mezon-sdk)" default>
+
+```ts
+// 1. Register a quick menu command
+await client.addQuickMenuAccess({
+  menu_name: "standup",
+  action_msg: "Start the daily standup check-in",
+  clan_id: "0", // "0" registers globally for the bot; or pass a specific clan ID
+  menu_type: 1,
+});
+
+// 2. Listen when a member invokes a quick menu item
+client.onQuickMenuEvent(async (event) => {
+  console.log("Quick menu triggered:", event);
+  if (!event.channel_id) return;
+  const channel = await client.channels.fetch(event.channel_id);
+  await channel.send({ t: `Running quick menu command: ${event.menu_name}` });
+});
+
+// 3. Remove the bot's quick menu entries
+await client.deleteQuickMenuAccess(); // defaults to this bot's clientId
+```
+
+</TabItem>
+<TabItem value="csharp" label="C# (Mezon.Net.Sdk)">
+
+```csharp
+using Mezon.Net.Models;
+
+// 1. Register a quick menu command
+await client.AddQuickMenuAccessAsync(new QuickMenuAccessParams(
+    id: menuId,
+    botId: client.BotId,
+    clanId: 0,
+    channelId: 0,
+    menuName: "standup",
+    actionMsg: "Start the daily standup check-in",
+    menuType: 1
+));
+
+// 2. Listen with structured metadata (preferred over parameterless QuickMenuReceived)
+client.QuickMenuReceivedData += async evt =>
+{
+    var channel = await client.GetChannelAsync(evt.ChannelId);
+    await channel.SendTextAsync($"Running quick menu command: {evt.MenuName}");
+};
+
+// 3. Delete when replacing or removing an entry
+await client.DeleteQuickMenuAccessAsync(new QuickMenuAccessParams(
+    id: menuId,
+    botId: client.BotId,
+    clanId: 0
+));
+```
+
+</TabItem>
+</Tabs>
+
+## Payload fields (`AddQuickMenuAccess`)
+
+| Field | Required | Rules |
+|---|---|---|
+| `menu_name` | Yes | Command label shown in the quick menu (`IsValidName` validated by server). |
+| `action_msg` | Yes | Description / action string, **1 to 512 bytes**. Empty or `> 512` bytes returns `InvalidArgument`. |
+| `clan_id` | Conditional | Required if `channel_id` is non-zero (`channel_id != 0 && clan_id == 0` returns `InvalidArgument`). Use `"0"` for bot-wide entries. |
+| `channel_id` | No | Optional channel scope (`"0"` in `mezon-sdk`). |
+| `menu_type` | No | Menu category integer (`0`–`2`; `mezon-sdk` defaults to `1`). |
+| `background` | No | Optional public HTTPS image URL validated by `ValidateImageURLSecure`. |
+
+## Related
+
+- [Interactive messages](./interactive-messages.mdx)
+- [Permissions and API access](../core-concepts/permissions-and-api-access.md)
+- [Events reference](../reference/events-reference.md)

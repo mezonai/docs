@@ -1,41 +1,29 @@
-# Website
+# Mezon Documentation
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Official Docusaurus 3.9 documentation site for Mezon (English default at `/docs/`, Vietnamese mirror at `/docs/vi/`).
 
-## Installation
+## Requirements
 
-```bash
-yarn
-```
+- Node.js >= 20
+- npm (`package-lock.json` is the lockfile — do not use `yarn`)
 
-## Local Development
-
-```bash
-yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-## Build
+## Commands
 
 ```bash
-yarn build
+npm ci                 # Install dependencies
+npm start              # Local dev server (English)
+npm start -- --locale vi  # Local dev server (Vietnamese)
+npm run typecheck      # TypeScript check
+npm run build          # Production build for both en and vi
+npm run serve          # Preview production build (including local search)
+npm run verify         # Full check: typecheck + health check + build + link check
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+## Structure
 
-## Deployment
-
-Using SSH:
-
-```bash
-USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+- `docs/user/` — English User Guide
+- `docs/developer/` — English Developer Documentation
+- `i18n/vi/docusaurus-plugin-content-docs/current/` — Vietnamese mirror (keep in sync with `docs/`)
+- `redirects.ts` — Locale-agnostic URL redirects (`@docusaurus/plugin-client-redirects`)
+- `plugins/` — Locale persistence (`localeStorage.ts`) and Vietnamese search normalization (`vietnameseSearch.ts`)
+- `scripts/` — Build link verification (`check-build-links.mjs`) and EN/VI health checks (`check-docs-health.mjs`)

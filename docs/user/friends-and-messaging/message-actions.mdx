@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
 sidebar_label: Message actions
-description: Reply, react, edit, delete, forward, pin and report messages, send voice messages and files, and format text.
+description: Reply, quick-react, create polls, scan QR codes on images, edit, forward, pin and report messages, send voice messages and files, and format text.
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -10,6 +10,7 @@ import messageActionsComputer01 from "./images/message-actions-computer-01.png";
 import messageActionsPhone01 from "./images/message-actions-phone-01.png";
 import messageActionsPhone02 from "./images/message-actions-phone-02.png";
 import messageActionsPhone03 from "./images/message-actions-phone-03.png";
+import messageActionsPoll01 from "./images/message-actions-poll-01.png";
 
 # Message actions
 
@@ -36,13 +37,20 @@ Right-click a message. A menu opens with the actions.
 
 The menu shows only the actions you can use. For example, **Edit Message** appears only on your own messages.
 
+## Quick reactions
+
+On the web app, desktop app and iPhone, you can react directly on a message without opening the full emoji picker:
+
+- **Computer:** hover over a message and click a quick reaction emoji on the floating toolbar. On the web app, you can customize your quick reaction with **Set Quick Reaction** (or clear it with **Remove Quick Reaction**).
+- **Phone:** press and hold a message and tap an emoji in the top row. On iPhone, fast quick-reaction controls also appear directly on messages.
+
 ## What each action does
 
 The table uses the labels of the computer apps. Where a phone app uses a different label, the table says so.
 
 | Action | What it does | Where |
 |---|---|---|
-| Reaction | Adds an emoji under the message. On a phone, tap an emoji in the top row. On a computer, click **Add Reaction**. | Phone, computer |
+| Reaction | Adds an emoji under the message. Hover for quick reactions, tap an emoji in the top row on a phone, or click **Add Reaction** on a computer. | Phone, computer |
 | **Reply** | Writes an answer linked to the message. | Phone, computer |
 | **Edit Message** | Changes the text of your own message. | Phone, computer |
 | **Delete Message** | Deletes the message after you confirm. | Phone, computer |
@@ -50,9 +58,9 @@ The table uses the labels of the computer apps. Where a phone app uses a differe
 | **Forward All Messages** | Forwards this message and the messages right after it from the same person. On phones the label is **Forward All Nearby**. | Phone, computer |
 | **Copy Text** | Copies the text. On a computer, select part of the text first to see **Copy Selected Text**. | Phone, computer |
 | **Share Text** | Opens your phone's share menu, so you can send the text to another app. | Phone |
-| **Pin Message** | Pins the message so everyone finds it later. See [Pinned messages](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/pinned-messages.mdx). | Phone, computer |
+| **Pin Message** | Pins the message so everyone finds it later. See [Pinned messages](../clan/channels/pinned-messages.mdx). | Phone, computer |
 | **Mark Unread** | Marks the message as unread, so you can come back to it. | Computer |
-| **Add To Inbox** | Saves the message in your Inbox. See [Inbox](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/inbox.mdx). | Phone, computer |
+| **Add To Inbox** | Saves the message in your Inbox. See [Inbox](../clan/channels/inbox.mdx). | Phone, computer |
 | **Report Message** | Reports the message to Mezon. Pick the problem, then click **Submit Report**. On phones the label is **Report**. | Phone, computer |
 | **Give A Coffee** | Gives the author a coffee paid with Mezon Dong. On Android the label is **Give Coffee**. See [Give a coffee](../mezon-dong/send-and-transfer-mezon-dong.mdx). | Phone, computer |
 
@@ -115,9 +123,32 @@ You can also drag files into the conversation or paste them.
 In the web app, the desktop app and the Android app, each image can be up to 50 MB and each other file up to 1 GB. On a computer you can send up to 50 files in one message. On a phone you can pick up to 20 at a time.
 :::
 
-## Format your text
+## Scan a QR code on an image
 
-Type these marks around your text. Mezon shows the result when you send the message.
+When someone sends a picture that contains a QR code in chat, you do not need to save it or use another camera:
+
+1. Tap or click the image to view it full screen.
+2. Tap or click the **QR scan** button on the image viewer.
+
+Mezon reads the QR code directly from the image. This works on Android, iPhone and the web app.
+
+## Create and vote in a poll
+
+In a clan channel, you can create single-choice or multiple-choice polls to collect votes from members:
+
+1. Select **+** at the left of the message box and choose **Create Poll**.
+2. Type your **Question** and at least two **Answers**. Select **Add another answer** to add more choices.
+3. Pick a **Duration** (from 1 hour up to 1 week).
+4. To let people pick more than one option, turn on **Allow Multiple Answers**.
+5. Select **Post**.
+
+To vote, select your choice(s) on the poll card and select **Vote**. Select **Show results** to check the tally, or **Remove Vote** to change your vote while the poll is open. The creator can close a poll early from the message menu with **End Poll Now**.
+
+<Image src={messageActionsPoll01} alt="A poll card inside a channel showing the question, radio options, Show results and Vote buttons" width={480} />
+
+## Format your text and send long messages
+
+Type these Markdown marks around your text. Mezon shows the result when you send the message.
 
 | You type | You get |
 |---|---|
@@ -125,14 +156,16 @@ Type these marks around your text. Mezon shows the result when you send the mess
 | `*italic*` or `_italic_` | *italic* |
 | `~~strikethrough~~` | ~~strikethrough~~ |
 | `` `code` `` | `code` |
-| ` ``` ` on the lines before and after | a code block |
+| ```` ``` ```` on the lines before and after | a code block |
 | `# Heading` at the start of a line | a heading. Use `#` to `######` for six sizes. |
 | `- item` or `* item` at the start of a line | a bulleted list |
 | `1. item` at the start of a line | a numbered list |
 | `> text` at the start of a line | a quote |
 | `[link text](https://example.com)` | a link with your own text |
 
-The desktop app does not show lists, quotes or links with your own text; it shows them as you typed them. The web app and the phone apps show everything in the table.
+- **Rich text copy and paste (web and desktop):** when you copy formatted text (headings, bold, italic, strikethrough and code) and paste it into the message box, Mezon preserves the formatting as Markdown. Press **Ctrl+Shift+V** (**⌘+Shift+V** on a Mac) to paste as plain text.
+- **Long messages (web and desktop):** if a message is longer than the single-message character limit, Mezon can automatically split it into multiple messages or ask you to confirm before sending it as a text file attachment.
+- **Platform notes:** the web app and phone apps show every format in the table. The desktop app formats headings, bold, italic, strikethrough and code; lists, quotes and custom link text show as typed.
 
 ## Get someone's attention with Buzz
 
@@ -145,4 +178,5 @@ Buzz sends a short message that rings for the people in the conversation or chan
 
 - [Direct messages](./direct-messages.mdx)
 - [Threads and topics](./threads-and-topics.mdx)
-- [Search messages](../clan/create-your-own-clan/manage-clan/clan-structure/channels/text-channel/search.mdx)
+- [Keyboard shortcuts and text formatting](../account-and-personalization/shortcuts.mdx)
+- [Search messages](../clan/channels/search.mdx)

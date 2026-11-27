@@ -1,0 +1,121 @@
+---
+sidebar_position: 1
+sidebar_label: Danh mục
+description: Gom các kênh vào danh mục; đánh dấu đã đọc, tắt thông báo, đổi tên, xóa danh mục và sắp xếp thứ tự danh mục của riêng bạn.
+---
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/components/Image";
+import clanCategoryPhone01 from "./images/clan-category-phone-01.png";
+import clanCategoryComputer01 from "./images/clan-category-computer-01.png";
+import clanCategoryComputer02 from "./images/clan-category-computer-02.png";
+import computerCategoryOrder from "../manage/images/category-order-computer-01.png";
+
+# Danh mục
+
+Danh mục gom các kênh liên quan lại với nhau trong danh sách kênh. Chủ sở hữu clan và các vai trò có quyền **Quản trị viên** hoặc **Quản lý Clan** được tạo, đổi tên và xóa danh mục.
+
+## Tạo danh mục
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Mở clan của bạn.
+2. Nhấn vào tên clan ở đầu danh sách kênh.
+3. Nhấn **Tạo danh mục**.
+
+<Image src={clanCategoryPhone01} alt="Menu của clan, mục Tạo danh mục được đánh dấu" width={270} />
+
+4. Nhập tên danh mục.
+5. Nhấn **Tạo**.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Mở clan của bạn.
+2. Nhấn vào tên clan ở đầu danh sách kênh.
+3. Nhấn **Tạo danh mục**.
+
+<Image src={clanCategoryComputer01} alt="Menu của clan, mục Tạo danh mục ở trên cùng" />
+
+4. Nhập tên danh mục.
+5. Nhấn **Tạo danh mục**.
+
+<Image src={clanCategoryComputer02} alt="Hộp thoại Tạo danh mục đã nhập tên" />
+
+</TabItem>
+</Tabs>
+
+Danh mục mới hiện trong danh sách kênh. Tên danh mục dài tối đa 64 ký tự, gồm chữ, số, dấu cách, `_` hoặc `-`. Tên không được bắt đầu bằng dấu cách, `_` hoặc `-`. Hai danh mục trong cùng một clan không được trùng tên.
+
+:::note
+Danh mục chưa có kênh nào sẽ bị ẩn, trừ khi bạn bật **Hiển Thị Danh Mục Trống** trong menu của clan.
+:::
+
+## Quản lý danh mục
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+Nhấn giữ tên danh mục. Bạn có thể:
+
+- **Đánh dấu là đã đọc**: xóa dấu chưa đọc của mọi kênh trong danh mục.
+- **Tạo kênh**: thêm kênh vào danh mục (chỉ khi bạn có quyền quản lý kênh).
+
+**iPhone:** chỉ có **Tạo kênh**.
+
+Muốn đổi tên hoặc xóa danh mục, hãy dùng máy tính.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+Nhấn chuột phải vào tên danh mục. Bạn có thể:
+
+- **Đánh dấu đã đọc**: xóa dấu chưa đọc của mọi kênh trong danh mục.
+- **Thu gọn danh mục** hoặc **Thu gọn tất cả danh mục**: ẩn tên các kênh cho gọn.
+- **Tắt thông báo danh mục** và **Cài đặt thông báo**: chọn tin nhắn nào trong danh mục sẽ báo cho bạn.
+- **Chỉnh sửa danh mục**: đổi tên danh mục.
+- **Xóa danh mục**: chỉ hiện khi danh mục không còn kênh nào. Hãy chuyển hoặc xóa các kênh trước.
+
+</TabItem>
+</Tabs>
+
+## Chuyển kênh sang danh mục khác
+
+<Tabs groupId="platform" queryString>
+<TabItem value="phone" label="Điện thoại">
+
+1. Nhấn giữ tên kênh.
+2. Nhấn **Chỉnh sửa kênh**.
+3. Nhấn **Đổi danh mục** (iPhone: **Thay đổi danh mục**) rồi chọn danh mục mới.
+
+</TabItem>
+<TabItem value="computer" label="Máy tính">
+
+1. Nhấn chuột phải vào tên kênh.
+2. Nhấn **Chỉnh sửa kênh**.
+3. Mở thẻ **Danh mục** và chọn danh mục mới.
+
+</TabItem>
+</Tabs>
+
+## Thứ tự danh mục {#category-order}
+
+**Thứ tự danh mục** đổi thứ tự các danh mục trong danh sách kênh của bạn, ví dụ để đưa danh mục bạn dùng nhiều nhất lên đầu.
+
+Thứ tự này là của riêng bạn. Thứ tự này chỉ thay đổi danh sách kênh của bạn, kể cả khi bạn là chủ sở hữu clan. Mọi thành viên đều tự đặt được thứ tự của mình.
+
+### Đổi thứ tự trên máy tính
+
+1. Mở **Cài Đặt Clan** và nhấn **Thứ tự danh mục**.
+2. Kéo một danh mục lên hoặc xuống.
+3. Nhấn **Lưu thay đổi**. Muốn quay lại mà không lưu, nhấn **Đặt lại**.
+
+<Image src={computerCategoryOrder} alt="Trang Thứ tự danh mục với các danh mục PROJECTS và PUBLIC CHANNELS" />
+
+Ứng dụng điện thoại không có **Thứ tự danh mục**.
+
+## Liên quan
+
+- [Kênh](./index.mdx)
+- [Cài đặt clan](../manage/settings.mdx)

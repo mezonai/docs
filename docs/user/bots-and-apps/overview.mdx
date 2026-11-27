@@ -1,0 +1,81 @@
+---
+sidebar_position: 1
+sidebar_label: Overview
+description: What bots, channel apps and the voice AI agent do in a clan, and where developers start building for Mezon.
+---
+import Image from "@site/src/components/Image";
+import phoneAgentButton from "./images/what-is-a-bot-phone-01.png";
+
+# Bots and channel apps
+
+Bots and channel apps bring extra tools into your clan. A bot joins your clan as a member, while a channel app runs as a web app inside its own channel.
+
+## Bots {#bots}
+
+A bot is a program that joins your clan as a member. It can answer messages, post updates or run games, depending on what its developer built.
+
+### What bots are used for
+
+Each bot does what its developer made it do. Some examples:
+
+- Post a reminder in a channel every morning.
+- Answer common questions from new members.
+- Run a quiz or a game in a channel.
+- Post updates from another tool your team uses.
+
+Read a bot's description in the [Bots/Apps directory](https://top.mezon.ai) to learn how to use it.
+
+### How a bot works in your clan
+
+- Only the clan owner or a member with the **Manage Clan** or **Administrator** permission can add a bot. See [Find and add bots and apps](./find-and-add.mdx).
+- After it joins, the bot is in the clan's member list. Mezon posts a welcome message for it in the clan.
+- Like any member, a bot can do only what its roles allow. You choose its roles. See [Manage bots and apps](./manage.mdx).
+- A bot answers only while its developer's program is running. When it is not running, the bot shows as offline in the member list.
+
+### AI agent in voice calls
+
+Mezon has an AI agent, the KOMU Agent, that you can add to a call in a voice channel. Only people who can manage the channel see the button for it.
+
+- **Computer:** the robot button is in the call controls at the bottom of the call. Point at it to see **Add AI agent**. Click it to add the agent. Click it again (**Remove AI agent**) to remove it. Until you close it, a tip called **Turn on KOMU Agent** points at the button.
+- **Phone:** the robot button is at the top of the call screen. It has no text. Tap it to add the agent, and tap it again to remove it.
+
+<Image src={phoneAgentButton} alt="A voice call on a phone with the robot button at the top marked" width={270} />
+
+## Channel apps {#apps}
+
+A channel app is a web app that a clan adds as its own channel. When you open it, the app can sign you in with your Mezon account, so you do not need a new account.
+
+### What channel apps are used for
+
+Each app does what its developer made it do. Some examples:
+
+- A shared task board for your team.
+- A quiz or a game for clan members.
+- A form to collect answers from members.
+
+### How a channel app works in your clan
+
+- Only the clan owner or a member with the **Manage Channels** permission (or **Manage Clan** or **Administrator**) can add an app. See [Find and add bots and apps](./find-and-add.mdx).
+- When you add an app, Mezon creates a channel for it in the category you choose.
+- On a computer, the clan's apps show as a row of icons in the channel list. Click an icon to open that app in a new browser window.
+- When you open an app, Mezon tells the app who you are. This is how the app can sign you in with your Mezon account.
+
+Channel apps are listed alongside bots in the [Bots/Apps directory](https://top.mezon.ai).
+
+## For developers {#for-developers}
+
+Developers can build their own bots and channel apps for Mezon, and connect external services with webhooks:
+
+- **Developer portal:** create a bot or channel app at [mezon.ai/developers](https://mezon.ai/developers/). Click **New Application or Bot**.
+- **Developer docs:** start with the [Mezon developer documentation](../../developer/intro.mdx).
+- **Bots:** [Create a bot](../../developer/getting-started/create-a-bot.md), then read the [JavaScript/TypeScript bot SDK overview](../../developer/bot-sdks/javascript/overview.md).
+- **Channel apps:** [Create a channel app](../../developer/getting-started/create-a-channel-app.md), then read the [Channel Apps overview](../../developer/channel-apps-and-widgets/channel-apps/overview.md).
+- **Webhooks:** send messages into Mezon from other services. See the [webhooks overview](../../developer/webhooks/overview.mdx). Clan admins manage webhooks in **Clan Settings** → **Integrations** (see [Integrations](../clan/manage/settings.mdx#integrations)).
+
+## Related
+
+- [Find and add bots and apps](./find-and-add.mdx)
+- [Stay safe with bots and apps](./find-and-add.mdx#stay-safe)
+- [Manage bots and apps](./manage.mdx)
+- [Voice channels](../clan/channels/voice-channel.mdx)
+- [Integrations](../clan/manage/settings.mdx#integrations)

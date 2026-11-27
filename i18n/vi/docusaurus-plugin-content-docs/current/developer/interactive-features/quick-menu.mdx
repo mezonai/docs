@@ -1,0 +1,103 @@
+---
+sidebar_position: 3
+sidebar_label: Quick Menu
+description: Đăng ký lệnh tắt trên Quick Menu cho bot Mezon và lắng nghe sự kiện khi thành viên kích hoạt.
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Quick Menu
+
+Quick Menu cho phép bot đăng ký các lệnh tắt ngay trong menu soạn thảo của kênh Mezon. Thành viên chỉ cần chọn lệnh từ danh sách mà không cần nhớ cú pháp, và Mezon sẽ đẩy sự kiện `QuickMenuDataEvent` về bot của bạn.
+
+## Quyền API và quy tắc máy chủ
+
+| Thao tác | Quyền của bot | Ràng buộc phía máy chủ (`api_quick_menu.go`) |
+|---|---|---|
+| `AddQuickMenuAccess` | <BotAccessBadge allowed={true} /> | `bot_id` phải khớp ID bot đã xác thực; `menu_name` phải hợp lệ theo `IsValidName`; `action_msg` dài **1–512 byte**; `background` (nếu có) phải là URL ảnh hợp lệ. |
+| `DeleteQuickMenuAccess` | <BotAccessBadge allowed={true} /> | `bot_id` phải khớp ID bot đã xác thực và bot phải là người tạo mục menu đó. |
+| `UpdateQuickMenuAccess` | <BotAccessBadge allowed={false} note="Trả về PermissionDenied" /> | **Lưu ý đã kiểm chứng:** Dù `UpdateQuickMenuAccess` đi qua danh sách cho phép ở tầng transport, handler trong `mezon-api` từ chối tường minh phiên bot (`appname && shadow`) bằng `codes.PermissionDenied`. Để sửa mục menu của bot, hãy **xóa rồi thêm lại**. |
+| `ListQuickMenuAccess` | <BotAccessBadge allowed={false} /> | Bị chặn bởi allowlist API của bot (`403 Permission denied`). Hãy tự lưu ID các mục menu phía bot nếu cần quản lý về sau. |
+
+:::warning Cập nhật mục Quick Menu từ bot
+Không gọi `UpdateQuickMenuAccess` từ bot — `mezon-api` trả về `PermissionDenied` ngay đầu hàm với token bot. Hãy xóa mục cũ bằng `deleteQuickMenuAccess` / `DeleteQuickMenuAccessAsync` rồi tạo lại bằng `addQuickMenuAccess` / `AddQuickMenuAccessAsync`.
+:::
+
+## Đăng ký, lắng nghe và xóa mục Quick Menu
+
+<Tabs groupId="sdk-lang">
+<TabItem value="ts" label="TypeScript (mezon-sdk)" default>
+
+```ts
+// 1. Đăng ký một lệnh Quick Menu
+await client.addQuickMenuAccess({
+  menu_name: "standup",
+  action_msg: "Bắt đầu điểm danh standup hằng ngày",
+  clan_id: "0", // "0" đăng ký phạm vi bot; hoặc truyền ID clan cụ thể
+  menu_type: 1,
+});
+
+// 2. Lắng nghe khi thành viên chọn mục Quick Menu
+client.onQuickMenuEvent(async (event) => {
+  console.log("Quick menu được kích hoạt:", event);
+  if (!event.channel_id) return;
+  const channel = await client.channels.fetch(event.channel_id);
+  await channel.send({ t: `Đang chạy lệnh quick menu: ${event.menu_name}` });
+});
+
+// 3. Xóa các mục Quick Menu của bot
+await client.deleteQuickMenuAccess(); // mặc định dùng clientId của bot
+```
+
+</TabItem>
+<TabItem value="csharp" label="C# (Mezon.Net.Sdk)">
+
+```csharp
+using Mezon.Net.Models;
+
+// 1. Đăng ký một lệnh Quick Menu
+await client.AddQuickMenuAccessAsync(new QuickMenuAccessParams(
+    id: menuId,
+    botId: client.BotId,
+    clanId: 0,
+    channelId: 0,
+    menuName: "standup",
+    actionMsg: "Bắt đầu điểm danh standup hằng ngày",
+    menuType: 1
+));
+
+// 2. Lắng nghe kèm siêu dữ liệu có cấu trúc (ưu tiên hơn QuickMenuReceived không tham số)
+client.QuickMenuReceivedData += async evt =>
+{
+    var channel = await client.GetChannelAsync(evt.ChannelId);
+    await channel.SendTextAsync($"Đang chạy lệnh quick menu: {evt.MenuName}");
+};
+
+// 3. Xóa mục khi cần thay thế hoặc gỡ bỏ
+await client.DeleteQuickMenuAccessAsync(new QuickMenuAccessParams(
+    id: menuId,
+    botId: client.BotId,
+    clanId: 0
+));
+```
+
+</TabItem>
+</Tabs>
+
+## Các trường dữ liệu (`AddQuickMenuAccess`)
+
+| Trường | Bắt buộc | Quy tắc |
+|---|---|---|
+| `menu_name` | Có | Tên lệnh hiển thị trong Quick Menu (được máy chủ kiểm tra qua `IsValidName`). |
+| `action_msg` | Có | Mô tả / chuỗi hành động, dài **1 đến 512 byte**. Rỗng hoặc `> 512` byte sẽ trả về `InvalidArgument`. |
+| `clan_id` | Có điều kiện | Bắt buộc nếu `channel_id` khác 0 (`channel_id != 0 && clan_id == 0` trả về `InvalidArgument`). Dùng `"0"` cho phạm vi toàn bot. |
+| `channel_id` | Không | Phạm vi kênh tùy chọn (`mezon-sdk` mặc định gửi `"0"`). |
+| `menu_type` | Không | Mã nhóm menu (`0`–`2`; `mezon-sdk` mặc định `1`). |
+| `background` | Không | URL ảnh HTTPS công khai tùy chọn, được kiểm tra bởi `ValidateImageURLSecure`. |
+
+## Liên quan
+
+- [Tin nhắn tương tác](./interactive-messages.mdx)
+- [Quyền hạn và phạm vi truy cập API](../core-concepts/permissions-and-api-access.md)
+- [Tham chiếu sự kiện](../reference/events-reference.md)

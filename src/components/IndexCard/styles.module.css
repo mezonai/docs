@@ -1,22 +1,38 @@
 .card__container {
-    --ifm-link-color: var(--ifm-color-emphasis-800);
-    --ifm-link-hover-color: var(--ifm-color-emphasis-700);
-    --ifm-link-hover-decoration: none;
-    border: 1px solid var(--ifm-color-emphasis-200);
-    transition: all var(--ifm-transition-fast) ease;
-    transition-property: border, box-shadow;
-    box-shadow: 0 1.5px 3px #00000026;
-    height: 100%;
-    &:hover {
-      border: 1px solid var(--ifm-color-primary);
-      box-shadow: 0 1.5px 3px #00000026;
-    }
-  }
-  
-  .card__title {
-    font-size: 1.2rem;
-  }
-  
-  .card__description {
-    font-size: 0.8rem;
-  }
+  --ifm-link-color: var(--ifm-color-emphasis-800);
+  --ifm-link-hover-color: var(--ifm-color-emphasis-900);
+  --ifm-link-hover-decoration: none;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 10px;
+  transition: border-color var(--ifm-transition-fast) ease,
+    box-shadow var(--ifm-transition-fast) ease,
+    transform var(--ifm-transition-fast) ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.card__container:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 6px 18px rgba(88, 101, 242, 0.14);
+  transform: translateY(-1px);
+}
+
+.card__title {
+  font-size: 1.1rem;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.card__description {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

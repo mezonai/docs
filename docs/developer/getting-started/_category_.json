@@ -1,0 +1,8 @@
+{
+  "label": "Getting started",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Set up apps and bots in the Developer Portal and pick the right Mezon SDK."
+  }
+}

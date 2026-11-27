@@ -1,0 +1,123 @@
+---
+sidebar_position: 2
+sidebar_label: Chuyển token từ bot
+description: Gửi Mezon Dong (₫) và lắng nghe giao dịch token từ bot bằng mezon-sdk 2.8.68 và Mezon.Net.Sdk 1.11.0.
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Chuyển token từ bot
+
+Cả `mezon-sdk` (`2.8.68`) và `Mezon.Net.Sdk` (`1.11.0`) đều tự động khởi tạo ví MMN của bot trong lúc gọi `login()` / `LoginAsync()` khi phiên trả về `id_token` (chỉ áp dụng cho bot tiêu chuẩn — xem [Giới hạn với Shadow Bot](./overview.md#giới-hạn-với-shadow-bot)).
+
+## Gửi token và lắng nghe giao dịch
+
+<Tabs groupId="sdk-lang">
+<TabItem value="ts" label="TypeScript (mezon-sdk 2.8.68)" default>
+
+`mezon-sdk` mặc định cấu hình `mmnApiUrl` là `https://dong.mezon.ai/mmn-api/` và `zkApiUrl` là `https://dong.mezon.ai/zk-api/`.
+
+```ts
+import { MezonClient } from "mezon-sdk";
+
+const client = new MezonClient({
+  botId: process.env.MEZON_BOT_ID!,
+  token: process.env.MEZON_BOT_TOKEN!,
+});
+
+// Lắng nghe sự kiện chuyển token đến hoặc đi
+client.onTokenSend(async (event) => {
+  console.log(
+    `Giao dịch ${event.transaction_id}: ${event.sender_id} -> ${event.receiver_id} (${event.amount}₫) | ${event.note ?? ""}`,
+  );
+});
+
+await client.login();
+
+// Gửi 10.000 Mezon Dong (mezon-sdk tự nhân 10^6 bên trong)
+const tx = await client.sendToken({
+  receiver_id: "RECEIVER_USER_ID",
+  amount: 10000,
+  note: "Phần thưởng đố vui cuối tuần",
+  extra_attribute: JSON.stringify({ campaign: "trivia-42" }),
+});
+
+console.log("Đã gửi tx hash:", tx.tx_hash);
+```
+
+:::note Tự động gửi DM biên lai trong `mezon-sdk`
+Khi sự kiện `onTokenSend` phát ra với `event.sender_id === client.clientId`, listener nội bộ `_onTokenSendInternal` của `mezon-sdk` sẽ tự động mở kênh DM của người nhận và gửi một tin nhắn biên lai kiểu `TypeMessage.SendToken` (`11`).
+:::
+
+:::caution `listTransactionDetail` là hàm giữ chỗ trong `mezon-sdk` 2.8.68
+`client.listTransactionDetail(txId)` hiện chỉ ghi log ra console ở bản `2.8.68`. Để truy vấn chi tiết giao dịch đã xác nhận hoặc lịch sử ví, hãy dùng [`IndexerClient` trong `mmn-client-js`](./mmn-sdks.md#typescript-mmn-client-js) hoặc tra cứu mã băm tại [`dong.mezon.ai`](https://dong.mezon.ai).
+:::
+
+</TabItem>
+<TabItem value="csharp" label="C# (Mezon.Net.Sdk 1.11.0)">
+
+`Mezon.Net.Sdk` tích hợp sẵn `Mezon.Net.Mmn` trên `.NET 6`, `.NET 8`, `.NET 9` và `.NET 10` (không bao gồm trên `.NET Standard 2.1`). Cấu hình `MMNApiUrl` và `ZkApiUrl` trong `MezonClientOptions` trước khi gọi `LoginAsync()`:
+
+```csharp
+using System.Numerics;
+using Mezon.Net.Sdk;
+
+var options = new MezonClientOptions(botId, token)
+{
+    MMNApiUrl = "https://dong.mezon.ai/mmn-api/",
+    ZkApiUrl = "https://dong.mezon.ai/zk-api/",
+};
+
+await using var client = new MezonClient(options);
+
+client.TokenSent += () =>
+{
+    Console.WriteLine("Đã nhận sự kiện TokenSent");
+    return Task.CompletedTask;
+};
+
+await client.LoginAsync();
+
+// Suy địa chỉ MMN Base58 của người nhận từ Mezon user ID
+var recipientAddress = client.GetAddress(receiverUserId);
+
+// Quy đổi sang đơn vị nhỏ nhất (nhân 10^6: 10.000₫ -> 10_000_000_000)
+var amountInBaseUnits = new BigInteger(10_000) * BigInteger.Pow(10, 6);
+
+var result = await client.SendTransferAsync(
+    recipient: recipientAddress,
+    amount: amountInBaseUnits,
+    textData: "Phần thưởng đố vui cuối tuần",
+    extraInfo: new Dictionary<string, string>
+    {
+        ["UserSenderId"] = client.BotId.ToString(),
+        ["UserReceiverId"] = receiverUserId.ToString(),
+        ["type"] = "transfer_token",
+    });
+
+Console.WriteLine($"Đã gửi tx hash: {result.TxHash}, ok={result.Ok}");
+```
+
+:::tip Khóa tuần tự nonce tích hợp trong `Mezon.Net.Sdk`
+`SendTransferAsync` bảo vệ chuỗi lấy pending nonce, ký và gọi `AddTxAsync` bằng `SemaphoreSlim` nội bộ, đảm bảo các lời gọi đồng thời từ nhiều command handler không bao giờ đụng độ nonce.
+:::
+
+</TabItem>
+</Tabs>
+
+## Khác biệt chính giữa JS và .NET SDK
+
+| Hành vi | `mezon-sdk` (`2.8.68`) | `Mezon.Net.Sdk` (`1.11.0`) |
+|---|---|---|
+| Tham số người nhận | `receiver_id` Mezon (SDK tự suy địa chỉ MMN) | Địa chỉ MMN Base58 (gọi `client.GetAddress(userId)`) |
+| Đơn vị số tiền | Mezon Dong thường (tự nhân `10^6`) | `BigInteger` ở đơn vị cơ sở (`dong * 10^6`) |
+| Endpoint mặc định | Đã đặt sẵn (`dong.mezon.ai/mmn-api/` & `/zk-api/`) | Tự khai báo `Options.MMNApiUrl` và `Options.ZkApiUrl` |
+| Gọi đồng thời | Cần tự xếp hàng trong mã ứng dụng | Tự động tuần tự hóa qua `_mmnTransferGate` |
+| Xử lý lỗi | Ném `Error("Transaction failed: ...")` | Trả về `AddTxResponse` (`Ok`, `TxHash`, `Error`) hoặc ném ngoại lệ nếu MMN chưa khởi tạo |
+
+## Liên quan
+
+- [Tổng quan Thanh toán & MMN](./overview.md)
+- [Các MMN SDK độc lập](./mmn-sdks.md)
+- [Tham chiếu sự kiện](../reference/events-reference.md)
