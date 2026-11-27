@@ -23,7 +23,7 @@ sequenceDiagram
   C->>S: Connect WebSocket & send join (token, role)
   S-->>C: joined (peer_id, ice_servers, downlink mode) + SDP offer
   C-->>S: SDP answer + ICE candidates
-  C<-->S: DTLS / SRTP media (Opus audio, VP8/H.264 video)
+  C<<->>S: DTLS / SRTP media (Opus audio, VP8/H.264 video)
   Note over C,A: Before token expiry or after reconnect (4004/4005)
   C->>A: TokenProvider(reason: expiring | reconnect | rejected)
   A-->>C: Fresh 1h HS256 JWT

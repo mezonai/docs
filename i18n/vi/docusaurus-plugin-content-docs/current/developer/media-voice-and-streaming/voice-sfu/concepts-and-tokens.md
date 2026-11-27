@@ -23,7 +23,7 @@ sequenceDiagram
   C->>S: Mở WebSocket & gửi join (token, role)
   S-->>C: joined (peer_id, ice_servers, chế độ downlink) + SDP offer
   C-->>S: SDP answer + ICE candidates
-  C<-->S: Luồng media DTLS / SRTP (Opus, VP8/H.264)
+  C<<->>S: Luồng media DTLS / SRTP (Opus, VP8/H.264)
   Note over C,A: Trước khi token hết hạn hoặc khi nối lại (4004/4005)
   C->>A: TokenProvider(reason: expiring | reconnect | rejected)
   A-->>C: JWT HS256 1 giờ mới

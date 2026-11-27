@@ -73,6 +73,12 @@ function checkDocsTree(root, label) {
         errors.push(`[${label}] Forbidden pattern (${pat.name}) in ${rel}`);
       }
     }
+    for (const m of text.matchAll(/```mermaid\r?\n([\s\S]*?)```/g)) {
+      const body = m[1];
+      if (/^\s*sequenceDiagram\b/.test(body) && /<-->/.test(body)) {
+        errors.push(`[${label}] Invalid sequenceDiagram arrow "<-->" in ${rel} (use "<<->>")`);
+      }
+    }
   }
   // Check _category_.json collisions in EN tree
   if (label === "en") {
